@@ -7,6 +7,7 @@ import {
   hydrateKutubi,
   listKutubiBooks,
   removeFromKutubi,
+  requestPublicDraft,
   type KutubiState,
 } from "./kutubi.ts";
 import { booksByUiSection, hydrateBooksState, listBooks, markOpened } from "./logic.ts";
@@ -47,6 +48,8 @@ export function useKutubi() {
     () => ({
       add: (id: string) => setLocal((prev) => addToKutubi(hydrateKutubi(prev, BOOK_IDS), id)),
       remove: (id: string) => setLocal((prev) => removeFromKutubi(hydrateKutubi(prev, BOOK_IDS), id)),
+      requestPublic: (id: string) =>
+        setLocal((prev) => requestPublicDraft(hydrateKutubi(prev, BOOK_IDS), id)),
     }),
     [setLocal],
   );

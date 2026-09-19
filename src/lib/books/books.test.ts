@@ -9,6 +9,7 @@ import { booksByUiSection, hydrateBooksState, listBooks, markOpened, uiSectionOf
 import { BOOK_SEED_SECTIONS, BOOK_SOURCE_KINDS, BOOK_STAMP, BOOKS_STORAGE_KEY } from "./types.ts";
 import {
   EMPTY_KUTUBI,
+  KUTUBI_PUBLIC_DRAFT_STATUS,
   KUTUBI_STORAGE_KEY,
   accountOwnsKutubi,
   addToKutubi,
@@ -16,7 +17,9 @@ import {
   isOnKutubi,
   kutubiPublishesToPublic,
   listKutubiBooks,
+  publicDraftOf,
   removeFromKutubi,
+  requestPublicDraft,
 } from "./kutubi.ts";
 import cards from "./waha-kutub-shelf-cards-v1.json" with { type: "json" };
 import lock from "./waha-kutub-shelf-seed-v1.json" with { type: "json" };
@@ -169,7 +172,7 @@ describe("books stay off the Maydan line", () => {
     assert.match(page, /data-kutubi-publish="never"/);
     assert.match(page, /data-kutubi-guest="public-only"/);
     assert.doesNotMatch(page, /<(input|form)\b/);
-    assert.doesNotMatch(page, /fetch\(|scrape|cheerio|WebView|أضف للعامة/);
+    assert.doesNotMatch(page, /fetch\(|scrape|cheerio|WebView/);
     assert.doesNotMatch(page, /kutubiPublishesToPublic\(\) \? true/);
     assert.match(doors, /MIDAD_SHELF_PATH = "\/books"/);
     assert.match(strip, /to="\/books"/);
@@ -241,15 +244,36 @@ describe("كتبي stays a private local slot", () => {
     );
   });
 
-  it("keeps add-to-public as a non-feature — no draft upload path", () => {
+  it("keeps أضف للعامة as a legal-review draft that never publishes", () => {
     const page = readFileSync(new URL("../../apps/books/page.tsx", import.meta.url), "utf8");
-    const kutubi = readFileSync(new URL("./kutubi.ts", import.meta.url), "utf8");
+    const i18n = readFileSync(new URL("../i18n.ts", import.meta.url), "utf8");
     const store = readFileSync(new URL("./store.ts", import.meta.url), "utf8");
-    assert.match(store, /KUTUBI_STORAGE_KEY/);
-    assert.match(kutubi, /kutubiPublishesToPublic/);
-    assert.match(kutubi, /return false/);
-    assert.doesNotMatch(kutubi, /publicDraft|legal-review|upload|scrape/);
-    assert.doesNotMatch(page, /أضف للعامة|publicDraft|WebView/);
+    const before = listBooks().map((book) => book.id);
+    const pinned = addToKutubi(EMPTY_KUTUBI, "bk-akhlaq-01", 1);
+    const drafted = requestPublicDraft(pinned, "bk-akhlaq-01", 2);
+    assert.equal(KUTUBI_PUBLIC_DRAFT_STATUS, "legal-review");
+    assert.equal(publicDraftOf(drafted, "bk-akhlaq-01")?.status, "legal-review");
+    assert.deepEqual(requestPublicDraft(drafted, "pirate-001").items, drafted.items);
+    assert.deepEqual(listBooks().map((book) => book.id), before);
+    assert.equal(kutubiPublishesToPublic(), false);
+    const stripped = hydrateKutubi({
+      version: 1,
+      items: [
+        {
+          bookId: "bk-akhlaq-01",
+          addedAt: 1,
+          publicDraft: { status: "published" as "legal-review", requestedAt: 3 },
+        },
+      ],
+    });
+    assert.equal(publicDraftOf(stripped, "bk-akhlaq-01"), undefined);
+    assert.match(store, /requestPublicDraft/);
+    assert.match(page, /kutubiOfferPublic/);
+    assert.match(page, /data-kutubi-draft/);
+    assert.match(page, /legal-review/);
+    assert.match(i18n, /أضف للعامة/);
+    assert.match(i18n, /مراجعة قانونية/);
+    assert.doesNotMatch(page, /WebView|fetch\(|scrape/);
     assert.match(page, /kutubiAdd/);
     assert.match(page, /kutubiGuestHint/);
   });
