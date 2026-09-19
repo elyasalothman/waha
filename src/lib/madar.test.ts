@@ -64,7 +64,7 @@ describe("matchHouseSites", () => {
     assert.equal(matchHouseSites("").length, HOUSE_SITES.length);
     assert.deepEqual(
       matchHouseSites("").map((s) => s.id),
-      ["tahajjud", "midad", "mohsen", "games", "tools", "agent", "sites"],
+      ["tahajjud", "midad", "sites", "mohsin", "luma", "alhajda-tools", "agent", "hissati"],
     );
   });
 
@@ -77,19 +77,25 @@ describe("matchHouseSites", () => {
       matchHouseSites("مداد").map((s) => s.id),
       ["midad"],
     );
-    assert.ok(matchHouseSites("محسن").some((s) => s.id === "mohsen"));
-    assert.ok(matchHouseSites("ألعاب").some((s) => s.id === "games"));
-    assert.ok(matchHouseSites("أدوات").some((s) => s.id === "tools"));
+    assert.ok(matchHouseSites("محسن").some((s) => s.id === "mohsin"));
+    assert.ok(matchHouseSites("ألعاب").some((s) => s.id === "luma"));
+    assert.ok(matchHouseSites("أدوات").some((s) => s.id === "alhajda-tools"));
     assert.ok(matchHouseSites("وكيل").some((s) => s.id === "agent"));
     assert.ok(matchHouseSites("مواقعنا").some((s) => s.id === "sites"));
+    assert.ok(matchHouseSites("حصتي").some((s) => s.id === "hissati"));
   });
 
   it("matches hosts and English aliases", () => {
-    assert.ok(matchHouseSites("ai.alhajda").some((s) => s.id === "mohsen"));
-    assert.ok(matchHouseSites("luma").some((s) => s.id === "games"));
+    assert.ok(matchHouseSites("ai.alhajda").some((s) => s.id === "mohsin"));
+    assert.ok(matchHouseSites("luma").some((s) => s.id === "luma"));
+    assert.ok(matchHouseSites("mohsen").some((s) => s.id === "mohsin"));
     assert.deepEqual(
       matchHouseSites("https://tahajjud.alhajda.com/").map((s) => s.id),
       ["tahajjud"],
+    );
+    assert.deepEqual(
+      matchHouseSites("https://midad.alhajda.com/library").map((s) => s.id),
+      ["midad"],
     );
   });
 });

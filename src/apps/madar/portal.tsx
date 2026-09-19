@@ -152,7 +152,7 @@ export function MadarPortal({ initialQuery = "" }: { initialQuery?: string }) {
   }
 
   function openHouse(site: HouseSite) {
-    record({ title: site[lang === "ar" ? "ar" : "en"], query: site.ar, href: site.href, kind: "house", at: Date.now() });
+    record({ title: site.title[lang], query: site.title.ar, href: site.href, kind: "house", at: Date.now() });
     openExternal(site.href);
   }
 
@@ -461,8 +461,8 @@ function HouseCard({ site, lang, onOpen }: { site: HouseSite; lang: Lang; onOpen
       onClick={() => onOpen(site)}
       className="rounded-xl border border-border bg-surface px-4 py-3 text-start hover:bg-surface-2"
     >
-      <span className="block font-medium">{lang === "ar" ? site.ar : site.en}</span>
-      <span className="mt-1 block text-xs text-muted">{lang === "ar" ? site.blurbAr : site.blurbEn}</span>
+      <span className="block font-medium">{site.title[lang]}</span>
+      <span className="mt-1 block text-xs text-muted">{site.blurb[lang]}</span>
     </button>
   );
 }

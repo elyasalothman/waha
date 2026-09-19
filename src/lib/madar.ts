@@ -1,4 +1,5 @@
 import type { Lang } from "@/lib/i18n";
+import { HOUSE_SITES, type HouseSite } from "./house-sites.ts";
 
 export const DDG_SEARCH = "https://duckduckgo.com/?q=";
 
@@ -10,16 +11,7 @@ export type OmniboxIntent = {
   href?: string;
 };
 
-export type HouseSite = {
-  id: string;
-  ar: string;
-  en: string;
-  blurbAr: string;
-  blurbEn: string;
-  href: string;
-  host: string;
-  keywords: string[];
-};
+export { HOUSE_SITES, type HouseSite };
 
 export type QuickTool = {
   id: string;
@@ -28,80 +20,6 @@ export type QuickTool = {
   href: string;
   keywords: string[];
 };
-
-/** فهرس مواقع البيت — يظهر فوراً قبل نتائج الويب. */
-export const HOUSE_SITES: HouseSite[] = [
-  {
-    id: "tahajjud",
-    ar: "تهجد",
-    en: "Tahajjud",
-    blurbAr: "مواقيت وأذكار ومصحف",
-    blurbEn: "Prayer times, athkar, and a mushaf",
-    href: "https://tahajjud.alhajda.com/",
-    host: "tahajjud.alhajda.com",
-    keywords: ["تهجد", "صلاة", "أذكار", "قرآن", "tahajjud", "prayer", "athkar"],
-  },
-  {
-    id: "midad",
-    ar: "مداد",
-    en: "Midad",
-    blurbAr: "بيت عربي للقراءة المتصلة",
-    blurbEn: "An Arabic house for continuous reading",
-    href: "https://midad.alhajda.com/",
-    host: "midad.alhajda.com",
-    keywords: ["مداد", "قراءة", "كتاب", "midad", "read"],
-  },
-  {
-    id: "mohsen",
-    ar: "محسن",
-    en: "Mohsen",
-    blurbAr: "مساعد عربي في المتصفح",
-    blurbEn: "An Arabic assistant in the browser",
-    href: "https://ai.alhajda.com/",
-    host: "ai.alhajda.com",
-    keywords: ["محسن", "ذكاء", "مساعد", "mohsen", "ai"],
-  },
-  {
-    id: "games",
-    ar: "ألعاب",
-    en: "Games",
-    blurbAr: "باحة لُمعة وألعاب البيت",
-    blurbEn: "Luma’s yard and house games",
-    href: "https://games.alhajda.com/",
-    host: "games.alhajda.com",
-    keywords: ["ألعاب", "العاب", "لمة", "لمعة", "luma", "games", "play"],
-  },
-  {
-    id: "tools",
-    ar: "أدوات",
-    en: "Tools",
-    blurbAr: "حاسبات ومرافق محلية في المتصفح",
-    blurbEn: "On-device calculators and utilities",
-    href: "https://tools.alhajda.com/",
-    host: "tools.alhajda.com",
-    keywords: ["أدوات", "ادوات", "حاسبة", "tools", "calc"],
-  },
-  {
-    id: "agent",
-    ar: "وكيل",
-    en: "Agent",
-    blurbAr: "وكيل الهجدة في المتصفح",
-    blurbEn: "Alhajda’s in-browser agent",
-    href: "https://agent.alhajda.com/",
-    host: "agent.alhajda.com",
-    keywords: ["وكيل", "agent"],
-  },
-  {
-    id: "sites",
-    ar: "مواقعنا",
-    en: "Our sites",
-    blurbAr: "فهرس نطاقات البيت",
-    blurbEn: "The house directory",
-    href: "https://alhajda.com/sites",
-    host: "alhajda.com",
-    keywords: ["مواقعنا", "مواقع", "فهرس", "هجدة", "alhajda", "sites"],
-  },
-];
 
 export const QUICK_TOOLS: QuickTool[] = [
   {
@@ -177,7 +95,7 @@ function normalize(value: string): string {
 
 export function matchHouseSites(raw: string): HouseSite[] {
   const q = normalize(raw);
-  if (!q) return HOUSE_SITES;
+  if (!q) return [...HOUSE_SITES];
   const intent = classifyOmnibox(raw);
   if (intent.href) {
     try {
@@ -189,10 +107,18 @@ export function matchHouseSites(raw: string): HouseSite[] {
     }
   }
   return HOUSE_SITES.filter((site) => {
-    const hay = [site.id, site.ar, site.en, site.host, site.blurbAr, site.blurbEn, ...site.keywords]
+    const hay = [
+      site.id,
+      site.title.ar,
+      site.title.en,
+      site.host,
+      site.blurb.ar,
+      site.blurb.en,
+      ...site.keywords,
+    ]
       .join("\n")
       .toLowerCase();
-    return hay.includes(q) || q.includes(normalize(site.ar)) || q.includes(normalize(site.en));
+    return hay.includes(q) || q.includes(normalize(site.title.ar)) || q.includes(normalize(site.title.en));
   });
 }
 
