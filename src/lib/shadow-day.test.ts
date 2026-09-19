@@ -1,6 +1,14 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { formatHmInZone, formatLocalHm, isVisibleHm } from "./clock.ts";
+import {
+  formatHmInZone,
+  formatLiveHms,
+  formatLocalHm,
+  formatShortRemain,
+  isVisibleHm,
+  isVisibleHms,
+  isVisibleShortRemain,
+} from "./clock.ts";
 import { DEFAULT_CITY } from "./cities.ts";
 import { climateFallbackC, formatCelsius, fetchWeatherSafe } from "./weather.ts";
 import { formatHijri, toHijri } from "./hijri.ts";
@@ -46,21 +54,44 @@ describe("hijri", () => {
   });
 });
 
+describe("live countdown formats", () => {
+  it("always paints HH:MM:SS and a short timer — never a dash or blank", () => {
+    assert.equal(formatLiveHms(26_000), "00:00:26");
+    assert.equal(formatShortRemain(26_000), "0:26");
+    assert.equal(formatLiveHms(3_662_000), "01:01:02");
+    assert.equal(formatShortRemain(3_662_000), "1:01:02");
+    assert.equal(formatLiveHms(-12), "00:00:00");
+    assert.equal(formatShortRemain(Number.NaN), "0:00");
+    assert.ok(isVisibleHms(formatLiveHms(0)));
+    assert.ok(isVisibleShortRemain(formatShortRemain(0)));
+    assert.ok(!ARABIC_INDIC.test(formatLiveHms(90_000)));
+    assert.notEqual(formatLiveHms(1), "—");
+    assert.notEqual(formatShortRemain(1), "—");
+  });
+});
+
 describe("shadowDayNow", () => {
-  it("fills clock, prayer HH:MM, weather °C, and hijri instantly", () => {
+  it("fills clock, prayer HH:MM, live countdown, weather °C, and hijri instantly", () => {
     const snap = shadowDayNow(new Date(Date.UTC(2026, 8, 19, 12, 0, 0)), DEFAULT_CITY);
     assert.ok(isVisibleHm(snap.clock));
     assert.ok(isVisibleHm(snap.prayerHm));
+    assert.ok(isVisibleHms(snap.remainHms));
+    assert.ok(isVisibleShortRemain(snap.remainShort));
+    assert.ok(snap.remainMs >= 0);
     assert.match(snap.weatherText, /^-?\d+°C$/);
     assert.ok(Number.isFinite(snap.weatherC));
     assert.ok(snap.prayerLabelAr.length > 0);
     assert.ok(snap.hijri.trim().length > 0);
     assert.notEqual(snap.clock, "—");
     assert.notEqual(snap.prayerHm, "—");
+    assert.notEqual(snap.remainHms, "—");
+    assert.notEqual(snap.remainShort, "—");
     assert.notEqual(snap.weatherText, "—");
     assert.notEqual(snap.hijri, "—");
     assert.ok(!ARABIC_INDIC.test(snap.clock));
     assert.ok(!ARABIC_INDIC.test(snap.prayerHm));
+    assert.ok(!ARABIC_INDIC.test(snap.remainHms));
+    assert.ok(!ARABIC_INDIC.test(snap.remainShort));
     assert.ok(!ARABIC_INDIC.test(snap.weatherText));
   });
 });

@@ -1,9 +1,42 @@
 /** ASCII HH:MM — never empty, never Eastern-Arabic digits (those vanish in IBM Plex Mono). */
 export const HM_RE = /^\d{2}:\d{2}$/;
+/** Live countdown: always `HH:MM:SS`. */
+export const HMS_RE = /^\d{2}:\d{2}:\d{2}$/;
+/** Short fold timer: `M:SS` or `H:MM:SS`. */
+export const SHORT_REMAIN_RE = /^(?:\d{1,2}:)?\d{1,2}:\d{2}$/;
 
 export function pad2(n: number): string {
   const v = Number.isFinite(n) ? Math.max(0, Math.floor(n)) : 0;
   return String(v % 100).padStart(2, "0");
+}
+
+function remainParts(ms: number): { h: number; m: number; s: number } {
+  const total = Math.max(0, Math.floor((Number.isFinite(ms) ? ms : 0) / 1000));
+  const h = Math.min(99, Math.floor(total / 3600));
+  const m = Math.floor((total % 3600) / 60);
+  const s = total % 60;
+  return { h, m, s };
+}
+
+/** Always `HH:MM:SS` — never empty, never a dash. */
+export function formatLiveHms(ms: number): string {
+  const { h, m, s } = remainParts(ms);
+  return `${pad2(h)}:${pad2(m)}:${pad2(s)}`;
+}
+
+/** Short live timer for the fold: `3:14:22` or `12:34` or `0:26`. Never empty. */
+export function formatShortRemain(ms: number): string {
+  const { h, m, s } = remainParts(ms);
+  if (h > 0) return `${h}:${pad2(m)}:${pad2(s)}`;
+  return `${m}:${pad2(s)}`;
+}
+
+export function isVisibleHms(value: string): boolean {
+  return HMS_RE.test(value);
+}
+
+export function isVisibleShortRemain(value: string): boolean {
+  return SHORT_REMAIN_RE.test(value) && value.trim().length > 0;
 }
 
 /** Local wall clock of `date` (browser/OS timezone). Always `HH:MM`. */
