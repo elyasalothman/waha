@@ -1,6 +1,5 @@
-import { DOORS, YOU_ACCOUNT, getAccount } from "./accounts.ts";
+import { accountFromSeed, YOU_ACCOUNT } from "./accounts.ts";
 import { SEED_POSTS } from "./seed.ts";
-import { seedCreatedAt } from "./time.ts";
 import type { FeedItem, SquareLocalState, SquareProfile, SquareTab } from "./types.ts";
 
 export const SQUARE_STORAGE_KEY = "waha:square:v1";
@@ -48,49 +47,40 @@ export function mergeFeed(local: SquareLocalState, tab: SquareTab, now = Date.no
   const liked = new Set(local.likes);
   const echoed = new Set(local.echoes);
 
-  const seedItems: FeedItem[] = SEED_POSTS.map((post) => {
-    const author = getAccount(post.authorId);
+  const seedItems: FeedItem[] = SEED_POSTS.map((post, index) => {
+    const author = accountFromSeed(post.author, post.handle, post.badge);
     return {
       id: post.id,
       source: "seed",
       author,
-      kind: post.kind,
-      textAr: post.textAr,
-      textEn: post.textEn,
-      quoteAr: post.quoteAr,
-      quoteEn: post.quoteEn,
-      quoteAttrAr: post.quoteAttrAr,
-      quoteAttrEn: post.quoteAttrEn,
-      door: post.door ? DOORS[post.door] : undefined,
-      media: post.media,
-      createdAt: seedCreatedAt(post.ageMinutes, now),
-      ageMinutes: post.ageMinutes,
+      badge: post.badge,
+      text: post.text,
+      visual: post.visual,
+      relativeTime: post.relativeTime,
+      createdAt: now - (index + 1) * 60_000,
       likes: post.likes + (liked.has(post.id) ? 1 : 0),
-      echoes: post.echoes + (echoed.has(post.id) ? 1 : 0),
+      echoes: echoed.has(post.id) ? 1 : 0,
       liked: liked.has(post.id),
       echoed: echoed.has(post.id),
-      seedReplies: post.replies ?? [],
       userReplies: local.replies[post.id] ?? [],
     };
   });
 
   const userItems: FeedItem[] = local.posts.map((post) => ({
     id: post.id,
-    source: "you",
+    source: "you" as const,
     author: you,
-    kind: "text",
-    textAr: post.text,
-    textEn: post.text,
+    text: post.text,
     createdAt: post.createdAt,
     likes: liked.has(post.id) ? 1 : 0,
     echoes: echoed.has(post.id) ? 1 : 0,
     liked: liked.has(post.id),
     echoed: echoed.has(post.id),
-    seedReplies: [],
     userReplies: local.replies[post.id] ?? [],
   }));
 
-  const merged = [...userItems, ...seedItems].sort((a, b) => b.createdAt - a.createdAt);
+  // Local write first — before any seed counts.
+  const merged = [...userItems, ...seedItems];
   if (tab === "following") {
     return merged.filter((item) => item.author.kind === "house" || item.source === "you");
   }

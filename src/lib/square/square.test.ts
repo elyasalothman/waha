@@ -1,54 +1,62 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { HOUSE_ACCOUNTS, SAMPLE_ACCOUNTS, getAccount } from "./accounts.ts";
+import { DOORS, HOUSE_ACCOUNTS, SAMPLE_ACCOUNTS } from "./accounts.ts";
 import { MIN_SEED_POSTS, SEED_POSTS } from "./seed.ts";
 import { addPost, addReply, emptyLocal, mergeFeed, toggleEcho, toggleLike, updateProfile } from "./logic.ts";
 import { formatAgeMinutes, seedCreatedAt } from "./time.ts";
 
 describe("square seed", () => {
-  it("ships at least forty posts so the square is never empty", () => {
+  it("ships the king-approved forty-eight posts so the square is never empty", () => {
+    assert.equal(SEED_POSTS.length, 48);
     assert.ok(SEED_POSTS.length >= MIN_SEED_POSTS);
   });
 
-  it("covers every official house account", () => {
-    const authors = new Set(SEED_POSTS.map((p) => p.authorId));
+  it("covers every official house handle from the king file", () => {
+    const handles = new Set(SEED_POSTS.map((p) => p.handle));
     for (const house of HOUSE_ACCOUNTS) {
-      assert.ok(authors.has(house.id), `missing posts from ${house.nameAr}`);
+      assert.ok(handles.has(house.handle), `missing posts from ${house.nameAr}`);
     }
   });
 
-  it("marks community posts with sample authors, not house voices", () => {
-    const sampleIds = new Set(SAMPLE_ACCOUNTS.map((a) => a.id));
-    const samples = SEED_POSTS.filter((p) => sampleIds.has(p.authorId));
+  it("keeps بيت and عيّنة badges exactly as shipped", () => {
+    assert.ok(SEED_POSTS.every((p) => p.badge === "بيت" || p.badge === "عيّنة"));
+    const samples = SEED_POSTS.filter((p) => p.badge === "عيّنة");
     assert.ok(samples.length >= 16);
     for (const post of samples) {
-      assert.equal(getAccount(post.authorId).kind, "sample");
+      assert.ok(post.handle.startsWith("@sample."));
     }
   });
 
-  it("varies form: text, quote, door, and calm media", () => {
-    const kinds = new Set(SEED_POSTS.map((p) => p.kind));
-    assert.ok(kinds.has("text"));
-    assert.ok(kinds.has("quote"));
-    assert.ok(kinds.has("door"));
-    assert.ok(kinds.has("media"));
-    assert.ok(SEED_POSTS.some((p) => p.door === "madar"));
-    assert.ok(SEED_POSTS.some((p) => p.door === "tahajjud"));
-    assert.ok(SEED_POSTS.some((p) => p.door === "midad"));
-  });
-
-  it("spreads ages so the line feels alive", () => {
-    const ages = SEED_POSTS.map((p) => p.ageMinutes);
-    assert.ok(ages.some((m) => m < 15), "needs minutes-ago posts");
-    assert.ok(ages.some((m) => m >= 60 && m < 180), "needs about-an-hour posts");
-    assert.ok(ages.some((m) => m >= 1440), "needs day-old posts");
+  it("does not edit king texts — opening line stays as shipped", () => {
+    assert.equal(SEED_POSTS[0]?.id, "seed-001");
+    assert.match(SEED_POSTS[0]?.text ?? "", /^أهلاً بك في الميدان\./);
+    assert.equal(SEED_POSTS[0]?.relativeTime, "منذ ساعة");
+    assert.ok(SEED_POSTS.every((p) => p.text.length > 0 && p.relativeTime.length > 0));
   });
 
   it("keeps seed copy calm — no celebrity handles, no sharp politics", () => {
-    const blob = SEED_POSTS.map((p) => `${p.textAr} ${p.textEn} ${p.authorId}`).join(" ");
+    const blob = SEED_POSTS.map((p) => `${p.text} ${p.author} ${p.handle}`).join(" ");
     for (const banned of ["تويتر", "twitter", "إكس", "x.com", "trump", "netanyahu", "مشهور"]) {
       assert.equal(blob.toLowerCase().includes(banned.toLowerCase()), false, banned);
     }
+  });
+});
+
+describe("square doors", () => {
+  it("points house doors at the locked live products — never fake /life or /app clones", () => {
+    assert.equal(DOORS.madar.href, "/madar");
+    assert.equal(DOORS.tahajjud.href, "https://tahajjud.alhajda.com");
+    assert.equal(DOORS.midad.href, "https://midad.alhajda.com/library");
+    assert.equal(DOORS.sites.href, "https://alhajda.com/sites");
+    const hrefs = Object.values(DOORS).map((d) => d.href).join(" ");
+    assert.equal(/\/life\b/.test(hrefs), false);
+    assert.equal(/\/app\/salah/.test(hrefs), false);
+    assert.equal(/\/app\/khatma/.test(hrefs), false);
+  });
+
+  it("lists the marked sample voices from the king file", () => {
+    assert.equal(SAMPLE_ACCOUNTS.length, 6);
+    assert.ok(SAMPLE_ACCOUNTS.every((a) => a.kind === "sample"));
   });
 });
 
@@ -73,15 +81,18 @@ describe("square store", () => {
   it("always merges the local seed even when storage is empty", () => {
     const feed = mergeFeed(emptyLocal(), "forYou", Date.now(), "ar");
     assert.ok(feed.length >= MIN_SEED_POSTS);
-    assert.ok(feed.every((item) => item.textAr.length > 0));
+    assert.ok(feed.every((item) => item.text.length > 0));
+    assert.ok(feed.some((item) => item.badge === "عيّنة"));
+    assert.ok(feed.some((item) => item.badge === "بيت"));
   });
 
-  it("places a newly written post at the top", () => {
+  it("places a newly written post at the top with no fake counts", () => {
     const now = 1_800_000_000_000;
     const next = addPost(emptyLocal(), "صباح الخير من الميدان", now);
     const feed = mergeFeed(next, "forYou", now, "ar");
     assert.equal(feed[0]?.source, "you");
-    assert.equal(feed[0]?.textAr, "صباح الخير من الميدان");
+    assert.equal(feed[0]?.text, "صباح الخير من الميدان");
+    assert.equal(feed[0]?.likes, 0);
   });
 
   it("ignores empty compose and trims to 280", () => {
@@ -92,17 +103,17 @@ describe("square store", () => {
   });
 
   it("toggles like and echo locally", () => {
-    const liked = toggleLike(emptyLocal(), "seed-01");
-    assert.deepEqual(liked.likes, ["seed-01"]);
-    const unliked = toggleLike(liked, "seed-01");
+    const liked = toggleLike(emptyLocal(), "seed-001");
+    assert.deepEqual(liked.likes, ["seed-001"]);
+    const unliked = toggleLike(liked, "seed-001");
     assert.deepEqual(unliked.likes, []);
-    const echoed = toggleEcho(emptyLocal(), "seed-02");
-    assert.deepEqual(echoed.echoes, ["seed-02"]);
+    const echoed = toggleEcho(emptyLocal(), "seed-002");
+    assert.deepEqual(echoed.echoes, ["seed-002"]);
   });
 
   it("stores a local reply under the post", () => {
-    const next = addReply(emptyLocal(), "seed-01", "بارك الله فيكم", "ضيف الواحة", 99);
-    assert.equal(next.replies["seed-01"]?.[0]?.text, "بارك الله فيكم");
+    const next = addReply(emptyLocal(), "seed-001", "بارك الله فيكم", "ضيف الواحة", 99);
+    assert.equal(next.replies["seed-001"]?.[0]?.text, "بارك الله فيكم");
   });
 
   it("following tab keeps house posts and the visitor’s own", () => {

@@ -20,7 +20,7 @@ export function HouseBadge({ lang, className }: { lang: Lang; className?: string
 export function SampleStamp({ lang }: { lang: Lang }) {
   return (
     <span className="inline-flex items-center rounded-full border border-border/80 bg-bg/40 px-1.5 py-0.5 text-[10px] text-subtle">
-      {lang === "ar" ? "عيّنة للبداية" : "Starter sample"}
+      {lang === "ar" ? "عيّنة معلَّمة" : "Marked sample"}
     </span>
   );
 }
