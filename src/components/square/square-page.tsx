@@ -16,7 +16,7 @@ export function SquarePage() {
   const lang = useAppStore((s) => s.lang);
   const audience = useAppStore((s) => s.audience);
   const user = useCurrentUser();
-  const { local, ready, publish, like, echo, reply, saveProfile } = useSquare();
+  const { local, publish, like, echo, reply, saveProfile } = useSquare();
   const [tab, setTab] = useState<SquareTab>("forYou");
   const [profileOpen, setProfileOpen] = useState(false);
   const clock = useNow(60_000);
@@ -80,7 +80,6 @@ export function SquarePage() {
       </div>
 
       <div className="mt-2">
-        {!ready ? <p className="py-6 text-sm text-muted">{t(lang, "loading")}</p> : null}
         {feed.map((item) => (
           <PostCard
             key={item.id}

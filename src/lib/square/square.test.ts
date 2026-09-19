@@ -56,8 +56,11 @@ describe("square time", () => {
   it("formats relative Arabic ages from stored minutes", () => {
     assert.equal(formatAgeMinutes(3, "ar"), "منذ دقائق");
     assert.equal(formatAgeMinutes(60, "ar"), "منذ ساعة");
+    assert.equal(formatAgeMinutes(120, "ar"), "منذ ساعتين");
     assert.equal(formatAgeMinutes(180, "ar"), "منذ 3 ساعات");
+    assert.equal(formatAgeMinutes(660, "ar"), "منذ 11 ساعة");
     assert.equal(formatAgeMinutes(1440, "ar"), "منذ يوم");
+    assert.equal(formatAgeMinutes(2880, "ar"), "منذ يومين");
   });
 
   it("materializes seed timestamps behind now", () => {

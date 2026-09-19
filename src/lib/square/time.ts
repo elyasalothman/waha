@@ -9,13 +9,19 @@ export function formatAgeMinutes(ageMinutes: number, lang: Lang): string {
     return lang === "ar" ? `منذ ${m} دقيقة` : `${m}m`;
   }
   const hours = Math.floor(m / 60);
-  if (hours === 1) return lang === "ar" ? "منذ ساعة" : "1h";
   if (hours < 24) {
-    return lang === "ar" ? `منذ ${hours} ساعات` : `${hours}h`;
+    if (lang !== "ar") return `${hours}h`;
+    if (hours === 1) return "منذ ساعة";
+    if (hours === 2) return "منذ ساعتين";
+    if (hours <= 10) return `منذ ${hours} ساعات`;
+    return `منذ ${hours} ساعة`;
   }
   const days = Math.floor(hours / 24);
-  if (days === 1) return lang === "ar" ? "منذ يوم" : "1d";
-  return lang === "ar" ? `منذ ${days} أيام` : `${days}d`;
+  if (lang !== "ar") return `${days}d`;
+  if (days === 1) return "منذ يوم";
+  if (days === 2) return "منذ يومين";
+  if (days <= 10) return `منذ ${days} أيام`;
+  return `منذ ${days} يوماً`;
 }
 
 export function formatElapsed(createdAt: number, now: number, lang: Lang): string {
