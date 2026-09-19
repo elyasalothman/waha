@@ -17,6 +17,15 @@ function MorePage() {
         <h1 className="font-display text-4xl tracking-tight">{t(lang, "more")}</h1>
         <p className="mt-2 max-w-xl text-muted">{t(lang, "moreBlurb")}</p>
       </header>
+      <Link
+        to="/forum"
+        className="mb-6 flex min-h-14 items-center justify-between rounded-xl border border-border bg-surface px-4 text-fg hover:bg-surface-2"
+      >
+        <span>
+          <span className="block font-medium">{t(lang, "forum")}</span>
+          <span className="mt-0.5 block text-sm text-muted">{t(lang, "forumBlurb")}</span>
+        </span>
+      </Link>
       <nav aria-label={t(lang, "more")} className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         {hubs.map((hub) => (
           <Link

@@ -133,9 +133,9 @@ export function SquarePage() {
       </div>
 
       <p className="py-8 text-center text-sm text-subtle">
-        {L("الآبار للخدمة، والميدان للكلام.", "Wells for service, the Square for speech.")}{" "}
-        <Link to="/more" className="text-primary hover:underline">
-          {t(lang, "more")}
+        {L("النقاش الأطول في قسمه.", "Longer talk lives in its section.")}{" "}
+        <Link to="/forum" className="text-primary hover:underline">
+          {t(lang, "forum")}
         </Link>
       </p>
 
