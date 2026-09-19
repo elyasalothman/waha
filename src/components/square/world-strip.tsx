@@ -31,7 +31,7 @@ export function WorldStrip({
         )}
       </header>
       {active ? null : (
-        <div className="mt-2 flex gap-2 overflow-x-auto pb-1">
+        <div className="mt-2 flex flex-nowrap gap-2 overflow-x-auto pb-1">
           {preview.map((card) => (
             <button
               key={card.id}
