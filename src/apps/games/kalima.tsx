@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { RoundOverlay } from "@/components/round-overlay";
 import { Stat } from "@/components/app-stage";
 import { t } from "@/lib/i18n";
 import { readScore, writeScore } from "@/lib/storage";
@@ -172,7 +173,8 @@ export function KalimaApp() {
           {t(lang, "newGame")}
         </Button>
       </div>
-      <div className="mx-auto grid max-w-xs gap-1.5">
+      <div className="relative mx-auto max-w-xs">
+      <div className="grid gap-1.5">
         {rows.map((word, r) => {
           const tones = guesses[r] ? scoreGuess(guesses[r]!, answer) : null;
           return (
@@ -199,14 +201,19 @@ export function KalimaApp() {
           );
         })}
       </div>
-      {msg ? <p className="text-center text-sm text-muted">{msg}</p> : null}
       {done ? (
-        <p className="text-center text-sm">
-          {won ? t(lang, "youWin") : t(lang, "gameOver")} · {answer}
-        </p>
-      ) : (
+        <RoundOverlay
+          title={won ? t(lang, "youWin") : t(lang, "gameOver")}
+          detail={answer}
+          actionLabel={t(lang, "newGame")}
+          onAction={() => deal(mode)}
+        />
+      ) : null}
+      </div>
+      {msg ? <p className="text-center text-sm text-muted">{msg}</p> : null}
+      {!done ? (
         <p className="text-center text-xs text-subtle">{L("أدخل للكلمة — ⌫ للمسح", "Enter to submit — ⌫ to erase")}</p>
-      )}
+      ) : null}
       <div className="flex flex-wrap justify-center gap-1">
         {alphabet.map((ch) => {
           const tone = keyTone.get(ch);
