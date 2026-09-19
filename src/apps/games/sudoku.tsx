@@ -1,7 +1,9 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { RoundOverlay } from "@/components/round-overlay";
 import { Stat } from "@/components/app-stage";
 import { t } from "@/lib/i18n";
+import { usePersistent } from "@/lib/storage";
 import { useAppStore } from "@/store/app-store";
 import { cn } from "@/lib/cn";
 
@@ -90,6 +92,10 @@ export function SudokuApp() {
   const [grid, setGrid] = useState<Grid>(() => clone(given));
   const [sel, setSel] = useState<{ r: number; c: number } | null>(null);
   const [msg, setMsg] = useState("");
+  const [secs, setSecs] = useState(0);
+  const [won, setWon] = useState(false);
+  const [best, setBest] = usePersistent("waha:sudoku-best", 0);
+  const ticking = useRef(true);
 
   function deal(d: Diff) {
     const p = puzzle(d);
@@ -98,9 +104,28 @@ export function SudokuApp() {
     setGrid(clone(p.given));
     setSel(null);
     setMsg("");
+    setSecs(0);
+    setWon(false);
+    ticking.current = true;
   }
 
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      if (ticking.current) setSecs((s) => s + 1);
+    }, 1000);
+    return () => window.clearInterval(id);
+  }, []);
+
   const filled = useMemo(() => grid.flat().every((n) => n !== 0), [grid]);
+  const complete = filled && grid.every((row, r) => row.every((n, c) => n === solved[r]![c]));
+
+  useEffect(() => {
+    if (!complete || won) return;
+    ticking.current = false;
+    setWon(true);
+    setMsg(t(lang, "youWin"));
+    if (best === 0 || secs < best) setBest(secs);
+  }, [complete, won, lang, best, secs, setBest]);
 
   return (
     <div className="space-y-4">
@@ -123,12 +148,16 @@ export function SudokuApp() {
         >
           {lang === "ar" ? "تحقق" : "Check"}
         </Button>
+        <Stat label={lang === "ar" ? "الوقت" : "Time"} value={secs} />
+        <Stat label={t(lang, "best")} value={best || "—"} />
       </div>
-      <div className="mx-auto grid max-w-md grid-cols-9 overflow-hidden rounded-lg border border-border">
+      <div className="relative mx-auto max-w-md">
+      <div className="grid grid-cols-9 overflow-hidden rounded-lg border border-border">
         {grid.map((row, r) =>
           row.map((n, c) => {
             const locked = given[r]![c] !== 0;
             const same = sel && grid[sel.r]![sel.c] !== 0 && n === grid[sel.r]![sel.c];
+            const wrong = !locked && n !== 0 && n !== solved[r]![c];
             return (
               <button
                 key={`${r}-${c}`}
@@ -141,6 +170,7 @@ export function SudokuApp() {
                   locked ? "font-medium text-fg" : "text-primary",
                   sel?.r === r && sel?.c === c && "bg-surface-2",
                   same && "bg-surface-2",
+                  wrong && "text-danger",
                 )}
               >
                 {n || ""}
@@ -148,6 +178,15 @@ export function SudokuApp() {
             );
           }),
         )}
+      </div>
+      {won ? (
+        <RoundOverlay
+          title={t(lang, "youWin")}
+          detail={lang === "ar" ? `في ${secs} ثانية` : `In ${secs}s`}
+          actionLabel={t(lang, "newGame")}
+          onAction={() => deal(diff)}
+        />
+      ) : null}
       </div>
       <div className="flex flex-wrap gap-2">
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((n) => (

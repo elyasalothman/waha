@@ -421,8 +421,13 @@ export function TetrisApp() {
             style={{ aspectRatio: "10 / 20" }}
           />
           {status !== "play" ? (
-            <div className="absolute inset-0 flex flex-col items-center justify-center rounded-xl bg-bg/80">
-              <p className="mb-3 text-sm text-muted">{status === "over" ? t(lang, "gameOver") : L("لبنات تسقط — صفّ سطراً ليمسح", "Clear lines. Don’t stack out.")}</p>
+            <div className="absolute inset-0 flex flex-col items-center justify-center rounded-xl bg-bg/80 p-4 text-center">
+              <p className="mb-1 text-lg font-medium">{status === "over" ? t(lang, "gameOver") : L("تتريس", "Tetris")}</p>
+              <p className="mb-3 text-sm text-muted">
+                {status === "over"
+                  ? `${t(lang, "score")} ${score} · ${t(lang, "best")} ${best}`
+                  : L("صفّ سطراً ليمسح — لا تملأ العمود.", "Clear a line. Don’t stack out.")}
+              </p>
               <Button onClick={start}>{status === "over" ? t(lang, "restart") : t(lang, "start")}</Button>
             </div>
           ) : null}
@@ -448,6 +453,11 @@ export function TetrisApp() {
           {L("أمسك", "Hold")}
         </Button>
       </div>
+      {status === "play" ? (
+        <Button variant="outline" onClick={start}>
+          {t(lang, "newGame")}
+        </Button>
+      ) : null}
       <p className="hidden text-xs text-subtle sm:block">
         {L("أسهم للحركة، أعلى/X دوران، مسافة إسقاط، C احتفاظ.", "Arrows move, Up/X rotate, Space drop, C hold.")}
       </p>

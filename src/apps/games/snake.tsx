@@ -285,6 +285,13 @@ export function SnakeApp() {
               <p className="text-lg font-medium text-fg">
                 {status === "idle" ? (lang === "ar" ? "الثعبان" : "Snake") : status === "win" ? t(lang, "youWin") : t(lang, "gameOver")}
               </p>
+              <p className="text-sm text-muted">
+                {status === "idle"
+                  ? lang === "ar"
+                    ? "أسهم أو اسحب — مسافة للإيقاف."
+                    : "Arrows or swipe — Space to pause."
+                  : `${t(lang, "score")} ${score} · ${t(lang, "best")} ${best}`}
+              </p>
               <Button onClick={start}>{status === "idle" ? t(lang, "start") : t(lang, "restart")}</Button>
             </div>
           )}

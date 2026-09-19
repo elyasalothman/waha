@@ -10,7 +10,7 @@ import {
   homeShowsCityPicker,
   isPlayItem,
 } from "./home-lock.ts";
-import { primaryLauncherDoors } from "./doors.ts";
+import { getDoor, primaryLauncherDoors } from "./doors.ts";
 
 describe("serious home lock", () => {
   it("drops games and Luma from the first-screen list", () => {
@@ -54,6 +54,15 @@ describe("serious home lock", () => {
     assert.match(shadow, /data-live="remain-hms"/);
     assert.match(shadow, /data-live="countdown"/);
     assert.doesNotMatch(shadow, /t\(lang, "loading"\)/);
+  });
+
+  it("keeps a games-catalog Luma door off the serious home list", () => {
+    const door = getDoor("luma");
+    assert.equal(door?.href, "https://games.alhajda.com");
+    assert.equal(door?.launcher, false);
+    const luma = { id: "luma", category: "games", lane: "play" };
+    assert.equal(isPlayItem(luma), true);
+    assert.equal(forSeriousHome([luma]).length, 0);
   });
 });
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Stat } from "@/components/app-stage";
 import { t } from "@/lib/i18n";
-import { writeScore } from "@/lib/storage";
+import { readScore, writeScore } from "@/lib/storage";
 import { useAppStore } from "@/store/app-store";
 import { cn } from "@/lib/cn";
 
@@ -35,13 +35,31 @@ const QS: Q[] = [
   { ar: "اللغة الرسمية في البرازيل؟", en: "Official language of Brazil?", choices: [{ ar: "إسبانية", en: "Spanish" }, { ar: "برتغالية", en: "Portuguese" }, { ar: "فرنسية", en: "French" }, { ar: "إنجليزية", en: "English" }], answer: 1 },
 ];
 
+const ROUND = 8;
+
+function deal(): Q[] {
+  return [...QS].sort(() => Math.random() - 0.5).slice(0, ROUND);
+}
+
 export function TriviaApp() {
   const lang = useAppStore((s) => s.lang);
+  const [pack, setPack] = useState<Q[]>(deal);
   const [i, setI] = useState(0);
   const [score, setScore] = useState(0);
   const [picked, setPicked] = useState<number | null>(null);
-  const q = QS[i];
-  const finished = i >= QS.length;
+  const [best, setBest] = useState(0);
+  const q = pack[i];
+  const finished = i >= pack.length;
+  const L = (ar: string, en: string) => (lang === "ar" ? ar : en);
+
+  useEffect(() => {
+    setBest(readScore("trivia"));
+  }, []);
+
+  useEffect(() => {
+    if (!finished) return;
+    setBest(writeScore("trivia", score));
+  }, [finished, score]);
 
   function pick(n: number) {
     if (picked != null || !q) return;
@@ -54,30 +72,33 @@ export function TriviaApp() {
     setPicked(null);
   }
 
-  useEffect(() => {
-    if (i >= QS.length) writeScore("trivia", score);
-  }, [i, score]);
+  function restart() {
+    setPack(deal());
+    setI(0);
+    setScore(0);
+    setPicked(null);
+  }
 
   if (finished) {
     return (
       <div className="space-y-4">
-        <Stat label={t(lang, "score")} value={`${score} / ${QS.length}`} />
-        <Button
-          onClick={() => {
-            setI(0);
-            setScore(0);
-            setPicked(null);
-          }}
-        >
-          {t(lang, "newGame")}
-        </Button>
+        <div className="grid grid-cols-2 gap-2">
+          <Stat label={t(lang, "score")} value={`${score} / ${ROUND}`} />
+          <Stat label={t(lang, "best")} value={`${best} / ${ROUND}`} />
+        </div>
+        <p className="text-lg font-medium">{score >= 6 ? t(lang, "youWin") : L("جولة هادئة — جرّب أخرى", "A quiet round — try another")}</p>
+        <Button onClick={restart}>{t(lang, "newGame")}</Button>
       </div>
     );
   }
 
   return (
     <div className="space-y-4">
-      <Stat label={lang === "ar" ? "سؤال" : "Question"} value={`${i + 1} / ${QS.length}`} />
+      <div className="grid grid-cols-3 gap-2">
+        <Stat label={L("سؤال", "Question")} value={`${i + 1} / ${ROUND}`} />
+        <Stat label={t(lang, "score")} value={score} />
+        <Stat label={t(lang, "best")} value={best || "—"} />
+      </div>
       <p className="text-lg font-medium">{q![lang]}</p>
       <div className="grid gap-2">
         {q!.choices.map((c, n) => {
@@ -89,7 +110,7 @@ export function TriviaApp() {
               type="button"
               onClick={() => pick(n)}
               className={cn(
-                "min-h-11 rounded-lg border px-3 py-2 text-start",
+                "min-h-11 rounded-lg border px-3 py-2 text-start transition-colors duration-150",
                 show && good && "border-success bg-success/15",
                 show && picked === n && !good && "border-danger bg-danger/15",
                 !show && "border-border bg-surface hover:bg-surface-2",
@@ -101,8 +122,12 @@ export function TriviaApp() {
         })}
       </div>
       {picked != null ? (
-        <Button onClick={next}>{i + 1 === QS.length ? (lang === "ar" ? "النتيجة" : "Results") : lang === "ar" ? "التالي" : "Next"}</Button>
-      ) : null}
+        <Button onClick={next}>{i + 1 === ROUND ? L("النتيجة", "Results") : L("التالي", "Next")}</Button>
+      ) : (
+        <Button variant="outline" onClick={restart}>
+          {t(lang, "newGame")}
+        </Button>
+      )}
     </div>
   );
 }

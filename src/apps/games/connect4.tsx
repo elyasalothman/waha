@@ -1,11 +1,11 @@
 import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { RoundOverlay } from "@/components/round-overlay";
 import { Seg } from "@/components/seg";
 import { Stat } from "@/components/app-stage";
 import { t } from "@/lib/i18n";
 import { writeScore } from "@/lib/storage";
 import { useAppStore } from "@/store/app-store";
-import { cn } from "@/lib/cn";
 
 type Cell = 0 | 1 | 2;
 type Mode = "ai" | "hot";
@@ -113,6 +113,8 @@ export function Connect4App() {
   const [board, setBoard] = useState<Cell[]>(empty);
   const [mode, setMode] = useState<Mode>("ai");
   const [turn, setTurn] = useState<1 | 2>(1);
+  const [you, setYou] = useState(0);
+  const [them, setThem] = useState(0);
   const w = useMemo(() => winner(board), [board]);
   const L = (ar: string, en: string) => (lang === "ar" ? ar : en);
 
@@ -122,7 +124,10 @@ export function Connect4App() {
     if (!next) return;
     setBoard(next);
     const end = winner(next);
-    if (end === 1) writeScore("connect4", 1);
+    if (end === 1) {
+      setYou((n) => n + 1);
+      writeScore("connect4", 1);
+    } else if (end === 2) setThem((n) => n + 1);
     if (end || mode === "hot") {
       setTurn(turn === 1 ? 2 : 1);
       return;
@@ -130,6 +135,11 @@ export function Connect4App() {
     const ai = drop(next, aiMove(next), 2);
     if (ai) {
       setBoard(ai);
+      const aiEnd = winner(ai);
+      if (aiEnd === 1) {
+        setYou((n) => n + 1);
+        writeScore("connect4", 1);
+      } else if (aiEnd === 2) setThem((n) => n + 1);
       setTurn(1);
     }
   }
@@ -159,11 +169,11 @@ export function Connect4App() {
         </Button>
       </div>
       <div className="grid grid-cols-3 gap-2">
-        <Stat label={t(lang, "score")} value={w === 1 ? L("أنت", "You") : w === 2 ? L("واحة", "Waha") : w === "draw" ? L("تعادل", "Draw") : L("جارٍ", "Playing")} />
-        <Stat label={L("الدور", "Turn")} value={turn === 1 ? L("أنت", "You") : L("خصم", "Them")} />
-        <Stat label={L("الأقراص", "Discs")} value={`${board.filter(Boolean).length}/42`} />
+        <Stat label={L("أنت", "You")} value={you} />
+        <Stat label={L("خصم", "Them")} value={them} />
+        <Stat label={L("الدور", "Turn")} value={w ? "—" : turn === 1 ? L("أنت", "You") : L("خصم", "Them")} />
       </div>
-      <div className="mx-auto max-w-md">
+      <div className="relative mx-auto max-w-md">
         <div className="grid grid-cols-7 gap-1">
           {Array.from({ length: COLS }, (_, c) => (
             <button
@@ -195,12 +205,15 @@ export function Connect4App() {
             />
           ))}
         </div>
+        {w ? (
+          <RoundOverlay
+            title={w === "draw" ? L("تعادل", "Draw") : w === 1 ? t(lang, "youWin") : L("فاز الخصم", "Opponent wins")}
+            detail={L("جولة أخرى متى شئت.", "Another round whenever you like.")}
+            actionLabel={t(lang, "restart")}
+            onAction={reset}
+          />
+        ) : null}
       </div>
-      {w ? (
-        <p className="text-sm text-muted">
-          {w === "draw" ? t(lang, "gameOver") : w === 1 ? t(lang, "youWin") : L("فاز الخصم", "Opponent wins")}
-        </p>
-      ) : null}
     </div>
   );
 }

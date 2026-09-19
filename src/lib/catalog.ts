@@ -1,4 +1,4 @@
-import { doorExternalHref, launcherDoors } from "@/lib/doors";
+import { doorExternalHref, getDoor, launcherDoors } from "@/lib/doors";
 import { forSeriousHome, isPlayItem } from "@/lib/home-lock";
 
 export type Audience = "personal" | "work";
@@ -54,6 +54,24 @@ export const LANE_LABEL: Record<Lane, { ar: string; en: string }> = {
 
 export const PERSONAL_LANES: Lane[] = ["house", "worship", "civic", "home", "money", "health", "day", "tools", "play"];
 export const WORK_LANES: Lane[] = ["desk", "sales", "money", "civic", "team", "tools"];
+
+/** Luma lives on `/games` as an external door — never a home heroine. */
+export function lumaGamesItem(): CatalogItem | undefined {
+  const door = getDoor("luma");
+  if (!door) return undefined;
+  return {
+    id: door.id,
+    category: "games",
+    lane: "play",
+    audience: [...door.audience],
+    icon: door.icon,
+    title: door.title,
+    blurb: door.blurb,
+    href: door.href,
+  };
+}
+
+const LUMA_GAMES = lumaGamesItem();
 
 export const CATALOG: CatalogItem[] = [
   ...launcherDoors().map((door) => ({
@@ -155,6 +173,7 @@ export const CATALOG: CatalogItem[] = [
   { id: "json", category: "tools", lane: "desk", audience: W, icon: "Braces", title: { ar: "منسّق JSON", en: "JSON formatter" }, blurb: { ar: "تنسيق وفحص للبيانات", en: "Pretty-print and validate" } },
   { id: "encode", category: "tools", lane: "desk", audience: W, icon: "Binary", title: { ar: "الترميز", en: "Encode" }, blurb: { ar: "Base64 وURL وتجزئة", en: "Base64, URL, and hashing" } },
 
+  ...(LUMA_GAMES ? [LUMA_GAMES] : []),
   { id: "snake", category: "games", lane: "play", audience: P, icon: "Spline", title: { ar: "الثعبان", en: "Snake" }, blurb: { ar: "كلاسيكية الشبكة والسرعة", en: "The classic grid chase" } },
   { id: "merge2048", category: "games", lane: "play", audience: P, icon: "Grid2x2", title: { ar: "٢٠٤٨", en: "2048" }, blurb: { ar: "ادمج البلاطات حتى ٢٠٤٨", en: "Slide tiles until you hit 2048" } },
   { id: "tetris", category: "games", lane: "play", audience: P, icon: "Blocks", title: { ar: "تتريس", en: "Tetris" }, blurb: { ar: "لبنات كلاسيكية مع احتفاظ وشبح", en: "Classic pieces, with hold and a ghost" } },

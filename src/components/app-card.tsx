@@ -21,6 +21,11 @@ function CardBody({ item, lang, large }: { item: CatalogItem; lang: Lang; large?
       </span>
       <span className={cn("mt-4 font-medium text-fg", large && "text-lg")}>{item.title[lang]}</span>
       <span className="mt-1 text-sm leading-relaxed text-muted">{item.blurb[lang]}</span>
+      {item.href ? (
+        <span className="mt-3 font-mono text-xs text-subtle" dir="ltr">
+          {new URL(item.href).host}
+        </span>
+      ) : null}
     </>
   );
 }

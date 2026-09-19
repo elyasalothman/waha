@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Gamepad2 } from "lucide-react";
 import type { Category } from "@/lib/catalog";
 import { byCategory, lanesPresent, LANE_LABEL } from "@/lib/catalog";
-import { AppGrid } from "@/components/app-card";
+import { AppCard, AppGrid } from "@/components/app-card";
 import { DoorsStrip } from "@/components/doors-strip";
 import { t, type I18nKey } from "@/lib/i18n";
 import { TOOLS_OVERFLOW_NAV } from "@/lib/nav";
@@ -23,7 +23,9 @@ export function Hub({ category, city }: { category: Category; city?: boolean }) 
   const audience = useAppStore((s) => s.audience);
   const copy = COPY[category];
   const items = byCategory(category, audience);
-  const lanes = lanesPresent(items);
+  const luma = category === "games" ? items.find((item) => item.id === "luma" && item.href) : undefined;
+  const listed = luma ? items.filter((item) => item.id !== "luma") : items;
+  const lanes = lanesPresent(listed);
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-8">
@@ -48,13 +50,20 @@ export function Hub({ category, city }: { category: Category; city?: boolean }) 
           </div>
         ) : null}
       </header>
-      {items.length === 0 ? (
+      {luma ? (
+        <section className="mb-10">
+          <h2 className="mb-3 text-sm font-medium text-muted">{t(lang, "gamesYard")}</h2>
+          <AppCard item={luma} lang={lang} large />
+          <p className="mt-2 text-xs text-subtle">{t(lang, "doorHint")}</p>
+        </section>
+      ) : null}
+      {listed.length === 0 ? (
         <p className="text-sm text-muted">{t(lang, "empty")}</p>
       ) : lanes.length > 1 ? (
         <div className="space-y-10">
           {lanes.map((lane) => {
             if (lane === "house") return null;
-            const group = items.filter((i) => i.lane === lane);
+            const group = listed.filter((i) => i.lane === lane);
             if (!group.length) return null;
             return (
               <section key={lane}>
@@ -65,7 +74,7 @@ export function Hub({ category, city }: { category: Category; city?: boolean }) 
           })}
         </div>
       ) : (
-        <AppGrid items={items} lang={lang} />
+        <AppGrid items={listed} lang={lang} />
       )}
       {category === "tools" && audience === "personal" ? (
         <section className="mt-10">
