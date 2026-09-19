@@ -91,7 +91,7 @@ describe("weather parse", () => {
           weather_code: 0,
         },
         hourly: {
-          time: ["2099-01-01T12:00", "2099-01-01T13:00"],
+          time: ["2099-01-01T16:00", "2099-01-01T17:00"],
           temperature_2m: [36, 37],
           weather_code: [0, 1],
           relative_humidity_2m: [12, 11],
@@ -103,11 +103,14 @@ describe("weather parse", () => {
           temperature_2m_max: [38],
           temperature_2m_min: [24],
         },
+        timezone: "Asia/Riyadh",
+        utc_offset_seconds: 10800,
       },
       Date.parse("2099-01-01T11:00:00Z"),
     );
     assert.equal(Math.round(payload.current.temperature), 36);
     assert.equal(payload.hourly.length, 2);
+    assert.equal(payload.timezone, "Asia/Riyadh");
     assert.equal(payload.daily[0]?.max, 38);
   });
 });

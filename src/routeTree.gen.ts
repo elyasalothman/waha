@@ -24,6 +24,7 @@ import { Route as WeatherRouteImport } from './routes/weather'
 import { Route as WorkspaceRouteImport } from './routes/workspace'
 import { Route as ApiFamilyInboxRouteImport } from './routes/api/family-inbox'
 import { Route as AppIdRouteImport } from './routes/app.$id'
+import { Route as MessagesIndexRouteImport } from './routes/messages.index'
 import { Route as MessagesThreadIdRouteImport } from './routes/messages.$threadId'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth.$'
 
@@ -102,6 +103,11 @@ const AppIdRoute = AppIdRouteImport.update({
   path: '/app/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MessagesIndexRoute = MessagesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => MessagesRoute,
+} as any)
 const MessagesThreadIdRoute = MessagesThreadIdRouteImport.update({
   id: '/$threadId',
   path: '/$threadId',
@@ -130,6 +136,7 @@ export interface FileRoutesByFullPath {
   '/api/family-inbox': typeof ApiFamilyInboxRoute
   '/app/$id': typeof AppIdRoute
   '/messages/$threadId': typeof MessagesThreadIdRoute
+  '/messages/': typeof MessagesIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesByTo {
@@ -139,7 +146,6 @@ export interface FileRoutesByTo {
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
   '/login': typeof LoginRoute
-  '/messages': typeof MessagesRouteWithChildren
   '/money': typeof MoneyRoute
   '/settings': typeof SettingsRoute
   '/studio': typeof StudioRoute
@@ -149,6 +155,7 @@ export interface FileRoutesByTo {
   '/api/family-inbox': typeof ApiFamilyInboxRoute
   '/app/$id': typeof AppIdRoute
   '/messages/$threadId': typeof MessagesThreadIdRoute
+  '/messages': typeof MessagesIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesById {
@@ -169,6 +176,7 @@ export interface FileRoutesById {
   '/api/family-inbox': typeof ApiFamilyInboxRoute
   '/app/$id': typeof AppIdRoute
   '/messages/$threadId': typeof MessagesThreadIdRoute
+  '/messages/': typeof MessagesIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRouteTypes {
@@ -190,6 +198,7 @@ export interface FileRouteTypes {
     | '/api/family-inbox'
     | '/app/$id'
     | '/messages/$threadId'
+    | '/messages/'
     | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -199,7 +208,6 @@ export interface FileRouteTypes {
     | '/games'
     | '/life'
     | '/login'
-    | '/messages'
     | '/money'
     | '/settings'
     | '/studio'
@@ -209,6 +217,7 @@ export interface FileRouteTypes {
     | '/api/family-inbox'
     | '/app/$id'
     | '/messages/$threadId'
+    | '/messages'
     | '/api/auth/$'
   id:
     | '__root__'
@@ -228,6 +237,7 @@ export interface FileRouteTypes {
     | '/api/family-inbox'
     | '/app/$id'
     | '/messages/$threadId'
+    | '/messages/'
     | '/api/auth/$'
   fileRoutesById: FileRoutesById
 }
@@ -357,6 +367,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/messages/': {
+      id: '/messages/'
+      path: '/'
+      fullPath: '/messages/'
+      preLoaderRoute: typeof MessagesIndexRouteImport
+      parentRoute: typeof MessagesRoute
+    }
     '/messages/$threadId': {
       id: '/messages/$threadId'
       path: '/$threadId'
@@ -376,10 +393,12 @@ declare module '@tanstack/react-router' {
 
 interface MessagesRouteChildren {
   MessagesThreadIdRoute: typeof MessagesThreadIdRoute
+  MessagesIndexRoute: typeof MessagesIndexRoute
 }
 
 const MessagesRouteChildren: MessagesRouteChildren = {
   MessagesThreadIdRoute: MessagesThreadIdRoute,
+  MessagesIndexRoute: MessagesIndexRoute,
 }
 
 const MessagesRouteWithChildren = MessagesRoute._addFileChildren(

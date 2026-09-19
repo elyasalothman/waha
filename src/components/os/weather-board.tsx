@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { CitySelect } from "@/components/city-select";
 import { Button } from "@/components/ui/button";
-import { loadWeather, weatherLabel, type WeatherLoad } from "@/lib/weather";
+import { loadWeather, weatherInstant, weatherLabel, type WeatherLoad } from "@/lib/weather";
 import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
 
-function hourLabel(iso: string, lang: "ar" | "en") {
+function hourLabel(iso: string, lang: "ar" | "en", timezone: string, offset: number) {
   return new Intl.DateTimeFormat(lang === "ar" ? "ar-SA" : "en-GB", {
     hour: "numeric",
-  }).format(new Date(iso));
+    timeZone: timezone,
+  }).format(weatherInstant(iso, offset));
 }
 
 function dayLabel(iso: string, lang: "ar" | "en") {
@@ -89,7 +90,7 @@ export function WeatherBoard() {
             <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-2">
               {data.hourly.map((h) => (
                 <div key={h.time} className="min-w-[4.5rem] rounded-2xl border border-border bg-surface px-3 py-3 text-center">
-                  <p className="text-[11px] text-subtle">{hourLabel(h.time, lang)}</p>
+                  <p className="text-[11px] text-subtle">{hourLabel(h.time, lang, data.timezone ?? "Asia/Riyadh", data.utcOffsetSeconds ?? 10800)}</p>
                   <p className="mt-2 font-mono text-lg tabular-nums">{Math.round(h.temperature)}°</p>
                   <p className="mt-1 text-[11px] text-muted">{weatherLabel(h.code, lang)}</p>
                 </div>

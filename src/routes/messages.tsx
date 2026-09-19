@@ -1,8 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { InboxList } from "@/components/os/inbox";
+import { Outlet, createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/messages")({ component: MessagesPage });
+export const Route = createFileRoute("/messages")({ component: MessagesLayout });
 
-function MessagesPage() {
-  return <InboxList />;
+function MessagesLayout() {
+  return <Outlet />;
 }
