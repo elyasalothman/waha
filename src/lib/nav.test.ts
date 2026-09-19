@@ -11,19 +11,26 @@ import {
 } from "./nav.ts";
 
 describe("chrome nav lock", () => {
-  it("keeps the first-row bar to الميدان + مدار + المزيد", () => {
+  it("keeps the first-row bar to الميدان + مدار + مقاطع + المزيد", () => {
     assert.deepEqual(
       chromeNav("personal").map((item) => item.to),
-      ["/", "/madar", "/more"],
+      ["/", "/madar", "/clips", "/more"],
     );
     assert.deepEqual(
       chromeNav("work").map((item) => item.to),
-      ["/", "/madar", "/more"],
+      ["/", "/madar", "/clips", "/more"],
     );
     assert.deepEqual(
       mobileChromeNav("personal").map((item) => item.to),
       ["/", "/more"],
     );
+  });
+
+  it("keeps مقاطع مفيدة on the chrome like مدار — never under المزيد", () => {
+    assert.equal(chromeNav("personal").some((item) => item.to === "/clips"), true);
+    assert.equal(chromeNav("work").some((item) => item.to === "/clips"), true);
+    assert.equal(moreOverflowNav("personal").some((item) => item.to === "/clips"), false);
+    assert.equal((CATALOG_TAB_PATHS as readonly string[]).includes("/clips"), false);
   });
 
   it("drops حياتك / مالك / أدواتك / الترفيه / الاستوديو from the Square bar", () => {

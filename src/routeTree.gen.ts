@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as ClipsRouteImport } from './routes/clips'
 import { Route as ForumRouteImport } from './routes/forum'
 import { Route as GamesRouteImport } from './routes/games'
 import { Route as LifeRouteImport } from './routes/life'
@@ -34,6 +35,11 @@ const IndexRoute = IndexRouteImport.update({
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClipsRoute = ClipsRouteImport.update({
+  id: '/clips',
+  path: '/clips',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ForumRoute = ForumRouteImport.update({
@@ -110,6 +116,7 @@ const ForumBoardTopicIdRoute = ForumBoardTopicIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/clips': typeof ClipsRoute
   '/forum': typeof ForumRouteWithChildren
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
@@ -128,6 +135,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/clips': typeof ClipsRoute
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
   '/madar': typeof MadarRoute
@@ -145,6 +153,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/clips': typeof ClipsRoute
   '/forum': typeof ForumRouteWithChildren
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
@@ -165,6 +174,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/admin'
+    | '/clips'
     | '/forum'
     | '/games'
     | '/life'
@@ -183,6 +193,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/admin'
+    | '/clips'
     | '/games'
     | '/life'
     | '/madar'
@@ -199,6 +210,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/admin'
+    | '/clips'
     | '/forum'
     | '/games'
     | '/life'
@@ -218,6 +230,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
+  ClipsRoute: typeof ClipsRoute
   ForumRoute: typeof ForumRouteWithChildren
   GamesRoute: typeof GamesRoute
   LifeRoute: typeof LifeRoute
@@ -244,6 +257,13 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin'
       preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/clips': {
+      id: '/clips'
+      path: '/clips'
+      fullPath: '/clips'
+      preLoaderRoute: typeof ClipsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/forum': {
@@ -376,6 +396,7 @@ const ForumRouteWithChildren = ForumRoute._addFileChildren(ForumRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
+  ClipsRoute: ClipsRoute,
   ForumRoute: ForumRouteWithChildren,
   GamesRoute: GamesRoute,
   LifeRoute: LifeRoute,

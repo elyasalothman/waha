@@ -9,12 +9,14 @@ export type ChromeNavItem = { to: string; key: I18nKey };
 export const PERSONAL_NAV: readonly ChromeNavItem[] = [
   { to: "/", key: "home" },
   { to: "/madar", key: "madar" },
+  { to: "/clips", key: "clips" },
   { to: "/more", key: "more" },
 ];
 
 export const WORK_NAV: readonly ChromeNavItem[] = [
   { to: "/", key: "home" },
   { to: "/madar", key: "madar" },
+  { to: "/clips", key: "clips" },
   { to: "/more", key: "more" },
 ];
 
@@ -36,7 +38,7 @@ export const WORK_MORE_OVERFLOW_NAV: readonly ChromeNavItem[] = [
 /** Play lives under المزيد — not a first-row tab. */
 export const TOOLS_OVERFLOW_NAV: readonly ChromeNavItem[] = [{ to: "/games", key: "games" }];
 
-const MOBILE_HIDDEN = new Set(["/madar"]);
+const MOBILE_HIDDEN = new Set(["/madar", "/clips"]);
 
 export function chromeNav(audience: "personal" | "work", segment?: unknown): readonly ChromeNavItem[] {
   const base = audience === "personal" ? PERSONAL_NAV : WORK_NAV;
