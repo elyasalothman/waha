@@ -4,8 +4,8 @@ export const SHADE_FIELD_CROSSING = "quiet" as const;
 export const SHADE_FIELD_LANES = ["shade", "field"] as const;
 export type ShadeFieldLane = (typeof SHADE_FIELD_LANES)[number];
 
-/** Offset matches the chrome header so the hero is “gone” once it slips under it. */
-export const SHADE_FIELD_HEADER_MARGIN = "-3.5rem 0px 0px 0px";
+/** Offset matches the chrome header (`h-14` = 56px). Observer only accepts px/% . */
+export const SHADE_FIELD_HEADER_MARGIN = "-56px 0px 0px 0px";
 
 /** Hero still in view → shade. Hero past the chrome → field. */
 export function laneFromHeroVisibility(heroIntersecting: boolean): ShadeFieldLane {

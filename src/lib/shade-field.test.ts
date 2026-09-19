@@ -22,7 +22,9 @@ describe("quiet shade↔field crossing", () => {
     assert.equal(shadeFieldAllowsRainbow(), false);
     assert.equal(shadeFieldAllowsBounce(), false);
     assert.equal(shadeKeepsThinBarInField(), true);
-    assert.equal(SHADE_FIELD_HEADER_MARGIN, "-3.5rem 0px 0px 0px");
+    assert.equal(SHADE_FIELD_HEADER_MARGIN, "-56px 0px 0px 0px");
+    assert.match(SHADE_FIELD_HEADER_MARGIN, /^-?\d+px /);
+    assert.doesNotMatch(SHADE_FIELD_HEADER_MARGIN, /rem|em/);
   });
 
   it("enters the field only after the prayer hero leaves the chrome", () => {

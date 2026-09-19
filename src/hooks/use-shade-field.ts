@@ -13,13 +13,18 @@ export function useShadeFieldLane(heroRef: RefObject<HTMLElement | null>): Shade
     const node = heroRef.current;
     if (!node || typeof IntersectionObserver === "undefined") return;
 
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry) return;
-        setLane(laneFromHeroVisibility(entry.isIntersecting));
-      },
-      { root: null, rootMargin: SHADE_FIELD_HEADER_MARGIN, threshold: 0 },
-    );
+    let io: IntersectionObserver;
+    try {
+      io = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry) return;
+          setLane(laneFromHeroVisibility(entry.isIntersecting));
+        },
+        { root: null, rootMargin: SHADE_FIELD_HEADER_MARGIN, threshold: 0 },
+      );
+    } catch {
+      return;
+    }
 
     io.observe(node);
     return () => io.disconnect();
