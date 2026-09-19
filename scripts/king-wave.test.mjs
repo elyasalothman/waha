@@ -34,10 +34,23 @@ test("home hides extras behind المزيد and keeps four first-screen wells", 
   assert.ok(index.includes("ShareShadowButton"));
   assert.ok(index.includes("PrayerRemindToggle"));
   assert.ok(index.includes("EmergencyStrip"));
-  assert.ok(index.includes("houseWellsFor") || index.includes("homeWellsFor"));
-  assert.ok(segments.includes('all: ["faith", "desk", "money"]'));
-  assert.ok(!segments.includes('all: ["faith", "house", "desk", "health", "know", "play"]') || segments.includes("HOME_WELLS"));
-  assert.ok(segments.includes("HOME_WELLS"));
+  assert.ok(index.includes("homeWellsFor"));
+  assert.ok(index.includes("ask-quiet"));
+  assert.ok(segments.includes('HOME_WELLS: WellId[] = ["faith", "desk", "money"]'));
+  assert.ok(segments.includes("FIRST_SCREEN_SEGMENTS"));
+  assert.ok(!segments.includes('FIRST_SCREEN_SEGMENTS: Segment[] = ["all", "child"'));
+});
+
+test("referee lock: prayer hero, no child on first screen, no filled chips", () => {
+  const shadow = readFileSync(new URL("../src/components/day-shadow.tsx", import.meta.url), "utf8");
+  const switcher = readFileSync(new URL("../src/components/segment-switch.tsx", import.meta.url), "utf8");
+  const shell = readFileSync(new URL("../src/components/layout/shell.tsx", import.meta.url), "utf8");
+  assert.ok(!shadow.includes("shadow-weather"));
+  assert.ok(shadow.includes("shadow-prayer"));
+  assert.ok(shadow.includes("border-b border-transparent"));
+  assert.ok(switcher.includes("FIRST_SCREEN_SEGMENTS"));
+  assert.ok(shell.includes("firstScreen"));
+  assert.ok(!shell.includes('to: "/games", key: "games"') || shell.includes("extras"));
 });
 
 test("share card and remind hook exist", () => {

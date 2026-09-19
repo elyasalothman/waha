@@ -29,9 +29,9 @@ type NavItem = { to: string; key: I18nKey; icon: typeof House };
 const PERSONAL_NAV: NavItem[] = [
   { to: "/", key: "home", icon: House },
   { to: "/life", key: "life", icon: Sun },
-  { to: "/ask", key: "ask", icon: MessageCircle },
-  { to: "/games", key: "games", icon: Gamepad2 },
+  { to: "/money", key: "money", icon: Wallet },
   { to: "/house", key: "house", icon: Trees },
+  { to: "/settings", key: "settings", icon: Settings },
 ];
 
 const WORK_NAV: NavItem[] = [
@@ -58,13 +58,15 @@ export function Shell() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [cmd, setCmd] = useState(false);
   const nav = segment === "child" ? CHILD_NAV : audience === "work" ? WORK_NAV : PERSONAL_NAV;
-  const side = [
-    ...nav,
-    { to: "/tools", key: "tools" as const, icon: Wrench },
-    { to: "/studio", key: "studio" as const, icon: Sparkles },
-    { to: "/settings", key: "settings" as const, icon: Settings },
-    { to: "/labs", key: "labs" as const, icon: FlaskConical },
+  const extras: NavItem[] = [
+    { to: "/ask", key: "ask", icon: MessageCircle },
+    { to: "/games", key: "games", icon: Gamepad2 },
+    { to: "/tools", key: "tools", icon: Wrench },
+    { to: "/studio", key: "studio", icon: Sparkles },
+    { to: "/settings", key: "settings", icon: Settings },
+    { to: "/labs", key: "labs", icon: FlaskConical },
   ];
+  const side = [...nav, ...extras.filter((item) => !nav.some((n) => n.to === item.to))];
 
   useEffect(() => {
     hydrate();
@@ -81,7 +83,7 @@ export function Shell() {
             {t(lang, audience === "work" ? "workTagline" : "tagline")}
           </p>
           <div className="mt-4">
-            <SegmentSwitch />
+            <SegmentSwitch firstScreen />
           </div>
         </div>
         <nav className="flex flex-1 flex-col gap-0.5 overflow-y-auto px-3">
@@ -137,7 +139,7 @@ export function Shell() {
         </header>
 
         <div className="border-b border-border px-4 py-2 lg:hidden">
-          <SegmentSwitch compact />
+          <SegmentSwitch firstScreen compact />
         </div>
 
         <main className="px-4 py-6 pb-28 lg:px-8 lg:pb-10">

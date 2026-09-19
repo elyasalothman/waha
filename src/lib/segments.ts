@@ -4,6 +4,9 @@ import type { Audience, CatalogItem, Category } from "@/lib/catalog";
 export const SEGMENTS = ["all", "child", "student", "family", "work", "elder", "traveler"] as const;
 export type Segment = (typeof SEGMENTS)[number];
 
+/** First-screen filter — serious default, no child chip. */
+export const FIRST_SCREEN_SEGMENTS: Segment[] = ["all", "family", "work", "elder"];
+
 export const SEGMENT_META: Record<
   Segment,
   { title: Copy; blurb: Copy; audience: Audience; hideMoney: boolean; fontScale: "md" | "lg" }
@@ -172,17 +175,9 @@ export function wellsFor(segment: Segment): WellId[] {
   return WELLS_BY_SEGMENT[segment];
 }
 
-/** First-screen wells only — games and news stay behind المزيد. Ask is the fourth tile. */
-const HOME_WELLS: Record<Segment, WellId[]> = {
-  all: ["faith", "desk", "money"],
-  child: ["faith", "know"],
-  student: ["faith", "desk", "know"],
-  family: ["faith", "desk", "money"],
-  work: ["desk", "money", "know"],
-  elder: ["faith", "health", "desk"],
-  traveler: ["faith", "desk", "money"],
-};
+/** First screen is always عبادة / ترتيب / مال — games and news stay behind المزيد. */
+export const HOME_WELLS: WellId[] = ["faith", "desk", "money"];
 
-export function homeWellsFor(segment: Segment): WellId[] {
-  return HOME_WELLS[segment].slice(0, 3);
+export function homeWellsFor(_segment?: Segment): WellId[] {
+  return HOME_WELLS.slice(0, 3);
 }

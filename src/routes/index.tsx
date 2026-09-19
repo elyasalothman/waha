@@ -66,12 +66,12 @@ function useShadowLive() {
   return { weather, updatedAt };
 }
 
-function HomeWells({ segment }: { segment: Parameters<typeof homeWellsFor>[0] }) {
+function HomeWells() {
   const lang = useAppStore((s) => s.lang);
   return (
-    <section className="mt-6">
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-        {homeWellsFor(segment).map((id) => (
+    <section className="mt-6" data-testid="home-wells">
+      <div className="grid grid-cols-3 gap-2">
+        {homeWellsFor().map((id) => (
           <Link
             key={id}
             to={WELL_META[id].href}
@@ -80,10 +80,10 @@ function HomeWells({ segment }: { segment: Parameters<typeof homeWellsFor>[0] })
             <p className="font-medium">{loc(lang, WELL_META[id].title)}</p>
           </Link>
         ))}
-        <Link to="/ask" className="rounded-xl border border-border bg-surface px-4 py-4 hover:bg-surface-2">
-          <p className="font-medium">{t(lang, "ask")}</p>
-        </Link>
       </div>
+      <Link to="/ask" className="mt-3 inline-block text-sm text-subtle hover:text-muted" data-testid="ask-quiet">
+        {t(lang, "ask")}
+      </Link>
     </section>
   );
 }
@@ -147,7 +147,7 @@ function PersonalHome() {
         {displayName ? ` · ${displayName}` : ""}
       </p>
 
-      <DayShadow lang={lang} city={city} now={now} weather={weather} showQibla={labs.includes("qibla")} updatedAt={updatedAt} />
+      <DayShadow lang={lang} city={city} now={now} weather={weather} updatedAt={updatedAt} />
 
       <div className="mt-3 flex flex-wrap items-center gap-2">
         <ShareShadowButton lang={lang} payload={sharePayload} />
@@ -161,7 +161,7 @@ function PersonalHome() {
         <HouseDoors lang={lang} compact />
       </section>
 
-      <HomeWells segment={segment} />
+      <HomeWells />
 
       <MoreFold lang={lang}>
         <section>
@@ -362,7 +362,7 @@ function WorkHome() {
         <h2 className="mb-3 text-sm font-medium text-muted">{t(lang, "doors")}</h2>
         <HouseDoors lang={lang} compact />
       </section>
-      <HomeWells segment="work" />
+      <HomeWells />
 
       <MoreFold lang={lang}>
         <section className="rounded-xl border border-border bg-surface p-6 md:p-8">
