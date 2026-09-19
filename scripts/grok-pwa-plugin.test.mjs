@@ -7,6 +7,8 @@ import test from "node:test";
 import {
   appNameFromHost,
   createHeadInjector,
+  DEFAULT_APP_NAME,
+  grokPwaHeadTags,
   grokXCreatorHeadTags,
   injectGrokPwaHead,
   isDocumentPath,
@@ -396,7 +398,8 @@ test("is idempotent", () => {
 
 test("uses the app name in the injected title tag", () => {
   const out = injectGrokPwaHead("<html><head></head></html>", { appName: "Wild Race" });
-  assert.match(out, /apple-mobile-web-app-title" content="Wild Race"/);
+  assert.match(out, /apple-mobile-web-app-title" content="واحة"/);
+  assert.match(out, /application-name" content="واحة"/);
 });
 
 test("streaming injector handles </head> split across chunks", () => {
@@ -449,14 +452,16 @@ test("strips install params from the app link", () => {
 });
 
 test("names the install page from host slug", () => {
-  assert.equal(appNameFromHost("localhost:8080"), "Grok App");
-  assert.equal(appNameFromHost("172.17.154.217:8080"), "Grok App");
+  assert.equal(DEFAULT_APP_NAME, "واحة");
+  assert.equal(appNameFromHost("localhost:8080"), "واحة");
+  assert.equal(appNameFromHost("172.17.154.217:8080"), "واحة");
+  assert.equal(appNameFromHost("waha.hajdah.com"), "واحة");
   assert.equal(appNameFromHost("wild-race.grok.me"), "Wild Race");
 });
 
 test("rejects hosts that are not plain slugs", () => {
-  assert.equal(appNameFromHost("<script>alert(1)</script>"), "Grok App");
-  assert.equal(appNameFromHost('"><img src=x onerror=1>.grok.me'), "Grok App");
+  assert.equal(appNameFromHost("<script>alert(1)</script>"), "واحة");
+  assert.equal(appNameFromHost('"><img src=x onerror=1>.grok.me'), "واحة");
 });
 
 test("renders install page markup", () => {
@@ -473,11 +478,27 @@ test("escapes host-derived values in the install page", () => {
   assert.equal(html.includes("<script>alert(1)</script>"), false);
 });
 
-test("renders the manifest with the per-app name", () => {
-  const manifest = JSON.parse(renderWebManifest("wild-race.grok.me"));
-  assert.equal(manifest.name, "Wild Race");
-  assert.equal(manifest.short_name, "Wild Race");
-  assert.equal(manifest.icons[0].src, "/__grok/icon-180.png");
+test("renders the manifest with the app name واحة", () => {
+  for (const host of ["waha.hajdah.com", "wild-race.grok.me", "localhost:8080"]) {
+    const manifest = JSON.parse(renderWebManifest(host));
+    assert.equal(manifest.name, "واحة");
+    assert.equal(manifest.short_name, "واحة");
+    assert.equal(manifest.icons[0].src, "/__grok/icon-180.png");
+  }
+});
+
+test("PWA head tags default to واحة", () => {
+  const tags = Object.fromEntries(grokPwaHeadTags());
+  assert.equal(DEFAULT_APP_NAME, "واحة");
+  assert.match(tags["application-name"], /content="واحة"/);
+  assert.match(tags["apple-mobile-web-app-title"], /content="واحة"/);
+});
+
+test("root document keeps PWA titles as واحة", () => {
+  const root = readFileSync(join(TEMPLATE_ROOT, "src/routes/__root.tsx"), "utf8");
+  assert.match(root, /name:\s*"application-name",\s*content:\s*PWA_NAME/);
+  assert.match(root, /name:\s*"apple-mobile-web-app-title",\s*content:\s*PWA_NAME/);
+  assert.match(root, /const PWA_NAME = "واحة"/);
 });
 
 // Tripwires: the deployed-app path only works if Nitro scans server/ — an
