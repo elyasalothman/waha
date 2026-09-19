@@ -1,8 +1,8 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useNow } from "@/hooks/use-now";
 import { useCurrentUser } from "@/lib/auth/use-current-user";
-import { midanWriterName } from "@/lib/identity";
+import { midanWriterName, signedDisplayName } from "@/lib/identity";
 import { mergeFeed, useSquare } from "@/lib/square/store";
 import type { SquareTab } from "@/lib/square/types";
 import { t } from "@/lib/i18n";
@@ -25,8 +25,16 @@ export function SquarePage() {
   const clock = useNow(60_000);
   const now = clock.getTime();
 
-  const signedName = user && !user.isDevFallback ? (user.displayName ?? "").trim() : "";
+  const signedName = signedDisplayName(user);
   const writer = midanWriterName(local.profile.name, profileName, signedName, lang);
+
+  useEffect(() => {
+    if (local.profile.name.trim()) return;
+    if (!writer || writer === "ضيف الواحة" || writer === "Oasis guest") return;
+    saveProfile({ name: writer, bio: local.profile.bio });
+    if (writer !== profileName.trim()) setProfileName(writer);
+  }, [local.profile.name, local.profile.bio, writer, profileName, saveProfile, setProfileName]);
+
   const profile = {
     name: writer,
     bio: local.profile.bio,

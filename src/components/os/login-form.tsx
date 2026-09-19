@@ -26,10 +26,12 @@ export function LoginForm() {
     setBusy(true);
     setErr(null);
     try {
-      const payload = { email: email.trim(), password, name: name.trim() || email.split("@")[0] };
+      const display = name.trim() || email.split("@")[0] || "";
+      const payload = { email: email.trim(), password, name: display };
       const result =
         mode === "up" ? await authClient.signUp.email(payload) : await authClient.signIn.email({ email: payload.email, password });
       if (result.error) throw new Error(result.error.message ?? "auth");
+      if (display) setProfileName(display);
       setGuest(false);
       goHome();
     } catch (e) {

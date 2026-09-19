@@ -3,7 +3,8 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Input, Textarea } from "@/components/ui/input";
 import { requestFamilySync } from "@/lib/family-inbox";
-import { writerName } from "@/lib/identity";
+import { osWriterName, signedDisplayName } from "@/lib/identity";
+import { useCurrentUser } from "@/lib/auth/use-current-user";
 import { threadPreview } from "@/lib/messages";
 import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
@@ -80,6 +81,7 @@ export function InboxList() {
 export function InboxThread({ threadId }: { threadId: string }) {
   const lang = useAppStore((s) => s.lang);
   const name = useAppStore((s) => s.profileName);
+  const signedName = signedDisplayName(useCurrentUser());
   const hydrate = useMessagesStore((s) => s.hydrate);
   const send = useMessagesStore((s) => s.send);
   const markRead = useMessagesStore((s) => s.markRead);
@@ -127,7 +129,7 @@ export function InboxThread({ threadId }: { threadId: string }) {
         className="mt-4 space-y-2"
         onSubmit={(e) => {
           e.preventDefault();
-          send(threadId, writerName(name, lang), body);
+          send(threadId, osWriterName(name, signedName, lang), body);
           setBody("");
         }}
       >

@@ -2,7 +2,15 @@ import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { defaultFeatures, FEATURES, normalizeFeatures } from "./features.ts";
 import { KING_LOCK, assertKingLock, composePersonalHome, firstScreenIds, OS_APPS } from "./os.ts";
-import { writerIdentity, writerName, selfAuthors, midanWriterName } from "./identity.ts";
+import {
+  writerIdentity,
+  writerName,
+  selfAuthors,
+  midanWriterName,
+  osWriterName,
+  signedDisplayName,
+  seedProfileFromAccount,
+} from "./identity.ts";
 import { isHttpUrl, SISTER_APPS } from "./links.ts";
 import { normalizeInbox, seedFamilyInbox, unreadCount } from "./messages.ts";
 import { normalizeFamilyToday, seedFamilyToday, todayIso } from "./family-today.ts";
@@ -84,8 +92,16 @@ describe("thin writer identity", () => {
     assert.equal(writerIdentity("نورة", true, "ar").guest, true);
     assert.equal(midanWriterName("", "خالد", "Signed", "ar"), "خالد");
     assert.equal(midanWriterName("نورة", "خالد", "", "ar"), "نورة");
+    assert.equal(midanWriterName("", "", "إلياس", "ar"), "إلياس");
     assert.equal(midanWriterName("", "", "", "ar"), "ضيف الواحة");
+    assert.equal(osWriterName("", "إلياس", "ar"), "إلياس");
+    assert.equal(osWriterName("خالد", "إلياس", "ar"), "خالد");
+    assert.equal(seedProfileFromAccount("", "إلياس"), "إلياس");
+    assert.equal(seedProfileFromAccount("خالد", "إلياس"), null);
+    assert.equal(signedDisplayName({ displayName: "إلياس", isDevFallback: false }), "إلياس");
+    assert.equal(signedDisplayName({ displayName: "Dev User", isDevFallback: true }), "");
     assert.deepEqual(selfAuthors("خالد"), ["خالد", "أنا", "Me"]);
+    assert.deepEqual(selfAuthors("", "إلياس"), ["أنا", "Me", "إلياس"]);
     const inbox = seedFamilyInbox(100);
     inbox.messages.push({ id: "mine", threadId: "family", author: "خالد", body: "سلام", createdAt: 150 });
     assert.equal(unreadCount(inbox, 0, selfAuthors("خالد")), 1);

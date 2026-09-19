@@ -11,6 +11,8 @@ import { t, type I18nKey } from "@/lib/i18n";
 import { isFeatureOn, type FeatureId } from "@/lib/features";
 import { cn } from "@/lib/cn";
 import { useAppStore } from "@/store/app-store";
+import { useCurrentUser } from "@/lib/auth/use-current-user";
+import { seedProfileFromAccount, signedDisplayName } from "@/lib/identity";
 import { Toaster } from "sonner";
 
 type NavItem = { to: string; key: I18nKey; icon: typeof House; feature?: FeatureId };
@@ -37,6 +39,19 @@ const DESKTOP_EXTRA: NavItem[] = [
   { to: "/money", key: "money", icon: Wallet, feature: "money" },
 ];
 
+function SeedThinWriter() {
+  const profileName = useAppStore((s) => s.profileName);
+  const setProfileName = useAppStore((s) => s.setProfileName);
+  const signedName = signedDisplayName(useCurrentUser());
+
+  useEffect(() => {
+    const seed = seedProfileFromAccount(profileName, signedName);
+    if (seed) setProfileName(seed);
+  }, [profileName, signedName, setProfileName]);
+
+  return null;
+}
+
 export function Shell() {
   const lang = useAppStore((s) => s.lang);
   const audience = useAppStore((s) => s.audience);
@@ -59,6 +74,7 @@ export function Shell() {
 
   return (
     <div className="min-h-dvh bg-bg text-fg">
+      <SeedThinWriter />
       <aside className="fixed inset-y-0 start-0 z-30 hidden w-60 border-e border-border bg-bg lg:flex lg:flex-col">
         <div className="px-5 py-6">
           <Link to="/" className="inline-flex">
