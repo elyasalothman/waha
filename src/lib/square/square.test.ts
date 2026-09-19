@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { DOORS, HOUSE_ACCOUNTS, SAMPLE_ACCOUNTS, SAMPLE_STAMP_AR } from "./accounts.ts";
@@ -89,6 +90,16 @@ describe("square time", () => {
 });
 
 describe("square store", () => {
+  it("keeps DayShadow live clock, remain, and weather behind useHydrated", () => {
+    const src = readFileSync(new URL("../../components/square/day-shadow.tsx", import.meta.url), "utf8");
+    assert.match(src, /useHydrated/);
+    assert.match(src, /data-skeleton="day-shadow"/);
+    assert.match(src, /hydrated \?/);
+    assert.match(src, /data-shadow="thin"/);
+    assert.match(src, /data-live="remain-hms"/);
+    assert.match(src, /data-live="countdown"/);
+  });
+
   it("always merges the local seed even when storage is empty", () => {
     const feed = mergeFeed(emptyLocal(), "forYou", Date.now(), "ar");
     assert.ok(feed.length >= MIN_SEED_POSTS);
