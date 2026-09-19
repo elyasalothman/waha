@@ -3,10 +3,10 @@ import { t, type Lang } from "@/lib/i18n";
 import { usePrayerRemind, type RemindVia } from "@/lib/prayer-remind";
 import { cn } from "@/lib/cn";
 
-function viaLabel(lang: Lang, via: RemindVia) {
-  if (via === "queued") return t(lang, "remindQueued");
+function viaLabel(lang: Lang, via: RemindVia, enabled: boolean) {
+  if (!enabled) return t(lang, "remindOff");
   if (via === "capacitor" || via === "web") return t(lang, "remindOn");
-  return t(lang, "remindOff");
+  return t(lang, "remindQueued");
 }
 
 export function PrayerRemindToggle({
@@ -49,7 +49,7 @@ export function PrayerRemindToggle({
         <div>
           <p className="font-medium">{t(lang, "remind")}</p>
           <p className="mt-1 text-sm text-muted">{t(lang, "remindHint")}</p>
-          <p className="mt-1 text-xs text-subtle">{viaLabel(lang, via)}</p>
+          <p className="mt-1 text-xs text-subtle">{viaLabel(lang, via, enabled)}</p>
         </div>
         <button
           type="button"

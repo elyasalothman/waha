@@ -60,8 +60,10 @@ export function nextPrayer(
   for (const key of PRAYER_KEYS) {
     if (map[key].getTime() > now.getTime()) return { key, at: map[key] };
   }
-  const tomorrow = new Date(now.getTime() + 36 * 3600 * 1000);
-  const next = getTimes(pt.coordinates.latitude, pt.coordinates.longitude, tomorrow, tz);
+  const civil = civilDateInZone(now, tz);
+  const nextCivil = new Date(civil);
+  nextCivil.setDate(nextCivil.getDate() + 1);
+  const next = new PrayerTimes(pt.coordinates, nextCivil, CalculationMethod.UmmAlQura());
   return { key: "fajr", at: next.fajr };
 }
 

@@ -122,7 +122,12 @@ export async function shareShadow(s: ShadowShare, lang: Lang): Promise<ShareResu
       if (file && typeof nav.canShare === "function" && nav.canShare({ files: [file] })) {
         payload.files = [file];
       }
-      await nav.share(payload);
+      await Promise.race([
+        nav.share(payload),
+        new Promise<never>((_, reject) => {
+          window.setTimeout(() => reject(new DOMException("share-timeout", "TimeoutError")), 2500);
+        }),
+      ]);
       return "shared";
     } catch (err) {
       if (err instanceof DOMException && err.name === "AbortError") return "shared";
