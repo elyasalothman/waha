@@ -6,13 +6,13 @@ export const CATALOG_TAB_PATHS = ["/life", "/money", "/tools", "/games", "/studi
 export type ChromeNavItem = { to: string; key: I18nKey };
 
 export const PERSONAL_NAV: readonly ChromeNavItem[] = [
-  { to: "/", key: "home" },
+  { to: "/maydan", key: "home" },
   { to: "/madar", key: "madar" },
   { to: "/more", key: "more" },
 ];
 
 export const WORK_NAV: readonly ChromeNavItem[] = [
-  { to: "/", key: "home" },
+  { to: "/maydan", key: "home" },
   { to: "/madar", key: "madar" },
   { to: "/more", key: "more" },
 ];

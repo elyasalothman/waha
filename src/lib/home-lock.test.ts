@@ -33,23 +33,23 @@ describe("serious home lock", () => {
     assert.equal(ids.includes("luma"), false);
   });
 
-  it("binds / to the Maydan timeline — catalog stays under doors", () => {
+  it("binds / to DayShadow as the single home hero — Square is /maydan", () => {
     const home = readFileSync(new URL("../routes/index.tsx", import.meta.url), "utf8");
-    assert.match(home, /SquarePage/);
+    const maydan = readFileSync(new URL("../routes/maydan.tsx", import.meta.url), "utf8");
+    assert.match(home, /DayShadow/);
+    assert.equal(/SquarePage/.test(home), false);
     assert.equal(/Hub/.test(home), false);
     assert.equal(/byCategory|featuredFor/.test(home), false);
-    assert.equal(/maydan/.test(home), false);
+    assert.match(home, /\/maydan/);
+    assert.match(maydan, /createFileRoute\("\/maydan"\)/);
+    assert.match(maydan, /SquarePage/);
   });
 
-  it("keeps a thin live shadow on SquarePage — not a DayShadow-only home", () => {
+  it("keeps a live countdown on the DayShadow hero — never a loading blank", () => {
     const home = readFileSync(new URL("../routes/index.tsx", import.meta.url), "utf8");
-    const square = readFileSync(new URL("../components/square/square-page.tsx", import.meta.url), "utf8");
     const shadow = readFileSync(new URL("../components/square/day-shadow.tsx", import.meta.url), "utf8");
-    assert.match(home, /SquarePage/);
-    assert.doesNotMatch(home, /DayShadow/);
-    assert.match(square, /DayShadow/);
-    assert.match(square, /data-home-sections="day-shadow house-doors square"/);
-    assert.match(shadow, /data-shadow="thin"/);
+    assert.match(home, /DayShadow/);
+    assert.match(home, /data-home-hero="day-shadow"/);
     assert.match(shadow, /data-hero="next-prayer"/);
     assert.match(shadow, /data-live="remain-hms"/);
     assert.match(shadow, /data-live="countdown"/);
@@ -58,8 +58,8 @@ describe("serious home lock", () => {
 });
 
 describe("king lock — `/` after #8", () => {
-  it("keeps above the fold to thin shadow + house doors + the square", () => {
-    assert.deepEqual([...HOME_ABOVE_FOLD], ["day-shadow", "house-doors", "square"]);
+  it("keeps above the fold to Day Shadow as the single home hero", () => {
+    assert.deepEqual([...HOME_ABOVE_FOLD], ["day-shadow"]);
     assert.deepEqual([...HOME_SHADOW_KEYS], ["now", "prayer", "weather"]);
     assert.equal(homeShowsCityPicker(), false);
     assert.deepEqual([...HOME_FORBIDDEN_COPY], ["ابدأ من هنا", "جديد في واحة"]);

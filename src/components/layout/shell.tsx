@@ -15,6 +15,7 @@ import { Toaster } from "sonner";
 
 const NAV_ICON = {
   "/": GalleryVertical,
+  "/maydan": GalleryVertical,
   "/more": Ellipsis,
 } as const;
 
