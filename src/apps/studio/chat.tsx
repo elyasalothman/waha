@@ -2,7 +2,14 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/input";
 import { askWaha } from "@/lib/ai";
-import type { AskCitation, AskKind, AskTrust } from "@/lib/ask-waha";
+import {
+  isDayQuestion,
+  runAskWaha,
+  type AskCitation,
+  type AskKind,
+  type AskTrust,
+  type AskWahaResponse,
+} from "@/lib/ask-waha";
 import { t } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
 import { useAppStore } from "@/store/app-store";
@@ -45,28 +52,43 @@ function TrustBadge({ trust }: { trust: AskTrust }) {
   );
 }
 
-function Refs({ citations, source, lang }: { citations?: AskCitation[]; source?: string; lang: "ar" | "en" }) {
-  const [open, setOpen] = useState(false);
+function Refs({
+  citations,
+  source,
+  lang,
+  trust,
+}: {
+  citations?: AskCitation[];
+  source?: string;
+  lang: "ar" | "en";
+  trust: AskTrust;
+}) {
+  const [open, setOpen] = useState(trust === "مدعوم");
   const items =
     citations && citations.length
-      ? citations
+      ? citations.slice(0, 4)
       : source && /^https?:\/\//i.test(source)
         ? [{ title: source, url: source }]
         : [];
   if (!items.length && !source) return null;
+  const visible = trust === "مدعوم";
 
   return (
     <div className="mt-2">
-      <button
-        type="button"
-        className="text-[11px] text-muted underline-offset-4 hover:text-fg hover:underline"
-        onClick={() => setOpen((v) => !v)}
-      >
-        {t(lang, "askRefs")}
-      </button>
-      {open ? (
+      {visible ? (
+        <p className="text-[11px] text-muted">{t(lang, "askRefs")}</p>
+      ) : (
+        <button
+          type="button"
+          className="text-[11px] text-muted underline-offset-4 hover:text-fg hover:underline"
+          onClick={() => setOpen((v) => !v)}
+        >
+          {t(lang, "askRefs")}
+        </button>
+      )}
+      {visible || open ? (
         <ul className="mt-2 space-y-1 text-[12px] text-muted">
-          {source && !/^https?:\/\//i.test(source) ? <li>{source}</li> : null}
+          {source && !/^https?:\/\//i.test(source) && items.length < 3 ? <li>{source}</li> : null}
           {items.map((c) => (
             <li key={c.url}>
               <a href={c.url} target="_blank" rel="noreferrer" className="text-fg/80 hover:underline">
@@ -99,23 +121,32 @@ export function ChatApp() {
     setErr(null);
     try {
       const history = nextUser.map((m) => ({ role: m.role, content: m.content })).slice(-12);
-      const res = await askWaha({
-        data: {
-          mode,
-          lang,
-          messages: history,
-          city: {
-            id: city.id,
-            ar: city.ar,
-            en: city.en,
-            lat: city.lat,
-            lon: city.lon,
-            tz: city.tz,
-            countryAr: city.countryAr,
-            countryEn: city.countryEn,
-          },
-        },
-      });
+      const cityPayload = {
+        id: city.id,
+        ar: city.ar,
+        en: city.en,
+        lat: city.lat,
+        lon: city.lon,
+        tz: city.tz,
+        countryAr: city.countryAr,
+        countryEn: city.countryEn,
+      };
+      const res: AskWahaResponse =
+        mode === "chat" && isDayQuestion(text)
+          ? await runAskWaha({
+              mode: "chat",
+              lang,
+              messages: history,
+              city: cityPayload,
+            })
+          : await askWaha({
+              data: {
+                mode,
+                lang,
+                messages: history,
+                city: cityPayload,
+              },
+            });
       if (!res.ok) {
         setErr(res.error === "unavailable" ? t(lang, "aiUnavailable") : t(lang, "error"));
       } else {
@@ -180,7 +211,9 @@ export function ChatApp() {
               <div key={i} className="max-w-[86%] space-y-2">
                 {m.kind !== "greeting" ? <TrustBadge trust={m.trust} /> : null}
                 <div className="text-[15px] leading-7 text-fg whitespace-pre-wrap">{m.content}</div>
-                {m.kind !== "greeting" ? <Refs citations={m.citations} source={m.source} lang={lang} /> : null}
+                {m.kind !== "greeting" ? (
+                  <Refs citations={m.citations} source={m.source} lang={lang} trust={m.trust} />
+                ) : null}
               </div>
             ),
           )

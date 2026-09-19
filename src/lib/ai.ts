@@ -26,8 +26,8 @@ const Input = z.object({
 });
 
 /**
- * اسأل واحة v0.1 — DayContext من shadowDayNow + السؤال → POST محسن (serverFn فقط).
- * لا xAI على المعرفة. ترجمة/كتابة unavailable صريحاً.
+ * اسأل واحة v0.2 — يوم محلي من shadowDayNow قبل أي شبكة؛ محسن ≤8ث بلا xAI.
+ * ترجمة/كتابة unavailable صريحاً.
  */
 export const askWaha = createServerFn({ method: "POST" })
   .validator(Input)
