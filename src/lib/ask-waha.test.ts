@@ -195,6 +195,28 @@ describe("ask waha §5 smoke", () => {
     assert.equal(res.trust, "لا أعرف");
     assert.match(res.text, /لا أعرف/);
     assert.doesNotMatch(res.text, /أزرق|أخضر|أحمر/);
+
+    const markets = await runAskWaha({
+      mode: "chat",
+      lang: "ar",
+      messages: [{ role: "user", content: "ما لون التنين الذي يسكن قاع بئر زمزم سنة 3122؟" }],
+      city: DEFAULT_CITY,
+      now: NOW,
+      loadDay,
+      askMohsen: async () => ({
+        reply: "لا.\n\nلا توصيات تداول من هذا البيت.",
+        action: "ارفض",
+        via: "law",
+        source: "",
+        citations: [],
+        searched: false,
+      }),
+    });
+    assert.equal(markets.ok, true);
+    if (!markets.ok) return;
+    assert.equal(markets.trust, "لا أعرف");
+    assert.match(markets.text, /لا أعرف/);
+    assert.doesNotMatch(markets.text, /تداول|أسواق|سوق/);
   });
 
   it("4. بلا XAI_API_KEY يعمل الشات (لم يعد يعتمد عليه)", async () => {

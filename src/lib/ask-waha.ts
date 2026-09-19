@@ -447,6 +447,17 @@ export async function runAskWaha(input: RunAskWahaInput): Promise<AskWahaRespons
       messages: shortHistory(input.messages),
     });
     const citations = safeCitations(mohsen.citations, mohsen.source);
+    if (isHardRefuse(mohsen)) {
+      return {
+        ok: true,
+        text:
+          input.lang === "ar" ? "لا أعرف، ولن أخمن." : "I don’t know, and I will not guess.",
+        trust: "لا أعرف",
+        searched: Boolean(mohsen.searched) || citations.length > 0,
+        usedDay: true,
+        kind: greeting ? "greeting" : "knowledge",
+      };
+    }
     const trust = resolveTrust(mohsen, day, question);
     const text = (mohsen.reply ?? "").trim() || mohsenDownReply(input.lang);
     const via = (mohsen.via ?? "").trim();
