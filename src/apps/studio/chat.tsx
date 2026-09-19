@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/input";
 import { askWaha } from "@/lib/ai";
@@ -102,6 +102,15 @@ function Refs({
   );
 }
 
+function assistantFromFail(lang: "ar" | "en", text: string): Extract<Msg, { role: "assistant" }> {
+  return {
+    role: "assistant",
+    content: text,
+    trust: "لا أعرف",
+    kind: "knowledge",
+  };
+}
+
 export function ChatApp() {
   const lang = useAppStore((s) => s.lang);
   const city = useAppStore((s) => s.city);
@@ -109,7 +118,15 @@ export function ChatApp() {
   const [input, setInput] = useState("");
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [busy, setBusy] = useState(false);
-  const [err, setErr] = useState<string | null>(null);
+  const endRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  }, [msgs, busy]);
+
+  function pushAssistant(msg: Extract<Msg, { role: "assistant" }>) {
+    setMsgs((m) => [...m, msg]);
+  }
 
   async function send() {
     const text = input.trim();
@@ -118,9 +135,11 @@ export function ChatApp() {
     setMsgs(nextUser);
     setInput("");
     setBusy(true);
-    setErr(null);
     try {
-      const history = nextUser.map((m) => ({ role: m.role, content: m.content })).slice(-12);
+      const history = nextUser
+        .filter((m): m is { role: "user" | "assistant"; content: string } => Boolean(m.content))
+        .map((m) => ({ role: m.role, content: m.content }))
+        .slice(-12);
       const cityPayload = {
         id: city.id,
         ar: city.ar,
@@ -147,31 +166,39 @@ export function ChatApp() {
                 city: cityPayload,
               },
             });
-      if (!res.ok) {
-        setErr(res.error === "unavailable" ? t(lang, "aiUnavailable") : t(lang, "error"));
+      if (!res || typeof res !== "object" || !("ok" in res) || !res.ok) {
+        const fail = res && typeof res === "object" && "error" in res ? res.error : "empty";
+        pushAssistant(
+          assistantFromFail(
+            lang,
+            fail === "unavailable" ? t(lang, "aiUnavailable") : lang === "ar" ? "لا أعرف، ولن أخمن." : "I don’t know, and I will not guess.",
+          ),
+        );
       } else {
-        setMsgs((m) => [
-          ...m,
-          {
-            role: "assistant",
-            content: res.text,
-            trust: res.trust,
-            source: res.source,
-            citations: res.citations,
-            kind: res.kind,
-          },
-        ]);
+        pushAssistant({
+          role: "assistant",
+          content: res.text,
+          trust: res.trust,
+          source: res.source,
+          citations: res.citations,
+          kind: res.kind,
+        });
       }
     } catch {
-      setErr(t(lang, "error"));
+      pushAssistant(
+        assistantFromFail(
+          lang,
+          lang === "ar" ? "لا أعرف، ولن أخمن." : "I don’t know, and I will not guess.",
+        ),
+      );
     } finally {
       setBusy(false);
     }
   }
 
   return (
-    <div className="flex min-h-[72vh] flex-col">
-      <div className="mb-5 flex items-center justify-between gap-3">
+    <div className="flex h-[calc(100dvh-20rem)] min-h-80 max-h-[44rem] flex-col">
+      <div className="mb-4 flex shrink-0 items-center justify-between gap-3">
         <div className="inline-flex rounded-full border border-border bg-surface p-0.5">
           {MODES.map((m) => (
             <button
@@ -190,7 +217,7 @@ export function ChatApp() {
         <p className="text-[11px] text-subtle">{lang === "ar" ? city.ar : city.en}</p>
       </div>
 
-      <div className="flex-1 space-y-4 rounded-2xl border border-border/80 bg-surface/80 px-4 py-5 sm:px-5">
+      <div className="min-h-0 flex-1 space-y-4 overflow-y-auto rounded-2xl border border-border/80 bg-surface/80 px-4 py-5 sm:px-5">
         {msgs.length === 0 ? (
           <div className="flex h-full min-h-48 flex-col justify-end">
             <p className="text-[15px] leading-7 text-muted">
@@ -219,10 +246,10 @@ export function ChatApp() {
           )
         )}
         {busy ? <p className="text-[13px] text-muted">{t(lang, "thinking")}</p> : null}
-        {err ? <p className="text-[13px] text-danger">{err}</p> : null}
+        <div ref={endRef} />
       </div>
 
-      <div className="mt-4 flex items-end gap-2">
+      <div className="mt-4 flex shrink-0 items-end gap-2">
         <Textarea
           className="min-h-14 flex-1 resize-none rounded-2xl border-border/80 bg-surface px-4 py-3 text-[15px]"
           value={input}

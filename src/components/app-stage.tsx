@@ -11,11 +11,13 @@ export function AppStage({
   lang,
   children,
   wide = false,
+  compact = false,
 }: {
   item: CatalogItem;
   lang: Lang;
   children: React.ReactNode;
   wide?: boolean;
+  compact?: boolean;
 }) {
   const Icon = appIcon(item.icon);
   const hub = CATEGORIES.find((c) => c.id === item.category)?.path ?? "/";
@@ -23,12 +25,15 @@ export function AppStage({
     <div className={cn("mx-auto w-full", wide ? "max-w-5xl" : "max-w-3xl")}>
       <Link
         to={hub}
-        className="mb-6 inline-flex items-center gap-2 text-sm text-muted hover:text-fg"
+        className={cn(
+          "inline-flex items-center gap-2 text-sm text-muted hover:text-fg",
+          compact ? "mb-3" : "mb-6",
+        )}
       >
         <ArrowRight className="size-4 rtl:rotate-0 ltr:rotate-180" />
         {t(lang, "back")}
       </Link>
-      <div className="mb-6 flex items-start gap-3">
+      <div className={cn("flex items-start gap-3", compact ? "mb-3" : "mb-6")}>
         <span className="flex size-11 shrink-0 items-center justify-center rounded-md bg-surface-2 text-primary">
           <Icon className="size-5" />
         </span>
