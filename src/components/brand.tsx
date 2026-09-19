@@ -60,3 +60,24 @@ export function ClipsMark({ className }: { className?: string }) {
     </svg>
   );
 }
+
+/** رف كتب — ألواح هادئة بلا أيقونة ميدان. */
+export function BooksMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 32 32" className={cn("text-primary", className)} aria-hidden="true">
+      <path
+        d="M8 8.5h6.4c1.6 0 2.6 1 2.6 2.4v12.2c-1.3-.8-2.7-1.1-4.2-1.1H8z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.25"
+      />
+      <path
+        d="M24 8.5h-6.4c-1.6 0-2.6 1-2.6 2.4v12.2c1.3-.8 2.7-1.1 4.2-1.1H24z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.25"
+      />
+      <path d="M7.4 24.8h17.2" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" />
+    </svg>
+  );
+}

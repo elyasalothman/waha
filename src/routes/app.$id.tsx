@@ -33,6 +33,10 @@ function AppPage() {
     return <Navigate to="/clips" />;
   }
 
+  if (id === "midad") {
+    return <Navigate to="/books" />;
+  }
+
   if (item && hideMoney(segment) && isMoneySurface(item)) {
     return <ChildMoneyGate lang={lang} />;
   }

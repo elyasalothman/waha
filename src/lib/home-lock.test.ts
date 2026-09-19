@@ -91,7 +91,7 @@ describe("king lock — `/` after #8", () => {
     assert.deepEqual(homeHouseDoorIds(), ["tahajjud", "midad", "sites"]);
     assert.deepEqual(
       primaryLauncherDoors().map((d) => d.title.ar),
-      ["تهجد · عبادة", "مداد · قراءة", "مواقعنا"],
+      ["تهجد · عبادة", "مداد · رف كتب", "مواقعنا"],
     );
   });
 

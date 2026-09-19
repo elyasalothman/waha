@@ -3,8 +3,11 @@ import assert from "node:assert/strict";
 import {
   ALHAJDA_SITES_INDEX,
   DOORS,
+  MIDAD_SHELF_PATH,
   directoryDoors,
   doorHref,
+  doorOpenHref,
+  doorOpensInternalShelf,
   getDoor,
   isExternalDoor,
   launcherDoors,
@@ -19,7 +22,7 @@ describe("Alhajda doors", () => {
 
     assert.equal(tahajjud?.title.ar, "تهجد · عبادة");
     assert.equal(tahajjud?.href, "https://tahajjud.alhajda.com");
-    assert.equal(midad?.title.ar, "مداد · قراءة");
+    assert.equal(midad?.title.ar, "مداد · رف كتب");
     assert.equal(midad?.href, "https://midad.alhajda.com/library");
     assert.equal(sites?.title.ar, "مواقعنا");
     assert.equal(sites?.href, ALHAJDA_SITES_INDEX);
@@ -54,5 +57,14 @@ describe("Alhajda doors", () => {
       ["tahajjud", "midad", "mohsin", "luma", "alhajda-tools", "agent", "hissati"],
     );
     assert.equal(getDoor("hissati")?.href, "https://hissati.alhajda.com");
+  });
+
+  it("opens باب مداد onto the /books shelf while the live library href stays canonical", () => {
+    const midad = getDoor("midad");
+    assert.equal(MIDAD_SHELF_PATH, "/books");
+    assert.equal(doorOpensInternalShelf(midad!), true);
+    assert.equal(doorOpenHref(midad!), "/books");
+    assert.equal(doorHref(midad!), "https://midad.alhajda.com/library");
+    assert.equal(doorOpensInternalShelf({ id: "tahajjud" }), false);
   });
 });

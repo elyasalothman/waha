@@ -170,6 +170,13 @@ const strings = {
     en: "Twelve marked clips — no algorithm, no search. Not the Square feed.",
   },
   clipsOriginal: { ar: "المصدر الأصلي", en: "Original source" },
+  books: { ar: "كتب", en: "Books" },
+  booksTitle: { ar: "رف الكتب", en: "Book shelf" },
+  booksBlurb: {
+    ar: "اثنا عشر كتاباً معلَّم المصدر — أخلاق وشرعي ومداد. بلا شراء ورقي ولا قرصنة. ليست خط الميدان.",
+    en: "Twelve source-stamped books — akhlaq, sharia, and Midad. No paper shop, no piracy. Not the Square feed.",
+  },
+  booksOpen: { ar: "افتح المصدر", en: "Open source" },
 } as const;
 
 export type I18nKey = keyof typeof strings;

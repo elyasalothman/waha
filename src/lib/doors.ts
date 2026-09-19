@@ -44,6 +44,17 @@ export function doorHref(door: Pick<Door, "href">): string {
   return door.href;
 }
 
+/** King lock: باب مداد in أبواب opens the `/books` shelf, not the Maydan line. */
+export const MIDAD_SHELF_PATH = "/books";
+
+export function doorOpensInternalShelf(door: Pick<Door, "id">): boolean {
+  return door.id === "midad";
+}
+
+export function doorOpenHref(door: Pick<Door, "id" | "href">): string {
+  return doorOpensInternalShelf(door) ? MIDAD_SHELF_PATH : door.href;
+}
+
 export function isPrimaryDoor(id: string): boolean {
   return (PRIMARY_LAUNCHER_IDS as readonly string[]).includes(id);
 }

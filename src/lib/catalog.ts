@@ -74,16 +74,29 @@ export function lumaGamesItem(): CatalogItem | undefined {
 const LUMA_GAMES = lumaGamesItem();
 
 export const CATALOG: CatalogItem[] = [
-  ...launcherDoors().map((door) => ({
-    id: door.id,
-    category: door.category,
-    lane: door.lane,
-    audience: door.audience,
-    icon: door.icon,
-    title: door.title,
-    blurb: door.blurb,
-    href: doorExternalHref(door),
-  })),
+  ...launcherDoors().map((door) =>
+    door.id === "midad"
+      ? {
+          id: door.id,
+          category: door.category,
+          lane: door.lane,
+          audience: door.audience,
+          portal: true,
+          icon: door.icon,
+          title: door.title,
+          blurb: door.blurb,
+        }
+      : {
+          id: door.id,
+          category: door.category,
+          lane: door.lane,
+          audience: door.audience,
+          icon: door.icon,
+          title: door.title,
+          blurb: door.blurb,
+          href: doorExternalHref(door),
+        },
+  ),
   { id: "salah", category: "life", lane: "worship", audience: P, featured: true, icon: "Sunrise", title: { ar: "مواقيت الصلاة", en: "Prayer times" }, blurb: { ar: "حسب أم القرى مع العدّ للصلاة القادمة", en: "Umm al-Qura times and a countdown to the next prayer" } },
   { id: "salahlog", category: "life", lane: "worship", audience: P, featured: true, icon: "ListChecks", title: { ar: "ورد الصلاة", en: "Prayer log" }, blurb: { ar: "علّم صلوات اليوم وتابع السلسلة", en: "Tick today’s prayers and keep a streak" } },
   { id: "athkar", category: "life", lane: "worship", audience: P, featured: true, icon: "BookOpen", title: { ar: "أذكار اليوم", en: "Daily athkar" }, blurb: { ar: "أذكار الصباح والمساء بعلامة تمّ", en: "Morning and evening remembrances to tick off" } },
@@ -249,6 +262,7 @@ export function searchCatalog(q: string, audience: Audience) {
   return pool.filter((a) => {
     const keys = [a.id, a.title.ar, a.title.en, a.blurb.ar, a.blurb.en, LANE_LABEL[a.lane].ar, LANE_LABEL[a.lane].en, a.href ?? ""];
     if (a.lane === "house" || a.href) keys.push("الهجدة", "alhajda", "أبواب");
+    if (a.id === "midad") keys.push("كتب", "رف", "books", "shelf", "/books");
     return keys.some((s) => s.toLowerCase().includes(n));
   });
 }
