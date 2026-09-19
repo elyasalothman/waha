@@ -1,8 +1,11 @@
+import { Link } from "@tanstack/react-router";
+import { Gamepad2 } from "lucide-react";
 import type { Category } from "@/lib/catalog";
 import { byCategory, lanesPresent, LANE_LABEL } from "@/lib/catalog";
 import { AppGrid } from "@/components/app-card";
 import { DoorsStrip } from "@/components/doors-strip";
 import { t, type I18nKey } from "@/lib/i18n";
+import { TOOLS_OVERFLOW_NAV } from "@/lib/nav";
 import { CitySelect } from "@/components/city-select";
 import { useAppStore } from "@/store/app-store";
 
@@ -64,6 +67,28 @@ export function Hub({ category, city }: { category: Category; city?: boolean }) 
       ) : (
         <AppGrid items={items} lang={lang} />
       )}
+      {category === "tools" && audience === "personal" ? (
+        <section className="mt-10">
+          <h2 className="mb-3 text-sm font-medium text-muted">{LANE_LABEL.play[lang]}</h2>
+          <div className="grid gap-2">
+            {TOOLS_OVERFLOW_NAV.map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                className="flex min-h-14 items-center gap-3 rounded-xl border border-border bg-surface px-4 py-3 text-fg hover:bg-surface-2"
+              >
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-md bg-surface-2 text-muted">
+                  <Gamepad2 className="size-4" strokeWidth={1.75} />
+                </span>
+                <span className="min-w-0">
+                  <span className="block font-medium leading-tight">{t(lang, item.key)}</span>
+                  <span className="mt-0.5 block text-sm leading-snug text-muted">{t(lang, "gamesBlurb")}</span>
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
     </div>
   );
 }
