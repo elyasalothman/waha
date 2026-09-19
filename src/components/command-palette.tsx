@@ -77,7 +77,7 @@ export function CommandPalette({
                 void navigate({ to: "/madar", search: { q: q.trim() } });
               }}
               className={cn(
-                "flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm text-fg data-[selected=true]:bg-surface-2",
+                "flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm text-fg data-[selected=true]:bg-primary-wash",
               )}
             >
               <MadarMark className="size-4" />
@@ -113,7 +113,7 @@ export function CommandPalette({
                   void navigate({ to: "/app/$id", params: { id: item.id } });
                 }}
                 className={cn(
-                  "flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm text-fg data-[selected=true]:bg-surface-2",
+                  "flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm text-fg data-[selected=true]:bg-primary-wash",
                 )}
               >
                 <Icon className="size-4 text-primary" />

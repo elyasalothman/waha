@@ -1,3 +1,4 @@
+import { PALETTE } from "../palette.ts";
 import lockCards from "./maydan-min-alalam-cards-v1.json" with { type: "json" };
 import full from "./maydan-min-alalam-seed-v1.json" with { type: "json" };
 
@@ -87,16 +88,8 @@ export function worldStripCards(limit = 6): WorldCard[] {
   return WORLD_CARDS.slice(0, limit);
 }
 
-const SOURCE_TONE: Record<string, string> = {
-  "bbc-ar": "#6aa8a4",
-  aitnews: "#8a9298",
-  techwd: "#7a8f7a",
-  sciencedaily: "#6a7a9a",
-  "aj-ar": "#8a8680",
-};
-
-export function worldSourceTone(sourceId: string): string {
-  return SOURCE_TONE[sourceId] ?? "#7a847c";
+export function worldSourceTone(_sourceId: string): string {
+  return PALETTE.muted;
 }
 
 export function sourceKindLabel(kind: WorldSourceKind, lang: "ar" | "en"): string {

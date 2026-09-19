@@ -1,25 +1,37 @@
-/** Waha well-night — dusty sage, a quiet well, no carnival. */
+/** Waha hearth-night — warm dark, washed coral fields, solid coral only on small active. */
 
-export const PALETTE_ID = "waha-well-night" as const;
+export const PALETTE_ID = "waha-hearth-night" as const;
+
+/** Feeling refs — locked because they hold contrast on this hearth. */
+export const CORAL_FEEL = "#d97757";
+export const MUTED_FEEL = "#a1a1a1";
+export const DANGER_LOCK = "#c45c4a";
+/** Wash of primary onto bg — 25–40% lock (king). */
+export const PRIMARY_WASH_PCT = 32;
 
 export const PALETTE = {
-  bg: "#0a120f",
-  surface: "#141c19",
-  "surface-2": "#1b2521",
-  fg: "#e7eee6",
-  muted: "#a3b0a4",
-  subtle: "#8f9c91",
-  primary: "#9eb4a2",
-  "primary-fg": "#0a120f",
-  border: "#2d3a35",
-  danger: "#c56d5c",
-  success: "#7f9d84",
+  bg: "#141311",
+  surface: "#1c1b18",
+  "surface-2": "#262421",
+  fg: "#ecece8",
+  muted: MUTED_FEEL,
+  subtle: "#8f8f8f",
+  primary: CORAL_FEEL,
+  "primary-fg": "#141311",
+  border: "#3a3834",
+  danger: DANGER_LOCK,
+  success: "#a39274",
   warn: "#c4a572",
 } as const;
 
 export type PaletteToken = keyof typeof PALETTE;
 
-/** Text that must stay readable on the night well. */
+/** Large active field: washed primary + solid coral type/icon. */
+export const ACTIVE_WASH = "bg-primary-wash text-primary" as const;
+/** Small active only: tab label, dot, icon. */
+export const ACTIVE_MARK = "text-primary" as const;
+
+/** Text that must stay readable on the warm night. */
 export const TEXT_ON_GROUNDS = [
   ["fg", "bg"],
   ["fg", "surface"],
@@ -32,6 +44,7 @@ export const TEXT_ON_GROUNDS = [
   ["subtle", "surface-2"],
   ["primary", "bg"],
   ["primary", "surface"],
+  ["primary", "surface-2"],
   ["primary-fg", "primary"],
 ] as const satisfies ReadonlyArray<readonly [PaletteToken, PaletteToken]>;
 
@@ -73,9 +86,28 @@ export function hslSaturation(hex: string): number {
   return (max - min) / (1 - Math.abs(2 * light - 1));
 }
 
+/** Sage / well-green: G is the dominant channel. */
 export function isSage(hex: string): boolean {
   const { r, g, b } = hexToRgb(hex);
   return g >= r && g >= b;
+}
+
+/** Warm dark ground — brown/stone, not green. */
+export function isWarmGround(hex: string): boolean {
+  const { r, g, b } = hexToRgb(hex);
+  return r >= g && g >= b;
+}
+
+/** Coral / warm orange — R leads, not a logo mark. */
+export function isCoralFeel(hex: string): boolean {
+  const { r, g, b } = hexToRgb(hex);
+  return r > g && g >= b && r - b > 80;
+}
+
+export function hexDistance(a: string, b: string): number {
+  const left = hexToRgb(a);
+  const right = hexToRgb(b);
+  return Math.hypot(left.r - right.r, left.g - right.g, left.b - right.b);
 }
 
 export function themeColor(name: PaletteToken, raw?: string): string {
@@ -95,4 +127,9 @@ export function parseThemeFromCss(css: string): Record<PaletteToken, string> {
     if (match?.[1]) out[name] = match[1].toLowerCase();
   }
   return out;
+}
+
+export function parsePrimaryWashPct(css: string): number | null {
+  const match = css.match(/--color-primary-wash:\s*color-mix\([^)]*?var\(--color-primary\)\s+(\d+(?:\.\d+)?)%/);
+  return match ? Number(match[1]) : null;
 }

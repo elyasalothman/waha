@@ -82,7 +82,7 @@ export function SquarePage() {
             onClick={() => setTab(item.id)}
             className={cn(
               "h-9 rounded-md text-sm font-medium",
-              tab === item.id ? "bg-surface-2 text-fg" : "text-muted hover:text-fg",
+              tab === item.id ? "bg-primary-wash text-primary" : "text-muted hover:text-fg",
             )}
           >
             {L(item.ar, item.en)}

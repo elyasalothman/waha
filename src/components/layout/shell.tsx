@@ -57,7 +57,7 @@ export function Shell() {
                 to={item.to}
                 className={cn(
                   "flex h-11 items-center gap-3 rounded-md px-3 text-sm transition-colors duration-150",
-                  active ? "bg-surface-2 text-fg" : "text-muted hover:bg-surface hover:text-fg",
+                  active ? "bg-primary-wash text-primary" : "text-muted hover:bg-surface hover:text-fg",
                 )}
               >
                 {item.to === "/madar" ? (
@@ -87,7 +87,7 @@ export function Shell() {
               to="/clips"
               className={cn(
                 "flex size-11 items-center justify-center rounded-md border border-border bg-surface text-primary hover:bg-surface-2",
-                pathname === "/clips" && "bg-surface-2",
+                pathname === "/clips" && "bg-primary-wash text-primary",
               )}
               aria-label={t(lang, "clips")}
               title={t(lang, "clips")}
@@ -98,7 +98,7 @@ export function Shell() {
               to="/madar"
               className={cn(
                 "flex size-11 items-center justify-center rounded-md border border-border bg-surface text-primary hover:bg-surface-2",
-                pathname === "/madar" && "bg-surface-2",
+                pathname === "/madar" && "bg-primary-wash text-primary",
               )}
               aria-label={t(lang, "madar")}
               title={t(lang, "madar")}
@@ -143,7 +143,7 @@ export function Shell() {
               to={item.to}
               className={cn(
                 "flex min-h-14 flex-col items-center justify-center gap-1 text-[11px]",
-                active ? "text-fg" : "text-muted",
+                active ? "text-primary" : "text-muted",
               )}
             >
               <Icon className="size-5" />

@@ -207,7 +207,7 @@ export function ChatApp() {
               onClick={() => setMode(m.id)}
               className={cn(
                 "h-8 rounded-full px-3.5 text-[13px] transition-colors",
-                mode === m.id ? "bg-fg text-bg" : "text-muted hover:text-fg",
+                mode === m.id ? "bg-primary-wash text-primary" : "text-muted hover:text-fg",
               )}
             >
               {lang === "ar" ? m.ar : m.en}
