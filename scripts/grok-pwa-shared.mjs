@@ -7,6 +7,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
 export const DEFAULT_APP_NAME = "Grok App";
+export const PRODUCTION_HOST = "waha.hajdah.com";
 export const OG_SERVICE_URL_DEFAULT = "https://og.grok.me";
 export const OG_SITE_REL_PATH = "src/lib/og/site.json";
 
@@ -65,6 +66,9 @@ export function appNameFromHost(hostHeader) {
     .trim()
     .split(":")[0]
     .toLowerCase();
+  if (host === PRODUCTION_HOST || host === `www.${PRODUCTION_HOST}`) {
+    return "واحة";
+  }
   if (!host.endsWith(".grok.me")) {
     return DEFAULT_APP_NAME;
   }
@@ -159,6 +163,12 @@ export function renderInstallPageHtml(template, { host, url } = {}) {
 
 export function renderWebManifest(hostHeader) {
   const name = appNameFromHost(hostHeader);
+  const host = String(hostHeader ?? "")
+    .split(",")[0]
+    .trim()
+    .split(":")[0]
+    .toLowerCase();
+  const onProduction = host === PRODUCTION_HOST || host === `www.${PRODUCTION_HOST}`;
   return JSON.stringify(
     {
       name,
@@ -171,7 +181,7 @@ export function renderWebManifest(hostHeader) {
       theme_color: "#000000",
       icons: [
         {
-          src: "/__grok/icon-180.png",
+          src: onProduction ? "/icon-180.png" : "/__grok/icon-180.png",
           sizes: "180x180",
           type: "image/png",
         },
@@ -436,8 +446,8 @@ export function injectGrokPwaHead(html, ctx = {}) {
 
   const missing = grokPwaHeadTags(appName)
     .filter(([key]) => {
-      if (key === "manifest") return !next.includes('href="/__grok/manifest.webmanifest"');
-      if (key === "apple-touch-icon") return !next.includes('href="/__grok/icon-180.png"');
+      if (key === "manifest") return !/rel=["']manifest["']/i.test(next);
+      if (key === "apple-touch-icon") return !/rel=["']apple-touch-icon["']/i.test(next);
       return !next.includes(`name="${key}"`);
     })
     .map(([, tag]) => tag);
