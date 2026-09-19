@@ -1,9 +1,6 @@
-import { Link } from "@tanstack/react-router";
 import { BooksMark } from "@/components/brand";
 import { ExternalLink } from "@/components/external-link";
-import { useCurrentUserState } from "@/lib/auth/use-current-user";
 import {
-  accountOwnsKutubi,
   useBooks,
   useKutubi,
   type BookCard,
@@ -20,15 +17,9 @@ const SECTION_EN: Record<BookUiSection, string> = {
 
 export function BooksPage() {
   const lang = useAppStore((s) => s.lang);
-  const sliceChosen = useAppStore((s) => s.sliceChosen);
   const { sections, local, markOpened } = useBooks();
   const kutubi = useKutubi();
-  const { user, isPending } = useCurrentUserState();
   const L = (ar: string, en: string) => (lang === "ar" ? ar : en);
-  const hasAccount = accountOwnsKutubi({
-    sliceChosen,
-    signedInRealUser: !isPending && Boolean(user && !user.isDevFallback),
-  });
 
   return (
     <div className="mx-auto max-w-2xl" data-books-lane="shelf-v1">
@@ -41,50 +32,47 @@ export function BooksPage() {
         <p className="mt-2 max-w-xl text-muted">{t(lang, "booksBlurb")}</p>
       </header>
 
-      {hasAccount ? (
-        <section className="mb-10" data-kutubi="local-v1" data-kutubi-publish="never" data-kutubi-scope="account">
-          <h2 className="font-display text-2xl tracking-tight">{t(lang, "kutubi")}</h2>
-          <p className="mt-2 max-w-xl text-sm text-muted">{t(lang, "kutubiBlurb")}</p>
-          {kutubi.books.length === 0 ? (
-            <p className="mt-4 text-sm text-subtle" data-kutubi-empty="true">
-              {t(lang, "kutubiEmpty")}
-            </p>
-          ) : (
-            <ol className="mt-4 grid gap-3">
-              {kutubi.books.map((book) => {
-                const draft = kutubi.local.items.find((item) => item.bookId === book.id)?.publicDraft;
-                return (
-                  <li key={`kutubi-${book.id}`}>
-                    <BookCardView
-                      book={book}
-                      lang={lang}
-                      opened={local.opened.includes(book.id)}
-                      openLabel={t(lang, "booksOpen")}
-                      onOpen={() => markOpened(book.id)}
-                      kutubiAction={{
-                        label: t(lang, "kutubiRemove"),
-                        onClick: () => kutubi.remove(book.id),
-                      }}
-                      publicDraft={{
-                        pending: Boolean(draft),
-                        label: draft ? t(lang, "kutubiPublicDraft") : t(lang, "kutubiOfferPublic"),
-                        onClick: draft ? () => undefined : () => kutubi.requestPublic(book.id),
-                      }}
-                    />
-                  </li>
-                );
-              })}
-            </ol>
-          )}
-        </section>
-      ) : (
-        <p className="mb-8 text-sm text-subtle" data-kutubi-guest="public-only">
-          {t(lang, "kutubiGuestHint")}{" "}
-          <Link to="/onboarding" className="text-primary hover:underline">
-            {t(lang, "createAccount")}
-          </Link>
-        </p>
-      )}
+      <section
+        className="mb-10"
+        data-kutubi="local-v1"
+        data-kutubi-publish="never"
+        data-kutubi-scope="device"
+        data-kutubi-auth="none"
+      >
+        <h2 className="font-display text-2xl tracking-tight">{t(lang, "kutubi")}</h2>
+        <p className="mt-2 max-w-xl text-sm text-muted">{t(lang, "kutubiBlurb")}</p>
+        {kutubi.books.length === 0 ? (
+          <p className="mt-4 text-sm text-subtle" data-kutubi-empty="true">
+            {t(lang, "kutubiEmpty")}
+          </p>
+        ) : (
+          <ol className="mt-4 grid gap-3">
+            {kutubi.books.map((book) => {
+              const draft = kutubi.local.items.find((item) => item.bookId === book.id)?.publicDraft;
+              return (
+                <li key={`kutubi-${book.id}`}>
+                  <BookCardView
+                    book={book}
+                    lang={lang}
+                    opened={local.opened.includes(book.id)}
+                    openLabel={t(lang, "booksOpen")}
+                    onOpen={() => markOpened(book.id)}
+                    kutubiAction={{
+                      label: t(lang, "kutubiRemove"),
+                      onClick: () => kutubi.remove(book.id),
+                    }}
+                    publicDraft={{
+                      pending: Boolean(draft),
+                      label: draft ? t(lang, "kutubiPublicDraft") : t(lang, "kutubiOfferPublic"),
+                      onClick: draft ? () => undefined : () => kutubi.requestPublic(book.id),
+                    }}
+                  />
+                </li>
+              );
+            })}
+          </ol>
+        )}
+      </section>
 
       <div className="grid gap-10" data-books-public="council-shelf">
         {sections.map((group) => (
@@ -101,15 +89,11 @@ export function BooksPage() {
                       opened={local.opened.includes(book.id)}
                       openLabel={t(lang, "booksOpen")}
                       onOpen={() => markOpened(book.id)}
-                      kutubiAction={
-                        hasAccount
-                          ? {
-                              label: saved ? t(lang, "kutubiSaved") : t(lang, "kutubiAdd"),
-                              onClick: saved ? () => undefined : () => kutubi.add(book.id),
-                              done: saved,
-                            }
-                          : undefined
-                      }
+                      kutubiAction={{
+                        label: saved ? t(lang, "kutubiSaved") : t(lang, "kutubiAdd"),
+                        onClick: saved ? () => undefined : () => kutubi.add(book.id),
+                        done: saved,
+                      }}
                     />
                   </li>
                 );

@@ -25,12 +25,15 @@ export type KutubiState = {
 
 export const EMPTY_KUTUBI: KutubiState = { version: 1, items: [] };
 
-/** Guest reads the public shelf. An account owns كتبي. */
-export function accountOwnsKutubi(input: {
-  sliceChosen: boolean;
-  signedInRealUser: boolean;
+/**
+ * كتبي is a device localStorage shelf on /books — visible to everyone,
+ * including guests with no account. Kept for API compat; always true.
+ */
+export function accountOwnsKutubi(_input?: {
+  sliceChosen?: boolean;
+  signedInRealUser?: boolean;
 }): boolean {
-  return input.sliceChosen === true || input.signedInRealUser === true;
+  return true;
 }
 
 /** Hard lock: كتبي never leaves this device. */
