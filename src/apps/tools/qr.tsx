@@ -3,6 +3,7 @@ import QRCode from "qrcode";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/input";
 import { t } from "@/lib/i18n";
+import { themeColor } from "@/lib/palette";
 import { useAppStore } from "@/store/app-store";
 
 export function QrApp() {
@@ -13,8 +14,8 @@ export function QrApp() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas || !text.trim()) return;
-    const fg = getComputedStyle(document.documentElement).getPropertyValue("--color-fg").trim() || "#eceee9";
-    const bg = getComputedStyle(document.documentElement).getPropertyValue("--color-bg").trim() || "#0c0d0c";
+    const fg = themeColor("fg");
+    const bg = themeColor("bg");
     void QRCode.toCanvas(canvas, text.trim(), { width: 280, margin: 1, color: { dark: fg, light: bg } });
   }, [text]);
 

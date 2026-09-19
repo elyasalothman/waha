@@ -63,7 +63,7 @@ export function DayShadow() {
         data-shadow-keys={HOME_SHADOW_KEYS.join(" ")}
       >
         <span className="font-medium tracking-wide text-subtle">{t(lang, "shadowDay")}</span>
-        <span className="text-border">·</span>
+        <span className="text-subtle">·</span>
         <span data-shadow-key="now" className="font-mono tabular-nums text-fg/80">
           {hydrated ? formatLocalHm(now) : <Pulse className="h-3 w-10" />}
         </span>

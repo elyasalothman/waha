@@ -6,6 +6,7 @@ import { t } from "@/lib/i18n";
 import { zatcaTlvBase64 } from "@/lib/zatca";
 import { tafqeetMoney } from "@/lib/tafqeet";
 import { usePersistent } from "@/lib/storage";
+import { themeColor } from "@/lib/palette";
 import { useAppStore } from "@/store/app-store";
 
 type Item = { desc: string; qty: number; price: number };
@@ -42,8 +43,8 @@ export function InvoiceApp() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas || !payload) return;
-    const fg = getComputedStyle(document.documentElement).getPropertyValue("--color-fg").trim() || "#eceee9";
-    const bg = getComputedStyle(document.documentElement).getPropertyValue("--color-bg").trim() || "#0c0d0c";
+    const fg = themeColor("fg");
+    const bg = themeColor("bg");
     void QRCode.toCanvas(canvas, payload, { width: 180, margin: 1, color: { dark: fg, light: bg } });
   }, [payload]);
 

@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import { t } from "@/lib/i18n";
+import { PALETTE, hexToRgb } from "@/lib/palette";
 import { useAppStore } from "@/store/app-store";
 
 function parseHex(h: string) {
@@ -35,10 +36,10 @@ function mix(c: { r: number; g: number; b: number }, t: number, toward: { r: num
 
 export function ColorsApp() {
   const lang = useAppStore((s) => s.lang);
-  const [hex, setHex] = useState("#c5d0c4");
+  const [hex, setHex] = useState<string>(PALETTE.primary);
   const rgb = parseHex(hex);
-  const paper = { r: 236, g: 238, b: 233 };
-  const ink = { r: 12, g: 13, b: 12 };
+  const paper = hexToRgb(PALETTE.fg);
+  const ink = hexToRgb(PALETTE.bg);
   const ratioInk = rgb ? contrast(rgb, ink) : 0;
   const ratioPaper = rgb ? contrast(rgb, paper) : 0;
   const shades = useMemo(() => {
@@ -49,7 +50,7 @@ export function ColorsApp() {
   return (
     <div className="space-y-4">
       <div className="flex gap-2">
-        <input type="color" value={parseHex(hex) ? hex : "#c5d0c4"} onChange={(e) => setHex(e.target.value)} className="h-11 w-14 cursor-pointer rounded-md border border-border bg-surface" />
+        <input type="color" value={parseHex(hex) ? hex : PALETTE.primary} onChange={(e) => setHex(e.target.value)} className="h-11 w-14 cursor-pointer rounded-md border border-border bg-surface" />
         <Input value={hex} onChange={(e) => setHex(e.target.value)} />
       </div>
       {rgb ? (

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { zatcaTlvBase64 } from "@/lib/zatca";
 import { usePersistent } from "@/lib/storage";
+import { themeColor } from "@/lib/palette";
 import { useAppStore } from "@/store/app-store";
 
 type Form = { seller: string; vatNo: string; total: string; vat: string; time: string };
@@ -33,8 +34,8 @@ export function ZatcaApp() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas || !payload) return;
-    const fg = getComputedStyle(document.documentElement).getPropertyValue("--color-fg").trim() || "#eceee9";
-    const bg = getComputedStyle(document.documentElement).getPropertyValue("--color-bg").trim() || "#0c0d0c";
+    const fg = themeColor("fg");
+    const bg = themeColor("bg");
     void QRCode.toCanvas(canvas, payload, { width: 240, margin: 1, color: { dark: fg, light: bg } });
   }, [payload]);
 
