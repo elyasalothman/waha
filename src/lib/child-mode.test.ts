@@ -15,8 +15,9 @@ describe("child-mode money lock", () => {
   it("treats only segment=child as child mode", () => {
     assert.equal(parseChildSegment("child"), "child");
     assert.equal(parseChildSegment("all"), "all");
-    assert.equal(parseChildSegment("family"), "all");
+    assert.equal(parseChildSegment("family"), "family");
     assert.equal(isChildMode("child"), true);
+    assert.equal(isChildMode("family"), false);
     assert.equal(isChildMode("work"), false);
     assert.equal(hideMoney("child"), true);
     assert.equal(hideMoney("all"), false);

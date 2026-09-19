@@ -102,6 +102,7 @@ describe("square store", () => {
 
   it("always merges the local seed even when storage is empty", () => {
     const feed = mergeFeed(emptyLocal(), "forYou", Date.now(), "ar");
+    assert.equal(feed.length, 48);
     assert.ok(feed.length >= MIN_SEED_POSTS);
     assert.ok(feed.every((item) => item.text.length > 0));
     const samples = feed.filter((item) => item.badge === "عيّنة");

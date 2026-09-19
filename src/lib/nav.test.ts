@@ -24,6 +24,10 @@ describe("chrome nav lock", () => {
       mobileChromeNav("personal").map((item) => item.to),
       ["/", "/more"],
     );
+    assert.equal(chromeNav("personal").some((item) => item.to === "/settings"), false);
+    assert.equal(chromeNav("personal").some((item) => item.to === "/onboarding"), false);
+    assert.equal(moreOverflowNav("personal").some((item) => item.to === "/settings"), false);
+    assert.equal(moreOverflowNav("personal").some((item) => item.to === "/onboarding"), false);
   });
 
   it("keeps مقاطع مفيدة on the chrome like مدار — never under المزيد", () => {
