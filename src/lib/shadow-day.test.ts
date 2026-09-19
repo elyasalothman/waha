@@ -46,17 +46,21 @@ describe("hijri", () => {
 });
 
 describe("shadowDayNow", () => {
-  it("fills clock, prayer HH:MM, and hijri for Riyadh", () => {
+  it("fills clock, prayer HH:MM, weather °C, and hijri instantly", () => {
     const snap = shadowDayNow(new Date(Date.UTC(2026, 8, 19, 12, 0, 0)), DEFAULT_CITY);
     assert.ok(isVisibleHm(snap.clock));
     assert.ok(isVisibleHm(snap.prayerHm));
+    assert.match(snap.weatherText, /^-?\d+°C$/);
+    assert.ok(Number.isFinite(snap.weatherC));
     assert.ok(snap.prayerLabelAr.length > 0);
     assert.ok(snap.hijri.trim().length > 0);
     assert.notEqual(snap.clock, "—");
     assert.notEqual(snap.prayerHm, "—");
+    assert.notEqual(snap.weatherText, "—");
     assert.notEqual(snap.hijri, "—");
     assert.ok(!ARABIC_INDIC.test(snap.clock));
     assert.ok(!ARABIC_INDIC.test(snap.prayerHm));
+    assert.ok(!ARABIC_INDIC.test(snap.weatherText));
   });
 });
 

@@ -1,50 +1,18 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useNow } from "@/hooks/use-now";
-import {
-  fetchWeatherSafe,
-  formatCelsius,
-  prefetchDefaultWeather,
-  readWeatherCache,
-  weatherLabel,
-  type WeatherSource,
-} from "@/lib/weather";
+import { fetchWeatherSafe, formatCelsius, prefetchDefaultWeather, weatherLabel } from "@/lib/weather";
 import { prayerLabel, shadowDayNow } from "@/lib/shadow-day";
 import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
 import { cn } from "@/lib/cn";
-
-type WeatherView = {
-  text: string;
-  label: string;
-  source: WeatherSource | "pending";
-};
-
-function WeatherSkeleton() {
-  return (
-    <span
-      className="mt-1 inline-block h-8 w-20 animate-pulse rounded-md bg-surface-2"
-      aria-hidden="true"
-    />
-  );
-}
 
 export function ShadowDay() {
   const lang = useAppStore((s) => s.lang);
   const city = useAppStore((s) => s.city);
   const now = useNow(1000);
   const snap = shadowDayNow(now, city);
-  const [weather, setWeather] = useState<WeatherView>(() => {
-    const cached = readWeatherCache(city.lat, city.lon);
-    if (cached && Number.isFinite(cached.current.temperature)) {
-      return {
-        text: formatCelsius(cached.current.temperature),
-        label: "",
-        source: "cache",
-      };
-    }
-    return { text: "", label: "", source: "pending" };
-  });
+  const [liveWx, setLiveWx] = useState<{ text: string; label: string } | null>(null);
 
   useEffect(() => {
     prefetchDefaultWeather();
@@ -52,35 +20,25 @@ export function ShadowDay() {
 
   useEffect(() => {
     let live = true;
-    const cached = readWeatherCache(city.lat, city.lon);
-    if (cached && Number.isFinite(cached.current.temperature)) {
-      setWeather({
-        text: formatCelsius(cached.current.temperature),
-        label: weatherLabel(cached.current.code, lang),
-        source: "cache",
-      });
-    }
+    setLiveWx(null);
     fetchWeatherSafe(city.lat, city.lon, 2000)
       .then((w) => {
         if (!live) return;
-        setWeather({
+        setLiveWx({
           text: formatCelsius(w.celsius),
           label: weatherLabel(w.payload.current.code, lang),
-          source: w.source,
         });
       })
       .catch(() => {
-        if (!live) return;
-        setWeather({
-          text: formatCelsius(Number.NaN),
-          label: lang === "ar" ? "تقدير" : "Estimate",
-          source: "climate",
-        });
+        /* snapshot already shows an instant °C */
       });
     return () => {
       live = false;
     };
   }, [city.lat, city.lon, lang]);
+
+  const weatherText = liveWx?.text || snap.weatherText;
+  const weatherSub = liveWx?.label || (lang === "ar" ? snap.weatherLabelAr : snap.weatherLabelEn);
 
   const cards = [
     {
@@ -104,9 +62,8 @@ export function ShadowDay() {
       to: "/app/$id" as const,
       id: "weather",
       kicker: t(lang, "weather"),
-      value: weather.source === "pending" ? "" : weather.text,
-      sub: weather.source === "pending" ? "" : weather.label,
-      skeleton: weather.source === "pending",
+      value: weatherText,
+      sub: weatherSub,
     },
     {
       key: "hijri",
@@ -130,20 +87,16 @@ export function ShadowDay() {
             className="block rounded-xl border border-border bg-surface p-4 hover:bg-surface-2"
           >
             <p className="text-xs text-muted">{card.kicker}</p>
-            {card.skeleton ? (
-              <WeatherSkeleton />
-            ) : (
-              <p
-                className={cn(
-                  "mt-1 text-fg",
-                  card.key === "hijri"
-                    ? "font-display text-xl leading-snug"
-                    : "font-mono text-2xl tabular-nums tracking-tight",
-                )}
-              >
-                {card.value}
-              </p>
-            )}
+            <p
+              className={cn(
+                "mt-1 text-fg",
+                card.key === "hijri"
+                  ? "font-display text-xl leading-snug"
+                  : "font-mono text-2xl tabular-nums tracking-tight",
+              )}
+            >
+              {card.value}
+            </p>
             {card.sub ? <p className="mt-1 text-sm text-muted">{card.sub}</p> : null}
           </Link>
         ))}
