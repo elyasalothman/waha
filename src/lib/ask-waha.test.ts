@@ -201,7 +201,15 @@ describe("ask waha contracts", () => {
     assert.equal(mapMohsenTrust({ action: "توضيح", via: "clarify" }), "جزئي");
     assert.equal(mapMohsenTrust({ action: "من_المتن", via: "open-model", searched: true }), "جزئي");
     assert.equal(mapMohsenTrust({ action: "لا_أعرف", via: "search-miss" }), "لا أعرف");
-    assert.equal(mapMohsenTrust({ action: "ارفض", via: "law" }), "لا أعرف");
+    assert.equal(mapMohsenTrust({ action: "ارفض", via: "law", reply: "لا.\n\nلا توصيات تداول من هذا البيت." }), "لا أعرف");
+    assert.equal(
+      mapMohsenTrust({
+        action: "ارفض",
+        via: "law",
+        reply: "أنا محسن، مساعد عربي من بيت الهجدة. أجاوب من مصادر مملوكة: فقه وأنظمة سعودية ومعرفة البيت.",
+      }),
+      "مدعوم",
+    );
     assert.equal(mapMohsenTrust({ action: "من_المتن", via: "paused" }), "لا أعرف");
   });
 

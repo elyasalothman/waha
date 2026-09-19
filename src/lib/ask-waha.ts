@@ -128,6 +128,18 @@ function normalizeVia(via: string): string {
   return via;
 }
 
+function isHardRefuse(fields: MohsenFields): boolean {
+  const action = (fields.action ?? "").trim();
+  const via = (fields.via ?? "").trim();
+  const viaNorm = normalizeVia(via);
+  const reply = (fields.reply ?? "").trim();
+  if (UNKNOWN_VIA.has(via) || UNKNOWN_VIA.has(viaNorm)) return true;
+  if (!UNKNOWN_ACTIONS.has(action)) return false;
+  if (/^لا\s*\./.test(reply) || reply.includes("لا توصيات")) return true;
+  if (reply.length < 48) return true;
+  return false;
+}
+
 /** خريطة الشارة من جدول المواصفة §٣. via=search يُعامل كـ live (عقد محسن الحي). */
 export function mapMohsenTrust(fields: MohsenFields): AskTrust {
   const action = (fields.action ?? "").trim();
@@ -136,11 +148,14 @@ export function mapMohsenTrust(fields: MohsenFields): AskTrust {
   const sourced =
     Boolean(fields.source?.trim()) || safeCitations(fields.citations, fields.source).length > 0;
 
-  if (UNKNOWN_ACTIONS.has(action) || UNKNOWN_VIA.has(via) || UNKNOWN_VIA.has(viaNorm)) {
+  if (isHardRefuse(fields)) {
     return "لا أعرف";
   }
 
-  if (SUPPORTED_ACTIONS.has(action) && SUPPORTED_VIA.has(viaNorm)) {
+  if (
+    (SUPPORTED_ACTIONS.has(action) || (action === "ارفض" && viaNorm === "law" && (fields.reply ?? "").length > 80)) &&
+    SUPPORTED_VIA.has(viaNorm)
+  ) {
     return "مدعوم";
   }
 
@@ -219,7 +234,7 @@ function resolveTrust(fields: MohsenFields, day: DayContext, question: string): 
   if (table === "لا أعرف") return "لا أعرف";
   if (replyHasDayFact(reply, day, question)) return "مدعوم";
   if (table === "مدعوم") return "مدعوم";
-  if (!sourced && /لا\s*أعرف/.test(reply)) return "لا أعرف";
+  if (!sourced && /^لا\s*أعرف/.test(reply)) return "لا أعرف";
   return table;
 }
 
