@@ -207,14 +207,14 @@ export function ChatApp() {
               onClick={() => setMode(m.id)}
               className={cn(
                 "h-8 rounded-full px-3.5 text-[13px] transition-colors",
-                mode === m.id ? "bg-fg text-bg" : "text-muted hover:text-fg",
+                mode === m.id ? "bg-primary-wash text-primary" : "text-muted hover:text-fg",
               )}
             >
               {lang === "ar" ? m.ar : m.en}
             </button>
           ))}
         </div>
-        <p className="text-[11px] text-subtle">{lang === "ar" ? city.ar : city.en}</p>
+        <p className="text-[11px] text-muted">{lang === "ar" ? city.ar : city.en}</p>
       </div>
 
       <div className="min-h-0 flex-1 space-y-4 overflow-y-auto rounded-2xl border border-border/80 bg-surface/80 px-4 py-5 sm:px-5">

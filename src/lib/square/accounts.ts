@@ -52,7 +52,7 @@ export const HOUSE_ACCOUNTS: SquareAccount[] = [
     bioAr: "باب الصلاة والذكر.",
     bioEn: "The door of prayer and dhikr.",
     kind: "house",
-    tone: "#b8c4c8",
+    tone: PALETTE.primary,
     href: DOORS.tahajjud.href,
   },
   {
@@ -63,7 +63,7 @@ export const HOUSE_ACCOUNTS: SquareAccount[] = [
     bioAr: "باب القراءة.",
     bioEn: "The reading door.",
     kind: "house",
-    tone: "#d4c7b0",
+    tone: PALETTE.primary,
     href: DOORS.midad.href,
   },
   {
@@ -74,7 +74,7 @@ export const HOUSE_ACCOUNTS: SquareAccount[] = [
     bioAr: "مساعد البيت للكتابة والسؤال.",
     bioEn: "The house assistant for writing and asking.",
     kind: "house",
-    tone: "#c4d0bc",
+    tone: PALETTE.primary,
   },
   {
     id: "house-luma",
@@ -84,7 +84,7 @@ export const HOUSE_ACCOUNTS: SquareAccount[] = [
     bioAr: "استراحة قصيرة ولعبة خفيفة.",
     bioEn: "A short rest and a light game.",
     kind: "house",
-    tone: "#d0c4b0",
+    tone: PALETTE.primary,
   },
   {
     id: "house-madar",
@@ -94,7 +94,7 @@ export const HOUSE_ACCOUNTS: SquareAccount[] = [
     bioAr: "باب مدار.",
     bioEn: "Madar’s door.",
     kind: "house",
-    tone: "#b0c4c8",
+    tone: PALETTE.primary,
   },
   {
     id: "house-tools",
@@ -104,18 +104,18 @@ export const HOUSE_ACCOUNTS: SquareAccount[] = [
     bioAr: "حساب وتحويل ومرافق.",
     bioEn: "Calculate, convert, and keep tools close.",
     kind: "house",
-    tone: "#b8c8c0",
+    tone: PALETTE.primary,
   },
 ];
 
 /** Marked sample voices from the king seed — not public figures. */
 export const SAMPLE_ACCOUNTS: SquareAccount[] = [
   { id: "sample-sakina", handle: "@sample.sakina", nameAr: "سكينة", nameEn: "Sakina", bioAr: "عيّنة معلَّمة للسكينة.", bioEn: "A marked sample for sakina.", kind: "sample", tone: PALETTE.muted },
-  { id: "sample-wanasa", handle: "@sample.wanasa", nameAr: "وناسة · عيّنة للبداية", nameEn: "Wanasa", bioAr: "عيّنة معلَّمة للمزاح اللائق.", bioEn: "A marked sample for gentle humour.", kind: "sample", tone: "#9a9084" },
-  { id: "sample-hayah", handle: "@sample.hayah", nameAr: "حياة يومية · عيّنة للبداية", nameEn: "Hayah", bioAr: "عيّنة معلَّمة لبيت هادئ.", bioEn: "A marked sample for a quiet house.", kind: "sample", tone: "#84908c" },
-  { id: "sample-alim", handle: "@sample.alim", nameAr: "عالم · عيّنة للبداية", nameEn: "Alim", bioAr: "عيّنة معلَّمة لفضول علمي.", bioEn: "A marked sample for light science.", kind: "sample", tone: "#90888c" },
-  { id: "sample-faylasuf", handle: "@sample.faylasuf", nameAr: "فيلسوف · عيّنة للبداية", nameEn: "Faylasuf", bioAr: "عيّنة معلَّمة لسؤال عملي.", bioEn: "A marked sample for a practical question.", kind: "sample", tone: "#889084" },
-  { id: "sample-muhandis", handle: "@sample.muhandis", nameAr: "مهندس · عيّنة للبداية", nameEn: "Muhandis", bioAr: "عيّنة معلَّمة لحرفة صغيرة.", bioEn: "A marked sample for a small craft.", kind: "sample", tone: "#948c88" },
+  { id: "sample-wanasa", handle: "@sample.wanasa", nameAr: "وناسة · عيّنة للبداية", nameEn: "Wanasa", bioAr: "عيّنة معلَّمة للمزاح اللائق.", bioEn: "A marked sample for gentle humour.", kind: "sample", tone: PALETTE.muted },
+  { id: "sample-hayah", handle: "@sample.hayah", nameAr: "حياة يومية · عيّنة للبداية", nameEn: "Hayah", bioAr: "عيّنة معلَّمة لبيت هادئ.", bioEn: "A marked sample for a quiet house.", kind: "sample", tone: PALETTE.muted },
+  { id: "sample-alim", handle: "@sample.alim", nameAr: "عالم · عيّنة للبداية", nameEn: "Alim", bioAr: "عيّنة معلَّمة لفضول علمي.", bioEn: "A marked sample for light science.", kind: "sample", tone: PALETTE.muted },
+  { id: "sample-faylasuf", handle: "@sample.faylasuf", nameAr: "فيلسوف · عيّنة للبداية", nameEn: "Faylasuf", bioAr: "عيّنة معلَّمة لسؤال عملي.", bioEn: "A marked sample for a practical question.", kind: "sample", tone: PALETTE.muted },
+  { id: "sample-muhandis", handle: "@sample.muhandis", nameAr: "مهندس · عيّنة للبداية", nameEn: "Muhandis", bioAr: "عيّنة معلَّمة لحرفة صغيرة.", bioEn: "A marked sample for a small craft.", kind: "sample", tone: PALETTE.muted },
 ];
 
 export const YOU_ACCOUNT: SquareAccount = {

@@ -2,17 +2,18 @@
 @import "tw-animate-css";
 
 @theme {
-  --color-bg: #0a120f;
-  --color-surface: #141c19;
-  --color-surface-2: #1b2521;
-  --color-fg: #e7eee6;
-  --color-muted: #a3b0a4;
-  --color-subtle: #8f9c91;
-  --color-primary: #9eb4a2;
-  --color-primary-fg: #0a120f;
-  --color-border: #2d3a35;
-  --color-danger: #c56d5c;
-  --color-success: #7f9d84;
+  --color-bg: #141311;
+  --color-surface: #1c1b18;
+  --color-surface-2: #262421;
+  --color-fg: #ecece8;
+  --color-muted: #a1a1a1;
+  --color-subtle: #8f8f8f;
+  --color-primary: #d97757;
+  --color-primary-fg: #141311;
+  --color-primary-wash: color-mix(in oklab, var(--color-primary) 32%, var(--color-bg));
+  --color-border: #3a3834;
+  --color-danger: #c45c4a;
+  --color-success: #a39274;
   --color-warn: #c4a572;
   --radius-xs: 4px;
   --radius-sm: 8px;

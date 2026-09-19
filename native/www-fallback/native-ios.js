@@ -26,7 +26,7 @@
     const StatusBar = Cap?.Plugins?.StatusBar;
     if (!StatusBar) return;
     Promise.resolve(StatusBar.setStyle?.({ style: "DARK" })).catch(() => {});
-    Promise.resolve(StatusBar.setBackgroundColor?.({ color: "#0c0d0c" })).catch(() => {});
+    Promise.resolve(StatusBar.setBackgroundColor?.({ color: "#141311" })).catch(() => {});
     Promise.resolve(StatusBar.setOverlaysWebView?.({ overlay: true })).catch(() => {});
     const Keyboard = Cap?.Plugins?.Keyboard;
     if (Keyboard) {

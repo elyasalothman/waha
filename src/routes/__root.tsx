@@ -21,7 +21,7 @@ export const Route = createRootRoute({
       { name: "description", content: "واحتك الرقمية — صلاة، أسماء، ضريبة، بلوت، وأدوات يومك" },
       { name: "application-name", content: PWA_NAME },
       { name: "apple-mobile-web-app-title", content: PWA_NAME },
-      { name: "theme-color", content: "#0a120f" },
+      { name: "theme-color", content: "#141311" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
@@ -44,7 +44,7 @@ function RootDocument() {
   const lang = useAppStore((s) => s.lang);
   const dir = lang === "ar" ? "rtl" : "ltr";
   return (
-    <html lang={lang} dir={dir} className="antialiased" data-palette="waha-well-night" suppressHydrationWarning>
+    <html lang={lang} dir={dir} className="antialiased" data-palette="waha-hearth-night" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>

@@ -53,7 +53,7 @@ export function AudienceSwitch({ compact = false }: { compact?: boolean }) {
           }}
           className={cn(
             "h-9 rounded-md text-sm font-medium transition-colors duration-150",
-            active === slice.id ? "bg-surface-2 text-fg" : "text-muted hover:text-fg",
+            active === slice.id ? "bg-primary-wash text-primary" : "text-muted hover:text-fg",
           )}
         >
           {t(lang, slice.id)}

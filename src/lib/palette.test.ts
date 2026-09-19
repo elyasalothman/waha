@@ -2,12 +2,22 @@ import { readFileSync } from "node:fs";
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import {
+  ACTIVE_MARK,
+  ACTIVE_WASH,
+  CORAL_FEEL,
+  DANGER_LOCK,
+  MUTED_FEEL,
   PALETTE,
   PALETTE_ID,
+  PRIMARY_WASH_PCT,
   TEXT_ON_GROUNDS,
   contrastRatio,
+  hexDistance,
   hslSaturation,
+  isCoralFeel,
   isSage,
+  isWarmGround,
+  parsePrimaryWashPct,
   parseThemeFromCss,
   relativeLuminance,
   themeColor,
@@ -23,28 +33,65 @@ const square = readFileSync(new URL("../components/square/square-page.tsx", impo
 const madar = readFileSync(new URL("../apps/madar/portal.tsx", import.meta.url), "utf8");
 const games = readFileSync(new URL("../routes/games.tsx", import.meta.url), "utf8");
 const clips = readFileSync(new URL("../apps/clips/page.tsx", import.meta.url), "utf8");
+const ask = readFileSync(new URL("../apps/studio/chat.tsx", import.meta.url), "utf8");
+const studio = readFileSync(new URL("../routes/studio.tsx", import.meta.url), "utf8");
+const shell = readFileSync(new URL("../components/layout/shell.tsx", import.meta.url), "utf8");
+const audience = readFileSync(new URL("../components/audience-switch.tsx", import.meta.url), "utf8");
+const cmdk = readFileSync(new URL("../components/command-palette.tsx", import.meta.url), "utf8");
 const accounts = readFileSync(new URL("./square/accounts.ts", import.meta.url), "utf8");
+const world = readFileSync(new URL("./square/world.ts", import.meta.url), "utf8");
 const routes = readFileSync(new URL("../routeTree.gen.ts", import.meta.url), "utf8");
 const nav = readFileSync(new URL("./nav.ts", import.meta.url), "utf8");
 const pwa = readFileSync(new URL("../../scripts/grok-pwa-shared.mjs", import.meta.url), "utf8");
 const install = readFileSync(new URL("../../scripts/install-page.html", import.meta.url), "utf8");
 
+const OLD_SAGE = ["#0a120f", "#141c19", "#1b2521", "#e7eee6", "#a3b0a4", "#8f9c91", "#9eb4a2", "#2d3a35"];
 const OLD_NIGHT = ["#0c0d0c", "#eceee9", "#c5d0c4", "#6a7069"];
+const SAGE_COPY = /بئر|مريم|well-night|sage/i;
 
-describe("waha well-night palette", () => {
-  it("keeps a calm sage well — distinctive, not a carnival", () => {
-    assert.equal(PALETTE_ID, "waha-well-night");
-    assert.equal(isSage(PALETTE.primary), true);
-    assert.equal(isSage(PALETTE.bg), true);
+describe("waha hearth-night palette", () => {
+  it("keeps a warm dark hearth and coral feel — not a sage well", () => {
+    assert.equal(PALETTE_ID, "waha-hearth-night");
+    assert.equal(isSage(PALETTE.bg), false);
+    assert.equal(isSage(PALETTE.surface), false);
+    assert.equal(isSage(PALETTE["surface-2"]), false);
+    assert.equal(isSage(PALETTE.primary), false);
+    assert.equal(isSage(PALETTE.success), false);
+    assert.equal(isWarmGround(PALETTE.bg), true);
+    assert.equal(isWarmGround(PALETTE.surface), true);
+    assert.equal(isCoralFeel(PALETTE.primary), true);
+    assert.ok(hexDistance(PALETTE.primary, CORAL_FEEL) < 24, "primary stays near the coral feel");
+    assert.equal(PALETTE.muted.toLowerCase(), MUTED_FEEL);
+    assert.equal(PALETTE.danger, DANGER_LOCK);
+    assert.notEqual(PALETTE.danger, PALETTE.primary);
     assert.ok(relativeLuminance(PALETTE.bg) < 0.02, "night stays deep");
-    assert.ok(hslSaturation(PALETTE.primary) < 0.22, "primary stays dusty");
-    assert.ok(hslSaturation(PALETTE.danger) < 0.55, "status colors stay clay, not neon");
+    assert.ok(hslSaturation(PALETTE.bg) < 0.16, "ground stays quiet, not creamy");
+    assert.ok(hslSaturation(PALETTE.primary) > 0.4 && hslSaturation(PALETTE.primary) < 0.75, "coral, not neon");
+    assert.doesNotMatch(PALETTE_ID, SAGE_COPY);
   });
 
-  it("keeps CSS tokens, chrome, and the mark on the same well", () => {
+  it("washes primary 25–40% on large fields; solid coral stays a small active mark", () => {
+    const pct = parsePrimaryWashPct(css);
+    assert.equal(pct, PRIMARY_WASH_PCT);
+    assert.ok(pct !== null && pct >= 25 && pct <= 40);
+    assert.match(css, /--color-primary-wash:\s*color-mix\(in oklab, var\(--color-primary\) 32%, var\(--color-bg\)\)/);
+    assert.match(shell, new RegExp(`active \\? "${ACTIVE_WASH}"`));
+    assert.match(shell, new RegExp(`active \\? "${ACTIVE_MARK}"`));
+    assert.match(shell, /pathname === "\/clips" && "bg-primary-wash text-primary"/);
+    assert.match(shell, /pathname === "\/madar" && "bg-primary-wash text-primary"/);
+    assert.match(audience, new RegExp(`active === slice.id \\? "${ACTIVE_WASH}"`));
+    assert.match(square, new RegExp(`tab === item.id \\? "${ACTIVE_WASH}"`));
+    assert.match(ask, new RegExp(`mode === m.id \\? "${ACTIVE_WASH}"`));
+    assert.match(cmdk, /data-\[selected=true\]:bg-primary-wash/);
+    assert.doesNotMatch(shell, /active \? "bg-primary text-primary-fg"/);
+    assert.doesNotMatch(cmdk, /data-\[selected=true\]:bg-primary[^-]/);
+    assert.doesNotMatch(square, /tab === item.id \? "bg-primary /);
+  });
+
+  it("keeps CSS tokens, chrome, and the mark on the same hearth", () => {
     const theme = parseThemeFromCss(css);
     for (const name of Object.keys(PALETTE) as (keyof typeof PALETTE)[]) {
-      assert.equal(theme[name], PALETTE[name], name);
+      assert.equal(theme[name], PALETTE[name].toLowerCase(), name);
     }
     assert.match(css, /color-scheme:\s*dark/);
     assert.match(root, new RegExp(`data-palette="${PALETTE_ID}"`));
@@ -56,6 +103,12 @@ describe("waha well-night palette", () => {
     assert.match(pwa, new RegExp(`theme_color: "${PALETTE.bg}"`));
     assert.match(pwa, new RegExp(`background_color: "${PALETTE.bg}"`));
     assert.match(install, new RegExp(`theme-color" content="${PALETTE.bg}"`));
+    for (const hex of OLD_SAGE) {
+      assert.equal(css.toLowerCase().includes(hex), false, hex);
+      assert.equal(root.toLowerCase().includes(hex), false, hex);
+    }
+    assert.doesNotMatch(css, SAGE_COPY);
+    assert.doesNotMatch(root, SAGE_COPY);
   });
 
   it("lifts text contrast on bg, surface, and surface-2", () => {
@@ -64,10 +117,31 @@ describe("waha well-night palette", () => {
       const floor = fg === "fg" ? 7 : 4.5;
       assert.ok(ratio >= floor, `${fg} on ${bg} is ${ratio.toFixed(2)}, need ${floor}`);
     }
+    assert.equal(PALETTE.muted.toLowerCase(), "#a1a1a1");
+    assert.match(css, /--color-muted:\s*#a1a1a1/i);
+    assert.ok(contrastRatio(PALETTE.muted, PALETTE.bg) >= contrastRatio("#a1a1a1", PALETTE.bg) - 0.05);
     assert.ok(contrastRatio(PALETTE.subtle, PALETTE.bg) > contrastRatio("#6a7069", "#0c0d0c"));
   });
 
-  it("applies the shared tokens to shadow, square, madar, clips, and games — no product-scope change", () => {
+  it("uses #A1A1A1 as the secondary faint text on shadow, square, madar, clips, games, and ask", () => {
+    assert.equal(hexDistance(PALETTE.muted, "#a1a1a1"), 0);
+    assert.match(shadow, /text-\[12px\] text-muted/);
+    assert.match(shadow, /text-xs font-medium tracking-wide text-muted/);
+    assert.match(square, /data-world-empty className="[^"]*text-muted"/);
+    assert.match(square, /py-8 text-center text-sm text-muted/);
+    assert.match(madar, /madarBlurb[\s\S]{0,40}text-muted|text-sm text-muted">\{t\(lang, "madarBlurb"\)\}/);
+    assert.match(clips, /clipsBlurb/);
+    assert.match(clips, /text-muted/);
+    assert.match(games, /GamesHub/);
+    const hub = readFileSync(new URL("../components/games-hub.tsx", import.meta.url), "utf8");
+    assert.match(hub, /gamesBlurb/);
+    assert.match(hub, /text-muted/);
+    assert.match(ask, /text-\[15px\] leading-7 text-muted/);
+    assert.match(ask, /text-\[11px\] text-muted/);
+    assert.match(studio, /text-muted/);
+  });
+
+  it("applies the shared tokens to shadow, square, madar, clips, games, and ask — no product-scope change", () => {
     assert.match(home, /SquarePage/);
     assert.doesNotMatch(home, /ClipsPage|\/clips/);
     assert.match(shadow, /text-muted|text-subtle|text-fg|text-primary/);
@@ -81,11 +155,21 @@ describe("waha well-night palette", () => {
     assert.match(clips, /text-muted/);
     assert.match(clips, /bg-surface/);
     assert.match(nav, /to: "\/clips"/);
-    for (const file of [shadow, square, madar, games, clips]) {
-      for (const hex of OLD_NIGHT) {
+    assert.match(studio, /ChatApp/);
+    assert.match(ask, /text-muted/);
+    for (const file of [shadow, square, madar, games, clips, ask, studio]) {
+      for (const hex of [...OLD_NIGHT, ...OLD_SAGE]) {
         assert.equal(file.toLowerCase().includes(hex), false, hex);
       }
     }
+  });
+
+  it("keeps one house background for every slice", () => {
+    assert.match(shell, /min-h-dvh bg-bg text-fg/);
+    assert.match(shell, /aside className="[^"]*bg-bg/);
+    assert.doesNotMatch(shell, /audience === .*(bg-|background)/);
+    assert.match(root, /body className="bg-bg text-fg"/);
+    assert.match(css, /background:\s*var\(--color-bg\)/);
   });
 
   it("does not paint separators with the border token", () => {
@@ -94,8 +178,12 @@ describe("waha well-night palette", () => {
     assert.doesNotMatch(post, /text-border/);
   });
 
-  it("keeps house and guest tones on the shared primary", () => {
+  it("keeps house, guest, and sample tones on two shared weights — no rainbow", () => {
     assert.match(accounts, /tone: PALETTE\.primary/);
+    assert.match(accounts, /tone: PALETTE\.muted/);
+    assert.doesNotMatch(accounts, /tone: "#[0-9a-fA-F]{6}"/);
+    assert.match(world, /PALETTE\.muted/);
+    assert.doesNotMatch(world, /SOURCE_TONE/);
     assert.equal(themeColor("primary"), PALETTE.primary);
     assert.equal(themeColor("bg", "  #abcabc  "), "#abcabc");
   });
