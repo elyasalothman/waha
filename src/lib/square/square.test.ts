@@ -1,7 +1,8 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { DOORS, HOUSE_ACCOUNTS, SAMPLE_ACCOUNTS, SAMPLE_STAMP_AR } from "./accounts.ts";
-import { MIN_SEED_POSTS, SEED_POSTS } from "./seed.ts";
+import { MIN_SEED_POSTS, SEED_FILE, SEED_POSTS } from "./seed.ts";
+import lock from "./maydan-seed-v1.json" with { type: "json" };
 import { addPost, addReply, emptyLocal, mergeFeed, toggleEcho, toggleLike, updateProfile } from "./logic.ts";
 import { formatAgeMinutes, seedCreatedAt } from "./time.ts";
 
@@ -28,11 +29,20 @@ describe("square seed", () => {
     assert.equal(SAMPLE_STAMP_AR, "عيّنة للبداية");
   });
 
-  it("does not edit king texts — opening line stays as shipped", () => {
+  it("does not edit king texts — lock file and full+meta stay identical", () => {
     assert.equal(SEED_POSTS[0]?.id, "seed-001");
     assert.match(SEED_POSTS[0]?.text ?? "", /^أهلاً بك في الميدان\./);
     assert.equal(SEED_POSTS[0]?.relativeTime, "منذ ساعة");
-    assert.ok(SEED_POSTS.every((p) => p.text.length > 0 && p.relativeTime.length > 0));
+    assert.equal(SEED_FILE.meta.total, 48);
+    assert.equal(SEED_FILE.rules.sampleNote, "عيّنة للبداية");
+    assert.deepEqual(
+      SEED_POSTS.map((p) => p.text),
+      (lock as typeof SEED_POSTS).map((p) => p.text),
+    );
+    assert.deepEqual(
+      SEED_POSTS.map((p) => p.text),
+      SEED_FILE.posts.map((p) => p.text),
+    );
   });
 
   it("keeps seed copy calm — no celebrity handles, no sharp politics", () => {
