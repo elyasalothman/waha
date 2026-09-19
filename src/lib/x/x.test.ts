@@ -153,7 +153,13 @@ describe("x square chrome", () => {
     const badge = readFileSync(new URL("../../components/square/x-badge.tsx", import.meta.url), "utf8");
     assert.match(page, /XStrip/);
     assert.match(strip, /data-x-strip/);
+    assert.match(strip, /data-x-tamyiz="quiet-v1"/);
+    assert.match(strip, /data-x-live="seed-v1"/);
     assert.match(strip, /من إكس/);
+    assert.match(card, /data-x-tamyiz="slip"/);
+    assert.match(card, /الأصل/);
+    assert.doesNotMatch(card, /AvatarMark|rounded-full|Heart|MessageCircle/);
+    assert.doesNotMatch(strip + card + badge, /#1d9bf0|#1DA1F2|twitter-blue|widgets\.js/i);
     assert.match(card, /card\.text/);
     assert.match(card, /card\.sourceUrl/);
     assert.match(card, /card\.authorName/);
