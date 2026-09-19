@@ -4,6 +4,7 @@ export { BOOK_CARDS, BOOK_IDS, BOOKS_SEED, BOOKS_SEED_COUNT, isAllowedBookHost }
 export { booksByUiSection, hydrateBooksState, isOpened, listBooks, markOpened, uiSectionOf } from "./logic.ts";
 export {
   EMPTY_KUTUBI,
+  KUTUBI_PUBLIC_DRAFT_STATUS,
   KUTUBI_STORAGE_KEY,
   accountOwnsKutubi,
   addToKutubi,
@@ -11,7 +12,9 @@ export {
   isOnKutubi,
   kutubiPublishesToPublic,
   listKutubiBooks,
+  publicDraftOf,
   removeFromKutubi,
+  requestPublicDraft,
 } from "./kutubi.ts";
-export type { KutubiItem, KutubiState } from "./kutubi.ts";
+export type { KutubiItem, KutubiPublicDraft, KutubiPublicDraftStatus, KutubiState } from "./kutubi.ts";
 export { useBooks, useKutubi } from "./store.ts";

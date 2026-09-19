@@ -51,21 +51,29 @@ export function BooksPage() {
             </p>
           ) : (
             <ol className="mt-4 grid gap-3">
-              {kutubi.books.map((book) => (
-                <li key={`kutubi-${book.id}`}>
-                  <BookCardView
-                    book={book}
-                    lang={lang}
-                    opened={local.opened.includes(book.id)}
-                    openLabel={t(lang, "booksOpen")}
-                    onOpen={() => markOpened(book.id)}
-                    kutubiAction={{
-                      label: t(lang, "kutubiRemove"),
-                      onClick: () => kutubi.remove(book.id),
-                    }}
-                  />
-                </li>
-              ))}
+              {kutubi.books.map((book) => {
+                const draft = kutubi.local.items.find((item) => item.bookId === book.id)?.publicDraft;
+                return (
+                  <li key={`kutubi-${book.id}`}>
+                    <BookCardView
+                      book={book}
+                      lang={lang}
+                      opened={local.opened.includes(book.id)}
+                      openLabel={t(lang, "booksOpen")}
+                      onOpen={() => markOpened(book.id)}
+                      kutubiAction={{
+                        label: t(lang, "kutubiRemove"),
+                        onClick: () => kutubi.remove(book.id),
+                      }}
+                      publicDraft={{
+                        pending: Boolean(draft),
+                        label: draft ? t(lang, "kutubiPublicDraft") : t(lang, "kutubiOfferPublic"),
+                        onClick: draft ? () => undefined : () => kutubi.requestPublic(book.id),
+                      }}
+                    />
+                  </li>
+                );
+              })}
             </ol>
           )}
         </section>
@@ -121,6 +129,7 @@ function BookCardView({
   openLabel,
   onOpen,
   kutubiAction,
+  publicDraft,
 }: {
   book: BookCard;
   lang: "ar" | "en";
@@ -128,6 +137,7 @@ function BookCardView({
   openLabel: string;
   onOpen: () => void;
   kutubiAction?: { label: string; onClick: () => void; done?: boolean };
+  publicDraft?: { pending: boolean; label: string; onClick: () => void };
 }) {
   return (
     <article
@@ -171,6 +181,17 @@ function BookCardView({
             onClick={kutubiAction.onClick}
           >
             {kutubiAction.label}
+          </button>
+        ) : null}
+        {publicDraft ? (
+          <button
+            type="button"
+            className="inline-flex min-h-11 items-center text-sm text-muted hover:text-primary disabled:opacity-60"
+            data-kutubi-draft={publicDraft.pending ? "legal-review" : "offer"}
+            disabled={publicDraft.pending}
+            onClick={publicDraft.onClick}
+          >
+            {publicDraft.label}
           </button>
         ) : null}
       </div>

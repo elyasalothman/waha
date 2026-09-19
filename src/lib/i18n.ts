@@ -200,6 +200,8 @@ const strings = {
     ar: "كتبي للحساب. الضيف يقرأ الرف العام.",
     en: "My books is for an account. Guests read the public shelf.",
   },
+  kutubiOfferPublic: { ar: "أضف للعامة", en: "Offer to public" },
+  kutubiPublicDraft: { ar: "مسودة · مراجعة قانونية", en: "Draft · legal review" },
 } as const;
 
 export type I18nKey = keyof typeof strings;
