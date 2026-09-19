@@ -63,7 +63,7 @@ export function DayShadow({
   const inField = lane === "field";
 
   return (
-    <div>
+    <>
       <aside
         className={cn(
           "z-10 flex flex-wrap items-center gap-x-2.5 gap-y-0.5 border-b border-border px-1 py-1.5 text-[12px] text-muted",
@@ -137,6 +137,6 @@ export function DayShadow({
           <span className="font-mono tabular-nums text-fg/80">{hydrated ? snap.prayerHm : <Pulse className="h-3 w-12" />}</span>
         </p>
       </section>
-    </div>
+    </>
   );
 }

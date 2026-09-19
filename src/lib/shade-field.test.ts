@@ -51,6 +51,7 @@ describe("quiet shade↔field crossing", () => {
     assert.match(shadow, /data-shade-return/);
     assert.match(shadow, /scrollToShade/);
     assert.match(shadow, /sticky top-14/);
+    assert.match(shadow, /return \(\s*<>/);
     assert.match(hook, /IntersectionObserver/);
     assert.match(css, /data-shade-field="quiet"/);
     assert.doesNotMatch(css, /hue-rotate|rainbow|animate-bounce/);
