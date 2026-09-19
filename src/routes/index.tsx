@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card";
 import { HomeNews } from "@/components/home-news";
 import { SafeSection } from "@/components/safe-section";
 import { ShadowDay } from "@/components/shadow-day";
-import { featuredFor, getApp } from "@/lib/catalog";
+import { featuredFor, featuredForHome, forSeriousHome, getApp } from "@/lib/catalog";
 import { formatLocalHm } from "@/lib/clock";
 import { formatDuration, formatHm, getTimesInZone, nextPrayer, PRAYER_LABELS } from "@/lib/prayer";
 import { formatGregorian, formatHijri, upcomingOccasions } from "@/lib/hijri";
@@ -64,10 +64,12 @@ function PersonalHome() {
     markLiveFetch("prayer", Date.now(), typeof localStorage === "undefined" ? null : localStorage);
   }, [now.toDateString(), city.lat, city.lon]);
 
-  const featured = featuredFor("personal").slice(0, 3);
-  const recents = recent
-    .map(getApp)
-    .filter((x): x is NonNullable<typeof x> => x != null && x.audience.includes("personal"));
+  const featured = featuredForHome("personal").slice(0, 3);
+  const recents = forSeriousHome(
+    recent
+      .map(getApp)
+      .filter((x): x is NonNullable<typeof x> => x != null && x.audience.includes("personal")),
+  );
 
   return (
     <div className="mx-auto max-w-5xl">

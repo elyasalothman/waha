@@ -83,7 +83,7 @@ const strings = {
   low: { ar: "أدنى", en: "Low" },
   todayStrip: { ar: "اليوم", en: "Today" },
   alerts: { ar: "تنبيهات تهمك", en: "Heads-up" },
-  personalIntro: { ar: "من الآية والاسم إلى الضريبة والبلوت — ليومك أنت.", en: "From a verse and a name to VAT and baloot — built around your day." },
+  personalIntro: { ar: "من الآية والاسم إلى صلاتك ووثائقك — ليومك أنت.", en: "From a verse and a name to prayer and papers — built around your day." },
   noAlerts: { ar: "لا تنبيهات — أضف وثائقك وفواتيرك ليصلك تذكير.", en: "No alerts — add papers and bills to get reminders." },
   daily: { ar: "من وحي اليوم", en: "Today’s verse" },
   fresh: { ar: "جديد في واحة", en: "New in Waha" },
