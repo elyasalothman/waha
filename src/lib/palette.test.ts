@@ -74,7 +74,7 @@ describe("waha well-night palette", () => {
     assert.match(square, /PALETTE\.primary/);
     assert.match(madar, /border-border/);
     assert.match(madar, /text-muted/);
-    assert.match(games, /Hub category="games"/);
+    assert.match(games, /GamesHub/);
     assert.match(routes, /\/clips/);
     assert.match(clips, /data-clips-lane="mufida-v1"/);
     assert.match(clips, /data-on-maydan="false"/);
