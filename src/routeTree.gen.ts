@@ -14,6 +14,7 @@ import { Route as GamesRouteImport } from './routes/games'
 import { Route as LifeRouteImport } from './routes/life'
 import { Route as MadarRouteImport } from './routes/madar'
 import { Route as MoneyRouteImport } from './routes/money'
+import { Route as MoreRouteImport } from './routes/more'
 import { Route as StudioRouteImport } from './routes/studio'
 import { Route as ToolsRouteImport } from './routes/tools'
 import { Route as WorkspaceRouteImport } from './routes/workspace'
@@ -44,6 +45,11 @@ const MoneyRoute = MoneyRouteImport.update({
   path: '/money',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MoreRoute = MoreRouteImport.update({
+  id: '/more',
+  path: '/more',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StudioRoute = StudioRouteImport.update({
   id: '/studio',
   path: '/studio',
@@ -71,6 +77,7 @@ export interface FileRoutesByFullPath {
   '/life': typeof LifeRoute
   '/madar': typeof MadarRoute
   '/money': typeof MoneyRoute
+  '/more': typeof MoreRoute
   '/studio': typeof StudioRoute
   '/tools': typeof ToolsRoute
   '/workspace': typeof WorkspaceRoute
@@ -82,6 +89,7 @@ export interface FileRoutesByTo {
   '/life': typeof LifeRoute
   '/madar': typeof MadarRoute
   '/money': typeof MoneyRoute
+  '/more': typeof MoreRoute
   '/studio': typeof StudioRoute
   '/tools': typeof ToolsRoute
   '/workspace': typeof WorkspaceRoute
@@ -94,6 +102,7 @@ export interface FileRoutesById {
   '/life': typeof LifeRoute
   '/madar': typeof MadarRoute
   '/money': typeof MoneyRoute
+  '/more': typeof MoreRoute
   '/studio': typeof StudioRoute
   '/tools': typeof ToolsRoute
   '/workspace': typeof WorkspaceRoute
@@ -107,6 +116,7 @@ export interface FileRouteTypes {
     | '/life'
     | '/madar'
     | '/money'
+    | '/more'
     | '/studio'
     | '/tools'
     | '/workspace'
@@ -118,6 +128,7 @@ export interface FileRouteTypes {
     | '/life'
     | '/madar'
     | '/money'
+    | '/more'
     | '/studio'
     | '/tools'
     | '/workspace'
@@ -129,6 +140,7 @@ export interface FileRouteTypes {
     | '/life'
     | '/madar'
     | '/money'
+    | '/more'
     | '/studio'
     | '/tools'
     | '/workspace'
@@ -141,6 +153,7 @@ export interface RootRouteChildren {
   LifeRoute: typeof LifeRoute
   MadarRoute: typeof MadarRoute
   MoneyRoute: typeof MoneyRoute
+  MoreRoute: typeof MoreRoute
   StudioRoute: typeof StudioRoute
   ToolsRoute: typeof ToolsRoute
   WorkspaceRoute: typeof WorkspaceRoute
@@ -184,6 +197,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MoneyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/more': {
+      id: '/more'
+      path: '/more'
+      fullPath: '/more'
+      preLoaderRoute: typeof MoreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/studio': {
       id: '/studio'
       path: '/studio'
@@ -221,6 +241,7 @@ const rootRouteChildren: RootRouteChildren = {
   LifeRoute: LifeRoute,
   MadarRoute: MadarRoute,
   MoneyRoute: MoneyRoute,
+  MoreRoute: MoreRoute,
   StudioRoute: StudioRoute,
   ToolsRoute: ToolsRoute,
   WorkspaceRoute: WorkspaceRoute,
