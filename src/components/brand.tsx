@@ -61,6 +61,23 @@ export function ClipsMark({ className }: { className?: string }) {
   );
 }
 
+/** يومك في واحة — أفق هادئ بلا أيقونة ميدان. */
+export function DayMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 32 32" className={cn("text-primary", className)} aria-hidden="true">
+      <path d="M6 21.2h20" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" />
+      <path
+        d="M8.4 21.2a7.6 7.6 0 0 1 15.2 0"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+      />
+      <circle cx="16" cy="12.2" r="1.5" fill="currentColor" />
+    </svg>
+  );
+}
+
 /** رف كتب — ألواح هادئة بلا أيقونة ميدان. */
 export function BooksMark({ className }: { className?: string }) {
   return (

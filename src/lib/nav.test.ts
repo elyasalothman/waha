@@ -11,14 +11,14 @@ import {
 } from "./nav.ts";
 
 describe("chrome nav lock", () => {
-  it("keeps the first-row bar to الميدان + مدار + مقاطع + المزيد", () => {
+  it("keeps the first-row bar to الميدان + يومك + مدار + مقاطع + المزيد", () => {
     assert.deepEqual(
       chromeNav("personal").map((item) => item.to),
-      ["/", "/madar", "/clips", "/more"],
+      ["/", "/day", "/madar", "/clips", "/more"],
     );
     assert.deepEqual(
       chromeNav("work").map((item) => item.to),
-      ["/", "/madar", "/clips", "/more"],
+      ["/", "/day", "/madar", "/clips", "/more"],
     );
     assert.deepEqual(
       mobileChromeNav("personal").map((item) => item.to),
@@ -28,6 +28,13 @@ describe("chrome nav lock", () => {
     assert.equal(chromeNav("personal").some((item) => item.to === "/onboarding"), false);
     assert.equal(moreOverflowNav("personal").some((item) => item.to === "/settings"), false);
     assert.equal(moreOverflowNav("personal").some((item) => item.to === "/onboarding"), false);
+  });
+
+  it("keeps يومك on the chrome like مدار — never under المزيد", () => {
+    assert.equal(chromeNav("personal").some((item) => item.to === "/day"), true);
+    assert.equal(chromeNav("work").some((item) => item.to === "/day"), true);
+    assert.equal(moreOverflowNav("personal").some((item) => item.to === "/day"), false);
+    assert.equal((CATALOG_TAB_PATHS as readonly string[]).includes("/day"), false);
   });
 
   it("keeps مقاطع مفيدة on the chrome like مدار — never under المزيد", () => {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet, useRouterState } from "@tanstack/react-router";
 import { Ellipsis, GalleryVertical, Search } from "lucide-react";
-import { ClipsMark, MadarMark, WahaWordmark } from "@/components/brand";
+import { ClipsMark, DayMark, MadarMark, WahaWordmark } from "@/components/brand";
 import { CommandPalette } from "@/components/command-palette";
 import { LangToggle } from "@/components/city-select";
 import { OfflineBanner } from "@/components/offline-banner";
@@ -64,6 +64,8 @@ export function Shell() {
                   <MadarMark className="size-4" />
                 ) : item.to === "/clips" ? (
                   <ClipsMark className="size-4" />
+                ) : item.to === "/day" ? (
+                  <DayMark className="size-4" />
                 ) : (
                   <Icon className="size-4" strokeWidth={1.75} />
                 )}
@@ -83,6 +85,17 @@ export function Shell() {
             <WahaWordmark lang={lang} />
           </Link>
           <div className="ms-auto flex shrink-0 items-center gap-2">
+            <Link
+              to="/day"
+              className={cn(
+                "flex size-11 items-center justify-center rounded-md border border-border bg-surface text-primary hover:bg-surface-2",
+                pathname === "/day" && "bg-surface-2",
+              )}
+              aria-label={t(lang, "day")}
+              title={t(lang, "day")}
+            >
+              <DayMark className="size-5" />
+            </Link>
             <Link
               to="/clips"
               className={cn(

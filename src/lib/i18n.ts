@@ -167,6 +167,15 @@ const strings = {
   adminPin: { ar: "الرقم السري", en: "Secret number" },
   adminUnlock: { ar: "دخول الإدارة", en: "Enter admin" },
   adminWrong: { ar: "الرقم لا يطابق.", en: "That number does not match." },
+  day: { ar: "يومك", en: "Your day" },
+  dayTitle: { ar: "يومك في واحة", en: "Your day in Waha" },
+  dayBlurb: {
+    ar: "اسأل، وظل اليوم، وبطاقة من الميدان — سطح واحد هادئ. ليست خط الميدان.",
+    en: "Ask, today’s shadow, and one Square card — one calm surface. Not the Maydan line.",
+  },
+  dayCard: { ar: "بطاقة ميدان اليوم", en: "Today’s Square card" },
+  dayAsk: { ar: "اسأل", en: "Ask" },
+  dayToSquare: { ar: "إلى الميدان", en: "To the Square" },
   clips: { ar: "مقاطع", en: "Clips" },
   clipsTitle: { ar: "مقاطع مفيدة", en: "Useful clips" },
   clipsBlurb: {

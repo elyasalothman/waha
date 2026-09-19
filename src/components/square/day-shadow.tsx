@@ -62,7 +62,9 @@ export function DayShadow() {
         data-city-picker={homeShowsCityPicker() ? "open" : "closed"}
         data-shadow-keys={HOME_SHADOW_KEYS.join(" ")}
       >
-        <span className="font-medium tracking-wide text-subtle">{t(lang, "shadowDay")}</span>
+        <Link to="/day" className="font-medium tracking-wide text-subtle hover:text-fg">
+          {t(lang, "shadowDay")}
+        </Link>
         <span className="text-subtle">·</span>
         <span data-shadow-key="now" className="font-mono tabular-nums text-fg/80">
           {hydrated ? formatLocalHm(now) : <Pulse className="h-3 w-10" />}

@@ -176,6 +176,7 @@ export const CATALOG: CatalogItem[] = [
 
   { id: "madar", category: "tools", lane: "tools", audience: B, portal: true, icon: "Madar", title: { ar: "مدار", en: "Madar" }, blurb: { ar: "بوابة تصفّح وبحث — مدار يحيط", en: "A browse and search gate — an orbit that holds" } },
   { id: "clips", category: "tools", lane: "tools", audience: B, portal: true, icon: "Clips", title: { ar: "مقاطع مفيدة", en: "Useful clips" }, blurb: { ar: "اثنا عشر مقطعاً معلَّماً — بلا خوارزمية ولا بحث", en: "Twelve marked clips — no algorithm, no search" } },
+  { id: "day", category: "studio", lane: "day", audience: B, portal: true, icon: "Day", title: { ar: "يومك في واحة", en: "Your day in Waha" }, blurb: { ar: "اسأل وظل اليوم وبطاقة الميدان في سطح واحد", en: "Ask, today’s shadow, and the Square card on one surface" } },
   { id: "calc", category: "tools", lane: "tools", audience: B, featured: true, icon: "Calculator", title: { ar: "الحاسبة", en: "Calculator" }, blurb: { ar: "علمية مع تاريخ العمليات", en: "Scientific, with a history tape" } },
   { id: "units", category: "tools", lane: "tools", audience: P, icon: "Ruler", title: { ar: "تحويل الوحدات", en: "Unit converter" }, blurb: { ar: "طول ووزن وحجم وحرارة", en: "Length, mass, volume, and temperature" } },
   { id: "password", category: "tools", lane: "tools", audience: B, icon: "KeyRound", title: { ar: "مولّد كلمات المرور", en: "Password generator" }, blurb: { ar: "كلمات قوية تُولَّد على جهازك", en: "Strong passwords, generated on-device" } },
@@ -263,6 +264,7 @@ export function searchCatalog(q: string, audience: Audience) {
     const keys = [a.id, a.title.ar, a.title.en, a.blurb.ar, a.blurb.en, LANE_LABEL[a.lane].ar, LANE_LABEL[a.lane].en, a.href ?? ""];
     if (a.lane === "house" || a.href) keys.push("الهجدة", "alhajda", "أبواب");
     if (a.id === "midad") keys.push("كتب", "رف", "books", "shelf", "/books");
+    if (a.id === "day") keys.push("يومك", "اسأل", "ظل اليوم", "/day", "yawmak");
     return keys.some((s) => s.toLowerCase().includes(n));
   });
 }
