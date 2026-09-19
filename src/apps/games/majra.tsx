@@ -10,7 +10,7 @@ import { cn } from "@/lib/cn";
 
 function PipeGlyph({ cell, wet }: { cell: PipeCell; wet: boolean }) {
   const open = sides(cell);
-  const ink = wet ? "bg-primary" : "bg-muted";
+  const ink = wet ? "bg-primary" : "bg-subtle";
   return (
     <span className="relative block size-[70%]" aria-hidden>
       <span className={cn("absolute left-1/2 top-1/2 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full", ink)} />
@@ -77,8 +77,8 @@ export function MajraApp() {
                   onClick={() => twist(r, c)}
                   className={cn(
                     "flex aspect-square items-center justify-center rounded-md border transition-[background-color,transform,border-color] duration-150 active:scale-[0.96]",
-                    wet ? "border-primary/50 bg-primary/15" : "border-border bg-surface-2",
-                    flow.won && wet && "border-success/50 bg-success/15",
+                    wet ? "border-primary bg-primary/30" : "border-border bg-surface-2",
+                    flow.won && wet && "border-success bg-success/25",
                   )}
                 >
                   <PipeGlyph cell={cell} wet={Boolean(wet)} />
