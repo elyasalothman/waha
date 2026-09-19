@@ -82,7 +82,7 @@ const strings = {
   lifeBlurb: { ar: "صلاة، أسماء، أوراق، بيت، وصحة", en: "Prayer, names, papers, home, and health" },
   moneyBlurb: { ar: "مصروف، زكاة، ضريبة، ذهب، وعيدية", en: "Spend, zakat, VAT, gold, and eidiya" },
   toolsBlurb: { ar: "حاسبات يومية وعجلة قرار وتفقيط", en: "Everyday calculators, a decision wheel, and tafqeet" },
-  gamesBlurb: { ar: "باب لُمعة، ثم جولات قصيرة في الواحة", en: "A door to Luma, then short rounds in Waha" },
+  gamesBlurb: { ar: "باب لُمعة، ثم كلمة وآبار ومجرى وكتل وذاكرة في الواحة", en: "A door to Luma, then Kalima, wells, stream, blocks, and memory in Waha" },
   gamesYard: { ar: "باب لُمعة", en: "Door to Luma" },
   studioBlurb: { ar: "اسأل واحة عن يومك أو مسألة لها مصدر", en: "Ask Waha about your day, or a question that needs a source" },
   workspaceBlurb: { ar: "عملاء وعروض وفواتير وساعات ورخص", en: "Clients, quotes, invoices, hours, and licenses" },
