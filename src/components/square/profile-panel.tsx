@@ -4,6 +4,7 @@ import { Input, Textarea } from "@/components/ui/input";
 import { SignInButtons } from "@/lib/auth/gates";
 import { authEnabled } from "@/lib/auth/client";
 import { useCurrentUserState } from "@/lib/auth/use-current-user";
+import { houseProductDoors } from "@/lib/square/soft-money";
 import type { SquareProfile } from "@/lib/square/types";
 import type { Lang } from "@/lib/i18n";
 
@@ -13,12 +14,14 @@ export function ProfilePanel({
   profile,
   onClose,
   onSave,
+  onSupport,
 }: {
   open: boolean;
   lang: Lang;
   profile: SquareProfile;
   onClose: () => void;
   onSave: (profile: SquareProfile) => void;
+  onSupport?: () => void;
 }) {
   const { user, isPending } = useCurrentUserState();
   const [name, setName] = useState(profile.name);
@@ -67,6 +70,24 @@ export function ProfilePanel({
             <SignInButtons />
           </div>
         ) : null}
+        <div className="mt-5 border-t border-border/70 pt-3" data-soft-money="profile">
+          <p className="text-[11px] text-subtle">{L("دعم / منتجات البيت", "Support / house products")}</p>
+          <nav className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted">
+            {onSupport ? (
+              <button type="button" onClick={onSupport} className="hover:text-fg">
+                {L("دعم", "Support")}
+              </button>
+            ) : null}
+            {houseProductDoors().map((door) => (
+              <span key={door.id} className="inline-flex items-center gap-2">
+                <span aria-hidden="true">·</span>
+                <a href={door.href} data-door={door.id} className="hover:text-fg">
+                  {lang === "ar" ? door.title.ar.split(" · ")[0] : door.title.en.split(" · ")[0]}
+                </a>
+              </span>
+            ))}
+          </nav>
+        </div>
         <div className="mt-5 flex justify-end gap-2">
           <Button type="button" variant="ghost" onClick={onClose}>
             {L("إغلاق", "Close")}
