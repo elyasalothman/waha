@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { Command } from "cmdk";
+import { MadarMark } from "@/components/brand";
 import { searchCatalog } from "@/lib/catalog";
 import { appIcon } from "@/lib/icons";
 import { t, type Lang } from "@/lib/i18n";
@@ -60,14 +61,34 @@ export function CommandPalette({
         />
         <Command.List className="max-h-80 overflow-y-auto p-2">
           <Command.Empty className="px-3 py-6 text-center text-sm text-muted">{t(lang, "empty")}</Command.Empty>
+          {q.trim() ? (
+            <Command.Item
+              value={`مدار madar ${q} ${t(lang, "madarSearchAction")}`}
+              onSelect={() => {
+                onOpenChange(false);
+                void navigate({ to: "/madar", search: { q: q.trim() } });
+              }}
+              className={cn(
+                "flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm text-fg data-[selected=true]:bg-surface-2",
+              )}
+            >
+              <MadarMark className="size-4" />
+              <span className="flex-1">{t(lang, "madarSearchAction")}</span>
+              <span className="truncate text-xs text-subtle">{q.trim()}</span>
+            </Command.Item>
+          ) : null}
           {items.map((item) => {
-            const Icon = appIcon(item.icon);
+            const Icon = item.id === "madar" ? MadarMark : appIcon(item.icon);
             return (
               <Command.Item
                 key={item.id}
                 value={`${item.title.ar} ${item.title.en} ${item.id}`}
                 onSelect={() => {
                   onOpenChange(false);
+                  if (item.portal && item.id === "madar") {
+                    void navigate({ to: "/madar" });
+                    return;
+                  }
                   if (item.href) {
                     window.location.assign(item.href);
                     return;

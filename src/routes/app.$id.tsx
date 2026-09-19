@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, Navigate } from "@tanstack/react-router";
 import { APPS } from "@/apps/registry";
 import { AppStage } from "@/components/app-stage";
 import { getApp } from "@/lib/catalog";
@@ -21,6 +21,10 @@ function AppPage() {
   useEffect(() => {
     if (item?.href) window.location.replace(item.href);
   }, [item]);
+
+  if (id === "madar") {
+    return <Navigate to="/madar" />;
+  }
 
   if (!item) {
     return (

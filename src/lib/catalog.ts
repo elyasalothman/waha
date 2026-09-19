@@ -24,6 +24,8 @@ export type CatalogItem = {
   audience: Audience[];
   featured?: boolean;
   fresh?: boolean;
+  /** بوابة تُفتح من اللانشر/المتجر، لا تُكدَّس على الرئيسية. */
+  portal?: boolean;
   title: { ar: string; en: string };
   blurb: { ar: string; en: string };
   icon: string;
@@ -141,6 +143,7 @@ export const CATALOG: CatalogItem[] = [
   { id: "licenses", category: "workspace", lane: "civic", audience: W, featured: true, fresh: true, icon: "Stamp", title: { ar: "رخص المنشأة", en: "Business licenses" }, blurb: { ar: "سجل وبلدي وضريبة قبل أن تنتهي", en: "CR, municipal, and VAT before they lapse" } },
   { id: "portals", category: "workspace", lane: "civic", audience: W, featured: true, fresh: true, icon: "Building2", title: { ar: "بوابات العمل", en: "Work portals" }, blurb: { ar: "قوى والتأمينات وهيئة الزكاة", en: "Qiwa, GOSI, and ZATCA" } },
 
+  { id: "madar", category: "tools", lane: "tools", audience: B, portal: true, icon: "Madar", title: { ar: "مدار", en: "Madar" }, blurb: { ar: "بوابة تصفّح وبحث — مدار يحيط", en: "A browse and search gate — an orbit that holds" } },
   { id: "calc", category: "tools", lane: "tools", audience: B, featured: true, icon: "Calculator", title: { ar: "الحاسبة", en: "Calculator" }, blurb: { ar: "علمية مع تاريخ العمليات", en: "Scientific, with a history tape" } },
   { id: "units", category: "tools", lane: "tools", audience: P, icon: "Ruler", title: { ar: "تحويل الوحدات", en: "Unit converter" }, blurb: { ar: "طول ووزن وحجم وحرارة", en: "Length, mass, volume, and temperature" } },
   { id: "password", category: "tools", lane: "tools", audience: B, icon: "KeyRound", title: { ar: "مولّد كلمات المرور", en: "Password generator" }, blurb: { ar: "كلمات قوية تُولَّد على جهازك", en: "Strong passwords, generated on-device" } },
