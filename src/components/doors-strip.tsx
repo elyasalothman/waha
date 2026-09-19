@@ -20,7 +20,7 @@ export function DoorsStrip({
         {doors.map((door) => {
           const Icon = appIcon(door.icon);
           return (
-            <a
+            <ExternalLink
               key={door.id}
               href={door.href}
               data-door={door.id}
@@ -28,7 +28,7 @@ export function DoorsStrip({
             >
               <Icon className="size-4 shrink-0 text-muted" strokeWidth={1.75} />
               <span>{door.title[lang]}</span>
-            </a>
+            </ExternalLink>
           );
         })}
       </nav>

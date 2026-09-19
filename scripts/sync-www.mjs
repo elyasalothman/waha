@@ -89,6 +89,14 @@ for (const name of ["manifest.webmanifest", "icon-180.png", "icon-192.png", "ico
   const src = existsSync(fromPublic) ? fromPublic : fromFallback;
   if (existsSync(src)) cpSync(src, join(WWW, name));
 }
+const publicIcons = join(publicDir, "icons");
+if (existsSync(publicIcons)) {
+  mkdirSync(join(WWW, "icons"), { recursive: true });
+  for (const name of ["icon-180.png", "icon-192.png", "icon-512.png"]) {
+    const src = join(publicIcons, name);
+    if (existsSync(src)) cpSync(src, join(WWW, "icons", name));
+  }
+}
 
 const indexPath = join(WWW, "index.html");
 writeFileSync(indexPath, stampNativeIos(readFileSync(indexPath, "utf8")));

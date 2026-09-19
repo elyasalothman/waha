@@ -4,7 +4,7 @@ import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { injectGrokPwaHead } from "./grok-pwa-shared.mjs";
+import { injectGrokPwaHead, isWebManifestPath, renderWebManifest } from "./grok-pwa-shared.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (rel) => readFileSync(join(root, rel), "utf8");
@@ -16,6 +16,21 @@ const FORBIDDEN_BUNDLES = [
   "com.alhajda.mohsen",
   "com.alhajda.tahdir",
 ];
+
+/** Safe-area padding may live on `.native-safe-*` chrome only — never html/body. */
+function htmlBodySafeAreaPaddingRules(source) {
+  const withoutComments = String(source).replace(/\/\*[\s\S]*?\*\//g, "");
+  return [...withoutComments.matchAll(/([^{}]+)\{([^{}]*)\}/g)]
+    .filter(([, selectors, body]) => {
+      if (!/padding(-(top|right|bottom|left))?\s*:/.test(body)) return false;
+      if (!/safe-area-inset/.test(body)) return false;
+      return selectors.split(",").some((sel) => {
+        const last = sel.trim().split(/\s+/).filter(Boolean).at(-1) ?? "";
+        return /^(html|body)([.#:][\w-]+)*$/.test(last);
+      });
+    })
+    .map(([, selectors]) => selectors.trim());
+}
 
 test("Capacitor config is واحة under alhajda, not a sibling app", () => {
   const source = read("capacitor.config.ts");
@@ -54,13 +69,18 @@ test("iOS webview is configured for edge-to-edge safe-area chrome", () => {
   assert.match(css, /\.native-safe-bottom/);
   assert.match(css, /env\(safe-area-inset-top/);
   assert.match(css, /env\(safe-area-inset-bottom/);
+  assert.deepEqual(htmlBodySafeAreaPaddingRules(css), []);
+  assert.match(css, /\.native-safe-top\s*\{[^}]*padding-top:\s*env\(safe-area-inset-top/);
+  assert.match(css, /\.native-safe-bottom\s*\{[^}]*padding-bottom:\s*env\(safe-area-inset-bottom/);
   assert.match(shell, /native-safe-top/);
   assert.match(shell, /native-safe-bottom/);
   assert.match(shell, /safe-area-inset-bottom/);
   assert.match(shell, /safe-area-inset-top/);
   assert.match(fallback, /viewport-fit=cover/);
-  assert.match(fallbackCss, /env\(safe-area-inset-top/);
-  assert.match(fallbackCss, /env\(safe-area-inset-bottom/);
+  assert.match(fallback, /black-translucent/);
+  assert.deepEqual(htmlBodySafeAreaPaddingRules(fallbackCss), []);
+  assert.match(fallbackCss, /\.native-safe-top\s*\{[^}]*padding-top:\s*env\(safe-area-inset-top/);
+  assert.match(fallbackCss, /\.native-safe-bottom\s*\{[^}]*padding-bottom:\s*env\(safe-area-inset-bottom/);
   assert.match(controller, /preferredStatusBarStyle[\s\S]*\.lightContent/);
   assert.match(controller, /contentInsetAdjustmentBehavior = \.never/);
   assert.match(controller, /semanticContentAttribute = \.forceRightToLeft/);
@@ -126,7 +146,8 @@ test("sync-www produces www/ with native-ios boot and fallback splash", () => {
   assert.match(html, /manifest\.webmanifest/);
   assert.doesNotMatch(html, /__grok/);
   assert.ok(exists("www/manifest.webmanifest"));
-  assert.ok(exists("www/icon-180.png"));
+  assert.ok(exists("www/icon-180.png") || exists("www/icons/icon-180.png"));
+  assert.deepEqual(htmlBodySafeAreaPaddingRules(read("www/fallback.css")), []);
 });
 
 test("PWA add-to-home-screen is واحة with a real manifest, not __grok", () => {
@@ -136,7 +157,8 @@ test("PWA add-to-home-screen is واحة with a real manifest, not __grok", () =
 
   assert.match(rootHead, /rel:\s*"manifest",\s*href:\s*"\/manifest\.webmanifest"/);
   assert.match(rootHead, /apple-touch-icon[\s\S]*\/icon-180\.png/);
-  assert.match(rootHead, /apple-mobile-web-app-title[\s\S]*واحة/);
+  assert.match(rootHead, /const PWA_NAME = "واحة"/);
+  assert.match(rootHead, /apple-mobile-web-app-title[\s\S]*PWA_NAME/);
   assert.match(rootHead, /apple-mobile-web-app-capable[\s\S]*yes/);
   assert.match(rootHead, /black-translucent/);
   assert.doesNotMatch(rootHead, /__grok/);
@@ -150,14 +172,14 @@ test("PWA add-to-home-screen is واحة with a real manifest, not __grok", () =
   assert.equal(manifest.display, "standalone");
   assert.equal(manifest.start_url, "/");
   assert.equal(manifest.theme_color, "#0c0d0c");
-  assert.ok(exists("public/icon-180.png"));
-  assert.ok(exists("public/icon-192.png"));
-  assert.ok(exists("public/icon-512.png"));
+  assert.ok(exists("public/icons/icon-180.png"));
+  assert.ok(exists("public/icons/icon-192.png"));
+  assert.ok(exists("public/icons/icon-512.png"));
 
   const injected = injectGrokPwaHead(
     `<html><head>
       <link rel="manifest" href="/manifest.webmanifest" />
-      <link rel="apple-touch-icon" href="/icon-180.png" />
+      <link rel="apple-touch-icon" href="/icons/icon-180.png" />
       <meta name="apple-mobile-web-app-title" content="واحة" />
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -166,8 +188,18 @@ test("PWA add-to-home-screen is واحة with a real manifest, not __grok", () =
   );
   assert.match(injected, /href="\/manifest\.webmanifest"/);
   assert.match(injected, /apple-mobile-web-app-title" content="واحة"/);
+  assert.match(injected, /black-translucent/);
   assert.doesNotMatch(injected, /__grok\/manifest/);
   assert.doesNotMatch(injected, /__grok\/icon-180/);
+
+  assert.equal(isWebManifestPath("/manifest.webmanifest"), true);
+  assert.equal(isWebManifestPath("/manifest.json"), true);
+  assert.match(read("server/middleware/grok-pwa.ts"), /isWebManifestPath/);
+  assert.match(read("scripts/grok-pwa-plugin.mjs"), /isWebManifestPath/);
+  const served = JSON.parse(renderWebManifest("waha.hajdah.com"));
+  assert.equal(served.name, "واحة");
+  assert.ok(served.icons.some((icon) => icon.src === "/icons/icon-180.png"));
+  assert.doesNotMatch(JSON.stringify(served), /__grok/);
 });
 
 test("Podfile ships Browser + LocalNotifications with native keyboard", () => {
@@ -194,7 +226,7 @@ test("Arabic RTL fields are wired and ASC Submit stays blocked", () => {
   assert.match(palette, /dir=\{lang === "ar" \? "rtl" : "ltr"\}/);
   assert.match(salah, /إشعار الصلاة القادمة/);
   assert.match(salah, /LocalNotifications|syncSalahNotification/);
-  assert.match(read("src/routes/index.tsx"), /DoorsStrip/);
+  assert.match(read("src/components/layout/shell.tsx"), /DoorsStrip/);
   assert.match(read("src/components/doors-strip.tsx"), /ExternalLink/);
   assert.match(read("src/lib/native-browser.ts"), /@capacitor\/browser/);
   assert.match(read("src/lib/native-browser.ts"), /tahajjud\.alhajda\.com/);
