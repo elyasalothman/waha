@@ -16,6 +16,7 @@ import { Route as GamesRouteImport } from './routes/games'
 import { Route as LifeRouteImport } from './routes/life'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MessagesRouteImport } from './routes/messages'
+import { Route as MidanRouteImport } from './routes/midan'
 import { Route as MoneyRouteImport } from './routes/money'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as StudioRouteImport } from './routes/studio'
@@ -62,6 +63,11 @@ const LoginRoute = LoginRouteImport.update({
 const MessagesRoute = MessagesRouteImport.update({
   id: '/messages',
   path: '/messages',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MidanRoute = MidanRouteImport.update({
+  id: '/midan',
+  path: '/midan',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MoneyRoute = MoneyRouteImport.update({
@@ -133,6 +139,7 @@ export interface FileRoutesByFullPath {
   '/life': typeof LifeRoute
   '/login': typeof LoginRoute
   '/messages': typeof MessagesRouteWithChildren
+  '/midan': typeof MidanRoute
   '/money': typeof MoneyRoute
   '/settings': typeof SettingsRoute
   '/studio': typeof StudioRoute
@@ -153,6 +160,7 @@ export interface FileRoutesByTo {
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
   '/login': typeof LoginRoute
+  '/midan': typeof MidanRoute
   '/money': typeof MoneyRoute
   '/settings': typeof SettingsRoute
   '/studio': typeof StudioRoute
@@ -175,6 +183,7 @@ export interface FileRoutesById {
   '/life': typeof LifeRoute
   '/login': typeof LoginRoute
   '/messages': typeof MessagesRouteWithChildren
+  '/midan': typeof MidanRoute
   '/money': typeof MoneyRoute
   '/settings': typeof SettingsRoute
   '/studio': typeof StudioRoute
@@ -198,6 +207,7 @@ export interface FileRouteTypes {
     | '/life'
     | '/login'
     | '/messages'
+    | '/midan'
     | '/money'
     | '/settings'
     | '/studio'
@@ -218,6 +228,7 @@ export interface FileRouteTypes {
     | '/games'
     | '/life'
     | '/login'
+    | '/midan'
     | '/money'
     | '/settings'
     | '/studio'
@@ -239,6 +250,7 @@ export interface FileRouteTypes {
     | '/life'
     | '/login'
     | '/messages'
+    | '/midan'
     | '/money'
     | '/settings'
     | '/studio'
@@ -261,6 +273,7 @@ export interface RootRouteChildren {
   LifeRoute: typeof LifeRoute
   LoginRoute: typeof LoginRoute
   MessagesRoute: typeof MessagesRouteWithChildren
+  MidanRoute: typeof MidanRoute
   MoneyRoute: typeof MoneyRoute
   SettingsRoute: typeof SettingsRoute
   StudioRoute: typeof StudioRoute
@@ -322,6 +335,13 @@ declare module '@tanstack/react-router' {
       path: '/messages'
       fullPath: '/messages'
       preLoaderRoute: typeof MessagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/midan': {
+      id: '/midan'
+      path: '/midan'
+      fullPath: '/midan'
+      preLoaderRoute: typeof MidanRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/money': {
@@ -433,6 +453,7 @@ const rootRouteChildren: RootRouteChildren = {
   LifeRoute: LifeRoute,
   LoginRoute: LoginRoute,
   MessagesRoute: MessagesRouteWithChildren,
+  MidanRoute: MidanRoute,
   MoneyRoute: MoneyRoute,
   SettingsRoute: SettingsRoute,
   StudioRoute: StudioRoute,

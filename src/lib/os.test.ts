@@ -2,7 +2,7 @@ import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { defaultFeatures, FEATURES, normalizeFeatures } from "./features.ts";
 import { KING_LOCK, assertKingLock, composePersonalHome, firstScreenIds, OS_APPS } from "./os.ts";
-import { writerIdentity, writerName, selfAuthors } from "./identity.ts";
+import { writerIdentity, writerName, selfAuthors, midanWriterName } from "./identity.ts";
 import { isHttpUrl, SISTER_APPS } from "./links.ts";
 import { normalizeInbox, seedFamilyInbox, unreadCount } from "./messages.ts";
 import { normalizeFamilyToday, seedFamilyToday, todayIso } from "./family-today.ts";
@@ -44,7 +44,7 @@ describe("King lock — first screen", () => {
     );
     assert.ok(surface.wells.length <= 2);
     assert.equal(
-      firstScreenIds(surface).some((id) => id === "dock:ask" || id === "dock:settings" || id === "well:inbox"),
+      firstScreenIds(surface).some((id) => id === "dock:ask" || id === "dock:settings" || id === "dock:midan" || id === "well:inbox"),
       false,
     );
   });
@@ -52,7 +52,7 @@ describe("King lock — first screen", () => {
   it("lists the OS dock in the required Arabic set", () => {
     assert.deepEqual(
       OS_APPS.map((a) => a.title.ar),
-      ["طقس", "إيمان", "رسائل", "مال", "اسأل", "إعدادات"],
+      ["طقس", "إيمان", "رسائل", "مال", "الميدان", "اسأل", "إعدادات"],
     );
   });
 });
@@ -82,6 +82,9 @@ describe("thin writer identity", () => {
     assert.equal(writerName("خالد", "ar"), "خالد");
     assert.equal(writerName("  ", "ar"), "أنا");
     assert.equal(writerIdentity("نورة", true, "ar").guest, true);
+    assert.equal(midanWriterName("", "خالد", "Signed", "ar"), "خالد");
+    assert.equal(midanWriterName("نورة", "خالد", "", "ar"), "نورة");
+    assert.equal(midanWriterName("", "", "", "ar"), "ضيف الواحة");
     assert.deepEqual(selfAuthors("خالد"), ["خالد", "أنا", "Me"]);
     const inbox = seedFamilyInbox(100);
     inbox.messages.push({ id: "mine", threadId: "family", author: "خالد", body: "سلام", createdAt: 150 });

@@ -134,6 +134,12 @@ export function HomeLauncher() {
       </section>
 
       <p className={cn("mt-12 text-center text-sm text-subtle")}>
+        {isFeatureOn(features, "midan") ? (
+          <Link to="/midan" className="text-muted hover:text-fg">
+            {t(lang, "midan")}
+          </Link>
+        ) : null}
+        {isFeatureOn(features, "midan") && isFeatureOn(features, "life") ? <span className="mx-2">·</span> : null}
         {isFeatureOn(features, "life") ? (
           <Link to="/life" className="text-muted hover:text-fg">
             {t(lang, "library")}

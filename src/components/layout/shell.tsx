@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet, useRouterState } from "@tanstack/react-router";
-import { CloudSun, House, Mail, Sparkles, Sunrise, Wallet, Wrench, PanelsTopLeft, Settings } from "lucide-react";
+import { CloudSun, GalleryVertical, House, Mail, Sparkles, Sunrise, Wallet, Wrench, PanelsTopLeft, Settings } from "lucide-react";
 import { WahaWordmark } from "@/components/brand";
 import { CommandPalette } from "@/components/command-palette";
 import { AudienceSwitch } from "@/components/audience-switch";
@@ -32,6 +32,7 @@ const WORK_NAV: NavItem[] = [
 ];
 
 const DESKTOP_EXTRA: NavItem[] = [
+  { to: "/midan", key: "midan", icon: GalleryVertical, feature: "midan" },
   { to: "/weather", key: "weather", icon: CloudSun, feature: "weather" },
   { to: "/money", key: "money", icon: Wallet, feature: "money" },
 ];

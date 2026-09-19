@@ -19,3 +19,10 @@ export function selfAuthors(profileName: string) {
   const trimmed = profileName.trim();
   return trimmed ? [trimmed, "أنا", "Me"] : ["أنا", "Me"];
 }
+
+/** One name for the public Square writer: square profile, then OS name, then signed-in name. */
+export function midanWriterName(squareName: string, profileName: string, signedName: string, lang: "ar" | "en" = "ar") {
+  const name = (squareName || profileName || signedName).trim();
+  if (name) return name;
+  return lang === "ar" ? "ضيف الواحة" : "Oasis guest";
+}

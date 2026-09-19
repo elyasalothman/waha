@@ -6,6 +6,7 @@ import { authEnabled } from "@/lib/auth/client";
 import { useCurrentUserState } from "@/lib/auth/use-current-user";
 import type { SquareProfile } from "@/lib/square/types";
 import type { Lang } from "@/lib/i18n";
+import { useAppStore } from "@/store/app-store";
 
 export function ProfilePanel({
   open,
@@ -21,6 +22,7 @@ export function ProfilePanel({
   onSave: (profile: SquareProfile) => void;
 }) {
   const { user, isPending } = useCurrentUserState();
+  const osName = useAppStore((s) => s.profileName);
   const [name, setName] = useState(profile.name);
   const [bio, setBio] = useState(profile.bio);
   const L = (ar: string, en: string) => (lang === "ar" ? ar : en);
@@ -28,9 +30,9 @@ export function ProfilePanel({
   useEffect(() => {
     if (!open) return;
     const signedName = user && !user.isDevFallback ? (user.displayName ?? "").trim() : "";
-    setName(profile.name || signedName);
+    setName(profile.name || osName || signedName);
     setBio(profile.bio);
-  }, [open, profile.name, profile.bio, user]);
+  }, [open, profile.name, profile.bio, osName, user]);
 
   if (!open) return null;
 

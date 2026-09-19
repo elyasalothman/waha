@@ -7,7 +7,7 @@ export const KING_LOCK = {
   gamesOnFirstScreen: false,
 };
 
-export type OsAppId = "weather" | "faith" | "messages" | "settings" | "ask" | "money";
+export type OsAppId = "weather" | "faith" | "messages" | "settings" | "ask" | "money" | "midan";
 
 export type OsApp = {
   id: OsAppId;
@@ -24,6 +24,7 @@ export const OS_APPS: OsApp[] = [
   { id: "faith", feature: "faith", primary: true, title: { ar: "إيمان", en: "Faith" }, to: "/faith", icon: "Sunrise" },
   { id: "messages", feature: "messages", primary: true, title: { ar: "رسائل", en: "Mail" }, to: "/messages", icon: "Mail" },
   { id: "money", feature: "money", primary: true, title: { ar: "مال", en: "Money" }, to: "/money", icon: "Wallet" },
+  { id: "midan", feature: "midan", primary: false, title: { ar: "الميدان", en: "The Square" }, to: "/midan", icon: "GalleryVertical" },
   { id: "ask", feature: "ask", primary: false, title: { ar: "اسأل", en: "Ask" }, to: "/ask", icon: "Sparkles" },
   { id: "settings", feature: "settings", primary: false, title: { ar: "إعدادات", en: "Settings" }, to: "/settings", icon: "Settings" },
 ];

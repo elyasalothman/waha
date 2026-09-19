@@ -2,7 +2,8 @@ import { useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useNow } from "@/hooks/use-now";
 import { useCurrentUser } from "@/lib/auth/use-current-user";
-import { displayNameOf, mergeFeed, useSquare } from "@/lib/square/store";
+import { midanWriterName } from "@/lib/identity";
+import { mergeFeed, useSquare } from "@/lib/square/store";
 import type { SquareTab } from "@/lib/square/types";
 import { t } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
@@ -15,6 +16,8 @@ import { ProfilePanel } from "./profile-panel";
 export function SquarePage() {
   const lang = useAppStore((s) => s.lang);
   const audience = useAppStore((s) => s.audience);
+  const profileName = useAppStore((s) => s.profileName);
+  const setProfileName = useAppStore((s) => s.setProfileName);
   const user = useCurrentUser();
   const { local, publish, like, echo, reply, saveProfile } = useSquare();
   const [tab, setTab] = useState<SquareTab>("forYou");
@@ -23,11 +26,12 @@ export function SquarePage() {
   const now = clock.getTime();
 
   const signedName = user && !user.isDevFallback ? (user.displayName ?? "").trim() : "";
+  const writer = midanWriterName(local.profile.name, profileName, signedName, lang);
   const profile = {
-    name: local.profile.name || signedName,
+    name: writer,
     bio: local.profile.bio,
   };
-  const visitorName = displayNameOf(profile, "ضيف الواحة", "Oasis guest", lang);
+  const visitorName = writer;
   const feed = useMemo(
     () => mergeFeed({ ...local, profile }, tab, now, lang),
     [local, profile.name, profile.bio, tab, now, lang],
@@ -43,6 +47,12 @@ export function SquarePage() {
         <h1 className="mt-1 font-display text-4xl tracking-tight">{L("الميدان", "The Square")}</h1>
         <p className="mt-2 text-sm text-muted">
           {L("خط الناس في الواحة — اكتب، أجب، ومرّ. البذرة هنا من أول فتح.", "Waha’s people line — write, reply, pass through. The seed is here from the first open.")}
+        </p>
+        <p className="mt-2 text-xs text-subtle">
+          {t(lang, "midanHonest")}{" "}
+          <Link to="/messages" className="text-primary hover:underline">
+            {t(lang, "inbox")}
+          </Link>
         </p>
       </header>
 
@@ -106,7 +116,10 @@ export function SquarePage() {
         lang={lang}
         profile={profile}
         onClose={() => setProfileOpen(false)}
-        onSave={saveProfile}
+        onSave={(next) => {
+          saveProfile(next);
+          if (next.name.trim()) setProfileName(next.name.trim());
+        }}
       />
     </div>
   );

@@ -2,6 +2,7 @@ export const FEATURE_IDS = [
   "weather",
   "faith",
   "messages",
+  "midan",
   "ask",
   "money",
   "settings",
@@ -57,6 +58,13 @@ export const FEATURES: FeatureDef[] = [
     defaultOn: true,
     title: { ar: "رسائل", en: "Messages" },
     blurb: { ar: "صندوق العائلة على الجهاز", en: "Family inbox on this device" },
+  },
+  {
+    id: "midan",
+    lane: "core",
+    defaultOn: true,
+    title: { ar: "الميدان", en: "The Square" },
+    blurb: { ar: "خط عام — اسمك على الجهاز هو الكاتب", en: "A public line — the on-device name is the writer" },
   },
   {
     id: "ask",
