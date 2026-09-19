@@ -3,8 +3,36 @@ import { appIcon } from "@/lib/icons";
 import { t, type Lang } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
 
-export function DoorsStrip({ lang, compact = false }: { lang: Lang; compact?: boolean }) {
+export function DoorsStrip({
+  lang,
+  compact = false,
+  row = false,
+}: {
+  lang: Lang;
+  compact?: boolean;
+  row?: boolean;
+}) {
   const doors = primaryLauncherDoors();
+  if (row) {
+    return (
+      <nav aria-label={t(lang, "ourSites")} className="flex flex-wrap gap-2" data-home-section="house-doors">
+        {doors.map((door) => {
+          const Icon = appIcon(door.icon);
+          return (
+            <a
+              key={door.id}
+              href={door.href}
+              data-door={door.id}
+              className="inline-flex min-h-10 items-center gap-2 rounded-lg border border-border bg-surface px-3 text-sm text-fg hover:bg-surface-2"
+            >
+              <Icon className="size-4 shrink-0 text-muted" strokeWidth={1.75} />
+              <span>{door.title[lang]}</span>
+            </a>
+          );
+        })}
+      </nav>
+    );
+  }
   if (compact) {
     return (
       <nav aria-label={t(lang, "ourSites")} className="grid gap-1.5">

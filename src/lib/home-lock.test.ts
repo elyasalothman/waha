@@ -1,7 +1,15 @@
 import { readFileSync } from "node:fs";
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { forSeriousHome, isPlayItem } from "./home-lock.ts";
+import {
+  HOME_ABOVE_FOLD,
+  HOME_FORBIDDEN_COPY,
+  HOME_SHADOW_KEYS,
+  forSeriousHome,
+  homeHouseDoorIds,
+  homeShowsCityPicker,
+  isPlayItem,
+} from "./home-lock.ts";
 import { primaryLauncherDoors } from "./doors.ts";
 
 describe("serious home lock", () => {
@@ -30,5 +38,22 @@ describe("serious home lock", () => {
     assert.match(home, /SquarePage/);
     assert.equal(/Hub/.test(home), false);
     assert.equal(/byCategory|featuredFor/.test(home), false);
+  });
+});
+
+describe("king lock — `/` after #8", () => {
+  it("keeps above the fold to thin shadow + house doors + the square", () => {
+    assert.deepEqual([...HOME_ABOVE_FOLD], ["day-shadow", "house-doors", "square"]);
+    assert.deepEqual([...HOME_SHADOW_KEYS], ["now", "prayer", "weather"]);
+    assert.equal(homeShowsCityPicker(), false);
+    assert.deepEqual([...HOME_FORBIDDEN_COPY], ["ابدأ من هنا", "جديد في واحة"]);
+  });
+
+  it("keeps quiet doors to تهجد · مداد · مواقعنا", () => {
+    assert.deepEqual(homeHouseDoorIds(), ["tahajjud", "midad", "sites"]);
+    assert.deepEqual(
+      primaryLauncherDoors().map((d) => d.title.ar),
+      ["تهجد · عبادة", "مداد · قراءة", "مواقعنا"],
+    );
   });
 });

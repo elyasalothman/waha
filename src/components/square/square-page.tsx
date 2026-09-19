@@ -7,6 +7,7 @@ import type { SquareTab } from "@/lib/square/types";
 import { t } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
 import { useAppStore } from "@/store/app-store";
+import { DoorsStrip } from "@/components/doors-strip";
 import { Composer } from "./composer";
 import { DayAyah } from "./day-ayah";
 import { DayShadow } from "./day-shadow";
@@ -36,11 +37,14 @@ export function SquarePage() {
   const L = (ar: string, en: string) => (lang === "ar" ? ar : en);
 
   return (
-    <div className="mx-auto max-w-xl">
+    <div className="mx-auto max-w-xl" data-home-sections="day-shadow house-doors square">
       <DayShadow />
+      <div className="pt-3">
+        <DoorsStrip lang={lang} row />
+      </div>
       <DayAyah />
 
-      <header className="pt-3 pb-2">
+      <header className="pt-3 pb-2" data-home-section="square">
         <h1 className="font-display text-xl tracking-tight">{L("الميدان", "The Square")}</h1>
       </header>
 
@@ -93,8 +97,8 @@ export function SquarePage() {
 
       <p className="py-8 text-center text-sm text-subtle">
         {L("الآبار للخدمة، والميدان للكلام.", "Wells for service, the Square for speech.")}{" "}
-        <Link to={audience === "work" ? "/workspace" : "/life"} className="text-primary hover:underline">
-          {audience === "work" ? t(lang, "workCatalog") : t(lang, "catalogCta")}
+        <Link to="/more" className="text-primary hover:underline">
+          {t(lang, "more")}
         </Link>
       </p>
 
