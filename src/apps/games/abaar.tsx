@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Stat } from "@/components/app-stage";
 import { t } from "@/lib/i18n";
-import { ABAAR_N, ABAAR_PITS, abaarOpened, abaarSafeCount, abaarWon, buildAbaar, emptyAbaar, floodAbaar, toggleAbaarFlag, type AbaarGrid } from "@/lib/games/abaar";
+import { ABAAR_N, ABAAR_PITS, abaarOpened, abaarSafeCount, abaarWon, buildAbaar, emptyAbaar, floodAbaar, toggleAbaarFlag, type AbaarCell, type AbaarGrid } from "@/lib/games/abaar";
 import { playSfx } from "@/lib/sfx";
 import { readScore, writeBestMin } from "@/lib/storage";
 import { useAppStore } from "@/store/app-store";
@@ -45,6 +45,14 @@ export function AbaarApp() {
     setDead(false);
     setSeconds(0);
     setFlagMode(false);
+  }
+
+  function labelCell(cell: AbaarCell) {
+    if (cell.flag && !cell.open) return lang === "ar" ? "حفرة معلّمة" : "Marked pit";
+    if (!cell.open) return lang === "ar" ? "رمل" : "Sand";
+    if (cell.pit) return lang === "ar" ? "حفرة جافة" : "Dry pit";
+    if (!cell.n) return lang === "ar" ? "بئر مفتوح" : "Open well";
+    return lang === "ar" ? `${cell.n} حفر حولك` : `${cell.n} nearby pits`;
   }
 
   function openCell(r: number, c: number) {
@@ -94,12 +102,13 @@ export function AbaarApp() {
           {t(lang, "newGame")}
         </Button>
       </div>
-      <div className="mx-auto grid max-w-md gap-1" style={{ gridTemplateColumns: `repeat(${ABAAR_N}, minmax(0, 1fr))` }}>
+      <div className="mx-auto grid max-w-md gap-1.5 touch-manipulation" style={{ gridTemplateColumns: `repeat(${ABAAR_N}, minmax(0, 1fr))` }}>
         {grid.map((row, r) =>
           row.map((cell, c) => (
             <button
               key={`${r}-${c}`}
               type="button"
+              aria-label={labelCell(cell)}
               onClick={() => openCell(r, c)}
               onContextMenu={(e) => {
                 e.preventDefault();
@@ -108,13 +117,16 @@ export function AbaarApp() {
                 setGrid(toggleAbaarFlag(grid, r, c));
               }}
               className={cn(
-                "flex aspect-square items-center justify-center rounded-md border text-sm tabular-nums transition-colors duration-150 active:scale-[0.96]",
-                cell.open && cell.pit && "border-danger/50 bg-danger/20 text-danger",
-                cell.open && !cell.pit && "border-border bg-surface-2 text-fg",
-                !cell.open && "border-border bg-surface text-muted",
+                "flex aspect-square items-center justify-center rounded-md text-sm font-medium tabular-nums transition-[background-color,transform,box-shadow] duration-150 active:scale-[0.96]",
+                !cell.open && "border border-border bg-surface-2 text-warn shadow-[inset_0_1px_0_rgba(236,238,233,0.08)]",
+                cell.open && !cell.pit && "border border-transparent bg-bg text-fg",
+                cell.open && cell.pit && "border border-danger/50 bg-danger/20 text-danger",
+                cell.open && !cell.pit && cell.n === 1 && "text-muted",
+                cell.open && !cell.pit && cell.n === 2 && "text-primary",
+                cell.open && !cell.pit && cell.n >= 3 && "text-warn",
               )}
             >
-              {cell.flag && !cell.open ? "·" : cell.open ? (cell.pit ? "×" : cell.n || "") : ""}
+              {cell.flag && !cell.open ? "•" : cell.open ? (cell.pit ? "×" : cell.n || "") : ""}
             </button>
           )),
         )}

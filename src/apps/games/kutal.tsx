@@ -107,12 +107,12 @@ export function KutalApp() {
                 className={cn(
                   "aspect-square rounded-sm border transition-colors duration-150",
                   v
-                    ? "border-primary/40 bg-primary/70"
+                    ? "border-primary/50 bg-primary/85"
                     : ghost && preview
-                      ? "border-primary/50 bg-primary/25"
+                      ? "border-primary/50 bg-primary/30"
                       : ghost
                         ? "border-danger/40 bg-danger/15"
-                        : "border-border bg-surface",
+                        : "border-border bg-surface-2",
                 )}
               />
             );

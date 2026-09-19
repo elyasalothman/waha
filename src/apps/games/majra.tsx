@@ -2,17 +2,24 @@ import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Stat } from "@/components/app-stage";
 import { t } from "@/lib/i18n";
-import { MAJRA_N, generateMajra, majraFlow, rotateMajra, type MajraGrid, type PipeCell } from "@/lib/games/majra";
+import { MAJRA_N, generateMajra, majraFlow, rotateMajra, sides, type MajraGrid, type PipeCell } from "@/lib/games/majra";
 import { playSfx } from "@/lib/sfx";
 import { readScore, writeBestMin } from "@/lib/storage";
 import { useAppStore } from "@/store/app-store";
 import { cn } from "@/lib/cn";
 
-function glyph(cell: PipeCell): string {
-  if (cell.kind === "X") return "┼";
-  if (cell.kind === "I") return cell.rot % 2 === 0 ? "│" : "─";
-  if (cell.kind === "T") return ["┬", "┤", "┴", "├"][cell.rot]!;
-  return ["└", "┌", "┐", "┘"][cell.rot]!;
+function PipeGlyph({ cell, wet }: { cell: PipeCell; wet: boolean }) {
+  const open = sides(cell);
+  const ink = wet ? "bg-primary" : "bg-muted";
+  return (
+    <span className="relative block size-[70%]" aria-hidden>
+      <span className={cn("absolute left-1/2 top-1/2 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full", ink)} />
+      {open[0] ? <span className={cn("absolute left-1/2 top-0 h-1/2 w-1.5 -translate-x-1/2 rounded-full", ink)} /> : null}
+      {open[1] ? <span className={cn("absolute right-0 top-1/2 h-1.5 w-1/2 -translate-y-1/2 rounded-full", ink)} /> : null}
+      {open[2] ? <span className={cn("absolute bottom-0 left-1/2 h-1/2 w-1.5 -translate-x-1/2 rounded-full", ink)} /> : null}
+      {open[3] ? <span className={cn("absolute left-0 top-1/2 h-1.5 w-1/2 -translate-y-1/2 rounded-full", ink)} /> : null}
+    </span>
+  );
 }
 
 export function MajraApp() {
@@ -58,7 +65,7 @@ export function MajraApp() {
       </p>
       <div className="mx-auto w-full max-w-sm">
         <p className="mb-2 text-center text-xs text-muted">{lang === "ar" ? "عين" : "Spring"}</p>
-        <div className="grid gap-1" style={{ gridTemplateColumns: `repeat(${MAJRA_N}, minmax(0, 1fr))` }}>
+        <div className="grid gap-1.5 touch-manipulation" style={{ gridTemplateColumns: `repeat(${MAJRA_N}, minmax(0, 1fr))` }}>
           {grid.map((row, r) =>
             row.map((cell, c) => {
               const wet = flow.filled[r]![c];
@@ -66,14 +73,15 @@ export function MajraApp() {
                 <button
                   key={`${r}-${c}`}
                   type="button"
+                  aria-label={lang === "ar" ? "أدِر المجرى" : "Turn the channel"}
                   onClick={() => twist(r, c)}
                   className={cn(
-                    "flex aspect-square items-center justify-center rounded-md border font-mono text-2xl leading-none transition-colors duration-150 active:scale-[0.96]",
-                    wet ? "border-primary/50 bg-primary/15 text-primary" : "border-border bg-surface text-muted",
-                    flow.won && wet && "border-success/50 bg-success/15 text-success",
+                    "flex aspect-square items-center justify-center rounded-md border transition-[background-color,transform,border-color] duration-150 active:scale-[0.96]",
+                    wet ? "border-primary/50 bg-primary/15" : "border-border bg-surface-2",
+                    flow.won && wet && "border-success/50 bg-success/15",
                   )}
                 >
-                  {glyph(cell)}
+                  <PipeGlyph cell={cell} wet={Boolean(wet)} />
                 </button>
               );
             }),

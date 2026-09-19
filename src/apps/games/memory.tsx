@@ -87,12 +87,13 @@ export function MemoryApp() {
               type="button"
               onClick={() => flip(i)}
               className={cn(
-                "flex aspect-square items-center justify-center rounded-lg border transition-[transform,background-color] duration-200 ease-out active:scale-[0.97]",
-                show ? "border-primary/50 bg-surface-2 text-primary" : "border-border bg-surface text-transparent",
+                "flex aspect-square items-center justify-center rounded-lg border transition-[transform,background-color] duration-200 ease-out active:scale-[0.97] touch-manipulation",
+                show ? "border-primary/50 bg-surface-2 text-primary" : "border-border bg-surface-2 text-subtle/40",
                 c.done && "border-success/50 bg-success/10 text-success",
               )}
+              aria-label={show ? (lang === "ar" ? "مكشوف" : "Open") : lang === "ar" ? "ورقة" : "Card"}
             >
-              {show ? <Icon className="size-7" strokeWidth={1.6} /> : <span className="size-7" />}
+              {show ? <Icon className="size-7" strokeWidth={1.6} /> : <span className="size-1.5 rounded-full bg-subtle/50" />}
             </button>
           );
         })}
