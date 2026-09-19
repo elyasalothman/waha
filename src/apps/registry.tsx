@@ -42,6 +42,9 @@ import { Merge2048App } from "@/apps/games/merge2048";
 import { MemoryApp } from "@/apps/games/memory";
 import { SudokuApp } from "@/apps/games/sudoku";
 import { KalimaApp } from "@/apps/games/kalima";
+import { AbiarApp } from "@/apps/games/abiar";
+import { MajraApp } from "@/apps/games/majra";
+import { KutlApp } from "@/apps/games/kutl";
 import { XoApp } from "@/apps/games/xo";
 import { ReactionApp } from "@/apps/games/reaction";
 import { TypeApp } from "@/apps/games/type";
@@ -157,6 +160,9 @@ export const APPS: Record<string, ComponentType> = {
   memory: MemoryApp,
   sudoku: SudokuApp,
   kalima: KalimaApp,
+  abiar: AbiarApp,
+  majra: MajraApp,
+  kutl: KutlApp,
   xo: XoApp,
   reaction: ReactionApp,
   type: TypeApp,

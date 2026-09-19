@@ -56,6 +56,14 @@ describe("serious home lock", () => {
     assert.doesNotMatch(shadow, /t\(lang, "loading"\)/);
   });
 
+  it("keeps games heroines and doors off `/` — they live on /games", () => {
+    const home = readFileSync(new URL("../routes/index.tsx", import.meta.url), "utf8");
+    const square = readFileSync(new URL("../components/square/square-page.tsx", import.meta.url), "utf8");
+    assert.match(home, /SquarePage/);
+    assert.doesNotMatch(home, /\/games|GamesHub|gamesDoor|ألعاب واحة|abiar|majra|kutl|kalima/i);
+    assert.doesNotMatch(square, /\/games|GamesHub|luma|kalima|abiar|majra|kutl/i);
+  });
+
   it("keeps a games-catalog Luma door off the serious home list", () => {
     const door = getDoor("luma");
     assert.equal(door?.href, "https://games.alhajda.com");

@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Hub } from "@/components/hub";
+import { GamesHub } from "@/components/games-hub";
 
 export const Route = createFileRoute("/games")({ component: GamesPage });
 
 function GamesPage() {
-  return <Hub category="games" />;
+  return <GamesHub />;
 }
