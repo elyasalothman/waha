@@ -1,5 +1,6 @@
 export { DOORS, HOUSE_ACCOUNTS, SAMPLE_ACCOUNTS, YOU_ACCOUNT, getAccount } from "./accounts.ts";
 export { SEED_POSTS, MIN_SEED_POSTS } from "./seed.ts";
+export { WORLD_CARDS, WORLD_STAMP, WORLD_STORAGE_KEY, worldCards } from "./world.ts";
 export { POST_CHAR_LIMIT, mergeFeed, displayNameOf, youAccount } from "./logic.ts";
 export { SQUARE_STORAGE_KEY, useSquare } from "./store.ts";
 export { formatAgeMinutes, formatElapsed, compactRemain } from "./time.ts";
