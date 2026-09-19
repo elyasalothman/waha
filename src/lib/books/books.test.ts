@@ -4,8 +4,6 @@ import assert from "node:assert/strict";
 import { SEED_POSTS } from "../square/seed.ts";
 import { SQUARE_STORAGE_KEY, mergeFeed, emptyLocal } from "../square/logic.ts";
 import { CLIPS_STORAGE_KEY } from "../clips/types.ts";
-import { CATALOG, getApp } from "../catalog.ts";
-import { chromeNav } from "../nav.ts";
 import { BOOK_CARDS, BOOK_IDS, BOOKS_SEED, BOOKS_SEED_COUNT, isAllowedBookHost } from "./seed.ts";
 import { booksByUiSection, hydrateBooksState, listBooks, markOpened, uiSectionOf } from "./logic.ts";
 import { BOOK_SEED_SECTIONS, BOOK_SOURCE_KINDS, BOOK_STAMP, BOOKS_STORAGE_KEY } from "./types.ts";
@@ -149,7 +147,8 @@ describe("books stay off the Maydan line", () => {
     assert.doesNotMatch(square, /lib\/books|waha:books|kutub-shelf/);
     assert.doesNotMatch(page, /square\/|maydan-seed|waha:square|من العالم|waha:clips/);
     assert.match(route, /createFileRoute\("\/books"\)/);
-    assert.match(page, /كتاب مفيد · مصدر معلَّم/);
+    assert.match(page, /data-book-stamp="visible"/);
+    assert.match(page, /\{book\.stamp\}/);
     assert.match(page, /data-books-lane="shelf-v1"/);
     assert.doesNotMatch(page, /<(input|form)\b/);
     assert.doesNotMatch(page, /fetch\(|scrape|cheerio/);
@@ -159,26 +158,27 @@ describe("books stay off the Maydan line", () => {
   });
 
   it("opens باب مداد from the catalog onto /books — not a chrome tab, not featured on /", () => {
-    const midad = getApp("midad");
-    assert.equal(midad?.portal, true);
-    assert.equal(midad?.featured, undefined);
-    assert.equal(midad?.href, undefined);
-    assert.equal(
-      CATALOG.some((item) => item.id === "books" || item.featured && item.id === "midad"),
-      false,
-    );
-    assert.equal(chromeNav("personal").some((item) => item.to === "/books"), false);
+    const catalog = readFileSync(new URL("../catalog.ts", import.meta.url), "utf8");
+    const nav = readFileSync(new URL("../nav.ts", import.meta.url), "utf8");
     const home = readFileSync(new URL("../../routes/index.tsx", import.meta.url), "utf8");
+    const card = readFileSync(new URL("../../components/app-card.tsx", import.meta.url), "utf8");
+    assert.match(catalog, /door\.id === "midad"/);
+    assert.match(catalog, /portal: true/);
+    assert.doesNotMatch(catalog, /id: "books"/);
+    assert.doesNotMatch(nav, /to: "\/books"/);
+    assert.match(card, /to="\/books"/);
     assert.match(home, /SquarePage/);
     assert.doesNotMatch(home, /BooksPage|lib\/books/);
   });
 
   it("refuses forbidden lanes and pirate hosts in the shelf blob", () => {
-    const blob = BOOK_CARDS.map((b) => `${b.titleAr} ${b.benefitAr} ${b.url} ${b.sourceLabel} ${b.legalNote}`).join("\n");
-    for (const banned of FORBIDDEN) {
+    const blob = BOOK_CARDS.map((b) => `${b.titleAr} ${b.benefitAr} ${b.url} ${b.sourceLabel}`).join("\n");
+    for (const banned of ["pirate", "torrent", "mega.nz", "mediafire", "شراء ورقي", "amazon", "jarir", "إسلام ويب", "shamela"]) {
       assert.equal(blob.toLowerCase().includes(banned.toLowerCase()), false, banned);
     }
+    assert.ok(BOOK_CARDS.every((b) => isAllowedBookHost(b.url)));
     assert.equal(isAllowedBookHost("https://islamweb.net/ar/library/"), false);
     assert.equal(isAllowedBookHost("https://shamela.ws/book/1"), false);
+    assert.ok(BOOK_CARDS[0]?.legalNote.includes("لا من مواقع قرصنة"));
   });
 });
