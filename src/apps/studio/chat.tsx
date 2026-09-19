@@ -214,7 +214,7 @@ export function ChatApp() {
             </button>
           ))}
         </div>
-        <p className="text-[11px] text-subtle">{lang === "ar" ? city.ar : city.en}</p>
+        <p className="text-[11px] text-muted">{lang === "ar" ? city.ar : city.en}</p>
       </div>
 
       <div className="min-h-0 flex-1 space-y-4 overflow-y-auto rounded-2xl border border-border/80 bg-surface/80 px-4 py-5 sm:px-5">

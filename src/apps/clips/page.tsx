@@ -79,7 +79,7 @@ function ClipCardView({
       </div>
 
       <div className="p-4">
-        <div className="flex flex-wrap items-center gap-2 text-xs text-subtle">
+        <div className="flex flex-wrap items-center gap-2 text-xs text-muted">
           <span className="rounded-md border border-border bg-surface-2 px-2 py-0.5 text-muted">{topicLabel}</span>
           <span>{clip.stamp}</span>
           {seen ? <span className="text-primary">{lang === "ar" ? "شُوهد" : "Seen"}</span> : null}

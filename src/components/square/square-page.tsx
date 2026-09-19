@@ -114,7 +114,7 @@ export function SquarePage() {
           world.length > 0 ? (
             world.map((card) => <WorldCard key={card.id} card={card} lang={lang} />)
           ) : (
-            <p data-world-empty className="py-10 text-center text-sm text-subtle">
+            <p data-world-empty className="py-10 text-center text-sm text-muted">
               {L("لا جديد من العالم", "Nothing new from the world")}
             </p>
           )
@@ -133,7 +133,7 @@ export function SquarePage() {
         )}
       </div>
 
-      <p className="py-8 text-center text-sm text-subtle">
+      <p className="py-8 text-center text-sm text-muted">
         {L("النقاش الأطول في قسمه.", "Longer talk lives in its section.")}{" "}
         <Link to="/forum" className="text-primary hover:underline">
           {t(lang, "forum")}

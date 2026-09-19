@@ -62,8 +62,8 @@ export function DayShadow() {
         data-city-picker={homeShowsCityPicker() ? "open" : "closed"}
         data-shadow-keys={HOME_SHADOW_KEYS.join(" ")}
       >
-        <span className="font-medium tracking-wide text-subtle">{t(lang, "shadowDay")}</span>
-        <span className="text-subtle">·</span>
+        <span className="font-medium tracking-wide">{t(lang, "shadowDay")}</span>
+        <span>·</span>
         <span data-shadow-key="now" className="font-mono tabular-nums text-fg/80">
           {hydrated ? formatLocalHm(now) : <Pulse className="h-3 w-10" />}
         </span>
@@ -89,7 +89,7 @@ export function DayShadow() {
       </aside>
 
       <section className="px-1 py-5" aria-label={hydrated ? `${following} ${name}` : following} data-hero="next-prayer">
-        <p className="text-xs font-medium tracking-wide text-subtle">{following}</p>
+        <p className="text-xs font-medium tracking-wide text-muted">{following}</p>
         <Link
           to="/app/$id"
           params={{ id: "salah" }}

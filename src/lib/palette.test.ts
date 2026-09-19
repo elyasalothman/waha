@@ -61,7 +61,7 @@ describe("waha hearth-night palette", () => {
     assert.equal(isWarmGround(PALETTE.surface), true);
     assert.equal(isCoralFeel(PALETTE.primary), true);
     assert.ok(hexDistance(PALETTE.primary, CORAL_FEEL) < 24, "primary stays near the coral feel");
-    assert.ok(hexDistance(PALETTE.muted, MUTED_FEEL) < 8, "muted stays near #A1A1A1");
+    assert.equal(PALETTE.muted.toLowerCase(), MUTED_FEEL);
     assert.equal(PALETTE.danger, DANGER_LOCK);
     assert.notEqual(PALETTE.danger, PALETTE.primary);
     assert.ok(relativeLuminance(PALETTE.bg) < 0.02, "night stays deep");
@@ -117,8 +117,28 @@ describe("waha hearth-night palette", () => {
       const floor = fg === "fg" ? 7 : 4.5;
       assert.ok(ratio >= floor, `${fg} on ${bg} is ${ratio.toFixed(2)}, need ${floor}`);
     }
-    assert.ok(contrastRatio(PALETTE.muted, PALETTE.bg) >= contrastRatio(MUTED_FEEL, PALETTE.bg) - 0.05);
+    assert.equal(PALETTE.muted.toLowerCase(), "#a1a1a1");
+    assert.match(css, /--color-muted:\s*#a1a1a1/i);
+    assert.ok(contrastRatio(PALETTE.muted, PALETTE.bg) >= contrastRatio("#a1a1a1", PALETTE.bg) - 0.05);
     assert.ok(contrastRatio(PALETTE.subtle, PALETTE.bg) > contrastRatio("#6a7069", "#0c0d0c"));
+  });
+
+  it("uses #A1A1A1 as the secondary faint text on shadow, square, madar, clips, games, and ask", () => {
+    assert.equal(hexDistance(PALETTE.muted, "#a1a1a1"), 0);
+    assert.match(shadow, /text-\[12px\] text-muted/);
+    assert.match(shadow, /text-xs font-medium tracking-wide text-muted/);
+    assert.match(square, /data-world-empty className="[^"]*text-muted"/);
+    assert.match(square, /py-8 text-center text-sm text-muted/);
+    assert.match(madar, /madarBlurb[\s\S]{0,40}text-muted|text-sm text-muted">\{t\(lang, "madarBlurb"\)\}/);
+    assert.match(clips, /clipsBlurb/);
+    assert.match(clips, /text-muted/);
+    assert.match(games, /GamesHub/);
+    const hub = readFileSync(new URL("../components/games-hub.tsx", import.meta.url), "utf8");
+    assert.match(hub, /gamesBlurb/);
+    assert.match(hub, /text-muted/);
+    assert.match(ask, /text-\[15px\] leading-7 text-muted/);
+    assert.match(ask, /text-\[11px\] text-muted/);
+    assert.match(studio, /text-muted/);
   });
 
   it("applies the shared tokens to shadow, square, madar, clips, games, and ask — no product-scope change", () => {

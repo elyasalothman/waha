@@ -295,7 +295,7 @@ function StartPage({
         <MadarMark className="mx-auto size-16" />
         <h1 className="mt-5 font-display text-5xl tracking-tight">{lang === "ar" ? "مدار" : "Madar"}</h1>
         <p className="mt-3 text-sm text-muted">{t(lang, "madarMeaning")}</p>
-        <p className="mt-2 text-sm text-subtle">{t(lang, "madarBlurb")}</p>
+        <p className="mt-2 text-sm text-muted">{t(lang, "madarBlurb")}</p>
       </header>
 
       <section className="mb-10">
@@ -309,7 +309,7 @@ function StartPage({
             ))}
           </div>
         )}
-        {filtering ? <p className="mt-2 text-xs text-subtle">{t(lang, "madarHouseHint")}</p> : null}
+        {filtering ? <p className="mt-2 text-xs text-muted">{t(lang, "madarHouseHint")}</p> : null}
       </section>
 
       <section className="mb-10">
@@ -327,7 +327,7 @@ function StartPage({
             </a>
           ))}
         </div>
-        <p className="mt-2 text-xs text-subtle">{t(lang, "madarToolsHint")}</p>
+        <p className="mt-2 text-xs text-muted">{t(lang, "madarToolsHint")}</p>
       </section>
 
       <section className="mb-10">
@@ -458,7 +458,7 @@ function ResultsPage({
         <Button type="button" onClick={onWebSearch}>
           {t(lang, "madarWebSearch")}
         </Button>
-        <p className="mt-2 text-xs text-subtle">{t(lang, "madarWebHint")}</p>
+        <p className="mt-2 text-xs text-muted">{t(lang, "madarWebHint")}</p>
       </section>
     </div>
   );
