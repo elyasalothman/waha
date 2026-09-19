@@ -118,10 +118,10 @@ export function ChatApp() {
   const [input, setInput] = useState("");
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [busy, setBusy] = useState(false);
-  const endRef = useRef<HTMLDivElement>(null);
+  const lastRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    endRef.current?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    lastRef.current?.scrollIntoView({ block: "start", behavior: "smooth" });
   }, [msgs, busy]);
 
   function pushAssistant(msg: Extract<Msg, { role: "assistant" }>) {
@@ -235,7 +235,11 @@ export function ChatApp() {
                 </div>
               </div>
             ) : (
-              <div key={i} className="max-w-[86%] space-y-2">
+              <div
+                key={i}
+                ref={i === msgs.length - 1 ? lastRef : undefined}
+                className="max-w-[86%] space-y-2"
+              >
                 {m.kind !== "greeting" ? <TrustBadge trust={m.trust} /> : null}
                 <div className="text-[15px] leading-7 text-fg whitespace-pre-wrap">{m.content}</div>
                 {m.kind !== "greeting" ? (
@@ -246,7 +250,6 @@ export function ChatApp() {
           )
         )}
         {busy ? <p className="text-[13px] text-muted">{t(lang, "thinking")}</p> : null}
-        <div ref={endRef} />
       </div>
 
       <div className="mt-4 flex shrink-0 items-end gap-2">

@@ -38,8 +38,10 @@ export function AppStage({
           <Icon className="size-5" />
         </span>
         <div>
-          <h1 className="text-2xl font-medium tracking-tight">{item.title[lang]}</h1>
-          <p className="mt-1 text-sm text-muted">{item.blurb[lang]}</p>
+          <h1 className={cn("font-medium tracking-tight", compact ? "text-lg" : "text-2xl")}>
+            {item.title[lang]}
+          </h1>
+          {compact ? null : <p className="mt-1 text-sm text-muted">{item.blurb[lang]}</p>}
         </div>
       </div>
       {children}
