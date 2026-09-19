@@ -1,16 +1,19 @@
 import { create } from "zustand";
 import { CITIES, DEFAULT_CITY, type City, findCity } from "@/lib/cities";
 import type { Audience } from "@/lib/catalog";
+import { parseChildSegment, type ChildSegment } from "@/lib/child-mode";
 import type { Lang } from "@/lib/i18n";
 
 type AppState = {
   lang: Lang;
   audience: Audience;
+  segment: ChildSegment;
   city: City;
   recent: string[];
   setLang: (lang: Lang) => void;
   toggleLang: () => void;
   setAudience: (audience: Audience) => void;
+  setSegment: (segment: ChildSegment) => void;
   setCity: (id: string) => void;
   setCityCoords: (lat: number, lon: number, labelAr: string, labelEn: string) => void;
   pushRecent: (id: string) => void;
@@ -19,7 +22,7 @@ type AppState = {
 
 const KEY = "waha:prefs";
 
-function persist(partial: Pick<AppState, "lang" | "city" | "recent" | "audience">) {
+function persist(partial: Pick<AppState, "lang" | "city" | "recent" | "audience" | "segment">) {
   try {
     localStorage.setItem(
       KEY,
@@ -29,6 +32,7 @@ function persist(partial: Pick<AppState, "lang" | "city" | "recent" | "audience"
         recent: partial.recent,
         city: partial.city,
         audience: partial.audience,
+        segment: partial.segment,
       }),
     );
   } catch {
@@ -39,6 +43,7 @@ function persist(partial: Pick<AppState, "lang" | "city" | "recent" | "audience"
 export const useAppStore = create<AppState>((set, get) => ({
   lang: "ar",
   audience: "personal",
+  segment: "all",
   city: DEFAULT_CITY,
   recent: [],
   setLang: (lang) => {
@@ -50,7 +55,11 @@ export const useAppStore = create<AppState>((set, get) => ({
     persist(get());
   },
   setAudience: (audience) => {
-    set({ audience });
+    set({ audience, segment: audience === "work" ? "all" : get().segment });
+    persist(get());
+  },
+  setSegment: (segment) => {
+    set({ segment, audience: segment === "child" ? "personal" : get().audience === "work" ? "work" : "personal" });
     persist(get());
   },
   setCity: (id) => {
@@ -86,6 +95,7 @@ export const useAppStore = create<AppState>((set, get) => ({
         recent?: string[];
         city?: City;
         audience?: Audience;
+        segment?: unknown;
       };
       const city =
         parsed.city?.id === "geo" && parsed.city
@@ -93,9 +103,11 @@ export const useAppStore = create<AppState>((set, get) => ({
           : parsed.cityId
             ? (CITIES.find((c) => c.id === parsed.cityId) ?? DEFAULT_CITY)
             : DEFAULT_CITY;
+      const segment = parseChildSegment(parsed.segment);
       set({
         lang: parsed.lang === "en" ? "en" : "ar",
-        audience: parsed.audience === "work" ? "work" : "personal",
+        audience: segment === "child" ? "personal" : parsed.audience === "work" ? "work" : "personal",
+        segment,
         city,
         recent: Array.isArray(parsed.recent) ? parsed.recent : [],
       });

@@ -8,7 +8,8 @@ export const Route = createFileRoute("/more")({ component: MorePage });
 function MorePage() {
   const lang = useAppStore((s) => s.lang);
   const audience = useAppStore((s) => s.audience);
-  const hubs = moreOverflowNav(audience);
+  const segment = useAppStore((s) => s.segment);
+  const hubs = moreOverflowNav(audience, segment);
 
   return (
     <div className="mx-auto max-w-5xl">

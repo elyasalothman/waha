@@ -2,7 +2,9 @@ import { useEffect } from "react";
 import { createFileRoute, Link, Navigate } from "@tanstack/react-router";
 import { APPS } from "@/apps/registry";
 import { AppStage } from "@/components/app-stage";
+import { ChildMoneyGate } from "@/components/child-money-gate";
 import { getApp } from "@/lib/catalog";
+import { hideMoney, isMoneySurface } from "@/lib/child-mode";
 import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
 
@@ -12,6 +14,7 @@ function AppPage() {
   const { id } = Route.useParams();
   const item = getApp(id);
   const lang = useAppStore((s) => s.lang);
+  const segment = useAppStore((s) => s.segment);
   const pushRecent = useAppStore((s) => s.pushRecent);
 
   useEffect(() => {
@@ -24,6 +27,10 @@ function AppPage() {
 
   if (id === "madar") {
     return <Navigate to="/madar" />;
+  }
+
+  if (item && hideMoney(segment) && isMoneySurface(item)) {
+    return <ChildMoneyGate lang={lang} />;
   }
 
   if (!item) {

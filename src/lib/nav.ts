@@ -1,3 +1,4 @@
+import { withoutMoneyNav } from "./child-mode.ts";
 import type { I18nKey } from "@/lib/i18n";
 
 /** Catalog wells — launcher / المزيد only, never the Square bar. */
@@ -37,16 +38,18 @@ export const TOOLS_OVERFLOW_NAV: readonly ChromeNavItem[] = [{ to: "/games", key
 
 const MOBILE_HIDDEN = new Set(["/madar"]);
 
-export function chromeNav(audience: "personal" | "work"): readonly ChromeNavItem[] {
-  return audience === "personal" ? PERSONAL_NAV : WORK_NAV;
+export function chromeNav(audience: "personal" | "work", segment?: unknown): readonly ChromeNavItem[] {
+  const base = audience === "personal" ? PERSONAL_NAV : WORK_NAV;
+  return withoutMoneyNav(base, segment);
 }
 
-export function mobileChromeNav(audience: "personal" | "work"): readonly ChromeNavItem[] {
-  return chromeNav(audience).filter((item) => !MOBILE_HIDDEN.has(item.to));
+export function mobileChromeNav(audience: "personal" | "work", segment?: unknown): readonly ChromeNavItem[] {
+  return chromeNav(audience, segment).filter((item) => !MOBILE_HIDDEN.has(item.to));
 }
 
-export function moreOverflowNav(audience: "personal" | "work"): readonly ChromeNavItem[] {
-  return audience === "work" ? WORK_MORE_OVERFLOW_NAV : MORE_OVERFLOW_NAV;
+export function moreOverflowNav(audience: "personal" | "work", segment?: unknown): readonly ChromeNavItem[] {
+  const base = audience === "work" ? WORK_MORE_OVERFLOW_NAV : MORE_OVERFLOW_NAV;
+  return withoutMoneyNav(base, segment);
 }
 
 export function isCatalogTabPath(path: string): boolean {

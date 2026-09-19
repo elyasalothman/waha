@@ -8,6 +8,7 @@ import { t } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
 import { useAppStore } from "@/store/app-store";
 import { DoorsStrip } from "@/components/doors-strip";
+import { HomeSpend } from "@/components/home-spend";
 import { Composer } from "./composer";
 import { DayAyah } from "./day-ayah";
 import { DayShadow } from "./day-shadow";
@@ -20,6 +21,7 @@ import { SupportRow } from "./support-row";
 export function SquarePage() {
   const lang = useAppStore((s) => s.lang);
   const audience = useAppStore((s) => s.audience);
+  const segment = useAppStore((s) => s.segment);
   const user = useCurrentUser();
   const { local, publish, like, reply, saveProfile } = useSquare();
   const [tab, setTab] = useState<SquareTab>("forYou");
@@ -43,6 +45,7 @@ export function SquarePage() {
   return (
     <div className="mx-auto max-w-xl" data-home-sections="day-shadow house-doors square">
       <DayShadow />
+      {audience === "personal" ? <HomeSpend lang={lang} segment={segment} /> : null}
       <div className="pt-3">
         <DoorsStrip lang={lang} row />
       </div>

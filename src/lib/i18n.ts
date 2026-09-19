@@ -21,6 +21,13 @@ const strings = {
   finance: { ar: "المالية", en: "Finance" },
   personal: { ar: "أفراد", en: "Personal" },
   work: { ar: "عمل", en: "Work" },
+  child: { ar: "طفل", en: "Child" },
+  todaySpend: { ar: "مصروف اليوم", en: "Today’s spend" },
+  childMoneyBlocked: { ar: "المال محجوب في وضع الطفل", en: "Money is closed in child mode" },
+  childMoneyBlockedBody: {
+    ar: "واحة لا تعرض مصروف اليوم ولا مسار المال للطفل.",
+    en: "Waha hides today’s spend and the money path from a child.",
+  },
   allApps: { ar: "كل التطبيقات", en: "All apps" },
   featured: { ar: "ابدأ من هنا", en: "Start here" },
   open: { ar: "افتح", en: "Open" },
