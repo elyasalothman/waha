@@ -1,6 +1,7 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useNow } from "@/hooks/use-now";
+import { useShadeFieldLane } from "@/hooks/use-shade-field";
 import { useCurrentUser } from "@/lib/auth/use-current-user";
 import { displayNameOf, mergeFeed, useSquare } from "@/lib/square/store";
 import type { SquareTab } from "@/lib/square/types";
@@ -37,6 +38,8 @@ export function SquarePage() {
   const clock = useNow(60_000);
   const now = clock.getTime();
   const world = useMemo(() => worldCards(), []);
+  const heroRef = useRef<HTMLElement>(null);
+  const lane = useShadeFieldLane(heroRef);
 
   const signedName = user && !user.isDevFallback ? (user.displayName ?? "").trim() : "";
   const profile = {
@@ -52,8 +55,14 @@ export function SquarePage() {
   const onWorldLane = tab === "world";
 
   return (
-    <div className="mx-auto max-w-xl" data-home-sections="day-shadow house-doors square" data-guest-read="open">
-      <DayShadow />
+    <div
+      className="mx-auto max-w-xl"
+      data-home-sections="day-shadow house-doors square"
+      data-guest-read="open"
+      data-shade-field="quiet"
+      data-lane={lane}
+    >
+      <DayShadow lane={lane} heroRef={heroRef} />
       {audience === "personal" ? <HomeSpend lang={lang} segment={segment} /> : null}
       <div className="pt-3">
         <DoorsStrip lang={lang} row />

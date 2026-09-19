@@ -10,12 +10,18 @@ export function XStrip({ lang }: { lang: Lang }) {
   if (cards.length === 0) return null;
 
   return (
-    <section data-x-strip data-x-lane="من إكس" className="mt-3 rounded-lg border border-border bg-surface px-3 py-3">
-      <header className="flex min-w-0 flex-wrap items-center gap-2">
-        <h2 className="text-sm font-medium">{L("من إكس", "From X")}</h2>
+    <section
+      data-x-strip
+      data-x-lane="من إكس"
+      data-x-tamyiz="quiet-v1"
+      data-x-live="seed-v1"
+      className="mt-3 border-y border-border/80 py-3"
+    >
+      <header className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-1 px-0.5">
+        <h2 className="font-display text-base tracking-tight">{L("من إكس", "From X")}</h2>
         <XBadge />
       </header>
-      <div className="mt-2 flex flex-nowrap gap-2 overflow-x-auto pb-1">
+      <div className="mt-3 flex snap-x snap-mandatory flex-nowrap gap-3 overflow-x-auto pb-1">
         {preview.map((card) => (
           <XCard key={card.id} card={card} lang={lang} />
         ))}

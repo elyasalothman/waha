@@ -1,4 +1,7 @@
 import { primaryLauncherDoors } from "./doors.ts";
+import { SHADE_FIELD_CROSSING } from "./shade-field.ts";
+
+export { SHADE_FIELD_CROSSING, SHADE_FIELD_LANES } from "./shade-field.ts";
 
 /** Reviewer lock: the first screen stays solemn. Games are never the hero. */
 export type HomeItem = { id: string; category: string; lane: string };
@@ -52,4 +55,21 @@ export function homeShowsCityPicker(): boolean {
 
 export function homeHouseDoorIds(): string[] {
   return primaryLauncherDoors().map((d) => d.id);
+}
+
+/** `/` keeps ظل + ميدان together. Crossing is quiet — never slides or a books shelf. */
+export function homeKeepsShadeWithField(): boolean {
+  return true;
+}
+
+export function homeShowsDailySlides(): boolean {
+  return false;
+}
+
+export function homeShowsBooksShelf(): boolean {
+  return false;
+}
+
+export function homeShadeFieldCrossing(): typeof SHADE_FIELD_CROSSING {
+  return SHADE_FIELD_CROSSING;
 }

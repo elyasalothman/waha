@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type RefObject } from "react";
 import { Link } from "@tanstack/react-router";
 import { useHydrated } from "@/hooks/use-hydrated";
 import { useNow } from "@/hooks/use-now";
 import { formatLocalHm } from "@/lib/clock";
+import { cn } from "@/lib/cn";
 import { HOME_SHADOW_KEYS, homeShowsCityPicker } from "@/lib/home-lock";
+import { scrollToShade, type ShadeFieldLane } from "@/lib/shade-field";
 import { prayerLabel, shadowDayNow } from "@/lib/shadow-day";
 import { fetchWeatherSafe, formatCelsius, weatherLabel } from "@/lib/weather";
 import { t } from "@/lib/i18n";
@@ -20,7 +22,13 @@ function Pulse({ className }: { className: string }) {
 }
 
 /** Thin «ظل اليوم» + live next-prayer number above the Square. City stays closed. */
-export function DayShadow() {
+export function DayShadow({
+  lane = "shade",
+  heroRef,
+}: {
+  lane?: ShadeFieldLane;
+  heroRef?: RefObject<HTMLElement | null>;
+}) {
   const lang = useAppStore((s) => s.lang);
   const city = useAppStore((s) => s.city);
   const hydrated = useHydrated();
@@ -52,17 +60,34 @@ export function DayShadow() {
   const weatherSub = liveWx?.label || (lang === "ar" ? snap.weatherLabelAr : snap.weatherLabelEn);
   const following = t(lang, "nextPrayerFollowing");
 
+  const inField = lane === "field";
+
   return (
-    <div>
+    <>
       <aside
-        className="flex flex-wrap items-center gap-x-2.5 gap-y-0.5 border-b border-border px-1 py-1.5 text-[12px] text-muted"
+        className={cn(
+          "z-10 flex flex-wrap items-center gap-x-2.5 gap-y-0.5 border-b border-border px-1 py-1.5 text-[12px] text-muted",
+          inField && "sticky top-14",
+        )}
         aria-label={t(lang, "shadowDay")}
         data-home-section="day-shadow"
         data-shadow="thin"
         data-city-picker={homeShowsCityPicker() ? "open" : "closed"}
         data-shadow-keys={HOME_SHADOW_KEYS.join(" ")}
+        data-shade-lane={lane}
       >
-        <span className="font-medium tracking-wide text-subtle">{t(lang, "shadowDay")}</span>
+        <button
+          type="button"
+          data-shade-return={inField ? "open" : "idle"}
+          aria-label={inField ? t(lang, "returnToShade") : t(lang, "shadowDay")}
+          onClick={() => {
+            if (!inField) return;
+            scrollToShade(heroRef?.current ?? null);
+          }}
+          className="font-medium tracking-wide text-subtle hover:text-fg"
+        >
+          {t(lang, "shadowDay")}
+        </button>
         <span className="text-subtle">·</span>
         <span data-shadow-key="now" className="font-mono tabular-nums text-fg/80">
           {hydrated ? formatLocalHm(now) : <Pulse className="h-3 w-10" />}
@@ -88,7 +113,12 @@ export function DayShadow() {
         </span>
       </aside>
 
-      <section className="px-1 py-5" aria-label={hydrated ? `${following} ${name}` : following} data-hero="next-prayer">
+      <section
+        ref={heroRef}
+        className="scroll-mt-20 px-1 py-5"
+        aria-label={hydrated ? `${following} ${name}` : following}
+        data-hero="next-prayer"
+      >
         <p className="text-xs font-medium tracking-wide text-subtle">{following}</p>
         <Link
           to="/app/$id"
@@ -107,6 +137,6 @@ export function DayShadow() {
           <span className="font-mono tabular-nums text-fg/80">{hydrated ? snap.prayerHm : <Pulse className="h-3 w-12" />}</span>
         </p>
       </section>
-    </div>
+    </>
   );
 }
