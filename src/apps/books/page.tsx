@@ -1,5 +1,6 @@
 import { BooksMark } from "@/components/brand";
 import { ExternalLink } from "@/components/external-link";
+import { useCurrentUserState } from "@/lib/auth/use-current-user";
 import {
   useBooks,
   useKutubi,
@@ -19,7 +20,10 @@ export function BooksPage() {
   const lang = useAppStore((s) => s.lang);
   const { sections, local, markOpened } = useBooks();
   const kutubi = useKutubi();
+  const { user, isPending } = useCurrentUserState();
   const L = (ar: string, en: string) => (lang === "ar" ? ar : en);
+  /** أضف للعامة فقط بحساب حقيقي — كتبي نفسها بلا حساب. */
+  const canOfferPublic = !isPending && Boolean(user && !user.isDevFallback);
 
   return (
     <div className="mx-auto max-w-2xl" data-books-lane="shelf-v1">
@@ -61,11 +65,15 @@ export function BooksPage() {
                       label: t(lang, "kutubiRemove"),
                       onClick: () => kutubi.remove(book.id),
                     }}
-                    publicDraft={{
-                      pending: Boolean(draft),
-                      label: draft ? t(lang, "kutubiPublicDraft") : t(lang, "kutubiOfferPublic"),
-                      onClick: draft ? () => undefined : () => kutubi.requestPublic(book.id),
-                    }}
+                    publicDraft={
+                      canOfferPublic
+                        ? {
+                            pending: Boolean(draft),
+                            label: draft ? t(lang, "kutubiPublicDraft") : t(lang, "kutubiOfferPublic"),
+                            onClick: draft ? () => undefined : () => kutubi.requestPublic(book.id),
+                          }
+                        : undefined
+                    }
                   />
                 </li>
               );
@@ -172,6 +180,7 @@ function BookCardView({
             type="button"
             className="inline-flex min-h-11 items-center text-sm text-muted hover:text-primary disabled:opacity-60"
             data-kutubi-draft={publicDraft.pending ? "legal-review" : "offer"}
+            data-kutubi-draft-auth="account"
             disabled={publicDraft.pending}
             onClick={publicDraft.onClick}
           >
