@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { Flame, Globe, Heart, Moon, Music, Star, Sun, Zap } from "lucide-react";
+import { Droplets, Moon, Palmtree, Star, Sun, Tent, Wind, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Stat } from "@/components/app-stage";
 import { t } from "@/lib/i18n";
-import { usePersistent } from "@/lib/storage";
+import { playSfx } from "@/lib/sfx";
+import { usePersistent, writeBestMin } from "@/lib/storage";
 import { useAppStore } from "@/store/app-store";
 import { cn } from "@/lib/cn";
 
-const ICONS = [Sun, Moon, Star, Heart, Flame, Globe, Music, Zap] as const;
+const ICONS = [Sun, Moon, Star, Palmtree, Droplets, Tent, Wind, BookOpen] as const;
 
 type Card = { id: number; icon: number; face: boolean; done: boolean };
 
@@ -26,11 +27,16 @@ export function MemoryApp() {
   const won = cards.every((c) => c.done) && cards.length > 0;
 
   useEffect(() => {
-    if (won && moves > 0 && (best === 0 || moves < best)) setBest(moves);
+    if (won && moves > 0 && (best === 0 || moves < best)) {
+      setBest(moves);
+      writeBestMin("memory", moves);
+      playSfx("win");
+    }
   }, [won, moves, best, setBest]);
 
   function flip(i: number) {
     if (lock || cards[i]!.face || cards[i]!.done) return;
+    playSfx("tap");
     const nextOpen = [...open, i];
     const next = cards.map((c, idx) => (idx === i ? { ...c, face: true } : c));
     setCards(next);
@@ -42,14 +48,16 @@ export function MemoryApp() {
     const a = next[nextOpen[0]!]!;
     const b = next[nextOpen[1]!]!;
     if (a.icon === b.icon) {
+      playSfx("ok");
       setCards(next.map((c) => (c.icon === a.icon ? { ...c, done: true } : c)));
       setOpen([]);
     } else {
+      playSfx("miss");
       setOpen(nextOpen);
       window.setTimeout(() => {
         setCards((cur) => cur.map((c, idx) => (nextOpen.includes(idx) ? { ...c, face: false } : c)));
         setOpen([]);
-      }, 700);
+      }, 560);
     }
   }
 
@@ -79,11 +87,12 @@ export function MemoryApp() {
               type="button"
               onClick={() => flip(i)}
               className={cn(
-                "flex aspect-square items-center justify-center rounded-lg border",
-                show ? "border-primary bg-surface-2 text-primary" : "border-border bg-surface text-transparent",
+                "flex aspect-square items-center justify-center rounded-lg border transition-[transform,background-color] duration-200 ease-out active:scale-[0.97]",
+                show ? "border-primary/50 bg-surface-2 text-primary" : "border-border bg-surface text-transparent",
+                c.done && "border-success/50 bg-success/10 text-success",
               )}
             >
-              {show ? <Icon className="size-7" /> : <span className="size-7" />}
+              {show ? <Icon className="size-7" strokeWidth={1.6} /> : <span className="size-7" />}
             </button>
           );
         })}

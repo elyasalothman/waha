@@ -50,3 +50,17 @@ export function writeScore(id: string, score: number) {
     return score;
   }
 }
+
+/** Lower is better — times, moves, rotations. Zero means no record yet. */
+export function writeBestMin(id: string, value: number) {
+  try {
+    const all = JSON.parse(localStorage.getItem("waha:scores") ?? "{}") as Record<string, number>;
+    const prev = all[id] ?? 0;
+    const next = prev === 0 ? value : Math.min(prev, value);
+    all[id] = next;
+    localStorage.setItem("waha:scores", JSON.stringify(all));
+    return next;
+  } catch {
+    return value;
+  }
+}
