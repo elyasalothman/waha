@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as GamesRouteImport } from './routes/games'
 import { Route as LifeRouteImport } from './routes/life'
+import { Route as MaydanRouteImport } from './routes/maydan'
 import { Route as MadarRouteImport } from './routes/madar'
 import { Route as MoneyRouteImport } from './routes/money'
 import { Route as StudioRouteImport } from './routes/studio'
@@ -32,6 +33,11 @@ const GamesRoute = GamesRouteImport.update({
 const LifeRoute = LifeRouteImport.update({
   id: '/life',
   path: '/life',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MaydanRoute = MaydanRouteImport.update({
+  id: '/maydan',
+  path: '/maydan',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MadarRoute = MadarRouteImport.update({
@@ -69,6 +75,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
+  '/maydan': typeof MaydanRoute
   '/madar': typeof MadarRoute
   '/money': typeof MoneyRoute
   '/studio': typeof StudioRoute
@@ -80,6 +87,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
+  '/maydan': typeof MaydanRoute
   '/madar': typeof MadarRoute
   '/money': typeof MoneyRoute
   '/studio': typeof StudioRoute
@@ -92,6 +100,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
+  '/maydan': typeof MaydanRoute
   '/madar': typeof MadarRoute
   '/money': typeof MoneyRoute
   '/studio': typeof StudioRoute
@@ -105,6 +114,7 @@ export interface FileRouteTypes {
     | '/'
     | '/games'
     | '/life'
+    | '/maydan'
     | '/madar'
     | '/money'
     | '/studio'
@@ -116,6 +126,7 @@ export interface FileRouteTypes {
     | '/'
     | '/games'
     | '/life'
+    | '/maydan'
     | '/madar'
     | '/money'
     | '/studio'
@@ -127,6 +138,7 @@ export interface FileRouteTypes {
     | '/'
     | '/games'
     | '/life'
+    | '/maydan'
     | '/madar'
     | '/money'
     | '/studio'
@@ -139,6 +151,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   GamesRoute: typeof GamesRoute
   LifeRoute: typeof LifeRoute
+  MaydanRoute: typeof MaydanRoute
   MadarRoute: typeof MadarRoute
   MoneyRoute: typeof MoneyRoute
   StudioRoute: typeof StudioRoute
@@ -168,6 +181,13 @@ declare module '@tanstack/react-router' {
       path: '/life'
       fullPath: '/life'
       preLoaderRoute: typeof LifeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/maydan': {
+      id: '/maydan'
+      path: '/maydan'
+      fullPath: '/maydan'
+      preLoaderRoute: typeof MaydanRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/madar': {
@@ -219,6 +239,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   GamesRoute: GamesRoute,
   LifeRoute: LifeRoute,
+  MaydanRoute: MaydanRoute,
   MadarRoute: MadarRoute,
   MoneyRoute: MoneyRoute,
   StudioRoute: StudioRoute,

@@ -25,10 +25,17 @@ describe("serious home lock", () => {
     assert.equal(ids.includes("luma"), false);
   });
 
-  it("binds / to the Maydan timeline — catalog stays under doors", () => {
+  it("binds / to a quiet ShadowDay — no Maydan line, no catalog hero", () => {
     const home = readFileSync(new URL("../routes/index.tsx", import.meta.url), "utf8");
-    assert.match(home, /SquarePage/);
+    assert.match(home, /ShadowDay/);
+    assert.equal(/SquarePage/.test(home), false);
     assert.equal(/Hub/.test(home), false);
     assert.equal(/byCategory|featuredFor/.test(home), false);
+  });
+
+  it("binds /maydan to the filled Square as a separate route", () => {
+    const maydan = readFileSync(new URL("../routes/maydan.tsx", import.meta.url), "utf8");
+    assert.match(maydan, /SquarePage/);
+    assert.match(maydan, /createFileRoute\("\/maydan"\)/);
   });
 });

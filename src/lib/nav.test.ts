@@ -1,6 +1,15 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { chromeNav, mobileChromeNav, PERSONAL_NAV, TOOLS_OVERFLOW_NAV, WORK_NAV } from "./nav.ts";
+import { t } from "./i18n.ts";
+import {
+  chromeNav,
+  firstFilledTab,
+  MAYDAN_PATH,
+  mobileChromeNav,
+  PERSONAL_NAV,
+  TOOLS_OVERFLOW_NAV,
+  WORK_NAV,
+} from "./nav.ts";
 
 describe("chrome nav lock", () => {
   it("keeps Play off the first-row personal and work bars", () => {
@@ -19,6 +28,22 @@ describe("chrome nav lock", () => {
       WORK_NAV.some((item) => item.key === "games"),
       false,
     );
+  });
+
+  it("keeps Maydan as the first visible filled tab after quiet home", () => {
+    const personal = chromeNav("personal").map((item) => item.to);
+    const work = chromeNav("work").map((item) => item.to);
+    const mobile = mobileChromeNav("personal").map((item) => item.to);
+
+    assert.deepEqual(personal.slice(0, 2), ["/", MAYDAN_PATH]);
+    assert.deepEqual(work.slice(0, 2), ["/", MAYDAN_PATH]);
+    assert.equal(mobile[0], "/");
+    assert.equal(mobile[1], MAYDAN_PATH);
+    assert.equal(firstFilledTab("personal").to, MAYDAN_PATH);
+    assert.equal(firstFilledTab("work").key, "square");
+    assert.equal(t("ar", "home"), "الرئيسية");
+    assert.equal(t("ar", "square"), "الميدان");
+    assert.equal(t("en", "home"), "Home");
   });
 
   it("nests games under Tools overflow only", () => {

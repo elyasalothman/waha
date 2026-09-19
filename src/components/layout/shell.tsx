@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet, useRouterState } from "@tanstack/react-router";
-import { GalleryVertical, PanelsTopLeft, Search, Sparkles, Sun, Wallet, Wrench } from "lucide-react";
+import { GalleryVertical, Home, PanelsTopLeft, Search, Sparkles, Sun, Wallet, Wrench } from "lucide-react";
 import { MadarMark, WahaWordmark } from "@/components/brand";
 import { CommandPalette } from "@/components/command-palette";
 import { AudienceSwitch } from "@/components/audience-switch";
@@ -14,7 +14,8 @@ import { useAppStore } from "@/store/app-store";
 import { Toaster } from "sonner";
 
 const NAV_ICON = {
-  "/": GalleryVertical,
+  "/": Home,
+  "/maydan": GalleryVertical,
   "/life": Sun,
   "/money": Wallet,
   "/tools": Wrench,

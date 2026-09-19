@@ -1,4 +1,4 @@
-/** Reviewer lock: the first screen stays solemn. Games are never the hero. */
+/** King IA lock: `/` is a quiet day-shadow. Games and the Maydan line are never the hero. */
 export type HomeItem = { id: string; category: string; lane: string };
 
 export function isPlayItem(item: HomeItem): boolean {
