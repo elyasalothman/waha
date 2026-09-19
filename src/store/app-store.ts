@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { CITIES, DEFAULT_CITY, type City, findCity } from "@/lib/cities";
 import type { Audience } from "@/lib/catalog";
+import type { FeatureId, FeatureMap } from "@/lib/features";
+import { defaultFeatures, normalizeFeatures } from "@/lib/features";
 import type { Lang } from "@/lib/i18n";
 
 type AppState = {
@@ -8,18 +10,24 @@ type AppState = {
   audience: Audience;
   city: City;
   recent: string[];
+  profileName: string;
+  guest: boolean;
+  features: FeatureMap;
   setLang: (lang: Lang) => void;
   toggleLang: () => void;
   setAudience: (audience: Audience) => void;
   setCity: (id: string) => void;
   setCityCoords: (lat: number, lon: number, labelAr: string, labelEn: string) => void;
+  setProfileName: (name: string) => void;
+  setGuest: (guest: boolean) => void;
+  setFeature: (id: FeatureId, on: boolean) => void;
   pushRecent: (id: string) => void;
   hydrate: () => void;
 };
 
 const KEY = "waha:prefs";
 
-function persist(partial: Pick<AppState, "lang" | "city" | "recent" | "audience">) {
+function persist(partial: Pick<AppState, "lang" | "city" | "recent" | "audience" | "profileName" | "guest" | "features">) {
   try {
     localStorage.setItem(
       KEY,
@@ -29,6 +37,9 @@ function persist(partial: Pick<AppState, "lang" | "city" | "recent" | "audience"
         recent: partial.recent,
         city: partial.city,
         audience: partial.audience,
+        profileName: partial.profileName,
+        guest: partial.guest,
+        features: partial.features,
       }),
     );
   } catch {
@@ -41,6 +52,9 @@ export const useAppStore = create<AppState>((set, get) => ({
   audience: "personal",
   city: DEFAULT_CITY,
   recent: [],
+  profileName: "",
+  guest: false,
+  features: defaultFeatures(),
   setLang: (lang) => {
     set({ lang });
     persist(get());
@@ -71,6 +85,19 @@ export const useAppStore = create<AppState>((set, get) => ({
     set({ city });
     persist(get());
   },
+  setProfileName: (profileName) => {
+    set({ profileName });
+    persist(get());
+  },
+  setGuest: (guest) => {
+    set({ guest });
+    persist(get());
+  },
+  setFeature: (id, on) => {
+    const features = { ...get().features, [id]: id === "settings" ? true : on };
+    set({ features });
+    persist(get());
+  },
   pushRecent: (id) => {
     const recent = [id, ...get().recent.filter((x) => x !== id)].slice(0, 8);
     set({ recent });
@@ -86,6 +113,9 @@ export const useAppStore = create<AppState>((set, get) => ({
         recent?: string[];
         city?: City;
         audience?: Audience;
+        profileName?: string;
+        guest?: boolean;
+        features?: unknown;
       };
       const city =
         parsed.city?.id === "geo" && parsed.city
@@ -98,6 +128,9 @@ export const useAppStore = create<AppState>((set, get) => ({
         audience: parsed.audience === "work" ? "work" : "personal",
         city,
         recent: Array.isArray(parsed.recent) ? parsed.recent : [],
+        profileName: typeof parsed.profileName === "string" ? parsed.profileName : "",
+        guest: parsed.guest === true,
+        features: normalizeFeatures(parsed.features),
       });
     } catch {
       /* ignore */

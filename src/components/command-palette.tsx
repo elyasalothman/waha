@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { Command } from "cmdk";
 import { searchCatalog } from "@/lib/catalog";
+import { OS_APPS } from "@/lib/os";
+import { isFeatureOn } from "@/lib/features";
 import { appIcon } from "@/lib/icons";
 import { t, type Lang } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
@@ -18,6 +20,7 @@ export function CommandPalette({
 }) {
   const navigate = useNavigate();
   const audience = useAppStore((s) => s.audience);
+  const features = useAppStore((s) => s.features);
   const [q, setQ] = useState("");
   const items = useMemo(() => searchCatalog(q, audience), [q, audience]);
 
@@ -60,6 +63,28 @@ export function CommandPalette({
         />
         <Command.List className="max-h-80 overflow-y-auto p-2">
           <Command.Empty className="px-3 py-6 text-center text-sm text-muted">{t(lang, "empty")}</Command.Empty>
+          {OS_APPS.filter((app) => isFeatureOn(features, app.feature))
+            .filter((app) => !q || `${app.title.ar} ${app.title.en} ${app.id}`.includes(q))
+            .map((app) => {
+              const Icon = appIcon(app.icon);
+              return (
+                <Command.Item
+                  key={`os-${app.id}`}
+                  value={`${app.title.ar} ${app.title.en} ${app.id} os`}
+                  onSelect={() => {
+                    onOpenChange(false);
+                    void navigate({ to: app.to as "/" });
+                  }}
+                  className={cn(
+                    "flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm text-fg data-[selected=true]:bg-surface-2",
+                  )}
+                >
+                  <Icon className="size-4 text-primary" />
+                  <span className="flex-1">{app.title[lang]}</span>
+                  <span className="text-xs text-subtle">os</span>
+                </Command.Item>
+              );
+            })}
           {items.map((item) => {
             const Icon = appIcon(item.icon);
             return (

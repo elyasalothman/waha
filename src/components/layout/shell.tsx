@@ -1,35 +1,56 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet, useRouterState } from "@tanstack/react-router";
-import { GalleryVertical, PanelsTopLeft, Search, Sparkles, Sun, Wallet, Wrench } from "lucide-react";
+import { CloudSun, House, Mail, Sparkles, Sunrise, Wallet, Wrench, PanelsTopLeft, Settings } from "lucide-react";
 import { WahaWordmark } from "@/components/brand";
 import { CommandPalette } from "@/components/command-palette";
 import { AudienceSwitch } from "@/components/audience-switch";
 import { LangToggle } from "@/components/city-select";
 import { OfflineBanner } from "@/components/offline-banner";
 import { DoorsStrip } from "@/components/doors-strip";
-import { t } from "@/lib/i18n";
-import { chromeNav, mobileChromeNav } from "@/lib/nav";
+import { t, type I18nKey } from "@/lib/i18n";
+import { isFeatureOn, type FeatureId } from "@/lib/features";
 import { cn } from "@/lib/cn";
 import { useAppStore } from "@/store/app-store";
 import { Toaster } from "sonner";
 
-const NAV_ICON = {
-  "/": GalleryVertical,
-  "/life": Sun,
-  "/money": Wallet,
-  "/tools": Wrench,
-  "/studio": Sparkles,
-  "/workspace": PanelsTopLeft,
-} as const;
+type NavItem = { to: string; key: I18nKey; icon: typeof House; feature?: FeatureId };
+
+const PERSONAL_NAV: NavItem[] = [
+  { to: "/", key: "home", icon: House },
+  { to: "/faith", key: "faith", icon: Sunrise, feature: "faith" },
+  { to: "/messages", key: "messages", icon: Mail, feature: "messages" },
+  { to: "/ask", key: "ask", icon: Sparkles, feature: "ask" },
+  { to: "/settings", key: "settings", icon: Settings, feature: "settings" },
+];
+
+const WORK_NAV: NavItem[] = [
+  { to: "/", key: "home", icon: House },
+  { to: "/workspace", key: "workspace", icon: PanelsTopLeft, feature: "work" },
+  { to: "/money", key: "finance", icon: Wallet, feature: "money" },
+  { to: "/tools", key: "tools", icon: Wrench, feature: "tools" },
+  { to: "/settings", key: "settings", icon: Settings, feature: "settings" },
+];
+
+const DESKTOP_EXTRA: NavItem[] = [
+  { to: "/weather", key: "weather", icon: CloudSun, feature: "weather" },
+  { to: "/money", key: "money", icon: Wallet, feature: "money" },
+];
 
 export function Shell() {
   const lang = useAppStore((s) => s.lang);
   const audience = useAppStore((s) => s.audience);
+  const features = useAppStore((s) => s.features);
+  const name = useAppStore((s) => s.profileName);
   const hydrate = useAppStore((s) => s.hydrate);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [cmd, setCmd] = useState(false);
-  const nav = chromeNav(audience);
-  const mobileNav = mobileChromeNav(audience);
+  const base = audience === "personal" ? PERSONAL_NAV : WORK_NAV;
+  const nav = [...base, ...(audience === "personal" ? DESKTOP_EXTRA : [])].filter(
+    (item, i, all) => all.findIndex((x) => x.to === item.to) === i && (!item.feature || isFeatureOn(features, item.feature)),
+  );
+  const mobileNav = (audience === "personal" ? PERSONAL_NAV : WORK_NAV).filter(
+    (item) => !item.feature || isFeatureOn(features, item.feature),
+  );
 
   useEffect(() => {
     hydrate();
@@ -43,7 +64,7 @@ export function Shell() {
             <WahaWordmark lang={lang} />
           </Link>
           <p className="mt-3 text-xs leading-relaxed text-muted">
-            {t(lang, audience === "personal" ? "tagline" : "workTagline")}
+            {t(lang, audience === "personal" ? "osTagline" : "workTagline")}
           </p>
           <div className="mt-4">
             <AudienceSwitch />
@@ -56,7 +77,7 @@ export function Shell() {
         </div>
         <nav className="flex flex-1 flex-col gap-0.5 px-3">
           {nav.map((item) => {
-            const Icon = NAV_ICON[item.to as keyof typeof NAV_ICON] ?? GalleryVertical;
+            const Icon = item.icon;
             const active = item.to === "/" ? pathname === "/" : pathname === item.to || pathname.startsWith(`${item.to}/`);
             return (
               <Link
@@ -88,12 +109,11 @@ export function Shell() {
             onClick={() => setCmd(true)}
             className="ms-auto flex h-11 min-w-0 flex-1 items-center gap-2 rounded-md border border-border bg-surface px-3 text-start text-sm text-muted lg:max-w-md"
           >
-            <Search className="size-4 shrink-0" />
             <span className="truncate">{t(lang, "search")}</span>
-            <kbd className="ms-auto hidden rounded border border-border px-1.5 font-mono text-[10px] text-subtle sm:inline">
-              ⌘K
-            </kbd>
           </button>
+          <Link to="/settings" className="hidden max-w-28 truncate text-sm text-muted sm:inline hover:text-fg">
+            {name || t(lang, "account")}
+          </Link>
           <div className="hidden sm:block lg:hidden">
             <AudienceSwitch compact />
           </div>
@@ -101,10 +121,6 @@ export function Shell() {
             <LangToggle lang={lang} />
           </div>
         </header>
-
-        <div className="border-b border-border px-4 py-2 sm:hidden">
-          <AudienceSwitch />
-        </div>
 
         <main className="px-4 py-6 pb-24 lg:px-8 lg:pb-10">
           <OfflineBanner lang={lang} />
@@ -115,11 +131,11 @@ export function Shell() {
       <nav
         className={cn(
           "fixed inset-x-0 bottom-0 z-30 grid border-t border-border bg-bg/95 pb-[env(safe-area-inset-bottom)] lg:hidden",
-          mobileNav.length === 5 ? "grid-cols-5" : "grid-cols-4",
+          mobileNav.length >= 5 ? "grid-cols-5" : "grid-cols-4",
         )}
       >
         {mobileNav.map((item) => {
-          const Icon = NAV_ICON[item.to as keyof typeof NAV_ICON] ?? GalleryVertical;
+          const Icon = item.icon;
           const active = item.to === "/" ? pathname === "/" : pathname === item.to || pathname.startsWith(`${item.to}/`);
           return (
             <Link

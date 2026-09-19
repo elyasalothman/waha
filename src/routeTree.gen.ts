@@ -10,17 +10,36 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AskRouteImport } from './routes/ask'
+import { Route as FaithRouteImport } from './routes/faith'
 import { Route as GamesRouteImport } from './routes/games'
 import { Route as LifeRouteImport } from './routes/life'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as MessagesRouteImport } from './routes/messages'
 import { Route as MoneyRouteImport } from './routes/money'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as StudioRouteImport } from './routes/studio'
 import { Route as ToolsRouteImport } from './routes/tools'
+import { Route as WeatherRouteImport } from './routes/weather'
 import { Route as WorkspaceRouteImport } from './routes/workspace'
+import { Route as ApiFamilyInboxRouteImport } from './routes/api/family-inbox'
 import { Route as AppIdRouteImport } from './routes/app.$id'
+import { Route as MessagesThreadIdRouteImport } from './routes/messages.$threadId'
+import { Route as ApiAuthSplatRouteImport } from './routes/api/auth.$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AskRoute = AskRouteImport.update({
+  id: '/ask',
+  path: '/ask',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaithRoute = FaithRouteImport.update({
+  id: '/faith',
+  path: '/faith',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GamesRoute = GamesRouteImport.update({
@@ -33,9 +52,24 @@ const LifeRoute = LifeRouteImport.update({
   path: '/life',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MessagesRoute = MessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MoneyRoute = MoneyRouteImport.update({
   id: '/money',
   path: '/money',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const StudioRoute = StudioRouteImport.update({
@@ -48,9 +82,19 @@ const ToolsRoute = ToolsRouteImport.update({
   path: '/tools',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WeatherRoute = WeatherRouteImport.update({
+  id: '/weather',
+  path: '/weather',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WorkspaceRoute = WorkspaceRouteImport.update({
   id: '/workspace',
   path: '/workspace',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiFamilyInboxRoute = ApiFamilyInboxRouteImport.update({
+  id: '/api/family-inbox',
+  path: '/api/family-inbox',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppIdRoute = AppIdRouteImport.update({
@@ -58,80 +102,152 @@ const AppIdRoute = AppIdRouteImport.update({
   path: '/app/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MessagesThreadIdRoute = MessagesThreadIdRouteImport.update({
+  id: '/$threadId',
+  path: '/$threadId',
+  getParentRoute: () => MessagesRoute,
+} as any)
+const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
+  id: '/api/auth/$',
+  path: '/api/auth/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ask': typeof AskRoute
+  '/faith': typeof FaithRoute
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
+  '/login': typeof LoginRoute
+  '/messages': typeof MessagesRouteWithChildren
   '/money': typeof MoneyRoute
+  '/settings': typeof SettingsRoute
   '/studio': typeof StudioRoute
   '/tools': typeof ToolsRoute
+  '/weather': typeof WeatherRoute
   '/workspace': typeof WorkspaceRoute
+  '/api/family-inbox': typeof ApiFamilyInboxRoute
   '/app/$id': typeof AppIdRoute
+  '/messages/$threadId': typeof MessagesThreadIdRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ask': typeof AskRoute
+  '/faith': typeof FaithRoute
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
+  '/login': typeof LoginRoute
+  '/messages': typeof MessagesRouteWithChildren
   '/money': typeof MoneyRoute
+  '/settings': typeof SettingsRoute
   '/studio': typeof StudioRoute
   '/tools': typeof ToolsRoute
+  '/weather': typeof WeatherRoute
   '/workspace': typeof WorkspaceRoute
+  '/api/family-inbox': typeof ApiFamilyInboxRoute
   '/app/$id': typeof AppIdRoute
+  '/messages/$threadId': typeof MessagesThreadIdRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ask': typeof AskRoute
+  '/faith': typeof FaithRoute
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
+  '/login': typeof LoginRoute
+  '/messages': typeof MessagesRouteWithChildren
   '/money': typeof MoneyRoute
+  '/settings': typeof SettingsRoute
   '/studio': typeof StudioRoute
   '/tools': typeof ToolsRoute
+  '/weather': typeof WeatherRoute
   '/workspace': typeof WorkspaceRoute
+  '/api/family-inbox': typeof ApiFamilyInboxRoute
   '/app/$id': typeof AppIdRoute
+  '/messages/$threadId': typeof MessagesThreadIdRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/ask'
+    | '/faith'
     | '/games'
     | '/life'
+    | '/login'
+    | '/messages'
     | '/money'
+    | '/settings'
     | '/studio'
     | '/tools'
+    | '/weather'
     | '/workspace'
+    | '/api/family-inbox'
     | '/app/$id'
+    | '/messages/$threadId'
+    | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/ask'
+    | '/faith'
     | '/games'
     | '/life'
+    | '/login'
+    | '/messages'
     | '/money'
+    | '/settings'
     | '/studio'
     | '/tools'
+    | '/weather'
     | '/workspace'
+    | '/api/family-inbox'
     | '/app/$id'
+    | '/messages/$threadId'
+    | '/api/auth/$'
   id:
     | '__root__'
     | '/'
+    | '/ask'
+    | '/faith'
     | '/games'
     | '/life'
+    | '/login'
+    | '/messages'
     | '/money'
+    | '/settings'
     | '/studio'
     | '/tools'
+    | '/weather'
     | '/workspace'
+    | '/api/family-inbox'
     | '/app/$id'
+    | '/messages/$threadId'
+    | '/api/auth/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AskRoute: typeof AskRoute
+  FaithRoute: typeof FaithRoute
   GamesRoute: typeof GamesRoute
   LifeRoute: typeof LifeRoute
+  LoginRoute: typeof LoginRoute
+  MessagesRoute: typeof MessagesRouteWithChildren
   MoneyRoute: typeof MoneyRoute
+  SettingsRoute: typeof SettingsRoute
   StudioRoute: typeof StudioRoute
   ToolsRoute: typeof ToolsRoute
+  WeatherRoute: typeof WeatherRoute
   WorkspaceRoute: typeof WorkspaceRoute
+  ApiFamilyInboxRoute: typeof ApiFamilyInboxRoute
   AppIdRoute: typeof AppIdRoute
+  ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -141,6 +257,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ask': {
+      id: '/ask'
+      path: '/ask'
+      fullPath: '/ask'
+      preLoaderRoute: typeof AskRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faith': {
+      id: '/faith'
+      path: '/faith'
+      fullPath: '/faith'
+      preLoaderRoute: typeof FaithRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/games': {
@@ -157,11 +287,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LifeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/messages': {
+      id: '/messages'
+      path: '/messages'
+      fullPath: '/messages'
+      preLoaderRoute: typeof MessagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/money': {
       id: '/money'
       path: '/money'
       fullPath: '/money'
       preLoaderRoute: typeof MoneyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/studio': {
@@ -178,11 +329,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ToolsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/weather': {
+      id: '/weather'
+      path: '/weather'
+      fullPath: '/weather'
+      preLoaderRoute: typeof WeatherRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/workspace': {
       id: '/workspace'
       path: '/workspace'
       fullPath: '/workspace'
       preLoaderRoute: typeof WorkspaceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/family-inbox': {
+      id: '/api/family-inbox'
+      path: '/api/family-inbox'
+      fullPath: '/api/family-inbox'
+      preLoaderRoute: typeof ApiFamilyInboxRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/app/$id': {
@@ -192,18 +357,52 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/messages/$threadId': {
+      id: '/messages/$threadId'
+      path: '/$threadId'
+      fullPath: '/messages/$threadId'
+      preLoaderRoute: typeof MessagesThreadIdRouteImport
+      parentRoute: typeof MessagesRoute
+    }
+    '/api/auth/$': {
+      id: '/api/auth/$'
+      path: '/api/auth/$'
+      fullPath: '/api/auth/$'
+      preLoaderRoute: typeof ApiAuthSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface MessagesRouteChildren {
+  MessagesThreadIdRoute: typeof MessagesThreadIdRoute
+}
+
+const MessagesRouteChildren: MessagesRouteChildren = {
+  MessagesThreadIdRoute: MessagesThreadIdRoute,
+}
+
+const MessagesRouteWithChildren = MessagesRoute._addFileChildren(
+  MessagesRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AskRoute: AskRoute,
+  FaithRoute: FaithRoute,
   GamesRoute: GamesRoute,
   LifeRoute: LifeRoute,
+  LoginRoute: LoginRoute,
+  MessagesRoute: MessagesRouteWithChildren,
   MoneyRoute: MoneyRoute,
+  SettingsRoute: SettingsRoute,
   StudioRoute: StudioRoute,
   ToolsRoute: ToolsRoute,
+  WeatherRoute: WeatherRoute,
   WorkspaceRoute: WorkspaceRoute,
+  ApiFamilyInboxRoute: ApiFamilyInboxRoute,
   AppIdRoute: AppIdRoute,
+  ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
