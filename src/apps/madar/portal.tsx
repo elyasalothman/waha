@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowRight, RotateCw, Star } from "lucide-react";
 import { MadarMark } from "@/components/brand";
 import { Button } from "@/components/ui/button";
+import { useHydrated } from "@/hooks/use-hydrated";
 import { usePersistent } from "@/lib/storage";
 import {
   classifyOmnibox,
@@ -58,8 +59,12 @@ export function MadarPortal({ initialQuery = "" }: { initialQuery?: string }) {
   const [stack, setStack] = useState<string[]>(initialQuery.trim() ? [initialQuery.trim()] : []);
   const [wiki, setWiki] = useState<WikiHit | null>(null);
   const [wikiState, setWikiState] = useState<"idle" | "loading" | "done">("idle");
-  const [history, setHistory] = usePersistent<MadarVisit[]>("waha:madar:history", []);
-  const [favorites, setFavorites] = usePersistent<MadarVisit[]>("waha:madar:favorites", []);
+  const [history, setHistory, historyReady] = usePersistent<MadarVisit[]>("waha:madar:history", []);
+  const [favorites, setFavorites, favoritesReady] = usePersistent<MadarVisit[]>("waha:madar:favorites", []);
+  const hydrated = useHydrated();
+  const persistReady = hydrated && historyReady && favoritesReady;
+  const shownHistory = persistReady ? history : [];
+  const shownFavorites = persistReady ? favorites : [];
   const inputRef = useRef<HTMLInputElement>(null);
   const consumedQuery = useRef<string | null>(initialQuery.trim() || null);
   const submitRef = useRef<(raw: string, fromStack?: boolean) => void>(() => {});
@@ -197,7 +202,12 @@ export function MadarPortal({ initialQuery = "" }: { initialQuery?: string }) {
             submit(draft);
           }}
         >
+          <label htmlFor="madar-omnibox" className="sr-only">
+            {t(lang, "madarOmnibox")}
+          </label>
           <input
+            id="madar-omnibox"
+            name="madar-q"
             ref={inputRef}
             value={draft}
             onChange={(e) => setDraft(e.target.value)}
@@ -218,9 +228,9 @@ export function MadarPortal({ initialQuery = "" }: { initialQuery?: string }) {
             onClick={starCurrent}
             disabled={!active}
             aria-label={t(lang, "madarFavorite")}
-            className={cn(isFavorite(favorites, currentFav) && "text-primary")}
+            className={cn(isFavorite(shownFavorites, currentFav) && "text-primary")}
           >
-            <Star className={cn("size-4", isFavorite(favorites, currentFav) && "fill-current")} />
+            <Star className={cn("size-4", isFavorite(shownFavorites, currentFav) && "fill-current")} />
           </Button>
         </form>
       </div>
@@ -230,8 +240,8 @@ export function MadarPortal({ initialQuery = "" }: { initialQuery?: string }) {
           lang={lang}
           draft={draft}
           liveHouse={draft.trim() ? liveHouse : HOUSE_SITES}
-          favorites={favorites}
-          history={history}
+          favorites={shownFavorites}
+          history={shownHistory}
           onOpenHouse={openHouse}
           onReplay={(visit) => {
             if (visit.kind === "house" && visit.href) {

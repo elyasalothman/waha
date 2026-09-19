@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import {
@@ -130,5 +131,28 @@ describe("history and favorites", () => {
     const on = toggleFavorite([], item);
     assert.equal(isFavorite(on, item), true);
     assert.equal(isFavorite(toggleFavorite(on, item), item), false);
+  });
+});
+
+describe("madar portal lock", () => {
+  const src = readFileSync(new URL("../apps/madar/portal.tsx", import.meta.url), "utf8");
+
+  it("gives the omnibox stable id/name for باني without cloning a browser chrome", () => {
+    assert.match(src, /id="madar-omnibox"/);
+    assert.match(src, /name="madar-q"/);
+    assert.match(src, /htmlFor="madar-omnibox"/);
+    assert.match(src, /aria-label=\{t\(lang, "madarOmnibox"\)\}/);
+    assert.equal(src.includes("suppressHydrationWarning"), false);
+  });
+
+  it("keeps first paint stable — local history/favorites wait until after mount", () => {
+    assert.match(src, /useHydrated/);
+    assert.match(src, /historyReady/);
+    assert.match(src, /favoritesReady/);
+    assert.match(src, /persistReady/);
+    assert.match(src, /shownHistory/);
+    assert.match(src, /shownFavorites/);
+    assert.match(src, /usePersistent<MadarVisit\[]>\("waha:madar:history"/);
+    assert.match(src, /usePersistent<MadarVisit\[]>\("waha:madar:favorites"/);
   });
 });
