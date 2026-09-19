@@ -1,3 +1,4 @@
+import { ExternalLink } from "@/components/external-link";
 import { houseProductDoors } from "@/lib/square/soft-money";
 import type { Lang } from "@/lib/i18n";
 
@@ -23,9 +24,9 @@ export function SupportRow({
       {products.map((door) => (
         <span key={door.id} className="inline-flex items-center gap-2">
           <span aria-hidden="true">·</span>
-          <a href={door.href} data-door={door.id} className="hover:text-fg">
+          <ExternalLink href={door.href} data-door={door.id} className="hover:text-fg">
             {lang === "ar" ? door.title.ar.split(" · ")[0] : door.title.en.split(" · ")[0]}
-          </a>
+          </ExternalLink>
         </span>
       ))}
     </nav>

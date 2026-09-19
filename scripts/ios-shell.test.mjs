@@ -262,6 +262,8 @@ test("house doors open in first-party WKWebView, not Safari / Capacitor Browser"
   assert.match(read("src/components/doors-strip.tsx"), /ExternalLink/);
   assert.match(read("src/components/app-card.tsx"), /ExternalLink/);
   assert.match(read("src/components/house-doors.tsx"), /ExternalLink/);
+  assert.match(read("src/components/square/support-row.tsx"), /ExternalLink/);
+  assert.match(read("src/apps/madar/portal.tsx"), /openExternalUrl/);
 
   assert.match(rd, /رجوع لواحة/);
   assert.match(rd, /ليست Safari/);
