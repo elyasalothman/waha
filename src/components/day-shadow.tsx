@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { CitySelect } from "@/components/city-select";
 import { formatGregorian, formatHijri } from "@/lib/hijri";
 import { t, type Lang } from "@/lib/i18n";
+import { formatStampClock } from "@/lib/offline-stamp";
 import { formatClock, shadowPrayer } from "@/lib/prayer";
 import { weatherDegrees, weatherLabel, type WeatherPayload } from "@/lib/weather";
 import { qiblaDeg } from "@/lib/prayer";
@@ -14,12 +15,14 @@ export function DayShadow({
   now,
   weather,
   showQibla,
+  updatedAt,
 }: {
   lang: Lang;
   city: City;
   now: Date;
   weather: WeatherPayload | null;
   showQibla?: boolean;
+  updatedAt?: number;
 }) {
   const tz = city.tz || "Asia/Riyadh";
   const prayer = shadowPrayer(city.lat, city.lon, tz, lang, now);
@@ -53,6 +56,12 @@ export function DayShadow({
         <div className="mt-5 max-w-md">
           <CitySelect compact />
         </div>
+        <p className="mt-4 text-xs text-subtle" data-testid="last-updated" suppressHydrationWarning>
+          {t(lang, "lastUpdated")}
+          {weather?.source === "cache" ? ` · ${t(lang, "offline")}` : ""}
+          {" · "}
+          <span className="num font-mono tabular-nums">{formatStampClock(updatedAt ?? now.getTime(), lang, tz)}</span>
+        </p>
       </div>
 
       <div className="grid gap-3">
@@ -100,17 +109,17 @@ export function DayShadow({
         ) : null}
       </div>
 
-      <ol className="grid grid-cols-3 gap-2 lg:col-span-2 sm:grid-cols-6">
+      <ol className="grid grid-cols-3 gap-1.5 lg:col-span-2 sm:grid-cols-6">
         {prayer.times.map((row) => (
           <li
             key={row.key}
             className={cn(
-              "rounded-xl border border-border bg-surface px-3 py-3",
-              row.key === prayer.key && "border-primary/50",
+              "rounded-lg border border-border/80 bg-surface px-2 py-2",
+              row.key === prayer.key && "border-primary/40",
             )}
           >
-            <p className="text-[11px] text-muted">{row.name}</p>
-            <p className="num mt-1 font-mono text-sm tabular-nums">{row.hm}</p>
+            <p className="text-[10px] text-muted">{row.name}</p>
+            <p className="num mt-0.5 font-mono text-xs tabular-nums">{row.hm}</p>
           </li>
         ))}
       </ol>

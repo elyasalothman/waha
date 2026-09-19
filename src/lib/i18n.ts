@@ -165,6 +165,26 @@ const strings = {
   wells: copy("الآبار", "Wells", "水井", "Pozos", "Puits", "कुएँ"),
   yourName: copy("اسمك", "Your name", "你的名字", "Tu nombre", "Ton nom", "आपका नाम"),
   method: copy("أم القرى", "Umm al-Qura", "乌姆库拉", "Umm al-Qura", "Oumm al-Qura", "उम्म अल-क़ुरा"),
+  share: copy("شارك", "Share", "分享", "Compartir", "Partager", "साझा"),
+  shareShadow: copy("شارك ظل اليوم", "Share today’s shadow", "分享今日日影", "Compartir la sombra", "Partager l’ombre", "आज की छाया साझा करें"),
+  lastUpdated: copy("آخر تحديث", "Last updated", "上次更新", "Última actualización", "Dernière mise à jour", "अंतिम अद्यतन"),
+  offline: copy("دون اتصال", "Offline", "离线", "Sin conexión", "Hors ligne", "ऑफ़लाइन"),
+  more: copy("المزيد", "More", "更多", "Más", "Plus", "और"),
+  less: copy("أقل", "Less", "更少", "Menos", "Moins", "कम"),
+  remind: copy("تذكير الصلاة", "Prayer reminder", "礼拜提醒", "Aviso de oración", "Rappel de prière", "नमाज़ अनुस्मारक"),
+  remindOn: copy("التذكير يعمل", "Reminder on", "提醒已开", "Aviso activado", "Rappel activé", "अनुस्मारक चालू"),
+  remindOff: copy("التذكير متوقف", "Reminder off", "提醒已关", "Aviso desactivado", "Rappel coupé", "अनुस्मारक बंद"),
+  remindQueued: copy("جاهز للإشعار عند توفره", "Ready when notifications are available", "通知就绪后生效", "Listo cuando haya avisos", "Prêt quand les notifications le seront", "सूचना उपलब्ध होने पर तैयार"),
+  remindHint: copy(
+    "ننبّهك للصلاة التالية. على الآيفون يعمل الإشعار بعد غلاف Capacitor؛ هنا يُحفظ الجدول ويُجرَّب إشعار المتصفح.",
+    "We remind you of the next prayer. On iPhone the alert lands after the Capacitor shell; here we keep the schedule and try the browser notification.",
+    "提醒下一拜。iPhone 上在 Capacitor 壳之后生效。",
+    "Avisamos de la siguiente oración. En iPhone, tras la capa Capacitor.",
+    "Rappel de la prochaine prière. Sur iPhone, après la couche Capacitor.",
+    "अगली नमाज़ की याद। iPhone पर Capacitor के बाद।",
+  ),
+  remindBody: copy("حان وقت", "It is time for", "到了", "Es la hora de", "C’est l’heure de", "समय हो गया"),
+  emergencySa: copy("طوارئ السعودية", "Saudi emergency", "沙特应急", "Emergencia saudí", "Urgence saoudienne", "सऊदी आपातकाल"),
 } as const satisfies Record<string, Copy>;
 
 export type I18nKey = keyof typeof strings;

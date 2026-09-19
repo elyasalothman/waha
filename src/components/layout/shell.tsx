@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { WahaWordmark } from "@/components/brand";
 import { CommandPalette } from "@/components/command-palette";
+import { HouseDoors } from "@/components/house-doors";
 import { LangSelect } from "@/components/lang-select";
 import { SegmentSwitch } from "@/components/segment-switch";
 import { t, type I18nKey } from "@/lib/i18n";
@@ -102,6 +103,10 @@ export function Shell() {
             );
           })}
         </nav>
+        <div className="px-3 pb-2">
+          <p className="mb-2 px-2 text-[11px] text-subtle">{t(lang, "doors")}</p>
+          <HouseDoors lang={lang} compact columns={2} />
+        </div>
         <div className="flex items-center justify-between px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
           <LangSelect compact />
         </div>

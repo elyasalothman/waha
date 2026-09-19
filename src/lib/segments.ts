@@ -148,9 +148,9 @@ export function itemFitsSegment(item: CatalogItem, segment: Segment): boolean {
 export type WellId = "faith" | "news" | "desk" | "health" | "know" | "play" | "money" | "house";
 
 export const WELL_META: Record<WellId, { title: Copy; href: string; category?: Category }> = {
-  faith: { title: copy("إيمان", "Faith", "信仰", "Fe", "Foi", "आस्था"), href: "/life" },
+  faith: { title: copy("عبادة", "Worship", "礼拜", "Adoración", "Adoration", "इबादत"), href: "/life" },
   news: { title: copy("أخبار", "News", "新闻", "Noticias", "Actu", "समाचार"), href: "/house" },
-  desk: { title: copy("عمل", "Desk", "工作", "Mesa", "Bureau", "कार्य"), href: "/workspace" },
+  desk: { title: copy("ترتيب", "Order", "条理", "Orden", "Ordre", "व्यवस्था"), href: "/workspace" },
   health: { title: copy("صحة", "Health", "健康", "Salud", "Santé", "स्वास्थ्य"), href: "/life" },
   know: { title: copy("معرفة", "Knowledge", "知识", "Saber", "Savoir", "ज्ञान"), href: "/tools" },
   play: { title: copy("فسحة", "Play", "游戏", "Juego", "Jeux", "खेल"), href: "/games" },
@@ -170,4 +170,19 @@ const WELLS_BY_SEGMENT: Record<Segment, WellId[]> = {
 
 export function wellsFor(segment: Segment): WellId[] {
   return WELLS_BY_SEGMENT[segment];
+}
+
+/** First-screen wells only — games and news stay behind المزيد. Ask is the fourth tile. */
+const HOME_WELLS: Record<Segment, WellId[]> = {
+  all: ["faith", "desk", "money"],
+  child: ["faith", "know"],
+  student: ["faith", "desk", "know"],
+  family: ["faith", "desk", "money"],
+  work: ["desk", "money", "know"],
+  elder: ["faith", "health", "desk"],
+  traveler: ["faith", "desk", "money"],
+};
+
+export function homeWellsFor(segment: Segment): WellId[] {
+  return HOME_WELLS[segment].slice(0, 3);
 }

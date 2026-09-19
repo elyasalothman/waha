@@ -1,6 +1,7 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { CitySelect } from "@/components/city-select";
 import { LangSelect } from "@/components/lang-select";
+import { PrayerRemindToggle } from "@/components/prayer-remind-toggle";
 import { SegmentSwitch } from "@/components/segment-switch";
 import { Button } from "@/components/ui/button";
 import { t } from "@/lib/i18n";
@@ -12,6 +13,7 @@ export const Route = createFileRoute("/settings")({ component: SettingsPage });
 
 function SettingsPage() {
   const lang = useAppStore((s) => s.lang);
+  const city = useAppStore((s) => s.city);
   const theme = useAppStore((s) => s.theme);
   const mode = useAppStore((s) => s.mode);
   const fontScale = useAppStore((s) => s.fontScale);
@@ -50,6 +52,8 @@ function SettingsPage() {
         <h2 className="mb-2 text-sm text-muted">{t(lang, "city")}</h2>
         <CitySelect />
       </section>
+
+      <PrayerRemindToggle lang={lang} lat={city.lat} lon={city.lon} tz={city.tz || "Asia/Riyadh"} />
 
       <section>
         <h2 className="mb-2 text-sm text-muted">{t(lang, "theme")}</h2>
