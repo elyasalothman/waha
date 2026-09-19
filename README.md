@@ -32,7 +32,9 @@ npm run typecheck
 npm run build
 ```
 
-الاستضافة المفضّلة: Vercel على `waha.alhajda.com` أو مشروع `waha`. لا تترك المعاينة على grok-sandbox فقط.
+معاينة عامة اليوم: [waha-preview-elyasalothman-3228.vercel.app](https://waha-preview-elyasalothman-3228.vercel.app)
+
+الاستضافة المفضّلة بعد ربط الإنتاج: Vercel على `waha.alhajda.com` أو مشروع `waha`. لا تترك المعاينة على grok-sandbox فقط.
 
 ## التقنية
 
