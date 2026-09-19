@@ -1,5 +1,6 @@
-import { ExternalLink } from "lucide-react";
+import { ExternalLink as ExternalLinkIcon } from "lucide-react";
 import { AppCard } from "@/components/app-card";
+import { ExternalLink } from "@/components/external-link";
 import { SfxToggle } from "@/components/game-hud";
 import { CLASSIC_IDS, GAME_DOORS, SIGNATURE_IDS } from "@/lib/games/doors";
 import { getApp } from "@/lib/catalog";
@@ -58,22 +59,21 @@ export function GamesHub() {
         <h2 className="mb-3 text-sm font-medium text-muted">{lang === "ar" ? "أبواب الخارج" : "Doors out"}</h2>
         <div className="grid gap-3 md:grid-cols-2">
           {GAME_DOORS.map((door) => (
-            <a
+            <ExternalLink
               key={door.id}
               href={door.href}
-              target="_blank"
-              rel="noreferrer"
+              data-door={door.id}
               className="group flex flex-col rounded-xl border border-border bg-surface p-5 transition-colors hover:bg-surface-2"
             >
               <span className="flex items-center justify-between gap-2">
                 <span className="font-display text-2xl">{door.title[lang]}</span>
-                <ExternalLink className="size-4 text-subtle transition-colors group-hover:text-fg" />
+                <ExternalLinkIcon className="size-4 text-subtle transition-colors group-hover:text-fg" />
               </span>
               <span className="mt-2 text-sm leading-relaxed text-muted">{door.blurb[lang]}</span>
               <span className="mt-3 font-mono text-xs text-subtle" dir="ltr">
                 {door.href.replace("https://", "")}
               </span>
-            </a>
+            </ExternalLink>
           ))}
         </div>
       </section>

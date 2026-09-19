@@ -171,7 +171,7 @@ test("PWA add-to-home-screen is واحة with a real manifest, not __grok", () =
   assert.equal(manifest.dir, "rtl");
   assert.equal(manifest.display, "standalone");
   assert.equal(manifest.start_url, "/");
-  assert.equal(manifest.theme_color, "#0c0d0c");
+  assert.equal(manifest.theme_color, "#0a120f");
   assert.ok(exists("public/icons/icon-180.png"));
   assert.ok(exists("public/icons/icon-192.png"));
   assert.ok(exists("public/icons/icon-512.png"));
@@ -231,6 +231,46 @@ test("Arabic RTL fields are wired and ASC Submit stays blocked", () => {
   assert.match(read("src/lib/native-browser.ts"), /@capacitor\/browser/);
   assert.match(read("src/lib/native-browser.ts"), /tahajjud\.alhajda\.com/);
   assert.doesNotMatch(yaml, /submit_to_app_store:\s*true/);
+});
+
+test("house doors open in first-party WKWebView, not Safari / Capacitor Browser", () => {
+  const native = read("src/lib/native-browser.ts");
+  const plugin = read("ios/App/App/HouseDoorBrowserPlugin.swift");
+  const controller = read("ios/App/App/WahaViewController.swift");
+  const project = read("ios/App/App.xcodeproj/project.pbxproj");
+  const rd = read("docs/RD-IOS.md");
+  const ios = read("docs/IOS.md");
+  const cap = read("capacitor.config.ts");
+
+  assert.match(native, /HouseDoorBrowser/);
+  assert.match(native, /inapp-webview/);
+  assert.match(native, /midad\.alhajda\.com/);
+  assert.match(native, /رجوع لواحة/);
+  assert.match(native, /openHouseDoor/);
+  assert.doesNotMatch(native, /SFSafariViewController — not inside WKWebView/);
+
+  assert.match(plugin, /WKWebView/);
+  assert.match(plugin, /HouseDoorBrowser/);
+  assert.match(plugin, /رجوع لواحة/);
+  assert.doesNotMatch(plugin, /SFSafariViewController/);
+  assert.doesNotMatch(plugin, /SafariServices/);
+
+  assert.match(controller, /registerPluginInstance\(HouseDoorBrowserPlugin/);
+  assert.match(project, /HouseDoorBrowserPlugin\.swift/);
+  assert.match(cap, /HouseDoorBrowser/);
+  assert.match(cap, /\*\.alhajda\.com/);
+  assert.match(read("src/components/doors-strip.tsx"), /ExternalLink/);
+  assert.match(read("src/components/doors-strip.tsx"), /to="\/books"/);
+  assert.match(read("src/components/app-card.tsx"), /ExternalLink/);
+  assert.match(read("src/components/house-doors.tsx"), /ExternalLink/);
+  assert.match(read("src/components/games-hub.tsx"), /from "@\/components\/external-link"/);
+  assert.match(read("src/apps/books/page.tsx"), /ExternalLink/);
+  assert.match(read("src/apps/madar/portal.tsx"), /openExternalUrl/);
+
+  assert.match(rd, /رجوع لواحة/);
+  assert.match(rd, /ليست Safari/);
+  assert.doesNotMatch(ios, /تُفتح خارج الـ WebView/);
+  assert.match(ios, /HouseDoorBrowser/);
 });
 
 test("ios-next-build never decreases the project version", () => {
