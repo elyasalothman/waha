@@ -21,6 +21,7 @@ import { SupportPanel } from "./support-panel";
 import { SupportRow } from "./support-row";
 import { WorldCard } from "./world-card";
 import { WorldStrip } from "./world-strip";
+import { XStrip } from "./x-strip";
 
 type MaydanLane = SquareTab | "world";
 
@@ -62,6 +63,8 @@ export function SquarePage() {
       <header className="pt-3 pb-2" data-home-section="square">
         <h1 className="font-display text-xl tracking-tight">{L("الميدان", "The Square")}</h1>
       </header>
+
+      <XStrip lang={lang} />
 
       <WorldStrip lang={lang} cards={world} active={onWorldLane} onOpenLane={() => setTab("world")} />
 
