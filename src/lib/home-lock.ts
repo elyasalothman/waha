@@ -3,8 +3,8 @@ import { primaryLauncherDoors } from "./doors.ts";
 /** Reviewer lock: the first screen stays solemn. Games are never the hero. */
 export type HomeItem = { id: string; category: string; lane: string };
 
-/** King lock on `/`: filled square + thin shadow + house doors. */
-export const HOME_ABOVE_FOLD = ["day-shadow", "house-doors", "square"] as const;
+/** Council lock: `/` is Day Shadow alone. Square lives on `/maydan`. */
+export const HOME_ABOVE_FOLD = ["day-shadow"] as const;
 export const HOME_SHADOW_KEYS = ["now", "prayer", "weather"] as const;
 export const HOME_FORBIDDEN_COPY = ["ابدأ من هنا", "جديد في واحة"] as const;
 

@@ -14,15 +14,15 @@ describe("chrome nav lock", () => {
   it("keeps the first-row bar to الميدان + مدار + المزيد", () => {
     assert.deepEqual(
       chromeNav("personal").map((item) => item.to),
-      ["/", "/madar", "/more"],
+      ["/maydan", "/madar", "/more"],
     );
     assert.deepEqual(
       chromeNav("work").map((item) => item.to),
-      ["/", "/madar", "/more"],
+      ["/maydan", "/madar", "/more"],
     );
     assert.deepEqual(
       mobileChromeNav("personal").map((item) => item.to),
-      ["/", "/more"],
+      ["/maydan", "/more"],
     );
   });
 
