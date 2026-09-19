@@ -4,19 +4,19 @@ import { DEFAULT_CITY } from "./cities.ts";
 import { shadowDayNow } from "./shadow-day.ts";
 import {
   composeMohsenMessage,
+  dayContextFromSnap,
   isGreetingOnly,
   looksLikePrivateDocument,
   mapMohsenTrust,
   runAskWaha,
   safeCitations,
-  type MohsenFields,
 } from "./ask-waha.ts";
 
 const NOW = new Date("2026-09-19T14:10:00+03:00");
-const WEATHER = { c: 37, labelAr: "صافٍ", labelEn: "Clear" };
+const DAY = dayContextFromSnap(shadowDayNow(NOW, DEFAULT_CITY));
 
-async function day() {
-  return shadowDayNow({ city: DEFAULT_CITY, now: NOW, weather: WEATHER });
+function loadDay() {
+  return DAY;
 }
 
 describe("ask waha §5 smoke", () => {
@@ -28,7 +28,7 @@ describe("ask waha §5 smoke", () => {
       messages: [{ role: "user", content: "من أنت؟" }],
       city: DEFAULT_CITY,
       now: NOW,
-      weather: WEATHER,
+      loadDay,
       askMohsen: async (input) => {
         sent = input.message;
         return {
@@ -51,7 +51,6 @@ describe("ask waha §5 smoke", () => {
   });
 
   it("2. صلاة تالية / طقس مع يوم في السياق → مدعوم ورقم منطقي", async () => {
-    const local = await day();
     let sent = "";
     const prayer = await runAskWaha({
       mode: "chat",
@@ -59,11 +58,11 @@ describe("ask waha §5 smoke", () => {
       messages: [{ role: "user", content: "متى الصلاة التالية؟" }],
       city: DEFAULT_CITY,
       now: NOW,
-      weather: WEATHER,
+      loadDay,
       askMohsen: async (input) => {
         sent = input.message;
         return {
-          reply: `الصلاة التالية ${local.nextPrayerAr} الساعة ${local.nextPrayerAtAr}.`,
+          reply: `الصلاة التالية ${DAY.prayerLabelAr} الساعة ${DAY.prayerHm}.`,
           action: "حساب_مباشر",
           via: "calc",
           source: "",
@@ -77,8 +76,8 @@ describe("ask waha §5 smoke", () => {
     assert.equal(prayer.trust, "مدعوم");
     assert.equal(prayer.usedDay, true);
     assert.match(sent, /يوم المستخدم/);
-    assert.match(sent, new RegExp(local.nextPrayerAr));
-    assert.match(prayer.text, new RegExp(local.nextPrayerAr));
+    assert.match(sent, new RegExp(DAY.prayerLabelAr));
+    assert.match(prayer.text, new RegExp(DAY.prayerLabelAr));
     assert.match(prayer.text, /\d|٠|١|٢|٣|٤|٥|٦|٧|٨|٩/);
 
     const refused = await runAskWaha({
@@ -87,7 +86,7 @@ describe("ask waha §5 smoke", () => {
       messages: [{ role: "user", content: "متى الصلاة التالية؟" }],
       city: DEFAULT_CITY,
       now: NOW,
-      weather: WEATHER,
+      loadDay,
       askMohsen: async () => ({
         reply: "لا.\n\nلا توصيات تداول من هذا البيت.",
         action: "ارفض",
@@ -100,18 +99,19 @@ describe("ask waha §5 smoke", () => {
     assert.equal(refused.ok, true);
     if (!refused.ok) return;
     assert.equal(refused.trust, "مدعوم");
-    assert.match(refused.text, new RegExp(local.nextPrayerAr));
+    assert.match(refused.text, new RegExp(DAY.prayerLabelAr));
     assert.match(refused.text, /\d|٠|١|٢|٣|٤|٥|٦|٧|٨|٩/);
 
+    const weatherC = String(Math.round(DAY.weatherC));
     const weather = await runAskWaha({
       mode: "chat",
       lang: "ar",
       messages: [{ role: "user", content: "كم الحرارة؟" }],
       city: DEFAULT_CITY,
       now: NOW,
-      weather: WEATHER,
+      loadDay,
       askMohsen: async () => ({
-        reply: `الحرارة في الرياض ${WEATHER.c}°م.`,
+        reply: `الحرارة في الرياض ${weatherC}°م.`,
         action: "من_النموذج_المفتوح",
         via: "open-model",
         source: "",
@@ -122,7 +122,7 @@ describe("ask waha §5 smoke", () => {
     assert.equal(weather.ok, true);
     if (!weather.ok) return;
     assert.equal(weather.trust, "مدعوم");
-    assert.match(weather.text, /37/);
+    assert.match(weather.text, new RegExp(weatherC));
   });
 
   it("3. سؤال عبثي/بلا دليل بعد بحث → لا أعرف (لا اختلاق)", async () => {
@@ -132,7 +132,7 @@ describe("ask waha §5 smoke", () => {
       messages: [{ role: "user", content: "ما لون التنين الذي يسكن قاع بئر زمزم سنة 3122؟" }],
       city: DEFAULT_CITY,
       now: NOW,
-      weather: WEATHER,
+      loadDay,
       askMohsen: async () => ({
         reply: "لا أعرف لون تنين في بئر زمزم.",
         action: "لا_أعرف",
@@ -157,7 +157,7 @@ describe("ask waha §5 smoke", () => {
       messages: [{ role: "user", content: "من أنت؟" }],
       city: DEFAULT_CITY,
       now: NOW,
-      weather: WEATHER,
+      loadDay,
       askMohsen: async () => ({
         reply: "أنا واحة عبر محسن.",
         action: "من_المتن",
@@ -185,7 +185,7 @@ describe("ask waha §5 smoke", () => {
       messages: [{ role: "user", content: "من بنى الأهرامات؟" }],
       city: DEFAULT_CITY,
       now: NOW,
-      weather: WEATHER,
+      loadDay,
       askMohsen: async () => {
         throw new Error("network");
       },
@@ -254,7 +254,7 @@ describe("ask waha contracts", () => {
       messages: [{ role: "user", content: doc }],
       city: DEFAULT_CITY,
       now: NOW,
-      weather: WEATHER,
+      loadDay,
       askMohsen: async (input) => {
         sent = input.message;
         return { reply: "ok", action: "من_المتن", via: "law", source: "", citations: [], searched: false };
@@ -274,7 +274,7 @@ describe("ask waha contracts", () => {
       messages: [{ role: "user", content: "مرحبا" }],
       city: DEFAULT_CITY,
       now: NOW,
-      weather: WEATHER,
+      loadDay,
       askMohsen: async () => ({
         reply: "يا هلا وسهلا! كيف أقدر أساعدك؟",
         action: "من_المتن",
@@ -291,8 +291,7 @@ describe("ask waha contracts", () => {
   });
 
   it("chat always posts day context to mohsen", async () => {
-    const local = await day();
-    const expected = composeMohsenMessage(local, "من أنت؟");
+    const expected = composeMohsenMessage(DAY, "من أنت؟");
     let sent = "";
     await runAskWaha({
       mode: "chat",
@@ -300,7 +299,7 @@ describe("ask waha contracts", () => {
       messages: [{ role: "user", content: "من أنت؟" }],
       city: DEFAULT_CITY,
       now: NOW,
-      weather: WEATHER,
+      loadDay,
       askMohsen: async (input) => {
         sent = input.message;
         return { reply: "متن", action: "من_المتن", via: "law", source: "", citations: [], searched: false };

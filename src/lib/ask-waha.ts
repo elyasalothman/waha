@@ -1,5 +1,15 @@
 import { DEFAULT_CITY, type City } from "./cities.ts";
-import { shadowDayNow, type DayContext, type DayWeather } from "./shadow-day.ts";
+import { shadowDayNow, type ShadowDaySnapshot } from "./shadow-day.ts";
+
+export type DayContext = ShadowDaySnapshot & { lineAr: string };
+
+export function formatDayLineAr(snap: ShadowDaySnapshot): string {
+  return `${snap.cityAr}، الساعة ${snap.clock}، ${snap.hijri}، الصلاة التالية ${snap.prayerLabelAr} ${snap.prayerHm}، الطقس ${snap.weatherText}`;
+}
+
+export function dayContextFromSnap(snap: ShadowDaySnapshot): DayContext {
+  return { ...snap, lineAr: formatDayLineAr(snap) };
+}
 
 export type AskTrust = "مدعوم" | "جزئي" | "لا أعرف";
 
@@ -175,19 +185,16 @@ export function isDayQuestion(question: string): boolean {
 }
 
 export function dayAnswer(day: DayContext, question: string, lang: "ar" | "en"): string {
-  const city = lang === "ar" ? day.city.ar : day.city.en;
+  const city = lang === "ar" ? day.cityAr : day.cityEn;
   if (PRAYER_RE.test(question)) {
     return lang === "ar"
-      ? `الصلاة التالية في ${city}: ${day.nextPrayerAr}، الساعة ${day.nextPrayerAtAr}.`
-      : `Next prayer in ${city}: ${day.nextPrayerEn} at ${day.nextPrayerAtEn}.`;
-  }
-  if (WEATHER_RE.test(question) && day.weather) {
-    return lang === "ar"
-      ? `الحرارة في ${city} الآن ${day.weather.c}°م (${day.weather.labelAr}).`
-      : `Temperature in ${city} is ${day.weather.c}°C (${day.weather.labelEn}).`;
+      ? `الصلاة التالية في ${city}: ${day.prayerLabelAr}، الساعة ${day.prayerHm}.`
+      : `Next prayer in ${city}: ${day.prayerLabelEn} at ${day.prayerHm}.`;
   }
   if (WEATHER_RE.test(question)) {
-    return lang === "ar" ? "تعذّر قراءة الطقس الآن." : "Weather is unavailable right now.";
+    return lang === "ar"
+      ? `الحرارة في ${city} الآن ${Math.round(day.weatherC)}°م (${day.weatherLabelAr}).`
+      : `Temperature in ${city} is ${Math.round(day.weatherC)}°C (${day.weatherLabelEn}).`;
   }
   return day.lineAr;
 }
@@ -195,12 +202,12 @@ export function dayAnswer(day: DayContext, question: string, lang: "ar" | "en"):
 export function replyHasDayFact(reply: string, day: DayContext, question: string): boolean {
   const text = normalizeDigits(reply);
   if (PRAYER_RE.test(question)) {
-    const time = normalizeDigits(day.nextPrayerAtAr);
+    const time = normalizeDigits(day.prayerHm);
     if (time && text.includes(time)) return true;
-    if (day.nextPrayerAr && reply.includes(day.nextPrayerAr)) return true;
+    if (day.prayerLabelAr && reply.includes(day.prayerLabelAr)) return true;
   }
-  if (WEATHER_RE.test(question) && day.weather) {
-    if (text.includes(String(day.weather.c))) return true;
+  if (WEATHER_RE.test(question) && Number.isFinite(day.weatherC)) {
+    if (text.includes(String(Math.round(day.weatherC)))) return true;
   }
   return false;
 }
@@ -266,8 +273,7 @@ export type RunAskWahaInput = {
   messages: ChatTurn[];
   city?: City;
   now?: Date;
-  weather?: DayWeather | null;
-  loadDay?: (city: City, now: Date) => Promise<DayContext>;
+  loadDay?: (city: City, now: Date) => DayContext;
   askMohsen?: MohsenCall;
 };
 
@@ -283,9 +289,7 @@ export async function runAskWaha(input: RunAskWahaInput): Promise<AskWahaRespons
 
   const city = input.city ?? DEFAULT_CITY;
   const now = input.now ?? new Date();
-  const day = input.loadDay
-    ? await input.loadDay(city, now)
-    : await shadowDayNow({ city, now, weather: input.weather });
+  const day = input.loadDay ? input.loadDay(city, now) : dayContextFromSnap(shadowDayNow(now, city));
 
   const question = last.content.trim();
   const greeting = isGreetingOnly(question);
@@ -314,7 +318,7 @@ export async function runAskWaha(input: RunAskWahaInput): Promise<AskWahaRespons
     const citations = safeCitations(mohsen.citations, mohsen.source);
     if (isHardRefuse(mohsen) && isDayQuestion(question)) {
       const local = dayAnswer(day, question, input.lang);
-      const weatherMiss = WEATHER_RE.test(question) && !day.weather;
+      const weatherMiss = WEATHER_RE.test(question) && !Number.isFinite(day.weatherC);
       return {
         ok: true,
         text: local,
