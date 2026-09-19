@@ -170,6 +170,28 @@ export function mapMohsenTrust(fields: MohsenFields): AskTrust {
   return "جزئي";
 }
 
+export function isDayQuestion(question: string): boolean {
+  return PRAYER_RE.test(question) || WEATHER_RE.test(question);
+}
+
+export function dayAnswer(day: DayContext, question: string, lang: "ar" | "en"): string {
+  const city = lang === "ar" ? day.city.ar : day.city.en;
+  if (PRAYER_RE.test(question)) {
+    return lang === "ar"
+      ? `الصلاة التالية في ${city}: ${day.nextPrayerAr}، الساعة ${day.nextPrayerAtAr}.`
+      : `Next prayer in ${city}: ${day.nextPrayerEn} at ${day.nextPrayerAtEn}.`;
+  }
+  if (WEATHER_RE.test(question) && day.weather) {
+    return lang === "ar"
+      ? `الحرارة في ${city} الآن ${day.weather.c}°م (${day.weather.labelAr}).`
+      : `Temperature in ${city} is ${day.weather.c}°C (${day.weather.labelEn}).`;
+  }
+  if (WEATHER_RE.test(question)) {
+    return lang === "ar" ? "تعذّر قراءة الطقس الآن." : "Weather is unavailable right now.";
+  }
+  return day.lineAr;
+}
+
 export function replyHasDayFact(reply: string, day: DayContext, question: string): boolean {
   const text = normalizeDigits(reply);
   if (PRAYER_RE.test(question)) {
@@ -290,6 +312,19 @@ export async function runAskWaha(input: RunAskWahaInput): Promise<AskWahaRespons
       messages: shortHistory(input.messages),
     });
     const citations = safeCitations(mohsen.citations, mohsen.source);
+    if (isHardRefuse(mohsen) && isDayQuestion(question)) {
+      const local = dayAnswer(day, question, input.lang);
+      const weatherMiss = WEATHER_RE.test(question) && !day.weather;
+      return {
+        ok: true,
+        text: local,
+        trust: weatherMiss ? "لا أعرف" : "مدعوم",
+        source: "يوم واحة",
+        searched: Boolean(mohsen.searched),
+        usedDay: true,
+        kind: "knowledge",
+      };
+    }
     const trust = resolveTrust(mohsen, day, question);
     const text = (mohsen.reply ?? "").trim() || mohsenDownReply(input.lang);
     const via = (mohsen.via ?? "").trim();

@@ -81,6 +81,28 @@ describe("ask waha §5 smoke", () => {
     assert.match(prayer.text, new RegExp(local.nextPrayerAr));
     assert.match(prayer.text, /\d|٠|١|٢|٣|٤|٥|٦|٧|٨|٩/);
 
+    const refused = await runAskWaha({
+      mode: "chat",
+      lang: "ar",
+      messages: [{ role: "user", content: "متى الصلاة التالية؟" }],
+      city: DEFAULT_CITY,
+      now: NOW,
+      weather: WEATHER,
+      askMohsen: async () => ({
+        reply: "لا.\n\nلا توصيات تداول من هذا البيت.",
+        action: "ارفض",
+        via: "law",
+        source: "",
+        citations: [],
+        searched: false,
+      }),
+    });
+    assert.equal(refused.ok, true);
+    if (!refused.ok) return;
+    assert.equal(refused.trust, "مدعوم");
+    assert.match(refused.text, new RegExp(local.nextPrayerAr));
+    assert.match(refused.text, /\d|٠|١|٢|٣|٤|٥|٦|٧|٨|٩/);
+
     const weather = await runAskWaha({
       mode: "chat",
       lang: "ar",
