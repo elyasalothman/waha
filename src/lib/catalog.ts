@@ -189,7 +189,7 @@ export const CATALOG: CatalogItem[] = [
   { id: "trivia", category: "games", lane: "play", audience: P, icon: "HelpCircle", title: { ar: "تحدّي المعلومات", en: "Trivia" }, blurb: { ar: "أسئلة عامة وتاريخ وجغرافيا", en: "General knowledge, history, and geography" } },
   { id: "mines", category: "games", lane: "play", audience: P, icon: "Bomb", title: { ar: "الألغام", en: "Mines" }, blurb: { ar: "اكشف الحقل دون أن تلمس لغماً", en: "Clear the field without a mine" } },
 
-  { id: "chat", category: "studio", lane: "day", audience: B, featured: true, icon: "Sparkles", title: { ar: "واحة للذكاء", en: "Waha AI" }, blurb: { ar: "محادثة وترجمة وكتابة", en: "Chat, translate, and write" } },
+  { id: "chat", category: "studio", lane: "day", audience: B, featured: true, icon: "Sparkles", title: { ar: "واحة للذكاء", en: "Waha AI" }, blurb: { ar: "اسأل واحة — يومك، ومصدر إن وُجد", en: "Ask Waha — your day, and a source if we have one" } },
 ];
 
 export const CATEGORIES: { id: Category; path: string }[] = [
