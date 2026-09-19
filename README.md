@@ -32,9 +32,12 @@ npm run typecheck
 npm run build
 ```
 
-معاينة عامة اليوم: [waha-preview-elyasalothman-3228.vercel.app](https://waha-preview-elyasalothman-3228.vercel.app)
+معاينة عامة اليوم (مشروع Vercel `waha`، بلا SSO):
+[waha-elyasalothman-3228.vercel.app](https://waha-elyasalothman-3228.vercel.app)
 
-الاستضافة المفضّلة بعد ربط الإنتاج: Vercel على `waha.alhajda.com` أو مشروع `waha`. لا تترك المعاينة على grok-sandbox فقط.
+نسخة مطابقة: [waha-preview-elyasalothman-3228.vercel.app](https://waha-preview-elyasalothman-3228.vercel.app)
+
+`waha.alhajda.com` مربوط بالمشروع لكنه بلا شهادة/DNS من هنا بعد. لا تترك المعاينة على grok-sandbox فقط.
 
 ## التقنية
 
