@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import { runAskMedia, type AskMediaResponse } from "./ask-media.ts";
 import { runAskWaha, type AskWahaResponse } from "./ask-waha.ts";
 
 const Message = z.object({
@@ -43,5 +44,25 @@ export const askWaha = createServerFn({ method: "POST" })
             countryEn: data.city.countryEn ?? "",
           }
         : undefined,
+    });
+  });
+
+const MediaInput = z.object({
+  kind: z.enum(["image", "video"]),
+  prompt: z.string().max(2000),
+  lang: z.enum(["ar", "en"]).optional(),
+});
+
+/**
+ * انظر — نص→وسائط عبر محسن فقط (serverFn → ai.alhajda.com).
+ * بلا مفاتيح في العميل. بلا مزود ظاهر. فيديو stub.
+ */
+export const generateAskMedia = createServerFn({ method: "POST" })
+  .validator(MediaInput)
+  .handler(async ({ data }): Promise<AskMediaResponse> => {
+    return runAskMedia({
+      kind: data.kind,
+      prompt: data.prompt,
+      lang: data.lang,
     });
   });
