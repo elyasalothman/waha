@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/input";
-import { askWaha } from "@/lib/ai";
+import { askWaha, generateAskMedia } from "@/lib/ai";
+import { ASK_MEDIA_BADGE, type AskMediaKind, type AskMediaResponse } from "@/lib/ask-media";
 import {
   isDayQuestion,
   runAskWaha,
@@ -12,11 +13,12 @@ import {
 } from "@/lib/ask-waha";
 import { t } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
+import { usePersistent } from "@/lib/storage";
 import { useAppStore } from "@/store/app-store";
 
 type Mode = "chat" | "translate" | "write";
 
-type Msg =
+type ChatMsg =
   | { role: "user"; content: string }
   | {
       role: "assistant";
@@ -26,6 +28,30 @@ type Msg =
       citations?: AskCitation[];
       kind: AskKind;
     };
+
+type MediaOk = {
+  role: "look";
+  prompt: string;
+  src: string;
+  mime: string;
+};
+
+type MediaFail = {
+  role: "look-fail";
+  prompt: string;
+  error: string;
+};
+
+type Msg = ChatMsg | MediaOk | MediaFail;
+
+type SavedLook = {
+  prompt: string;
+  src: string;
+  mime: string;
+  at: number;
+};
+
+const LOOK_KEY = "waha:ask-look";
 
 const MODES: { id: Mode; ar: string; en: string }[] = [
   { id: "chat", ar: "اسأل", en: "Ask" },
@@ -48,6 +74,14 @@ function TrustBadge({ trust }: { trust: AskTrust }) {
       )}
     >
       {trust}
+    </span>
+  );
+}
+
+function GeneratedBadge() {
+  return (
+    <span className="inline-flex items-center rounded-full border border-border bg-surface-2 px-2 py-0.5 text-[11px] font-medium tracking-wide text-muted">
+      {ASK_MEDIA_BADGE}
     </span>
   );
 }
@@ -102,13 +136,65 @@ function Refs({
   );
 }
 
-function assistantFromFail(lang: "ar" | "en", text: string): Extract<Msg, { role: "assistant" }> {
+function assistantFromFail(lang: "ar" | "en", text: string): Extract<ChatMsg, { role: "assistant" }> {
   return {
     role: "assistant",
     content: text,
     trust: "لا أعرف",
     kind: "knowledge",
   };
+}
+
+function mediaSrc(res: Extract<AskMediaResponse, { ok: true }>): string | null {
+  if (res.url) return res.url;
+  if (res.dataUrl) return res.dataUrl;
+  return null;
+}
+
+function persistableSrc(src: string): string | null {
+  if (src.startsWith("https://") || src.startsWith("http://")) return src;
+  if (src.startsWith("data:") && src.length < 350_000) return src;
+  return null;
+}
+
+function LookCard({
+  src,
+  mime,
+  lang,
+  onSave,
+  saved,
+}: {
+  src: string;
+  mime: string;
+  lang: "ar" | "en";
+  onSave: () => void;
+  saved: boolean;
+}) {
+  return (
+    <div className="max-w-[86%] space-y-2">
+      <GeneratedBadge />
+      {mime.startsWith("image/") ? (
+        <img src={src} alt="" className="max-h-80 w-full rounded-xl border border-border/70 object-contain" />
+      ) : (
+        <video src={src} controls className="max-h-80 w-full rounded-xl border border-border/70" />
+      )}
+      <p className="text-[11px] text-muted">{t(lang, "askMediaSource")}</p>
+      <div className="flex flex-wrap gap-2">
+        <a
+          href={src}
+          target="_blank"
+          rel="noreferrer"
+          className="text-[12px] text-fg/80 underline-offset-4 hover:underline"
+        >
+          {t(lang, "askOpen")}
+        </a>
+        <button type="button" onClick={onSave} className="text-[12px] text-fg/80 underline-offset-4 hover:underline">
+          {t(lang, "save")}
+        </button>
+      </div>
+      {saved ? <p className="text-[11px] text-muted">{t(lang, "askSavedLocal")}</p> : null}
+    </div>
+  );
 }
 
 export function ChatApp() {
@@ -118,26 +204,48 @@ export function ChatApp() {
   const [input, setInput] = useState("");
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [busy, setBusy] = useState(false);
+  const [lookBusy, setLookBusy] = useState(false);
+  const [savedAt, setSavedAt] = useState<number | null>(null);
+  const [gallery, setGallery] = usePersistent<SavedLook[]>(LOOK_KEY, []);
   const lastRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     lastRef.current?.scrollIntoView({ block: "start", behavior: "smooth" });
-  }, [msgs, busy]);
+  }, [msgs, busy, lookBusy]);
 
-  function pushAssistant(msg: Extract<Msg, { role: "assistant" }>) {
+  function push(msg: Msg) {
     setMsgs((m) => [...m, msg]);
+  }
+
+  function pushAssistant(msg: Extract<ChatMsg, { role: "assistant" }>) {
+    push(msg);
+  }
+
+  function saveLook(item: MediaOk) {
+    const src = persistableSrc(item.src);
+    if (src) {
+      setGallery((prev) => [{ prompt: item.prompt, src, mime: item.mime, at: Date.now() }, ...prev].slice(0, 8));
+    }
+    const a = document.createElement("a");
+    a.href = item.src;
+    a.download = item.mime.includes("webp") ? "waha-look.webp" : "waha-look.png";
+    a.rel = "noreferrer";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setSavedAt(msgs.length);
   }
 
   async function send() {
     const text = input.trim();
-    if (!text || busy) return;
+    if (!text || busy || lookBusy) return;
     const nextUser: Msg[] = [...msgs, { role: "user" as const, content: text }].slice(-12);
     setMsgs(nextUser);
     setInput("");
     setBusy(true);
     try {
       const history = nextUser
-        .filter((m): m is { role: "user" | "assistant"; content: string } => Boolean(m.content))
+        .filter((m): m is { role: "user" | "assistant"; content: string } => m.role === "user" || m.role === "assistant")
         .map((m) => ({ role: m.role, content: m.content }))
         .slice(-12);
       const cityPayload = {
@@ -196,6 +304,44 @@ export function ChatApp() {
     }
   }
 
+  async function look(kind: AskMediaKind) {
+    const prompt = input.trim();
+    if (busy || lookBusy) return;
+    if (!prompt) {
+      push({ role: "look-fail", prompt: "", error: lang === "ar" ? "اكتب وصفاً أولاً." : "Write a description first." });
+      return;
+    }
+    push({ role: "user", content: prompt });
+    setInput("");
+    setLookBusy(true);
+    try {
+      const res = await generateAskMedia({ data: { kind, prompt, lang } });
+      if (res.ok) {
+        const src = mediaSrc(res);
+        if (!src) {
+          push({ role: "look-fail", prompt, error: lang === "ar" ? "تعذّر التوليد الآن." : "Generation failed just now." });
+          return;
+        }
+        const item: MediaOk = { role: "look", prompt, src, mime: res.mime };
+        push(item);
+        const keep = persistableSrc(src);
+        if (keep) {
+          setGallery((prev) => [{ prompt, src: keep, mime: res.mime, at: Date.now() }, ...prev].slice(0, 8));
+        }
+      } else {
+        push({ role: "look-fail", prompt, error: res.error });
+      }
+    } catch {
+      push({
+        role: "look-fail",
+        prompt,
+        error: lang === "ar" ? "التوليد غير متاح الآن." : "Generation is unavailable right now.",
+      });
+    } finally {
+      setLookBusy(false);
+    }
+  }
+
   return (
     <div className="flex h-[calc(100dvh-20rem)] min-h-80 max-h-[44rem] flex-col">
       <div className="mb-4 flex shrink-0 items-center justify-between gap-3">
@@ -234,6 +380,20 @@ export function ChatApp() {
                   {m.content}
                 </div>
               </div>
+            ) : m.role === "look" ? (
+              <div key={i} ref={i === msgs.length - 1 ? lastRef : undefined}>
+                <LookCard
+                  src={m.src}
+                  mime={m.mime}
+                  lang={lang}
+                  saved={savedAt === i}
+                  onSave={() => saveLook(m)}
+                />
+              </div>
+            ) : m.role === "look-fail" ? (
+              <div key={i} ref={i === msgs.length - 1 ? lastRef : undefined} className="max-w-[86%]">
+                <p className="text-[15px] leading-7 text-fg">{m.error}</p>
+              </div>
             ) : (
               <div
                 key={i}
@@ -250,13 +410,50 @@ export function ChatApp() {
           )
         )}
         {busy ? <p className="text-[13px] text-muted">{t(lang, "thinking")}</p> : null}
+        {lookBusy ? <p className="text-[13px] text-muted">{t(lang, "askGenerating")}</p> : null}
       </div>
 
-      <div className="mt-4 flex shrink-0 items-end gap-2">
+      <div className="mt-3 shrink-0 rounded-2xl border border-border/70 bg-surface/70 px-3 py-2.5">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <p className="text-[13px] text-fg">{t(lang, "askLook")}</p>
+            <p className="text-[11px] text-muted">{t(lang, "askLookHint")}</p>
+          </div>
+          <div className="flex gap-1.5">
+            <Button
+              type="button"
+              variant="secondary"
+              size="sm"
+              className="rounded-full"
+              disabled={busy || lookBusy}
+              onClick={() => void look("image")}
+            >
+              {t(lang, "askImage")}
+            </Button>
+            <Button
+              type="button"
+              variant="secondary"
+              size="sm"
+              className="rounded-full opacity-55"
+              disabled={busy || lookBusy}
+              onClick={() => void look("video")}
+            >
+              {t(lang, "askVideo")}
+            </Button>
+          </div>
+        </div>
+        {gallery.length ? (
+          <p className="mt-1.5 text-[11px] text-subtle">
+            {lang === "ar" ? `${gallery.length} محفوظة على هذا الجهاز` : `${gallery.length} saved on this device`}
+          </p>
+        ) : null}
+      </div>
+
+      <div className="mt-3 flex shrink-0 items-end gap-2">
         <Textarea
           className="min-h-14 flex-1 resize-none rounded-2xl border-border/80 bg-surface px-4 py-3 text-[15px]"
           value={input}
-          placeholder={t(lang, "placeholderChat")}
+          placeholder={lookBusy ? t(lang, "placeholderLook") : t(lang, "placeholderChat")}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter" && !e.shiftKey) {
@@ -265,7 +462,7 @@ export function ChatApp() {
             }
           }}
         />
-        <Button className="h-11 rounded-2xl px-5 self-end" disabled={busy || !input.trim()} onClick={() => void send()}>
+        <Button className="h-11 rounded-2xl px-5 self-end" disabled={busy || lookBusy || !input.trim()} onClick={() => void send()}>
           {t(lang, "send")}
         </Button>
       </div>
