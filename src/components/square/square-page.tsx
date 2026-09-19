@@ -13,6 +13,9 @@ import { DayAyah } from "./day-ayah";
 import { DayShadow } from "./day-shadow";
 import { PostCard } from "./post-card";
 import { ProfilePanel } from "./profile-panel";
+import { SupportCard } from "./support-card";
+import { SupportPanel } from "./support-panel";
+import { SupportRow } from "./support-row";
 
 export function SquarePage() {
   const lang = useAppStore((s) => s.lang);
@@ -21,6 +24,7 @@ export function SquarePage() {
   const { local, publish, like, reply, saveProfile } = useSquare();
   const [tab, setTab] = useState<SquareTab>("forYou");
   const [profileOpen, setProfileOpen] = useState(false);
+  const [supportOpen, setSupportOpen] = useState(false);
   const clock = useNow(60_000);
   const now = clock.getTime();
 
@@ -81,6 +85,11 @@ export function SquarePage() {
         />
       </div>
 
+      <SupportRow lang={lang} onSupport={() => setSupportOpen(true)} />
+      <div className="mt-1">
+        <SupportCard lang={lang} onSupport={() => setSupportOpen(true)} />
+      </div>
+
       <div className="mt-2">
         {feed.map((item) => (
           <PostCard
@@ -108,7 +117,12 @@ export function SquarePage() {
         profile={profile}
         onClose={() => setProfileOpen(false)}
         onSave={saveProfile}
+        onSupport={() => {
+          setProfileOpen(false);
+          setSupportOpen(true);
+        }}
       />
+      <SupportPanel open={supportOpen} lang={lang} onClose={() => setSupportOpen(false)} />
     </div>
   );
 }
