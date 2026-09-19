@@ -87,6 +87,9 @@ const WEATHER_RE = /طقس|حرارة|درجة(?:\s+الحرارة)?|الجو|we
 const CLOCK_RE = /كم الساعة|الساعة كم|ما الساعة|التوقيت الآن|what time|\bclock\b/i;
 const HIJRI_RE = /هجر[يى]|ميلاد[يى]|التاريخ|تاريخ اليوم|hijri|gregorian/i;
 const CITY_RE = /أي مدينة|مدينتي|أين أنا|what city|which city/i;
+/** How-is-today — local DayContext only. Never Mohsen trading/markets. */
+const TODAY_OVERVIEW_RE =
+  /كيف\s+(?:هو\s+)?(?:اليوم|هاليوم|يومك|يومنا)|(?:وش|ايش|إيش|شو|ماذا)\s+(?:صار|حصل|فيه)\s+(?:اليوم|هاليوم)|(?:وش|ايش|إيش|شو)\s+(?:اليوم|هاليوم)|(?:ملخص|حال|وضع)\s+(?:اليوم|هاليوم)|how(?:'s| is)\s+(?:today|the day)|what(?:'s| is| happened)\s+today/i;
 
 const DOC_MARKERS =
   /فاتورة|هوية وطنية|رقم الهوية|جواز سفر|آيبان|\biban\b|invoice|national id|بطاقة ائتمان|ائتمان|سرّي|password|وثيقت/i;
@@ -256,7 +259,8 @@ export function isDayQuestion(question: string): boolean {
     WEATHER_RE.test(question) ||
     CLOCK_RE.test(question) ||
     HIJRI_RE.test(question) ||
-    CITY_RE.test(question)
+    CITY_RE.test(question) ||
+    TODAY_OVERVIEW_RE.test(question)
   );
 }
 
@@ -280,6 +284,11 @@ export function dayAnswer(day: DayContext, question: string, lang: "ar" | "en"):
   }
   if (CITY_RE.test(question)) {
     return lang === "ar" ? `المدينة: ${city}.` : `City: ${city}.`;
+  }
+  if (TODAY_OVERVIEW_RE.test(question)) {
+    return lang === "ar"
+      ? `هجرياً ${day.hijri}، الصلاة التالية ${day.prayerLabelAr} ${day.prayerHm}، الطقس ${Math.round(day.weatherC)}°م (${day.weatherLabelAr}).`
+      : `Hijri ${day.hijri}, next prayer ${day.prayerLabelEn} ${day.prayerHm}, weather ${Math.round(day.weatherC)}°C (${day.weatherLabelEn}).`;
   }
   return day.lineAr;
 }

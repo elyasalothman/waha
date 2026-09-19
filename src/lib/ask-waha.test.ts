@@ -8,6 +8,7 @@ import {
   DAY_CITATIONS,
   dayContextFromSnap,
   HOUSE_CITATIONS,
+  isDayQuestion,
   isGreetingOnly,
   looksLikePrivateDocument,
   mapMohsenTrust,
@@ -127,6 +128,49 @@ describe("ask waha §5 smoke", () => {
     assert.equal(weather.text.split("\n")[0], DAY.lineAr);
     assert.match(weather.text, new RegExp(weatherC));
     assert.ok(weather.citations && weather.citations.length >= 3 && weather.citations.length <= 4);
+  });
+
+  it("دخان يوم عام: وش صار اليوم / كيف اليوم → مدعوم من الظل بلا أسواق", async () => {
+    for (const question of ["وش صار اليوم؟", "كيف اليوم؟"]) {
+      let called = 0;
+      const started = Date.now();
+      const res = await runAskWaha({
+        mode: "chat",
+        lang: "ar",
+        messages: [{ role: "user", content: question }],
+        city: DEFAULT_CITY,
+        now: NOW,
+        loadDay,
+        askMohsen: async () => {
+          called += 1;
+          return {
+            reply: "لا.\n\nلا توصيات تداول من هذا البيت.",
+            action: "ارفض",
+            via: "law",
+            source: "",
+            citations: [],
+            searched: false,
+          };
+        },
+      });
+      assert.equal(isDayQuestion(question), true, question);
+      assert.equal(called, 0, question);
+      assert.ok(Date.now() - started < 1_000, question);
+      assert.equal(res.ok, true);
+      if (!res.ok) return;
+      assert.equal(res.trust, "مدعوم", question);
+      assert.equal(res.text.split("\n")[0], DAY.lineAr);
+      assert.match(res.text, new RegExp(DAY.prayerLabelAr));
+      assert.match(res.text, new RegExp(DAY.hijri));
+      assert.match(res.text, new RegExp(String(Math.round(DAY.weatherC))));
+      assert.doesNotMatch(res.text, /لا أعرف|تداول|أسواق|سوق/);
+      assert.ok(res.citations && res.citations.length >= 3 && res.citations.length <= 4);
+      for (const c of res.citations ?? []) {
+        assert.match(c.url, /^https:\/\//);
+        assert.ok(DAY_CITATIONS.some((d) => d.url === c.url));
+      }
+    }
+    assert.equal(isDayQuestion("ما لون التنين الذي يسكن قاع بئر زمزم سنة 3122؟"), false);
   });
 
   it("3. سؤال عبثي/بلا دليل بعد بحث → لا أعرف (لا اختلاق)", async () => {
