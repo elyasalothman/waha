@@ -1,7 +1,9 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { CitySelect } from "@/components/city-select";
 import { Card } from "@/components/ui/card";
+import { PrayerReminderToggle } from "@/components/prayer-reminder-toggle";
 import { formatDuration, formatHm, getTimesInZone, nextPrayer, PRAYER_KEYS, PRAYER_LABELS, timesMap } from "@/lib/prayer";
+import { markLiveFetch } from "@/lib/live-stamp";
 import { useNow } from "@/hooks/use-now";
 import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
@@ -19,9 +21,14 @@ export function SalahApp() {
   const next = nextPrayer(pt, now, city.tz);
   const remain = next.at.getTime() - now.getTime();
 
+  useEffect(() => {
+    markLiveFetch("prayer", Date.now(), typeof localStorage === "undefined" ? null : localStorage);
+  }, [city.lat, city.lon, now.toDateString()]);
+
   return (
     <div className="space-y-4">
       <CitySelect />
+      <PrayerReminderToggle lang={lang} />
       <Card className="p-5">
         <p className="text-xs text-muted">{t(lang, "nextPrayer")}</p>
         <p className="mt-1 font-display text-4xl">{PRAYER_LABELS[next.key][lang]}</p>

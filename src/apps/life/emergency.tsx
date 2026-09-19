@@ -1,12 +1,13 @@
+import { EmergencyStrip } from "@/components/emergency-strip";
 import { useAppStore } from "@/store/app-store";
 
 const NUMBERS = [
   { n: "911", ar: "الطوارئ الموحد", en: "Unified emergency" },
-  { n: "997", ar: "الهلال الأحمر", en: "Red Crescent" },
+  { n: "997", ar: "الهلال الأحمر", en: "Saudi Red Crescent" },
   { n: "998", ar: "الدفاع المدني", en: "Civil Defense" },
   { n: "999", ar: "الشرطة", en: "Police" },
   { n: "993", ar: "المرور", en: "Traffic" },
-  { n: "937", ar: "وزارة الصحة", en: "Ministry of Health" },
+  { n: "937", ar: "صحة ٩٣٧", en: "Seha 937" },
   { n: "933", ar: "الشركة السعودية للكهرباء", en: "Saudi Electricity" },
 ];
 
@@ -14,6 +15,7 @@ export function EmergencyApp() {
   const lang = useAppStore((s) => s.lang);
   return (
     <div className="space-y-2">
+      <EmergencyStrip lang={lang} />
       <p className="mb-3 text-sm text-muted">
         {lang === "ar" ? "اضغط الرقم للاتصال من هاتفك." : "Tap a number to call from your phone."}
       </p>

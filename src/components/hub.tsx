@@ -1,6 +1,7 @@
 import type { Category } from "@/lib/catalog";
 import { byCategory, lanesPresent, LANE_LABEL } from "@/lib/catalog";
 import { AppGrid } from "@/components/app-card";
+import { DoorsStrip } from "@/components/doors-strip";
 import { t, type I18nKey } from "@/lib/i18n";
 import { CitySelect } from "@/components/city-select";
 import { useAppStore } from "@/store/app-store";
@@ -38,12 +39,18 @@ export function Hub({ category, city }: { category: Category; city?: boolean }) 
             <CitySelect compact />
           </div>
         ) : null}
+        {category === "life" && audience === "personal" ? (
+          <div className="mt-6">
+            <DoorsStrip lang={lang} />
+          </div>
+        ) : null}
       </header>
       {items.length === 0 ? (
         <p className="text-sm text-muted">{t(lang, "empty")}</p>
       ) : lanes.length > 1 ? (
         <div className="space-y-10">
           {lanes.map((lane) => {
+            if (lane === "house") return null;
             const group = items.filter((i) => i.lane === lane);
             if (!group.length) return null;
             return (

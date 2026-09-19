@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { CitySelect } from "@/components/city-select";
 import { Card } from "@/components/ui/card";
 import { fetchWeather, weatherLabel, type WeatherPayload } from "@/lib/weather";
+import { markLiveFetch } from "@/lib/live-stamp";
 import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
 
@@ -15,7 +16,11 @@ export function WeatherApp() {
     let live = true;
     setErr(false);
     fetchWeather(city.lat, city.lon)
-      .then((w) => live && setData(w))
+      .then((w) => {
+        if (!live) return;
+        setData(w);
+        markLiveFetch("weather", Date.now(), localStorage);
+      })
       .catch(() => live && setErr(true));
     return () => {
       live = false;

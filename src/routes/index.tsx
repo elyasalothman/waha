@@ -6,17 +6,20 @@ import { Card } from "@/components/ui/card";
 import { HomeNews } from "@/components/home-news";
 import { SafeSection } from "@/components/safe-section";
 import { ShadowDay } from "@/components/shadow-day";
-import { byLane, featuredFor, freshFor, getApp, LANE_LABEL, WORK_LANES } from "@/lib/catalog";
+import { featuredFor, featuredForHome, forSeriousHome, getApp } from "@/lib/catalog";
 import { formatLocalHm } from "@/lib/clock";
 import { formatDuration, formatHm, getTimesInZone, nextPrayer, PRAYER_LABELS } from "@/lib/prayer";
 import { formatGregorian, formatHijri, upcomingOccasions } from "@/lib/hijri";
 import { climatePayload, fetchWeatherSafe, formatCelsius, readWeatherCache, weatherLabel, type WeatherPayload } from "@/lib/weather";
+import { markLiveFetch } from "@/lib/live-stamp";
 import { personalPulse, workPulse, type PulseAlert, type PulseStat } from "@/lib/pulse";
 import { dailyBundle } from "@/lib/daily";
 import { t } from "@/lib/i18n";
 import { useNow } from "@/hooks/use-now";
 import { useAppStore } from "@/store/app-store";
 import { cn } from "@/lib/cn";
+import { DailySlides } from "@/components/daily-slides";
+import { DoorsStrip } from "@/components/doors-strip";
 
 export const Route = createFileRoute("/")({ component: Home });
 
@@ -45,7 +48,11 @@ function PersonalHome() {
   useEffect(() => {
     let live = true;
     fetchWeatherSafe(city.lat, city.lon, 2000)
-      .then((w) => live && setWeather(w.payload))
+      .then((w) => {
+        if (!live) return;
+        setWeather(w.payload);
+        markLiveFetch("weather", Date.now(), localStorage);
+      })
       .catch(() => {});
     return () => {
       live = false;
@@ -54,13 +61,15 @@ function PersonalHome() {
 
   useEffect(() => {
     setPulse(personalPulse());
-  }, [now.toDateString()]);
+    markLiveFetch("prayer", Date.now(), typeof localStorage === "undefined" ? null : localStorage);
+  }, [now.toDateString(), city.lat, city.lon]);
 
-  const featured = featuredFor("personal").slice(0, 6);
-  const fresh = freshFor("personal").slice(0, 9);
-  const recents = recent
-    .map(getApp)
-    .filter((x): x is NonNullable<typeof x> => x != null && x.audience.includes("personal"));
+  const featured = featuredForHome("personal").slice(0, 3);
+  const recents = forSeriousHome(
+    recent
+      .map(getApp)
+      .filter((x): x is NonNullable<typeof x> => x != null && x.audience.includes("personal")),
+  );
 
   return (
     <div className="mx-auto max-w-5xl">
@@ -108,24 +117,12 @@ function PersonalHome() {
         </div>
       </section>
 
+      <section className="mt-6">
+        <DoorsStrip lang={lang} />
+      </section>
+
       <section className="mt-8">
-        <h2 className="mb-3 text-sm font-medium text-muted">{t(lang, "daily")}</h2>
-        <div className="grid gap-2 md:grid-cols-3">
-          <Link to="/app/$id" params={{ id: "asma" }} className="rounded-xl border border-border bg-surface p-5 hover:bg-surface-2">
-            <p className="text-xs text-muted">{t(lang, "ayah")}</p>
-            <p className="mt-3 font-display text-xl leading-relaxed">{daily.ayah.ar}</p>
-            <p className="mt-2 text-xs text-subtle">{lang === "ar" ? daily.ayah.refAr : daily.ayah.refEn}</p>
-          </Link>
-          <Link to="/app/$id" params={{ id: "asma" }} className="rounded-xl border border-border bg-surface p-5 hover:bg-surface-2">
-            <p className="text-xs text-muted">{t(lang, "nameOfDay")}</p>
-            <p className="mt-3 font-display text-3xl">{daily.asma.ar}</p>
-            <p className="mt-2 text-sm text-muted">{lang === "ar" ? daily.asma.meanAr : daily.asma.meanEn}</p>
-          </Link>
-          <Link to="/app/$id" params={{ id: "proverbs" }} className="rounded-xl border border-border bg-surface p-5 hover:bg-surface-2">
-            <p className="text-xs text-muted">{t(lang, "saying")}</p>
-            <p className="mt-3 font-display text-2xl leading-snug">{daily.proverb.ar}</p>
-          </Link>
-        </div>
+        <DailySlides lang={lang} ayah={daily.ayah} asma={daily.asma} proverb={daily.proverb} />
       </section>
 
       {pulse.stats.length > 0 ? (
@@ -187,13 +184,6 @@ function PersonalHome() {
         </div>
       </section>
 
-      {fresh.length > 0 ? (
-        <section className="mt-10">
-          <h2 className="mb-3 text-sm font-medium text-muted">{t(lang, "fresh")}</h2>
-          <AppGrid items={fresh} lang={lang} />
-        </section>
-      ) : null}
-
       {recents.length > 0 ? (
         <section className="mt-10">
           <h2 className="mb-3 text-sm font-medium text-muted">{t(lang, "recent")}</h2>
@@ -214,17 +204,6 @@ function PersonalHome() {
         </div>
         <AppGrid items={featured} lang={lang} />
       </section>
-
-      {(["worship", "civic", "home", "money", "health", "play"] as const).map((lane) => {
-        const items = byLane(lane, "personal").slice(0, 6);
-        if (!items.length) return null;
-        return (
-          <section key={lane} className="mt-10">
-            <h2 className="mb-3 text-sm font-medium text-muted">{LANE_LABEL[lane][lang]}</h2>
-            <AppGrid items={items} lang={lang} />
-          </section>
-        );
-      })}
     </div>
   );
 }
@@ -235,7 +214,6 @@ function WorkHome() {
   const now = useNow(1000);
   const [pulse, setPulse] = useState<{ stats: PulseStat[]; alerts: PulseAlert[] }>({ stats: [], alerts: [] });
   const featured = featuredFor("work").filter((i) => i.audience.includes("work")).slice(0, 6);
-  const fresh = freshFor("work").slice(0, 9);
   const recents = recent
     .map(getApp)
     .filter((x): x is NonNullable<typeof x> => x != null && x.audience.includes("work"));
@@ -307,13 +285,6 @@ function WorkHome() {
         )}
       </section>
 
-      {fresh.length > 0 ? (
-        <section className="mt-10">
-          <h2 className="mb-3 text-sm font-medium text-muted">{t(lang, "fresh")}</h2>
-          <AppGrid items={fresh} lang={lang} />
-        </section>
-      ) : null}
-
       {recents.length > 0 ? (
         <section className="mt-10">
           <h2 className="mb-3 text-sm font-medium text-muted">{t(lang, "recent")}</h2>
@@ -330,17 +301,6 @@ function WorkHome() {
         </div>
         <AppGrid items={featured} lang={lang} />
       </section>
-
-      {WORK_LANES.map((lane) => {
-        const items = byLane(lane, "work").slice(0, 6);
-        if (!items.length) return null;
-        return (
-          <section key={lane} className="mt-10">
-            <h2 className="mb-3 text-sm font-medium text-muted">{LANE_LABEL[lane][lang]}</h2>
-            <AppGrid items={items} lang={lang} />
-          </section>
-        );
-      })}
     </div>
   );
 }

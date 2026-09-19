@@ -18,6 +18,10 @@ function AppPage() {
     if (item) pushRecent(item.id);
   }, [item, pushRecent]);
 
+  useEffect(() => {
+    if (item?.href) window.location.replace(item.href);
+  }, [item]);
+
   if (!item) {
     return (
       <div className="mx-auto max-w-lg py-16 text-center">
@@ -25,6 +29,17 @@ function AppPage() {
         <Link to="/" className="mt-4 inline-block text-primary">
           {t(lang, "home")}
         </Link>
+      </div>
+    );
+  }
+
+  if (item.href) {
+    return (
+      <div className="mx-auto max-w-lg py-16 text-center">
+        <p className="text-muted">{t(lang, "doorHint")}</p>
+        <a href={item.href} className="mt-4 inline-block text-primary">
+          {item.title[lang]}
+        </a>
       </div>
     );
   }

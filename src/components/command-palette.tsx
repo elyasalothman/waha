@@ -68,6 +68,10 @@ export function CommandPalette({
                 value={`${item.title.ar} ${item.title.en} ${item.id}`}
                 onSelect={() => {
                   onOpenChange(false);
+                  if (item.href) {
+                    window.location.assign(item.href);
+                    return;
+                  }
                   void navigate({ to: "/app/$id", params: { id: item.id } });
                 }}
                 className={cn(
