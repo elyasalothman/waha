@@ -117,6 +117,7 @@ describe("ask waha §6 battery", () => {
     assert.equal(res.trust, "جزئي");
     assert.equal(res.kind, "mixed");
     assert.equal(res.usedDay, true);
+    assert.equal(res.source, "يوم واحة");
     const local = await day();
     assert.match(res.text, new RegExp(local.nextPrayerAr));
     assert.match(res.text, /لا أعرف/);

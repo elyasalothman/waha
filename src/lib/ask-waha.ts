@@ -375,7 +375,7 @@ export async function runAskWaha(input: RunAskWahaInput): Promise<AskWahaRespons
       ok: true,
       text: `${local}\n\n${knowledgeText}`,
       trust: "جزئي",
-      source: citations[0]?.url ?? mohsen.source?.trim() ?? "يوم واحة",
+      source: citations[0]?.url || mohsen.source?.trim() || "يوم واحة",
       searched: Boolean(mohsen.searched) || citations.length > 0,
       usedDay: true,
       citations: citations.length ? citations : undefined,
