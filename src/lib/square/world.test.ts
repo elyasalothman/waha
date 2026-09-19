@@ -126,4 +126,21 @@ describe("world square chrome", () => {
     assert.match(WORLD_SEED.rules.display, /شريط أعلى الخط/);
     assert.match(WORLD_SEED.rules.display, /تبويب\/فلتر من العالم/);
   });
+
+  it("keeps world chrome uncolored — no per-source tones or inline paints", () => {
+    const world = src("./world.ts");
+    const card = readFileSync(new URL("../../components/square/world-card.tsx", import.meta.url), "utf8");
+    const strip = readFileSync(new URL("../../components/square/world-strip.tsx", import.meta.url), "utf8");
+    const badge = readFileSync(new URL("../../components/square/world-badge.tsx", import.meta.url), "utf8");
+    for (const [name, text] of [
+      ["world.ts", world],
+      ["world-card.tsx", card],
+      ["world-strip.tsx", strip],
+      ["world-badge.tsx", badge],
+    ] as const) {
+      assert.equal(/#[0-9a-fA-F]{3,8}\b/.test(text), false, name);
+      assert.equal(/SOURCE_TONE|worldSourceTone/.test(text), false, name);
+      assert.equal(/style=\{\{/.test(text), false, name);
+    }
+  });
 });
