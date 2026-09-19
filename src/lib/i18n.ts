@@ -181,6 +181,22 @@ const strings = {
     en: "Twelve source-stamped books — akhlaq, sharia, and Midad. No paper shop, no piracy. Not the Square feed.",
   },
   booksOpen: { ar: "افتح المصدر", en: "Open source" },
+  kutubi: { ar: "كتبي", en: "My books" },
+  kutubiBlurb: {
+    ar: "خانة خاصة على هذا الجهاز — لا تُرفع للعامة.",
+    en: "A private slot on this device — never uploaded to the public shelf.",
+  },
+  kutubiAdd: { ar: "أضف لكتبي", en: "Save to My books" },
+  kutubiSaved: { ar: "في كتبي", en: "In My books" },
+  kutubiRemove: { ar: "أزل من كتبي", en: "Remove from My books" },
+  kutubiEmpty: {
+    ar: "كتبي فارغة. أضف من الرف العام — تبقى هنا فقط.",
+    en: "My books is empty. Save from the public shelf — they stay here only.",
+  },
+  kutubiGuestHint: {
+    ar: "كتبي للحساب. الضيف يقرأ الرف العام.",
+    en: "My books is for an account. Guests read the public shelf.",
+  },
 } as const;
 
 export type I18nKey = keyof typeof strings;
