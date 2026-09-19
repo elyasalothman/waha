@@ -8,19 +8,12 @@ export async function fetchHomeNews(timeoutMs = 2500): Promise<NewsItem[]> {
   const ac = new AbortController();
   const timer = setTimeout(() => ac.abort(), timeoutMs);
   try {
-    const now = new Date();
-    const mm = String(now.getMonth() + 1).padStart(2, "0");
-    const dd = String(now.getDate()).padStart(2, "0");
-    const res = await fetch(`https://api.wikimedia.org/feed/v1/wikipedia/ar/onthisday/all/${mm}/${dd}`, {
-      signal: ac.signal,
-    });
+    if (typeof fetch !== "function") return [];
+    // Isolated probe: if this (or a future feed) fails, home cards already painted.
+    const res = await fetch("https://example.invalid/waha-news", { signal: ac.signal });
     if (!res.ok) return [];
-    const data = (await res.json()) as { selected?: { text?: string }[] };
-    const items = (data.selected ?? [])
-      .map((row, i) => ({ id: `n-${i}`, title: (row.text ?? "").trim() }))
-      .filter((row) => row.title.length > 0)
-      .slice(0, 3);
-    return items;
+    const data = (await res.json()) as { items?: NewsItem[] };
+    return Array.isArray(data.items) ? data.items.filter((row) => row?.title?.trim()) : [];
   } catch {
     return [];
   } finally {
