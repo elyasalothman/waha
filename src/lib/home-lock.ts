@@ -41,6 +41,11 @@ export function guestMaydanKeepsSeed48(): boolean {
   return true;
 }
 
+/** A missing `/api/auth/get-session` (404) is a guest, not a UI error. */
+export function guestSessionMissIsQuiet(): boolean {
+  return true;
+}
+
 export function isPlayItem(item: HomeItem): boolean {
   return item.category === "games" || item.lane === "play" || item.id === "luma";
 }

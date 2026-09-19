@@ -10,6 +10,7 @@ import {
   forSeriousHome,
   guestMaydanKeepsSeed48,
   guestReadsWithoutAccount,
+  guestSessionMissIsQuiet,
   homeChromeShowsAudienceSwitch,
   homeHouseDoorIds,
   homeKeepsShadeWithField,
@@ -137,6 +138,13 @@ describe("king lock — `/` after #8", () => {
     assert.equal(guestReadsWithoutAccount(), true);
     assert.equal(identityOnlyAtOnboarding(), true);
     assert.equal(guestMaydanKeepsSeed48(), true);
+    assert.equal(guestSessionMissIsQuiet(), true);
+    const authClient = readFileSync(new URL("./auth/client.ts", import.meta.url), "utf8");
+    const authHook = readFileSync(new URL("./auth/use-current-user.ts", import.meta.url), "utf8");
+    assert.match(authClient, /fetchSessionQuietly/);
+    assert.match(authClient, /isQuietGetSessionError/);
+    assert.doesNotMatch(authClient, /console\.error/);
+    assert.match(authHook, /resolveSessionPresence/);
     assert.doesNotMatch(home, /SignInGate|RedirectToSignIn|SignInButtons/);
     assert.doesNotMatch(square, /SignInGate|RedirectToSignIn|SignInButtons/);
     assert.match(square, /data-guest-read="open"/);

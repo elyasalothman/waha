@@ -1,4 +1,5 @@
 import { authClient, authEnabled } from "./client";
+import { resolveSessionPresence } from "./quiet-session";
 
 /** Normalized user shape used across the app, auth on or off. */
 export type AppUser = {
@@ -40,6 +41,8 @@ export type CurrentUserState = {
  *                            signed out (`isPending: false`). Session comes from
  *                            Better Auth `useSession()` → `/api/auth/get-session`
  *                            (cookie when deployed; bearer in live preview).
+ *                            A 404 / missing handler is a guest — never an
+ *                            error overlay and never a stuck pending gate.
  *   - Auth disabled (`VITE_AUTH_ENABLED=false`) -> `DEV_USER`, never pending.
  *
  * Protect a route by waiting out `isPending` before acting on `user` —
@@ -57,8 +60,13 @@ export type CurrentUserState = {
 export function useCurrentUserState(): CurrentUserState {
   if (!authEnabled) return { user: DEV_USER, isPending: false };
   // eslint-disable-next-line react-hooks/rules-of-hooks -- authEnabled is constant for the app's lifetime
-  const { data, isPending } = authClient.useSession();
-  const user = data?.user;
+  const { data, error, isPending } = authClient.useSession();
+  const presence = resolveSessionPresence({
+    hasUser: Boolean(data?.user),
+    isPending,
+    error,
+  });
+  const user = presence.signedOut ? null : data?.user;
   return {
     user: user
       ? {
@@ -69,7 +77,7 @@ export function useCurrentUserState(): CurrentUserState {
           isDevFallback: false,
         }
       : null,
-    isPending,
+    isPending: presence.isPending,
   };
 }
 
