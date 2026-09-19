@@ -1,5 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
+import { guestMaydanKeepsSeed48, guestReadsWithoutAccount } from "./home-lock.ts";
 import { GUEST_SLICE, guestSeesFullSeed, resolveStoredSlice } from "./prefs.ts";
 import { mergeFeed, emptyLocal } from "./square/logic.ts";
 import { SEED_POSTS } from "./square/seed.ts";
@@ -8,6 +9,8 @@ describe("prefs — ignore stale audience", () => {
   it("treats a guest as personal/all so the Square keeps seed 48", () => {
     assert.deepEqual(GUEST_SLICE, { audience: "personal", segment: "all", sliceChosen: false });
     assert.equal(guestSeesFullSeed(), true);
+    assert.equal(guestReadsWithoutAccount(), true);
+    assert.equal(guestMaydanKeepsSeed48(), true);
     assert.deepEqual(resolveStoredSlice(null), GUEST_SLICE);
     assert.deepEqual(resolveStoredSlice({}), GUEST_SLICE);
   });

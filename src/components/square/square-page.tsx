@@ -51,7 +51,7 @@ export function SquarePage() {
   const onWorldLane = tab === "world";
 
   return (
-    <div className="mx-auto max-w-xl" data-home-sections="day-shadow house-doors square">
+    <div className="mx-auto max-w-xl" data-home-sections="day-shadow house-doors square" data-guest-read="open">
       <DayShadow />
       {audience === "personal" ? <HomeSpend lang={lang} segment={segment} /> : null}
       <div className="pt-3">
