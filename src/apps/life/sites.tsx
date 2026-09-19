@@ -1,11 +1,12 @@
-import { ALHAJDA_SITES_INDEX, directoryDoors, doorHref } from "@/lib/doors";
+import { ALHAJDA_SITES_INDEX, directoryDoors, doorHref, doorsEnabled } from "@/lib/doors";
 import { appIcon } from "@/lib/icons";
 import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
 
 export function SitesApp() {
   const lang = useAppStore((s) => s.lang);
-  const doors = directoryDoors();
+  const features = useAppStore((s) => s.features);
+  const doors = doorsEnabled(directoryDoors(), features);
 
   return (
     <div className="space-y-3">

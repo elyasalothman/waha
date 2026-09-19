@@ -3,7 +3,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { Command } from "cmdk";
 import { searchCatalog } from "@/lib/catalog";
 import { OS_APPS } from "@/lib/os";
-import { isFeatureOn } from "@/lib/features";
+import { isDoorFeatureId, isFeatureOn } from "@/lib/features";
 import { appIcon } from "@/lib/icons";
 import { t, type Lang } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
@@ -22,7 +22,14 @@ export function CommandPalette({
   const audience = useAppStore((s) => s.audience);
   const features = useAppStore((s) => s.features);
   const [q, setQ] = useState("");
-  const items = useMemo(() => searchCatalog(q, audience), [q, audience]);
+  const items = useMemo(
+    () =>
+      searchCatalog(q, audience).filter((item) => {
+        if (!isDoorFeatureId(item.id)) return true;
+        return isFeatureOn(features, "sisters") && isFeatureOn(features, item.id);
+      }),
+    [q, audience, features],
+  );
 
   useEffect(() => {
     if (!open) setQ("");

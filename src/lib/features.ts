@@ -18,6 +18,14 @@ export const FEATURE_IDS = [
 export type FeatureId = (typeof FEATURE_IDS)[number];
 export type FeatureLane = "core" | "system" | "labs";
 
+/** Alhajda doors the Feature Store can hide. Door UI stays in `doors.ts`. */
+export const DOOR_FEATURE_IDS = ["tahajjud", "midad", "sites"] as const;
+export type DoorFeatureId = (typeof DOOR_FEATURE_IDS)[number];
+
+export function isDoorFeatureId(id: string): id is DoorFeatureId {
+  return (DOOR_FEATURE_IDS as readonly string[]).includes(id);
+}
+
 export type FeatureDef = {
   id: FeatureId;
   lane: FeatureLane;
@@ -166,4 +174,8 @@ export function featuresByLane(lane: FeatureLane) {
 
 export function elevatedLabs() {
   return FEATURES.filter((f) => f.lane === "labs" && f.elevated);
+}
+
+export function doorFeatures() {
+  return FEATURES.filter((f) => isDoorFeatureId(f.id));
 }

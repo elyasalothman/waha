@@ -70,6 +70,10 @@ describe("feature store doors", () => {
     assert.equal(off.tahajjud, false);
     assert.equal(off.midad, false);
     assert.equal(off.sites, false);
+    assert.deepEqual(
+      doors.map((d) => d.blurb.ar),
+      ["tahajjud.alhajda.com", "midad.alhajda.com", "alhajda.com/sites"],
+    );
   });
 });
 

@@ -1,16 +1,14 @@
-import { FEATURES, type FeatureLane } from "@/lib/features";
+import { doorFeatures, FEATURES, isDoorFeatureId, type FeatureDef, type FeatureLane } from "@/lib/features";
 import { t, type Lang } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
 import { cn } from "@/lib/cn";
 
-function Lane({ lane, lang }: { lane: FeatureLane; lang: Lang }) {
+function ToggleList({ items, lang, title, elevated }: { items: FeatureDef[]; lang: Lang; title: string; elevated?: boolean }) {
   const features = useAppStore((s) => s.features);
   const setFeature = useAppStore((s) => s.setFeature);
-  const items = FEATURES.filter((f) => f.lane === lane);
   if (!items.length) return null;
-  const title = lane === "labs" ? t(lang, "labs") : lane === "core" ? t(lang, "coreApps") : t(lang, "settings");
   return (
-    <section className={cn(lane === "labs" && "rounded-3xl border border-primary/25 bg-surface p-5")}>
+    <section className={cn(elevated && "rounded-3xl border border-primary/25 bg-surface p-5")}>
       <h2 className="text-sm font-medium text-muted">{title}</h2>
       <ul className="mt-3 space-y-2">
         {items.map((item) => {
@@ -31,6 +29,7 @@ function Lane({ lane, lang }: { lane: FeatureLane; lang: Lang }) {
                 type="button"
                 disabled={item.locked}
                 aria-pressed={on}
+                data-feature={item.id}
                 onClick={() => setFeature(item.id, !on)}
                 className={cn(
                   "h-8 min-w-16 rounded-full px-3 text-xs",
@@ -48,13 +47,21 @@ function Lane({ lane, lang }: { lane: FeatureLane; lang: Lang }) {
   );
 }
 
+function Lane({ lane, lang }: { lane: FeatureLane; lang: Lang }) {
+  const items = FEATURES.filter((f) => f.lane === lane && f.id !== "sisters" && !isDoorFeatureId(f.id));
+  const title = lane === "labs" ? t(lang, "labs") : lane === "core" ? t(lang, "coreApps") : t(lang, "settings");
+  return <ToggleList items={items} lang={lang} title={title} elevated={lane === "labs"} />;
+}
+
 export function FeatureStore({ lang }: { lang: Lang }) {
+  const suite = FEATURES.filter((f) => f.id === "sisters");
   return (
     <div className="space-y-8">
       <header>
         <h2 className="font-display text-3xl tracking-tight">{t(lang, "featureStore")}</h2>
         <p className="mt-2 text-sm text-muted">{t(lang, "featureStoreBlurb")}</p>
       </header>
+      <ToggleList items={[...suite, ...doorFeatures()]} lang={lang} title={t(lang, "sisters")} elevated />
       <Lane lane="labs" lang={lang} />
       <Lane lane="core" lang={lang} />
       <Lane lane="system" lang={lang} />
