@@ -10,6 +10,26 @@ export const DEFAULT_APP_NAME = "واحة";
 export const OG_SERVICE_URL_DEFAULT = "https://og.grok.me";
 export const OG_SITE_REL_PATH = "src/lib/og/site.json";
 
+/** Public PWA paths — never `/__grok/`, which is gitignored and 404s on deploy. */
+export const PWA_MANIFEST_HREF = "/manifest.webmanifest";
+export const PWA_APPLE_TOUCH_ICON = "/icons/icon-180.png";
+export const PWA_ICON_HREFS = [
+  { src: "/favicon.svg", sizes: "any", type: "image/svg+xml", purpose: "any" },
+  { src: "/icons/icon-180.png", sizes: "180x180", type: "image/png" },
+  { src: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+  { src: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
+];
+
+export function isWebManifestPath(pathname) {
+  const path = String(pathname ?? "");
+  return (
+    path === "/manifest.webmanifest" ||
+    path === "/manifest.json" ||
+    path === "/__grok/manifest.webmanifest" ||
+    path === "/__grok/manifest.json"
+  );
+}
+
 const SHARE_META_KEYS = new Set([
   "og:title",
   "og:description",
@@ -169,13 +189,7 @@ export function renderWebManifest(_hostHeader) {
       display: "standalone",
       background_color: "#000000",
       theme_color: "#000000",
-      icons: [
-        {
-          src: "/__grok/icon-180.png",
-          sizes: "180x180",
-          type: "image/png",
-        },
-      ],
+      icons: PWA_ICON_HREFS,
     },
     null,
     2,
@@ -186,8 +200,8 @@ export function grokPwaHeadTags(appName = DEFAULT_APP_NAME) {
   return [
     // Standalone display comes from the manifest ("display": "standalone");
     // the legacy *-web-app-capable metas it replaces are deliberately absent.
-    ["manifest", '<link rel="manifest" href="/__grok/manifest.webmanifest">'],
-    ["apple-touch-icon", '<link rel="apple-touch-icon" href="/__grok/icon-180.png">'],
+    ["manifest", `<link rel="manifest" href="${PWA_MANIFEST_HREF}">`],
+    ["apple-touch-icon", `<link rel="apple-touch-icon" href="${PWA_APPLE_TOUCH_ICON}">`],
     [
       "application-name",
       `<meta name="application-name" content="${escapeHtml(appName)}">`,
@@ -440,8 +454,8 @@ export function injectGrokPwaHead(html, ctx = {}) {
 
   const missing = grokPwaHeadTags(DEFAULT_APP_NAME)
     .filter(([key]) => {
-      if (key === "manifest") return !next.includes('href="/__grok/manifest.webmanifest"');
-      if (key === "apple-touch-icon") return !next.includes('href="/__grok/icon-180.png"');
+      if (key === "manifest") return !next.includes(`href="${PWA_MANIFEST_HREF}"`);
+      if (key === "apple-touch-icon") return !next.includes(`href="${PWA_APPLE_TOUCH_ICON}"`);
       return !next.includes(`name="${key}"`);
     })
     .map(([, tag]) => tag);

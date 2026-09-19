@@ -13,6 +13,9 @@ import {
   injectGrokPwaHead,
   isDocumentPath,
   isInstallQuery,
+  isWebManifestPath,
+  PWA_APPLE_TOUCH_ICON,
+  PWA_MANIFEST_HREF,
   publicAppHost,
   renderWebManifest,
   resolveOgCardAsset,
@@ -444,6 +447,16 @@ test("filters non-document paths", () => {
   assert.equal(isDocumentPath("/api/thing"), false);
   assert.equal(isDocumentPath("/__grok/install/styles.css"), false);
   assert.equal(isDocumentPath("/logo.png"), false);
+  assert.equal(isDocumentPath("/manifest.webmanifest"), false);
+  assert.equal(isDocumentPath("/icons/icon-180.png"), false);
+});
+
+test("recognizes public and legacy manifest paths", () => {
+  assert.equal(isWebManifestPath("/manifest.webmanifest"), true);
+  assert.equal(isWebManifestPath("/manifest.json"), true);
+  assert.equal(isWebManifestPath("/__grok/manifest.webmanifest"), true);
+  assert.equal(isWebManifestPath("/__grok/manifest.json"), true);
+  assert.equal(isWebManifestPath("/icons/icon-180.png"), false);
 });
 
 test("strips install params from the app link", () => {
@@ -483,8 +496,21 @@ test("renders the manifest with the app name واحة", () => {
     const manifest = JSON.parse(renderWebManifest(host));
     assert.equal(manifest.name, "واحة");
     assert.equal(manifest.short_name, "واحة");
-    assert.equal(manifest.icons[0].src, "/__grok/icon-180.png");
+    for (const icon of manifest.icons) {
+      assert.equal(icon.src.startsWith("/__grok/"), false, icon.src);
+    }
+    assert.ok(manifest.icons.some((icon) => icon.src === "/icons/icon-180.png"));
+    assert.ok(manifest.icons.some((icon) => icon.src === "/favicon.svg"));
   }
+});
+
+test("public manifest matches the renderer and stays off /__grok/", () => {
+  const disk = readFileSync(join(TEMPLATE_ROOT, "public/manifest.webmanifest"), "utf8");
+  const fromDisk = JSON.parse(disk);
+  const rendered = JSON.parse(renderWebManifest("waha.hajdah.com"));
+  assert.deepEqual(fromDisk, rendered);
+  assert.equal(fromDisk.name, "واحة");
+  assert.equal(fromDisk.short_name, "واحة");
 });
 
 test("PWA head tags default to واحة", () => {
@@ -492,6 +518,8 @@ test("PWA head tags default to واحة", () => {
   assert.equal(DEFAULT_APP_NAME, "واحة");
   assert.match(tags["application-name"], /content="واحة"/);
   assert.match(tags["apple-mobile-web-app-title"], /content="واحة"/);
+  assert.match(tags.manifest, new RegExp(`href="${PWA_MANIFEST_HREF}"`));
+  assert.match(tags["apple-touch-icon"], new RegExp(`href="${PWA_APPLE_TOUCH_ICON}"`));
 });
 
 test("root document keeps PWA titles as واحة", () => {
@@ -499,6 +527,8 @@ test("root document keeps PWA titles as واحة", () => {
   assert.match(root, /name:\s*"application-name",\s*content:\s*PWA_NAME/);
   assert.match(root, /name:\s*"apple-mobile-web-app-title",\s*content:\s*PWA_NAME/);
   assert.match(root, /const PWA_NAME = "واحة"/);
+  assert.match(root, /rel:\s*"manifest",\s*href:\s*"\/manifest\.webmanifest"/);
+  assert.match(root, /rel:\s*"apple-touch-icon",\s*href:\s*"\/icons\/icon-180\.png"/);
 });
 
 // Tripwires: the deployed-app path only works if Nitro scans server/ — an
@@ -514,9 +544,16 @@ test("nitro middleware and its bundled assets exist", () => {
   const middleware = readFileSync(join(TEMPLATE_ROOT, "server/middleware/grok-pwa.ts"), "utf8");
   assert.match(middleware, /install-page\.html\?raw/);
   assert.match(middleware, /virtual:grok-og-identity/);
-  readFileSync(join(TEMPLATE_ROOT, "scripts/install-page.html"));
-  readFileSync(join(TEMPLATE_ROOT, "public/__grok/icon-180.png"));
-  readFileSync(join(TEMPLATE_ROOT, "public/__grok/install/styles.css"));
+  assert.match(middleware, /isWebManifestPath/);
+  const plugin = readFileSync(join(TEMPLATE_ROOT, "scripts/grok-pwa-plugin.mjs"), "utf8");
+  assert.match(plugin, /isWebManifestPath/);
+  const installPage = readFileSync(join(TEMPLATE_ROOT, "scripts/install-page.html"), "utf8");
+  assert.match(installPage, /href="\/manifest\.webmanifest"/);
+  assert.match(installPage, /href="\/icons\/icon-180\.png"/);
+  readFileSync(join(TEMPLATE_ROOT, "public/icons/icon-180.png"));
+  readFileSync(join(TEMPLATE_ROOT, "public/icons/icon-192.png"));
+  readFileSync(join(TEMPLATE_ROOT, "public/icons/icon-512.png"));
+  readFileSync(join(TEMPLATE_ROOT, "public/favicon.svg"));
 });
 
 test("vite plugin bakes og identity as a virtual module", () => {
