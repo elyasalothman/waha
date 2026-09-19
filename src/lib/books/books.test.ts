@@ -170,7 +170,10 @@ describe("books stay off the Maydan line", () => {
     assert.match(page, /data-books-lane="shelf-v1"/);
     assert.match(page, /data-kutubi="local-v1"/);
     assert.match(page, /data-kutubi-publish="never"/);
-    assert.match(page, /data-kutubi-guest="public-only"/);
+    assert.match(page, /data-kutubi-scope="device"/);
+    assert.match(page, /data-kutubi-auth="none"/);
+    assert.doesNotMatch(page, /data-kutubi-guest/);
+    assert.doesNotMatch(page, /useCurrentUserState|createAccount/);
     assert.match(page, /from ["']@\/components\/external-link["']/);
     assert.doesNotMatch(page, /<(input|form)\b/);
     assert.doesNotMatch(page, /fetch\(|scrape|cheerio|WebView/);
@@ -207,10 +210,11 @@ describe("books stay off the Maydan line", () => {
 });
 
 describe("كتبي stays a private local slot", () => {
-  it("is account-only and never publishes to the public shelf", () => {
-    assert.equal(accountOwnsKutubi({ sliceChosen: false, signedInRealUser: false }), false);
+  it("is device-local for everyone and never publishes to the public shelf", () => {
+    assert.equal(accountOwnsKutubi({ sliceChosen: false, signedInRealUser: false }), true);
     assert.equal(accountOwnsKutubi({ sliceChosen: true, signedInRealUser: false }), true);
     assert.equal(accountOwnsKutubi({ sliceChosen: false, signedInRealUser: true }), true);
+    assert.equal(accountOwnsKutubi(), true);
     assert.equal(kutubiPublishesToPublic(), false);
     assert.deepEqual(EMPTY_KUTUBI, { version: 1, items: [] });
   });
@@ -276,6 +280,7 @@ describe("كتبي stays a private local slot", () => {
     assert.match(i18n, /مراجعة قانونية/);
     assert.doesNotMatch(page, /WebView|fetch\(|scrape/);
     assert.match(page, /kutubiAdd/);
-    assert.match(page, /kutubiGuestHint/);
+    assert.doesNotMatch(page, /kutubiGuestHint/);
+    assert.match(page, /data-kutubi-scope="device"/);
   });
 });
