@@ -10,6 +10,7 @@ import {
   HOUSE_CITATIONS,
   isDayQuestion,
   isGreetingOnly,
+  isTodayOverviewQuestion,
   looksLikePrivateDocument,
   mapMohsenTrust,
   resolveSupportedCitations,
@@ -130,8 +131,15 @@ describe("ask waha §5 smoke", () => {
     assert.ok(weather.citations && weather.citations.length >= 3 && weather.citations.length <= 4);
   });
 
-  it("دخان يوم عام: وش صار اليوم / كيف اليوم → مدعوم من الظل بلا أسواق", async () => {
-    for (const question of ["وش صار اليوم؟", "كيف اليوم؟"]) {
+  it("دخان يوم عام: وش صار اليوم وصيغه → مدعوم من الظل بلا أسواق", async () => {
+    const todayQs = [
+      "وش صار اليوم؟",
+      "كيف اليوم؟",
+      "وش أخبار اليوم؟",
+      "اليوم وش فيه؟",
+      "ماذا اليوم؟",
+    ];
+    for (const question of todayQs) {
       let called = 0;
       const started = Date.now();
       const res = await runAskWaha({
@@ -153,6 +161,7 @@ describe("ask waha §5 smoke", () => {
           };
         },
       });
+      assert.equal(isTodayOverviewQuestion(question), true, question);
       assert.equal(isDayQuestion(question), true, question);
       assert.equal(called, 0, question);
       assert.ok(Date.now() - started < 1_000, question);
@@ -171,6 +180,8 @@ describe("ask waha §5 smoke", () => {
       }
     }
     assert.equal(isDayQuestion("ما لون التنين الذي يسكن قاع بئر زمزم سنة 3122؟"), false);
+    assert.equal(isTodayOverviewQuestion("من أنت؟"), false);
+    assert.equal(isTodayOverviewQuestion("وش سعر الذهب"), false);
   });
 
   it("3. سؤال عبثي/بلا دليل بعد بحث → لا أعرف (لا اختلاق)", async () => {

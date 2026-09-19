@@ -87,9 +87,13 @@ const WEATHER_RE = /طقس|حرارة|درجة(?:\s+الحرارة)?|الجو|we
 const CLOCK_RE = /كم الساعة|الساعة كم|ما الساعة|التوقيت الآن|what time|\bclock\b/i;
 const HIJRI_RE = /هجر[يى]|ميلاد[يى]|التاريخ|تاريخ اليوم|hijri|gregorian/i;
 const CITY_RE = /أي مدينة|مدينتي|أين أنا|what city|which city/i;
+const TASHKEEL_TATWEEL = /[\u064B-\u065F\u0670\u06D6-\u06ED\u0640]/g;
+const ASK_PUNCT = /[؟!?!.,،؛:~'"«»()[\]{}]/g;
+const BIDI_MARKS = /[\u200B-\u200F\u202A-\u202E\u2066-\u2069]/g;
+
 /** How-is-today — local DayContext only. Never Mohsen trading/markets. */
 const TODAY_OVERVIEW_RE =
-  /كيف\s+(?:هو\s+)?(?:اليوم|هاليوم|يومك|يومنا)|(?:وش|ايش|إيش|شو|ماذا)\s+(?:صار|حصل|فيه)\s+(?:اليوم|هاليوم)|(?:وش|ايش|إيش|شو)\s+(?:اليوم|هاليوم)|(?:ملخص|حال|وضع)\s+(?:اليوم|هاليوم)|how(?:'s| is)\s+(?:today|the day)|what(?:'s| is| happened)\s+today/i;
+  /كيف(?:\s+هو)?\s+(?:اليوم|هاليوم|يومك|يومنا)|(?:وش|ايش|إيش|شو|ماذا|ما)\s+(?:صار|حصل|فيه|اخبار|أخبار)\s+(?:اليوم|هاليوم)|(?:وش|ايش|إيش|شو|ماذا)\s+(?:اليوم|هاليوم)|(?:ملخص|حال|وضع|اخبار|أخبار)\s+(?:اليوم|هاليوم)|(?:اليوم|هاليوم)\s+(?:وش|ايش|إيش|شو|ماذا)(?:\s+(?:صار|حصل|فيه|اخبار|أخبار))?\s*$|(?:اليوم|هاليوم)\s+كيف\s*$|how(?:'s| is)\s+(?:today|the day)|what(?:'s| is| happened)\s+today/i;
 
 const DOC_MARKERS =
   /فاتورة|هوية وطنية|رقم الهوية|جواز سفر|آيبان|\biban\b|invoice|national id|بطاقة ائتمان|ائتمان|سرّي|password|وثيقت/i;
@@ -101,8 +105,22 @@ const UNKNOWN_VIA = new Set(["refuse", "search-miss", "paused"]);
 
 const AR_DIGITS = "٠١٢٣٤٥٦٧٨٩";
 
+export function normalizeAskQuestion(question: string): string {
+  return question
+    .normalize("NFC")
+    .replace(TASHKEEL_TATWEEL, "")
+    .replace(BIDI_MARKS, "")
+    .replace(ASK_PUNCT, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 export function isGreetingOnly(question: string): boolean {
-  return GREETING_ONLY.test(question.trim());
+  return GREETING_ONLY.test(normalizeAskQuestion(question));
+}
+
+export function isTodayOverviewQuestion(question: string): boolean {
+  return TODAY_OVERVIEW_RE.test(normalizeAskQuestion(question));
 }
 
 export function looksLikePrivateDocument(text: string): boolean {
@@ -254,38 +272,40 @@ export function mapMohsenTrust(fields: MohsenFields): AskTrust {
 }
 
 export function isDayQuestion(question: string): boolean {
+  const q = normalizeAskQuestion(question);
   return (
-    PRAYER_RE.test(question) ||
-    WEATHER_RE.test(question) ||
-    CLOCK_RE.test(question) ||
-    HIJRI_RE.test(question) ||
-    CITY_RE.test(question) ||
-    TODAY_OVERVIEW_RE.test(question)
+    PRAYER_RE.test(q) ||
+    WEATHER_RE.test(q) ||
+    CLOCK_RE.test(q) ||
+    HIJRI_RE.test(q) ||
+    CITY_RE.test(q) ||
+    isTodayOverviewQuestion(question)
   );
 }
 
 export function dayAnswer(day: DayContext, question: string, lang: "ar" | "en"): string {
+  const q = normalizeAskQuestion(question);
   const city = lang === "ar" ? day.cityAr : day.cityEn;
-  if (PRAYER_RE.test(question)) {
+  if (PRAYER_RE.test(q)) {
     return lang === "ar"
       ? `الصلاة التالية في ${city}: ${day.prayerLabelAr}، الساعة ${day.prayerHm}.`
       : `Next prayer in ${city}: ${day.prayerLabelEn} at ${day.prayerHm}.`;
   }
-  if (WEATHER_RE.test(question)) {
+  if (WEATHER_RE.test(q)) {
     return lang === "ar"
       ? `الحرارة في ${city} الآن ${Math.round(day.weatherC)}°م (${day.weatherLabelAr}).`
       : `Temperature in ${city} is ${Math.round(day.weatherC)}°C (${day.weatherLabelEn}).`;
   }
-  if (CLOCK_RE.test(question)) {
+  if (CLOCK_RE.test(q)) {
     return lang === "ar" ? `الساعة الآن في ${city}: ${day.clock}.` : `The time in ${city} is ${day.clock}.`;
   }
-  if (HIJRI_RE.test(question)) {
+  if (HIJRI_RE.test(q)) {
     return lang === "ar" ? `اليوم: ${day.hijri} — ${day.gregorian}.` : `Today: ${day.hijri} — ${day.gregorian}.`;
   }
-  if (CITY_RE.test(question)) {
+  if (CITY_RE.test(q)) {
     return lang === "ar" ? `المدينة: ${city}.` : `City: ${city}.`;
   }
-  if (TODAY_OVERVIEW_RE.test(question)) {
+  if (isTodayOverviewQuestion(question)) {
     return lang === "ar"
       ? `هجرياً ${day.hijri}، الصلاة التالية ${day.prayerLabelAr} ${day.prayerHm}، الطقس ${Math.round(day.weatherC)}°م (${day.weatherLabelAr}).`
       : `Hijri ${day.hijri}, next prayer ${day.prayerLabelEn} ${day.prayerHm}, weather ${Math.round(day.weatherC)}°C (${day.weatherLabelEn}).`;
@@ -303,12 +323,13 @@ export function localDayReply(day: DayContext, question: string, lang: "ar" | "e
 
 export function replyHasDayFact(reply: string, day: DayContext, question: string): boolean {
   const text = normalizeDigits(reply);
-  if (PRAYER_RE.test(question)) {
+  const q = normalizeAskQuestion(question);
+  if (PRAYER_RE.test(q)) {
     const time = normalizeDigits(day.prayerHm);
     if (time && text.includes(time)) return true;
     if (day.prayerLabelAr && reply.includes(day.prayerLabelAr)) return true;
   }
-  if (WEATHER_RE.test(question) && Number.isFinite(day.weatherC)) {
+  if (WEATHER_RE.test(q) && Number.isFinite(day.weatherC)) {
     if (text.includes(String(Math.round(day.weatherC)))) return true;
   }
   return false;
@@ -424,7 +445,7 @@ export async function runAskWaha(input: RunAskWahaInput): Promise<AskWahaRespons
   }
 
   if (isDayQuestion(question)) {
-    const weatherMiss = WEATHER_RE.test(question) && !Number.isFinite(day.weatherC);
+    const weatherMiss = WEATHER_RE.test(normalizeAskQuestion(question)) && !Number.isFinite(day.weatherC);
     const trust = weatherMiss ? "لا أعرف" : "مدعوم";
     const sourced = resolveSupportedCitations(trust, [], "calc", true);
     return {
