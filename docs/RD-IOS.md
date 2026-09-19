@@ -9,7 +9,7 @@
 | 3 | StatusBar + Keyboard.resize: **native** | `@capacitor/status-bar` و `@capacitor/keyboard` |
 | 4 | لوحة عربية RTL قبل أي Submit لـ ASC | `dir=rtl` + `unicode-bidi: plaintext` على الحقول. Codemagic **لا** يرسل App Store. التحقق على جهاز قبل Submit |
 | 5 | ليست غلافاً رقيقاً | إشعارات الصلاة عبر `LocalNotifications` / `UNUserNotificationCenter` — ليست Notification API في سفاري |
-| 6 | نظام تشغيل البيت | تهجد / محسن / ألعاب / حياة عبر `@capacitor/browser` (SFSafariViewController) — لا تُفتح داخل WKWebView |
+| 6 | نظام تشغيل البيت | أبواب البيت (مداد / تهجد / مواقعنا / محسن / ألعاب / حياة) داخل قشرة واحة عبر WKWebView وشريط «رجوع لواحة» — ليست Safari / SFSafari / `@capacitor/browser`. البوابات الرسمية فقط عبر Browser |
 
 الاسم: **واحة**. Bundle: `com.alhajda.waha`. المضيف الحي المؤقت للقشرة: `waha.hajdah.com`.
 

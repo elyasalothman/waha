@@ -18,6 +18,10 @@ final class WahaViewController: CAPBridgeViewController {
         false
     }
 
+    override func capacitorDidLoad() {
+        bridge?.registerPluginInstance(HouseDoorBrowserPlugin())
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

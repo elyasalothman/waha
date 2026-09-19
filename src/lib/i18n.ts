@@ -32,6 +32,8 @@ const strings = {
   featured: { ar: "ابدأ من هنا", en: "Start here" },
   open: { ar: "افتح", en: "Open" },
   back: { ar: "رجوع", en: "Back" },
+  backToWaha: { ar: "رجوع لواحة", en: "Back to Waha" },
+  closeDoor: { ar: "إغلاق", en: "Close" },
   city: { ar: "المدينة", en: "City" },
   useLocation: { ar: "موقعي", en: "My location" },
   language: { ar: "English", en: "العربية" },

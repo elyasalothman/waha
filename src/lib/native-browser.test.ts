@@ -1,25 +1,40 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { describe, it } from "node:test";
+import { HOUSE_SITES } from "./house-sites.ts";
+import { PRIMARY_LAUNCHER_IDS } from "./doors.ts";
 import {
   assertHttpsUrl,
   HOUSE_DESTINATIONS,
   houseDestination,
+  houseDoorChrome,
+  isHouseDoorUrl,
+  openExternalUrl,
+  openHouseDoor,
+  resolveNativeOpenPath,
   shouldOpenExternally,
+  type NativeOpenPath,
 } from "./native-browser.ts";
 
+const here = dirname(fileURLToPath(import.meta.url));
+
 describe("house destinations", () => {
-  it("lists تهجد / محسن / ألعاب / حياة on alhajda https hosts", () => {
+  it("lists مداد with تهجد / محسن / ألعاب / حياة on alhajda https hosts", () => {
     assert.deepEqual(
       HOUSE_DESTINATIONS.map((row) => row.id),
-      ["tahajjud", "mohsen", "games", "hayat"],
+      ["tahajjud", "midad", "mohsen", "games", "hayat"],
     );
     assert.equal(houseDestination("tahajjud").href, "https://tahajjud.alhajda.com/");
+    assert.equal(houseDestination("midad").href, "https://midad.alhajda.com/library");
     assert.equal(houseDestination("mohsen").href, "https://ai.alhajda.com/");
     assert.equal(houseDestination("games").href, "https://games.alhajda.com/");
     assert.equal(houseDestination("hayat").href, "https://hayat.alhajda.com/");
     for (const row of HOUSE_DESTINATIONS) {
       assert.equal(assertHttpsUrl(row.href), row.href);
-      assert.match(row.href, /^https:\/\/[a-z0-9.-]+\.alhajda\.com\//);
+      assert.equal(isHouseDoorUrl(row.href), true);
+      assert.match(row.href, /^https:\/\/[a-z0-9.-]+\.alhajda\.com(\/.*)?$/);
     }
   });
 });
@@ -32,11 +47,31 @@ describe("assertHttpsUrl", () => {
   });
 });
 
+describe("isHouseDoorUrl", () => {
+  it("keeps every house-sites / PRIMARY door and حياة inside the house set", () => {
+    for (const site of HOUSE_SITES) {
+      assert.equal(isHouseDoorUrl(site.href), true, site.id);
+    }
+    for (const id of PRIMARY_LAUNCHER_IDS) {
+      const site = HOUSE_SITES.find((row) => row.id === id);
+      assert.ok(site, id);
+      assert.equal(isHouseDoorUrl(site!.href), true, id);
+    }
+    assert.equal(isHouseDoorUrl("https://midad.alhajda.com"), true);
+    assert.equal(isHouseDoorUrl("https://midad.alhajda.com/library"), true);
+    assert.equal(isHouseDoorUrl("https://www.alhajda.com/sites"), true);
+    assert.equal(isHouseDoorUrl("https://hayat.alhajda.com/"), true);
+    assert.equal(isHouseDoorUrl("https://www.absher.sa"), false);
+    assert.equal(isHouseDoorUrl("https://waha.hajdah.com/life"), false);
+  });
+});
+
 describe("shouldOpenExternally", () => {
   const origin = "https://waha.hajdah.com";
 
-  it("opens sister apps and gov portals outside the WKWebView", () => {
+  it("treats sister apps and gov portals as leaving the واحة origin", () => {
     assert.equal(shouldOpenExternally("https://tahajjud.alhajda.com/", origin), true);
+    assert.equal(shouldOpenExternally("https://midad.alhajda.com/library", origin), true);
     assert.equal(shouldOpenExternally("https://www.absher.sa", origin), true);
   });
 
@@ -46,5 +81,78 @@ describe("shouldOpenExternally", () => {
     assert.equal(shouldOpenExternally("https://waha.hajdah.com/life", origin), false);
     assert.equal(shouldOpenExternally("tel:911", origin), false);
     assert.equal(shouldOpenExternally("#top", origin), false);
+  });
+});
+
+describe("native open path", () => {
+  it("sends house doors to the in-app WKWebView and gov portals to the system browser", () => {
+    const house: Array<[string, NativeOpenPath]> = [
+      ["https://midad.alhajda.com/library", "inapp-webview"],
+      ["https://tahajjud.alhajda.com/", "inapp-webview"],
+      ["https://alhajda.com/sites", "inapp-webview"],
+      ["https://ai.alhajda.com/", "inapp-webview"],
+      ["https://games.alhajda.com/", "inapp-webview"],
+      ["https://hayat.alhajda.com/", "inapp-webview"],
+      ["https://www.absher.sa", "system-browser"],
+    ];
+    for (const [href, path] of house) {
+      assert.equal(resolveNativeOpenPath(href), path, href);
+    }
+  });
+
+  it("chrome for مداد is Arabic title + رجوع لواحة", () => {
+    const chrome = houseDoorChrome("https://midad.alhajda.com/library", "ar");
+    assert.equal(chrome.title, "مداد · قراءة");
+    assert.equal(chrome.closeLabel, "رجوع لواحة");
+    assert.equal(houseDoorChrome("https://midad.alhajda.com/library", "en").closeLabel, "Back to Waha");
+  });
+
+  it("openHouseDoor / house openExternalUrl never call Capacitor Browser.open", async () => {
+    const calls: string[] = [];
+    const deps = {
+      isNativeIos: () => true,
+      openInAppWebView: async (opts: { url: string }) => {
+        calls.push(`inapp:${opts.url}`);
+      },
+      openSystemBrowser: async (url: string) => {
+        calls.push(`safari:${url}`);
+      },
+    };
+
+    const midad = await openHouseDoor("https://midad.alhajda.com/library", deps);
+    const tahajjud = await openExternalUrl("https://tahajjud.alhajda.com/", deps);
+    const sites = await openExternalUrl("https://alhajda.com/sites", deps);
+    const hayat = await openExternalUrl("https://hayat.alhajda.com/", deps);
+    const absher = await openExternalUrl("https://www.absher.sa/", deps);
+
+    assert.equal(midad.path, "inapp-webview");
+    assert.equal(tahajjud.path, "inapp-webview");
+    assert.equal(sites.path, "inapp-webview");
+    assert.equal(hayat.path, "inapp-webview");
+    assert.equal(absher.path, "system-browser");
+    assert.deepEqual(calls, [
+      "inapp:https://midad.alhajda.com/library",
+      "inapp:https://tahajjud.alhajda.com/",
+      "inapp:https://alhajda.com/sites",
+      "inapp:https://hayat.alhajda.com/",
+      "safari:https://www.absher.sa/",
+    ]);
+    assert.equal(calls.some((row) => row.startsWith("safari:") && row.includes("alhajda.com")), false);
+  });
+
+  it("source routes house doors through HouseDoorBrowser, not Browser.open", () => {
+    const source = readFileSync(join(here, "native-browser.ts"), "utf8");
+    assert.match(source, /HouseDoorBrowser/);
+    assert.match(source, /inapp-webview/);
+    assert.match(source, /midad\.alhajda\.com/);
+    assert.match(source, /رجوع لواحة/);
+    assert.match(source, /@capacitor\/browser/);
+    assert.doesNotMatch(source, /SFSafariViewController — not inside WKWebView/);
+    const safariFn = source.indexOf("defaultOpenSystemBrowser");
+    const browserOpen = source.indexOf("await Browser.open");
+    const houseFn = source.indexOf("export async function openHouseDoor");
+    assert.ok(safariFn >= 0 && browserOpen > safariFn);
+    assert.ok(houseFn >= 0);
+    assert.equal(source.slice(houseFn).includes("await Browser.open"), false);
   });
 });

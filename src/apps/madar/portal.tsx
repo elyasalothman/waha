@@ -22,12 +22,13 @@ import {
 } from "@/lib/madar";
 import { t, type Lang } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
+import { openExternalUrl } from "@/lib/native-browser";
 import { useAppStore } from "@/store/app-store";
 
 type WikiHit = { title: string; extract: string; href: string };
 
 function openExternal(href: string) {
-  window.open(href, "_blank", "noopener,noreferrer");
+  void openExternalUrl(href);
 }
 
 async function fetchWiki(query: string, lang: Lang): Promise<WikiHit | null> {

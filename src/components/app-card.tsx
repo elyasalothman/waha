@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import type { CatalogItem } from "@/lib/catalog";
 import { ClipsMark, MadarMark } from "@/components/brand";
+import { ExternalLink } from "@/components/external-link";
 import { appIcon } from "@/lib/icons";
 import type { Lang } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
@@ -55,9 +56,9 @@ export function AppCard({ item, lang, large = false }: { item: CatalogItem; lang
 
   if (item.href) {
     return (
-      <a href={item.href} className={className}>
+      <ExternalLink href={item.href} className={className}>
         <CardBody item={item} lang={lang} large={large} />
-      </a>
+      </ExternalLink>
     );
   }
 
