@@ -8,6 +8,7 @@ import {
   DAY_CITATIONS,
   dayContextFromSnap,
   HOUSE_CITATIONS,
+  formatTodayVerse,
   isDayQuestion,
   isGreetingOnly,
   isTodayOverviewQuestion,
@@ -168,11 +169,18 @@ describe("ask waha §5 smoke", () => {
       assert.equal(res.ok, true);
       if (!res.ok) return;
       assert.equal(res.trust, "مدعوم", question);
-      assert.equal(res.text.split("\n")[0], DAY.lineAr);
+      assert.equal(res.kind, "knowledge", question);
+      assert.equal(res.text, formatTodayVerse(DAY, "ar"), question);
+      assert.equal(res.text.includes("\n"), false, question);
       assert.match(res.text, new RegExp(DAY.prayerLabelAr));
       assert.match(res.text, new RegExp(DAY.hijri));
+      assert.match(res.text, new RegExp(DAY.prayerHm.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
       assert.match(res.text, new RegExp(String(Math.round(DAY.weatherC))));
-      assert.doesNotMatch(res.text, /لا أعرف|تداول|أسواق|سوق/);
+      const allowedNums = `${DAY.hijri} ${DAY.prayerHm} ${DAY.clock} ${Math.round(DAY.weatherC)}`;
+      for (const n of res.text.match(/\d+/g) ?? []) {
+        assert.ok(allowedNums.includes(n), `${question} invented ${n}`);
+      }
+      assert.doesNotMatch(res.text, /لا أعرف|تداول|أسواق|سوق|محسن/);
       assert.ok(res.citations && res.citations.length >= 3 && res.citations.length <= 4);
       for (const c of res.citations ?? []) {
         assert.match(c.url, /^https:\/\//);
