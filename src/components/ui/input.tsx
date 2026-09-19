@@ -1,9 +1,10 @@
 import type { InputHTMLAttributes, TextareaHTMLAttributes } from "react";
 import { cn } from "@/lib/cn";
 
-export function Input({ className, ...props }: InputHTMLAttributes<HTMLInputElement>) {
+export function Input({ className, dir = "auto", ...props }: InputHTMLAttributes<HTMLInputElement>) {
   return (
     <input
+      dir={dir}
       className={cn(
         "h-11 w-full rounded-md border border-border bg-surface px-3 text-sm text-fg placeholder:text-subtle",
         className,

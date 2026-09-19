@@ -23,9 +23,9 @@ npm run typecheck
 npm run build
 ```
 
-## التقنية
+## آيفون
 
-TanStack Start وReact 19 وTailwind v4. البيانات في `localStorage`. مواقيت الصلاة حسب أم القرى (`adhan`)، الطقس من Open-Meteo، والعملات من Frankfurter.
+قشرة Capacitor (`com.alhajda.waha`) تُبنى على Codemagic وتُرفع لـ TestFlight — بلا ماك. التفاصيل: [docs/IOS.md](docs/IOS.md) و[docs/TESTFLIGHT.md](docs/TESTFLIGHT.md).
 
 ## ترخيص
 

@@ -16,3 +16,14 @@ dist
 public/__grok
 AGENTS.md
 AGENTS.project.md
+
+# Capacitor / Xcode (keep the project; drop machine junk)
+ios/App/Pods/
+ios/App/Podfile.lock
+ios/App/App/public
+ios/capacitor-cordova-ios-plugins/
+ios/**/xcuserdata/
+ios/**/*.xcuserstate
+ios/App/DerivedData/
+ios/App/build/
+www/.gitkeep

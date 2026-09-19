@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { ExternalLink } from "@/components/external-link";
 import { Input } from "@/components/ui/input";
 import { useAppStore } from "@/store/app-store";
 
@@ -52,7 +53,9 @@ export function ServicesApp() {
   return (
     <div className="space-y-6">
       <p className="text-sm text-muted">
-        {lang === "ar" ? "روابط رسمية تفتح في لسان جديد. ليست بديلاً عن المنصة نفسها." : "Official links open in a new tab. Not a substitute for the portal itself."}
+        {lang === "ar"
+          ? "روابط رسمية تُفتح خارج واحة (متصفح النظام على الآيفون). ليست بديلاً عن المنصة نفسها."
+          : "Official links open outside Waha (system browser on iPhone). Not a substitute for the portal itself."}
       </p>
       <Input value={q} onChange={(e) => setQ(e.target.value)} placeholder={lang === "ar" ? "ابحث: أبشر، ناجز، صحتي…" : "Search: Absher, Najiz, Sehhaty…"} />
       {GROUPS.map((g) => {
@@ -63,16 +66,14 @@ export function ServicesApp() {
             <h2 className="mb-2 text-sm font-medium text-muted">{lang === "ar" ? g.ar : g.en}</h2>
             <div className="space-y-2">
               {rows.map((row) => (
-                <a
+                <ExternalLink
                   key={row.href}
                   href={row.href}
-                  target="_blank"
-                  rel="noreferrer"
                   className="flex min-h-14 items-center justify-between rounded-xl border border-border bg-surface px-4 py-3 hover:bg-surface-2"
                 >
                   <span>{lang === "ar" ? row.ar : row.en}</span>
                   <span className="text-xs text-subtle">{new URL(row.href).host}</span>
-                </a>
+                </ExternalLink>
               ))}
             </div>
           </section>

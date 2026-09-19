@@ -1,6 +1,7 @@
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { AuthProvider } from "@/lib/auth/provider";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
+import { NativeIosChrome } from "@/components/native-ios-chrome";
 import { Shell } from "@/components/layout/shell";
 import { useAppStore } from "@/store/app-store";
 import appCss from "../styles.css?url";
@@ -12,12 +13,18 @@ export const Route = createRootRoute({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      {
+        name: "viewport",
+        content: "width=device-width, initial-scale=1, viewport-fit=cover",
+      },
       { title: APP_NAME },
       { name: "description", content: "واحتك الرقمية — صلاة، أسماء، ضريبة، بلوت، وأدوات يومك" },
       { name: "application-name", content: PWA_NAME },
       { name: "apple-mobile-web-app-title", content: PWA_NAME },
       { name: "theme-color", content: "#0c0d0c" },
+      { name: "apple-mobile-web-app-capable", content: "yes" },
+      { name: "mobile-web-app-capable", content: "yes" },
+      { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
     ],
     links: [
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
@@ -42,6 +49,7 @@ function RootDocument() {
         <HeadContent />
       </head>
       <body className="bg-bg text-fg">
+        <NativeIosChrome />
         <PreviewHostBridge />
         <AuthProvider>
           <Shell />

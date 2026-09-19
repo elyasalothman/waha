@@ -1,0 +1,148 @@
+# واحة — iOS TestFlight. Bundle com.alhajda.waha. Team HQRPK78BRV.
+# Elyas has no Mac: this archives on mac_mini_m2 and uploads TestFlight.
+# ios-release: ios/App (workspace + pods, scheme App) → TestFlight only. No App Store submit.
+
+workflows:
+  ios-release:
+    name: واحة iOS — TestFlight
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+    integrations:
+      app_store_connect: codemagic
+    environment:
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.alhajda.waha
+      vars:
+        XCODE_SCHEME: App
+        XCODE_WORKSPACE: ios/App/App.xcworkspace
+        BUNDLE_ID: com.alhajda.waha
+      node: 22
+      # App Store review rejects builds made with an SDK Apple has not opened yet.
+      # Stay on the same Xcode pin as تهجد (iOS 26 SDK).
+      xcode: 26.6
+      cocoapods: default
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: main
+          include: true
+    scripts:
+      - name: Install dependencies
+        script: npm ci
+      - name: Sync web assets to www/
+        script: npm run sync:www
+      - name: Add iOS platform if missing
+        script: |
+          set -euo pipefail
+          if [ ! -f "ios/App/App.xcodeproj/project.pbxproj" ]; then
+            rm -rf ios
+            npx cap add ios
+          fi
+          mkdir -p ios/App
+          cp native/ExportOptions.plist ios/App/ExportOptions.plist
+      - name: Sync Capacitor iOS (Mac builder only)
+        script: npx cap sync ios
+      - name: Install CocoaPods
+        script: |
+          cd ios/App && pod install
+      - name: Set iOS build number
+        script: |
+          set -euo pipefail
+          REPO_ROOT="$(pwd)"
+          PROJECT_DIR="$REPO_ROOT/ios/App"
+          if [ ! -d "$PROJECT_DIR/App.xcodeproj" ]; then
+            echo "App.xcodeproj not found in $PROJECT_DIR" >&2
+            exit 1
+          fi
+          cd "$PROJECT_DIR"
+
+          CHECKED_IN_BUILD_NUMBER=$(
+            xcodebuild \
+              -project App.xcodeproj \
+              -target App \
+              -configuration Release \
+              -showBuildSettings |
+              awk '/CURRENT_PROJECT_VERSION =/ { print $3; exit }'
+          )
+          case "$CHECKED_IN_BUILD_NUMBER" in
+            ''|*[!0-9]*)
+              echo "Invalid checked-in iOS build number: $CHECKED_IN_BUILD_NUMBER" >&2
+              exit 1
+              ;;
+          esac
+
+          NEXT_BUILD_NUMBER="$CHECKED_IN_BUILD_NUMBER"
+          case "${PROJECT_BUILD_NUMBER:-}" in
+            ''|*[!0-9]*) ;;
+            *)
+              if [ "$PROJECT_BUILD_NUMBER" -gt "$NEXT_BUILD_NUMBER" ]; then
+                NEXT_BUILD_NUMBER="$PROJECT_BUILD_NUMBER"
+              fi
+              ;;
+          esac
+
+          if APPS_JSON=$(
+            app-store-connect apps list \
+              --bundle-id-identifier "$BUNDLE_ID" \
+              --strict-match-identifier \
+              --json
+          ) && APP_STORE_APPLE_ID=$(
+            APPS_JSON="$APPS_JSON" python3 -c 'import json, os; apps = json.loads(os.environ["APPS_JSON"]); assert len(apps) == 1, f"Expected one App Store app, found {len(apps)}"; print(apps[0]["id"])'
+          ) && LATEST_BUILD_NUMBER=$(
+            app-store-connect get-latest-testflight-build-number \
+              "$APP_STORE_APPLE_ID"
+          ); then
+            case "$LATEST_BUILD_NUMBER" in
+              ''|*[!0-9]*)
+                echo "Invalid latest TestFlight build number; using fallback $NEXT_BUILD_NUMBER" >&2
+                ;;
+              *)
+                NEXT_BUILD_NUMBER="$(
+                  bash "$REPO_ROOT/scripts/ios-next-build.sh" \
+                    "$NEXT_BUILD_NUMBER" "$LATEST_BUILD_NUMBER"
+                )"
+                ;;
+            esac
+          else
+            echo "Could not read the latest TestFlight build; using fallback $NEXT_BUILD_NUMBER" >&2
+          fi
+
+          echo "Using iOS build number $NEXT_BUILD_NUMBER"
+
+          MARKETING_VERSION=$(
+            xcodebuild \
+              -project App.xcodeproj \
+              -target App \
+              -configuration Release \
+              -showBuildSettings |
+              awk '/MARKETING_VERSION =/ { print $3; exit }'
+          )
+          case "$MARKETING_VERSION" in
+            ''|*[!0-9.]*)
+              echo "Invalid marketing version from project.pbxproj: $MARKETING_VERSION" >&2
+              exit 1
+              ;;
+          esac
+          echo "Using iOS marketing version $MARKETING_VERSION from Xcode project"
+          cd "$REPO_ROOT"
+          bash scripts/ios-agvtool.sh "$NEXT_BUILD_NUMBER" "$MARKETING_VERSION"
+      - name: Set up code signing
+        script: |
+          xcode-project use-profiles \
+            --project ios/App/App.xcodeproj \
+            --archive-method app-store \
+            --code-signing-setup-verbose-logging
+      - name: Build IPA
+        script: |
+          xcode-project build-ipa \
+            --workspace "$XCODE_WORKSPACE" \
+            --scheme "$XCODE_SCHEME"
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true

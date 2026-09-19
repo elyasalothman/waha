@@ -16,11 +16,21 @@
     "preview:stop": "node scripts/preview.mjs stop",
     "typecheck": "tsc --noEmit",
     "check:auth": "node scripts/check-auth-invariant.mjs",
-    "test": "node --test 'scripts/**/*.test.mjs' && node --experimental-strip-types --test src/lib/app-data/app-data.test.ts src/lib/auth/gate-identity.test.ts src/lib/auth/sign-in-gate.test.ts src/lib/shadow-day.test.ts src/lib/house-sites.test.ts src/lib/doors.test.ts src/lib/share.test.ts src/lib/prayer-reminder.test.ts src/lib/emergency.test.ts src/lib/live-stamp.test.ts src/lib/home-lock.test.ts src/lib/square/square.test.ts src/lib/square/world.test.ts src/lib/square/soft-money.test.ts src/lib/nav.test.ts src/lib/madar.test.ts src/lib/child-mode.test.ts src/lib/ask-waha.test.ts",
+    "test": "node --test 'scripts/**/*.test.mjs' && node --experimental-strip-types --test src/lib/app-data/app-data.test.ts src/lib/auth/gate-identity.test.ts src/lib/auth/sign-in-gate.test.ts src/lib/shadow-day.test.ts src/lib/house-sites.test.ts src/lib/doors.test.ts src/lib/share.test.ts src/lib/prayer-reminder.test.ts src/lib/emergency.test.ts src/lib/live-stamp.test.ts src/lib/home-lock.test.ts src/lib/square/square.test.ts src/lib/square/world.test.ts src/lib/square/soft-money.test.ts src/lib/nav.test.ts src/lib/madar.test.ts src/lib/child-mode.test.ts src/lib/ask-waha.test.ts src/lib/native-salah-notifications.test.ts src/lib/native-browser.test.ts",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "sync:www": "node scripts/sync-www.mjs",
+    "cap:sync": "npm run sync:www && npx cap sync ios",
+    "cap:ios": "npm run cap:sync && npx cap open ios"
   },
   "dependencies": {
+    "@capacitor/app": "^7.1.2",
+    "@capacitor/browser": "^7.0.5",
+    "@capacitor/core": "^7.6.9",
+    "@capacitor/ios": "^7.6.9",
+    "@capacitor/keyboard": "^7.0.6",
+    "@capacitor/local-notifications": "^7.0.7",
+    "@capacitor/status-bar": "^7.0.6",
     "@electric-sql/pglite": "^0.5.4",
     "@hookform/resolvers": "^5.7.0",
     "@radix-ui/react-accordion": "^1.2.12",
@@ -76,6 +86,7 @@
     "zustand": "^5.0.0"
   },
   "devDependencies": {
+    "@capacitor/cli": "^7.6.9",
     "@eslint/js": "^9.20.0",
     "@types/node": "^22.16.5",
     "@types/pg": "^8.11.10",

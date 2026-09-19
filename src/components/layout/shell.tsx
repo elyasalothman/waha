@@ -80,7 +80,7 @@ export function Shell() {
       </aside>
 
       <div className="lg:ps-60">
-        <header className="sticky top-0 z-20 flex h-14 items-center gap-3 border-b border-border bg-bg/90 px-4 backdrop-blur-sm">
+        <header className="native-safe-top sticky top-0 z-20 flex h-14 items-center gap-3 border-b border-border bg-bg/90 px-4 pt-[env(safe-area-inset-top,0px)] backdrop-blur-sm lg:pt-0">
           <Link to="/" className="lg:hidden">
             <WahaWordmark lang={lang} />
           </Link>
@@ -126,7 +126,7 @@ export function Shell() {
 
       <nav
         className={cn(
-          "fixed inset-x-0 bottom-0 z-30 grid border-t border-border bg-bg/95 pb-[env(safe-area-inset-bottom)] lg:hidden",
+          "native-safe-bottom fixed inset-x-0 bottom-0 z-30 grid border-t border-border bg-bg/95 pb-[env(safe-area-inset-bottom,0px)] lg:hidden",
           mobileNav.length <= 2 ? "grid-cols-2" : mobileNav.length === 3 ? "grid-cols-3" : "grid-cols-4",
         )}
       >

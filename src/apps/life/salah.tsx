@@ -7,6 +7,13 @@ import { markLiveFetch } from "@/lib/live-stamp";
 import { useNow } from "@/hooks/use-now";
 import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
+import { usePersistent } from "@/lib/storage";
+import {
+  buildSalahAlert,
+  isNativeIos,
+  SALAH_NOTIFY_KEY,
+  syncSalahNotification,
+} from "@/lib/native-salah-notifications";
 import { cn } from "@/lib/cn";
 
 export function SalahApp() {
@@ -19,7 +26,24 @@ export function SalahApp() {
   );
   const map = timesMap(pt);
   const next = nextPrayer(pt, now, city.tz);
-  const remain = next.at.getTime() - now.getTime();
+  const nextAt = next.at;
+  const remain = nextAt.getTime() - now.getTime();
+  const [notify, setNotify] = usePersistent(SALAH_NOTIFY_KEY, false);
+  const native = isNativeIos();
+
+  useEffect(() => {
+    if (!native) return;
+    const labels = PRAYER_LABELS[next.key];
+    void syncSalahNotification(
+      notify,
+      buildSalahAlert({
+        prayerAr: labels.ar,
+        prayerEn: labels.en,
+        lang,
+        at: nextAt,
+      }),
+    );
+  }, [native, notify, next.key, nextAt, lang]);
 
   useEffect(() => {
     markLiveFetch("prayer", Date.now(), typeof localStorage === "undefined" ? null : localStorage);
@@ -56,6 +80,41 @@ export function SalahApp() {
           );
         })}
       </div>
+      <Card className="flex items-start justify-between gap-3 p-4">
+        <div>
+          <p className="text-sm text-fg">
+            {lang === "ar" ? "إشعار الصلاة القادمة" : "Next-prayer notification"}
+          </p>
+          <p className="mt-1 text-xs text-muted">
+            {native
+              ? lang === "ar"
+                ? "تنبيه أصلي على الجهاز — ليس إشعار المتصفح."
+                : "A native device alert — not the browser notification API."
+              : lang === "ar"
+                ? "يتوفر في تطبيق آيفون (واحة). إضافة للشاشة الرئيسية لا توقظ بعد الإغلاق."
+                : "Available in the iPhone app. Add-to-Home-Screen cannot wake after Safari is closed."}
+          </p>
+        </div>
+        <button
+          type="button"
+          role="switch"
+          aria-checked={notify}
+          disabled={!native}
+          onClick={() => setNotify(!notify)}
+          className={cn(
+            "relative h-7 w-12 shrink-0 rounded-full border transition-colors",
+            notify && native ? "border-primary bg-primary" : "border-border bg-surface-2",
+            !native && "opacity-50",
+          )}
+        >
+          <span
+            className={cn(
+              "absolute top-0.5 size-5 rounded-full bg-fg transition-[inset-inline-start]",
+              notify && native ? "start-6" : "start-0.5",
+            )}
+          />
+        </button>
+      </Card>
       <p className="text-xs text-subtle">
         {lang === "ar" ? "الحساب وفق أم القرى — مكة المكرمة." : "Calculated with the Umm al-Qura method."}
       </p>

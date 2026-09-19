@@ -501,6 +501,7 @@ test("renders the manifest with the app name واحة", () => {
     }
     assert.ok(manifest.icons.some((icon) => icon.src === "/icons/icon-180.png"));
     assert.ok(manifest.icons.some((icon) => icon.src === "/favicon.svg"));
+    assert.doesNotMatch(JSON.stringify(manifest), /__grok/);
   }
 });
 
