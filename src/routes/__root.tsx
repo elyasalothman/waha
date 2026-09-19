@@ -6,6 +6,7 @@ import { useAppStore } from "@/store/app-store";
 import appCss from "../styles.css?url";
 
 const APP_NAME = "واحة · Waha";
+const PWA_NAME = "واحة";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -14,6 +15,8 @@ export const Route = createRootRoute({
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: APP_NAME },
       { name: "description", content: "واحتك الرقمية — صلاة، أسماء، ضريبة، بلوت، وأدوات يومك" },
+      { name: "application-name", content: PWA_NAME },
+      { name: "apple-mobile-web-app-title", content: PWA_NAME },
       { name: "theme-color", content: "#0c0d0c" },
     ],
     links: [
