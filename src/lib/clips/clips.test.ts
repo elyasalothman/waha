@@ -1,23 +1,11 @@
 import { readFileSync } from "node:fs";
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { getApp } from "../catalog.ts";
-import { SQUARE_STORAGE_KEY } from "../square/store.ts";
 import { SEED_POSTS } from "../square/seed.ts";
-import { mergeFeed, emptyLocal } from "../square/logic.ts";
-import {
-  CLIP_CARDS,
-  CLIP_IDS,
-  CLIP_TOPICS,
-  CLIPS_SEED,
-  CLIPS_SEED_COUNT,
-  CLIPS_STORAGE_KEY,
-  hydrateClipsState,
-  listClips,
-  markSeen,
-  nocookieEmbedUrl,
-  watchUrl,
-} from "./index.ts";
+import { SQUARE_STORAGE_KEY, mergeFeed, emptyLocal } from "../square/logic.ts";
+import { CLIP_CARDS, CLIP_IDS, CLIPS_SEED, CLIPS_SEED_COUNT, nocookieEmbedUrl, watchUrl } from "./seed.ts";
+import { hydrateClipsState, listClips, markSeen } from "./logic.ts";
+import { CLIP_TOPICS, CLIPS_STORAGE_KEY } from "./types.ts";
 import cards from "./maydan-muaqata-mufida-cards-v1.json" with { type: "json" };
 import lock from "./maydan-muaqata-mufida-seed-v1.json" with { type: "json" };
 
@@ -143,8 +131,8 @@ describe("clips stay off the Maydan line", () => {
     assert.match(shell, /to="\/clips"/);
     assert.match(shell, /to="\/madar"/);
     assert.match(nav, /to: "\/clips"/);
-    const item = getApp("clips");
-    assert.equal(item?.portal, true);
-    assert.equal(item?.featured ?? false, false);
+    const catalog = readFileSync(new URL("../catalog.ts", import.meta.url), "utf8");
+    assert.match(catalog, /id: "clips".*portal: true/);
+    assert.doesNotMatch(catalog, /id: "clips"[\s\S]{0,200}featured: true/);
   });
 });
