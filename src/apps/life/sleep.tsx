@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Seg } from "@/components/seg";
+import { pairLang } from "@/lib/locale";
 import { useAppStore } from "@/store/app-store";
 
 function parseHm(v: string) {
@@ -15,7 +16,7 @@ function fmt(mins: number, lang: "ar" | "en") {
 }
 
 export function SleepApp() {
-  const lang = useAppStore((s) => s.lang);
+  const lang = pairLang(useAppStore((s) => s.lang));
   const [mode, setMode] = useState<"wake" | "sleep">("wake");
   const [time, setTime] = useState("06:30");
   const L = (ar: string, en: string) => (lang === "ar" ? ar : en);

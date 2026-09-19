@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { t } from "@/lib/i18n";
+import { locPair } from "@/lib/locale";
 import { usePersistent } from "@/lib/storage";
 import { useAppStore } from "@/store/app-store";
 import { cn } from "@/lib/cn";
@@ -77,7 +78,7 @@ export function PapersApp() {
               <li key={doc.id} className="flex items-center justify-between gap-3 rounded-xl border border-border bg-surface px-4 py-3">
                 <div>
                   <p className="font-medium">{doc.title}</p>
-                  <p className="text-xs text-muted">{KINDS.find((k) => k.id === doc.kind)?.[lang] ?? doc.kind}</p>
+                  <p className="text-xs text-muted">{(() => { const k = KINDS.find((x) => x.id === doc.kind); return k ? locPair(lang, k) : doc.kind; })()}</p>
                   <p className={cn("mt-1 text-sm tabular-nums", tone)}>{label}</p>
                 </div>
                 <Button size="sm" variant="ghost" onClick={() => setDocs(docs.filter((x) => x.id !== doc.id))}>

@@ -11,9 +11,10 @@ export function SalahApp() {
   const lang = useAppStore((s) => s.lang);
   const city = useAppStore((s) => s.city);
   const now = useNow(1000);
-  const pt = useMemo(() => getTimes(city.lat, city.lon, now), [city.lat, city.lon, now.toDateString()]);
+  const tz = city.tz || "Asia/Riyadh";
+  const pt = useMemo(() => getTimes(city.lat, city.lon, now, tz), [city.lat, city.lon, tz, now.toDateString()]);
   const map = timesMap(pt);
-  const next = nextPrayer(pt, now);
+  const next = nextPrayer(pt, now, tz);
   const remain = next.at.getTime() - now.getTime();
 
   return (
@@ -22,7 +23,7 @@ export function SalahApp() {
       <Card className="p-5">
         <p className="text-xs text-muted">{t(lang, "nextPrayer")}</p>
         <p className="mt-1 font-display text-4xl">{PRAYER_LABELS[next.key][lang]}</p>
-        <p className="mt-2 font-mono text-2xl tabular-nums text-primary">{formatHm(next.at, lang)}</p>
+        <p className="num mt-2 font-mono text-2xl tabular-nums text-primary">{formatHm(next.at, lang, tz)}</p>
         <p className="mt-1 text-sm text-muted">
           {t(lang, "remaining")} {formatDuration(remain, lang)}
         </p>
@@ -39,7 +40,7 @@ export function SalahApp() {
               )}
             >
               <div className="text-xs text-muted">{PRAYER_LABELS[key][lang]}</div>
-              <div className="mt-1 font-mono text-lg tabular-nums">{formatHm(map[key], lang)}</div>
+              <div className="num mt-1 font-mono text-lg tabular-nums">{formatHm(map[key], lang, tz)}</div>
             </div>
           );
         })}

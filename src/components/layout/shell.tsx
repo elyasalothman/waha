@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet, useRouterState } from "@tanstack/react-router";
 import {
+  FlaskConical,
   Gamepad2,
   House,
+  MessageCircle,
   PanelsTopLeft,
   Search,
+  Settings,
   Sparkles,
   Sun,
+  Trees,
   Wallet,
   Wrench,
 } from "lucide-react";
 import { WahaWordmark } from "@/components/brand";
 import { CommandPalette } from "@/components/command-palette";
-import { AudienceSwitch } from "@/components/audience-switch";
-import { LangToggle } from "@/components/city-select";
+import { LangSelect } from "@/components/lang-select";
+import { SegmentSwitch } from "@/components/segment-switch";
 import { t, type I18nKey } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
 import { useAppStore } from "@/store/app-store";
@@ -24,28 +28,42 @@ type NavItem = { to: string; key: I18nKey; icon: typeof House };
 const PERSONAL_NAV: NavItem[] = [
   { to: "/", key: "home", icon: House },
   { to: "/life", key: "life", icon: Sun },
-  { to: "/money", key: "money", icon: Wallet },
-  { to: "/tools", key: "tools", icon: Wrench },
+  { to: "/ask", key: "ask", icon: MessageCircle },
   { to: "/games", key: "games", icon: Gamepad2 },
-  { to: "/studio", key: "studio", icon: Sparkles },
+  { to: "/house", key: "house", icon: Trees },
 ];
 
 const WORK_NAV: NavItem[] = [
   { to: "/", key: "home", icon: House },
   { to: "/workspace", key: "workspace", icon: PanelsTopLeft },
+  { to: "/ask", key: "ask", icon: MessageCircle },
   { to: "/money", key: "finance", icon: Wallet },
-  { to: "/tools", key: "tools", icon: Wrench },
-  { to: "/studio", key: "studio", icon: Sparkles },
+  { to: "/house", key: "house", icon: Trees },
+];
+
+const CHILD_NAV: NavItem[] = [
+  { to: "/", key: "home", icon: House },
+  { to: "/games", key: "games", icon: Gamepad2 },
+  { to: "/life", key: "life", icon: Sun },
+  { to: "/ask", key: "ask", icon: MessageCircle },
+  { to: "/house", key: "house", icon: Trees },
 ];
 
 export function Shell() {
   const lang = useAppStore((s) => s.lang);
   const audience = useAppStore((s) => s.audience);
+  const segment = useAppStore((s) => s.segment);
   const hydrate = useAppStore((s) => s.hydrate);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [cmd, setCmd] = useState(false);
-  const nav = audience === "personal" ? PERSONAL_NAV : WORK_NAV;
-  const mobileNav = audience === "personal" ? PERSONAL_NAV.filter((n) => n.to !== "/studio") : WORK_NAV.filter((n) => n.to !== "/studio");
+  const nav = segment === "child" ? CHILD_NAV : audience === "work" ? WORK_NAV : PERSONAL_NAV;
+  const side = [
+    ...nav,
+    { to: "/tools", key: "tools" as const, icon: Wrench },
+    { to: "/studio", key: "studio" as const, icon: Sparkles },
+    { to: "/settings", key: "settings" as const, icon: Settings },
+    { to: "/labs", key: "labs" as const, icon: FlaskConical },
+  ];
 
   useEffect(() => {
     hydrate();
@@ -53,20 +71,20 @@ export function Shell() {
 
   return (
     <div className="min-h-dvh bg-bg text-fg">
-      <aside className="fixed inset-y-0 start-0 z-30 hidden w-60 border-e border-border bg-bg lg:flex lg:flex-col">
+      <aside className="fixed inset-y-0 start-0 z-30 hidden w-60 border-e border-border bg-bg pt-[env(safe-area-inset-top)] lg:flex lg:flex-col">
         <div className="px-5 py-6">
           <Link to="/" className="inline-flex">
             <WahaWordmark lang={lang} />
           </Link>
           <p className="mt-3 text-xs leading-relaxed text-muted">
-            {t(lang, audience === "personal" ? "tagline" : "workTagline")}
+            {t(lang, audience === "work" ? "workTagline" : "tagline")}
           </p>
           <div className="mt-4">
-            <AudienceSwitch />
+            <SegmentSwitch />
           </div>
         </div>
-        <nav className="flex flex-1 flex-col gap-0.5 px-3">
-          {nav.map((item) => {
+        <nav className="flex flex-1 flex-col gap-0.5 overflow-y-auto px-3">
+          {side.map((item) => {
             const Icon = item.icon;
             const active = item.to === "/" ? pathname === "/" : pathname === item.to || pathname.startsWith(`${item.to}/`);
             return (
@@ -84,13 +102,13 @@ export function Shell() {
             );
           })}
         </nav>
-        <div className="flex items-center justify-between px-4 py-4">
-          <LangToggle lang={lang} />
+        <div className="flex items-center justify-between px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
+          <LangSelect compact />
         </div>
       </aside>
 
       <div className="lg:ps-60">
-        <header className="sticky top-0 z-20 flex h-14 items-center gap-3 border-b border-border bg-bg/90 px-4 backdrop-blur-sm">
+        <header className="sticky top-0 z-20 flex h-14 items-center gap-3 border-b border-border bg-bg/90 px-4 pt-[env(safe-area-inset-top)] backdrop-blur-sm">
           <Link to="/" className="lg:hidden">
             <WahaWordmark lang={lang} />
           </Link>
@@ -105,30 +123,27 @@ export function Shell() {
               ⌘K
             </kbd>
           </button>
-          <div className="hidden sm:block lg:hidden">
-            <AudienceSwitch compact />
-          </div>
+          <Link to="/settings" className="hidden h-11 w-11 items-center justify-center rounded-md text-muted hover:bg-surface sm:flex lg:hidden">
+            <Settings className="size-5" />
+          </Link>
           <div className="lg:hidden">
-            <LangToggle lang={lang} />
+            <LangSelect compact />
           </div>
         </header>
 
-        <div className="border-b border-border px-4 py-2 sm:hidden">
-          <AudienceSwitch />
+        <div className="border-b border-border px-4 py-2 lg:hidden">
+          <SegmentSwitch compact />
         </div>
 
-        <main className="px-4 py-6 pb-24 lg:px-8 lg:pb-10">
+        <main className="px-4 py-6 pb-28 lg:px-8 lg:pb-10">
           <Outlet />
         </main>
       </div>
 
       <nav
-        className={cn(
-          "fixed inset-x-0 bottom-0 z-30 grid border-t border-border bg-bg/95 pb-[env(safe-area-inset-bottom)] lg:hidden",
-          audience === "personal" || mobileNav.length === 5 ? "grid-cols-5" : "grid-cols-4",
-        )}
+        className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-5 border-t border-border bg-bg/95 pb-[env(safe-area-inset-bottom)] lg:hidden"
       >
-        {mobileNav.map((item) => {
+        {nav.map((item) => {
           const Icon = item.icon;
           const active = item.to === "/" ? pathname === "/" : pathname === item.to || pathname.startsWith(`${item.to}/`);
           return (

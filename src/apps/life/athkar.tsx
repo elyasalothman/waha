@@ -1,3 +1,4 @@
+import { pairLang } from "@/lib/locale";
 import { usePersistent } from "@/lib/storage";
 import { useAppStore } from "@/store/app-store";
 import { cn } from "@/lib/cn";
@@ -31,7 +32,7 @@ function today() {
 }
 
 export function AthkarApp() {
-  const lang = useAppStore((s) => s.lang);
+  const lang = pairLang(useAppStore((s) => s.lang));
   const [store, setStore] = usePersistent<Store>("waha:athkar", { date: today(), morning: [], evening: [] });
   const date = today();
   const morning = store.date === date ? store.morning : [];

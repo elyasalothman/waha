@@ -36,7 +36,7 @@ export function FastingApp() {
     <div className="space-y-4">
       <div className="rounded-xl border border-border bg-surface p-5">
         <p className="text-xs text-muted">
-          {HIJRI_MONTHS[lang][h.hm - 1]} {h.hy}
+          {HIJRI_MONTHS[lang === "ar" ? "ar" : "en"][h.hm - 1]} {h.hy}
         </p>
         <p className="mt-1 font-display text-4xl tabular-nums">{thisMonth}</p>
         <p className="mt-1 text-sm text-muted">{L("أيام صمتها هذا الشهر", "Days fasted this month")}</p>

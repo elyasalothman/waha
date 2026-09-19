@@ -1,8 +1,10 @@
 import { CITIES } from "@/lib/cities";
-import { t, type Lang } from "@/lib/i18n";
+import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
+
+export { LangToggle, LangSelect } from "@/components/lang-select";
 
 export function CitySelect({ compact = false }: { compact?: boolean }) {
   const lang = useAppStore((s) => s.lang);
@@ -52,11 +54,3 @@ export function CitySelect({ compact = false }: { compact?: boolean }) {
   );
 }
 
-export function LangToggle({ lang }: { lang: Lang }) {
-  const toggleLang = useAppStore((s) => s.toggleLang);
-  return (
-    <Button type="button" variant="ghost" size="sm" onClick={toggleLang} className="min-w-11">
-      {t(lang, "language")}
-    </Button>
-  );
-}

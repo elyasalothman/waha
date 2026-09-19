@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { t } from "@/lib/i18n";
+import { pairLang, t } from "@/lib/i18n";
 import { usePersistent } from "@/lib/storage";
 import { useAppStore } from "@/store/app-store";
 import { cn } from "@/lib/cn";
@@ -20,7 +20,7 @@ function sar(n: number, lang: "ar" | "en") {
 }
 
 export function BillsApp() {
-  const lang = useAppStore((s) => s.lang);
+  const lang = pairLang(useAppStore((s) => s.lang));
   const [store, setStore] = usePersistent<Store>("waha:bills", { bills: [], subs: [] });
   const [tab, setTab] = useState<"bills" | "subs">("bills");
   const [title, setTitle] = useState("");

@@ -8,7 +8,7 @@ const Message = z.object({
 
 const Input = z.object({
   mode: z.enum(["chat", "translate", "write"]),
-  lang: z.enum(["ar", "en"]),
+  lang: z.enum(["ar", "en", "zh", "es", "fr", "hi"]),
   messages: z.array(Message).max(12),
 });
 
@@ -38,7 +38,7 @@ export const askWaha = createServerFn({ method: "POST" })
       return { ok: false as const, error: "empty" };
     }
 
-    const system = SYSTEMS[data.mode][data.lang];
+    const system = SYSTEMS[data.mode][data.lang === "ar" ? "ar" : "en"];
     const res = await fetch("https://api.x.ai/v1/chat/completions", {
       method: "POST",
       headers: {

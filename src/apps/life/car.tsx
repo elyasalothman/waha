@@ -1,5 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { usePersistent } from "@/lib/storage";
+import { pairLang } from "@/lib/locale";
 import { useAppStore } from "@/store/app-store";
 import { cn } from "@/lib/cn";
 
@@ -25,7 +26,7 @@ function daysUntil(iso: string) {
 }
 
 export function CarApp() {
-  const lang = useAppStore((s) => s.lang);
+  const lang = pairLang(useAppStore((s) => s.lang));
   const [v, setV] = usePersistent<Store>("waha:car", empty);
   const L = (ar: string, en: string) => (lang === "ar" ? ar : en);
   const oilLeft = v.oilEvery > 0 ? v.oilKm + v.oilEvery - v.currentKm : null;

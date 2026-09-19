@@ -1,6 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { Seg } from "@/components/seg";
 import { usePersistent } from "@/lib/storage";
+import { pairLang } from "@/lib/locale";
 import { useAppStore } from "@/store/app-store";
 
 type Sex = "m" | "f";
@@ -9,7 +10,7 @@ type Act = "sed" | "light" | "mid" | "high";
 const ACT: Record<Act, number> = { sed: 1.2, light: 1.375, mid: 1.55, high: 1.725 };
 
 export function CaloriesApp() {
-  const lang = useAppStore((s) => s.lang);
+  const lang = pairLang(useAppStore((s) => s.lang));
   const [sex, setSex] = usePersistent<Sex>("waha:cal-sex", "m");
   const [age, setAge] = usePersistent("waha:cal-age", 30);
   const [cm, setCm] = usePersistent("waha:cal-cm", 170);

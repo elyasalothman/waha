@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Stat } from "@/components/app-stage";
-import { t } from "@/lib/i18n";
+import { pairLang, t } from "@/lib/i18n";
 import { writeScore } from "@/lib/storage";
 import { useAppStore } from "@/store/app-store";
 import { cn } from "@/lib/cn";
@@ -12,7 +12,7 @@ const EN_TEXT =
   "Clear thinking is a craft. Short sentences carry weight. Practice every day and the hands remember what the mind forgets. Measure twice, cut once, then begin again with care.";
 
 export function TypeApp() {
-  const lang = useAppStore((s) => s.lang);
+  const lang = pairLang(useAppStore((s) => s.lang));
   const [mode, setMode] = useState<"ar" | "en">(lang);
   const source = mode === "ar" ? AR_TEXT : EN_TEXT;
   const [typed, setTyped] = useState("");

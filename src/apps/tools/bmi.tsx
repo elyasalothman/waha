@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { Input } from "@/components/ui/input";
+import { locPair } from "@/lib/locale";
 import { useAppStore } from "@/store/app-store";
 
 export function BmiApp() {
@@ -27,7 +28,7 @@ export function BmiApp() {
         <Input type="number" value={kg} onChange={(e) => setKg(Number(e.target.value))} />
       </label>
       <p className="font-display text-4xl tabular-nums">{bmi.toFixed(1)}</p>
-      <p className="text-muted">{cat[lang]}</p>
+      <p className="text-muted">{locPair(lang, cat)}</p>
     </div>
   );
 }

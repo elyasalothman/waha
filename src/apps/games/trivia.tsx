@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Stat } from "@/components/app-stage";
 import { t } from "@/lib/i18n";
+import { locPair } from "@/lib/locale";
 import { writeScore } from "@/lib/storage";
 import { useAppStore } from "@/store/app-store";
 import { cn } from "@/lib/cn";
@@ -78,7 +79,7 @@ export function TriviaApp() {
   return (
     <div className="space-y-4">
       <Stat label={lang === "ar" ? "سؤال" : "Question"} value={`${i + 1} / ${QS.length}`} />
-      <p className="text-lg font-medium">{q![lang]}</p>
+      <p className="text-lg font-medium">{locPair(lang, q!)}</p>
       <div className="grid gap-2">
         {q!.choices.map((c, n) => {
           const show = picked != null;
@@ -95,7 +96,7 @@ export function TriviaApp() {
                 !show && "border-border bg-surface hover:bg-surface-2",
               )}
             >
-              {c[lang]}
+              {locPair(lang, c)}
             </button>
           );
         })}

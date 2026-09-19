@@ -1,8 +1,9 @@
 import type { Category } from "@/lib/catalog";
 import { byCategory, lanesPresent, LANE_LABEL } from "@/lib/catalog";
 import { AppGrid } from "@/components/app-card";
-import { t, type I18nKey } from "@/lib/i18n";
+import { loc, t, type I18nKey } from "@/lib/i18n";
 import { CitySelect } from "@/components/city-select";
+import { itemFitsSegment } from "@/lib/segments";
 import { useAppStore } from "@/store/app-store";
 
 const COPY: Record<Category, { title: I18nKey; blurb: I18nKey }> = {
@@ -17,8 +18,9 @@ const COPY: Record<Category, { title: I18nKey; blurb: I18nKey }> = {
 export function Hub({ category, city }: { category: Category; city?: boolean }) {
   const lang = useAppStore((s) => s.lang);
   const audience = useAppStore((s) => s.audience);
+  const segment = useAppStore((s) => s.segment);
   const copy = COPY[category];
-  const items = byCategory(category, audience);
+  const items = byCategory(category, audience).filter((item) => itemFitsSegment(item, segment));
   const lanes = lanesPresent(items);
   return (
     <div className="mx-auto max-w-5xl">
@@ -48,7 +50,7 @@ export function Hub({ category, city }: { category: Category; city?: boolean }) 
             if (!group.length) return null;
             return (
               <section key={lane}>
-                <h2 className="mb-3 text-sm font-medium text-muted">{LANE_LABEL[lane][lang]}</h2>
+                <h2 className="mb-3 text-sm font-medium text-muted">{loc(lang, LANE_LABEL[lane])}</h2>
                 <AppGrid items={group} lang={lang} />
               </section>
             );

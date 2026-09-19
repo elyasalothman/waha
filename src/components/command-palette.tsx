@@ -3,7 +3,9 @@ import { useNavigate } from "@tanstack/react-router";
 import { Command } from "cmdk";
 import { searchCatalog } from "@/lib/catalog";
 import { appIcon } from "@/lib/icons";
-import { t, type Lang } from "@/lib/i18n";
+import { loc, t, type Lang } from "@/lib/i18n";
+import { HOUSE_DOORS, doorTitle } from "@/lib/house";
+import { itemFitsSegment } from "@/lib/segments";
 import { cn } from "@/lib/cn";
 import { useAppStore } from "@/store/app-store";
 
@@ -18,8 +20,23 @@ export function CommandPalette({
 }) {
   const navigate = useNavigate();
   const audience = useAppStore((s) => s.audience);
+  const segment = useAppStore((s) => s.segment);
   const [q, setQ] = useState("");
-  const items = useMemo(() => searchCatalog(q, audience), [q, audience]);
+  const items = useMemo(
+    () => searchCatalog(q, audience).filter((item) => itemFitsSegment(item, segment)),
+    [q, audience, segment],
+  );
+  const extras = useMemo(
+    () =>
+      [
+        { id: "ask", to: "/ask", title: t(lang, "askTitle") },
+        { id: "settings", to: "/settings", title: t(lang, "settings") },
+        { id: "house", to: "/house", title: t(lang, "house") },
+        { id: "labs", to: "/labs", title: t(lang, "labs") },
+        { id: "admin", to: "/admin", title: t(lang, "admin") },
+      ].filter((x) => !q || x.title.includes(q) || x.id.includes(q.toLowerCase())),
+    [lang, q],
+  );
 
   useEffect(() => {
     if (!open) setQ("");
@@ -60,6 +77,33 @@ export function CommandPalette({
         />
         <Command.List className="max-h-80 overflow-y-auto p-2">
           <Command.Empty className="px-3 py-6 text-center text-sm text-muted">{t(lang, "empty")}</Command.Empty>
+          {extras.map((item) => (
+            <Command.Item
+              key={item.id}
+              value={item.title}
+              onSelect={() => {
+                onOpenChange(false);
+                void navigate({ to: item.to });
+              }}
+              className="flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm text-fg data-[selected=true]:bg-surface-2"
+            >
+              <span className="flex-1">{item.title}</span>
+            </Command.Item>
+          ))}
+          {HOUSE_DOORS.filter((d) => !q || doorTitle(lang, d).includes(q) || d.href.includes(q)).map((door) => (
+            <Command.Item
+              key={door.id}
+              value={doorTitle(lang, door)}
+              onSelect={() => {
+                onOpenChange(false);
+                window.open(door.href, "_blank", "noreferrer");
+              }}
+              className="flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm text-fg data-[selected=true]:bg-surface-2"
+            >
+              <span className="flex-1">{doorTitle(lang, door)}</span>
+              <span className="text-xs text-subtle">alhajda</span>
+            </Command.Item>
+          ))}
           {items.map((item) => {
             const Icon = appIcon(item.icon);
             return (
@@ -75,7 +119,7 @@ export function CommandPalette({
                 )}
               >
                 <Icon className="size-4 text-primary" />
-                <span className="flex-1">{item.title[lang]}</span>
+                <span className="flex-1">{loc(lang, item.title)}</span>
                 <span className="text-xs text-subtle">{item.category}</span>
               </Command.Item>
             );

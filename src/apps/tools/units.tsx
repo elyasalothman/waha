@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { Input } from "@/components/ui/input";
+import { locPair } from "@/lib/locale";
 import { useAppStore } from "@/store/app-store";
 
 type Cat = "length" | "mass" | "temp" | "area" | "volume" | "speed";
@@ -88,7 +89,7 @@ export function UnitsApp() {
               setTo(CATS[c].units[1]!.id);
             }}
           >
-            {CATS[c][lang]}
+            {locPair(lang, CATS[c])}
           </button>
         ))}
       </div>
@@ -98,7 +99,7 @@ export function UnitsApp() {
           <select className="mb-2 h-11 w-full rounded-md border border-border bg-surface px-2" value={from} onChange={(e) => setFrom(e.target.value)}>
             {pack.units.map((u) => (
               <option key={u.id} value={u.id}>
-                {u[lang]}
+                {locPair(lang, u)}
               </option>
             ))}
           </select>
@@ -109,7 +110,7 @@ export function UnitsApp() {
           <select className="mb-2 h-11 w-full rounded-md border border-border bg-surface px-2" value={to} onChange={(e) => setTo(e.target.value)}>
             {pack.units.map((u) => (
               <option key={u.id} value={u.id}>
-                {u[lang]}
+                {locPair(lang, u)}
               </option>
             ))}
           </select>

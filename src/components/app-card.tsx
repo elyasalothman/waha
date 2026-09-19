@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import type { CatalogItem } from "@/lib/catalog";
 import { appIcon } from "@/lib/icons";
-import { t, type Lang } from "@/lib/i18n";
+import { loc, t, type Lang } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
 
 export function AppCard({ item, lang, large = false }: { item: CatalogItem; lang: Lang; large?: boolean }) {
@@ -21,8 +21,8 @@ export function AppCard({ item, lang, large = false }: { item: CatalogItem; lang
         </span>
         {item.fresh ? <span className="text-[11px] text-subtle">{t(lang, "newBadge")}</span> : null}
       </span>
-      <span className="mt-4 font-medium text-fg">{item.title[lang]}</span>
-      <span className="mt-1 text-sm leading-relaxed text-muted">{item.blurb[lang]}</span>
+      <span className="mt-4 font-medium text-fg">{loc(lang, item.title)}</span>
+      <span className="mt-1 text-sm leading-relaxed text-muted">{loc(lang, item.blurb)}</span>
     </Link>
   );
 }

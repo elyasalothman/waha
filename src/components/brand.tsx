@@ -16,7 +16,7 @@ export function WahaMark({ className }: { className?: string }) {
   );
 }
 
-export function WahaWordmark({ lang }: { lang: "ar" | "en" }) {
+export function WahaWordmark({ lang }: { lang: string }) {
   return (
     <span className="flex items-center gap-2.5">
       <WahaMark className="size-7" />

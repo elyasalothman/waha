@@ -1,6 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { Seg } from "@/components/seg";
 import { usePersistent } from "@/lib/storage";
+import { pairLang } from "@/lib/locale";
 import { useAppStore } from "@/store/app-store";
 
 type Mode = "add" | "extract" | "off";
@@ -10,7 +11,7 @@ function sar(n: number, lang: "ar" | "en") {
 }
 
 export function VatApp() {
-  const lang = useAppStore((s) => s.lang);
+  const lang = pairLang(useAppStore((s) => s.lang));
   const [amount, setAmount] = usePersistent("waha:vat-amount", 100);
   const [mode, setMode] = usePersistent<Mode>("waha:vat-mode", "add");
   const [off, setOff] = usePersistent("waha:vat-off", 20);

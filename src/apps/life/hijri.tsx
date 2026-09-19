@@ -62,7 +62,7 @@ export function HijriApp() {
               value={hm}
               onChange={(e) => setHm(+e.target.value)}
             >
-              {HIJRI_MONTHS[lang].map((name, i) => (
+              {HIJRI_MONTHS[lang === "ar" ? "ar" : "en"].map((name, i) => (
                 <option key={name} value={i + 1}>
                   {name}
                 </option>

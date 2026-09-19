@@ -16,6 +16,11 @@ import { Route as MoneyRouteImport } from './routes/money'
 import { Route as StudioRouteImport } from './routes/studio'
 import { Route as ToolsRouteImport } from './routes/tools'
 import { Route as WorkspaceRouteImport } from './routes/workspace'
+import { Route as AskRouteImport } from './routes/ask'
+import { Route as HouseRouteImport } from './routes/house'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as LabsRouteImport } from './routes/labs'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AppIdRouteImport } from './routes/app.$id'
 
 const IndexRoute = IndexRouteImport.update({
@@ -53,6 +58,31 @@ const WorkspaceRoute = WorkspaceRouteImport.update({
   path: '/workspace',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AskRoute = AskRouteImport.update({
+  id: '/ask',
+  path: '/ask',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HouseRoute = HouseRouteImport.update({
+  id: '/house',
+  path: '/house',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LabsRoute = LabsRouteImport.update({
+  id: '/labs',
+  path: '/labs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AppIdRoute = AppIdRouteImport.update({
   id: '/app/$id',
   path: '/app/$id',
@@ -67,6 +97,11 @@ export interface FileRoutesByFullPath {
   '/studio': typeof StudioRoute
   '/tools': typeof ToolsRoute
   '/workspace': typeof WorkspaceRoute
+  '/ask': typeof AskRoute
+  '/house': typeof HouseRoute
+  '/settings': typeof SettingsRoute
+  '/labs': typeof LabsRoute
+  '/admin': typeof AdminRoute
   '/app/$id': typeof AppIdRoute
 }
 export interface FileRoutesByTo {
@@ -77,6 +112,11 @@ export interface FileRoutesByTo {
   '/studio': typeof StudioRoute
   '/tools': typeof ToolsRoute
   '/workspace': typeof WorkspaceRoute
+  '/ask': typeof AskRoute
+  '/house': typeof HouseRoute
+  '/settings': typeof SettingsRoute
+  '/labs': typeof LabsRoute
+  '/admin': typeof AdminRoute
   '/app/$id': typeof AppIdRoute
 }
 export interface FileRoutesById {
@@ -88,6 +128,11 @@ export interface FileRoutesById {
   '/studio': typeof StudioRoute
   '/tools': typeof ToolsRoute
   '/workspace': typeof WorkspaceRoute
+  '/ask': typeof AskRoute
+  '/house': typeof HouseRoute
+  '/settings': typeof SettingsRoute
+  '/labs': typeof LabsRoute
+  '/admin': typeof AdminRoute
   '/app/$id': typeof AppIdRoute
 }
 export interface FileRouteTypes {
@@ -100,6 +145,11 @@ export interface FileRouteTypes {
     | '/studio'
     | '/tools'
     | '/workspace'
+    | '/ask'
+    | '/house'
+    | '/settings'
+    | '/labs'
+    | '/admin'
     | '/app/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -110,6 +160,11 @@ export interface FileRouteTypes {
     | '/studio'
     | '/tools'
     | '/workspace'
+    | '/ask'
+    | '/house'
+    | '/settings'
+    | '/labs'
+    | '/admin'
     | '/app/$id'
   id:
     | '__root__'
@@ -120,6 +175,11 @@ export interface FileRouteTypes {
     | '/studio'
     | '/tools'
     | '/workspace'
+    | '/ask'
+    | '/house'
+    | '/settings'
+    | '/labs'
+    | '/admin'
     | '/app/$id'
   fileRoutesById: FileRoutesById
 }
@@ -131,6 +191,11 @@ export interface RootRouteChildren {
   StudioRoute: typeof StudioRoute
   ToolsRoute: typeof ToolsRoute
   WorkspaceRoute: typeof WorkspaceRoute
+  AskRoute: typeof AskRoute
+  HouseRoute: typeof HouseRoute
+  SettingsRoute: typeof SettingsRoute
+  LabsRoute: typeof LabsRoute
+  AdminRoute: typeof AdminRoute
   AppIdRoute: typeof AppIdRoute
 }
 
@@ -185,6 +250,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkspaceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ask': {
+      id: '/ask'
+      path: '/ask'
+      fullPath: '/ask'
+      preLoaderRoute: typeof AskRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/house': {
+      id: '/house'
+      path: '/house'
+      fullPath: '/house'
+      preLoaderRoute: typeof HouseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/labs': {
+      id: '/labs'
+      path: '/labs'
+      fullPath: '/labs'
+      preLoaderRoute: typeof LabsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/app/$id': {
       id: '/app/$id'
       path: '/app/$id'
@@ -203,6 +303,11 @@ const rootRouteChildren: RootRouteChildren = {
   StudioRoute: StudioRoute,
   ToolsRoute: ToolsRoute,
   WorkspaceRoute: WorkspaceRoute,
+  AskRoute: AskRoute,
+  HouseRoute: HouseRoute,
+  SettingsRoute: SettingsRoute,
+  LabsRoute: LabsRoute,
+  AdminRoute: AdminRoute,
   AppIdRoute: AppIdRoute,
 }
 export const routeTree = rootRouteImport

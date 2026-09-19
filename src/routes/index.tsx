@@ -1,20 +1,26 @@
 import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AppCard, AppGrid } from "@/components/app-card";
-import { CitySelect } from "@/components/city-select";
+import { DayShadow } from "@/components/day-shadow";
+import { HouseDoors } from "@/components/house-doors";
 import { Card } from "@/components/ui/card";
 import { byLane, featuredFor, freshFor, getApp, LANE_LABEL, WORK_LANES } from "@/lib/catalog";
-import { formatDuration, formatHm, getTimes, nextPrayer, PRAYER_LABELS } from "@/lib/prayer";
-import { formatGregorian, formatHijri, upcomingOccasions } from "@/lib/hijri";
-import { fetchWeather, weatherLabel, type WeatherPayload } from "@/lib/weather";
-import { personalPulse, workPulse, type PulseAlert, type PulseStat } from "@/lib/pulse";
+import { upcomingOccasions } from "@/lib/hijri";
 import { dailyBundle } from "@/lib/daily";
-import { t } from "@/lib/i18n";
+import { loc, t } from "@/lib/i18n";
+import { loadHomeLive } from "@/lib/live.server";
+import { fetchWeatherSafe, type WeatherPayload } from "@/lib/weather";
+import { personalPulse, workPulse, type PulseAlert, type PulseStat } from "@/lib/pulse";
+import { itemFitsSegment, wellsFor, WELL_META } from "@/lib/segments";
+import { DEFAULT_CITY } from "@/lib/cities";
 import { useNow } from "@/hooks/use-now";
 import { useAppStore } from "@/store/app-store";
 import { cn } from "@/lib/cn";
 
-export const Route = createFileRoute("/")({ component: Home });
+export const Route = createFileRoute("/")({
+  loader: () => loadHomeLive({ data: { lat: DEFAULT_CITY.lat, lon: DEFAULT_CITY.lon } }),
+  component: Home,
+});
 
 function Home() {
   const audience = useAppStore((s) => s.audience);
@@ -25,21 +31,23 @@ function PersonalHome() {
   const lang = useAppStore((s) => s.lang);
   const city = useAppStore((s) => s.city);
   const recent = useAppStore((s) => s.recent);
+  const segment = useAppStore((s) => s.segment);
+  const labs = useAppStore((s) => s.labs);
+  const displayName = useAppStore((s) => s.displayName);
   const now = useNow(1000);
-  const pt = useMemo(() => getTimes(city.lat, city.lon, now), [city.lat, city.lon, now.toDateString()]);
-  const next = nextPrayer(pt, now);
+  const live = Route.useLoaderData();
   const occasions = useMemo(() => upcomingOccasions(now, lang), [now.toDateString(), lang]);
   const daily = useMemo(() => dailyBundle(now), [now.toDateString()]);
-  const [weather, setWeather] = useState<WeatherPayload | null>(null);
+  const [weather, setWeather] = useState<WeatherPayload | null>(live?.weather ?? null);
   const [pulse, setPulse] = useState<{ stats: PulseStat[]; alerts: PulseAlert[] }>({ stats: [], alerts: [] });
 
   useEffect(() => {
-    let live = true;
-    fetchWeather(city.lat, city.lon)
-      .then((w) => live && setWeather(w))
-      .catch(() => {});
+    let liveReq = true;
+    fetchWeatherSafe(city.lat, city.lon).then((w) => {
+      if (liveReq) setWeather(w);
+    });
     return () => {
-      live = false;
+      liveReq = false;
     };
   }, [city.lat, city.lon]);
 
@@ -47,56 +55,52 @@ function PersonalHome() {
     setPulse(personalPulse());
   }, [now.toDateString()]);
 
-  const featured = featuredFor("personal").slice(0, 6);
-  const fresh = freshFor("personal").slice(0, 9);
+  const featured = featuredFor("personal").filter((x) => itemFitsSegment(x, segment)).slice(0, 6);
+  const fresh = freshFor("personal").filter((x) => itemFitsSegment(x, segment)).slice(0, 9);
   const recents = recent
     .map(getApp)
-    .filter((x): x is NonNullable<typeof x> => x != null && x.audience.includes("personal"));
+    .filter((x): x is NonNullable<typeof x> => x != null && x.audience.includes("personal") && itemFitsSegment(x, segment));
+  const wells = wellsFor(segment);
+  const headlines = labs.includes("focus") ? [] : (live?.headlines ?? []);
 
   return (
     <div className="mx-auto max-w-5xl">
-      <p className="mb-1 text-xs font-medium tracking-wide text-muted">{t(lang, "personal")}</p>
+      <p className="mb-1 text-xs font-medium tracking-wide text-muted">
+        {t(lang, "personal")}
+        {displayName ? ` · ${displayName}` : ""}
+      </p>
       <p className="mb-4 text-sm text-muted">{t(lang, "personalIntro")}</p>
-      <section className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
-        <div className="rounded-xl border border-border bg-surface p-6 md:p-8">
-          <p className="text-sm text-muted">{lang === "ar" ? city.ar : city.en}</p>
-          <h1 className="mt-3 font-display text-4xl leading-tight tracking-tight md:text-5xl">
-            {formatHijri(now, lang, true)}
-          </h1>
-          <p className="mt-3 text-muted">{formatGregorian(now, lang)}</p>
-          <p className="mt-4 font-mono text-3xl tabular-nums">
-            {new Intl.DateTimeFormat(lang === "ar" ? "ar-SA" : "en-GB", {
-              hour: "numeric",
-              minute: "2-digit",
-            }).format(now)}
-          </p>
-          <div className="mt-6 max-w-md">
-            <CitySelect compact />
-          </div>
-        </div>
 
-        <div className="grid gap-4">
-          <Link to="/app/$id" params={{ id: "salah" }} className="block rounded-xl border border-border bg-surface p-5 hover:bg-surface-2">
-            <p className="text-xs text-muted">{t(lang, "nextPrayer")}</p>
-            <p className="mt-1 text-2xl font-medium">{PRAYER_LABELS[next.key][lang]}</p>
-            <p className="mt-1 font-mono text-xl tabular-nums text-primary">{formatHm(next.at, lang)}</p>
-            <p className="mt-1 text-sm text-muted">
-              {t(lang, "remaining")} {formatDuration(next.at.getTime() - now.getTime(), lang)}
-            </p>
-          </Link>
-          <Link to="/app/$id" params={{ id: "weather" }} className="block rounded-xl border border-border bg-surface p-5 hover:bg-surface-2">
-            <p className="text-xs text-muted">{t(lang, "weather")}</p>
-            {weather ? (
-              <>
-                <p className="mt-1 font-display text-3xl tabular-nums">{Math.round(weather.current.temperature)}°</p>
-                <p className="text-sm text-muted">{weatherLabel(weather.current.code, lang)}</p>
-              </>
-            ) : (
-              <p className="mt-2 text-sm text-muted">{t(lang, "loading")}</p>
-            )}
-          </Link>
+      <DayShadow lang={lang} city={city} now={now} weather={weather} showQibla={labs.includes("qibla")} />
+
+      <section className="mt-8">
+        <Link
+          to="/ask"
+          className="flex min-h-14 items-center justify-between rounded-xl border border-border bg-surface px-4 hover:bg-surface-2"
+        >
+          <span className="text-sm text-muted">{t(lang, "placeholderChat")}</span>
+          <span className="text-sm text-primary">{t(lang, "ask")}</span>
+        </Link>
+      </section>
+
+      <section className="mt-8">
+        <h2 className="mb-3 text-sm font-medium text-muted">{t(lang, "wells")}</h2>
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+          {wells.map((id) => (
+            <Link
+              key={id}
+              to={WELL_META[id].href}
+              className="rounded-xl border border-border bg-surface px-4 py-4 hover:bg-surface-2"
+            >
+              <p className="font-medium">{loc(lang, WELL_META[id].title)}</p>
+            </Link>
+          ))}
         </div>
       </section>
+
+      <div className="mt-8">
+        <HouseDoors lang={lang} />
+      </div>
 
       <section className="mt-8">
         <h2 className="mb-3 text-sm font-medium text-muted">{t(lang, "daily")}</h2>
@@ -118,6 +122,26 @@ function PersonalHome() {
         </div>
       </section>
 
+      {headlines.length > 0 ? (
+        <section className="mt-8">
+          <h2 className="mb-3 text-sm font-medium text-muted">{loc(lang, WELL_META.news.title)}</h2>
+          <div className="grid gap-2">
+            {headlines.slice(0, 4).map((h) => (
+              <a
+                key={h.href + h.title}
+                href={h.href}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-xl border border-border bg-surface px-4 py-3 text-sm hover:bg-surface-2"
+              >
+                <span className="text-xs text-subtle">{h.source}</span>
+                <p className="mt-1">{h.title}</p>
+              </a>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
       {pulse.stats.length > 0 ? (
         <section className="mt-8">
           <h2 className="mb-3 text-sm font-medium text-muted">{t(lang, "todayStrip")}</h2>
@@ -130,7 +154,7 @@ function PersonalHome() {
                 className="rounded-xl border border-border bg-surface px-3 py-3 hover:bg-surface-2"
               >
                 <p className="text-xs text-muted">{lang === "ar" ? s.ar : s.en}</p>
-                <p className="mt-1 font-mono text-xl tabular-nums">
+                <p className="num mt-1 font-mono text-xl tabular-nums">
                   {s.value}
                   {s.max ? <span className="text-sm text-muted">/{s.max}</span> : null}
                 </p>
@@ -169,7 +193,7 @@ function PersonalHome() {
           {occasions.map((o) => (
             <Card key={o.title} className="px-3 py-3">
               <div className="text-sm">{o.title}</div>
-              <div className="mt-1 font-mono text-xs tabular-nums text-muted">
+              <div className="num mt-1 font-mono text-xs tabular-nums text-muted">
                 {o.days === 0 ? t(lang, "today") : `${o.days} ${t(lang, "days")}`}
               </div>
             </Card>
@@ -206,11 +230,11 @@ function PersonalHome() {
       </section>
 
       {(["worship", "civic", "home", "money", "health", "play"] as const).map((lane) => {
-        const items = byLane(lane, "personal").slice(0, 6);
+        const items = byLane(lane, "personal").filter((x) => itemFitsSegment(x, segment)).slice(0, 6);
         if (!items.length) return null;
         return (
           <section key={lane} className="mt-10">
-            <h2 className="mb-3 text-sm font-medium text-muted">{LANE_LABEL[lane][lang]}</h2>
+            <h2 className="mb-3 text-sm font-medium text-muted">{loc(lang, LANE_LABEL[lane])}</h2>
             <AppGrid items={items} lang={lang} />
           </section>
         );
@@ -223,6 +247,9 @@ function WorkHome() {
   const lang = useAppStore((s) => s.lang);
   const recent = useAppStore((s) => s.recent);
   const now = useNow(1000);
+  const city = useAppStore((s) => s.city);
+  const live = Route.useLoaderData();
+  const [weather, setWeather] = useState<WeatherPayload | null>(live?.weather ?? null);
   const [pulse, setPulse] = useState<{ stats: PulseStat[]; alerts: PulseAlert[] }>({ stats: [], alerts: [] });
   const featured = featuredFor("work").filter((i) => i.audience.includes("work")).slice(0, 6);
   const fresh = freshFor("work").slice(0, 9);
@@ -234,21 +261,18 @@ function WorkHome() {
     setPulse(workPulse());
   }, [now.toDateString()]);
 
+  useEffect(() => {
+    fetchWeatherSafe(city.lat, city.lon).then(setWeather);
+  }, [city.lat, city.lon]);
+
   return (
     <div className="mx-auto max-w-5xl">
       <p className="mb-1 text-xs font-medium tracking-wide text-muted">{t(lang, "work")}</p>
       <p className="mb-4 text-sm text-muted">{t(lang, "workIntro")}</p>
-      <section className="rounded-xl border border-border bg-surface p-6 md:p-8">
-        <p className="font-mono text-sm tabular-nums text-muted">
-          {new Intl.DateTimeFormat(lang === "ar" ? "ar-SA" : "en-GB", {
-            weekday: "long",
-            day: "numeric",
-            month: "long",
-            hour: "numeric",
-            minute: "2-digit",
-          }).format(now)}
-        </p>
-        <h1 className="mt-3 font-display text-3xl tracking-tight md:text-4xl">{t(lang, "workBanner")}</h1>
+      <DayShadow lang={lang} city={city} now={now} weather={weather} />
+
+      <section className="mt-8 rounded-xl border border-border bg-surface p-6 md:p-8">
+        <h1 className="font-display text-3xl tracking-tight md:text-4xl">{t(lang, "workBanner")}</h1>
         <p className="mt-3 max-w-2xl text-muted">{t(lang, "workBannerBody")}</p>
       </section>
 
@@ -264,7 +288,7 @@ function WorkHome() {
                 className="rounded-xl border border-border bg-surface px-3 py-3 hover:bg-surface-2"
               >
                 <p className="text-xs text-muted">{lang === "ar" ? s.ar : s.en}</p>
-                <p className="mt-1 font-mono text-xl tabular-nums">
+                <p className="num mt-1 font-mono text-xl tabular-nums">
                   {s.value}
                   {s.max ? <span className="text-sm text-muted">/{s.max}</span> : null}
                 </p>
@@ -326,7 +350,7 @@ function WorkHome() {
         if (!items.length) return null;
         return (
           <section key={lane} className="mt-10">
-            <h2 className="mb-3 text-sm font-medium text-muted">{LANE_LABEL[lane][lang]}</h2>
+            <h2 className="mb-3 text-sm font-medium text-muted">{loc(lang, LANE_LABEL[lane])}</h2>
             <AppGrid items={items} lang={lang} />
           </section>
         );

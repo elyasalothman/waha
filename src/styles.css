@@ -20,11 +20,76 @@
   --radius-lg: 16px;
   --radius-xl: 24px;
   --radius: 12px;
-  --font-sans: "IBM Plex Sans Arabic", "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans Arabic", "IBM Plex Sans", ui-sans-serif, system-ui, "Noto Sans", sans-serif;
   --font-display: "Amiri", "IBM Plex Sans Arabic", serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --shadow-soft: 0 1px 0 color-mix(in oklab, var(--color-fg) 6%, transparent),
     0 18px 40px -24px rgb(0 0 0 / 0.55);
+}
+
+html[data-theme="sand"] {
+  --color-bg: #1a1610;
+  --color-surface: #241e16;
+  --color-surface-2: #2e261c;
+  --color-primary: #e4c48a;
+  --color-border: #3a3124;
+}
+html[data-theme="sea"] {
+  --color-bg: #0b1216;
+  --color-surface: #121c22;
+  --color-surface-2: #18262e;
+  --color-primary: #8ec8d4;
+  --color-border: #24343c;
+}
+html[data-theme="rose"] {
+  --color-bg: #160f12;
+  --color-surface: #21161b;
+  --color-surface-2: #2c1d24;
+  --color-primary: #e3a8b8;
+  --color-border: #3a2830;
+}
+html[data-theme="garden"] {
+  --color-bg: #0d130e;
+  --color-surface: #161d17;
+  --color-surface-2: #1e2820;
+  --color-primary: #9fca9a;
+  --color-border: #2a352c;
+}
+html[data-theme="contrast"] {
+  --color-bg: #000;
+  --color-surface: #111;
+  --color-surface-2: #1c1c1c;
+  --color-fg: #fff;
+  --color-primary: #fff;
+  --color-border: #444;
+}
+html[data-mode="light"] {
+  --color-bg: #f4f1ea;
+  --color-surface: #fffdf8;
+  --color-surface-2: #ece7dc;
+  --color-fg: #1b1914;
+  --color-muted: #5d584e;
+  --color-subtle: #857e72;
+  --color-primary: #3d4a3c;
+  --color-primary-fg: #f4f1ea;
+  --color-border: #d7d0c3;
+}
+html[data-scale="lg"] {
+  font-size: 18px;
+}
+html[data-motion="reduce"] *,
+html[data-motion="reduce"] *::before,
+html[data-motion="reduce"] *::after {
+  animation-duration: 0.01ms !important;
+  transition-duration: 0.01ms !important;
+}
+
+.num,
+.tabular-nums {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  unicode-bidi: isolate;
 }
 
 @layer base {
@@ -33,6 +98,8 @@
     color: var(--color-fg);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
+      env(safe-area-inset-left);
   }
 
   body {

@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import type { CatalogItem } from "@/lib/catalog";
 import { appIcon } from "@/lib/icons";
-import { t, type Lang } from "@/lib/i18n";
+import { loc, t, type Lang } from "@/lib/i18n";
 import { CATEGORIES } from "@/lib/catalog";
 import { cn } from "@/lib/cn";
 
@@ -33,8 +33,8 @@ export function AppStage({
           <Icon className="size-5" />
         </span>
         <div>
-          <h1 className="text-2xl font-medium tracking-tight">{item.title[lang]}</h1>
-          <p className="mt-1 text-sm text-muted">{item.blurb[lang]}</p>
+          <h1 className="text-2xl font-medium tracking-tight">{loc(lang, item.title)}</h1>
+          <p className="mt-1 text-sm text-muted">{loc(lang, item.blurb)}</p>
         </div>
       </div>
       {children}

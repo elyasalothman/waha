@@ -1,3 +1,5 @@
+import { localeTag, type Lang } from "@/lib/locale";
+
 export const HIJRI_MONTHS = {
   ar: ["محرم", "صفر", "ربيع الأول", "ربيع الآخر", "جمادى الأولى", "جمادى الآخرة", "رجب", "شعبان", "رمضان", "شوال", "ذو القعدة", "ذو الحجة"],
   en: ["Muharram", "Safar", "Rabiʿ I", "Rabiʿ II", "Jumada I", "Jumada II", "Rajab", "Shaʿban", "Ramadan", "Shawwal", "Dhu al-Qaʿdah", "Dhu al-Hijjah"],
@@ -16,22 +18,24 @@ export function toHijri(date: Date): HijriDate {
   return { hy: num("year"), hm: num("month"), hd: num("day") };
 }
 
-export function formatHijri(date: Date, lang: "ar" | "en", withWeekday = false) {
+export function formatHijri(date: Date, lang: Lang, withWeekday = false) {
   const { hy, hm, hd } = toHijri(date);
-  const month = HIJRI_MONTHS[lang][hm - 1] ?? "";
-  const weekday = new Intl.DateTimeFormat(lang === "ar" ? "ar-SA" : "en-GB", {
+  const month = (lang === "ar" ? HIJRI_MONTHS.ar : HIJRI_MONTHS.en)[hm - 1] ?? "";
+  const weekday = new Intl.DateTimeFormat(localeTag(lang), {
     weekday: "long",
     calendar: "islamic-umalqura",
+    numberingSystem: "latn",
   }).format(date);
-  const core = lang === "ar" ? `${hd} ${month} ${hy}` : `${hd} ${month} ${hy}`;
+  const core = `${hd} ${month} ${hy}`;
   return withWeekday ? `${weekday} · ${core}` : core;
 }
 
-export function formatGregorian(date: Date, lang: "ar" | "en") {
-  return new Intl.DateTimeFormat(lang === "ar" ? "ar-SA" : "en-GB", {
+export function formatGregorian(date: Date, lang: Lang) {
+  return new Intl.DateTimeFormat(localeTag(lang), {
     day: "numeric",
     month: "long",
     year: "numeric",
+    numberingSystem: "latn",
   }).format(date);
 }
 
@@ -58,7 +62,7 @@ export function hijriToGregorian(hy: number, hm: number, hd: number): Date | nul
 
 export type Occasion = { id: string; hy: number; hm: number; hd: number; ar: string; en: string };
 
-export function upcomingOccasions(from: Date, lang: "ar" | "en"): { title: string; days: number; date: Date }[] {
+export function upcomingOccasions(from: Date, lang: Lang): { title: string; days: number; date: Date }[] {
   const { hy } = toHijri(from);
   const events: Occasion[] = [
     { id: "ramadan", hy, hm: 9, hd: 1, ar: "أول رمضان", en: "Ramadan begins" },

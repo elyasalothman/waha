@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { t } from "@/lib/i18n";
+import { pairLang, t } from "@/lib/i18n";
 import { writeScore } from "@/lib/storage";
 import { useAppStore } from "@/store/app-store";
 import { cn } from "@/lib/cn";
@@ -35,7 +35,7 @@ function score(guess: string, answer: string): Tone[] {
 }
 
 export function KalimaApp() {
-  const lang = useAppStore((s) => s.lang);
+  const lang = pairLang(useAppStore((s) => s.lang));
   const [mode, setMode] = useState<"ar" | "en">(lang);
   const pool = mode === "ar" ? AR : EN;
   const [answer, setAnswer] = useState(() => pool[Math.floor(Math.random() * pool.length)]!);
