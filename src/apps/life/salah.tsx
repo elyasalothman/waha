@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { CitySelect } from "@/components/city-select";
 import { Card } from "@/components/ui/card";
-import { formatDuration, formatHm, getTimes, nextPrayer, PRAYER_KEYS, PRAYER_LABELS, timesMap } from "@/lib/prayer";
+import { formatDuration, formatHm, getTimes, nextPrayer, PRAYER_KEYS, prayerLabel, timesMap } from "@/lib/prayer";
 import { useNow } from "@/hooks/use-now";
 import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
@@ -22,7 +22,7 @@ export function SalahApp() {
       <CitySelect />
       <Card className="p-5">
         <p className="text-xs text-muted">{t(lang, "nextPrayer")}</p>
-        <p className="mt-1 font-display text-4xl">{PRAYER_LABELS[next.key][lang]}</p>
+        <p className="mt-1 font-display text-4xl">{prayerLabel(next.key, lang)}</p>
         <p className="num mt-2 font-mono text-2xl tabular-nums text-primary">{formatHm(next.at, lang, tz)}</p>
         <p className="mt-1 text-sm text-muted">
           {t(lang, "remaining")} {formatDuration(remain, lang)}
@@ -39,7 +39,7 @@ export function SalahApp() {
                 active ? "border-primary bg-surface-2" : "border-border bg-surface",
               )}
             >
-              <div className="text-xs text-muted">{PRAYER_LABELS[key][lang]}</div>
+              <div className="text-xs text-muted">{prayerLabel(key, lang)}</div>
               <div className="num mt-1 font-mono text-lg tabular-nums">{formatHm(map[key], lang, tz)}</div>
             </div>
           );
