@@ -26,6 +26,13 @@ export const Route = createRootRoute({
         href: "https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap",
       },
     ],
+    scripts: [
+      { src: "https://www.googletagmanager.com/gtag/js?id=G-C5G87WHJNZ", async: true },
+      {
+        children:
+          "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-C5G87WHJNZ');",
+      },
+    ],
   }),
   component: RootDocument,
 });
