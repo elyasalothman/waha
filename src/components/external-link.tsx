@@ -1,7 +1,7 @@
 import type { AnchorHTMLAttributes, MouseEvent } from "react";
 import { openExternalUrl } from "@/lib/native-browser";
 
-/** Official / house https link — Browser plugin on iOS, new tab on the web. */
+/** House https → in-app WKWebView on iOS; gov portals → Browser; web → new tab. */
 export function ExternalLink({
   href,
   onClick,

@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { BooksMark } from "@/components/brand";
+import { ExternalLink } from "@/components/external-link";
 import { useCurrentUserState } from "@/lib/auth/use-current-user";
 import {
   accountOwnsKutubi,
@@ -150,10 +151,8 @@ function BookCardView({
       <p className="mt-2 text-sm leading-relaxed text-muted">{book.benefitAr}</p>
       <p className="mt-2 text-xs leading-relaxed text-subtle">{book.legalNote}</p>
       <div className="mt-3 flex flex-wrap items-center gap-3">
-        <a
+        <ExternalLink
           href={book.url}
-          target="_blank"
-          rel="noopener noreferrer"
           className="inline-flex min-h-11 items-center text-sm text-primary hover:underline"
           data-original-link="marked-source"
           onClick={onOpen}
@@ -162,7 +161,7 @@ function BookCardView({
           <span className="ms-2 font-mono text-xs text-subtle" dir="ltr">
             {book.url}
           </span>
-        </a>
+        </ExternalLink>
         {kutubiAction ? (
           <button
             type="button"

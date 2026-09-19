@@ -168,6 +168,7 @@ describe("books stay off the Maydan line", () => {
     assert.match(page, /data-kutubi="local-v1"/);
     assert.match(page, /data-kutubi-publish="never"/);
     assert.match(page, /data-kutubi-guest="public-only"/);
+    assert.match(page, /from ["']@\/components\/external-link["']/);
     assert.doesNotMatch(page, /<(input|form)\b/);
     assert.doesNotMatch(page, /fetch\(|scrape|cheerio|WebView|أضف للعامة/);
     assert.doesNotMatch(page, /kutubiPublishesToPublic\(\) \? true/);

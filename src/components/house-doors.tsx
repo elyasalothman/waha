@@ -2,7 +2,7 @@ import { ExternalLink } from "@/components/external-link";
 import { HOUSE_DESTINATIONS } from "@/lib/native-browser";
 import { useAppStore } from "@/store/app-store";
 
-/** بيت الهجدة — تهجد / محسن / ألعاب / حياة تفتح خارج WKWebView. */
+/** بيت الهجدة — تهجد / مداد / محسن / ألعاب / حياة تفتح داخل WKWebView. */
 export function HouseDoors() {
   const lang = useAppStore((s) => s.lang);
 

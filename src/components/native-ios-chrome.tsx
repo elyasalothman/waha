@@ -13,7 +13,7 @@ function closestAnchor(target: EventTarget | null): HTMLAnchorElement | null {
   return target.closest("a");
 }
 
-/** Marks html.native-ios, paints the status bar, and opens https exits via Browser. */
+/** Marks html.native-ios, paints the status bar, and routes https exits (house → in-app WKWebView). */
 export function NativeIosChrome() {
   useEffect(() => {
     const standalone =
