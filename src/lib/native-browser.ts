@@ -78,7 +78,7 @@ export function shouldOpenExternally(href: string, origin = typeof window !== "u
   if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) return false;
   if (href.startsWith("/") && !href.startsWith("//")) return false;
   try {
-    const url = new URL(href, origin || "https://waha.alhajda.com");
+    const url = new URL(href, origin || "https://waha.hajdah.com");
     if (url.protocol !== "https:") return false;
     if (origin && url.origin === origin) return false;
     return true;

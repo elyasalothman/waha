@@ -11,6 +11,6 @@
 | 5 | ليست غلافاً رقيقاً | إشعارات الصلاة عبر `LocalNotifications` / `UNUserNotificationCenter` — ليست Notification API في سفاري |
 | 6 | نظام تشغيل البيت | تهجد / محسن / ألعاب / حياة عبر `@capacitor/browser` (SFSafariViewController) — لا تُفتح داخل WKWebView |
 
-الاسم: **واحة**. Bundle: `com.alhajda.waha`.
+الاسم: **واحة**. Bundle: `com.alhajda.waha`. المضيف الحي المؤقت للقشرة: `waha.hajdah.com`.
 
 إذن الإشعار يُطلب عند تفعيل «إشعار الصلاة القادمة» في تطبيق الآيفون (`requestSalahNotificationPermission`) — لا يُطلب على الويب ولا عند كل إقلاع.

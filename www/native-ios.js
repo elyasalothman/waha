@@ -13,6 +13,14 @@
     root.setAttribute("data-native", "ios");
   }
 
+  const standalone =
+    (typeof window !== "undefined" && window.matchMedia?.("(display-mode: standalone)").matches) ||
+    (typeof navigator !== "undefined" && navigator.standalone === true);
+  if (standalone) {
+    root.classList.add("standalone");
+    root.setAttribute("data-display", "standalone");
+  }
+
   function applyStatusBar() {
     const Cap = window.Capacitor;
     const StatusBar = Cap?.Plugins?.StatusBar;

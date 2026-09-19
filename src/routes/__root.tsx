@@ -22,6 +22,9 @@ export const Route = createRootRoute({
       { name: "application-name", content: PWA_NAME },
       { name: "apple-mobile-web-app-title", content: PWA_NAME },
       { name: "theme-color", content: "#0c0d0c" },
+      { name: "apple-mobile-web-app-capable", content: "yes" },
+      { name: "mobile-web-app-capable", content: "yes" },
+      { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
     ],
     links: [
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },

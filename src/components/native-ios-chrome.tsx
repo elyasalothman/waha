@@ -15,6 +15,14 @@ function closestAnchor(target: EventTarget | null): HTMLAnchorElement | null {
 /** Marks html.native-ios, paints the status bar, and opens https exits via Browser. */
 export function NativeIosChrome() {
   useEffect(() => {
+    const standalone =
+      window.matchMedia?.("(display-mode: standalone)").matches ||
+      (window.navigator as Navigator & { standalone?: boolean }).standalone === true;
+    if (standalone) {
+      document.documentElement.classList.add("standalone");
+      document.documentElement.setAttribute("data-display", "standalone");
+    }
+
     if (!isNativeIos()) return;
     document.documentElement.classList.add("native-ios");
     document.documentElement.setAttribute("data-native", "ios");

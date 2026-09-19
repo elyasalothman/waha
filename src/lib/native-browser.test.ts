@@ -33,7 +33,7 @@ describe("assertHttpsUrl", () => {
 });
 
 describe("shouldOpenExternally", () => {
-  const origin = "https://waha.alhajda.com";
+  const origin = "https://waha.hajdah.com";
 
   it("opens sister apps and gov portals outside the WKWebView", () => {
     assert.equal(shouldOpenExternally("https://tahajjud.alhajda.com/", origin), true);
@@ -43,7 +43,7 @@ describe("shouldOpenExternally", () => {
   it("keeps in-app routes and tel/mailto inside واحة", () => {
     assert.equal(shouldOpenExternally("/life", origin), false);
     assert.equal(shouldOpenExternally("/games", origin), false);
-    assert.equal(shouldOpenExternally("https://waha.alhajda.com/life", origin), false);
+    assert.equal(shouldOpenExternally("https://waha.hajdah.com/life", origin), false);
     assert.equal(shouldOpenExternally("tel:911", origin), false);
     assert.equal(shouldOpenExternally("#top", origin), false);
   });

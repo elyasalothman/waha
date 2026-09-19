@@ -44,25 +44,47 @@
   }
 
   html.native-ios,
-  html.native-ios body {
+  html.standalone,
+  html.native-ios body,
+  html.standalone body {
     touch-action: manipulation;
     background: var(--color-bg);
     color-scheme: dark;
   }
 
-  html.native-ios {
+  html.native-ios,
+  html.standalone {
     --safe-top: env(safe-area-inset-top, 0px);
     --safe-right: env(safe-area-inset-right, 0px);
     --safe-bottom: env(safe-area-inset-bottom, 0px);
     --safe-left: env(safe-area-inset-left, 0px);
   }
 
-  html.native-ios .native-safe-top {
+  html.native-ios .native-safe-top,
+  html.standalone .native-safe-top {
     padding-top: env(safe-area-inset-top, 0px);
   }
 
-  html.native-ios .native-safe-bottom {
+  html.native-ios .native-safe-bottom,
+  html.standalone .native-safe-bottom {
     padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  @media (display-mode: standalone) {
+    html {
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-right: env(safe-area-inset-right, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-left: env(safe-area-inset-left, 0px);
+    }
+
+    .native-safe-top {
+      padding-top: env(safe-area-inset-top, 0px);
+    }
+
+    .native-safe-bottom {
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
   }
 
   html[dir="rtl"] input,

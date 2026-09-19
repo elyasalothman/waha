@@ -19,13 +19,13 @@
 1. إن وُجد `CAPACITOR_SERVER_URL` أو `WAHA_IOS_SERVER_URL` وقت `cap sync` → WebView يفتح ذلك العنوان (إنتاج أو معاينة Vercel).
 2. وإلا الحزمة المحلية `www/` (بناء العميل إن وُجد، وإلا `native/www-fallback`).
 
-الاستضافة الحيّة المتوقعة: `https://waha.alhajda.com` (أو `hajdah.com` إن رُبط). القشرة لا تنتظر اكتمال الويب.
+الاستضافة الحيّة المؤقتة: `https://waha.hajdah.com`. القشرة لا تنتظر اكتمال الويب ولا تعتمد على `waha.alhajda.com`.
 
 ```bash
 npm ci
 npm run sync:www
 # اختياري — توجيه القشرة لموقع حيّ:
-# WAHA_IOS_SERVER_URL=https://waha.alhajda.com npm run cap:sync
+# WAHA_IOS_SERVER_URL=https://waha.hajdah.com npm run cap:sync
 npx cap sync ios
 ```
 

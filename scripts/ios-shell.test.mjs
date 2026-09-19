@@ -30,7 +30,8 @@ test("Capacitor config is واحة under alhajda, not a sibling app", () => {
   assert.match(source, /Browser/);
   assert.match(source, /WKWebView is the App Store app/);
   assert.match(source, /@capacitor\/browser/);
-  assert.match(source, /waha\.alhajda\.com/);
+  assert.match(source, /PRODUCTION_HOST = "waha\.hajdah\.com"/);
+  assert.doesNotMatch(source, /PRODUCTION_HOST = "waha\.alhajda\.com"/);
   for (const id of FORBIDDEN_BUNDLES) {
     assert.doesNotMatch(source, new RegExp(id.replace(/\./g, "\\.")));
   }
@@ -46,6 +47,8 @@ test("iOS webview is configured for edge-to-edge safe-area chrome", () => {
 
   assert.match(rootHead, /viewport-fit=cover/);
   assert.match(css, /html\.native-ios/);
+  assert.match(css, /html\.standalone/);
+  assert.match(css, /display-mode:\s*standalone/);
   assert.match(css, /\.native-safe-top/);
   assert.match(css, /\.native-safe-bottom/);
   assert.match(css, /env\(safe-area-inset-top/);
@@ -119,17 +122,47 @@ test("sync-www produces www/ with native-ios boot and fallback splash", () => {
   assert.match(html, /viewport-fit=cover/);
   assert.match(html, /native-ios\.js/);
   assert.match(html, /واحة/);
+  assert.match(html, /manifest\.webmanifest/);
+  assert.doesNotMatch(html, /__grok/);
+  assert.ok(exists("www/manifest.webmanifest"));
+  assert.ok(exists("www/icon-180.png"));
+});
+
+test("PWA add-to-home-screen is واحة with a real manifest, not __grok", () => {
+  const rootHead = read("src/routes/__root.tsx");
+  const fallback = read("native/www-fallback/index.html");
+  const manifest = JSON.parse(read("public/manifest.webmanifest"));
+
+  assert.match(rootHead, /rel:\s*"manifest",\s*href:\s*"\/manifest\.webmanifest"/);
+  assert.match(rootHead, /apple-touch-icon[\s\S]*\/icon-180\.png/);
+  assert.match(rootHead, /apple-mobile-web-app-title[\s\S]*واحة/);
+  assert.match(rootHead, /apple-mobile-web-app-capable[\s\S]*yes/);
+  assert.match(rootHead, /black-translucent/);
+  assert.doesNotMatch(rootHead, /__grok/);
+  assert.match(fallback, /apple-mobile-web-app-title" content="واحة"/);
+  assert.match(fallback, /href="\/manifest\.webmanifest"/);
+  assert.doesNotMatch(fallback, /__grok/);
+  assert.equal(manifest.name, "واحة");
+  assert.equal(manifest.short_name, "واحة");
+  assert.equal(manifest.lang, "ar");
+  assert.equal(manifest.dir, "rtl");
+  assert.equal(manifest.display, "standalone");
+  assert.equal(manifest.start_url, "/");
+  assert.equal(manifest.theme_color, "#0c0d0c");
+  assert.ok(exists("public/icon-180.png"));
+  assert.ok(exists("public/icon-192.png"));
+  assert.ok(exists("public/icon-512.png"));
 });
 
 test("Podfile ships Browser + LocalNotifications with native keyboard", () => {
   const podfile = read("ios/App/Podfile");
-  const json = read("ios/App/App/capacitor.config.json");
+  const cap = read("capacitor.config.ts");
   assert.match(podfile, /CapacitorBrowser/);
   assert.match(podfile, /CapacitorLocalNotifications/);
   assert.match(podfile, /CapacitorKeyboard/);
   assert.match(podfile, /CapacitorStatusBar/);
-  assert.match(json, /BrowserPlugin/);
-  assert.match(json, /"resize": "native"/);
+  assert.match(cap, /Browser:\s*\{/);
+  assert.match(cap, /resize:\s*"native"/);
 });
 
 test("Arabic RTL fields are wired and ASC Submit stays blocked", () => {

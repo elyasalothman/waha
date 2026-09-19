@@ -50,6 +50,20 @@ function stampNativeIos(html) {
   if (!/native-ios\.js/.test(next)) {
     next = next.replace("</head>", '  <script src="/native-ios.js" defer></script>\n  </head>');
   }
+  if (!/apple-mobile-web-app-title/.test(next)) {
+    next = next.replace(
+      "</head>",
+      '  <meta name="apple-mobile-web-app-capable" content="yes" />\n  <meta name="apple-mobile-web-app-title" content="واحة" />\n  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />\n  </head>',
+    );
+  }
+  if (!/rel=["']manifest["']/.test(next) || /__grok\/manifest/.test(next)) {
+    next = next.replace(/<link[^>]+rel=["']manifest["'][^>]*>/i, "");
+    next = next.replace("</head>", '  <link rel="manifest" href="/manifest.webmanifest" />\n  </head>');
+  }
+  if (!/apple-touch-icon/.test(next) || /__grok\/icon-180/.test(next)) {
+    next = next.replace(/<link[^>]+rel=["']apple-touch-icon["'][^>]*>/i, "");
+    next = next.replace("</head>", '  <link rel="apple-touch-icon" href="/icon-180.png" />\n  </head>');
+  }
   return next;
 }
 
@@ -66,6 +80,14 @@ cpSync(source, WWW, { recursive: true });
 const nativeJs = join(ROOT, "native", "www-fallback", "native-ios.js");
 if (existsSync(nativeJs)) {
   cpSync(nativeJs, join(WWW, "native-ios.js"));
+}
+
+const publicDir = join(ROOT, "public");
+for (const name of ["manifest.webmanifest", "icon-180.png", "icon-192.png", "icon-512.png"]) {
+  const fromPublic = join(publicDir, name);
+  const fromFallback = join(FALLBACK, name);
+  const src = existsSync(fromPublic) ? fromPublic : fromFallback;
+  if (existsSync(src)) cpSync(src, join(WWW, name));
 }
 
 const indexPath = join(WWW, "index.html");

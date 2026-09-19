@@ -20,7 +20,7 @@ const REMOTE_URL = (
   ""
 ).trim();
 
-const PRODUCTION_HOST = "waha.alhajda.com";
+const PRODUCTION_HOST = "waha.hajdah.com";
 
 const config: CapacitorConfig = {
   appId: "com.alhajda.waha",
