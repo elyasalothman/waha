@@ -7,6 +7,17 @@ import { CLIPS_STORAGE_KEY } from "../clips/types.ts";
 import { BOOK_CARDS, BOOK_IDS, BOOKS_SEED, BOOKS_SEED_COUNT, isAllowedBookHost } from "./seed.ts";
 import { booksByUiSection, hydrateBooksState, listBooks, markOpened, uiSectionOf } from "./logic.ts";
 import { BOOK_SEED_SECTIONS, BOOK_SOURCE_KINDS, BOOK_STAMP, BOOKS_STORAGE_KEY } from "./types.ts";
+import {
+  EMPTY_KUTUBI,
+  KUTUBI_STORAGE_KEY,
+  accountOwnsKutubi,
+  addToKutubi,
+  hydrateKutubi,
+  isOnKutubi,
+  kutubiPublishesToPublic,
+  listKutubiBooks,
+  removeFromKutubi,
+} from "./kutubi.ts";
 import cards from "./waha-kutub-shelf-cards-v1.json" with { type: "json" };
 import lock from "./waha-kutub-shelf-seed-v1.json" with { type: "json" };
 
@@ -75,9 +86,13 @@ describe("books store isolation", () => {
     assert.equal(BOOKS_STORAGE_KEY, "waha:books:v1");
     assert.equal(SQUARE_STORAGE_KEY, "waha:square:v1");
     assert.equal(CLIPS_STORAGE_KEY, "waha:clips:v1");
+    assert.equal(KUTUBI_STORAGE_KEY, "waha:kutubi:v1");
     assert.notEqual(BOOKS_STORAGE_KEY, SQUARE_STORAGE_KEY);
     assert.notEqual(BOOKS_STORAGE_KEY, CLIPS_STORAGE_KEY);
     assert.notEqual(BOOKS_STORAGE_KEY, "waha:square:world:v1");
+    assert.notEqual(KUTUBI_STORAGE_KEY, BOOKS_STORAGE_KEY);
+    assert.notEqual(KUTUBI_STORAGE_KEY, SQUARE_STORAGE_KEY);
+    assert.notEqual(KUTUBI_STORAGE_KEY, CLIPS_STORAGE_KEY);
   });
 
   it("lists seed order only — no shuffle and no ranking", () => {
@@ -144,14 +159,18 @@ describe("books stay off the Maydan line", () => {
     const route = readFileSync(new URL("../../routes/books.tsx", import.meta.url), "utf8");
     const doors = readFileSync(new URL("../doors.ts", import.meta.url), "utf8");
     const strip = readFileSync(new URL("../../components/doors-strip.tsx", import.meta.url), "utf8");
-    assert.doesNotMatch(square, /lib\/books|waha:books|kutub-shelf/);
+    assert.doesNotMatch(square, /lib\/books|waha:books|kutub-shelf|waha:kutubi|كتبي/);
     assert.doesNotMatch(page, /square\/|maydan-seed|waha:square|من العالم|waha:clips/);
     assert.match(route, /createFileRoute\("\/books"\)/);
     assert.match(page, /data-book-stamp="visible"/);
     assert.match(page, /\{book\.stamp\}/);
     assert.match(page, /data-books-lane="shelf-v1"/);
+    assert.match(page, /data-kutubi="local-v1"/);
+    assert.match(page, /data-kutubi-publish="never"/);
+    assert.match(page, /data-kutubi-guest="public-only"/);
     assert.doesNotMatch(page, /<(input|form)\b/);
-    assert.doesNotMatch(page, /fetch\(|scrape|cheerio/);
+    assert.doesNotMatch(page, /fetch\(|scrape|cheerio|WebView|أضف للعامة/);
+    assert.doesNotMatch(page, /kutubiPublishesToPublic\(\) \? true/);
     assert.match(doors, /MIDAD_SHELF_PATH = "\/books"/);
     assert.match(strip, /to="\/books"/);
     assert.match(strip, /doorOpensInternalShelf/);
@@ -168,7 +187,7 @@ describe("books stay off the Maydan line", () => {
     assert.doesNotMatch(nav, /to: "\/books"/);
     assert.match(card, /to="\/books"/);
     assert.match(home, /SquarePage/);
-    assert.doesNotMatch(home, /BooksPage|lib\/books/);
+    assert.doesNotMatch(home, /BooksPage|lib\/books|waha:kutubi|كتبي|WebView/);
   });
 
   it("refuses forbidden lanes and pirate hosts in the shelf blob", () => {
@@ -180,5 +199,58 @@ describe("books stay off the Maydan line", () => {
     assert.equal(isAllowedBookHost("https://islamweb.net/ar/library/"), false);
     assert.equal(isAllowedBookHost("https://shamela.ws/book/1"), false);
     assert.ok(BOOK_CARDS[0]?.legalNote.includes("لا من مواقع قرصنة"));
+  });
+});
+
+describe("كتبي stays a private local slot", () => {
+  it("is account-only and never publishes to the public shelf", () => {
+    assert.equal(accountOwnsKutubi({ sliceChosen: false, signedInRealUser: false }), false);
+    assert.equal(accountOwnsKutubi({ sliceChosen: true, signedInRealUser: false }), true);
+    assert.equal(accountOwnsKutubi({ sliceChosen: false, signedInRealUser: true }), true);
+    assert.equal(kutubiPublishesToPublic(), false);
+    assert.deepEqual(EMPTY_KUTUBI, { version: 1, items: [] });
+  });
+
+  it("pins only locked public ids onto waha:kutubi:v1 and drops strangers", () => {
+    const dirty = hydrateKutubi(
+      {
+        version: 1,
+        items: [
+          { bookId: "bk-akhlaq-01", addedAt: 1 },
+          { bookId: "pirate-001", addedAt: 2 },
+          { bookId: "clip-001", addedAt: 3 },
+          { bookId: "bk-akhlaq-01", addedAt: 4 },
+        ],
+      },
+      BOOK_IDS,
+    );
+    assert.deepEqual(
+      dirty.items.map((item) => item.bookId),
+      ["bk-akhlaq-01"],
+    );
+    const added = addToKutubi(dirty, "bk-general-01", 9);
+    assert.equal(isOnKutubi(added, "bk-general-01"), true);
+    assert.deepEqual(
+      listKutubiBooks(added).map((book) => book.id),
+      ["bk-akhlaq-01", "bk-general-01"],
+    );
+    assert.deepEqual(addToKutubi(added, "seed-001").items, added.items);
+    assert.deepEqual(
+      removeFromKutubi(added, "bk-akhlaq-01").items.map((item) => item.bookId),
+      ["bk-general-01"],
+    );
+  });
+
+  it("keeps add-to-public as a non-feature — no draft upload path", () => {
+    const page = readFileSync(new URL("../../apps/books/page.tsx", import.meta.url), "utf8");
+    const kutubi = readFileSync(new URL("./kutubi.ts", import.meta.url), "utf8");
+    const store = readFileSync(new URL("./store.ts", import.meta.url), "utf8");
+    assert.match(store, /KUTUBI_STORAGE_KEY/);
+    assert.match(kutubi, /kutubiPublishesToPublic/);
+    assert.match(kutubi, /return false/);
+    assert.doesNotMatch(kutubi, /publicDraft|legal-review|upload|scrape/);
+    assert.doesNotMatch(page, /أضف للعامة|publicDraft|WebView/);
+    assert.match(page, /kutubiAdd/);
+    assert.match(page, /kutubiGuestHint/);
   });
 });
