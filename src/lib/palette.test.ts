@@ -24,6 +24,8 @@ const madar = readFileSync(new URL("../apps/madar/portal.tsx", import.meta.url),
 const games = readFileSync(new URL("../routes/games.tsx", import.meta.url), "utf8");
 const accounts = readFileSync(new URL("./square/accounts.ts", import.meta.url), "utf8");
 const routes = readFileSync(new URL("../routeTree.gen.ts", import.meta.url), "utf8");
+const pwa = readFileSync(new URL("../../scripts/grok-pwa-shared.mjs", import.meta.url), "utf8");
+const install = readFileSync(new URL("../../scripts/install-page.html", import.meta.url), "utf8");
 
 const OLD_NIGHT = ["#0c0d0c", "#eceee9", "#c5d0c4", "#6a7069"];
 
@@ -49,6 +51,9 @@ describe("waha well-night palette", () => {
     assert.match(manifest, new RegExp(`"background_color": "${PALETTE.bg}"`));
     assert.match(favicon, new RegExp(`fill="${PALETTE.bg}"`));
     assert.match(favicon, new RegExp(`stroke="${PALETTE.primary}"`));
+    assert.match(pwa, new RegExp(`theme_color: "${PALETTE.bg}"`));
+    assert.match(pwa, new RegExp(`background_color: "${PALETTE.bg}"`));
+    assert.match(install, new RegExp(`theme-color" content="${PALETTE.bg}"`));
   });
 
   it("lifts text contrast on bg, surface, and surface-2", () => {

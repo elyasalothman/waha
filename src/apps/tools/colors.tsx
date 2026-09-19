@@ -36,7 +36,7 @@ function mix(c: { r: number; g: number; b: number }, t: number, toward: { r: num
 
 export function ColorsApp() {
   const lang = useAppStore((s) => s.lang);
-  const [hex, setHex] = useState(PALETTE.primary);
+  const [hex, setHex] = useState<string>(PALETTE.primary);
   const rgb = parseHex(hex);
   const paper = hexToRgb(PALETTE.fg);
   const ink = hexToRgb(PALETTE.bg);

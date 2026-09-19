@@ -89,7 +89,7 @@ export function themeColor(name: PaletteToken, raw?: string): string {
 }
 
 export function parseThemeFromCss(css: string): Record<PaletteToken, string> {
-  const out = { ...PALETTE };
+  const out = { ...PALETTE } as Record<PaletteToken, string>;
   for (const name of Object.keys(PALETTE) as PaletteToken[]) {
     const match = css.match(new RegExp(`--color-${name}:\\s*(#[0-9a-fA-F]{6})`));
     if (match?.[1]) out[name] = match[1].toLowerCase();
