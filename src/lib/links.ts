@@ -34,7 +34,7 @@ export const SISTER_APPS: SisterApp[] = [
     id: "midad",
     title: { ar: "مداد", en: "Midad" },
     blurb: { ar: "مداد الحجادة", en: "Alhajda Midad" },
-    href: "https://midad.alhajda.com",
+    href: "https://midad.alhajda.com/library",
   },
   {
     id: "sites",

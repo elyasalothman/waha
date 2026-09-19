@@ -104,15 +104,18 @@ export function readWeatherCache(lat: number, lon: number): WeatherPayload | nul
   try {
     const raw = localStorage.getItem(CACHE_KEY) ?? localStorage.getItem(WEATHER_CACHE_KEY);
     if (!raw) return mem?.payload ?? null;
-    const parsed = JSON.parse(raw) as
-      | Record<string, { at: number; payload: WeatherPayload }>
-      | { lat?: number; lon?: number; payload?: WeatherPayload };
-    if (parsed && "payload" in parsed && parsed.payload?.current) {
+    const parsed = JSON.parse(raw) as {
+      lat?: number;
+      lon?: number;
+      payload?: WeatherPayload;
+      [key: string]: unknown;
+    };
+    if (parsed.payload?.current && Number.isFinite(parsed.payload.current.temperature)) {
       return parsed.payload;
     }
-    const hit = (parsed as Record<string, { at: number; payload: WeatherPayload }>)[key];
+    const hit = parsed[key] as { at?: number; payload?: WeatherPayload } | undefined;
     if (hit?.payload?.current && Number.isFinite(hit.payload.current.temperature)) {
-      memory.set(key, hit);
+      memory.set(key, { at: hit.at ?? Date.now(), payload: hit.payload });
       return hit.payload;
     }
   } catch {

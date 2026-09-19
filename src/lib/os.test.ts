@@ -89,7 +89,7 @@ describe("sister apps", () => {
         "https://ai.alhajda.com",
         "https://games.alhajda.com",
         "https://hayat.alhajda.com",
-        "https://midad.alhajda.com",
+        "https://midad.alhajda.com/library",
         "https://alhajda.com/sites",
         "https://alhajda.com",
       ],

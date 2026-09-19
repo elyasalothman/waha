@@ -5,6 +5,7 @@ import {
   DOORS,
   directoryDoors,
   doorHref,
+  doorsEnabled,
   getDoor,
   isExternalDoor,
   launcherDoors,
@@ -54,5 +55,13 @@ describe("Alhajda doors", () => {
       ["tahajjud", "midad", "mohsin", "luma", "alhajda-tools", "agent", "hissati"],
     );
     assert.equal(getDoor("hissati")?.href, "https://hissati.alhajda.com");
+  });
+
+  it("hides door toggles when Feature Store turns them off", () => {
+    assert.deepEqual(
+      doorsEnabled(primaryLauncherDoors(), { tahajjud: false }).map((d) => d.id),
+      ["midad", "sites"],
+    );
+    assert.deepEqual(doorsEnabled(primaryLauncherDoors(), { sisters: false }).map((d) => d.id), []);
   });
 });

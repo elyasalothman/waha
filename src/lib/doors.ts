@@ -151,6 +151,24 @@ export function primaryLauncherDoors(): Door[] {
   return PRIMARY_LAUNCHER_IDS.map((id) => getDoor(id)).filter((d): d is Door => d != null);
 }
 
+const DOOR_FEATURE: Partial<Record<DoorId, "tahajjud" | "midad" | "sites">> = {
+  tahajjud: "tahajjud",
+  midad: "midad",
+  sites: "sites",
+};
+
+/** Feature Store can hide تهجد / مداد / مواقعنا without changing the door catalog. */
+export function doorsEnabled<T extends { id: DoorId }>(
+  doors: readonly T[],
+  flags: Partial<Record<"tahajjud" | "midad" | "sites" | "sisters", boolean>>,
+): T[] {
+  if (flags.sisters === false) return [];
+  return doors.filter((door) => {
+    const flag = DOOR_FEATURE[door.id];
+    return !flag || flags[flag] !== false;
+  });
+}
+
 export function isExternalDoor(door: Pick<Door, "href">): boolean {
   return door.href.startsWith("https://");
 }
