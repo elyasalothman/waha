@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { RoundOverlay } from "@/components/round-overlay";
 import { Stat } from "@/components/app-stage";
 import { t } from "@/lib/i18n";
 import { readScore, writeScore } from "@/lib/storage";
@@ -182,11 +183,15 @@ export function Merge2048App() {
     else applyMove(dy > 0 ? "D" : "U");
   };
 
+  const peak = board.flat().reduce((m, n) => Math.max(m, n), 0);
+  const L = (ar: string, en: string) => (lang === "ar" ? ar : en);
+
   return (
     <div className="flex flex-col gap-3">
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-3 gap-2">
         <Stat label={t(lang, "score")} value={score} />
         <Stat label={t(lang, "best")} value={best} />
+        <Stat label={L("أعلى", "Peak")} value={peak || "—"} />
       </div>
       <Card
         className="relative p-3 touch-none select-none"
@@ -211,26 +216,28 @@ export function Merge2048App() {
             )),
           )}
         </div>
-        {(over || (won && !continued)) && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-bg/80 p-4">
-            <p className="text-lg font-medium">{over ? t(lang, "gameOver") : t(lang, "youWin")}</p>
-            <div className="flex flex-wrap justify-center gap-2">
-              {!over && (
-                <Button
-                  onClick={() => {
+        {over || (won && !continued) ? (
+          <RoundOverlay
+            title={over ? t(lang, "gameOver") : t(lang, "youWin")}
+            detail={`${t(lang, "score")} ${score} · ${peak}`}
+            actionLabel={over ? t(lang, "restart") : t(lang, "resume")}
+            onAction={
+              over
+                ? newGame
+                : () => {
                     setContinued(true);
                     setWon(true);
-                  }}
-                >
-                  {t(lang, "resume")}
+                  }
+            }
+            extra={
+              over ? null : (
+                <Button variant="secondary" onClick={newGame}>
+                  {t(lang, "newGame")}
                 </Button>
-              )}
-              <Button variant={over ? "default" : "secondary"} onClick={newGame}>
-                {t(lang, "newGame")}
-              </Button>
-            </div>
-          </div>
-        )}
+              )
+            }
+          />
+        ) : null}
       </Card>
       <Button variant="outline" onClick={newGame}>
         {t(lang, "newGame")}

@@ -34,6 +34,23 @@ export function BalootApp() {
     setThem(0);
   }
 
+  function undo() {
+    const last = s.rounds[0];
+    if (!last) return;
+    setS({
+      ...s,
+      us: Math.max(0, s.us - last.us),
+      them: Math.max(0, s.them - last.them),
+      rounds: s.rounds.slice(1),
+    });
+  }
+
+  function fresh() {
+    setS(EMPTY);
+    setUs(0);
+    setThem(0);
+  }
+
   return (
     <div className="space-y-5">
       <div className="grid grid-cols-2 gap-3">
@@ -41,7 +58,11 @@ export function BalootApp() {
         <TeamCard title={L("لهم", "Them")} score={s.them} target={s.target} win={done && lead === "them"} />
       </div>
       {done ? (
-        <p className="text-center font-display text-2xl">{lead === "us" ? L("لنا الفوز", "We win") : L("لهم الفوز", "They win")}</p>
+        <div className="space-y-3 rounded-xl border border-primary/40 bg-surface p-5 text-center">
+          <p className="font-display text-2xl">{lead === "us" ? L("لنا الفوز", "We win") : L("لهم الفوز", "They win")}</p>
+          <p className="text-sm text-muted">{L("المباراة وصلت ١٥٢ — ابدأ جولة جديدة.", "The match hit 152 — start a fresh game.")}</p>
+          <Button onClick={fresh}>{t(lang, "newGame")}</Button>
+        </div>
       ) : (
         <div className="space-y-3 rounded-xl border border-border bg-surface p-4">
           <div className="grid grid-cols-2 gap-2">
@@ -71,11 +92,18 @@ export function BalootApp() {
           </div>
         </div>
       )}
-      <div className="flex justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <p className="text-sm text-muted">{L("اللعب حتى ١٥٢", "Play to 152")}</p>
-        <Button size="sm" variant="ghost" onClick={() => setS(EMPTY)}>
-          {t(lang, "newGame")}
-        </Button>
+        <div className="flex gap-2">
+          {s.rounds.length > 0 ? (
+            <Button size="sm" variant="secondary" onClick={undo}>
+              {L("تراجع", "Undo")}
+            </Button>
+          ) : null}
+          <Button size="sm" variant="ghost" onClick={fresh}>
+            {t(lang, "newGame")}
+          </Button>
+        </div>
       </div>
       {s.rounds.length > 0 ? (
         <ul className="space-y-1">
