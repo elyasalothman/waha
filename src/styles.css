@@ -130,6 +130,19 @@
   }
 }
 
+/* Quiet shade↔field — sage veil only, no hue travel. */
+[data-shade-field="quiet"] [data-shadow="thin"] {
+  transition:
+    background-color 320ms ease,
+    box-shadow 320ms ease;
+}
+
+[data-shade-field="quiet"][data-lane="field"] [data-shadow="thin"] {
+  background-color: color-mix(in oklab, var(--color-bg) 92%, transparent);
+  box-shadow: 0 1px 0 color-mix(in oklab, var(--color-fg) 6%, transparent);
+  backdrop-filter: blur(8px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

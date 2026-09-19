@@ -12,7 +12,11 @@ import {
   guestReadsWithoutAccount,
   homeChromeShowsAudienceSwitch,
   homeHouseDoorIds,
+  homeKeepsShadeWithField,
+  homeShadeFieldCrossing,
+  homeShowsBooksShelf,
   homeShowsCityPicker,
+  homeShowsDailySlides,
   identityOnlyAtOnboarding,
   isPlayItem,
   slicesLiveOnOnboarding,
@@ -144,5 +148,23 @@ describe("king lock — `/` after #8", () => {
     assert.match(onboarding, /data-identity="onboarding"/);
     assert.match(onboarding, /guestReadsFree/);
     assert.match(logic, /export function mergeFeed\(local: SquareLocalState, tab: SquareTab/);
+  });
+
+  it("keeps `/` = ميدان+ظل with a quiet crossing — no slides, no books shelf", () => {
+    const home = readFileSync(new URL("../routes/index.tsx", import.meta.url), "utf8");
+    const square = readFileSync(new URL("../components/square/square-page.tsx", import.meta.url), "utf8");
+    const shadow = readFileSync(new URL("../components/square/day-shadow.tsx", import.meta.url), "utf8");
+    assert.equal(homeKeepsShadeWithField(), true);
+    assert.equal(homeShowsDailySlides(), false);
+    assert.equal(homeShowsBooksShelf(), false);
+    assert.equal(homeShadeFieldCrossing(), "quiet");
+    assert.match(home, /SquarePage/);
+    assert.doesNotMatch(home, /DailySlides|BooksPage|lib\/books|kutub-shelf/);
+    assert.doesNotMatch(square, /DailySlides|BooksPage|kutub-shelf|lib\/books/);
+    assert.match(square, /DayShadow/);
+    assert.match(square, /data-shade-field="quiet"/);
+    assert.match(square, /data-home-sections="day-shadow house-doors square"/);
+    assert.match(shadow, /data-shadow="thin"/);
+    assert.match(shadow, /data-hero="next-prayer"/);
   });
 });

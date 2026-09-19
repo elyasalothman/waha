@@ -51,6 +51,7 @@ const strings = {
   nextPrayerFollowing: { ar: "الصلاة التالية", en: "Next prayer" },
   nowLabel: { ar: "الآن", en: "Now" },
   shadowDay: { ar: "ظل اليوم", en: "Day shadow" },
+  returnToShade: { ar: "العودة إلى ظل اليوم", en: "Return to the day shadow" },
   hijriDate: { ar: "الهجري", en: "Hijri" },
   news: { ar: "أخبار", en: "News" },
   remaining: { ar: "متبقي", en: "in" },
