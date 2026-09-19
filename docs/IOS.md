@@ -37,7 +37,7 @@ npx cap sync ios
 - `ios.contentInset: never` وشريط حالة داكن فوق الويب (`StatusBar.overlaysWebView`)
 - `CFBundleDevelopmentRegion = ar` + `ar.lproj` / `en.lproj`
 - `WahaViewController`: `semanticContentAttribute` عربي، `preferredStatusBarStyle = .lightContent`
-- `@capacitor/browser`: تهجد / محسن / ألعاب / حياة والبوابات الرسمية تُفتح خارج الـ WebView
+- أبواب البيت (مداد / تهجد / مواقعنا / محسن / ألعاب·لُمعة / حياة): WKWebView داخل التطبيق (`HouseDoorBrowser`) مع زر «رجوع لواحة». رف `/books` وروابط `midad.alhajda.com` تبقى داخل القشرة. البوابات الرسمية فقط عبر `@capacitor/browser`
 - إذن `LocalNotifications` جاهز لتذكير الصلاة (يُطلب عند تفعيل المفتاح، لا عند الإقلاع)
 
 ## البناء السحابي
