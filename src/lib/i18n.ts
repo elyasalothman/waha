@@ -7,6 +7,11 @@ const strings = {
   search: { ar: "ابحث في واحة…", en: "Search Waha…" },
   searchHint: { ar: "أو اضغط ⌘K", en: "or press ⌘K" },
   home: { ar: "الميدان", en: "The Square" },
+  more: { ar: "المزيد", en: "More" },
+  moreBlurb: {
+    ar: "حياتك ومالك وأدواتك والترفيه والاستوديو — من هنا، لا من شريط الميدان.",
+    en: "Life, money, tools, play, and studio — from here, not the Square bar.",
+  },
   life: { ar: "حياتك", en: "Life" },
   money: { ar: "مالك", en: "Money" },
   tools: { ar: "أدواتك", en: "Tools" },

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet, useRouterState } from "@tanstack/react-router";
-import { GalleryVertical, PanelsTopLeft, Search, Sparkles, Sun, Wallet, Wrench } from "lucide-react";
+import { Ellipsis, GalleryVertical, Search } from "lucide-react";
 import { WahaWordmark } from "@/components/brand";
 import { CommandPalette } from "@/components/command-palette";
 import { AudienceSwitch } from "@/components/audience-switch";
@@ -15,11 +15,7 @@ import { Toaster } from "sonner";
 
 const NAV_ICON = {
   "/": GalleryVertical,
-  "/life": Sun,
-  "/money": Wallet,
-  "/tools": Wrench,
-  "/studio": Sparkles,
-  "/workspace": PanelsTopLeft,
+  "/more": Ellipsis,
 } as const;
 
 export function Shell() {
@@ -115,7 +111,7 @@ export function Shell() {
       <nav
         className={cn(
           "fixed inset-x-0 bottom-0 z-30 grid border-t border-border bg-bg/95 pb-[env(safe-area-inset-bottom)] lg:hidden",
-          mobileNav.length === 5 ? "grid-cols-5" : "grid-cols-4",
+          mobileNav.length <= 2 ? "grid-cols-2" : mobileNav.length === 3 ? "grid-cols-3" : "grid-cols-4",
         )}
       >
         {mobileNav.map((item) => {
