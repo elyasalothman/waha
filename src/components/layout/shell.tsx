@@ -80,7 +80,7 @@ export function Shell() {
       </aside>
 
       <div className="lg:ps-60">
-        <header className="sticky top-0 z-20 flex h-14 items-center gap-3 border-b border-border bg-bg/90 px-4 backdrop-blur-sm">
+        <header className="sticky top-0 z-20 flex h-14 items-center gap-3 border-b border-border bg-bg/90 px-4 pt-[env(safe-area-inset-top)] backdrop-blur-sm lg:pt-0">
           <Link to="/" className="lg:hidden">
             <WahaWordmark lang={lang} />
           </Link>
