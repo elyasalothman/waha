@@ -6,7 +6,6 @@ import { POST_CHAR_LIMIT } from "@/lib/square/store";
 import type { Lang } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
 import { AvatarMark, HouseBadge, SampleStamp } from "./house-badge";
-import { VisualWash } from "./visual-wash";
 
 export function PostCard({
   item,
@@ -37,28 +36,31 @@ export function PostCard({
       <div className="flex gap-3">
         <AvatarMark letter={letter} tone={author.tone} house={author.kind === "house"} />
         <div className="min-w-0 flex-1">
-          <header className="flex flex-wrap items-center gap-x-2 gap-y-1">
-            {href ? (
-              <a href={href} className="font-medium text-fg hover:underline">
-                {item.source === "seed" ? author.nameAr : lang === "ar" ? author.nameAr : author.nameEn}
-              </a>
-            ) : (
-              <span className="font-medium text-fg">
-                {item.source === "seed" ? author.nameAr : lang === "ar" ? author.nameAr : author.nameEn}
-              </span>
-            )}
-            {item.badge === "بيت" || author.kind === "house" ? <HouseBadge lang={lang} /> : null}
-            {item.badge === "عيّنة" || author.kind === "sample" ? <SampleStamp lang={lang} /> : null}
-            {item.source === "you" ? (
-              <span className="text-[10px] text-subtle">{L("من جهازك", "from this device")}</span>
-            ) : null}
-            <span className="text-xs text-subtle">{author.handle}</span>
-            <span className="text-xs text-subtle">{when}</span>
+          <header className="min-w-0">
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+              {href ? (
+                <a href={href} className="font-medium text-fg hover:underline">
+                  {item.source === "seed" ? author.nameAr : lang === "ar" ? author.nameAr : author.nameEn}
+                </a>
+              ) : (
+                <span className="font-medium text-fg">
+                  {item.source === "seed" ? author.nameAr : lang === "ar" ? author.nameAr : author.nameEn}
+                </span>
+              )}
+              {item.badge === "بيت" || author.kind === "house" ? <HouseBadge lang={lang} /> : null}
+              {item.badge === "عيّنة" || author.kind === "sample" ? <SampleStamp lang={lang} /> : null}
+              {item.source === "you" ? (
+                <span className="text-[10px] text-subtle">{L("من جهازك", "from this device")}</span>
+              ) : null}
+            </div>
+            <p className="mt-0.5 text-xs text-subtle">
+              {author.handle}
+              <span className="mx-1 text-border">·</span>
+              {when}
+            </p>
           </header>
 
           <p className="mt-2 whitespace-pre-line text-[15px] leading-relaxed text-fg/95">{item.text}</p>
-
-          {item.visual ? <VisualWash visual={item.visual} className="mt-3" /> : null}
 
           <footer className="mt-3 flex items-center gap-1 text-muted">
             <Action label={L("إعجاب", "Like")} active={item.liked} count={item.likes} onClick={onLike}>

@@ -1,15 +1,11 @@
 import type { SquareAccount, SquareDoor, SquareDoorId } from "./types.ts";
 
-/** Locked house doors — live products, never /life or fake /app clones. */
+/** Visible stamp on every sample voice — philosopher live lock. */
+export const SAMPLE_STAMP_AR = "عيّنة للبداية";
+export const SAMPLE_STAMP_EN = "Starter sample";
+
+/** Locked house doors — live products, never /life, /app clones, or a Madar app. */
 export const DOORS: Record<SquareDoorId, SquareDoor> = {
-  madar: {
-    id: "madar",
-    href: "/madar",
-    ar: "مدار",
-    en: "Madar",
-    hintAr: "باب مدار",
-    hintEn: "Madar’s door",
-  },
   tahajjud: {
     id: "tahajjud",
     href: "https://tahajjud.alhajda.com",
@@ -98,7 +94,6 @@ export const HOUSE_ACCOUNTS: SquareAccount[] = [
     bioEn: "Madar’s door.",
     kind: "house",
     tone: "#b0c4c8",
-    href: DOORS.madar.href,
   },
   {
     id: "house-tools",

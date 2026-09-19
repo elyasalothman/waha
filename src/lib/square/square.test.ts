@@ -1,6 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { DOORS, HOUSE_ACCOUNTS, SAMPLE_ACCOUNTS } from "./accounts.ts";
+import { DOORS, HOUSE_ACCOUNTS, SAMPLE_ACCOUNTS, SAMPLE_STAMP_AR } from "./accounts.ts";
 import { MIN_SEED_POSTS, SEED_POSTS } from "./seed.ts";
 import { addPost, addReply, emptyLocal, mergeFeed, toggleEcho, toggleLike, updateProfile } from "./logic.ts";
 import { formatAgeMinutes, seedCreatedAt } from "./time.ts";
@@ -21,10 +21,11 @@ describe("square seed", () => {
   it("keeps بيت and عيّنة badges exactly as shipped", () => {
     assert.ok(SEED_POSTS.every((p) => p.badge === "بيت" || p.badge === "عيّنة"));
     const samples = SEED_POSTS.filter((p) => p.badge === "عيّنة");
-    assert.ok(samples.length >= 16);
+    assert.equal(samples.length, 23);
     for (const post of samples) {
       assert.ok(post.handle.startsWith("@sample."));
     }
+    assert.equal(SAMPLE_STAMP_AR, "عيّنة للبداية");
   });
 
   it("does not edit king texts — opening line stays as shipped", () => {
@@ -43,8 +44,7 @@ describe("square seed", () => {
 });
 
 describe("square doors", () => {
-  it("points house doors at the locked live products — never fake /life or /app clones", () => {
-    assert.equal(DOORS.madar.href, "/madar");
+  it("points house doors at the locked live products — never fake /life, /app, or /madar", () => {
     assert.equal(DOORS.tahajjud.href, "https://tahajjud.alhajda.com");
     assert.equal(DOORS.midad.href, "https://midad.alhajda.com/library");
     assert.equal(DOORS.sites.href, "https://alhajda.com/sites");
@@ -52,6 +52,7 @@ describe("square doors", () => {
     assert.equal(/\/life\b/.test(hrefs), false);
     assert.equal(/\/app\/salah/.test(hrefs), false);
     assert.equal(/\/app\/khatma/.test(hrefs), false);
+    assert.equal(/\/madar\b/.test(hrefs), false);
   });
 
   it("lists the marked sample voices from the king file", () => {
@@ -82,7 +83,9 @@ describe("square store", () => {
     const feed = mergeFeed(emptyLocal(), "forYou", Date.now(), "ar");
     assert.ok(feed.length >= MIN_SEED_POSTS);
     assert.ok(feed.every((item) => item.text.length > 0));
-    assert.ok(feed.some((item) => item.badge === "عيّنة"));
+    const samples = feed.filter((item) => item.badge === "عيّنة");
+    assert.equal(samples.length, 23);
+    assert.ok(samples.every((item) => item.author.kind === "sample"));
     assert.ok(feed.some((item) => item.badge === "بيت"));
   });
 
@@ -93,6 +96,9 @@ describe("square store", () => {
     assert.equal(feed[0]?.source, "you");
     assert.equal(feed[0]?.text, "صباح الخير من الميدان");
     assert.equal(feed[0]?.likes, 0);
+    const firstSeed = feed.find((item) => item.source === "seed");
+    assert.ok((firstSeed?.likes ?? 0) > 0);
+    assert.ok(feed.indexOf(feed[0]!) < feed.indexOf(firstSeed!));
   });
 
   it("ignores empty compose and trims to 280", () => {

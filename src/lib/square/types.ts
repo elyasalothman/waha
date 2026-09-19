@@ -1,6 +1,6 @@
 export type SquareAccountKind = "house" | "sample" | "you";
 
-export type SquareDoorId = "madar" | "tahajjud" | "midad" | "sites";
+export type SquareDoorId = "tahajjud" | "midad" | "sites";
 
 export type SquareBadge = "بيت" | "عيّنة";
 
