@@ -93,6 +93,19 @@ const strings = {
   workCatalog: { ar: "كل أدوات المكتب", en: "All desk tools" },
   saying: { ar: "مثل", en: "Saying" },
   newBadge: { ar: "جديد", en: "New" },
+  share: { ar: "مشاركة", en: "Share" },
+  shareCopied: { ar: "نُسخ نص اليوم", en: "Today’s text copied" },
+  shareFailed: { ar: "تعذّرت المشاركة", en: "Could not share" },
+  ourSites: { ar: "مواقعنا", en: "Our sites" },
+  allSites: { ar: "كل المواقع", en: "All sites" },
+  doorHint: { ar: "يفتح المنتج الحقيقي في هذه الصفحة", en: "Opens the real product here" },
+  prayerReminders: { ar: "تذكير الصلاة", en: "Prayer reminder" },
+  prayerRemindersOn: { ar: "منبّه على هذا الجهاز", en: "Alert on this device" },
+  prayerRemindersOff: { ar: "بدون منبّه", en: "No alert" },
+  prayerRemindersDenied: { ar: "رُفض الإذن — يبقى الخيار محفوظاً هنا", en: "Permission denied — the choice stays on this device" },
+  offline: { ar: "بدون اتصال", en: "Offline" },
+  lastUpdated: { ar: "آخر تحديث ناجح", en: "Last successful update" },
+  emergencyStrip: { ar: "أرقام الطوارئ", en: "Emergency numbers" },
 } as const;
 
 export type I18nKey = keyof typeof strings;

@@ -12,6 +12,7 @@ import { WaterApp } from "@/apps/life/water";
 import { ShoppingApp } from "@/apps/life/shopping";
 import { CountdownApp } from "@/apps/life/countdown";
 import { EmergencyApp } from "@/apps/life/emergency";
+import { SitesApp } from "@/apps/life/sites";
 import { ServicesApp } from "@/apps/life/services";
 import { PapersApp } from "@/apps/life/papers";
 import { BillsApp } from "@/apps/life/bills";
@@ -108,6 +109,7 @@ export const APPS: Record<string, ComponentType> = {
   shopping: ShoppingApp,
   countdown: CountdownApp,
   emergency: EmergencyApp,
+  sites: SitesApp,
   services: ServicesApp,
   papers: PapersApp,
   bills: BillsApp,

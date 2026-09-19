@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { t } from "@/lib/i18n";
+import { EmergencyStrip } from "@/components/emergency-strip";
 import { usePersistent } from "@/lib/storage";
 import { useAppStore } from "@/store/app-store";
 import { cn } from "@/lib/cn";
@@ -31,6 +32,7 @@ export function FamilyApp() {
 
   return (
     <div className="space-y-4">
+      <EmergencyStrip lang={lang} />
       <form
         className="grid gap-2 sm:grid-cols-[1fr_5rem_5rem_auto]"
         onSubmit={(e) => {

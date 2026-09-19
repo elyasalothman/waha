@@ -1,6 +1,9 @@
+import { doorExternalHref, launcherDoors } from "@/lib/doors";
+
 export type Audience = "personal" | "work";
 export type Category = "life" | "money" | "tools" | "games" | "workspace" | "studio";
 export type Lane =
+  | "house"
   | "worship"
   | "civic"
   | "home"
@@ -23,6 +26,8 @@ export type CatalogItem = {
   title: { ar: string; en: string };
   blurb: { ar: string; en: string };
   icon: string;
+  /** Same-tab door to a live Alhajda product. Internal apps omit this. */
+  href?: string;
 };
 
 const P: Audience[] = ["personal"];
@@ -30,6 +35,7 @@ const W: Audience[] = ["work"];
 const B: Audience[] = ["personal", "work"];
 
 export const LANE_LABEL: Record<Lane, { ar: string; en: string }> = {
+  house: { ar: "مواقعنا", en: "Our sites" },
   worship: { ar: "عبادتك", en: "Worship" },
   civic: { ar: "خدماتك", en: "Services" },
   home: { ar: "بيتك", en: "Home" },
@@ -43,10 +49,20 @@ export const LANE_LABEL: Record<Lane, { ar: string; en: string }> = {
   team: { ar: "فريقك", en: "Team" },
 };
 
-export const PERSONAL_LANES: Lane[] = ["worship", "civic", "home", "money", "health", "day", "tools", "play"];
+export const PERSONAL_LANES: Lane[] = ["house", "worship", "civic", "home", "money", "health", "day", "tools", "play"];
 export const WORK_LANES: Lane[] = ["desk", "sales", "money", "civic", "team", "tools"];
 
 export const CATALOG: CatalogItem[] = [
+  ...launcherDoors().map((door) => ({
+    id: door.id,
+    category: door.category,
+    lane: door.lane,
+    audience: door.audience,
+    icon: door.icon,
+    title: door.title,
+    blurb: door.blurb,
+    href: doorExternalHref(door),
+  })),
   { id: "salah", category: "life", lane: "worship", audience: P, featured: true, icon: "Sunrise", title: { ar: "مواقيت الصلاة", en: "Prayer times" }, blurb: { ar: "حسب أم القرى مع العدّ للصلاة القادمة", en: "Umm al-Qura times and a countdown to the next prayer" } },
   { id: "salahlog", category: "life", lane: "worship", audience: P, featured: true, icon: "ListChecks", title: { ar: "ورد الصلاة", en: "Prayer log" }, blurb: { ar: "علّم صلوات اليوم وتابع السلسلة", en: "Tick today’s prayers and keep a streak" } },
   { id: "athkar", category: "life", lane: "worship", audience: P, featured: true, icon: "BookOpen", title: { ar: "أذكار اليوم", en: "Daily athkar" }, blurb: { ar: "أذكار الصباح والمساء بعلامة تمّ", en: "Morning and evening remembrances to tick off" } },
@@ -197,9 +213,9 @@ export function searchCatalog(q: string, audience: Audience) {
   const n = q.trim().toLowerCase();
   const pool = forAudience(audience);
   if (!n) return pool;
-  return pool.filter((a) =>
-    [a.id, a.title.ar, a.title.en, a.blurb.ar, a.blurb.en, LANE_LABEL[a.lane].ar, LANE_LABEL[a.lane].en].some((s) =>
-      s.toLowerCase().includes(n),
-    ),
-  );
+  return pool.filter((a) => {
+    const keys = [a.id, a.title.ar, a.title.en, a.blurb.ar, a.blurb.en, LANE_LABEL[a.lane].ar, LANE_LABEL[a.lane].en, a.href ?? ""];
+    if (a.lane === "house" || a.href) keys.push("الهجدة", "alhajda", "أبواب");
+    return keys.some((s) => s.toLowerCase().includes(n));
+  });
 }

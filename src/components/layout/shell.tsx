@@ -14,6 +14,7 @@ import { WahaWordmark } from "@/components/brand";
 import { CommandPalette } from "@/components/command-palette";
 import { AudienceSwitch } from "@/components/audience-switch";
 import { LangToggle } from "@/components/city-select";
+import { OfflineBanner } from "@/components/offline-banner";
 import { t, type I18nKey } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
 import { useAppStore } from "@/store/app-store";
@@ -118,6 +119,7 @@ export function Shell() {
         </div>
 
         <main className="px-4 py-6 pb-24 lg:px-8 lg:pb-10">
+          <OfflineBanner lang={lang} />
           <Outlet />
         </main>
       </div>
