@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { openExternalUrl, shouldOpenExternally } from "@/lib/native-browser";
+import { PALETTE } from "@/lib/palette";
 
 function isNativeIos() {
   const cap = (window as Window & { Capacitor?: { isNativePlatform?: () => boolean; isNative?: boolean } })
@@ -41,7 +42,7 @@ export function NativeIosChrome() {
     const StatusBar = cap?.Plugins?.StatusBar;
     if (StatusBar) {
       void StatusBar.setStyle?.({ style: "DARK" });
-      void StatusBar.setBackgroundColor?.({ color: "#0c0d0c" });
+      void StatusBar.setBackgroundColor?.({ color: PALETTE.bg });
       void StatusBar.setOverlaysWebView?.({ overlay: true });
     }
     const Keyboard = cap?.Plugins?.Keyboard;

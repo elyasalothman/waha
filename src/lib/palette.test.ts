@@ -22,8 +22,10 @@ const shadow = readFileSync(new URL("../components/square/day-shadow.tsx", impor
 const square = readFileSync(new URL("../components/square/square-page.tsx", import.meta.url), "utf8");
 const madar = readFileSync(new URL("../apps/madar/portal.tsx", import.meta.url), "utf8");
 const games = readFileSync(new URL("../routes/games.tsx", import.meta.url), "utf8");
+const clips = readFileSync(new URL("../apps/clips/page.tsx", import.meta.url), "utf8");
 const accounts = readFileSync(new URL("./square/accounts.ts", import.meta.url), "utf8");
 const routes = readFileSync(new URL("../routeTree.gen.ts", import.meta.url), "utf8");
+const nav = readFileSync(new URL("./nav.ts", import.meta.url), "utf8");
 const pwa = readFileSync(new URL("../../scripts/grok-pwa-shared.mjs", import.meta.url), "utf8");
 const install = readFileSync(new URL("../../scripts/install-page.html", import.meta.url), "utf8");
 
@@ -65,16 +67,21 @@ describe("waha well-night palette", () => {
     assert.ok(contrastRatio(PALETTE.subtle, PALETTE.bg) > contrastRatio("#6a7069", "#0c0d0c"));
   });
 
-  it("applies the shared tokens to shadow, square, madar, and games — no /clips scope", () => {
+  it("applies the shared tokens to shadow, square, madar, clips, and games — no product-scope change", () => {
     assert.match(home, /SquarePage/);
+    assert.doesNotMatch(home, /ClipsPage|\/clips/);
     assert.match(shadow, /text-muted|text-subtle|text-fg|text-primary/);
     assert.match(square, /PALETTE\.primary/);
     assert.match(madar, /border-border/);
     assert.match(madar, /text-muted/);
     assert.match(games, /Hub category="games"/);
-    assert.equal(routes.includes("/clips") || routes.includes("clips"), false);
-    assert.equal(home.includes("/clips"), false);
-    for (const file of [shadow, square, madar, games]) {
+    assert.match(routes, /\/clips/);
+    assert.match(clips, /data-clips-lane="mufida-v1"/);
+    assert.match(clips, /data-on-maydan="false"/);
+    assert.match(clips, /text-muted/);
+    assert.match(clips, /bg-surface/);
+    assert.match(nav, /to: "\/clips"/);
+    for (const file of [shadow, square, madar, games, clips]) {
       for (const hex of OLD_NIGHT) {
         assert.equal(file.toLowerCase().includes(hex), false, hex);
       }
