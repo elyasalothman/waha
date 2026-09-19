@@ -10,6 +10,9 @@ export const FEATURE_IDS = [
   "tools",
   "life",
   "sisters",
+  "tahajjud",
+  "midad",
+  "sites",
 ] as const;
 
 export type FeatureId = (typeof FEATURE_IDS)[number];
@@ -104,6 +107,30 @@ export const FEATURES: FeatureDef[] = [
     elevated: true,
     title: { ar: "منظومة الحجادة", en: "Alhajda suite" },
     blurb: { ar: "تهجد ومحسن ولُمعة وحياة والبيت", en: "Tahajjud, Mohsen, Luma, Hayat, and Alhajda" },
+  },
+  {
+    id: "tahajjud",
+    lane: "labs",
+    defaultOn: true,
+    elevated: true,
+    title: { ar: "تهجد", en: "Tahajjud" },
+    blurb: { ar: "tahajjud.alhajda.com", en: "tahajjud.alhajda.com" },
+  },
+  {
+    id: "midad",
+    lane: "labs",
+    defaultOn: true,
+    elevated: true,
+    title: { ar: "مداد", en: "Midad" },
+    blurb: { ar: "midad.alhajda.com", en: "midad.alhajda.com" },
+  },
+  {
+    id: "sites",
+    lane: "labs",
+    defaultOn: true,
+    elevated: true,
+    title: { ar: "مواقعنا", en: "Our sites" },
+    blurb: { ar: "alhajda.com/sites", en: "alhajda.com/sites" },
   },
 ];
 

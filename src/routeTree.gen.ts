@@ -19,6 +19,7 @@ import { Route as MessagesRouteImport } from './routes/messages'
 import { Route as MoneyRouteImport } from './routes/money'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as StudioRouteImport } from './routes/studio'
+import { Route as TodayRouteImport } from './routes/today'
 import { Route as ToolsRouteImport } from './routes/tools'
 import { Route as WeatherRouteImport } from './routes/weather'
 import { Route as WorkspaceRouteImport } from './routes/workspace'
@@ -78,6 +79,11 @@ const StudioRoute = StudioRouteImport.update({
   path: '/studio',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TodayRoute = TodayRouteImport.update({
+  id: '/today',
+  path: '/today',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ToolsRoute = ToolsRouteImport.update({
   id: '/tools',
   path: '/tools',
@@ -130,6 +136,7 @@ export interface FileRoutesByFullPath {
   '/money': typeof MoneyRoute
   '/settings': typeof SettingsRoute
   '/studio': typeof StudioRoute
+  '/today': typeof TodayRoute
   '/tools': typeof ToolsRoute
   '/weather': typeof WeatherRoute
   '/workspace': typeof WorkspaceRoute
@@ -149,6 +156,7 @@ export interface FileRoutesByTo {
   '/money': typeof MoneyRoute
   '/settings': typeof SettingsRoute
   '/studio': typeof StudioRoute
+  '/today': typeof TodayRoute
   '/tools': typeof ToolsRoute
   '/weather': typeof WeatherRoute
   '/workspace': typeof WorkspaceRoute
@@ -170,6 +178,7 @@ export interface FileRoutesById {
   '/money': typeof MoneyRoute
   '/settings': typeof SettingsRoute
   '/studio': typeof StudioRoute
+  '/today': typeof TodayRoute
   '/tools': typeof ToolsRoute
   '/weather': typeof WeatherRoute
   '/workspace': typeof WorkspaceRoute
@@ -192,6 +201,7 @@ export interface FileRouteTypes {
     | '/money'
     | '/settings'
     | '/studio'
+    | '/today'
     | '/tools'
     | '/weather'
     | '/workspace'
@@ -211,6 +221,7 @@ export interface FileRouteTypes {
     | '/money'
     | '/settings'
     | '/studio'
+    | '/today'
     | '/tools'
     | '/weather'
     | '/workspace'
@@ -231,6 +242,7 @@ export interface FileRouteTypes {
     | '/money'
     | '/settings'
     | '/studio'
+    | '/today'
     | '/tools'
     | '/weather'
     | '/workspace'
@@ -252,6 +264,7 @@ export interface RootRouteChildren {
   MoneyRoute: typeof MoneyRoute
   SettingsRoute: typeof SettingsRoute
   StudioRoute: typeof StudioRoute
+  TodayRoute: typeof TodayRoute
   ToolsRoute: typeof ToolsRoute
   WeatherRoute: typeof WeatherRoute
   WorkspaceRoute: typeof WorkspaceRoute
@@ -330,6 +343,13 @@ declare module '@tanstack/react-router' {
       path: '/studio'
       fullPath: '/studio'
       preLoaderRoute: typeof StudioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/today': {
+      id: '/today'
+      path: '/today'
+      fullPath: '/today'
+      preLoaderRoute: typeof TodayRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tools': {
@@ -416,6 +436,7 @@ const rootRouteChildren: RootRouteChildren = {
   MoneyRoute: MoneyRoute,
   SettingsRoute: SettingsRoute,
   StudioRoute: StudioRoute,
+  TodayRoute: TodayRoute,
   ToolsRoute: ToolsRoute,
   WeatherRoute: WeatherRoute,
   WorkspaceRoute: WorkspaceRoute,

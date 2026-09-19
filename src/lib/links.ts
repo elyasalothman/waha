@@ -31,6 +31,18 @@ export const SISTER_APPS: SisterApp[] = [
     href: "https://hayat.alhajda.com",
   },
   {
+    id: "midad",
+    title: { ar: "مداد", en: "Midad" },
+    blurb: { ar: "مداد الحجادة", en: "Alhajda Midad" },
+    href: "https://midad.alhajda.com",
+  },
+  {
+    id: "sites",
+    title: { ar: "مواقعنا", en: "Our sites" },
+    blurb: { ar: "دليل مواقع الحجادة", en: "The Alhajda sites index" },
+    href: "https://alhajda.com/sites",
+  },
+  {
     id: "bait",
     title: { ar: "البيت", en: "Alhajda" },
     blurb: { ar: "بوابة الحجادة", en: "The house gate" },

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Input, Textarea } from "@/components/ui/input";
 import { requestFamilySync } from "@/lib/family-inbox";
+import { writerName } from "@/lib/identity";
 import { threadPreview } from "@/lib/messages";
 import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
@@ -126,7 +127,7 @@ export function InboxThread({ threadId }: { threadId: string }) {
         className="mt-4 space-y-2"
         onSubmit={(e) => {
           e.preventDefault();
-          send(threadId, name || (lang === "ar" ? "أنا" : "Me"), body);
+          send(threadId, writerName(name, lang), body);
           setBody("");
         }}
       >

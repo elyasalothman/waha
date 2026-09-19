@@ -71,8 +71,9 @@ function isMessage(value: unknown): value is FamilyMessage {
   );
 }
 
-export function unreadCount(inbox: FamilyInbox, since: number) {
-  return inbox.messages.filter((m) => m.createdAt > since && m.author !== "أنا").length;
+export function unreadCount(inbox: FamilyInbox, since: number, self: string[] = ["أنا", "Me"]) {
+  const mine = new Set(self.filter(Boolean));
+  return inbox.messages.filter((m) => m.createdAt > since && !mine.has(m.author)).length;
 }
 
 export function threadPreview(inbox: FamilyInbox, threadId: string) {

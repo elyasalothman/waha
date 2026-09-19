@@ -159,6 +159,10 @@ const strings = {
   unread: { ar: "غير مقروء", en: "unread" },
   faithBlurb: { ar: "صلاتك ووردك — بهدوء.", en: "Prayer and remembrance, quietly." },
   osTagline: { ar: "نظام يومك — بلا ضجيج.", en: "Your day’s system — without noise." },
+  familyToday: { ar: "اليوم للعائلة", en: "Family today" },
+  familyRoles: { ar: "ثلاثة أدوار", en: "Three roles" },
+  familyTasks: { ar: "مهام اليوم", en: "Today’s tasks" },
+  familyTomorrow: { ar: "مواعيد الغد", en: "Tomorrow" },
 } as const;
 
 export type I18nKey = keyof typeof strings;

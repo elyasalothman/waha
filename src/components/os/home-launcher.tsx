@@ -4,14 +4,16 @@ import { appIcon } from "@/lib/icons";
 import { formatDuration, formatHm, getTimes, nextPrayer, PRAYER_LABELS } from "@/lib/prayer";
 import { formatGregorian, formatHijri } from "@/lib/hijri";
 import { composePersonalHome } from "@/lib/os";
-import { expenseWell, salahWell, waterWell } from "@/lib/home-wells";
+import { expenseWell, waterWell } from "@/lib/home-wells";
 import { unreadCount } from "@/lib/messages";
+import { selfAuthors } from "@/lib/identity";
 import { t } from "@/lib/i18n";
 import { useNow } from "@/hooks/use-now";
 import { useAppStore } from "@/store/app-store";
 import { useMessagesStore } from "@/store/messages-store";
 import { cn } from "@/lib/cn";
 import { isFeatureOn } from "@/lib/features";
+import { FamilyTodayPreview } from "@/components/os/family-today-board";
 
 function greeting(lang: "ar" | "en", hour: number) {
   if (hour < 12) return t(lang, "greetDawn");
@@ -31,10 +33,10 @@ export function HomeLauncher() {
   const dayKey = now.toDateString();
   const pt = useMemo(() => getTimes(city.lat, city.lon, new Date(dayKey)), [city.lat, city.lon, dayKey]);
   const next = nextPrayer(pt, now);
+  const [ready, setReady] = useState(false);
   const [wells, setWells] = useState({
     water: { value: 0, max: 8 },
     expense: { spent: 0, limit: 4000 },
-    salah: { value: 0, max: 5 },
   });
 
   useEffect(() => {
@@ -42,10 +44,11 @@ export function HomeLauncher() {
   }, [hydrateInbox]);
 
   useEffect(() => {
-    setWells({ water: waterWell(), expense: expenseWell(), salah: salahWell() });
+    setWells({ water: waterWell(), expense: expenseWell() });
+    setReady(true);
   }, [dayKey]);
 
-  const unread = unreadCount(inbox, inbox.lastReadAt);
+  const unread = unreadCount(inbox, inbox.lastReadAt, selfAuthors(name));
   const hello = greeting(lang, now.getHours());
 
   return (
@@ -77,17 +80,27 @@ export function HomeLauncher() {
         </p>
       </Link>
 
+      <FamilyTodayPreview />
+
       <section className="mt-4 grid grid-cols-2 gap-2">
         {surface.wells.map((well) => {
           const href = well.href;
+          const quiet = well.id === "water" || well.id === "expense";
           const inner = (() => {
-            if (well.id === "water") {
+            if (!ready) {
               return (
                 <>
                   <p className="text-xs text-muted">{well.title[lang]}</p>
-                  <p className="mt-2 font-mono text-2xl tabular-nums">
-                    {wells.water.value}
-                    <span className="text-sm text-muted">/{wells.water.max}</span>
+                  <div className="mt-3 h-6 w-16 animate-pulse rounded-md bg-surface-2" />
+                </>
+              );
+            }
+            if (well.id === "water") {
+              return (
+                <>
+                  <p className="text-[11px] text-subtle">{well.title[lang]}</p>
+                  <p className="mt-1 font-mono text-lg tabular-nums text-muted">
+                    {wells.water.value}/{wells.water.max}
                   </p>
                 </>
               );
@@ -95,30 +108,17 @@ export function HomeLauncher() {
             if (well.id === "expense") {
               return (
                 <>
-                  <p className="text-xs text-muted">{well.title[lang]}</p>
-                  <p className="mt-2 font-mono text-2xl tabular-nums">
+                  <p className="text-[11px] text-subtle">{well.title[lang]}</p>
+                  <p className="mt-1 font-mono text-lg tabular-nums text-muted">
                     {wells.expense.spent.toLocaleString(lang === "ar" ? "ar-SA" : "en-SA")}
                   </p>
-                  <p className="text-[11px] text-subtle">{t(lang, "spent")}</p>
-                </>
-              );
-            }
-            if (well.id === "inbox") {
-              return (
-                <>
-                  <p className="text-xs text-muted">{well.title[lang]}</p>
-                  <p className="mt-2 font-mono text-2xl tabular-nums">{unread}</p>
-                  <p className="text-[11px] text-subtle">{t(lang, "unread")}</p>
                 </>
               );
             }
             return (
               <>
                 <p className="text-xs text-muted">{well.title[lang]}</p>
-                <p className="mt-2 font-mono text-2xl tabular-nums">
-                  {wells.salah.value}
-                  <span className="text-sm text-muted">/{wells.salah.max}</span>
-                </p>
+                <p className="mt-2 font-mono text-2xl tabular-nums">{unread}</p>
               </>
             );
           })();
@@ -130,14 +130,14 @@ export function HomeLauncher() {
                 key={well.id}
                 to="/app/$id"
                 params={{ id }}
-                className="rounded-2xl border border-border bg-surface px-4 py-4 hover:bg-surface-2"
+                className={cn("rounded-2xl border border-border bg-surface px-4 hover:bg-surface-2", quiet ? "py-3" : "py-4")}
               >
                 {inner}
               </Link>
             );
           }
           return (
-            <Link key={well.id} to={href as "/"} className="rounded-2xl border border-border bg-surface px-4 py-4 hover:bg-surface-2">
+            <Link key={well.id} to={href as "/"} className={cn("rounded-2xl border border-border bg-surface px-4 hover:bg-surface-2", quiet ? "py-3" : "py-4")}>
               {inner}
             </Link>
           );

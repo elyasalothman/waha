@@ -1,9 +1,11 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { defaultFeatures, normalizeFeatures } from "./features.ts";
+import { defaultFeatures, FEATURES, normalizeFeatures } from "./features.ts";
 import { KING_LOCK, assertKingLock, composePersonalHome, firstScreenIds, OS_APPS } from "./os.ts";
+import { writerIdentity, writerName, selfAuthors } from "./identity.ts";
 import { isHttpUrl, SISTER_APPS } from "./links.ts";
 import { normalizeInbox, seedFamilyInbox, unreadCount } from "./messages.ts";
+import { normalizeFamilyToday, seedFamilyToday, todayIso } from "./family-today.ts";
 import { parseWeather } from "./weather.ts";
 
 describe("King lock — first screen", () => {
@@ -37,8 +39,8 @@ describe("King lock — first screen", () => {
   it("keeps water and expense as secondary wells when money is on", () => {
     const surface = composePersonalHome(defaultFeatures());
     assert.deepEqual(
-      surface.wells.map((w) => w.id).slice(0, 2),
-      ["water", "expense"],
+      surface.wells.map((w) => w.id),
+      ["water", "expense", "inbox"],
     );
   });
 
@@ -47,6 +49,34 @@ describe("King lock — first screen", () => {
       OS_APPS.map((a) => a.title.ar),
       ["طقس", "إيمان", "رسائل", "مال", "اسأل", "إعدادات"],
     );
+  });
+});
+
+describe("feature store doors", () => {
+  it("toggles تهجد ومداد ومواقعنا as elevated labs", () => {
+    const doors = FEATURES.filter((f) => f.id === "tahajjud" || f.id === "midad" || f.id === "sites");
+    assert.equal(doors.length, 3);
+    for (const door of doors) {
+      assert.equal(door.lane, "labs");
+      assert.equal(door.elevated, true);
+      assert.equal(door.defaultOn, true);
+    }
+    const off = normalizeFeatures({ tahajjud: false, midad: false, sites: false });
+    assert.equal(off.tahajjud, false);
+    assert.equal(off.midad, false);
+    assert.equal(off.sites, false);
+  });
+});
+
+describe("thin writer identity", () => {
+  it("uses the local profile name as the midan/inbox writer", () => {
+    assert.equal(writerName("خالد", "ar"), "خالد");
+    assert.equal(writerName("  ", "ar"), "أنا");
+    assert.equal(writerIdentity("نورة", true, "ar").guest, true);
+    assert.deepEqual(selfAuthors("خالد"), ["خالد", "أنا", "Me"]);
+    const inbox = seedFamilyInbox(100);
+    inbox.messages.push({ id: "mine", threadId: "family", author: "خالد", body: "سلام", createdAt: 150 });
+    assert.equal(unreadCount(inbox, 0, selfAuthors("خالد")), 1);
   });
 });
 
@@ -59,6 +89,8 @@ describe("sister apps", () => {
         "https://ai.alhajda.com",
         "https://games.alhajda.com",
         "https://hayat.alhajda.com",
+        "https://midad.alhajda.com",
+        "https://alhajda.com/sites",
         "https://alhajda.com",
       ],
     );
@@ -76,6 +108,20 @@ describe("family inbox", () => {
     assert.equal(unreadCount(inbox, 200), 0);
     const recovered = normalizeInbox({ threads: [], messages: [] });
     assert.ok(recovered.threads.length >= 1);
+  });
+});
+
+describe("family today", () => {
+  it("seeds three roles and never uses an em dash placeholder", () => {
+    const board = seedFamilyToday();
+    assert.equal(board.roles.length, 3);
+    assert.equal(
+      JSON.stringify(board).includes("—"),
+      false,
+    );
+    const recovered = normalizeFamilyToday({ roles: [], tasks: [], appointments: [] });
+    assert.equal(recovered.roles.length, 3);
+    assert.ok(todayIso().length === 10);
   });
 });
 

@@ -1,13 +1,28 @@
+import { isFeatureOn, type FeatureId } from "@/lib/features";
 import { openExternal, SISTER_APPS } from "@/lib/links";
 import { t, type Lang } from "@/lib/i18n";
+import { useAppStore } from "@/store/app-store";
+
+const DOOR_FEATURE: Record<string, FeatureId> = {
+  tahajjud: "tahajjud",
+  midad: "midad",
+  sites: "sites",
+};
 
 export function SisterApps({ lang }: { lang: Lang }) {
+  const features = useAppStore((s) => s.features);
+  const doors = SISTER_APPS.filter((app) => {
+    if (!isFeatureOn(features, "sisters")) return false;
+    const door = DOOR_FEATURE[app.id];
+    return !door || isFeatureOn(features, door);
+  });
+  if (!doors.length) return null;
   return (
     <section>
       <h2 className="text-sm font-medium text-muted">{t(lang, "sisters")}</h2>
       <p className="mt-1 text-sm text-subtle">{t(lang, "sistersBlurb")}</p>
       <ul className="mt-4 space-y-2">
-        {SISTER_APPS.map((app) => (
+        {doors.map((app) => (
           <li key={app.id}>
             <button
               type="button"

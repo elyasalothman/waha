@@ -28,7 +28,7 @@ export const OS_APPS: OsApp[] = [
   { id: "settings", feature: "settings", primary: false, title: { ar: "إعدادات", en: "Settings" }, to: "/settings", icon: "Settings" },
 ];
 
-export type WellId = "water" | "expense" | "inbox" | "salahlog";
+export type WellId = "water" | "expense" | "inbox";
 
 export type Well = {
   id: WellId;
@@ -40,7 +40,6 @@ const WELLS: Well[] = [
   { id: "water", href: "/app/water", title: { ar: "الماء", en: "Water" } },
   { id: "expense", href: "/app/budget", title: { ar: "المصروف", en: "Spend" } },
   { id: "inbox", href: "/messages", title: { ar: "صندوق العائلة", en: "Family inbox" } },
-  { id: "salahlog", href: "/app/salahlog", title: { ar: "ورد الصلاة", en: "Prayer log" } },
 ];
 
 export type HomeSurface = {
@@ -56,7 +55,6 @@ export function composePersonalHome(flags: FeatureMap): HomeSurface {
   const more = dock.filter((app) => !app.primary);
   const wells = WELLS.filter((well) => {
     if (well.id === "inbox") return isFeatureOn(flags, "messages");
-    if (well.id === "salahlog") return isFeatureOn(flags, "faith");
     if (well.id === "expense") return isFeatureOn(flags, "money");
     return true;
   }).slice(0, KING_LOCK.maxPrimaryWells);
