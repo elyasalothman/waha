@@ -29,6 +29,7 @@ final class WahaViewController: CAPBridgeViewController {
         webView?.scrollView.backgroundColor = oasisInk
         webView?.scrollView.contentInsetAdjustmentBehavior = .never
         webView?.scrollView.semanticContentAttribute = .forceRightToLeft
+        webView?.scrollView.keyboardDismissMode = .interactive
         lockWebViewZoom()
     }
 

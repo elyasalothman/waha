@@ -13,16 +13,28 @@ export function NativeIosChrome() {
     document.documentElement.classList.add("native-ios");
     document.documentElement.setAttribute("data-native", "ios");
 
-    const cap = (window as Window & { Capacitor?: { Plugins?: { StatusBar?: {
-      setStyle?: (opts: { style: string }) => Promise<void>;
-      setBackgroundColor?: (opts: { color: string }) => Promise<void>;
-      setOverlaysWebView?: (opts: { overlay: boolean }) => Promise<void>;
-    } } } }).Capacitor;
+    const cap = (window as Window & { Capacitor?: { Plugins?: {
+      StatusBar?: {
+        setStyle?: (opts: { style: string }) => Promise<void>;
+        setBackgroundColor?: (opts: { color: string }) => Promise<void>;
+        setOverlaysWebView?: (opts: { overlay: boolean }) => Promise<void>;
+      };
+      Keyboard?: {
+        setStyle?: (opts: { style: string }) => Promise<void>;
+        setResizeMode?: (opts: { mode: string }) => Promise<void>;
+      };
+    } } }).Capacitor;
     const StatusBar = cap?.Plugins?.StatusBar;
-    if (!StatusBar) return;
-    void StatusBar.setStyle?.({ style: "DARK" });
-    void StatusBar.setBackgroundColor?.({ color: "#0c0d0c" });
-    void StatusBar.setOverlaysWebView?.({ overlay: true });
+    if (StatusBar) {
+      void StatusBar.setStyle?.({ style: "DARK" });
+      void StatusBar.setBackgroundColor?.({ color: "#0c0d0c" });
+      void StatusBar.setOverlaysWebView?.({ overlay: true });
+    }
+    const Keyboard = cap?.Plugins?.Keyboard;
+    if (Keyboard) {
+      void Keyboard.setStyle?.({ style: "DARK" });
+      void Keyboard.setResizeMode?.({ mode: "native" });
+    }
   }, []);
 
   return null;

@@ -20,6 +20,11 @@
     Promise.resolve(StatusBar.setStyle?.({ style: "DARK" })).catch(() => {});
     Promise.resolve(StatusBar.setBackgroundColor?.({ color: "#0c0d0c" })).catch(() => {});
     Promise.resolve(StatusBar.setOverlaysWebView?.({ overlay: true })).catch(() => {});
+    const Keyboard = Cap?.Plugins?.Keyboard;
+    if (Keyboard) {
+      Promise.resolve(Keyboard.setStyle?.({ style: "DARK" })).catch(() => {});
+      Promise.resolve(Keyboard.setResizeMode?.({ mode: "native" })).catch(() => {});
+    }
   }
 
   if (document.readyState === "loading") {

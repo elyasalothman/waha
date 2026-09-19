@@ -25,6 +25,9 @@ test("Capacitor config is واحة under alhajda, not a sibling app", () => {
   assert.match(source, /scheme:\s*"Waha"/);
   assert.match(source, /style:\s*"DARK"/);
   assert.match(source, /overlaysWebView:\s*true/);
+  assert.match(source, /resize:\s*"native"/);
+  assert.match(source, /LocalNotifications/);
+  assert.match(source, /WKWebView is the App Store app/);
   assert.match(source, /waha\.alhajda\.com/);
   for (const id of FORBIDDEN_BUNDLES) {
     assert.doesNotMatch(source, new RegExp(id.replace(/\./g, "\\.")));
@@ -41,8 +44,12 @@ test("iOS webview is configured for edge-to-edge safe-area chrome", () => {
 
   assert.match(rootHead, /viewport-fit=cover/);
   assert.match(css, /html\.native-ios/);
+  assert.match(css, /\.native-safe-top/);
+  assert.match(css, /\.native-safe-bottom/);
   assert.match(css, /env\(safe-area-inset-top/);
   assert.match(css, /env\(safe-area-inset-bottom/);
+  assert.match(shell, /native-safe-top/);
+  assert.match(shell, /native-safe-bottom/);
   assert.match(shell, /safe-area-inset-bottom/);
   assert.match(shell, /safe-area-inset-top/);
   assert.match(fallback, /viewport-fit=cover/);
@@ -93,6 +100,8 @@ test("Codemagic ios-release archives واحة for TestFlight, not App Store subm
   assert.match(yaml, /bundle_identifier: com\.alhajda\.waha/);
   assert.match(yaml, /submit_to_testflight: true/);
   assert.doesNotMatch(yaml, /submit_to_app_store:\s*true/);
+  assert.match(read("docs/TESTFLIGHT.md"), /لا Submit for Review/);
+  assert.match(read("docs/RD-IOS.md"), /ليست غلافاً رقيقاً/);
   assert.match(yaml, /npx cap sync ios/);
   assert.match(yaml, /ios-next-build\.sh/);
   assert.match(trigger, /workflowId\\?":\\?"ios-release/);
@@ -108,6 +117,22 @@ test("sync-www produces www/ with native-ios boot and fallback splash", () => {
   assert.match(html, /viewport-fit=cover/);
   assert.match(html, /native-ios\.js/);
   assert.match(html, /واحة/);
+});
+
+test("Arabic RTL fields are wired and ASC Submit stays blocked", () => {
+  const css = read("src/styles.css");
+  const input = read("src/components/ui/input.tsx");
+  const palette = read("src/components/command-palette.tsx");
+  const salah = read("src/apps/life/salah.tsx");
+  const yaml = read("codemagic.yaml");
+
+  assert.match(css, /html\[dir="rtl"\] input/);
+  assert.match(css, /unicode-bidi:\s*plaintext/);
+  assert.match(input, /dir = "auto"/);
+  assert.match(palette, /dir=\{lang === "ar" \? "rtl" : "ltr"\}/);
+  assert.match(salah, /إشعار الصلاة القادمة/);
+  assert.match(salah, /LocalNotifications|syncSalahNotification/);
+  assert.doesNotMatch(yaml, /submit_to_app_store:\s*true/);
 });
 
 test("ios-next-build never decreases the project version", () => {

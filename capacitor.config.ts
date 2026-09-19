@@ -1,13 +1,17 @@
 import type { CapacitorConfig } from "@capacitor/cli";
 
 /**
- * واحة iOS shell — house pattern matches تهجد / حصتي / محسن.
+ * واحة iOS — R&D lock (store product).
+ *
+ * 1. Capacitor WKWebView is the App Store app. A2HS / PWA is not the product.
+ * 2. viewport-fit=cover + env(safe-area-inset-*) top/bottom on chrome.
+ * 3. StatusBar overlays the WebView; Keyboard.resize is `native`.
+ * 4. Arabic RTL keyboard must be verified on device before any ASC Submit.
+ * 5. Not a thin website wrap — native salah LocalNotifications (UNUserNotificationCenter).
  *
  * Load order:
  *   1. CAPACITOR_SERVER_URL or WAHA_IOS_SERVER_URL → live production/preview
- *   2. otherwise bundled `www/` (synced from the Vite client / fallback splash)
- *
- * Elyas has no Mac. `npx cap sync ios` runs on Codemagic (mac_mini_m2).
+ *   2. otherwise bundled `www/`
  */
 const REMOTE_URL = (
   process.env.CAPACITOR_SERVER_URL ||
@@ -37,6 +41,13 @@ const config: CapacitorConfig = {
       style: "DARK",
       backgroundColor: "#0c0d0c",
       overlaysWebView: true,
+    },
+    Keyboard: {
+      resize: "native",
+      resizeOnFullScreen: true,
+    },
+    LocalNotifications: {
+      iconColor: "#c5d0c4",
     },
   },
   server: {

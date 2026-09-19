@@ -62,6 +62,8 @@ export function CommandPalette({
           value={q}
           onValueChange={setQ}
           placeholder={t(lang, "search")}
+          dir={lang === "ar" ? "rtl" : "ltr"}
+          lang={lang === "ar" ? "ar" : "en"}
           className="h-12 w-full border-b border-border bg-transparent px-4 text-sm text-fg outline-none placeholder:text-subtle"
         />
         <Command.List className="max-h-80 overflow-y-auto p-2">

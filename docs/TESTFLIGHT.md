@@ -78,7 +78,7 @@ Privacy Policy URL عند الجاهزية: `https://alhajda.com/privacy`
 3. Internal Testing → أضِف نفسك / المجموعة
 4. على الآيفون: تطبيق TestFlight → واحة → تثبيت
 
-لا Submit for Review الليلة — TestFlight الداخلي يكفي.
+**لا Submit for Review** حتى يُختبر حقل عربي على جهاز آيفون (لوحة RTL، المؤشر من اليمين، الكيبورد لا يغطي الحقل مع `Keyboard.resize: native`). TestFlight الداخلي يكفي قبل ذلك. Codemagic لا يرسل المتجر (`submit_to_app_store` غير مفعّل).
 
 ## متغيرات اختيارية على Codemagic
 
