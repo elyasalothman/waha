@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { forSeriousHome, isPlayItem } from "./home-lock.ts";
@@ -22,5 +23,12 @@ describe("serious home lock", () => {
     const ids = primaryLauncherDoors().map((d) => d.id);
     assert.deepEqual(ids, ["tahajjud", "midad", "sites"]);
     assert.equal(ids.includes("luma"), false);
+  });
+
+  it("binds / to the Maydan timeline — catalog stays under doors", () => {
+    const home = readFileSync(new URL("../routes/index.tsx", import.meta.url), "utf8");
+    assert.match(home, /SquarePage/);
+    assert.equal(/Hub/.test(home), false);
+    assert.equal(/byCategory|featuredFor/.test(home), false);
   });
 });

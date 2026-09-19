@@ -1,10 +1,17 @@
 export type SquareAccountKind = "house" | "sample" | "you";
 
-export type SquareDoorId = "madar" | "tahajjud" | "midad";
+export type SquareDoorId = "tahajjud" | "midad" | "sites";
 
-export type SquareMediaKind = "dune" | "night" | "palm" | "ink" | "mist";
+export type SquareBadge = "بيت" | "عيّنة";
 
-export type SquarePostKind = "text" | "quote" | "door" | "media";
+export type KingVisualObject = {
+  frame: string;
+  colors: string[];
+  mood: string;
+  hookLines: number;
+};
+
+export type KingVisual = string | KingVisualObject;
 
 export type SquareAccount = {
   id: string;
@@ -15,42 +22,28 @@ export type SquareAccount = {
   bioEn: string;
   kind: SquareAccountKind;
   tone: string;
+  href?: string;
 };
 
 export type SquareDoor = {
   id: SquareDoorId;
   href: string;
-  appId?: string;
   ar: string;
   en: string;
   hintAr: string;
   hintEn: string;
 };
 
-export type SeedReply = {
-  id: string;
-  authorId: string;
-  textAr: string;
-  textEn: string;
-  ageMinutes: number;
-};
-
+/** King-approved seed row — texts stay as shipped. */
 export type SeedPost = {
   id: string;
-  authorId: string;
-  kind: SquarePostKind;
-  textAr: string;
-  textEn: string;
-  quoteAr?: string;
-  quoteEn?: string;
-  quoteAttrAr?: string;
-  quoteAttrEn?: string;
-  door?: SquareDoorId;
-  media?: SquareMediaKind;
-  ageMinutes: number;
+  author: string;
+  handle: string;
+  badge: SquareBadge;
+  text: string;
+  visual: KingVisual;
+  relativeTime: string;
   likes: number;
-  echoes: number;
-  replies?: SeedReply[];
 };
 
 export type SquareProfile = {
@@ -84,22 +77,15 @@ export type FeedItem = {
   id: string;
   source: "seed" | "you";
   author: SquareAccount;
-  kind: SquarePostKind;
-  textAr: string;
-  textEn: string;
-  quoteAr?: string;
-  quoteEn?: string;
-  quoteAttrAr?: string;
-  quoteAttrEn?: string;
-  door?: SquareDoor;
-  media?: SquareMediaKind;
+  badge?: SquareBadge;
+  text: string;
+  visual?: KingVisual;
+  relativeTime?: string;
   createdAt: number;
-  ageMinutes?: number;
   likes: number;
   echoes: number;
   liked: boolean;
   echoed: boolean;
-  seedReplies: SeedReply[];
   userReplies: UserReply[];
 };
 

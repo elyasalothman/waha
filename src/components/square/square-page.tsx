@@ -8,6 +8,7 @@ import { t } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
 import { useAppStore } from "@/store/app-store";
 import { Composer } from "./composer";
+import { DayAyah } from "./day-ayah";
 import { DayShadow } from "./day-shadow";
 import { PostCard } from "./post-card";
 import { ProfilePanel } from "./profile-panel";
@@ -16,7 +17,7 @@ export function SquarePage() {
   const lang = useAppStore((s) => s.lang);
   const audience = useAppStore((s) => s.audience);
   const user = useCurrentUser();
-  const { local, publish, like, echo, reply, saveProfile } = useSquare();
+  const { local, publish, like, reply, saveProfile } = useSquare();
   const [tab, setTab] = useState<SquareTab>("forYou");
   const [profileOpen, setProfileOpen] = useState(false);
   const clock = useNow(60_000);
@@ -37,13 +38,10 @@ export function SquarePage() {
   return (
     <div className="mx-auto max-w-xl">
       <DayShadow />
+      <DayAyah />
 
-      <header className="pt-5 pb-3">
-        <p className="text-xs font-medium tracking-wide text-subtle">{t(lang, audience === "work" ? "work" : "personal")}</p>
-        <h1 className="mt-1 font-display text-4xl tracking-tight">{L("الميدان", "The Square")}</h1>
-        <p className="mt-2 text-sm text-muted">
-          {L("خط الناس في الواحة — اكتب، أجب، ومرّ. البذرة هنا من أول فتح.", "Waha’s people line — write, reply, pass through. The seed is here from the first open.")}
-        </p>
+      <header className="pt-3 pb-2">
+        <h1 className="font-display text-xl tracking-tight">{L("الميدان", "The Square")}</h1>
       </header>
 
       <div className="grid grid-cols-2 rounded-lg border border-border bg-surface p-1">
@@ -88,7 +86,6 @@ export function SquarePage() {
             now={now}
             visitorName={visitorName}
             onLike={() => like(item.id)}
-            onEcho={() => echo(item.id)}
             onReply={(text) => reply(item.id, text, visitorName)}
           />
         ))}

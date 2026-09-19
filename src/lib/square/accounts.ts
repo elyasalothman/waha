@@ -1,18 +1,14 @@
 import type { SquareAccount, SquareDoor, SquareDoorId } from "./types.ts";
 
+/** Visible stamp on every sample voice — philosopher live lock. */
+export const SAMPLE_STAMP_AR = "عيّنة للبداية";
+export const SAMPLE_STAMP_EN = "Starter sample";
+
+/** Locked house doors — live products, never /life, /app clones, or a Madar app. */
 export const DOORS: Record<SquareDoorId, SquareDoor> = {
-  madar: {
-    id: "madar",
-    href: "/life",
-    ar: "مدار",
-    en: "Madar",
-    hintAr: "باب يومك في الواحة",
-    hintEn: "Your day’s door in Waha",
-  },
   tahajjud: {
     id: "tahajjud",
-    href: "/app/salah",
-    appId: "salah",
+    href: "https://tahajjud.alhajda.com",
     ar: "تهجد",
     en: "Tahajjud",
     hintAr: "مواقيت وذكر",
@@ -20,19 +16,26 @@ export const DOORS: Record<SquareDoorId, SquareDoor> = {
   },
   midad: {
     id: "midad",
-    href: "/app/khatma",
-    appId: "khatma",
+    href: "https://midad.alhajda.com/library",
     ar: "مداد",
     en: "Midad",
-    hintAr: "قراءة وختمة",
-    hintEn: "Reading and a khatma",
+    hintAr: "مكتبة متصلة",
+    hintEn: "A connected library",
+  },
+  sites: {
+    id: "sites",
+    href: "https://alhajda.com/sites",
+    ar: "مواقعنا",
+    en: "Our sites",
+    hintAr: "فهرس بيت الهجدة",
+    hintEn: "Alhajda house index",
   },
 };
 
 export const HOUSE_ACCOUNTS: SquareAccount[] = [
   {
     id: "house-waha",
-    handle: "waha",
+    handle: "@waha",
     nameAr: "واحة",
     nameEn: "Waha",
     bioAr: "صوت البيت — خدمات يومك في ساحة واحدة.",
@@ -42,83 +45,81 @@ export const HOUSE_ACCOUNTS: SquareAccount[] = [
   },
   {
     id: "house-tahajjud",
-    handle: "tahajjud",
+    handle: "@tahajjud",
     nameAr: "تهجد",
     nameEn: "Tahajjud",
-    bioAr: "باب الصلاة والذكر — مواقيت وورد وقبلة.",
-    bioEn: "The door of prayer and dhikr — times, wird, and qibla.",
+    bioAr: "باب الصلاة والذكر.",
+    bioEn: "The door of prayer and dhikr.",
     kind: "house",
     tone: "#b8c4c8",
+    href: DOORS.tahajjud.href,
   },
   {
     id: "house-midad",
-    handle: "midad",
+    handle: "@midad",
     nameAr: "مداد",
     nameEn: "Midad",
-    bioAr: "باب القراءة — آية واسم وختمة.",
-    bioEn: "The reading door — an ayah, a name, a khatma.",
+    bioAr: "باب القراءة.",
+    bioEn: "The reading door.",
     kind: "house",
     tone: "#d4c7b0",
+    href: DOORS.midad.href,
   },
   {
-    id: "house-mohsin",
-    handle: "mohsin",
+    id: "house-mohsen",
+    handle: "@mohsen",
     nameAr: "محسن",
-    nameEn: "Mohsin",
-    bioAr: "باب الإحسان — زكاة وبيت ومعروف صغير.",
-    bioEn: "The door of ihsan — zakat, home, and a small kindness.",
+    nameEn: "Mohsen",
+    bioAr: "مساعد البيت للكتابة والسؤال.",
+    bioEn: "The house assistant for writing and asking.",
     kind: "house",
     tone: "#c4d0bc",
   },
   {
     id: "house-luma",
-    handle: "luma",
+    handle: "@luma",
     nameAr: "لُمعة",
     nameEn: "Luma",
-    bioAr: "باب اللمعة — استراحة قصيرة ولعبة خفيفة.",
-    bioEn: "The spark door — a short rest and a light game.",
+    bioAr: "استراحة قصيرة ولعبة خفيفة.",
+    bioEn: "A short rest and a light game.",
     kind: "house",
     tone: "#d0c4b0",
   },
   {
+    id: "house-madar",
+    handle: "@madar",
+    nameAr: "مدار",
+    nameEn: "Madar",
+    bioAr: "باب مدار.",
+    bioEn: "Madar’s door.",
+    kind: "house",
+    tone: "#b0c4c8",
+  },
+  {
     id: "house-tools",
-    handle: "adawat",
+    handle: "@adawat",
     nameAr: "الأدوات",
     nameEn: "Tools",
-    bioAr: "باب الأدوات — حساب وتحويل وطقس.",
-    bioEn: "The tools door — calculate, convert, and check the weather.",
+    bioAr: "حساب وتحويل ومرافق.",
+    bioEn: "Calculate, convert, and keep tools close.",
     kind: "house",
     tone: "#b8c8c0",
   },
 ];
 
-/** Generic Arabic names — not public figures, not impersonation. */
+/** Marked sample voices from the king seed — not public figures. */
 export const SAMPLE_ACCOUNTS: SquareAccount[] = [
-  { id: "sample-salem", handle: "salem", nameAr: "سالم", nameEn: "Salem", bioAr: "يحب الورد الهادئ.", bioEn: "Likes a quiet wird.", kind: "sample", tone: "#8d938c" },
-  { id: "sample-noura", handle: "noura", nameAr: "نورة", nameEn: "Noura", bioAr: "قهوة بلا شاشة أحياناً.", bioEn: "Coffee without a screen, sometimes.", kind: "sample", tone: "#9a9084" },
-  { id: "sample-fahd", handle: "fahd", nameAr: "فهد", nameEn: "Fahd", bioAr: "يحسب قبل أن يسافر.", bioEn: "Calculates before he travels.", kind: "sample", tone: "#84908c" },
-  { id: "sample-hind", handle: "hind", nameAr: "هند", nameEn: "Hind", bioAr: "تعلّم الحروف في البيت.", bioEn: "Teaching letters at home.", kind: "sample", tone: "#90888c" },
-  { id: "sample-yasir", handle: "yasir", nameAr: "ياسر", nameEn: "Yasir", bioAr: "ينام على دورات.", bioEn: "Sleeps in cycles.", kind: "sample", tone: "#889084" },
-  { id: "sample-maryam", handle: "maryam", nameAr: "مريم", nameEn: "Maryam", bioAr: "تجمع الأمثال.", bioEn: "Collects sayings.", kind: "sample", tone: "#948c88" },
-  { id: "sample-khalid", handle: "khalid", nameAr: "خالد", nameEn: "Khalid", bioAr: "يمشي بعد العصر.", bioEn: "Walks after Asr.", kind: "sample", tone: "#848c90" },
-  { id: "sample-layla", handle: "layla", nameAr: "ليلى", nameEn: "Layla", bioAr: "تراقب الطقس قبل الخروج.", bioEn: "Checks the weather before going out.", kind: "sample", tone: "#908490" },
-  { id: "sample-omar", handle: "omar", nameAr: "عمر", nameEn: "Omar", bioAr: "جلسة بلوت أسبوعية.", bioEn: "A weekly baloot sitting.", kind: "sample", tone: "#8c9084" },
-  { id: "sample-sara", handle: "sara", nameAr: "سارة", nameEn: "Sara", bioAr: "ترتّب مال البيت.", bioEn: "Keeps the household money tidy.", kind: "sample", tone: "#908c84" },
-  { id: "sample-badr", handle: "badr", nameAr: "بدر", nameEn: "Badr", bioAr: "يرثّب مكتبه كل خميس.", bioEn: "Tidies his desk every Thursday.", kind: "sample", tone: "#848890" },
-  { id: "sample-amal", handle: "amal", nameAr: "أمل", nameEn: "Amal", bioAr: "تكتب القائمة قبل السوق.", bioEn: "Writes the list before the souq.", kind: "sample", tone: "#8c8488" },
-  { id: "sample-talal", handle: "talal", nameAr: "طلال", nameEn: "Talal", bioAr: "يتنفّس قبل الاجتماع.", bioEn: "Breathes before a meeting.", kind: "sample", tone: "#889488" },
-  { id: "sample-huda", handle: "huda", nameAr: "هدى", nameEn: "Huda", bioAr: "ختمة بطيئة.", bioEn: "A slow khatma.", kind: "sample", tone: "#948888" },
-  { id: "sample-majed", handle: "majed", nameAr: "ماجد", nameEn: "Majed", bioAr: "يتابع أوراق السيارة.", bioEn: "Keeps the car papers in view.", kind: "sample", tone: "#849484" },
-  { id: "sample-reem", handle: "reem", nameAr: "ريم", nameEn: "Reem", bioAr: "ألعاب قصيرة مع الصغار.", bioEn: "Short games with the little ones.", kind: "sample", tone: "#908490" },
-  { id: "sample-walid", handle: "walid", nameAr: "وليد", nameEn: "Walid", bioAr: "يفقّط الفواتير.", bioEn: "Writes amounts in words.", kind: "sample", tone: "#888c90" },
-  { id: "sample-jawaher", handle: "jawaher", nameAr: "جواهر", nameEn: "Jawaher", bioAr: "صباحها آية ثم عمل.", bioEn: "Her morning is an ayah, then work.", kind: "sample", tone: "#908884" },
-  { id: "sample-anas", handle: "anas", nameAr: "أنس", nameEn: "Anas", bioAr: "يصحّح اتجاه الغرفة.", bioEn: "Corrects the room’s bearing.", kind: "sample", tone: "#84908c" },
-  { id: "sample-lina", handle: "lina", nameAr: "لينا", nameEn: "Lina", bioAr: "تعلّق جملاً قصيرة.", bioEn: "Pins short sentences.", kind: "sample", tone: "#8c8890" },
+  { id: "sample-sakina", handle: "@sample.sakina", nameAr: "سكينة", nameEn: "Sakina", bioAr: "عيّنة معلَّمة للسكينة.", bioEn: "A marked sample for sakina.", kind: "sample", tone: "#8d938c" },
+  { id: "sample-wanasa", handle: "@sample.wanasa", nameAr: "وناسة · عيّنة للبداية", nameEn: "Wanasa", bioAr: "عيّنة معلَّمة للمزاح اللائق.", bioEn: "A marked sample for gentle humour.", kind: "sample", tone: "#9a9084" },
+  { id: "sample-hayah", handle: "@sample.hayah", nameAr: "حياة يومية · عيّنة للبداية", nameEn: "Hayah", bioAr: "عيّنة معلَّمة لبيت هادئ.", bioEn: "A marked sample for a quiet house.", kind: "sample", tone: "#84908c" },
+  { id: "sample-alim", handle: "@sample.alim", nameAr: "عالم · عيّنة للبداية", nameEn: "Alim", bioAr: "عيّنة معلَّمة لفضول علمي.", bioEn: "A marked sample for light science.", kind: "sample", tone: "#90888c" },
+  { id: "sample-faylasuf", handle: "@sample.faylasuf", nameAr: "فيلسوف · عيّنة للبداية", nameEn: "Faylasuf", bioAr: "عيّنة معلَّمة لسؤال عملي.", bioEn: "A marked sample for a practical question.", kind: "sample", tone: "#889084" },
+  { id: "sample-muhandis", handle: "@sample.muhandis", nameAr: "مهندس · عيّنة للبداية", nameEn: "Muhandis", bioAr: "عيّنة معلَّمة لحرفة صغيرة.", bioEn: "A marked sample for a small craft.", kind: "sample", tone: "#948c88" },
 ];
 
 export const YOU_ACCOUNT: SquareAccount = {
   id: "you",
-  handle: "you",
+  handle: "@you",
   nameAr: "أنت",
   nameEn: "You",
   bioAr: "ضيف يكتب من هذا الجهاز.",
@@ -127,12 +128,36 @@ export const YOU_ACCOUNT: SquareAccount = {
   tone: "#c5d0c4",
 };
 
-const BY_ID = new Map<string, SquareAccount>(
-  [...HOUSE_ACCOUNTS, ...SAMPLE_ACCOUNTS, YOU_ACCOUNT].map((a) => [a.id, a]),
+function norm(handle: string) {
+  return handle.trim().replace(/^@/, "").toLowerCase();
+}
+
+const BY_HANDLE = new Map<string, SquareAccount>(
+  [...HOUSE_ACCOUNTS, ...SAMPLE_ACCOUNTS, YOU_ACCOUNT].map((a) => [norm(a.handle), a]),
 );
 
-export function getAccount(id: string): SquareAccount {
-  return BY_ID.get(id) ?? SAMPLE_ACCOUNTS[0]!;
+export function getAccount(handleOrId: string): SquareAccount {
+  const byHandle = BY_HANDLE.get(norm(handleOrId));
+  if (byHandle) return byHandle;
+  const byId = [...HOUSE_ACCOUNTS, ...SAMPLE_ACCOUNTS, YOU_ACCOUNT].find((a) => a.id === handleOrId);
+  return byId ?? SAMPLE_ACCOUNTS[0]!;
+}
+
+export function accountFromSeed(author: string, handle: string, badge: "بيت" | "عيّنة"): SquareAccount {
+  const known = BY_HANDLE.get(norm(handle));
+  if (known) {
+    return { ...known, nameAr: author, nameEn: known.nameEn };
+  }
+  return {
+    id: `seed-${norm(handle)}`,
+    handle,
+    nameAr: author,
+    nameEn: author,
+    bioAr: "",
+    bioEn: "",
+    kind: badge === "بيت" ? "house" : "sample",
+    tone: "#8d938c",
+  };
 }
 
 export function allAccounts(): SquareAccount[] {
