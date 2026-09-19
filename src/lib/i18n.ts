@@ -6,7 +6,7 @@ const strings = {
   workTagline: { ar: "مكتب المنشأة — عملاء وفواتير وساعات وبوابات", en: "A firm’s desk — clients, invoices, hours, and portals" },
   search: { ar: "ابحث في واحة…", en: "Search Waha…" },
   searchHint: { ar: "أو اضغط ⌘K", en: "or press ⌘K" },
-  home: { ar: "الرئيسية", en: "Home" },
+  home: { ar: "الميدان", en: "The Square" },
   life: { ar: "حياتك", en: "Life" },
   money: { ar: "مالك", en: "Money" },
   tools: { ar: "أدواتك", en: "Tools" },
