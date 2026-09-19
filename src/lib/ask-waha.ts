@@ -7,6 +7,22 @@ export function formatDayLineAr(snap: ShadowDaySnapshot): string {
   return `${snap.cityAr}، الساعة ${snap.clock}، ${snap.hijri}، الصلاة التالية ${snap.prayerLabelAr} ${snap.prayerHm}، الطقس ${snap.weatherText}`;
 }
 
+function weatherFact(snap: ShadowDaySnapshot, lang: "ar" | "en"): string {
+  if (Number.isFinite(snap.weatherC)) {
+    return `${Math.round(snap.weatherC)}°${lang === "ar" ? "م" : "C"}`;
+  }
+  return snap.weatherText;
+}
+
+/** One quiet verse from the official snapshot — prayer + weather + Hijri, no invented numbers. */
+export function formatTodayVerse(snap: ShadowDaySnapshot, lang: "ar" | "en"): string {
+  const wx = weatherFact(snap, lang);
+  if (lang === "ar") {
+    return `${snap.hijri} على ${snap.cityAr} — التالية ${snap.prayerLabelAr} ${snap.prayerHm}، والجو ${wx}.`;
+  }
+  return `${snap.hijri} over ${snap.cityEn} — next ${snap.prayerLabelEn} ${snap.prayerHm}, air ${wx}.`;
+}
+
 export function dayContextFromSnap(snap: ShadowDaySnapshot): DayContext {
   return { ...snap, lineAr: formatDayLineAr(snap) };
 }
@@ -306,15 +322,16 @@ export function dayAnswer(day: DayContext, question: string, lang: "ar" | "en"):
     return lang === "ar" ? `المدينة: ${city}.` : `City: ${city}.`;
   }
   if (isTodayOverviewQuestion(question)) {
-    return lang === "ar"
-      ? `هجرياً ${day.hijri}، الصلاة التالية ${day.prayerLabelAr} ${day.prayerHm}، الطقس ${Math.round(day.weatherC)}°م (${day.weatherLabelAr}).`
-      : `Hijri ${day.hijri}, next prayer ${day.prayerLabelEn} ${day.prayerHm}, weather ${Math.round(day.weatherC)}°C (${day.weatherLabelEn}).`;
+    return formatTodayVerse(day, lang);
   }
   return day.lineAr;
 }
 
-/** First line is always the official shadowDayNow line, before any network. */
+/** Today-overview: one verse. Other day facts keep the official line first. */
 export function localDayReply(day: DayContext, question: string, lang: "ar" | "en"): string {
+  if (isTodayOverviewQuestion(question)) {
+    return formatTodayVerse(day, lang);
+  }
   const first = day.lineAr;
   const detail = dayAnswer(day, question, lang);
   if (!detail || detail === first) return first;
