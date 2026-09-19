@@ -8,7 +8,7 @@ import { byLane, featuredFor, freshFor, getApp, LANE_LABEL, WORK_LANES } from "@
 import { upcomingOccasions } from "@/lib/hijri";
 import { dailyBundle } from "@/lib/daily";
 import { loc, t } from "@/lib/i18n";
-import { loadHomeLive } from "@/lib/live.server";
+import { loadHomeLive } from "@/lib/live";
 import { fetchWeatherSafe, type WeatherPayload } from "@/lib/weather";
 import { personalPulse, workPulse, type PulseAlert, type PulseStat } from "@/lib/pulse";
 import { itemFitsSegment, wellsFor, WELL_META } from "@/lib/segments";
@@ -18,7 +18,13 @@ import { useAppStore } from "@/store/app-store";
 import { cn } from "@/lib/cn";
 
 export const Route = createFileRoute("/")({
-  loader: () => loadHomeLive({ data: { lat: DEFAULT_CITY.lat, lon: DEFAULT_CITY.lon } }),
+  loader: async () => {
+    try {
+      return await loadHomeLive({ data: { lat: DEFAULT_CITY.lat, lon: DEFAULT_CITY.lon } });
+    } catch {
+      return { weather: null, headlines: [] };
+    }
+  },
   component: Home,
 });
 
@@ -270,6 +276,9 @@ function WorkHome() {
       <p className="mb-1 text-xs font-medium tracking-wide text-muted">{t(lang, "work")}</p>
       <p className="mb-4 text-sm text-muted">{t(lang, "workIntro")}</p>
       <DayShadow lang={lang} city={city} now={now} weather={weather} />
+      <div className="mt-8">
+        <HouseDoors lang={lang} />
+      </div>
 
       <section className="mt-8 rounded-xl border border-border bg-surface p-6 md:p-8">
         <h1 className="font-display text-3xl tracking-tight md:text-4xl">{t(lang, "workBanner")}</h1>
