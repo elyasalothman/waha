@@ -65,4 +65,19 @@ describe("chrome nav lock", () => {
       ["/workspace", "/money", "/tools", "/studio"],
     );
   });
+
+  it("hides /money from المزيد when the child slice is on", () => {
+    assert.equal(
+      moreOverflowNav("personal", "child").some((item) => item.to === "/money"),
+      false,
+    );
+    assert.equal(
+      moreOverflowNav("personal", "all").some((item) => item.to === "/money"),
+      true,
+    );
+    assert.equal(
+      chromeNav("personal", "child").some((item) => item.to === "/money"),
+      false,
+    );
+  });
 });

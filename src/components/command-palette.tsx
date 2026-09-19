@@ -3,6 +3,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { Command } from "cmdk";
 import { MadarMark } from "@/components/brand";
 import { searchCatalog } from "@/lib/catalog";
+import { hideMoney, isMoneySurface } from "@/lib/child-mode";
 import { appIcon } from "@/lib/icons";
 import { t, type Lang } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
@@ -19,8 +20,12 @@ export function CommandPalette({
 }) {
   const navigate = useNavigate();
   const audience = useAppStore((s) => s.audience);
+  const segment = useAppStore((s) => s.segment);
   const [q, setQ] = useState("");
-  const items = useMemo(() => searchCatalog(q, audience), [q, audience]);
+  const items = useMemo(() => {
+    const found = searchCatalog(q, audience);
+    return hideMoney(segment) ? found.filter((item) => !isMoneySurface(item)) : found;
+  }, [q, audience, segment]);
 
   useEffect(() => {
     if (!open) setQ("");

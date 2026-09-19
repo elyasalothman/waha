@@ -21,11 +21,12 @@ const NAV_ICON = {
 export function Shell() {
   const lang = useAppStore((s) => s.lang);
   const audience = useAppStore((s) => s.audience);
+  const segment = useAppStore((s) => s.segment);
   const hydrate = useAppStore((s) => s.hydrate);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [cmd, setCmd] = useState(false);
-  const nav = chromeNav(audience);
-  const mobileNav = mobileChromeNav(audience);
+  const nav = chromeNav(audience, segment);
+  const mobileNav = mobileChromeNav(audience, segment);
 
   useEffect(() => {
     hydrate();
