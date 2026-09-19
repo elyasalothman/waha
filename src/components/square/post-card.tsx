@@ -55,7 +55,7 @@ export function PostCard({
             </div>
             <p className="mt-0.5 text-xs text-subtle">
               {author.handle}
-              <span className="mx-1 text-border">·</span>
+              <span className="mx-1 text-subtle">·</span>
               {when}
             </p>
           </header>

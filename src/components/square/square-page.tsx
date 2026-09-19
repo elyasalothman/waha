@@ -6,6 +6,7 @@ import { displayNameOf, mergeFeed, useSquare } from "@/lib/square/store";
 import type { SquareTab } from "@/lib/square/types";
 import { worldCards } from "@/lib/square/world";
 import { t } from "@/lib/i18n";
+import { PALETTE } from "@/lib/palette";
 import { cn } from "@/lib/cn";
 import { useAppStore } from "@/store/app-store";
 import { DoorsStrip } from "@/components/doors-strip";
@@ -95,7 +96,7 @@ export function SquarePage() {
             <Composer
               lang={lang}
               name={visitorName}
-              tone="#c5d0c4"
+              tone={PALETTE.primary}
               onPublish={publish}
               onOpenProfile={() => setProfileOpen(true)}
             />

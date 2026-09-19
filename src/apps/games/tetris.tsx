@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Stat } from "@/components/app-stage";
 import { t } from "@/lib/i18n";
 import { readScore, writeScore } from "@/lib/storage";
+import { themeColor } from "@/lib/palette";
 import { useAppStore } from "@/store/app-store";
 
 const COLS = 10;
@@ -337,13 +338,13 @@ export function TetrisApp() {
 
   function colorOf(k: Kind) {
     const map: Record<Kind, string> = {
-      I: css("--color-primary") || "#c5d0c4",
-      O: css("--color-fg") || "#eceee9",
-      T: css("--color-success") || "#6f9b7a",
-      S: css("--color-muted") || "#8d938c",
-      Z: css("--color-warn") || "#b8956a",
-      J: css("--color-subtle") || "#6a7069",
-      L: css("--color-primary") || "#c5d0c4",
+      I: themeColor("primary", css("--color-primary")),
+      O: themeColor("fg", css("--color-fg")),
+      T: themeColor("success", css("--color-success")),
+      S: themeColor("muted", css("--color-muted")),
+      Z: themeColor("warn", css("--color-warn")),
+      J: themeColor("subtle", css("--color-subtle")),
+      L: themeColor("primary", css("--color-primary")),
     };
     return map[k];
   }
@@ -361,8 +362,8 @@ export function TetrisApp() {
       canvas.height = h * dpr;
     }
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const bg = css("--color-bg") || "#0c0d0c";
-    const border = css("--color-border") || "#2a2e2b";
+    const bg = themeColor("bg", css("--color-bg"));
+    const border = themeColor("border", css("--color-border"));
     ctx.fillStyle = bg;
     ctx.fillRect(0, 0, w, h);
     const cw = w / COLS;

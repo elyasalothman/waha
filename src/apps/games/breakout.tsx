@@ -4,6 +4,7 @@ import { RoundOverlay } from "@/components/round-overlay";
 import { Stat } from "@/components/app-stage";
 import { t } from "@/lib/i18n";
 import { readScore, writeScore } from "@/lib/storage";
+import { themeColor } from "@/lib/palette";
 import { useAppStore } from "@/store/app-store";
 
 const W = 480;
@@ -107,9 +108,9 @@ export function BreakoutApp() {
     const loop = (t: number) => {
       const dt = Math.min(0.1, last.current ? (t - last.current) / 1000 : 0);
       last.current = t;
-      const fg = css("--color-fg") || "#eceee9";
-      const primary = css("--color-primary") || "#c5d0c4";
-      const surface = css("--color-surface-2") || "#1c1f1d";
+      const fg = themeColor("fg", css("--color-fg"));
+      const primary = themeColor("primary", css("--color-primary"));
+      const surface = themeColor("surface-2", css("--color-surface-2"));
       ctx.fillStyle = surface;
       ctx.fillRect(0, 0, W, H);
 

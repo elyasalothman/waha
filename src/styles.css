@@ -2,18 +2,18 @@
 @import "tw-animate-css";
 
 @theme {
-  --color-bg: #0c0d0c;
-  --color-surface: #151716;
-  --color-surface-2: #1c1f1d;
-  --color-fg: #eceee9;
-  --color-muted: #8d938c;
-  --color-subtle: #6a7069;
-  --color-primary: #c5d0c4;
-  --color-primary-fg: #0c0d0c;
-  --color-border: #2a2e2b;
-  --color-danger: #c45c4a;
-  --color-success: #6f9b7a;
-  --color-warn: #b8956a;
+  --color-bg: #0a120f;
+  --color-surface: #141c19;
+  --color-surface-2: #1b2521;
+  --color-fg: #e7eee6;
+  --color-muted: #a3b0a4;
+  --color-subtle: #8f9c91;
+  --color-primary: #9eb4a2;
+  --color-primary-fg: #0a120f;
+  --color-border: #2d3a35;
+  --color-danger: #c56d5c;
+  --color-success: #7f9d84;
+  --color-warn: #c4a572;
   --radius-xs: 4px;
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -29,6 +29,7 @@
 
 @layer base {
   html {
+    color-scheme: dark;
     background: var(--color-bg);
     color: var(--color-fg);
     -webkit-font-smoothing: antialiased;

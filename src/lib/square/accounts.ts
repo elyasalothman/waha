@@ -1,3 +1,4 @@
+import { PALETTE } from "../palette.ts";
 import type { SquareAccount, SquareDoor, SquareDoorId } from "./types.ts";
 
 /** Visible stamp on every sample voice — philosopher live lock. */
@@ -41,7 +42,7 @@ export const HOUSE_ACCOUNTS: SquareAccount[] = [
     bioAr: "صوت البيت — خدمات يومك في ساحة واحدة.",
     bioEn: "The house voice — your day’s services in one square.",
     kind: "house",
-    tone: "#c5d0c4",
+    tone: PALETTE.primary,
   },
   {
     id: "house-tahajjud",
@@ -109,7 +110,7 @@ export const HOUSE_ACCOUNTS: SquareAccount[] = [
 
 /** Marked sample voices from the king seed — not public figures. */
 export const SAMPLE_ACCOUNTS: SquareAccount[] = [
-  { id: "sample-sakina", handle: "@sample.sakina", nameAr: "سكينة", nameEn: "Sakina", bioAr: "عيّنة معلَّمة للسكينة.", bioEn: "A marked sample for sakina.", kind: "sample", tone: "#8d938c" },
+  { id: "sample-sakina", handle: "@sample.sakina", nameAr: "سكينة", nameEn: "Sakina", bioAr: "عيّنة معلَّمة للسكينة.", bioEn: "A marked sample for sakina.", kind: "sample", tone: PALETTE.muted },
   { id: "sample-wanasa", handle: "@sample.wanasa", nameAr: "وناسة · عيّنة للبداية", nameEn: "Wanasa", bioAr: "عيّنة معلَّمة للمزاح اللائق.", bioEn: "A marked sample for gentle humour.", kind: "sample", tone: "#9a9084" },
   { id: "sample-hayah", handle: "@sample.hayah", nameAr: "حياة يومية · عيّنة للبداية", nameEn: "Hayah", bioAr: "عيّنة معلَّمة لبيت هادئ.", bioEn: "A marked sample for a quiet house.", kind: "sample", tone: "#84908c" },
   { id: "sample-alim", handle: "@sample.alim", nameAr: "عالم · عيّنة للبداية", nameEn: "Alim", bioAr: "عيّنة معلَّمة لفضول علمي.", bioEn: "A marked sample for light science.", kind: "sample", tone: "#90888c" },
@@ -125,7 +126,7 @@ export const YOU_ACCOUNT: SquareAccount = {
   bioAr: "ضيف يكتب من هذا الجهاز.",
   bioEn: "A guest writing from this device.",
   kind: "you",
-  tone: "#c5d0c4",
+  tone: PALETTE.primary,
 };
 
 function norm(handle: string) {
@@ -156,7 +157,7 @@ export function accountFromSeed(author: string, handle: string, badge: "بيت" 
     bioAr: "",
     bioEn: "",
     kind: badge === "بيت" ? "house" : "sample",
-    tone: "#8d938c",
+    tone: PALETTE.muted,
   };
 }
 
