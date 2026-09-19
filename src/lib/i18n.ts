@@ -143,6 +143,18 @@ const strings = {
   madarFavorites: { ar: "مفضّلة قصيرة", en: "A short favorite list" },
   madarHistory: { ar: "سجل الزيارات", en: "Visit history" },
   madarSearchAction: { ar: "ابحث في مدار", en: "Search in Madar" },
+  maydan: { ar: "الميدان", en: "Maydan" },
+  forum: { ar: "المنتدى", en: "Forum" },
+  forumBlurb: { ar: "نقاش بأقسام، منفصل عن خط الميدان.", en: "Boarded talk, apart from the Maydan line." },
+  newTopic: { ar: "موضوع جديد", en: "New topic" },
+  replies: { ar: "ردود", en: "replies" },
+  reply: { ar: "رد", en: "Reply" },
+  admin: { ar: "إدارة", en: "Admin" },
+  hide: { ar: "إخفاء", en: "Hide" },
+  unhide: { ar: "إظهار", en: "Show" },
+  adminPin: { ar: "الرقم السري", en: "Secret number" },
+  adminUnlock: { ar: "دخول الإدارة", en: "Enter admin" },
+  adminWrong: { ar: "الرقم لا يطابق.", en: "That number does not match." },
 } as const;
 
 export type I18nKey = keyof typeof strings;

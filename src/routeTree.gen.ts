@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as ForumRouteImport } from './routes/forum'
 import { Route as GamesRouteImport } from './routes/games'
 import { Route as LifeRouteImport } from './routes/life'
 import { Route as MadarRouteImport } from './routes/madar'
@@ -19,10 +21,24 @@ import { Route as StudioRouteImport } from './routes/studio'
 import { Route as ToolsRouteImport } from './routes/tools'
 import { Route as WorkspaceRouteImport } from './routes/workspace'
 import { Route as AppIdRouteImport } from './routes/app.$id'
+import { Route as ForumIndexRouteImport } from './routes/forum.index'
+import { Route as ForumBoardRouteImport } from './routes/forum.$board'
+import { Route as ForumBoardIndexRouteImport } from './routes/forum.$board.index'
+import { Route as ForumBoardTopicIdRouteImport } from './routes/forum.$board.$topicId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForumRoute = ForumRouteImport.update({
+  id: '/forum',
+  path: '/forum',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GamesRoute = GamesRouteImport.update({
@@ -70,9 +86,31 @@ const AppIdRoute = AppIdRouteImport.update({
   path: '/app/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ForumIndexRoute = ForumIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ForumRoute,
+} as any)
+const ForumBoardRoute = ForumBoardRouteImport.update({
+  id: '/$board',
+  path: '/$board',
+  getParentRoute: () => ForumRoute,
+} as any)
+const ForumBoardIndexRoute = ForumBoardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ForumBoardRoute,
+} as any)
+const ForumBoardTopicIdRoute = ForumBoardTopicIdRouteImport.update({
+  id: '/$topicId',
+  path: '/$topicId',
+  getParentRoute: () => ForumBoardRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/forum': typeof ForumRouteWithChildren
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
   '/madar': typeof MadarRoute
@@ -82,9 +120,14 @@ export interface FileRoutesByFullPath {
   '/tools': typeof ToolsRoute
   '/workspace': typeof WorkspaceRoute
   '/app/$id': typeof AppIdRoute
+  '/forum/$board': typeof ForumBoardRouteWithChildren
+  '/forum/': typeof ForumIndexRoute
+  '/forum/$board/$topicId': typeof ForumBoardTopicIdRoute
+  '/forum/$board/': typeof ForumBoardIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
   '/madar': typeof MadarRoute
@@ -94,10 +137,15 @@ export interface FileRoutesByTo {
   '/tools': typeof ToolsRoute
   '/workspace': typeof WorkspaceRoute
   '/app/$id': typeof AppIdRoute
+  '/forum': typeof ForumIndexRoute
+  '/forum/$board/$topicId': typeof ForumBoardTopicIdRoute
+  '/forum/$board': typeof ForumBoardIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/forum': typeof ForumRouteWithChildren
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
   '/madar': typeof MadarRoute
@@ -107,11 +155,17 @@ export interface FileRoutesById {
   '/tools': typeof ToolsRoute
   '/workspace': typeof WorkspaceRoute
   '/app/$id': typeof AppIdRoute
+  '/forum/$board': typeof ForumBoardRouteWithChildren
+  '/forum/': typeof ForumIndexRoute
+  '/forum/$board/$topicId': typeof ForumBoardTopicIdRoute
+  '/forum/$board/': typeof ForumBoardIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
+    | '/forum'
     | '/games'
     | '/life'
     | '/madar'
@@ -121,9 +175,14 @@ export interface FileRouteTypes {
     | '/tools'
     | '/workspace'
     | '/app/$id'
+    | '/forum/$board'
+    | '/forum/'
+    | '/forum/$board/$topicId'
+    | '/forum/$board/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin'
     | '/games'
     | '/life'
     | '/madar'
@@ -133,9 +192,14 @@ export interface FileRouteTypes {
     | '/tools'
     | '/workspace'
     | '/app/$id'
+    | '/forum'
+    | '/forum/$board/$topicId'
+    | '/forum/$board'
   id:
     | '__root__'
     | '/'
+    | '/admin'
+    | '/forum'
     | '/games'
     | '/life'
     | '/madar'
@@ -145,10 +209,16 @@ export interface FileRouteTypes {
     | '/tools'
     | '/workspace'
     | '/app/$id'
+    | '/forum/$board'
+    | '/forum/'
+    | '/forum/$board/$topicId'
+    | '/forum/$board/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
+  ForumRoute: typeof ForumRouteWithChildren
   GamesRoute: typeof GamesRoute
   LifeRoute: typeof LifeRoute
   MadarRoute: typeof MadarRoute
@@ -167,6 +237,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forum': {
+      id: '/forum'
+      path: '/forum'
+      fullPath: '/forum'
+      preLoaderRoute: typeof ForumRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/games': {
@@ -232,11 +316,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/forum/': {
+      id: '/forum/'
+      path: '/'
+      fullPath: '/forum/'
+      preLoaderRoute: typeof ForumIndexRouteImport
+      parentRoute: typeof ForumRoute
+    }
+    '/forum/$board': {
+      id: '/forum/$board'
+      path: '/$board'
+      fullPath: '/forum/$board'
+      preLoaderRoute: typeof ForumBoardRouteImport
+      parentRoute: typeof ForumRoute
+    }
+    '/forum/$board/': {
+      id: '/forum/$board/'
+      path: '/'
+      fullPath: '/forum/$board/'
+      preLoaderRoute: typeof ForumBoardIndexRouteImport
+      parentRoute: typeof ForumBoardRoute
+    }
+    '/forum/$board/$topicId': {
+      id: '/forum/$board/$topicId'
+      path: '/$topicId'
+      fullPath: '/forum/$board/$topicId'
+      preLoaderRoute: typeof ForumBoardTopicIdRouteImport
+      parentRoute: typeof ForumBoardRoute
+    }
   }
 }
 
+interface ForumBoardRouteChildren {
+  ForumBoardTopicIdRoute: typeof ForumBoardTopicIdRoute
+  ForumBoardIndexRoute: typeof ForumBoardIndexRoute
+}
+
+const ForumBoardRouteChildren: ForumBoardRouteChildren = {
+  ForumBoardTopicIdRoute: ForumBoardTopicIdRoute,
+  ForumBoardIndexRoute: ForumBoardIndexRoute,
+}
+
+const ForumBoardRouteWithChildren = ForumBoardRoute._addFileChildren(
+  ForumBoardRouteChildren,
+)
+
+interface ForumRouteChildren {
+  ForumBoardRoute: typeof ForumBoardRouteWithChildren
+  ForumIndexRoute: typeof ForumIndexRoute
+}
+
+const ForumRouteChildren: ForumRouteChildren = {
+  ForumBoardRoute: ForumBoardRouteWithChildren,
+  ForumIndexRoute: ForumIndexRoute,
+}
+
+const ForumRouteWithChildren = ForumRoute._addFileChildren(ForumRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
+  ForumRoute: ForumRouteWithChildren,
   GamesRoute: GamesRoute,
   LifeRoute: LifeRoute,
   MadarRoute: MadarRoute,
