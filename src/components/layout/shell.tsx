@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet, useRouterState } from "@tanstack/react-router";
 import { Ellipsis, GalleryVertical, Search } from "lucide-react";
-import { MadarMark, WahaWordmark } from "@/components/brand";
+import { ClipsMark, MadarMark, WahaWordmark } from "@/components/brand";
 import { CommandPalette } from "@/components/command-palette";
 import { AudienceSwitch } from "@/components/audience-switch";
 import { LangToggle } from "@/components/city-select";
@@ -66,6 +66,8 @@ export function Shell() {
               >
                 {item.to === "/madar" ? (
                   <MadarMark className="size-4" />
+                ) : item.to === "/clips" ? (
+                  <ClipsMark className="size-4" />
                 ) : (
                   <Icon className="size-4" strokeWidth={1.75} />
                 )}
@@ -84,17 +86,30 @@ export function Shell() {
           <Link to="/" className="lg:hidden">
             <WahaWordmark lang={lang} />
           </Link>
-          <Link
-            to="/madar"
-            className={cn(
-              "ms-auto flex size-11 shrink-0 items-center justify-center rounded-md border border-border bg-surface text-primary hover:bg-surface-2",
-              pathname === "/madar" && "bg-surface-2",
-            )}
-            aria-label={t(lang, "madar")}
-            title={t(lang, "madar")}
-          >
-            <MadarMark className="size-5" />
-          </Link>
+          <div className="ms-auto flex shrink-0 items-center gap-2">
+            <Link
+              to="/clips"
+              className={cn(
+                "flex size-11 items-center justify-center rounded-md border border-border bg-surface text-primary hover:bg-surface-2",
+                pathname === "/clips" && "bg-surface-2",
+              )}
+              aria-label={t(lang, "clips")}
+              title={t(lang, "clips")}
+            >
+              <ClipsMark className="size-5" />
+            </Link>
+            <Link
+              to="/madar"
+              className={cn(
+                "flex size-11 items-center justify-center rounded-md border border-border bg-surface text-primary hover:bg-surface-2",
+                pathname === "/madar" && "bg-surface-2",
+              )}
+              aria-label={t(lang, "madar")}
+              title={t(lang, "madar")}
+            >
+              <MadarMark className="size-5" />
+            </Link>
+          </div>
           <button
             type="button"
             onClick={() => setCmd(true)}

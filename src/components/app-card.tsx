@@ -1,12 +1,13 @@
 import { Link } from "@tanstack/react-router";
 import type { CatalogItem } from "@/lib/catalog";
-import { MadarMark } from "@/components/brand";
+import { ClipsMark, MadarMark } from "@/components/brand";
 import { appIcon } from "@/lib/icons";
 import type { Lang } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
 
 function CatalogIcon({ item }: { item: CatalogItem }) {
   if (item.id === "madar") return <MadarMark className="size-5" />;
+  if (item.id === "clips") return <ClipsMark className="size-5" />;
   const Icon = appIcon(item.icon);
   return <Icon className="size-5" strokeWidth={1.75} />;
 }
@@ -39,6 +40,14 @@ export function AppCard({ item, lang, large = false }: { item: CatalogItem; lang
   if (item.portal && item.id === "madar") {
     return (
       <Link to="/madar" className={className}>
+        <CardBody item={item} lang={lang} large={large} />
+      </Link>
+    );
+  }
+
+  if (item.portal && item.id === "clips") {
+    return (
+      <Link to="/clips" className={className}>
         <CardBody item={item} lang={lang} large={large} />
       </Link>
     );

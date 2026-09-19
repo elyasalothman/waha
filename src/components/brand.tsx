@@ -50,3 +50,13 @@ export function MadarWordmark({ lang }: { lang: "ar" | "en" }) {
     </span>
   );
 }
+
+/** مقاطع مفيدة — إطار هادئ بلا أيقونة ميدان. */
+export function ClipsMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 32 32" className={cn("text-primary", className)} aria-hidden="true">
+      <rect x="5.5" y="8" width="21" height="16" rx="3" fill="none" stroke="currentColor" strokeWidth="1.25" />
+      <path d="M13.2 12.4v7.2l6.4-3.6z" fill="currentColor" />
+    </svg>
+  );
+}

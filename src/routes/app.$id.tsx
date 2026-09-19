@@ -29,6 +29,10 @@ function AppPage() {
     return <Navigate to="/madar" />;
   }
 
+  if (id === "clips") {
+    return <Navigate to="/clips" />;
+  }
+
   if (item && hideMoney(segment) && isMoneySurface(item)) {
     return <ChildMoneyGate lang={lang} />;
   }

@@ -155,6 +155,13 @@ const strings = {
   adminPin: { ar: "الرقم السري", en: "Secret number" },
   adminUnlock: { ar: "دخول الإدارة", en: "Enter admin" },
   adminWrong: { ar: "الرقم لا يطابق.", en: "That number does not match." },
+  clips: { ar: "مقاطع", en: "Clips" },
+  clipsTitle: { ar: "مقاطع مفيدة", en: "Useful clips" },
+  clipsBlurb: {
+    ar: "اثنا عشر مقطعاً معلَّماً — بلا خوارزمية ولا بحث. ليست خط الميدان.",
+    en: "Twelve marked clips — no algorithm, no search. Not the Square feed.",
+  },
+  clipsOriginal: { ar: "المصدر الأصلي", en: "Original source" },
 } as const;
 
 export type I18nKey = keyof typeof strings;
