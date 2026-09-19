@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet, useRouterState } from "@tanstack/react-router";
-import { Ellipsis, GalleryVertical, Search } from "lucide-react";
+import { Ellipsis, GalleryVertical, Search, Settings } from "lucide-react";
 import { MadarMark, WahaWordmark } from "@/components/brand";
 import { CommandPalette } from "@/components/command-palette";
-import { AudienceSwitch } from "@/components/audience-switch";
 import { LangToggle } from "@/components/city-select";
 import { OfflineBanner } from "@/components/offline-banner";
 import { DoorsStrip } from "@/components/doors-strip";
@@ -42,9 +41,6 @@ export function Shell() {
           <p className="mt-3 text-xs leading-relaxed text-muted">
             {t(lang, audience === "personal" ? "tagline" : "workTagline")}
           </p>
-          <div className="mt-4">
-            <AudienceSwitch />
-          </div>
           {audience === "personal" ? (
             <div className="mt-4">
               <DoorsStrip lang={lang} compact />
@@ -106,17 +102,22 @@ export function Shell() {
               ⌘K
             </kbd>
           </button>
-          <div className="hidden sm:block lg:hidden">
-            <AudienceSwitch compact />
-          </div>
+          <Link
+            to="/settings"
+            className={cn(
+              "flex size-11 shrink-0 items-center justify-center rounded-md border border-border bg-surface text-fg hover:bg-surface-2",
+              pathname === "/settings" && "bg-surface-2",
+            )}
+            aria-label={t(lang, "settings")}
+            title={t(lang, "settings")}
+            data-settings-icon=""
+          >
+            <Settings className="size-5" strokeWidth={1.75} />
+          </Link>
           <div className="lg:hidden">
             <LangToggle lang={lang} />
           </div>
         </header>
-
-        <div className="border-b border-border px-4 py-2 sm:hidden">
-          <AudienceSwitch />
-        </div>
 
         <main className="px-4 py-6 pb-24 lg:px-8 lg:pb-10">
           <OfflineBanner lang={lang} />

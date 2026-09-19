@@ -24,6 +24,8 @@ describe("chrome nav lock", () => {
       mobileChromeNav("personal").map((item) => item.to),
       ["/", "/more"],
     );
+    assert.equal(chromeNav("personal").some((item) => item.to === "/settings"), false);
+    assert.equal(moreOverflowNav("personal").some((item) => item.to === "/settings"), false);
   });
 
   it("drops حياتك / مالك / أدواتك / الترفيه / الاستوديو from the Square bar", () => {

@@ -59,7 +59,10 @@ export const useAppStore = create<AppState>((set, get) => ({
     persist(get());
   },
   setSegment: (segment) => {
-    set({ segment, audience: segment === "child" ? "personal" : get().audience === "work" ? "work" : "personal" });
+    set({
+      segment,
+      audience: segment === "child" || segment === "family" ? "personal" : get().audience === "work" ? "work" : "personal",
+    });
     persist(get());
   },
   setCity: (id) => {
@@ -106,7 +109,12 @@ export const useAppStore = create<AppState>((set, get) => ({
       const segment = parseChildSegment(parsed.segment);
       set({
         lang: parsed.lang === "en" ? "en" : "ar",
-        audience: segment === "child" ? "personal" : parsed.audience === "work" ? "work" : "personal",
+        audience:
+          segment === "child" || segment === "family"
+            ? "personal"
+            : parsed.audience === "work"
+              ? "work"
+              : "personal",
         segment,
         city,
         recent: Array.isArray(parsed.recent) ? parsed.recent : [],

@@ -8,6 +8,12 @@ const strings = {
   searchHint: { ar: "أو اضغط ⌘K", en: "or press ⌘K" },
   home: { ar: "الميدان", en: "The Square" },
   more: { ar: "المزيد", en: "More" },
+  settings: { ar: "الإعدادات", en: "Settings" },
+  wahaForYou: { ar: "واحة من أجلك", en: "Waha for you" },
+  wahaForYouBlurb: {
+    ar: "شريحة واحدة ليومك — محفوظة على هذا الجهاز.",
+    en: "One slice for your day — saved on this device.",
+  },
   moreBlurb: {
     ar: "حياتك ومالك وأدواتك والترفيه والاستوديو — من هنا، لا من شريط الميدان.",
     en: "Life, money, tools, play, and studio — from here, not the Square bar.",
@@ -19,7 +25,8 @@ const strings = {
   studio: { ar: "الاستوديو", en: "Studio" },
   workspace: { ar: "المكتب", en: "Desk" },
   finance: { ar: "المالية", en: "Finance" },
-  personal: { ar: "أفراد", en: "Personal" },
+  personal: { ar: "للكل", en: "Everyone" },
+  family: { ar: "أسرة", en: "Family" },
   work: { ar: "عمل", en: "Work" },
   child: { ar: "طفل", en: "Child" },
   todaySpend: { ar: "مصروف اليوم", en: "Today’s spend" },
