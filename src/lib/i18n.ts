@@ -15,6 +15,10 @@ const strings = {
     en: "One slice for your day — chosen here when you create an account, not on the Square.",
   },
   enterSquare: { ar: "إلى الميدان", en: "Enter the Square" },
+  guestReadsFree: {
+    ar: "ضيف الواحة يقرأ الميدان بلا حساب. الشريحة والهوية هنا فقط إن أحببت إنشاء حساب.",
+    en: "A guest reads the Square with no account. Slice and identity live here only if you create one.",
+  },
   moreBlurb: {
     ar: "حياتك ومالك وأدواتك والترفيه والاستوديو — من هنا، لا من شريط الميدان.",
     en: "Life, money, tools, play, and studio — from here, not the Square bar.",

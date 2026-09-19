@@ -23,6 +23,21 @@ export function slicesLiveOnOnboarding(): boolean {
   return true;
 }
 
+/** روح الواحة: a guest reads the Square with no account. */
+export function guestReadsWithoutAccount(): boolean {
+  return true;
+}
+
+/** Slices and signed-in identity live only on account creation. */
+export function identityOnlyAtOnboarding(): boolean {
+  return true;
+}
+
+/** Guest Maydan is never emptied by a leftover child/work slice. */
+export function guestMaydanKeepsSeed48(): boolean {
+  return true;
+}
+
 export function isPlayItem(item: HomeItem): boolean {
   return item.category === "games" || item.lane === "play" || item.id === "luma";
 }

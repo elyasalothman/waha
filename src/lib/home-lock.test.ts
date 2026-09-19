@@ -8,9 +8,12 @@ import {
   HOME_SHADOW_KEYS,
   WAHA_FOR_YOU_SLICES,
   forSeriousHome,
+  guestMaydanKeepsSeed48,
+  guestReadsWithoutAccount,
   homeChromeShowsAudienceSwitch,
   homeHouseDoorIds,
   homeShowsCityPicker,
+  identityOnlyAtOnboarding,
   isPlayItem,
   slicesLiveOnOnboarding,
   slicesLiveOnSettings,
@@ -118,5 +121,28 @@ describe("king lock — `/` after #8", () => {
     assert.match(switcher, /slice-\$\{slice\.id\}/);
     assert.match(switcher, /wahaForYou/);
     assert.equal(existsSync(new URL("../routes/settings.tsx", import.meta.url)), false);
+  });
+
+  it("keeps روح الواحة — guest reads with no account; identity only at onboarding", () => {
+    const home = readFileSync(new URL("../routes/index.tsx", import.meta.url), "utf8");
+    const square = readFileSync(new URL("../components/square/square-page.tsx", import.meta.url), "utf8");
+    const shell = readFileSync(new URL("../components/layout/shell.tsx", import.meta.url), "utf8");
+    const profile = readFileSync(new URL("../components/square/profile-panel.tsx", import.meta.url), "utf8");
+    const onboarding = readFileSync(new URL("../routes/onboarding.tsx", import.meta.url), "utf8");
+    const logic = readFileSync(new URL("./square/logic.ts", import.meta.url), "utf8");
+    assert.equal(guestReadsWithoutAccount(), true);
+    assert.equal(identityOnlyAtOnboarding(), true);
+    assert.equal(guestMaydanKeepsSeed48(), true);
+    assert.doesNotMatch(home, /SignInGate|RedirectToSignIn|SignInButtons/);
+    assert.doesNotMatch(square, /SignInGate|RedirectToSignIn|SignInButtons/);
+    assert.match(square, /data-guest-read="open"/);
+    assert.doesNotMatch(square, /mergeFeed\([^)]*audience|mergeFeed\([^)]*segment/);
+    assert.doesNotMatch(shell, /SignInButtons|AudienceSwitch/);
+    assert.doesNotMatch(profile, /SignInButtons/);
+    assert.match(profile, /createAccount/);
+    assert.match(onboarding, /SignInButtons/);
+    assert.match(onboarding, /data-identity="onboarding"/);
+    assert.match(onboarding, /guestReadsFree/);
+    assert.match(logic, /export function mergeFeed\(local: SquareLocalState, tab: SquareTab/);
   });
 });
