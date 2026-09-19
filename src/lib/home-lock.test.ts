@@ -38,6 +38,22 @@ describe("serious home lock", () => {
     assert.match(home, /SquarePage/);
     assert.equal(/Hub/.test(home), false);
     assert.equal(/byCategory|featuredFor/.test(home), false);
+    assert.equal(/maydan/.test(home), false);
+  });
+
+  it("keeps a thin live shadow on SquarePage — not a DayShadow-only home", () => {
+    const home = readFileSync(new URL("../routes/index.tsx", import.meta.url), "utf8");
+    const square = readFileSync(new URL("../components/square/square-page.tsx", import.meta.url), "utf8");
+    const shadow = readFileSync(new URL("../components/square/day-shadow.tsx", import.meta.url), "utf8");
+    assert.match(home, /SquarePage/);
+    assert.doesNotMatch(home, /DayShadow/);
+    assert.match(square, /DayShadow/);
+    assert.match(square, /data-home-sections="day-shadow house-doors square"/);
+    assert.match(shadow, /data-shadow="thin"/);
+    assert.match(shadow, /data-hero="next-prayer"/);
+    assert.match(shadow, /data-live="remain-hms"/);
+    assert.match(shadow, /data-live="countdown"/);
+    assert.doesNotMatch(shadow, /t\(lang, "loading"\)/);
   });
 });
 

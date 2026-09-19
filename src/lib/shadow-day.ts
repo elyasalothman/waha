@@ -1,5 +1,5 @@
 import { DEFAULT_CITY, type City } from "./cities.ts";
-import { formatLocalHm, isVisibleHm } from "./clock.ts";
+import { formatLiveHms, formatLocalHm, formatShortRemain, isVisibleHm } from "./clock.ts";
 import { formatGregorian, formatHijri } from "./hijri.ts";
 import { nextPrayerVisible, type PrayerKey } from "./prayer.ts";
 import { climateFallbackC, formatCelsius, readWeatherCache, weatherLabel } from "./weather.ts";
@@ -13,6 +13,9 @@ export type ShadowDaySnapshot = {
   prayerLabelAr: string;
   prayerLabelEn: string;
   prayerHm: string;
+  remainMs: number;
+  remainHms: string;
+  remainShort: string;
   weatherText: string;
   weatherC: number;
   weatherLabelAr: string;
@@ -48,6 +51,12 @@ export function shadowDayNow(now = new Date(), city: City = DEFAULT_CITY): Shado
   const clock = isVisibleHm(formatLocalHm(now)) ? formatLocalHm(now) : "00:00";
   const next = nextPrayerVisible(city.lat, city.lon, now, city.tz);
   const prayerHm = isVisibleHm(next.hm) ? next.hm : clock;
+  const remainMs = Math.max(
+    0,
+    (next.at instanceof Date && !Number.isNaN(next.at.getTime()) ? next.at.getTime() : now.getTime()) - now.getTime(),
+  );
+  const remainHms = neverBlank(formatLiveHms(remainMs), "00:00:00");
+  const remainShort = neverBlank(formatShortRemain(remainMs), "0:00");
   const hijri = neverBlank(formatHijri(now, "ar", false), FALLBACK_HIJRI);
   const gregorian = neverBlank(formatGregorian(now, "ar"), clock);
   const wx = instantWeatherC(city.lat, city.lon);
@@ -59,6 +68,9 @@ export function shadowDayNow(now = new Date(), city: City = DEFAULT_CITY): Shado
     prayerLabelAr: neverBlank(next.label.ar, "الصلاة"),
     prayerLabelEn: neverBlank(next.label.en, "Prayer"),
     prayerHm,
+    remainMs,
+    remainHms,
+    remainShort,
     weatherText: neverBlank(wx.text, formatCelsius(climateFallbackC())),
     weatherC: wx.celsius,
     weatherLabelAr: weatherLabel(wx.code, "ar"),
