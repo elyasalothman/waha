@@ -8,6 +8,7 @@ import { appIcon } from "@/lib/icons";
 import { t, type Lang } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
 import { useAppStore } from "@/store/app-store";
+import { openExternalUrl } from "@/lib/native-browser";
 
 export function CommandPalette({
   open,
@@ -97,7 +98,7 @@ export function CommandPalette({
                     return;
                   }
                   if (item.href) {
-                    window.location.assign(item.href);
+                    void openExternalUrl(item.href);
                     return;
                   }
                   void navigate({ to: "/app/$id", params: { id: item.id } });

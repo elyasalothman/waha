@@ -454,8 +454,8 @@ export function injectGrokPwaHead(html, ctx = {}) {
 
   const missing = grokPwaHeadTags(DEFAULT_APP_NAME)
     .filter(([key]) => {
-      if (key === "manifest") return !next.includes(`href="${PWA_MANIFEST_HREF}"`);
-      if (key === "apple-touch-icon") return !next.includes(`href="${PWA_APPLE_TOUCH_ICON}"`);
+      if (key === "manifest") return !/rel=["']manifest["']/i.test(next);
+      if (key === "apple-touch-icon") return !/rel=["']apple-touch-icon["']/i.test(next);
       return !next.includes(`name="${key}"`);
     })
     .map(([, tag]) => tag);

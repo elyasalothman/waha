@@ -4,6 +4,7 @@ import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { injectGrokPwaHead } from "./grok-pwa-shared.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (rel) => readFileSync(join(root, rel), "utf8");
@@ -152,6 +153,21 @@ test("PWA add-to-home-screen is واحة with a real manifest, not __grok", () =
   assert.ok(exists("public/icon-180.png"));
   assert.ok(exists("public/icon-192.png"));
   assert.ok(exists("public/icon-512.png"));
+
+  const injected = injectGrokPwaHead(
+    `<html><head>
+      <link rel="manifest" href="/manifest.webmanifest" />
+      <link rel="apple-touch-icon" href="/icon-180.png" />
+      <meta name="apple-mobile-web-app-title" content="واحة" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      <meta name="theme-color" content="#0c0d0c" />
+    </head><body></body></html>`,
+  );
+  assert.match(injected, /href="\/manifest\.webmanifest"/);
+  assert.match(injected, /apple-mobile-web-app-title" content="واحة"/);
+  assert.doesNotMatch(injected, /__grok\/manifest/);
+  assert.doesNotMatch(injected, /__grok\/icon-180/);
 });
 
 test("Podfile ships Browser + LocalNotifications with native keyboard", () => {
@@ -178,7 +194,8 @@ test("Arabic RTL fields are wired and ASC Submit stays blocked", () => {
   assert.match(palette, /dir=\{lang === "ar" \? "rtl" : "ltr"\}/);
   assert.match(salah, /إشعار الصلاة القادمة/);
   assert.match(salah, /LocalNotifications|syncSalahNotification/);
-  assert.match(read("src/routes/index.tsx"), /HouseDoors/);
+  assert.match(read("src/routes/index.tsx"), /DoorsStrip/);
+  assert.match(read("src/components/doors-strip.tsx"), /ExternalLink/);
   assert.match(read("src/lib/native-browser.ts"), /@capacitor\/browser/);
   assert.match(read("src/lib/native-browser.ts"), /tahajjud\.alhajda\.com/);
   assert.doesNotMatch(yaml, /submit_to_app_store:\s*true/);

@@ -1,3 +1,4 @@
+import { ExternalLink } from "@/components/external-link";
 import { primaryLauncherDoors } from "@/lib/doors";
 import { appIcon } from "@/lib/icons";
 import { t, type Lang } from "@/lib/i18n";
@@ -39,7 +40,7 @@ export function DoorsStrip({
         {doors.map((door) => {
           const Icon = appIcon(door.icon);
           return (
-            <a
+            <ExternalLink
               key={door.id}
               href={door.href}
               data-door={door.id}
@@ -47,7 +48,7 @@ export function DoorsStrip({
             >
               <Icon className="size-4 shrink-0 text-muted" strokeWidth={1.75} />
               <span className="truncate">{door.title[lang]}</span>
-            </a>
+            </ExternalLink>
           );
         })}
       </nav>
@@ -58,14 +59,14 @@ export function DoorsStrip({
       {doors.map((door) => {
         const Icon = appIcon(door.icon);
         return (
-          <a
-            key={door.id}
-            href={door.href}
-            data-door={door.id}
-            className={cn(
-              "flex min-h-14 items-center gap-3 rounded-xl border border-border bg-surface px-4 py-3 text-fg hover:bg-surface-2",
-            )}
-          >
+            <ExternalLink
+              key={door.id}
+              href={door.href}
+              data-door={door.id}
+              className={cn(
+                "flex min-h-14 items-center gap-3 rounded-xl border border-border bg-surface px-4 py-3 text-fg hover:bg-surface-2",
+              )}
+            >
             <span className="flex size-9 shrink-0 items-center justify-center rounded-md bg-surface-2 text-muted">
               <Icon className="size-4" strokeWidth={1.75} />
             </span>
@@ -73,7 +74,7 @@ export function DoorsStrip({
               <span className="block font-medium leading-tight">{door.title[lang]}</span>
               <span className="mt-0.5 block text-sm leading-snug text-muted">{door.blurb[lang]}</span>
             </span>
-          </a>
+            </ExternalLink>
         );
       })}
     </nav>
