@@ -486,7 +486,7 @@ function VisitList({
         <li key={`${item.href ?? item.query}-${item.at}`} className="flex items-center gap-2 px-3">
           <button type="button" onClick={() => onOpen(item)} className="min-w-0 flex-1 py-3 text-start text-sm">
             <span className="block truncate">{item.title}</span>
-            {item.href ? (
+            {item.href && item.href !== item.title ? (
               <span className="mt-0.5 block truncate font-mono text-xs text-subtle" dir="ltr">
                 {item.href}
               </span>
