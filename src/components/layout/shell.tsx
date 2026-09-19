@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet, useRouterState } from "@tanstack/react-router";
 import { GalleryVertical, PanelsTopLeft, Search, Sparkles, Sun, Wallet, Wrench } from "lucide-react";
-import { WahaWordmark } from "@/components/brand";
+import { MadarMark, WahaWordmark } from "@/components/brand";
 import { CommandPalette } from "@/components/command-palette";
 import { AudienceSwitch } from "@/components/audience-switch";
 import { LangToggle } from "@/components/city-select";
@@ -67,7 +67,11 @@ export function Shell() {
                   active ? "bg-surface-2 text-fg" : "text-muted hover:bg-surface hover:text-fg",
                 )}
               >
-                <Icon className="size-4" strokeWidth={1.75} />
+                {item.to === "/madar" ? (
+                  <MadarMark className="size-4" />
+                ) : (
+                  <Icon className="size-4" strokeWidth={1.75} />
+                )}
                 {t(lang, item.key)}
               </Link>
             );
@@ -83,10 +87,21 @@ export function Shell() {
           <Link to="/" className="lg:hidden">
             <WahaWordmark lang={lang} />
           </Link>
+          <Link
+            to="/madar"
+            className={cn(
+              "ms-auto flex size-11 shrink-0 items-center justify-center rounded-md border border-border bg-surface text-primary hover:bg-surface-2",
+              pathname === "/madar" && "bg-surface-2",
+            )}
+            aria-label={t(lang, "madar")}
+            title={t(lang, "madar")}
+          >
+            <MadarMark className="size-5" />
+          </Link>
           <button
             type="button"
             onClick={() => setCmd(true)}
-            className="ms-auto flex h-11 min-w-0 flex-1 items-center gap-2 rounded-md border border-border bg-surface px-3 text-start text-sm text-muted lg:max-w-md"
+            className="flex h-11 min-w-0 flex-1 items-center gap-2 rounded-md border border-border bg-surface px-3 text-start text-sm text-muted lg:max-w-md"
           >
             <Search className="size-4 shrink-0" />
             <span className="truncate">{t(lang, "search")}</span>

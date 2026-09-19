@@ -5,6 +5,7 @@ export type ChromeNavItem = { to: string; key: I18nKey };
 
 export const PERSONAL_NAV: readonly ChromeNavItem[] = [
   { to: "/", key: "home" },
+  { to: "/madar", key: "madar" },
   { to: "/life", key: "life" },
   { to: "/money", key: "money" },
   { to: "/tools", key: "tools" },
@@ -13,6 +14,7 @@ export const PERSONAL_NAV: readonly ChromeNavItem[] = [
 
 export const WORK_NAV: readonly ChromeNavItem[] = [
   { to: "/", key: "home" },
+  { to: "/madar", key: "madar" },
   { to: "/workspace", key: "workspace" },
   { to: "/money", key: "finance" },
   { to: "/tools", key: "tools" },
@@ -22,7 +24,7 @@ export const WORK_NAV: readonly ChromeNavItem[] = [
 /** Play lives under Tools — not a first-row tab. */
 export const TOOLS_OVERFLOW_NAV: readonly ChromeNavItem[] = [{ to: "/games", key: "games" }];
 
-const MOBILE_HIDDEN = new Set(["/studio"]);
+const MOBILE_HIDDEN = new Set(["/studio", "/madar"]);
 
 export function chromeNav(audience: "personal" | "work"): readonly ChromeNavItem[] {
   return audience === "personal" ? PERSONAL_NAV : WORK_NAV;
