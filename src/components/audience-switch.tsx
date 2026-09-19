@@ -4,13 +4,22 @@ import { t, type Lang } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
 import { useAppStore } from "@/store/app-store";
 
-type Slice = { id: "personal" | "child" | "work"; audience: Audience; segment: ChildSegment };
+type SliceId = "personal" | "child" | "family" | "work";
+type Slice = { id: SliceId; audience: Audience; segment: ChildSegment };
 
 const SLICES: Slice[] = [
   { id: "personal", audience: "personal", segment: "all" },
   { id: "child", audience: "personal", segment: "child" },
+  { id: "family", audience: "personal", segment: "family" },
   { id: "work", audience: "work", segment: "all" },
 ];
+
+function activeSlice(audience: Audience, segment: ChildSegment): SliceId {
+  if (segment === "child") return "child";
+  if (segment === "family") return "family";
+  if (audience === "work") return "work";
+  return "personal";
+}
 
 export function AudienceSwitch({ compact = false }: { compact?: boolean }) {
   const lang = useAppStore((s) => s.lang);
@@ -18,17 +27,18 @@ export function AudienceSwitch({ compact = false }: { compact?: boolean }) {
   const segment = useAppStore((s) => s.segment);
   const setAudience = useAppStore((s) => s.setAudience);
   const setSegment = useAppStore((s) => s.setSegment);
-  const active = segment === "child" ? "child" : audience === "work" ? "work" : "personal";
+  const active = activeSlice(audience, segment);
 
   return (
     <div
       className={cn(
-        "grid grid-cols-3 rounded-lg border border-border bg-surface p-1",
-        compact ? "w-56" : "w-full",
+        "grid grid-cols-2 rounded-lg border border-border bg-surface p-1 sm:grid-cols-4",
+        compact ? "max-w-xl" : "w-full",
       )}
       role="tablist"
-      aria-label={lang === "ar" ? "شريحة" : "Slice"}
+      aria-label={t(lang, "wahaForYou")}
       data-testid="audience-switch"
+      data-waha-for-you="slices"
     >
       {SLICES.map((slice) => (
         <button

@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Input, Textarea } from "@/components/ui/input";
 import { SignInButtons } from "@/lib/auth/gates";
 import { authEnabled } from "@/lib/auth/client";
 import { useCurrentUserState } from "@/lib/auth/use-current-user";
+import { t, type Lang } from "@/lib/i18n";
 import { houseProductDoors } from "@/lib/square/soft-money";
 import type { SquareProfile } from "@/lib/square/types";
-import type { Lang } from "@/lib/i18n";
 
 export function ProfilePanel({
   open,
@@ -70,6 +71,11 @@ export function ProfilePanel({
             <SignInButtons />
           </div>
         ) : null}
+        <p className="mt-4 text-xs text-muted">
+          <Link to="/onboarding" className="text-primary hover:underline" onClick={onClose}>
+            {t(lang, "createAccount")}
+          </Link>
+        </p>
         <div className="mt-5 border-t border-border/70 pt-3" data-soft-money="profile">
           <p className="text-[11px] text-subtle">{L("دعم / منتجات البيت", "Support / house products")}</p>
           <nav className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted">

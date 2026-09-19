@@ -1,14 +1,19 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import {
   HOME_ABOVE_FOLD,
   HOME_FORBIDDEN_COPY,
+  HOME_ONBOARDING_PATH,
   HOME_SHADOW_KEYS,
+  WAHA_FOR_YOU_SLICES,
   forSeriousHome,
+  homeChromeShowsAudienceSwitch,
   homeHouseDoorIds,
   homeShowsCityPicker,
   isPlayItem,
+  slicesLiveOnOnboarding,
+  slicesLiveOnSettings,
 } from "./home-lock.ts";
 import { getDoor, primaryLauncherDoors } from "./doors.ts";
 
@@ -88,5 +93,30 @@ describe("king lock — `/` after #8", () => {
       primaryLauncherDoors().map((d) => d.title.ar),
       ["تهجد · عبادة", "مداد · قراءة", "مواقعنا"],
     );
+  });
+
+  it("keeps واحة من أجلك slices on account creation only — never `/` or settings", () => {
+    const home = readFileSync(new URL("../routes/index.tsx", import.meta.url), "utf8");
+    const square = readFileSync(new URL("../components/square/square-page.tsx", import.meta.url), "utf8");
+    const shell = readFileSync(new URL("../components/layout/shell.tsx", import.meta.url), "utf8");
+    const onboarding = readFileSync(new URL("../routes/onboarding.tsx", import.meta.url), "utf8");
+    const switcher = readFileSync(new URL("../components/audience-switch.tsx", import.meta.url), "utf8");
+    assert.equal(homeChromeShowsAudienceSwitch(), false);
+    assert.equal(slicesLiveOnSettings(), false);
+    assert.equal(slicesLiveOnOnboarding(), true);
+    assert.equal(HOME_ONBOARDING_PATH, "/onboarding");
+    assert.deepEqual([...WAHA_FOR_YOU_SLICES], ["personal", "child", "family", "work"]);
+    assert.doesNotMatch(home, /AudienceSwitch|audience-switch|واحة من أجلك|أفراد|طفل|أسرة/);
+    assert.doesNotMatch(square, /AudienceSwitch|audience-switch|واحة من أجلك/);
+    assert.doesNotMatch(shell, /AudienceSwitch|audience-switch|data-settings-icon|to="\/settings"/);
+    assert.doesNotMatch(shell, /Settings/);
+    assert.match(onboarding, /AudienceSwitch/);
+    assert.match(onboarding, /createAccount/);
+    assert.match(onboarding, /wahaForYou/);
+    assert.match(onboarding, /data-onboarding="waha-for-you"/);
+    assert.match(switcher, /id: "family"/);
+    assert.match(switcher, /slice-\$\{slice\.id\}/);
+    assert.match(switcher, /wahaForYou/);
+    assert.equal(existsSync(new URL("../routes/settings.tsx", import.meta.url)), false);
   });
 });

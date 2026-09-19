@@ -1,13 +1,15 @@
 import { create } from "zustand";
 import { CITIES, DEFAULT_CITY, type City, findCity } from "@/lib/cities";
 import type { Audience } from "@/lib/catalog";
-import { parseChildSegment, type ChildSegment } from "@/lib/child-mode";
+import type { ChildSegment } from "@/lib/child-mode";
+import { resolveStoredSlice } from "@/lib/prefs";
 import type { Lang } from "@/lib/i18n";
 
 type AppState = {
   lang: Lang;
   audience: Audience;
   segment: ChildSegment;
+  sliceChosen: boolean;
   city: City;
   recent: string[];
   setLang: (lang: Lang) => void;
@@ -22,8 +24,15 @@ type AppState = {
 
 const KEY = "waha:prefs";
 
-function persist(partial: Pick<AppState, "lang" | "city" | "recent" | "audience" | "segment">) {
+function persist(
+  partial: Pick<AppState, "lang" | "city" | "recent" | "audience" | "segment" | "sliceChosen">,
+) {
   try {
+    const slice = resolveStoredSlice({
+      audience: partial.audience,
+      segment: partial.segment,
+      sliceChosen: partial.sliceChosen,
+    });
     localStorage.setItem(
       KEY,
       JSON.stringify({
@@ -31,8 +40,9 @@ function persist(partial: Pick<AppState, "lang" | "city" | "recent" | "audience"
         cityId: partial.city.id,
         recent: partial.recent,
         city: partial.city,
-        audience: partial.audience,
-        segment: partial.segment,
+        audience: slice.audience,
+        segment: slice.segment,
+        sliceChosen: slice.sliceChosen,
       }),
     );
   } catch {
@@ -44,6 +54,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   lang: "ar",
   audience: "personal",
   segment: "all",
+  sliceChosen: false,
   city: DEFAULT_CITY,
   recent: [],
   setLang: (lang) => {
@@ -55,11 +66,15 @@ export const useAppStore = create<AppState>((set, get) => ({
     persist(get());
   },
   setAudience: (audience) => {
-    set({ audience, segment: audience === "work" ? "all" : get().segment });
+    set({ audience, segment: audience === "work" ? "all" : get().segment, sliceChosen: true });
     persist(get());
   },
   setSegment: (segment) => {
-    set({ segment, audience: segment === "child" ? "personal" : get().audience === "work" ? "work" : "personal" });
+    set({
+      segment,
+      audience: segment === "child" || segment === "family" ? "personal" : get().audience === "work" ? "work" : "personal",
+      sliceChosen: true,
+    });
     persist(get());
   },
   setCity: (id) => {
@@ -96,6 +111,7 @@ export const useAppStore = create<AppState>((set, get) => ({
         city?: City;
         audience?: Audience;
         segment?: unknown;
+        sliceChosen?: unknown;
       };
       const city =
         parsed.city?.id === "geo" && parsed.city
@@ -103,14 +119,17 @@ export const useAppStore = create<AppState>((set, get) => ({
           : parsed.cityId
             ? (CITIES.find((c) => c.id === parsed.cityId) ?? DEFAULT_CITY)
             : DEFAULT_CITY;
-      const segment = parseChildSegment(parsed.segment);
+      const slice = resolveStoredSlice(parsed);
       set({
         lang: parsed.lang === "en" ? "en" : "ar",
-        audience: segment === "child" ? "personal" : parsed.audience === "work" ? "work" : "personal",
-        segment,
+        audience: slice.audience,
+        segment: slice.segment,
+        sliceChosen: slice.sliceChosen,
         city,
         recent: Array.isArray(parsed.recent) ? parsed.recent : [],
       });
+      // Rewrite so a leftover chrome audience is wiped from the device.
+      persist(get());
     } catch {
       /* ignore */
     }

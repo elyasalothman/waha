@@ -1,6 +1,6 @@
 /** Child-mode money lock — hide spend on home and close `/money`. PIN is out of scope. */
 
-export type ChildSegment = "all" | "child";
+export type ChildSegment = "all" | "child" | "family";
 
 export type HomeMoneyWidget = {
   id: string;
@@ -15,7 +15,9 @@ export const HOME_MONEY_WIDGETS: readonly HomeMoneyWidget[] = [
 ];
 
 export function parseChildSegment(value: unknown): ChildSegment {
-  return value === "child" ? "child" : "all";
+  if (value === "child") return "child";
+  if (value === "family") return "family";
+  return "all";
 }
 
 export function isChildMode(segment: unknown): boolean {
