@@ -61,7 +61,12 @@ function AppPage() {
 
   const Comp = APPS[id];
   return (
-    <AppStage item={item} lang={lang} wide={item.category === "games" || item.id === "invoice" || item.id === "asma" || item.id === "names"}>
+    <AppStage
+      item={item}
+      lang={lang}
+      compact={id === "chat"}
+      wide={item.category === "games" || item.id === "invoice" || item.id === "asma" || item.id === "names"}
+    >
       {Comp ? (
         <Comp />
       ) : (
