@@ -15,6 +15,7 @@ import { CommandPalette } from "@/components/command-palette";
 import { AudienceSwitch } from "@/components/audience-switch";
 import { LangToggle } from "@/components/city-select";
 import { OfflineBanner } from "@/components/offline-banner";
+import { DoorsStrip } from "@/components/doors-strip";
 import { t, type I18nKey } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
 import { useAppStore } from "@/store/app-store";
@@ -65,6 +66,11 @@ export function Shell() {
           <div className="mt-4">
             <AudienceSwitch />
           </div>
+          {audience === "personal" ? (
+            <div className="mt-4">
+              <DoorsStrip lang={lang} compact />
+            </div>
+          ) : null}
         </div>
         <nav className="flex flex-1 flex-col gap-0.5 px-3">
           {nav.map((item) => {

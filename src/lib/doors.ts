@@ -13,7 +13,7 @@ export type DoorId =
 
 export type Door = {
   id: DoorId;
-  /** Real product URL. Empty only for the in-app مواقعنا list. */
+  /** Live product URL — always https, never an in-app clone. */
   href: string;
   icon: string;
   title: { ar: string; en: string };
@@ -39,7 +39,7 @@ export const DOORS: readonly Door[] = [
     id: "tahajjud",
     href: "https://tahajjud.alhajda.com",
     icon: "Moon",
-    title: { ar: "تهجد", en: "Tahajjud" },
+    title: { ar: "تهجد · عبادة", en: "Tahajjud · Worship" },
     blurb: { ar: "مواقيت وأذكار ومصحف", en: "Prayer times, athkar, and a mushaf" },
     category: "life",
     lane: "house",
@@ -49,10 +49,10 @@ export const DOORS: readonly Door[] = [
   },
   {
     id: "midad",
-    href: "https://midad.alhajda.com",
+    href: "https://midad.alhajda.com/library",
     icon: "BookMarked",
-    title: { ar: "مداد", en: "Midad" },
-    blurb: { ar: "كتب عربية متصلة — مكتبة الهجدة", en: "Connected Arabic books — the house library" },
+    title: { ar: "مداد · قراءة", en: "Midad · Reading" },
+    blurb: { ar: "مكتبة عربية للكتب المتصلة", en: "An Arabic library of connected books" },
     category: "life",
     lane: "house",
     audience: PERSONAL,
@@ -61,7 +61,7 @@ export const DOORS: readonly Door[] = [
   },
   {
     id: "sites",
-    href: "",
+    href: "https://alhajda.com/sites",
     icon: "PanelsTopLeft",
     title: { ar: "مواقعنا", en: "Our sites" },
     blurb: { ar: "فهرس مواقع بيت الهجدة", en: "Index of the Alhajda house sites" },
@@ -80,7 +80,7 @@ export const DOORS: readonly Door[] = [
     category: "life",
     lane: "house",
     audience: PERSONAL,
-    launcher: true,
+    launcher: false,
     directory: true,
   },
   {
@@ -92,7 +92,7 @@ export const DOORS: readonly Door[] = [
     category: "life",
     lane: "house",
     audience: PERSONAL,
-    launcher: true,
+    launcher: false,
     directory: true,
   },
   {
@@ -104,7 +104,7 @@ export const DOORS: readonly Door[] = [
     category: "life",
     lane: "house",
     audience: PERSONAL,
-    launcher: true,
+    launcher: false,
     directory: true,
   },
   {
@@ -116,7 +116,7 @@ export const DOORS: readonly Door[] = [
     category: "life",
     lane: "house",
     audience: PERSONAL,
-    launcher: true,
+    launcher: false,
     directory: true,
   },
   {
@@ -155,10 +155,13 @@ export function isExternalDoor(door: Pick<Door, "href">): boolean {
   return door.href.startsWith("https://");
 }
 
-/** Same-tab target: real product URL, or the in-app مواقعنا list. */
-export function doorHref(door: Pick<Door, "id" | "href">): string {
-  if (isExternalDoor(door)) return door.href;
-  return `/app/${door.id}`;
+/** Same-tab target for a house door. */
+export function doorHref(door: Pick<Door, "href">): string {
+  return door.href;
+}
+
+export function isPrimaryDoor(id: string): boolean {
+  return (PRIMARY_LAUNCHER_IDS as readonly string[]).includes(id);
 }
 
 export function doorExternalHref(door: Pick<Door, "href">): string | undefined {

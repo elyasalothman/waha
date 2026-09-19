@@ -19,6 +19,7 @@ import { useNow } from "@/hooks/use-now";
 import { useAppStore } from "@/store/app-store";
 import { cn } from "@/lib/cn";
 import { DailySlides } from "@/components/daily-slides";
+import { DoorsStrip } from "@/components/doors-strip";
 
 export const Route = createFileRoute("/")({ component: Home });
 
@@ -63,7 +64,7 @@ function PersonalHome() {
     markLiveFetch("prayer", Date.now(), typeof localStorage === "undefined" ? null : localStorage);
   }, [now.toDateString(), city.lat, city.lon]);
 
-  const featured = featuredFor("personal").slice(0, 6);
+  const featured = featuredFor("personal").slice(0, 3);
   const recents = recent
     .map(getApp)
     .filter((x): x is NonNullable<typeof x> => x != null && x.audience.includes("personal"));
@@ -112,6 +113,10 @@ function PersonalHome() {
             )}
           </Link>
         </div>
+      </section>
+
+      <section className="mt-6">
+        <DoorsStrip lang={lang} />
       </section>
 
       <section className="mt-8">
