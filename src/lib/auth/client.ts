@@ -1,6 +1,7 @@
 import { genericOAuthClient } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
 import { runPreSignInSignOut, runSignOut } from "../../../scripts/sign-out-plan.mjs";
+import { fetchSessionQuietly, isQuietGetSessionError } from "./quiet-session";
 import { GROK_PROVIDERS } from "./providers";
 
 /**
@@ -20,10 +21,14 @@ import { GROK_PROVIDERS } from "./providers";
 export const authClient = createAuthClient({
   plugins: [genericOAuthClient()],
   fetchOptions: {
+    customFetchImpl: fetchSessionQuietly,
     onRequest(ctx) {
       const token = getBearerToken();
       if (token) ctx.headers.set("Authorization", `Bearer ${token}`);
       return ctx;
+    },
+    onError(ctx) {
+      if (isQuietGetSessionError(ctx)) return;
     },
   },
 });
