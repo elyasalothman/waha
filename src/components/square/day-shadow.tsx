@@ -3,61 +3,107 @@ import { Link } from "@tanstack/react-router";
 import { useNow } from "@/hooks/use-now";
 import { formatLocalHm } from "@/lib/clock";
 import { HOME_SHADOW_KEYS, homeShowsCityPicker } from "@/lib/home-lock";
-import { nextPrayerVisible } from "@/lib/prayer";
-import { compactRemain } from "@/lib/square/time";
 import { prayerLabel, shadowDayNow } from "@/lib/shadow-day";
 import { fetchWeatherSafe, formatCelsius, weatherLabel } from "@/lib/weather";
+import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
 
-/** Compressed “ظل اليوم” — time, prayer, weather. City stays closed. */
+/** Thin «ظل اليوم» + live next-prayer number above the Square. City stays closed. */
 export function DayShadow() {
   const lang = useAppStore((s) => s.lang);
   const city = useAppStore((s) => s.city);
   const now = useNow(1_000);
   const snap = shadowDayNow(now, city);
-  const next = nextPrayerVisible(city.lat, city.lon, now, city.tz);
-  const [liveWx, setLiveWx] = useState<string | null>(null);
+  const [liveWx, setLiveWx] = useState<{ text: string; label: string } | null>(null);
 
   useEffect(() => {
     let live = true;
     fetchWeatherSafe(city.lat, city.lon, 2000)
       .then((w) => {
         if (!live) return;
-        setLiveWx(`${formatCelsius(w.celsius)} ${weatherLabel(w.payload.current.code, lang)}`);
+        setLiveWx({
+          text: formatCelsius(w.celsius),
+          label: weatherLabel(w.payload.current.code, lang),
+        });
       })
-      .catch(() => {});
+      .catch(() => {
+        /* snapshot already has a °C */
+      });
     return () => {
       live = false;
     };
   }, [city.lat, city.lon, lang]);
 
   const L = (ar: string, en: string) => (lang === "ar" ? ar : en);
-  const weather = liveWx ?? `${snap.weatherText} ${lang === "ar" ? snap.weatherLabelAr : snap.weatherLabelEn}`;
+  const name = prayerLabel(snap, lang);
+  const weatherText = liveWx?.text || snap.weatherText;
+  const weatherSub = liveWx?.label || (lang === "ar" ? snap.weatherLabelAr : snap.weatherLabelEn);
 
   return (
-    <aside
-      className="flex flex-wrap items-center gap-x-2.5 gap-y-0.5 border-b border-border px-1 py-1.5 text-[12px] text-muted"
-      aria-label={L("ظل اليوم", "Day shade")}
-      data-home-section="day-shadow"
-      data-city-picker={homeShowsCityPicker() ? "open" : "closed"}
-      data-shadow-keys={HOME_SHADOW_KEYS.join(" ")}
-    >
-      <span className="font-medium tracking-wide text-subtle">{L("ظل اليوم", "Day shade")}</span>
-      <span className="text-border">·</span>
-      <span data-shadow-key="now" className="font-mono tabular-nums text-fg/80">
-        {formatLocalHm(now)}
-      </span>
-      <span className="ms-auto flex flex-wrap items-center gap-x-2.5">
-        <Link to="/app/$id" params={{ id: "salah" }} data-shadow-key="prayer" className="hover:text-fg">
-          {prayerLabel(snap, lang)} {snap.prayerHm}
-          <span className="ms-1 text-subtle">
-            {L("بعد", "in")} {compactRemain(next.at.getTime() - now.getTime(), lang)}
+    <div>
+      <aside
+        className="flex flex-wrap items-center gap-x-2.5 gap-y-0.5 border-b border-border px-1 py-1.5 text-[12px] text-muted"
+        aria-label={t(lang, "shadowDay")}
+        data-home-section="day-shadow"
+        data-shadow="thin"
+        data-city-picker={homeShowsCityPicker() ? "open" : "closed"}
+        data-shadow-keys={HOME_SHADOW_KEYS.join(" ")}
+      >
+        <span className="font-medium tracking-wide text-subtle">{t(lang, "shadowDay")}</span>
+        <span className="text-border">·</span>
+        <span data-shadow-key="now" className="font-mono tabular-nums text-fg/80">
+          {formatLocalHm(now)}
+        </span>
+        <span className="ms-auto flex flex-wrap items-center gap-x-2.5">
+          <Link
+            to="/app/$id"
+            params={{ id: "salah" }}
+            data-shadow-key="prayer"
+            className="inline-flex items-center gap-1.5 hover:text-fg"
+          >
+            <span>{t(lang, "nextPrayerFollowing")}</span>
+            <span className="font-mono tabular-nums tracking-tight text-fg" data-live="remain-hms" suppressHydrationWarning>
+              {snap.remainHms}
+            </span>
+          </Link>
+          <Link to="/app/$id" params={{ id: "weather" }} data-shadow-key="weather" className="hover:text-fg">
+            <span className="font-mono tabular-nums" data-live="weather">
+              {weatherText}
+            </span>
+            <span className="ms-1">{weatherSub}</span>
+          </Link>
+        </span>
+      </aside>
+
+      <section
+        className="px-1 py-5"
+        aria-label={`${t(lang, "nextPrayerFollowing")} ${name}`}
+        data-hero="next-prayer"
+      >
+        <p className="text-xs font-medium tracking-wide text-subtle">{t(lang, "nextPrayerFollowing")}</p>
+        <Link
+          to="/app/$id"
+          params={{ id: "salah" }}
+          className="mt-1 flex items-end justify-between gap-4 text-fg hover:text-primary"
+        >
+          <h2 className="font-display text-5xl leading-none tracking-tight sm:text-6xl" data-hero="prayer-name">
+            {name}
+          </h2>
+          <p
+            className="font-mono text-4xl tabular-nums leading-none tracking-tight text-primary sm:text-5xl"
+            data-live="countdown"
+            suppressHydrationWarning
+          >
+            {snap.remainShort}
+          </p>
+        </Link>
+        <p className="mt-2 text-sm text-muted">
+          {L("موعدها", "at")}{" "}
+          <span className="font-mono tabular-nums text-fg/80" suppressHydrationWarning>
+            {snap.prayerHm}
           </span>
-        </Link>
-        <Link to="/app/$id" params={{ id: "weather" }} data-shadow-key="weather" className="hover:text-fg">
-          {weather}
-        </Link>
-      </span>
-    </aside>
+        </p>
+      </section>
+    </div>
   );
 }
