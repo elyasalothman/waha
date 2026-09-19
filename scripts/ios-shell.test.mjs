@@ -27,7 +27,9 @@ test("Capacitor config is واحة under alhajda, not a sibling app", () => {
   assert.match(source, /overlaysWebView:\s*true/);
   assert.match(source, /resize:\s*"native"/);
   assert.match(source, /LocalNotifications/);
+  assert.match(source, /Browser/);
   assert.match(source, /WKWebView is the App Store app/);
+  assert.match(source, /@capacitor\/browser/);
   assert.match(source, /waha\.alhajda\.com/);
   for (const id of FORBIDDEN_BUNDLES) {
     assert.doesNotMatch(source, new RegExp(id.replace(/\./g, "\\.")));
@@ -119,6 +121,17 @@ test("sync-www produces www/ with native-ios boot and fallback splash", () => {
   assert.match(html, /واحة/);
 });
 
+test("Podfile ships Browser + LocalNotifications with native keyboard", () => {
+  const podfile = read("ios/App/Podfile");
+  const json = read("ios/App/App/capacitor.config.json");
+  assert.match(podfile, /CapacitorBrowser/);
+  assert.match(podfile, /CapacitorLocalNotifications/);
+  assert.match(podfile, /CapacitorKeyboard/);
+  assert.match(podfile, /CapacitorStatusBar/);
+  assert.match(json, /BrowserPlugin/);
+  assert.match(json, /"resize": "native"/);
+});
+
 test("Arabic RTL fields are wired and ASC Submit stays blocked", () => {
   const css = read("src/styles.css");
   const input = read("src/components/ui/input.tsx");
@@ -132,6 +145,9 @@ test("Arabic RTL fields are wired and ASC Submit stays blocked", () => {
   assert.match(palette, /dir=\{lang === "ar" \? "rtl" : "ltr"\}/);
   assert.match(salah, /إشعار الصلاة القادمة/);
   assert.match(salah, /LocalNotifications|syncSalahNotification/);
+  assert.match(read("src/routes/index.tsx"), /HouseDoors/);
+  assert.match(read("src/lib/native-browser.ts"), /@capacitor\/browser/);
+  assert.match(read("src/lib/native-browser.ts"), /tahajjud\.alhajda\.com/);
   assert.doesNotMatch(yaml, /submit_to_app_store:\s*true/);
 });
 

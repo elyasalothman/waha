@@ -32,6 +32,17 @@ export function buildSalahAlert(input: {
   };
 }
 
+/** Ask UNUserNotificationCenter now so a later salah reminder can fire. */
+export async function requestSalahNotificationPermission(): Promise<{
+  granted: boolean;
+  reason?: string;
+}> {
+  if (!isNativeIos()) return { granted: false, reason: "not-native" };
+  const { LocalNotifications } = await import("@capacitor/local-notifications");
+  const perm = await LocalNotifications.requestPermissions();
+  return { granted: perm.display === "granted", reason: perm.display };
+}
+
 export async function syncSalahNotification(
   enabled: boolean,
   alert: SalahAlert,
@@ -42,8 +53,8 @@ export async function syncSalahNotification(
   await LocalNotifications.cancel({ notifications: [{ id: alert.id }] });
   if (!enabled) return { ok: true, reason: "cancelled" };
 
-  const perm = await LocalNotifications.requestPermissions();
-  if (perm.display !== "granted") return { ok: false, reason: "denied" };
+  const perm = await requestSalahNotificationPermission();
+  if (!perm.granted) return { ok: false, reason: perm.reason ?? "denied" };
 
   const when = alert.at.getTime() > Date.now() + 15_000 ? alert.at : new Date(Date.now() + 15_000);
   await LocalNotifications.schedule({

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { buildSalahAlert, SALAH_NOTIFICATION_ID } from "./native-salah-notifications.ts";
+import { buildSalahAlert, requestSalahNotificationPermission, SALAH_NOTIFICATION_ID } from "./native-salah-notifications.ts";
 
 describe("buildSalahAlert", () => {
   it("uses Arabic copy for the native salah notification", () => {
@@ -26,5 +26,11 @@ describe("buildSalahAlert", () => {
     });
     assert.equal(alert.title, "Waha");
     assert.equal(alert.body, "Time for Fajr");
+  });
+
+  it("does not prompt for notification permission off the iPhone shell", async () => {
+    const perm = await requestSalahNotificationPermission();
+    assert.equal(perm.granted, false);
+    assert.equal(perm.reason, "not-native");
   });
 });

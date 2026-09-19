@@ -8,6 +8,7 @@ import type { CapacitorConfig } from "@capacitor/cli";
  * 3. StatusBar overlays the WebView; Keyboard.resize is `native`.
  * 4. Arabic RTL keyboard must be verified on device before any ASC Submit.
  * 5. Not a thin website wrap — native salah LocalNotifications (UNUserNotificationCenter).
+ * 6. Sister apps (تهجد / محسن / ألعاب / حياة) open via @capacitor/browser, not in-webview.
  *
  * Load order:
  *   1. CAPACITOR_SERVER_URL or WAHA_IOS_SERVER_URL → live production/preview
@@ -48,6 +49,9 @@ const config: CapacitorConfig = {
     },
     LocalNotifications: {
       iconColor: "#c5d0c4",
+    },
+    Browser: {
+      presentationStyle: "popover",
     },
   },
   server: {

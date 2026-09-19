@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { openExternalUrl, shouldOpenExternally } from "@/lib/native-browser";
 
 function isNativeIos() {
   const cap = (window as Window & { Capacitor?: { isNativePlatform?: () => boolean; isNative?: boolean } })
@@ -6,7 +7,12 @@ function isNativeIos() {
   return !!(cap && (cap.isNativePlatform?.() || cap.isNative === true));
 }
 
-/** Marks html.native-ios and paints the status bar when running inside Capacitor. */
+function closestAnchor(target: EventTarget | null): HTMLAnchorElement | null {
+  if (!(target instanceof Element)) return null;
+  return target.closest("a");
+}
+
+/** Marks html.native-ios, paints the status bar, and opens https exits via Browser. */
 export function NativeIosChrome() {
   useEffect(() => {
     if (!isNativeIos()) return;
@@ -35,6 +41,20 @@ export function NativeIosChrome() {
       void Keyboard.setStyle?.({ style: "DARK" });
       void Keyboard.setResizeMode?.({ mode: "native" });
     }
+
+    const onClick = (event: MouseEvent) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey) return;
+      const anchor = closestAnchor(event.target);
+      if (!anchor) return;
+      const href = anchor.getAttribute("href");
+      if (!href || !shouldOpenExternally(href)) return;
+      event.preventDefault();
+      event.stopPropagation();
+      void openExternalUrl(anchor.href || href);
+    };
+
+    document.addEventListener("click", onClick, true);
+    return () => document.removeEventListener("click", onClick, true);
   }, []);
 
   return null;

@@ -37,6 +37,8 @@ npx cap sync ios
 - `ios.contentInset: never` وشريط حالة داكن فوق الويب (`StatusBar.overlaysWebView`)
 - `CFBundleDevelopmentRegion = ar` + `ar.lproj` / `en.lproj`
 - `WahaViewController`: `semanticContentAttribute` عربي، `preferredStatusBarStyle = .lightContent`
+- `@capacitor/browser`: تهجد / محسن / ألعاب / حياة والبوابات الرسمية تُفتح خارج الـ WebView
+- إذن `LocalNotifications` جاهز لتذكير الصلاة (يُطلب عند تفعيل المفتاح، لا عند الإقلاع)
 
 ## البناء السحابي
 
