@@ -271,7 +271,7 @@ function StartPage({
 }: {
   lang: Lang;
   draft: string;
-  liveHouse: HouseSite[];
+  liveHouse: readonly HouseSite[];
   favorites: MadarVisit[];
   history: MadarVisit[];
   onOpenHouse: (site: HouseSite) => void;
@@ -356,7 +356,7 @@ function ResultsPage({
   lang: Lang;
   query: string;
   intent: ReturnType<typeof classifyOmnibox>;
-  house: HouseSite[];
+  house: readonly HouseSite[];
   tools: ReturnType<typeof matchQuickTools>;
   wiki: WikiHit | null;
   wikiState: "idle" | "loading" | "done";
