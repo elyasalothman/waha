@@ -3,10 +3,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { AppCard, AppGrid } from "@/components/app-card";
 import { CitySelect } from "@/components/city-select";
 import { Card } from "@/components/ui/card";
+import { HomeNews } from "@/components/home-news";
+import { SafeSection } from "@/components/safe-section";
+import { ShadowDay } from "@/components/shadow-day";
 import { byLane, featuredFor, freshFor, getApp, LANE_LABEL, WORK_LANES } from "@/lib/catalog";
-import { formatDuration, formatHm, getTimes, nextPrayer, PRAYER_LABELS } from "@/lib/prayer";
+import { formatLocalHm } from "@/lib/clock";
+import { formatDuration, formatHm, getTimesInZone, nextPrayer, PRAYER_LABELS } from "@/lib/prayer";
 import { formatGregorian, formatHijri, upcomingOccasions } from "@/lib/hijri";
-import { fetchWeather, weatherLabel, type WeatherPayload } from "@/lib/weather";
+import { climatePayload, fetchWeatherSafe, formatCelsius, readWeatherCache, weatherLabel, type WeatherPayload } from "@/lib/weather";
 import { personalPulse, workPulse, type PulseAlert, type PulseStat } from "@/lib/pulse";
 import { dailyBundle } from "@/lib/daily";
 import { t } from "@/lib/i18n";
@@ -26,17 +30,22 @@ function PersonalHome() {
   const city = useAppStore((s) => s.city);
   const recent = useAppStore((s) => s.recent);
   const now = useNow(1000);
-  const pt = useMemo(() => getTimes(city.lat, city.lon, now), [city.lat, city.lon, now.toDateString()]);
-  const next = nextPrayer(pt, now);
+  const pt = useMemo(
+    () => getTimesInZone(city.lat, city.lon, now, city.tz),
+    [city.lat, city.lon, city.tz, now.toDateString()],
+  );
+  const next = nextPrayer(pt, now, city.tz);
   const occasions = useMemo(() => upcomingOccasions(now, lang), [now.toDateString(), lang]);
   const daily = useMemo(() => dailyBundle(now), [now.toDateString()]);
-  const [weather, setWeather] = useState<WeatherPayload | null>(null);
+  const [weather, setWeather] = useState<WeatherPayload>(
+    () => readWeatherCache(city.lat, city.lon) ?? climatePayload(),
+  );
   const [pulse, setPulse] = useState<{ stats: PulseStat[]; alerts: PulseAlert[] }>({ stats: [], alerts: [] });
 
   useEffect(() => {
     let live = true;
-    fetchWeather(city.lat, city.lon)
-      .then((w) => live && setWeather(w))
+    fetchWeatherSafe(city.lat, city.lon, 2000)
+      .then((w) => live && setWeather(w.payload))
       .catch(() => {});
     return () => {
       live = false;
@@ -57,19 +66,18 @@ function PersonalHome() {
     <div className="mx-auto max-w-5xl">
       <p className="mb-1 text-xs font-medium tracking-wide text-muted">{t(lang, "personal")}</p>
       <p className="mb-4 text-sm text-muted">{t(lang, "personalIntro")}</p>
-      <section className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
+      <ShadowDay />
+      <SafeSection>
+        <HomeNews />
+      </SafeSection>
+      <section className="mt-8 grid gap-4 lg:grid-cols-[1.4fr_1fr]">
         <div className="rounded-xl border border-border bg-surface p-6 md:p-8">
           <p className="text-sm text-muted">{lang === "ar" ? city.ar : city.en}</p>
           <h1 className="mt-3 font-display text-4xl leading-tight tracking-tight md:text-5xl">
             {formatHijri(now, lang, true)}
           </h1>
           <p className="mt-3 text-muted">{formatGregorian(now, lang)}</p>
-          <p className="mt-4 font-mono text-3xl tabular-nums">
-            {new Intl.DateTimeFormat(lang === "ar" ? "ar-SA" : "en-GB", {
-              hour: "numeric",
-              minute: "2-digit",
-            }).format(now)}
-          </p>
+          <p className="mt-4 font-mono text-3xl tabular-nums tracking-tight">{formatLocalHm(now)}</p>
           <div className="mt-6 max-w-md">
             <CitySelect compact />
           </div>
@@ -79,7 +87,9 @@ function PersonalHome() {
           <Link to="/app/$id" params={{ id: "salah" }} className="block rounded-xl border border-border bg-surface p-5 hover:bg-surface-2">
             <p className="text-xs text-muted">{t(lang, "nextPrayer")}</p>
             <p className="mt-1 text-2xl font-medium">{PRAYER_LABELS[next.key][lang]}</p>
-            <p className="mt-1 font-mono text-xl tabular-nums text-primary">{formatHm(next.at, lang)}</p>
+            <p className="mt-1 font-mono text-xl tabular-nums tracking-tight text-primary">
+              {formatHm(next.at, lang, city.tz)}
+            </p>
             <p className="mt-1 text-sm text-muted">
               {t(lang, "remaining")} {formatDuration(next.at.getTime() - now.getTime(), lang)}
             </p>
@@ -88,7 +98,7 @@ function PersonalHome() {
             <p className="text-xs text-muted">{t(lang, "weather")}</p>
             {weather ? (
               <>
-                <p className="mt-1 font-display text-3xl tabular-nums">{Math.round(weather.current.temperature)}°</p>
+                <p className="mt-1 font-display text-3xl tabular-nums">{formatCelsius(weather.current.temperature)}</p>
                 <p className="text-sm text-muted">{weatherLabel(weather.current.code, lang)}</p>
               </>
             ) : (

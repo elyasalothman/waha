@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { CitySelect } from "@/components/city-select";
 import { Card } from "@/components/ui/card";
-import { formatDuration, formatHm, getTimes, nextPrayer, PRAYER_KEYS, PRAYER_LABELS, timesMap } from "@/lib/prayer";
+import { formatDuration, formatHm, getTimesInZone, nextPrayer, PRAYER_KEYS, PRAYER_LABELS, timesMap } from "@/lib/prayer";
 import { useNow } from "@/hooks/use-now";
 import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
@@ -11,9 +11,12 @@ export function SalahApp() {
   const lang = useAppStore((s) => s.lang);
   const city = useAppStore((s) => s.city);
   const now = useNow(1000);
-  const pt = useMemo(() => getTimes(city.lat, city.lon, now), [city.lat, city.lon, now.toDateString()]);
+  const pt = useMemo(
+    () => getTimesInZone(city.lat, city.lon, now, city.tz),
+    [city.lat, city.lon, city.tz, now.toDateString()],
+  );
   const map = timesMap(pt);
-  const next = nextPrayer(pt, now);
+  const next = nextPrayer(pt, now, city.tz);
   const remain = next.at.getTime() - now.getTime();
 
   return (
@@ -22,7 +25,9 @@ export function SalahApp() {
       <Card className="p-5">
         <p className="text-xs text-muted">{t(lang, "nextPrayer")}</p>
         <p className="mt-1 font-display text-4xl">{PRAYER_LABELS[next.key][lang]}</p>
-        <p className="mt-2 font-mono text-2xl tabular-nums text-primary">{formatHm(next.at, lang)}</p>
+        <p className="mt-2 font-mono text-2xl tabular-nums tracking-tight text-primary">
+          {formatHm(next.at, lang, city.tz)}
+        </p>
         <p className="mt-1 text-sm text-muted">
           {t(lang, "remaining")} {formatDuration(remain, lang)}
         </p>
@@ -39,7 +44,7 @@ export function SalahApp() {
               )}
             >
               <div className="text-xs text-muted">{PRAYER_LABELS[key][lang]}</div>
-              <div className="mt-1 font-mono text-lg tabular-nums">{formatHm(map[key], lang)}</div>
+              <div className="mt-1 font-mono text-lg tabular-nums tracking-tight">{formatHm(map[key], lang, city.tz)}</div>
             </div>
           );
         })}
