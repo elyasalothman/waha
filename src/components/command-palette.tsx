@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { Command } from "cmdk";
-import { ClipsMark, MadarMark } from "@/components/brand";
+import { BooksMark, ClipsMark, MadarMark } from "@/components/brand";
 import { searchCatalog } from "@/lib/catalog";
 import { hideMoney, isMoneySurface } from "@/lib/child-mode";
 import { appIcon } from "@/lib/icons";
@@ -86,7 +86,8 @@ export function CommandPalette({
             </Command.Item>
           ) : null}
           {items.map((item) => {
-            const Icon = item.id === "madar" ? MadarMark : item.id === "clips" ? ClipsMark : appIcon(item.icon);
+            const Icon =
+              item.id === "madar" ? MadarMark : item.id === "clips" ? ClipsMark : item.id === "midad" ? BooksMark : appIcon(item.icon);
             return (
               <Command.Item
                 key={item.id}
@@ -99,6 +100,10 @@ export function CommandPalette({
                   }
                   if (item.portal && item.id === "clips") {
                     void navigate({ to: "/clips" });
+                    return;
+                  }
+                  if (item.portal && item.id === "midad") {
+                    void navigate({ to: "/books" });
                     return;
                   }
                   if (item.href) {
