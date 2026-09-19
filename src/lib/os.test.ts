@@ -31,16 +31,21 @@ describe("King lock — first screen", () => {
       false,
     );
     assert.equal(
-      surface.wells.some((w) => w.id === "inbox"),
+      firstScreenIds(surface).includes("well:inbox"),
       false,
     );
   });
 
-  it("keeps water and expense as secondary wells when money is on", () => {
+  it("keeps water and expense as quiet secondary wells — never a fourth door", () => {
     const surface = composePersonalHome(defaultFeatures());
     assert.deepEqual(
       surface.wells.map((w) => w.id),
-      ["water", "expense", "inbox"],
+      ["water", "expense"],
+    );
+    assert.ok(surface.wells.length <= 2);
+    assert.equal(
+      firstScreenIds(surface).some((id) => id === "dock:ask" || id === "dock:settings" || id === "well:inbox"),
+      false,
     );
   });
 
@@ -115,6 +120,13 @@ describe("family today", () => {
   it("seeds three roles and never uses an em dash placeholder", () => {
     const board = seedFamilyToday();
     assert.equal(board.roles.length, 3);
+    assert.deepEqual(
+      board.roles.map((r) => r.id),
+      ["one", "two", "three"],
+    );
+    assert.deepEqual(board.tasks, []);
+    assert.deepEqual(board.appointments, []);
+    assert.equal(Object.keys(board).sort().join(","), "appointments,roles,tasks");
     assert.equal(
       JSON.stringify(board).includes("—"),
       false,

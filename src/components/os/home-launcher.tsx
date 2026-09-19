@@ -1,16 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { appIcon } from "@/lib/icons";
-import { formatDuration, formatHm, getTimes, nextPrayer, PRAYER_LABELS } from "@/lib/prayer";
+import { formatDuration, nextPrayerVisible } from "@/lib/prayer";
 import { formatGregorian, formatHijri } from "@/lib/hijri";
 import { composePersonalHome } from "@/lib/os";
 import { expenseWell, waterWell } from "@/lib/home-wells";
-import { unreadCount } from "@/lib/messages";
-import { selfAuthors } from "@/lib/identity";
 import { t } from "@/lib/i18n";
+import { useHydrated } from "@/hooks/use-hydrated";
 import { useNow } from "@/hooks/use-now";
 import { useAppStore } from "@/store/app-store";
-import { useMessagesStore } from "@/store/messages-store";
 import { cn } from "@/lib/cn";
 import { isFeatureOn } from "@/lib/features";
 import { FamilyTodayPreview } from "@/components/os/family-today-board";
@@ -21,18 +19,20 @@ function greeting(lang: "ar" | "en", hour: number) {
   return t(lang, "greetEve");
 }
 
+function Pulse({ className }: { className?: string }) {
+  return <div className={cn("animate-pulse rounded-md bg-surface-2", className)} />;
+}
+
 export function HomeLauncher() {
   const lang = useAppStore((s) => s.lang);
   const city = useAppStore((s) => s.city);
   const name = useAppStore((s) => s.profileName);
   const features = useAppStore((s) => s.features);
   const now = useNow(1000);
-  const inbox = useMessagesStore();
-  const hydrateInbox = useMessagesStore((s) => s.hydrate);
+  const hydrated = useHydrated();
   const surface = useMemo(() => composePersonalHome(features), [features]);
   const dayKey = now.toDateString();
-  const pt = useMemo(() => getTimes(city.lat, city.lon, new Date(dayKey)), [city.lat, city.lon, dayKey]);
-  const next = nextPrayer(pt, now);
+  const next = nextPrayerVisible(city.lat, city.lon, now, city.tz);
   const [ready, setReady] = useState(false);
   const [wells, setWells] = useState({
     water: { value: 0, max: 8 },
@@ -40,16 +40,13 @@ export function HomeLauncher() {
   });
 
   useEffect(() => {
-    hydrateInbox();
-  }, [hydrateInbox]);
-
-  useEffect(() => {
     setWells({ water: waterWell(), expense: expenseWell() });
     setReady(true);
   }, [dayKey]);
 
-  const unread = unreadCount(inbox, inbox.lastReadAt, selfAuthors(name));
   const hello = greeting(lang, now.getHours());
+  const hijri = formatHijri(now, lang);
+  const gregorian = formatGregorian(now, lang);
 
   return (
     <div className="mx-auto max-w-lg">
@@ -62,9 +59,9 @@ export function HomeLauncher() {
         <p className="mt-3 text-sm text-muted">
           {lang === "ar" ? city.ar : city.en}
           <span className="mx-2 text-subtle">·</span>
-          {formatHijri(now, lang)}
+          {hydrated && hijri.trim() ? hijri : <Pulse className="inline-block h-4 w-28 align-middle" />}
         </p>
-        <p className="mt-1 text-sm text-subtle">{formatGregorian(now, lang)}</p>
+        <p className="mt-1 text-sm text-subtle">{hydrated && gregorian.trim() ? gregorian : <Pulse className="mt-1 h-4 w-36" />}</p>
       </header>
 
       <Link
@@ -73,76 +70,51 @@ export function HomeLauncher() {
         className="block rounded-3xl border border-border bg-surface px-6 py-7 shadow-(--shadow-soft) transition-colors hover:bg-surface-2"
       >
         <p className="text-xs font-medium tracking-wide text-muted">{t(lang, "osShade")}</p>
-        <p className="mt-4 font-display text-5xl leading-none">{PRAYER_LABELS[next.key][lang]}</p>
-        <p className="mt-4 font-mono text-3xl tabular-nums text-primary">{formatHm(next.at, lang)}</p>
-        <p className="mt-2 text-sm text-muted">
-          {t(lang, "remaining")} {formatDuration(next.at.getTime() - now.getTime(), lang)}
-        </p>
+        {hydrated ? (
+          <>
+            <p className="mt-4 font-display text-5xl leading-none">{next.label[lang]}</p>
+            <p className="mt-4 font-mono text-3xl tabular-nums text-primary">{next.hm}</p>
+            <p className="mt-2 text-sm text-muted">
+              {t(lang, "remaining")} {formatDuration(next.at.getTime() - now.getTime(), lang)}
+            </p>
+          </>
+        ) : (
+          <>
+            <Pulse className="mt-4 h-12 w-36" />
+            <Pulse className="mt-4 h-9 w-24" />
+            <Pulse className="mt-2 h-4 w-40" />
+          </>
+        )}
       </Link>
 
       <FamilyTodayPreview />
 
-      <section className="mt-4 grid grid-cols-2 gap-2">
-        {surface.wells.map((well) => {
-          const href = well.href;
-          const quiet = well.id === "water" || well.id === "expense";
-          const inner = (() => {
-            if (!ready) {
+      {surface.wells.length ? (
+        <p className="mt-3 flex items-center gap-3 px-1 text-[11px] text-subtle">
+          {ready ? (
+            surface.wells.map((well) => {
+              const label =
+                well.id === "water"
+                  ? `${well.title[lang]} ${wells.water.value}/${wells.water.max}`
+                  : `${well.title[lang]} ${wells.expense.spent.toLocaleString(lang === "ar" ? "ar-SA" : "en-SA")}`;
+              if (well.href.startsWith("/app/")) {
+                return (
+                  <Link key={well.id} to="/app/$id" params={{ id: well.href.replace("/app/", "") }} className="hover:text-muted">
+                    {label}
+                  </Link>
+                );
+              }
               return (
-                <>
-                  <p className="text-xs text-muted">{well.title[lang]}</p>
-                  <div className="mt-3 h-6 w-16 animate-pulse rounded-md bg-surface-2" />
-                </>
+                <Link key={well.id} to={well.href as "/"} className="hover:text-muted">
+                  {label}
+                </Link>
               );
-            }
-            if (well.id === "water") {
-              return (
-                <>
-                  <p className="text-[11px] text-subtle">{well.title[lang]}</p>
-                  <p className="mt-1 font-mono text-lg tabular-nums text-muted">
-                    {wells.water.value}/{wells.water.max}
-                  </p>
-                </>
-              );
-            }
-            if (well.id === "expense") {
-              return (
-                <>
-                  <p className="text-[11px] text-subtle">{well.title[lang]}</p>
-                  <p className="mt-1 font-mono text-lg tabular-nums text-muted">
-                    {wells.expense.spent.toLocaleString(lang === "ar" ? "ar-SA" : "en-SA")}
-                  </p>
-                </>
-              );
-            }
-            return (
-              <>
-                <p className="text-xs text-muted">{well.title[lang]}</p>
-                <p className="mt-2 font-mono text-2xl tabular-nums">{unread}</p>
-              </>
-            );
-          })();
-
-          if (href.startsWith("/app/")) {
-            const id = href.replace("/app/", "");
-            return (
-              <Link
-                key={well.id}
-                to="/app/$id"
-                params={{ id }}
-                className={cn("rounded-2xl border border-border bg-surface px-4 hover:bg-surface-2", quiet ? "py-3" : "py-4")}
-              >
-                {inner}
-              </Link>
-            );
-          }
-          return (
-            <Link key={well.id} to={href as "/"} className={cn("rounded-2xl border border-border bg-surface px-4 hover:bg-surface-2", quiet ? "py-3" : "py-4")}>
-              {inner}
-            </Link>
-          );
-        })}
-      </section>
+            })
+          ) : (
+            <Pulse className="h-3 w-40" />
+          )}
+        </p>
+      ) : null}
 
       <section className="mt-10">
         <h2 className="mb-4 text-sm font-medium text-muted">{t(lang, "dock")}</h2>
@@ -159,21 +131,6 @@ export function HomeLauncher() {
             );
           })}
         </div>
-        {surface.more.length ? (
-          <div className="mt-6 grid grid-cols-4 gap-3">
-            {surface.more.map((app) => {
-              const Icon = appIcon(app.icon);
-              return (
-                <Link key={app.id} to={app.to as "/"} className="group flex flex-col items-center gap-2">
-                  <span className="flex size-12 items-center justify-center rounded-2xl border border-border bg-surface text-muted group-hover:bg-surface-2 group-hover:text-fg">
-                    <Icon className="size-5" strokeWidth={1.5} />
-                  </span>
-                  <span className="text-xs text-subtle">{app.title[lang]}</span>
-                </Link>
-              );
-            })}
-          </div>
-        ) : null}
       </section>
 
       <p className={cn("mt-12 text-center text-sm text-subtle")}>
