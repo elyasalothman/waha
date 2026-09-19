@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet, useRouterState } from "@tanstack/react-router";
 import {
+  GalleryVertical,
   Gamepad2,
-  House,
   PanelsTopLeft,
   Search,
   Sparkles,
@@ -21,10 +21,10 @@ import { cn } from "@/lib/cn";
 import { useAppStore } from "@/store/app-store";
 import { Toaster } from "sonner";
 
-type NavItem = { to: string; key: I18nKey; icon: typeof House };
+type NavItem = { to: string; key: I18nKey; icon: typeof GalleryVertical };
 
 const PERSONAL_NAV: NavItem[] = [
-  { to: "/", key: "home", icon: House },
+  { to: "/", key: "home", icon: GalleryVertical },
   { to: "/life", key: "life", icon: Sun },
   { to: "/money", key: "money", icon: Wallet },
   { to: "/tools", key: "tools", icon: Wrench },
@@ -33,7 +33,7 @@ const PERSONAL_NAV: NavItem[] = [
 ];
 
 const WORK_NAV: NavItem[] = [
-  { to: "/", key: "home", icon: House },
+  { to: "/", key: "home", icon: GalleryVertical },
   { to: "/workspace", key: "workspace", icon: PanelsTopLeft },
   { to: "/money", key: "finance", icon: Wallet },
   { to: "/tools", key: "tools", icon: Wrench },
