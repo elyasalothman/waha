@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
+import { useHydrated } from "@/hooks/use-hydrated";
 import { useNow } from "@/hooks/use-now";
 import { fetchWeatherSafe, formatCelsius, prefetchDefaultWeather, weatherLabel } from "@/lib/weather";
 import { prayerLabel, shadowDayNow } from "@/lib/shadow-day";
@@ -7,9 +8,26 @@ import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
 import { cn } from "@/lib/cn";
 
+/** Instant first paint — same box as HH:MM / 36°C, no empty gap. */
+function MetricSkeleton() {
+  return (
+    <span
+      className="mt-1 inline-block h-8 w-[4.75rem] animate-pulse rounded-md bg-surface-2"
+      data-skeleton="metric"
+      aria-hidden="true"
+    />
+  );
+}
+
+function MetricValue({ ready, value }: { ready: boolean; value: string }) {
+  if (!ready) return <MetricSkeleton />;
+  return <p className="mt-1 min-h-8 font-mono text-2xl tabular-nums tracking-tight text-fg">{value}</p>;
+}
+
 export function ShadowDay() {
   const lang = useAppStore((s) => s.lang);
   const city = useAppStore((s) => s.city);
+  const hydrated = useHydrated();
   const now = useNow(1000);
   const snap = shadowDayNow(now, city);
   const [liveWx, setLiveWx] = useState<{ text: string; label: string } | null>(null);
@@ -30,7 +48,7 @@ export function ShadowDay() {
         });
       })
       .catch(() => {
-        /* snapshot already shows an instant °C */
+        /* snapshot already has an instant °C after hydration */
       });
     return () => {
       live = false;
@@ -48,6 +66,7 @@ export function ShadowDay() {
       kicker: t(lang, "nowLabel"),
       value: snap.clock,
       sub: lang === "ar" ? snap.cityAr : snap.cityEn,
+      skeleton: false,
     },
     {
       key: "prayer",
@@ -55,7 +74,8 @@ export function ShadowDay() {
       id: "salah",
       kicker: t(lang, "nextPrayerFollowing"),
       value: snap.prayerHm,
-      sub: prayerLabel(snap, lang),
+      sub: hydrated ? prayerLabel(snap, lang) : "",
+      skeleton: !hydrated,
     },
     {
       key: "weather",
@@ -63,7 +83,8 @@ export function ShadowDay() {
       id: "weather",
       kicker: t(lang, "weather"),
       value: weatherText,
-      sub: weatherSub,
+      sub: hydrated ? weatherSub : "",
+      skeleton: !hydrated,
     },
     {
       key: "hijri",
@@ -72,6 +93,7 @@ export function ShadowDay() {
       kicker: t(lang, "hijriDate"),
       value: snap.hijri,
       sub: snap.gregorian,
+      skeleton: false,
     },
   ];
 
@@ -87,16 +109,22 @@ export function ShadowDay() {
             className="block rounded-xl border border-border bg-surface p-4 hover:bg-surface-2"
           >
             <p className="text-xs text-muted">{card.kicker}</p>
-            <p
-              className={cn(
-                "mt-1 text-fg",
-                card.key === "hijri"
-                  ? "font-display text-xl leading-snug"
-                  : "font-mono text-2xl tabular-nums tracking-tight",
-              )}
-            >
-              {card.value}
-            </p>
+            {card.skeleton ? (
+              <MetricSkeleton />
+            ) : card.key === "prayer" || card.key === "weather" ? (
+              <MetricValue ready value={card.value} />
+            ) : (
+              <p
+                className={cn(
+                  "mt-1 text-fg",
+                  card.key === "hijri"
+                    ? "font-display text-xl leading-snug"
+                    : "font-mono text-2xl tabular-nums tracking-tight",
+                )}
+              >
+                {card.value}
+              </p>
+            )}
             {card.sub ? <p className="mt-1 text-sm text-muted">{card.sub}</p> : null}
           </Link>
         ))}

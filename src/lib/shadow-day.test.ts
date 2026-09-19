@@ -7,6 +7,7 @@ import { formatHijri, toHijri } from "./hijri.ts";
 import { formatHm, nextPrayerVisible } from "./prayer.ts";
 import { fetchHomeNews } from "./news.ts";
 import { shadowDayNow } from "./shadow-day.ts";
+import { useHydrated } from "../hooks/use-hydrated.ts";
 
 const ARABIC_INDIC = /[٠-٩]/;
 
@@ -86,6 +87,12 @@ describe("weather °C", () => {
     } finally {
       globalThis.fetch = original;
     }
+  });
+});
+
+describe("useHydrated", () => {
+  it("is a function so the first paint can choose skeleton vs value", () => {
+    assert.equal(typeof useHydrated, "function");
   });
 });
 
