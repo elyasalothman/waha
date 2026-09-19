@@ -110,6 +110,14 @@ describe("square store", () => {
     assert.ok(feed.some((item) => item.badge === "بيت"));
   });
 
+  it("does not mix من العالم into the house seed count of 48", () => {
+    const feed = mergeFeed(emptyLocal(), "forYou", Date.now(), "ar");
+    assert.equal(feed.length, 48);
+    assert.equal(feed.length, SEED_POSTS.length);
+    assert.equal(feed.some((item) => item.id.startsWith("world-")), false);
+    assert.equal(SEED_POSTS.some((post) => post.id.startsWith("world-")), false);
+  });
+
   it("places a newly written post at the top with no fake counts", () => {
     const now = 1_800_000_000_000;
     const next = addPost(emptyLocal(), "صباح الخير من الميدان", now);
