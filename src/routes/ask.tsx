@@ -1,10 +1,8 @@
-import { createFileRoute, Navigate } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
-/** Canonical Ask lives at /app/chat; keep /ask as a stable short URL. */
+/** Legacy /ask → Ask Waha chat surface at /app/chat. */
 export const Route = createFileRoute("/ask")({
-  component: AskRedirect,
+  beforeLoad: () => {
+    throw redirect({ to: "/app/$id", params: { id: "chat" }, replace: true });
+  },
 });
-
-function AskRedirect() {
-  return <Navigate to="/app/$id" params={{ id: "chat" }} replace />;
-}
