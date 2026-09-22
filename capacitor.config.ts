@@ -13,16 +13,23 @@ import type { CapacitorConfig } from "@capacitor/cli";
  *    only for true external (gov) portals — never house https.
  *
  * Load order:
- *   1. CAPACITOR_SERVER_URL or WAHA_IOS_SERVER_URL → live production/preview
- *   2. otherwise bundled `www/`
+ *   1. CAPACITOR_SERVER_URL or WAHA_IOS_SERVER_URL → override
+ *   2. else live https://waha.hajdah.com (DNS-verified live host)
+ *   3. WAHA_IOS_OFFLINE=1 → bundled www/ only
  */
-const REMOTE_URL = (
+const ENV_URL = (
   process.env.CAPACITOR_SERVER_URL ||
   process.env.WAHA_IOS_SERVER_URL ||
   ""
 ).trim();
 
+/** Live production host (hajdah resolves; alhajda currently has no DNS). */
 const PRODUCTION_HOST = "waha.hajdah.com";
+const ALT_HOST = "waha.alhajda.com";
+
+const LIVE_URL =
+  ENV_URL ||
+  (process.env.WAHA_IOS_OFFLINE === "1" ? "" : `https://${PRODUCTION_HOST}`);
 
 const config: CapacitorConfig = {
   appId: "com.alhajda.waha",
@@ -61,13 +68,14 @@ const config: CapacitorConfig = {
     cleartext: false,
     allowNavigation: [
       PRODUCTION_HOST,
+      ALT_HOST,
       "alhajda.com",
       "*.alhajda.com",
       "hajdah.com",
       "*.hajdah.com",
       "*.vercel.app",
     ],
-    ...(REMOTE_URL ? { url: REMOTE_URL } : {}),
+    ...(LIVE_URL ? { url: LIVE_URL } : {}),
   },
 };
 
