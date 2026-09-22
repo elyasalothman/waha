@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/ask",
+      "destination": "/app/chat",
+      "permanent": false
+    },
+    {
+      "source": "/ask/",
+      "destination": "/app/chat",
+      "permanent": false
+    }
+  ]
+}
