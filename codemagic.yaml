@@ -18,8 +18,9 @@ workflows:
         XCODE_WORKSPACE: ios/App/App.xcworkspace
         BUNDLE_ID: com.alhajda.waha
         # Live WKWebView host — must be set before `npx cap sync ios`.
-        CAPACITOR_SERVER_URL: https://waha.alhajda.com
-        WAHA_IOS_SERVER_URL: https://waha.alhajda.com
+        # waha.hajdah.com is DNS-verified live (alhajda currently NXDOMAIN).
+        CAPACITOR_SERVER_URL: https://waha.hajdah.com
+        WAHA_IOS_SERVER_URL: https://waha.hajdah.com
       node: 22
       # App Store review rejects builds made with an SDK Apple has not opened yet.
       # Stay on the same Xcode pin as تهجد (iOS 26 SDK).
@@ -48,7 +49,7 @@ workflows:
       - name: Sync Capacitor iOS (Mac builder only)
         script: |
           set -euo pipefail
-          export CAPACITOR_SERVER_URL="${CAPACITOR_SERVER_URL:-https://waha.alhajda.com}"
+          export CAPACITOR_SERVER_URL="${CAPACITOR_SERVER_URL:-https://waha.hajdah.com}"
           export WAHA_IOS_SERVER_URL="${WAHA_IOS_SERVER_URL:-$CAPACITOR_SERVER_URL}"
           echo "Capacitor live URL: $CAPACITOR_SERVER_URL"
           npx cap sync ios
