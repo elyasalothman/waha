@@ -3,12 +3,12 @@
     {
       "source": "/ask",
       "destination": "/app/chat",
-      "permanent": false
+      "permanent": true
     },
     {
       "source": "/ask/",
       "destination": "/app/chat",
-      "permanent": false
+      "permanent": true
     }
   ]
 }
