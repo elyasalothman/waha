@@ -37,6 +37,10 @@ function AppPage() {
     return <Navigate to="/books" />;
   }
 
+  if (id === "ask") {
+    return <Navigate to="/app/$id" params={{ id: "chat" }} />;
+  }
+
   if (item && hideMoney(segment) && isMoneySurface(item)) {
     return <ChildMoneyGate lang={lang} />;
   }
