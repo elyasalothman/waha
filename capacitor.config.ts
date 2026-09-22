@@ -14,8 +14,8 @@ import type { CapacitorConfig } from "@capacitor/cli";
  *
  * Load order:
  *   1. CAPACITOR_SERVER_URL or WAHA_IOS_SERVER_URL → override
- *   2. else live production https://waha.alhajda.com (fallback waha.hajdah.com)
- *   Bundled www/ is offline fallback only when LIVE_URL is explicitly disabled.
+ *   2. else live https://waha.hajdah.com (DNS-verified)
+ *   3. WAHA_IOS_OFFLINE=1 → bundled www/ only
  */
 const ENV_URL = (
   process.env.CAPACITOR_SERVER_URL ||
@@ -23,15 +23,13 @@ const ENV_URL = (
   ""
 ).trim();
 
-/** Production hosts — alhajda primary, hajdah fallback. */
-const PRODUCTION_HOST = "waha.alhajda.com";
-const FALLBACK_HOST = "waha.hajdah.com";
+/** Live host: hajdah resolves (200). alhajda currently NXDOMAIN — keep in allowNavigation only. */
+const PRODUCTION_HOST = "waha.hajdah.com";
+const ALT_HOST = "waha.alhajda.com";
 
 const LIVE_URL =
   ENV_URL ||
-  (process.env.WAHA_IOS_OFFLINE === "1"
-    ? ""
-    : `https://${PRODUCTION_HOST}`);
+  (process.env.WAHA_IOS_OFFLINE === "1" ? "" : `https://${PRODUCTION_HOST}`);
 
 const config: CapacitorConfig = {
   appId: "com.alhajda.waha",
@@ -70,7 +68,7 @@ const config: CapacitorConfig = {
     cleartext: false,
     allowNavigation: [
       PRODUCTION_HOST,
-      FALLBACK_HOST,
+      ALT_HOST,
       "alhajda.com",
       "*.alhajda.com",
       "hajdah.com",
