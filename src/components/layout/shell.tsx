@@ -33,6 +33,12 @@ export function Shell() {
 
   return (
     <div className="waha-shell min-h-dvh bg-bg text-fg">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-3 focus:text-primary-fg focus:outline-2 focus:outline-offset-2"
+      >
+        {lang === "ar" ? "تجاوز إلى المحتوى" : "Skip to content"}
+      </a>
       <aside className="fixed inset-y-0 start-0 z-30 hidden w-60 border-e border-border bg-surface lg:flex lg:flex-col">
         <div className="px-5 py-6">
           <Link to="/" className="inline-flex">
@@ -127,7 +133,7 @@ export function Shell() {
           </div>
         </header>
 
-        <main className="px-4 py-6 pb-24 lg:px-8 lg:pb-10">
+        <main id="main-content" tabIndex={-1} className="scroll-mt-16 px-4 py-6 pb-24 lg:px-8 lg:pb-10">
           <OfflineBanner lang={lang} />
           <Outlet />
         </main>
