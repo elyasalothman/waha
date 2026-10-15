@@ -1,0 +1,24 @@
+{
+  "base": "http://127.0.0.1:8081",
+  "viewport": "390×844",
+  "pages": [
+    {
+      "path": "/",
+      "status": 200,
+      "width": 390,
+      "ltrWidth": 390
+    },
+    {
+      "path": "/games",
+      "status": 200,
+      "width": 390,
+      "ltrWidth": 390
+    }
+  ],
+  "checks": [
+    "16 shared site cards, required hosts, new-tab targets and touch size",
+    "/: tapping Play Hayat opens a separate full-page context, no iframe",
+    "/games: tapping Play Hayat opens a separate full-page context, no iframe",
+    "No uncaught JavaScript errors; 390px in both document directions"
+  ]
+}

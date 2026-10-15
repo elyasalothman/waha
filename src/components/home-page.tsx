@@ -1,4 +1,6 @@
 import { Link } from "@tanstack/react-router";
+import { HouseDoors } from "@/components/house-doors";
+import { HayatCard } from "@/components/hayat-card";
 import { Compass } from "lucide-react";
 import { CompanyWatchlist } from "@/components/company-watchlist";
 import { DailyActions } from "@/components/daily-actions";
@@ -10,7 +12,7 @@ export function HomePage() {
   return (
     <div
       className="mx-auto max-w-3xl"
-      data-home-sections="news watchlist shortcuts"
+      data-home-sections="hayat house-sites news watchlist shortcuts"
       data-guest-read="open"
     >
       <header className="mb-5 flex items-center justify-between gap-4">
@@ -26,6 +28,8 @@ export function HomePage() {
         </Link>
       </header>
       <div className="space-y-4">
+        <HayatCard />
+        <HouseDoors />
         <DailyBriefing lang={lang} />
         <CompanyWatchlist lang={lang} />
         <DailyActions lang={lang} />

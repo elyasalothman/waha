@@ -125,8 +125,11 @@ describe("native open path", () => {
     const chrome = houseDoorChrome("https://midad.alhajda.com/library", "ar");
     assert.match(chrome.title, /مداد/);
     assert.equal(chrome.closeLabel, "رجوع لواحة");
-    assert.equal(houseDoorChrome("https://luma.alhajda.com/", "ar").title, "لُمعة");
-    assert.equal(houseDoorChrome("https://midad.alhajda.com/library", "en").closeLabel, "Back to Waha");
+    assert.equal(houseDoorChrome("https://luma.alhajda.com/", "ar").title, "لُمعة · سَمَر");
+    assert.equal(
+      houseDoorChrome("https://midad.alhajda.com/library", "en").closeLabel,
+      "Back to Waha",
+    );
   });
 
   it("openHouseDoor / house openExternalUrl never call Capacitor Browser.open", async () => {
@@ -168,7 +171,10 @@ describe("native open path", () => {
       "safari:https://islamhouse.com/ar/books/231837/",
       "safari:https://www.absher.sa/",
     ]);
-    assert.equal(calls.some((row) => row.startsWith("safari:") && row.includes("alhajda.com")), false);
+    assert.equal(
+      calls.some((row) => row.startsWith("safari:") && row.includes("alhajda.com")),
+      false,
+    );
   });
 
   it("source routes house doors through HouseDoorBrowser, not Browser.open", () => {

@@ -1,4 +1,5 @@
 import { ExternalLink as ExternalLinkIcon } from "lucide-react";
+import { HayatCard } from "@/components/hayat-card";
 import { AppCard } from "@/components/app-card";
 import { ExternalLink } from "@/components/external-link";
 import { SfxToggle } from "@/components/game-hud";
@@ -17,7 +18,10 @@ function useScores() {
     const next: Record<string, number> = {};
     for (const id of [...SIGNATURE_IDS, ...CLASSIC_IDS]) next[id] = readScore(id);
     try {
-      const memory = JSON.parse(localStorage.getItem("waha:memory-bests") ?? "{}") as Record<string, number>;
+      const memory = JSON.parse(localStorage.getItem("waha:memory-bests") ?? "{}") as Record<
+        string,
+        number
+      >;
       next.memory = Number(memory["8"] ?? 0);
       const persist = (key: string) => {
         const raw = localStorage.getItem(key);
@@ -55,8 +59,14 @@ export function GamesHub() {
         <SfxToggle />
       </header>
 
+      <div className="mb-6">
+        <HayatCard />
+      </div>
+
       <section className="mb-10">
-        <h2 className="mb-3 text-sm font-medium text-muted">{lang === "ar" ? "أبواب الخارج" : "Doors out"}</h2>
+        <h2 className="mb-3 text-sm font-medium text-muted">
+          {lang === "ar" ? "أبواب الخارج" : "Doors out"}
+        </h2>
         <div className="grid gap-3 md:grid-cols-2">
           {GAME_DOORS.map((door) => (
             <ExternalLink
@@ -79,7 +89,9 @@ export function GamesHub() {
       </section>
 
       <section className="mb-10">
-        <h2 className="mb-3 text-sm font-medium text-muted">{lang === "ar" ? "توقيع واحة" : "Waha’s own"}</h2>
+        <h2 className="mb-3 text-sm font-medium text-muted">
+          {lang === "ar" ? "توقيع واحة" : "Waha’s own"}
+        </h2>
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
           {signature.map((item) => {
             const Icon = appIcon(item.icon);
@@ -110,7 +122,9 @@ export function GamesHub() {
       </section>
 
       <section>
-        <h2 className="mb-3 text-sm font-medium text-muted">{lang === "ar" ? "استراحة" : "A short rest"}</h2>
+        <h2 className="mb-3 text-sm font-medium text-muted">
+          {lang === "ar" ? "استراحة" : "A short rest"}
+        </h2>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
           {classics.map((item) => (
             <AppCard key={item.id} item={item} lang={lang} />

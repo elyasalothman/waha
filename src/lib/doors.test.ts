@@ -50,11 +50,28 @@ describe("Alhajda doors", () => {
     );
   });
 
-  it("keeps the short مواقعنا directory without cloning extra launcher cards", () => {
+  it("includes the verified house sites without adding launcher cards", () => {
     assert.equal(ALHAJDA_SITES_INDEX, "https://alhajda.com/sites");
     assert.deepEqual(
       directoryDoors().map((d) => d.id),
-      ["tahajjud", "midad", "mohsin", "luma", "alhajda-tools", "agent", "hissati"],
+      [
+        "tahajjud",
+        "midad",
+        "mohsin",
+        "luma",
+        "alhajda-tools",
+        "agent",
+        "hissati",
+        "home",
+        "studio",
+        "hayat",
+        "samar",
+        "market",
+        "amlak",
+        "qararak",
+        "manba",
+        "khazana",
+      ],
     );
     assert.equal(getDoor("hissati")?.href, "https://hissati.alhajda.com");
   });

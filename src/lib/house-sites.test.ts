@@ -16,6 +16,15 @@ const CANONICAL_HREFS: Record<HouseSiteId, string> = {
   "alhajda-tools": "https://tools.alhajda.com",
   agent: "https://agent.alhajda.com",
   hissati: "https://hissati.alhajda.com",
+  home: "https://alhajda.com",
+  studio: "https://hajdah.com",
+  hayat: "https://hayat.alhajda.com",
+  samar: "https://luma.alhajda.com",
+  market: "https://market.alhajda.com",
+  amlak: "https://amlak.alhajda.com",
+  qararak: "https://qararak.alhajda.com",
+  manba: "https://manba.alhajda.com",
+  khazana: "https://khazana.alhajda.com",
 };
 
 const HOUSE_PRODUCT_HOSTS = [
@@ -34,7 +43,7 @@ describe("house-sites catalog", () => {
     assert.equal(DOORS, HOUSE_SITES);
     assert.equal(MADAR_SITES, HOUSE_SITES);
     for (const site of HOUSE_SITES) {
-      assert.match(site.href, /^https:\/\/([a-z0-9-]+\.)?alhajda\.com(\/.*)?$/);
+      assert.match(site.href, /^https:\/\/([a-z0-9-]+\.)?(?:alhajda|hajdah)\.com(\/.*)?$/);
       assert.equal(site.host, new URL(site.href).hostname);
       assert.equal(site.href.includes("/life"), false);
       assert.equal(site.href.includes("/app/"), false);

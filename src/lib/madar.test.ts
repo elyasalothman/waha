@@ -65,7 +65,25 @@ describe("matchHouseSites", () => {
     assert.equal(matchHouseSites("").length, HOUSE_SITES.length);
     assert.deepEqual(
       matchHouseSites("").map((s) => s.id),
-      ["tahajjud", "midad", "sites", "mohsin", "luma", "alhajda-tools", "agent", "hissati"],
+      [
+        "tahajjud",
+        "midad",
+        "sites",
+        "mohsin",
+        "luma",
+        "alhajda-tools",
+        "agent",
+        "hissati",
+        "home",
+        "studio",
+        "hayat",
+        "samar",
+        "market",
+        "amlak",
+        "qararak",
+        "manba",
+        "khazana",
+      ],
     );
   });
 
@@ -119,7 +137,13 @@ describe("quick tools and knowledge urls", () => {
 
 describe("history and favorites", () => {
   it("dedupes visits and keeps a short list", () => {
-    const first = { title: "تهجد", query: "تهجد", href: "https://tahajjud.alhajda.com/", kind: "house" as const, at: 1 };
+    const first = {
+      title: "تهجد",
+      query: "تهجد",
+      href: "https://tahajjud.alhajda.com/",
+      kind: "house" as const,
+      at: 1,
+    };
     const again = { ...first, at: 2 };
     const next = pushVisit(pushVisit([], first), again);
     assert.equal(next.length, 1);
@@ -127,7 +151,13 @@ describe("history and favorites", () => {
   });
 
   it("toggles a short favorite list", () => {
-    const item = { title: "مداد", query: "مداد", href: "https://midad.alhajda.com/", kind: "house" as const, at: 1 };
+    const item = {
+      title: "مداد",
+      query: "مداد",
+      href: "https://midad.alhajda.com/",
+      kind: "house" as const,
+      at: 1,
+    };
     const on = toggleFavorite([], item);
     assert.equal(isFavorite(on, item), true);
     assert.equal(isFavorite(toggleFavorite(on, item), item), false);

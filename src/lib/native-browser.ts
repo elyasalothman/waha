@@ -111,7 +111,7 @@ export function isSameOriginHref(href: string, origin = typeof window !== "undef
 /** Apex + every *.alhajda.com house / sister product, including مداد and لُمعة. */
 export function isHouseDoorHost(hostname: string): boolean {
   const host = hostname.replace(/^www\./, "").toLowerCase();
-  return host === "alhajda.com" || host.endsWith(".alhajda.com");
+  return host === "hajdah.com" || host === "alhajda.com" || host.endsWith(".alhajda.com");
 }
 
 export function isHouseDoorUrl(href: string, origin = typeof window !== "undefined" ? window.location.origin : ""): boolean {

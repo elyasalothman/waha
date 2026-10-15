@@ -1,3 +1,4 @@
+import { ExternalLink } from "@/components/external-link";
 import { ALHAJDA_SITES_INDEX, directoryDoors, doorHref } from "@/lib/doors";
 import { appIcon } from "@/lib/icons";
 import { t } from "@/lib/i18n";
@@ -15,7 +16,7 @@ export function SitesApp() {
           const Icon = appIcon(door.icon);
           return (
             <li key={door.id}>
-              <a
+              <ExternalLink
                 href={doorHref(door)}
                 className="flex min-h-14 items-center gap-3 rounded-xl border border-border bg-surface px-4 py-3 hover:bg-surface-2"
               >
@@ -26,18 +27,18 @@ export function SitesApp() {
                   <span className="block font-medium">{door.title[lang]}</span>
                   <span className="block text-sm text-muted">{door.blurb[lang]}</span>
                 </span>
-              </a>
+              </ExternalLink>
             </li>
           );
         })}
       </ul>
-      <a
+      <ExternalLink
         href={ALHAJDA_SITES_INDEX}
         className="flex min-h-12 items-center justify-between rounded-xl border border-border px-4 text-sm text-primary hover:bg-surface-2"
       >
         <span>{t(lang, "allSites")}</span>
         <span className="font-mono text-xs text-subtle">alhajda.com/sites</span>
-      </a>
+      </ExternalLink>
     </div>
   );
 }

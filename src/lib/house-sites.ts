@@ -9,7 +9,16 @@ export type HouseSiteId =
   | "luma"
   | "alhajda-tools"
   | "agent"
-  | "hissati";
+  | "hissati"
+  | "home"
+  | "studio"
+  | "hayat"
+  | "samar"
+  | "market"
+  | "amlak"
+  | "qararak"
+  | "manba"
+  | "khazana";
 
 export type HouseSite = {
   id: HouseSiteId;
@@ -57,8 +66,23 @@ const HOUSE_SITE_DRAFTS: readonly HouseSiteDraft[] = [
     href: "https://midad.alhajda.com/library",
     icon: "BookMarked",
     title: { ar: "مداد · رف كتب", en: "Midad · Book shelf" },
-    blurb: { ar: "أخلاق وشرعي ومداد — روابط معلَّمة المصدر", en: "Akhlaq, sharia, and Midad — source-stamped links" },
-    keywords: ["مداد", "قراءة", "كتاب", "كتب", "رف", "مكتبة", "midad", "read", "library", "books", "shelf"],
+    blurb: {
+      ar: "أخلاق وشرعي ومداد — روابط معلَّمة المصدر",
+      en: "Akhlaq, sharia, and Midad — source-stamped links",
+    },
+    keywords: [
+      "مداد",
+      "قراءة",
+      "كتاب",
+      "كتب",
+      "رف",
+      "مكتبة",
+      "midad",
+      "read",
+      "library",
+      "books",
+      "shelf",
+    ],
     category: "life",
     lane: "house",
     audience: PERSONAL,
@@ -96,7 +120,7 @@ const HOUSE_SITE_DRAFTS: readonly HouseSiteDraft[] = [
     href: "https://games.alhajda.com",
     icon: "Gamepad2",
     title: { ar: "لُمعة", en: "Luma" },
-    blurb: { ar: "ألعاب عربية من باحة الهجدة", en: "Arabic games from the Alhajda yard" },
+    blurb: { ar: "27 لعبة عربية من باحة الهجدة", en: "27 Arabic games from the Alhajda yard" },
     keywords: ["ألعاب", "العاب", "لمة", "لمعة", "luma", "games", "play"],
     category: "life",
     lane: "house",
@@ -135,11 +159,131 @@ const HOUSE_SITE_DRAFTS: readonly HouseSiteDraft[] = [
     href: "https://hissati.alhajda.com",
     icon: "GraduationCap",
     title: { ar: "حصتي", en: "Hissati" },
-    blurb: { ar: "دفتر المعلم — حصص ومتابعة", en: "A teacher’s notebook for lessons" },
+    blurb: { ar: "تعلّم تفاعلي ومسارات ومستويات", en: "Interactive learning paths and levels" },
     keywords: ["حصتي", "معلم", "حصة", "hissati", "teacher"],
     category: "life",
     lane: "house",
     audience: PERSONAL,
+    launcher: false,
+    directory: true,
+  },
+  {
+    id: "home",
+    href: "https://alhajda.com",
+    icon: "Globe",
+    title: { ar: "بيت الهجدة", en: "Alhajda home" },
+    blurb: { ar: "المساحة الرئيسية لكل مواقعنا", en: "The home of our sites" },
+    keywords: ["بيت الهجدة", "Alhajda home", "home"],
+    category: "life",
+    lane: "house",
+    audience: BOTH,
+    launcher: false,
+    directory: true,
+  },
+  {
+    id: "studio",
+    href: "https://hajdah.com",
+    icon: "Palette",
+    title: { ar: "هجدة · الاستوديو", en: "Hajdah · Studio" },
+    blurb: { ar: "استوديو هجدة ومشاريعه", en: "Hajdah studio and projects" },
+    keywords: ["هجدة · الاستوديو", "Hajdah · Studio", "studio"],
+    category: "life",
+    lane: "house",
+    audience: BOTH,
+    launcher: false,
+    directory: true,
+  },
+  {
+    id: "hayat",
+    href: "https://hayat.alhajda.com",
+    icon: "Gamepad2",
+    title: { ar: "حياة", en: "Hayat" },
+    blurb: {
+      ar: "لعبة حياة — عالم تلعبه بنافذة كاملة",
+      en: "Hayat game — a world to play in a full window",
+    },
+    keywords: ["حياة", "Hayat", "hayat"],
+    category: "life",
+    lane: "house",
+    audience: BOTH,
+    launcher: false,
+    directory: true,
+  },
+  {
+    id: "samar",
+    href: "https://luma.alhajda.com",
+    icon: "Dices",
+    title: { ar: "لُمعة · سَمَر", en: "Luma · Samar" },
+    blurb: { ar: "لعبة عربية للمجلس والعائلة", en: "An Arabic game for family gatherings" },
+    keywords: ["لُمعة · سَمَر", "Luma · Samar", "samar"],
+    category: "life",
+    lane: "house",
+    audience: BOTH,
+    launcher: false,
+    directory: true,
+  },
+  {
+    id: "market",
+    href: "https://market.alhajda.com",
+    icon: "TrendingUp",
+    title: { ar: "السوق", en: "Market" },
+    blurb: { ar: "منضدة أسعار السوق ومتابعتها", en: "A desk for market prices and watchlists" },
+    keywords: ["السوق", "Market", "market"],
+    category: "life",
+    lane: "house",
+    audience: BOTH,
+    launcher: false,
+    directory: true,
+  },
+  {
+    id: "amlak",
+    href: "https://amlak.alhajda.com",
+    icon: "Building2",
+    title: { ar: "أملاك", en: "Amlak" },
+    blurb: { ar: "وحدات وعقود وصيانة العقار", en: "Property units, leases and maintenance" },
+    keywords: ["أملاك", "Amlak", "amlak"],
+    category: "life",
+    lane: "house",
+    audience: BOTH,
+    launcher: false,
+    directory: true,
+  },
+  {
+    id: "qararak",
+    href: "https://qararak.alhajda.com",
+    icon: "ListChecks",
+    title: { ar: "قرارك", en: "Qararak" },
+    blurb: { ar: "مساحة عربية لتوضيح القرار", en: "An Arabic space for clearer decisions" },
+    keywords: ["قرارك", "Qararak", "qararak"],
+    category: "life",
+    lane: "house",
+    audience: BOTH,
+    launcher: false,
+    directory: true,
+  },
+  {
+    id: "manba",
+    href: "https://manba.alhajda.com",
+    icon: "Palette",
+    title: { ar: "منبع", en: "Manba" },
+    blurb: { ar: "أصول رقمية صُمّمت للعربية", en: "Digital assets designed for Arabic" },
+    keywords: ["منبع", "Manba", "manba"],
+    category: "life",
+    lane: "house",
+    audience: BOTH,
+    launcher: false,
+    directory: true,
+  },
+  {
+    id: "khazana",
+    href: "https://khazana.alhajda.com",
+    icon: "Boxes",
+    title: { ar: "الخزانة", en: "Khazana" },
+    blurb: { ar: "مواقع صغيرة مستقلة في مكان واحد", en: "Small independent sites in one place" },
+    keywords: ["الخزانة", "Khazana", "khazana"],
+    category: "life",
+    lane: "house",
+    audience: BOTH,
     launcher: false,
     directory: true,
   },
@@ -165,7 +309,9 @@ export function directoryHouseSites(): HouseSite[] {
 }
 
 export function primaryLauncherHouseSites(): HouseSite[] {
-  return PRIMARY_LAUNCHER_IDS.map((id) => getHouseSite(id)).filter((site): site is HouseSite => site != null);
+  return PRIMARY_LAUNCHER_IDS.map((id) => getHouseSite(id)).filter(
+    (site): site is HouseSite => site != null,
+  );
 }
 
 export function isExternalHouseSite(site: Pick<HouseSite, "href">): boolean {
