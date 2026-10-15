@@ -18,7 +18,7 @@ import "./reader-layout.css";
 // This is the reviewed, build-time book asset, never HTML extracted from user PDFs.
 const book = bookSource as CuratedBook;
 const control =
-  "inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-current/25 px-3 py-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-40";
+  "inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-lg border border-current/25 px-3 py-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-40";
 
 export default function AlhajdaReader() {
   const ar = useAppStore((s) => s.lang) === "ar";
@@ -121,7 +121,9 @@ export default function AlhajdaReader() {
     setQuery("");
     if (position.chapter === state.chapter)
       requestAnimationFrame(async () => {
-        await scrollTo(position.anchor ? document.getElementById(position.anchor) : article.current);
+        await scrollTo(
+          position.anchor ? document.getElementById(position.anchor) : article.current,
+        );
         if (pending.current === position) pending.current = null;
       });
   }

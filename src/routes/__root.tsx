@@ -27,6 +27,8 @@ export const Route = createRootRoute({
       { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
     ],
     links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
       { rel: "stylesheet", href: appCss },
       { rel: "manifest", href: "/manifest.webmanifest" },
@@ -44,7 +46,13 @@ function RootDocument() {
   const lang = useAppStore((s) => s.lang);
   const dir = lang === "ar" ? "rtl" : "ltr";
   return (
-    <html lang={lang} dir={dir} className="antialiased" data-palette="waha-daylight" suppressHydrationWarning>
+    <html
+      lang={lang}
+      dir={dir}
+      className="antialiased"
+      data-palette="waha-daylight"
+      suppressHydrationWarning
+    >
       <head>
         <HeadContent />
       </head>

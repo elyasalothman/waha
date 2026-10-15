@@ -1,0 +1,462 @@
+[
+  {
+    "url": "https://waha.hajdah.com/",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/abiar",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/asma",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/athkar",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/baloot",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/bills",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/breakout",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/breathe",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/budget",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/calories",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/car",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/clocks",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/connect4",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/countdown",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/currency",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/dua",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/eidiya",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/emergency",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/family",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/faraid",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/fasting",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/focus",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/fuel",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/gold",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/greet",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/hijri",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/holidays",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/iban",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/installment",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/kalima",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/khatma",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/kutl",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/letters",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/majra",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/meds",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/memory",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/merge2048",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/mines",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/names",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/nazari",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/notes",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/papers",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/pregnancy",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/proverbs",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/qibla",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/reaction",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/salah",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/salahlog",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/salary",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/savings",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/services",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/shopping",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/sleep",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/snake",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/split",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/sudoku",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/tables",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/tasbih",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/tasks",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/tetris",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/trivia",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/type",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/umrah",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/vat",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/water",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/weather",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/xo",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/app/zakat",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/books",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/books/alhajda",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/clips",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/madar",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/more",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://alhajda.com/sites",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://cma.gov.sa/MediaCenter/NEWS/Pages/default.aspx",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://games.alhajda.com",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://islamhouse.com/ar/books/231837/",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://islamhouse.com/ar/books/255802",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://islamhouse.com/ar/books/255804/",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://islamhouse.com/ar/books/469536/",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://islamhouse.com/ar/books/5271",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://islamhouse.com/read/ar/الأذكار-النووية-2431",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://luma.alhajda.com",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://midad.alhajda.com/library/art-of-question",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://midad.alhajda.com/library/attention-economy",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://midad.alhajda.com/library/how-to-read",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://midad.alhajda.com/library/quiet-mind",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://midad.alhajda.com/library/story-of-light",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://nawawiyya.sunnaonline.org/",
+    "status": "406",
+    "exit": 0
+  },
+  {
+    "url": "https://tahajjud.alhajda.com",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://www.sama.gov.sa/ar-sa/MediaCenter/News/pages/allnews.aspx",
+    "status": "000",
+    "exit": 60
+  },
+  {
+    "url": "https://www.saudiexchange.sa/wps/portal/saudiexchange/about-saudi-exchange/exchange-media-centre?locale=en",
+    "status": "403",
+    "exit": 0
+  }
+]

@@ -90,7 +90,7 @@ export function Shell() {
 
       <div className="lg:ps-60">
         <header className="native-safe-top sticky top-0 z-20 flex h-14 items-center gap-3 border-b border-border bg-bg/90 px-4 pt-[env(safe-area-inset-top,0px)] backdrop-blur-sm lg:pt-0">
-          <Link to="/" className="lg:hidden">
+          <Link to="/" className="inline-flex min-h-11 shrink-0 items-center lg:hidden">
             <WahaWordmark lang={lang} />
           </Link>
           <div className="ms-auto flex shrink-0 items-center gap-2">
@@ -120,6 +120,7 @@ export function Shell() {
           <button
             type="button"
             onClick={() => setCmd(true)}
+            aria-label={t(lang, "search")}
             className="flex h-11 min-w-0 flex-1 items-center gap-2 rounded-md border border-border bg-surface px-3 text-start text-sm text-muted lg:max-w-md"
           >
             <Search className="size-4 shrink-0" />
@@ -133,7 +134,11 @@ export function Shell() {
           </div>
         </header>
 
-        <main id="main-content" tabIndex={-1} className="scroll-mt-16 px-4 py-6 pb-24 lg:px-8 lg:pb-10">
+        <main
+          id="main-content"
+          tabIndex={-1}
+          className="scroll-mt-16 px-4 py-6 pb-24 lg:px-8 lg:pb-10"
+        >
           <OfflineBanner lang={lang} />
           <Outlet />
         </main>

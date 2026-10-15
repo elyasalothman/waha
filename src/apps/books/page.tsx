@@ -183,12 +183,15 @@ function BookCardView({
       <div className="mt-3 flex flex-wrap items-center gap-3">
         <ExternalLink
           href={book.url}
-          className="inline-flex min-h-11 items-center text-sm text-primary hover:underline"
+          className="flex min-h-11 min-w-0 max-w-full flex-wrap items-center gap-x-2 gap-y-1 text-sm text-primary hover:underline"
           data-original-link="marked-source"
           onClick={onOpen}
         >
           <span>{openLabel}</span>
-          <span className="ms-2 font-mono text-xs text-subtle" dir="ltr">
+          <span
+            className="min-w-0 [overflow-wrap:anywhere] font-mono text-xs text-subtle"
+            dir="ltr"
+          >
             {book.url}
           </span>
         </ExternalLink>

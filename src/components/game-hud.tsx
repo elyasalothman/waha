@@ -15,13 +15,14 @@ export function SfxToggle({ className }: { className?: string }) {
       type="button"
       size="sm"
       variant="outline"
-      className={className}
+      className={cn("h-11", className)}
       onClick={() => {
         const next = !muted;
         setSfxMuted(next);
         setMuted(next);
       }}
       aria-label={lang === "ar" ? "الصوت" : "Sound"}
+      aria-pressed={!muted}
     >
       {muted ? <VolumeX className="size-4" /> : <Volume2 className="size-4" />}
       {lang === "ar" ? (muted ? "صامت" : "صوت") : muted ? "Muted" : "Sound"}

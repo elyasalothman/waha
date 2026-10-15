@@ -1,0 +1,345 @@
+{
+  "base": "https://waha.hajdah.com",
+  "viewport": "390×844",
+  "ignoreHTTPSErrors": true,
+  "results": [
+    {
+      "path": "/",
+      "status": 200,
+      "errors": [],
+      "failedResponses": [],
+      "failedRequests": [],
+      "width": 390,
+      "viewport": 390,
+      "vitals": {
+        "lcp": 1720,
+        "cls": 0.03236562521057478
+      },
+      "loadMs": 2022.7000000000698,
+      "transferredBytes": 232985,
+      "links": [
+        "#main-content",
+        "/",
+        "https://tahajjud.alhajda.com",
+        "/books",
+        "https://alhajda.com/sites",
+        "/madar",
+        "/clips",
+        "/more",
+        "https://cma.gov.sa/MediaCenter/NEWS/Pages/default.aspx",
+        "https://www.saudiexchange.sa/wps/portal/saudiexchange/about-saudi-exchange/exchange-media-centre?locale=en",
+        "https://www.sama.gov.sa/ar-sa/MediaCenter/News/pages/allnews.aspx",
+        "/app/tasks",
+        "/app/notes",
+        "/app/focus"
+      ],
+      "smallTargets": [
+        {
+          "label": "واحة",
+          "width": 77,
+          "height": 28
+        },
+        {
+          "label": "English",
+          "width": 63,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "path": "/books",
+      "status": 200,
+      "errors": ["Failed to load resource: the server responded with a status of 404 ()"],
+      "failedResponses": [
+        {
+          "url": "https://waha.hajdah.com/api/auth/get-session",
+          "status": 404
+        }
+      ],
+      "failedRequests": [],
+      "width": 404,
+      "viewport": 390,
+      "vitals": {
+        "lcp": 932,
+        "cls": 0
+      },
+      "loadMs": 1180,
+      "transferredBytes": 255325,
+      "links": [
+        "#main-content",
+        "/",
+        "https://tahajjud.alhajda.com",
+        "/books",
+        "https://alhajda.com/sites",
+        "/madar",
+        "/clips",
+        "/more",
+        "/books/alhajda",
+        "https://islamhouse.com/ar/books/231837/",
+        "https://islamhouse.com/ar/books/469536/",
+        "https://islamhouse.com/read/ar/الأذكار-النووية-2431",
+        "https://islamhouse.com/ar/books/5271",
+        "https://nawawiyya.sunnaonline.org/",
+        "https://islamhouse.com/ar/books/255804/",
+        "https://islamhouse.com/ar/books/255802",
+        "https://midad.alhajda.com/library/how-to-read",
+        "https://midad.alhajda.com/library/story-of-light",
+        "https://midad.alhajda.com/library/quiet-mind",
+        "https://midad.alhajda.com/library/attention-economy",
+        "https://midad.alhajda.com/library/art-of-question"
+      ],
+      "smallTargets": [
+        {
+          "label": "واحة",
+          "width": 77,
+          "height": 28
+        },
+        {
+          "label": "English",
+          "width": 63,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "path": "/books/alhajda",
+      "status": 200,
+      "errors": [],
+      "failedResponses": [],
+      "failedRequests": [],
+      "width": 390,
+      "viewport": 390,
+      "vitals": {
+        "lcp": 1464,
+        "cls": 0.04968518889674075
+      },
+      "loadMs": 716.0999999999767,
+      "transferredBytes": 1203794,
+      "links": [
+        "#main-content",
+        "/",
+        "https://tahajjud.alhajda.com",
+        "/books",
+        "https://alhajda.com/sites",
+        "/madar",
+        "/clips",
+        "/more",
+        "#page-7",
+        "#page-41",
+        "#page-83",
+        "#page-121",
+        "#page-157",
+        "#page-197"
+      ],
+      "smallTargets": [
+        {
+          "label": "واحة",
+          "width": 77,
+          "height": 28
+        },
+        {
+          "label": "English",
+          "width": 63,
+          "height": 36
+        },
+        {
+          "label": "تصغير الخط",
+          "width": 42,
+          "height": 44
+        },
+        {
+          "label": "تكبير الخط",
+          "width": 42,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "path": "/games",
+      "status": 200,
+      "errors": [],
+      "failedResponses": [],
+      "failedRequests": [],
+      "width": 390,
+      "viewport": 390,
+      "vitals": {
+        "lcp": 700,
+        "cls": 0
+      },
+      "loadMs": 825.9000000000233,
+      "transferredBytes": 232940,
+      "links": [
+        "#main-content",
+        "/",
+        "https://tahajjud.alhajda.com",
+        "/books",
+        "https://alhajda.com/sites",
+        "/madar",
+        "/clips",
+        "/more",
+        "https://luma.alhajda.com",
+        "https://games.alhajda.com",
+        "/app/kalima",
+        "/app/abiar",
+        "/app/majra",
+        "/app/kutl",
+        "/app/memory",
+        "/app/merge2048",
+        "/app/tetris",
+        "/app/snake",
+        "/app/connect4",
+        "/app/baloot",
+        "/app/sudoku",
+        "/app/xo",
+        "/app/breakout",
+        "/app/mines",
+        "/app/trivia",
+        "/app/type",
+        "/app/reaction"
+      ],
+      "smallTargets": [
+        {
+          "label": "واحة",
+          "width": 77,
+          "height": 28
+        },
+        {
+          "label": "English",
+          "width": 63,
+          "height": 36
+        },
+        {
+          "label": "الصوت",
+          "width": 76,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "path": "/life",
+      "status": 200,
+      "errors": [],
+      "failedResponses": [],
+      "failedRequests": [],
+      "width": 390,
+      "viewport": 390,
+      "vitals": {
+        "lcp": 644,
+        "cls": 0
+      },
+      "loadMs": 889.9000000000233,
+      "transferredBytes": 228480,
+      "links": [
+        "#main-content",
+        "/",
+        "https://tahajjud.alhajda.com",
+        "/books",
+        "https://alhajda.com/sites",
+        "/madar",
+        "/clips",
+        "/more",
+        "/app/salah",
+        "/app/salahlog",
+        "/app/athkar",
+        "/app/asma",
+        "/app/dua",
+        "/app/tasbih",
+        "/app/khatma",
+        "/app/qibla",
+        "/app/hijri",
+        "/app/fasting",
+        "/app/umrah",
+        "/app/papers",
+        "/app/services",
+        "/app/holidays",
+        "/app/nazari",
+        "/app/emergency",
+        "/app/shopping",
+        "/app/bills",
+        "/app/names",
+        "/app/greet",
+        "/app/car",
+        "/app/family",
+        "/app/countdown",
+        "/app/letters",
+        "/app/tables",
+        "/app/weather",
+        "/app/water",
+        "/app/meds",
+        "/app/sleep",
+        "/app/calories",
+        "/app/breathe",
+        "/app/pregnancy",
+        "/app/proverbs",
+        "/app/clocks"
+      ],
+      "smallTargets": [
+        {
+          "label": "واحة",
+          "width": 77,
+          "height": 28
+        },
+        {
+          "label": "English",
+          "width": 63,
+          "height": 36
+        },
+        {
+          "label": "موقعي",
+          "width": 58,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "path": "/money",
+      "status": 200,
+      "errors": [],
+      "failedResponses": [],
+      "failedRequests": [],
+      "width": 390,
+      "viewport": 390,
+      "vitals": {
+        "lcp": 668,
+        "cls": 0
+      },
+      "loadMs": 875.6000000000931,
+      "transferredBytes": 229513,
+      "links": [
+        "#main-content",
+        "/",
+        "https://tahajjud.alhajda.com",
+        "/books",
+        "https://alhajda.com/sites",
+        "/madar",
+        "/clips",
+        "/more",
+        "/app/budget",
+        "/app/zakat",
+        "/app/gold",
+        "/app/vat",
+        "/app/salary",
+        "/app/savings",
+        "/app/installment",
+        "/app/eidiya",
+        "/app/iban",
+        "/app/split",
+        "/app/fuel",
+        "/app/currency",
+        "/app/faraid"
+      ],
+      "smallTargets": [
+        {
+          "label": "واحة",
+          "width": 77,
+          "height": 28
+        },
+        {
+          "label": "English",
+          "width": 63,
+          "height": 36
+        }
+      ]
+    }
+  ]
+}
