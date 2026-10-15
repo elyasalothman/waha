@@ -1,0 +1,98 @@
+{
+  "base": "https://waha.hajdah.com",
+  "at": "2026-10-15T21:17:05.522955+00:00",
+  "deployment": "dpl_7a8Tfhwn6Tu16hwsPX5tgFMigLsF",
+  "sha": "ed5be8704b31a6462ffaa3f88ad924f0e8f24784",
+  "results": [
+    {
+      "path": "/",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 31106
+    },
+    {
+      "path": "/welcome",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 31075
+    },
+    {
+      "path": "/today",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 45586
+    },
+    {
+      "path": "/register?mode=signup",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 8951
+    },
+    {
+      "path": "/onboarding",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 19732
+    },
+    {
+      "path": "/api/auth-status",
+      "status": 200,
+      "contentType": "application/json",
+      "bytes": 52,
+      "json": {
+        "email": false,
+        "google": false,
+        "passwordReset": false
+      }
+    },
+    {
+      "path": "/api/auth/get-session",
+      "status": 200,
+      "contentType": "application/json",
+      "bytes": 4,
+      "json": null
+    },
+    {
+      "path": "/landing/quran.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 24163
+    },
+    {
+      "path": "/landing/news.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 36311
+    },
+    {
+      "path": "/landing/games.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 21719
+    },
+    {
+      "path": "/landing/books.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 27437
+    },
+    {
+      "path": "/og.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 26039
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "contentType": "application/xml",
+      "bytes": 1708
+    },
+    {
+      "path": "/sw.js",
+      "status": 200,
+      "contentType": "application/javascript; charset=utf-8",
+      "bytes": 1838
+    }
+  ]
+}
