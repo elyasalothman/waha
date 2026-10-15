@@ -1,0 +1,76 @@
+{
+  "base": "https://waha.hajdah.com",
+  "viewport": "390x844",
+  "checks": [
+    {
+      "name": "shelf",
+      "width": 390
+    },
+    {
+      "name": "midad-import-age-filter-and-shelf"
+    },
+    {
+      "name": "studio",
+      "width": 390
+    },
+    {
+      "name": "draft-reader",
+      "width": 390
+    },
+    {
+      "name": "paste-draft-font-night-chapter-and-position-restoration",
+      "draftUrl": "https://waha.hajdah.com/books/library/draft-1cae4b5d-05ad-4750-9eb5-3af6b639f17d",
+      "before": {
+        "chapter": 0,
+        "paragraph": 9,
+        "size": 24,
+        "night": true
+      }
+    },
+    {
+      "name": "draft-appears-on-shelf"
+    },
+    {
+      "name": "draft-reader",
+      "width": 390
+    },
+    {
+      "name": "import-اختبار.txt"
+    },
+    {
+      "name": "draft-reader",
+      "width": 390
+    },
+    {
+      "name": "import-اختبار.docx"
+    },
+    {
+      "name": "draft-reader",
+      "width": 390
+    },
+    {
+      "name": "import-اختبار.epub"
+    },
+    {
+      "name": "draft-reader",
+      "width": 390
+    },
+    {
+      "name": "import-original.pdf"
+    },
+    {
+      "name": "anonymous-publication-rejected",
+      "status": 503
+    },
+    {
+      "name": "midad-reader",
+      "width": 390
+    },
+    {
+      "name": "existing-alhajda-reader",
+      "width": 390
+    }
+  ],
+  "errors": [],
+  "publicPublishEndToEnd": "Blocked: production database/auth/admin configuration is absent; only rejection was tested."
+}

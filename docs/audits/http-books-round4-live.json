@@ -1,0 +1,69 @@
+{
+  "base": "https://waha.hajdah.com",
+  "results": [
+    {
+      "path": "/books",
+      "status": "200"
+    },
+    {
+      "path": "/studio",
+      "status": "200"
+    },
+    {
+      "path": "/api/books",
+      "status": "200"
+    },
+    {
+      "path": "/api/auth/get-session",
+      "status": "200"
+    },
+    {
+      "path": "/books/midad/midad-elevator-key.json",
+      "status": "200"
+    },
+    {
+      "path": "/books/midad/midad-map-in-my-head.json",
+      "status": "200"
+    },
+    {
+      "path": "/books/midad/midad-office-that-stays-on.json",
+      "status": "200"
+    },
+    {
+      "path": "/books/midad/midad-after-dinner.json",
+      "status": "200"
+    },
+    {
+      "path": "/books/midad/midad-robot-does-not-know-heat.json",
+      "status": "200"
+    },
+    {
+      "path": "/books/midad/midad-gum-riyal.json",
+      "status": "200"
+    },
+    {
+      "path": "/books/midad/midad-homework-in-the-family-group.json",
+      "status": "200"
+    },
+    {
+      "path": "/books/midad/midad-ask-the-machine-then-someone.json",
+      "status": "200"
+    },
+    {
+      "path": "/books/midad/midad-salary-is-not-your-self.json",
+      "status": "200"
+    },
+    {
+      "path": "/books/midad/midad-machine-on-riyadh-shift.json",
+      "status": "200"
+    },
+    {
+      "path": "/books/midad/midad-money-the-screen-cannot-see.json",
+      "status": "200"
+    },
+    {
+      "path": "/books/midad/midad-learning-after-we-thought-we-were-done.json",
+      "status": "200"
+    }
+  ]
+}
