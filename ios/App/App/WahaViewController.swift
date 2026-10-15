@@ -1,17 +1,16 @@
 import Capacitor
 import UIKit
+import Network
+import WebKit
 
 /// واحة WebView: edge-to-edge, RTL, dark status bar. Same chrome idea as تهجد.
 final class WahaViewController: CAPBridgeViewController {
-    private let oasisInk = UIColor(
-        red: 12.0 / 255.0,
-        green: 13.0 / 255.0,
-        blue: 12.0 / 255.0,
-        alpha: 1
-    )
+    private let connectivity = NWPathMonitor()
+
+    deinit { connectivity.cancel() }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        .lightContent
+        traitCollection.userInterfaceStyle == .dark ? .lightContent : .darkContent
     }
 
     override var prefersStatusBarHidden: Bool {
@@ -25,21 +24,35 @@ final class WahaViewController: CAPBridgeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = oasisInk
+        view.backgroundColor = .systemBackground
         view.semanticContentAttribute = .forceRightToLeft
         webView?.semanticContentAttribute = .forceRightToLeft
         webView?.isOpaque = false
-        webView?.backgroundColor = oasisInk
-        webView?.scrollView.backgroundColor = oasisInk
+        webView?.backgroundColor = .systemBackground
+        webView?.scrollView.backgroundColor = .systemBackground
         webView?.scrollView.contentInsetAdjustmentBehavior = .never
         webView?.scrollView.semanticContentAttribute = .forceRightToLeft
         webView?.scrollView.keyboardDismissMode = .interactive
+        webView?.allowsBackForwardNavigationGestures = true
+        connectivity.pathUpdateHandler = { [weak self] path in
+            guard path.status == .unsatisfied else { return }
+            DispatchQueue.main.async { self?.showOfflineTools() }
+        }
+        connectivity.start(queue: DispatchQueue(label: "waha.connectivity"))
         lockWebViewZoom()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         lockWebViewZoom()
+    }
+
+    // Keep Capacitor's navigation delegate and local URL scheme intact.
+    // Both network loss and server.errorPath use the same persistent local origin.
+    private func showOfflineTools() {
+        guard let local = bridge?.config.localURL.appendingPathComponent("index.html"),
+              webView?.url?.scheme != local.scheme else { return }
+        webView?.load(URLRequest(url: local))
     }
 
     private func lockWebViewZoom() {

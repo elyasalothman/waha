@@ -6,6 +6,7 @@ export function authAvailability(env: Record<string, string | undefined> = proce
     has(["DATABASE_URL", "BETTER_AUTH_SECRET", "BETTER_AUTH_URL"]);
   return {
     email,
+    deleteAccount: email,
     google: email && has(["GROK_AUTH_CLIENT_ID", "GROK_AUTH_CLIENT_SECRET"]),
     passwordReset: email && has(["RESEND_API_KEY", "AUTH_EMAIL_FROM"]),
   };

@@ -34,6 +34,17 @@ workflows:
     scripts:
       - name: Install dependencies
         script: npm ci
+      - name: Verify release source
+        script: |
+          set -euo pipefail
+          export NODE_OPTIONS=--max-old-space-size=1024
+          npm run lint
+          npm run typecheck
+          npm run test:app
+          node --test scripts/ios-shell.test.mjs
+          npm run build
+          node scripts/check-ios-release.mjs
+          node scripts/audit-ios-account.mjs
       - name: Sync web assets to www/
         script: npm run sync:www
       - name: Add iOS platform if missing

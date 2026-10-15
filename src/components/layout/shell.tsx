@@ -6,6 +6,7 @@ const CommandPalette = lazy(() =>
   import("@/components/command-palette").then((m) => ({ default: m.CommandPalette })),
 );
 import { LangToggle } from "@/components/city-select";
+import { NativeReminders } from "@/components/native-reminders";
 import { OfflineBanner } from "@/components/offline-banner";
 import { DoorsStrip } from "@/components/doors-strip";
 import { t } from "@/lib/i18n";
@@ -183,6 +184,7 @@ export function Shell() {
               محسن
             </Link>
           </nav>
+          {pathname === "/today" ? <NativeReminders /> : null}
           <Outlet />
         </main>
       </div>

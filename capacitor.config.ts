@@ -15,7 +15,7 @@ import type { CapacitorConfig } from "@capacitor/cli";
  * Load order:
  *   1. CAPACITOR_SERVER_URL or WAHA_IOS_SERVER_URL → override
  *   2. else live https://waha.hajdah.com (alhajda DNS not globally resolvable yet)
- *   Bundled www/ is offline fallback only when LIVE_URL is explicitly disabled.
+ *   Bundled www/ provides offline tools via errorPath and native connectivity monitoring.
  */
 const ENV_URL = (
   process.env.CAPACITOR_SERVER_URL ||
@@ -68,6 +68,7 @@ const config: CapacitorConfig = {
   server: {
     androidScheme: "https",
     cleartext: false,
+    errorPath: "index.html",
     allowNavigation: [
       PRODUCTION_HOST,
       ALHAJDA_HOST,

@@ -984,3 +984,24 @@
     padding-inline: 0.5rem;
   }
 }
+
+/* Native appearance follows iOS; browser themes keep their existing behavior. */
+html.native-ios.native-dark {
+  color-scheme: dark;
+  --color-bg: #101b19;
+  --color-surface: #172724;
+  --color-surface-2: #213731;
+  --color-fg: #edf4ed;
+  --color-muted: #b0c7bd;
+  --color-subtle: #a6bfb5;
+  --color-primary: #85d7b9;
+  --color-primary-fg: #10251e;
+  --color-border: #355249;
+}
+html.native-ios .native-safe-top { height: calc(3.5rem + env(safe-area-inset-top, 0px)); }
+html.native-ios #main-content { padding-bottom: calc(6rem + env(safe-area-inset-bottom, 0px)); }
+html.native-ios .native-safe-bottom { backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
+html.native-ios .native-safe-bottom a { border-radius: 16px; margin: 4px 12px; }
+html.native-ios .native-safe-bottom a[aria-current="page"] { background: var(--color-surface-2); }
+html.native-ios.native-dark body { color-scheme: dark; }
+html.native-ios.native-dark .waha-shell { background-image: none; }

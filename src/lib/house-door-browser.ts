@@ -10,9 +10,12 @@ export type HouseDoorOpenOptions = {
 
 export interface HouseDoorBrowserPlugin {
   open(options: HouseDoorOpenOptions): Promise<void>;
+  selection(): Promise<void>;
 }
 
 export class HouseDoorBrowserWeb extends WebPlugin implements HouseDoorBrowserPlugin {
+  async selection(): Promise<void> {}
+
   async open(options: HouseDoorOpenOptions): Promise<void> {
     if (typeof window === "undefined") return;
     const opened = window.open(options.url, "_blank", "noopener,noreferrer");

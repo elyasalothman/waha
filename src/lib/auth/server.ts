@@ -181,6 +181,19 @@ export const auth = betterAuth({
   // globalThis so HMR doesn't invalidate PGLite-backed sessions (see above).
   secret: env("BETTER_AUTH_SECRET") ?? previewAuthSecret(),
   database,
+  user: {
+    deleteUser: {
+      enabled: true,
+      beforeDelete: async (user) => {
+        const { getSql } = await import("../db");
+        const sql = await getSql();
+        const [table] = await sql.query<{ name: string | null }>(
+          "select to_regclass('public.public_books')::text as name",
+        );
+        if (table?.name) await sql.query("delete from public_books where owner_id = $1", [user.id]);
+      },
+    },
+  },
 
   // CSRF / origin check for credentialed auth POSTs (email sign-up/sign-in, …).
   // See `trustedOrigins` construction above — must cover live preview hosts AND

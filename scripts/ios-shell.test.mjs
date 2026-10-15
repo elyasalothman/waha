@@ -108,8 +108,8 @@ test("Xcode project uses com.alhajda.waha and house team", () => {
   const project = read("ios/App/App.xcodeproj/project.pbxproj");
   assert.match(project, /PRODUCT_BUNDLE_IDENTIFIER = com\.alhajda\.waha;/);
   assert.match(project, /DEVELOPMENT_TEAM = HQRPK78BRV;/);
-  assert.match(project, /MARKETING_VERSION = 1\.0\.0;/);
-  assert.match(project, /CURRENT_PROJECT_VERSION = 1;/);
+  assert.match(project, /MARKETING_VERSION = 1\.1\.0;/);
+  assert.match(project, /CURRENT_PROJECT_VERSION = 2;/);
   assert.match(project, /WahaViewController\.swift/);
   for (const id of FORBIDDEN_BUNDLES) {
     assert.doesNotMatch(project, new RegExp(id.replace(/\./g, "\\.")));

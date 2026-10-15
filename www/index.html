@@ -15,8 +15,8 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="apple-touch-icon" href="/icon-180.png" />
-    <link rel="stylesheet" href="/fallback.css" />
-    <script src="/native-ios.js" defer></script>
+    <link rel="stylesheet" href="./fallback.css" />
+    <script src="./native-ios.js" defer></script>
   </head>
   <body>
     <main class="oasis">
@@ -34,9 +34,22 @@
       <h1>واحة</h1>
       <p class="en">Waha</p>
       <p class="tag">واحتك الرقمية — صلاة، أوراق، مال، وأدوات يومك.</p>
-      <p class="hint" id="hint">
-        هذه قشرة آيفون. عند جاهزية الاستضافة تُحمَّل الواحة الحيّة، وإلا تبقى هذه الصفحة في الحزمة.
-      </p>
+      <p class="hint">أنت في واحة دون اتصال. هذه الأدوات محفوظة داخل التطبيق؛ محسن والأخبار وحصتي والكتب المتصلة تحتاج الإنترنت.</p>
+      <section aria-labelledby="offline-day">
+        <h2 id="offline-day">ورد يومي</h2>
+        <label><input id="reading" type="checkbox" /> قرأت وردي</label>
+        <label><input id="dhikr" type="checkbox" /> أذكار اليوم</label>
+        <button id="count" type="button">تسبيح: 0</button>
+        <button id="reset-count" type="button">تصفير التسبيح</button>
+      </section>
+      <section aria-labelledby="notes-title">
+        <h2 id="notes-title">ملاحظاتي دون اتصال</h2>
+        <label for="notes">ملاحظة محفوظة على الجهاز</label>
+        <textarea id="notes" rows="5" maxlength="20000"></textarea>
+        <p id="save-status" role="status"></p>
+      </section>
+      <a class="retry" href="https://waha.hajdah.com/today">إعادة الاتصال بواحة</a>
+      <script src="./offline-tools.js" defer></script>
     </main>
   </body>
 </html>

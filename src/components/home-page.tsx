@@ -1,3 +1,4 @@
+import { DeleteAccount } from "@/components/delete-account";
 import { useEffect, useState } from "react";
 import { INTERESTS, interestKey, normalizeInterests } from "@/lib/interests";
 import { signOut } from "@/lib/auth/client";
@@ -74,6 +75,7 @@ export function HomePage() {
           </Link>
         )}
       </div>
+      {user && !user.isDevFallback ? <DeleteAccount /> : null}
       {signOutError && (
         <p role="alert" className="mb-4 text-sm text-danger">
           تعذّر تسجيل الخروج. أعد المحاولة.

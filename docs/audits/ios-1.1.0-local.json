@@ -1,0 +1,48 @@
+{
+  "base": "http://127.0.0.1:8080",
+  "engine": "WebKit Linux",
+  "results": [
+    {
+      "name": "/today",
+      "viewport": "393x852",
+      "pass": true
+    },
+    {
+      "name": "/app/baloot",
+      "viewport": "393x852",
+      "pass": true
+    },
+    {
+      "name": "/ask",
+      "viewport": "393x852",
+      "pass": true
+    },
+    {
+      "name": "/worship",
+      "viewport": "393x852",
+      "pass": true
+    },
+    {
+      "name": "/teacher",
+      "viewport": "393x852",
+      "pass": true
+    },
+    {
+      "name": "/books",
+      "viewport": "393x852",
+      "pass": true
+    },
+    {
+      "name": "Native bridge simulation: appearance, opt-in/denied reminders, repeat schedules, cancellation, haptics",
+      "pass": true,
+      "simulated": true
+    },
+    {
+      "name": "Bundled tools: network disabled during interaction; local-server reload for notes/checklist persistence, counter, 393px",
+      "pass": true,
+      "localServerReload": true
+    }
+  ],
+  "errors": [],
+  "nativeDeviceTested": false
+}

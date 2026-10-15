@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { openExternalUrl, shouldOpenExternally } from "@/lib/native-browser";
-import { PALETTE } from "@/lib/palette";
 
 function isNativeIos() {
-  const cap = (window as Window & { Capacitor?: { isNativePlatform?: () => boolean; isNative?: boolean } })
-    .Capacitor;
+  const cap = (
+    window as Window & { Capacitor?: { isNativePlatform?: () => boolean; isNative?: boolean } }
+  ).Capacitor;
   return !!(cap && (cap.isNativePlatform?.() || cap.isNative === true));
 }
 
@@ -28,33 +28,32 @@ export function NativeIosChrome() {
     document.documentElement.classList.add("native-ios");
     document.documentElement.setAttribute("data-native", "ios");
 
-    const cap = (window as Window & { Capacitor?: { Plugins?: {
-      StatusBar?: {
-        setStyle?: (opts: { style: string }) => Promise<void>;
-        setBackgroundColor?: (opts: { color: string }) => Promise<void>;
-        setOverlaysWebView?: (opts: { overlay: boolean }) => Promise<void>;
-      };
-      Keyboard?: {
-        setStyle?: (opts: { style: string }) => Promise<void>;
-        setResizeMode?: (opts: { mode: string }) => Promise<void>;
-      };
-    } } }).Capacitor;
-    const StatusBar = cap?.Plugins?.StatusBar;
-    if (StatusBar) {
-      void StatusBar.setStyle?.({ style: "DARK" });
-      void StatusBar.setBackgroundColor?.({ color: PALETTE.bg });
-      void StatusBar.setOverlaysWebView?.({ overlay: true });
-    }
-    const Keyboard = cap?.Plugins?.Keyboard;
-    if (Keyboard) {
-      void Keyboard.setStyle?.({ style: "DARK" });
-      void Keyboard.setResizeMode?.({ mode: "native" });
-    }
+    const scheme = window.matchMedia("(prefers-color-scheme: dark)");
+    const syncAppearance = () => {
+      document.documentElement.classList.toggle("native-dark", scheme.matches);
+      void Promise.all([import("@capacitor/status-bar"), import("@capacitor/keyboard")])
+        .then(([{ StatusBar, Style }, { Keyboard, KeyboardStyle, KeyboardResize }]) =>
+          Promise.allSettled([
+            StatusBar.setStyle({ style: scheme.matches ? Style.Dark : Style.Light }),
+            StatusBar.setOverlaysWebView({ overlay: true }),
+            Keyboard.setStyle({ style: scheme.matches ? KeyboardStyle.Dark : KeyboardStyle.Light }),
+            Keyboard.setResizeMode({ mode: KeyboardResize.Native }),
+          ]),
+        )
+        .catch(() => {});
+    };
+    syncAppearance();
+    scheme.addEventListener("change", syncAppearance);
 
     const onClick = (event: MouseEvent) => {
       if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey) return;
       const anchor = closestAnchor(event.target);
       if (!anchor) return;
+      if (anchor.closest(".native-safe-bottom")) {
+        void import("@/lib/house-door-browser")
+          .then(({ HouseDoorBrowser }) => HouseDoorBrowser.selection())
+          .catch(() => {});
+      }
       const href = anchor.getAttribute("href");
       if (!href || !shouldOpenExternally(href)) return;
       event.preventDefault();
@@ -63,7 +62,10 @@ export function NativeIosChrome() {
     };
 
     document.addEventListener("click", onClick, true);
-    return () => document.removeEventListener("click", onClick, true);
+    return () => {
+      document.removeEventListener("click", onClick, true);
+      scheme.removeEventListener("change", syncAppearance);
+    };
   }, []);
 
   return null;

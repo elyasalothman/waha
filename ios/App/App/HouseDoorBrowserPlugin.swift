@@ -8,8 +8,16 @@ public class HouseDoorBrowserPlugin: CAPPlugin, CAPBridgedPlugin {
     public let identifier = "HouseDoorBrowserPlugin"
     public let jsName = "HouseDoorBrowser"
     public let pluginMethods: [CAPPluginMethod] = [
-        CAPPluginMethod(name: "open", returnType: CAPPluginReturnPromise)
+        CAPPluginMethod(name: "open", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "selection", returnType: CAPPluginReturnPromise)
     ]
+
+    @objc func selection(_ call: CAPPluginCall) {
+        DispatchQueue.main.async {
+            UISelectionFeedbackGenerator().selectionChanged()
+            call.resolve()
+        }
+    }
 
     @objc func open(_ call: CAPPluginCall) {
         guard let raw = call.getString("url"),

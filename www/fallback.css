@@ -116,3 +116,9 @@ h1 {
   color: var(--muted);
   font-size: 0.9rem;
 }
+
+section { width: 100%; max-width: 26rem; text-align: start; }
+label { display: block; padding: 12px 0; }
+button, .retry { display: inline-block; min-height: 44px; padding: 12px 16px; margin: 6px; border: 1px solid var(--muted); border-radius: 12px; color: var(--fg); background: var(--bg); font: inherit; }
+textarea { box-sizing: border-box; width: 100%; padding: 12px; border-radius: 12px; font: inherit; background: var(--bg); color: var(--fg); }
+@media (prefers-color-scheme: light) { :root { color-scheme: light; --bg: #f6f5f0; --fg: #192c2a; --muted: #4d625f; --primary: #146455; } }
