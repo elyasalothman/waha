@@ -1,0 +1,145 @@
+{
+  "time": "2026-10-15T21:28:36.439Z",
+  "results": [
+    {
+      "url": "https://tahajjud.alhajda.com",
+      "status": 200,
+      "finalUrl": "https://tahajjud.alhajda.com/"
+    },
+    {
+      "url": "https://midad.alhajda.com/library",
+      "status": 200,
+      "finalUrl": "https://midad.alhajda.com/library"
+    },
+    {
+      "url": "https://ai.alhajda.com",
+      "status": 200,
+      "finalUrl": "https://ai.alhajda.com/"
+    },
+    {
+      "url": "https://games.alhajda.com",
+      "status": 200,
+      "finalUrl": "https://games.alhajda.com/"
+    },
+    {
+      "url": "https://tools.alhajda.com",
+      "status": 200,
+      "finalUrl": "https://tools.alhajda.com/"
+    },
+    {
+      "url": "https://agent.alhajda.com",
+      "status": 200,
+      "finalUrl": "https://agent.alhajda.com/"
+    },
+    {
+      "url": "https://hissati.alhajda.com",
+      "status": 200,
+      "finalUrl": "https://hissati.alhajda.com/"
+    },
+    {
+      "url": "https://alhajda.com",
+      "status": 200,
+      "finalUrl": "https://alhajda.com/"
+    },
+    {
+      "url": "https://hajdah.com",
+      "status": 200,
+      "finalUrl": "https://hajdah.com/"
+    },
+    {
+      "url": "https://hayat.alhajda.com",
+      "status": 200,
+      "finalUrl": "https://hayat.alhajda.com/"
+    },
+    {
+      "url": "https://luma.alhajda.com",
+      "status": 200,
+      "finalUrl": "https://luma.alhajda.com/"
+    },
+    {
+      "url": "https://market.alhajda.com",
+      "status": 200,
+      "finalUrl": "https://market.alhajda.com/"
+    },
+    {
+      "url": "https://amlak.alhajda.com",
+      "status": 200,
+      "finalUrl": "https://amlak.alhajda.com/"
+    },
+    {
+      "url": "https://qararak.alhajda.com",
+      "status": 200,
+      "finalUrl": "https://qararak.alhajda.com/"
+    },
+    {
+      "url": "https://manba.alhajda.com",
+      "status": 200,
+      "finalUrl": "https://manba.alhajda.com/"
+    },
+    {
+      "url": "https://khazana.alhajda.com",
+      "status": 200,
+      "finalUrl": "https://khazana.alhajda.com/"
+    },
+    {
+      "url": "https://hudoo.alhajda.com",
+      "status": 200,
+      "finalUrl": "https://hudoo.alhajda.com/"
+    },
+    {
+      "url": "https://manteq.alhajda.com",
+      "status": 200,
+      "finalUrl": "https://manteq.alhajda.com/"
+    },
+    {
+      "url": "https://himaya.alhajda.com",
+      "status": 200,
+      "finalUrl": "https://himaya.alhajda.com/"
+    },
+    {
+      "url": "https://waha.hajdah.com/today",
+      "status": 200,
+      "finalUrl": "https://waha.hajdah.com/today"
+    },
+    {
+      "url": "https://waha.hajdah.com/quran",
+      "status": 200,
+      "finalUrl": "https://waha.hajdah.com/quran?surah=1&ayah=1"
+    },
+    {
+      "url": "https://waha.hajdah.com/news",
+      "status": 200,
+      "finalUrl": "https://waha.hajdah.com/news"
+    },
+    {
+      "url": "https://waha.hajdah.com/api/auth/get-session",
+      "status": 200,
+      "finalUrl": "https://waha.hajdah.com/api/auth/get-session"
+    },
+    {
+      "url": "https://waha.hajdah.com/api/auth-status",
+      "status": 200,
+      "finalUrl": "https://waha.hajdah.com/api/auth-status"
+    },
+    {
+      "url": "https://waha.hajdah.com/api/news",
+      "status": 200,
+      "finalUrl": "https://waha.hajdah.com/api/news"
+    },
+    {
+      "url": "https://hissati.alhajda.com/app/weekly",
+      "status": 200,
+      "finalUrl": "https://hissati.alhajda.com/app/weekly"
+    },
+    {
+      "url": "https://hissati.alhajda.com/app/tahdeeri",
+      "status": 200,
+      "finalUrl": "https://hissati.alhajda.com/app/tahdeeri"
+    },
+    {
+      "url": "https://hissati.alhajda.com/app/grades",
+      "status": 200,
+      "finalUrl": "https://hissati.alhajda.com/app/grades"
+    }
+  ]
+}

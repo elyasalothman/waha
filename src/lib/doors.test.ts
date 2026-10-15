@@ -71,6 +71,9 @@ describe("Alhajda doors", () => {
         "qararak",
         "manba",
         "khazana",
+        "hudoo",
+        "manteq",
+        "himaya",
       ],
     );
     assert.equal(getDoor("hissati")?.href, "https://hissati.alhajda.com");

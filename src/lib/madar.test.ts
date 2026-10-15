@@ -83,6 +83,9 @@ describe("matchHouseSites", () => {
         "qararak",
         "manba",
         "khazana",
+        "hudoo",
+        "manteq",
+        "himaya",
       ],
     );
   });

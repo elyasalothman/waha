@@ -1,0 +1,18 @@
+{
+  "base": "http://localhost:8081",
+  "time": "2026-10-15T21:27:54.640Z",
+  "checks": [
+    "Four fixed ordered pillars",
+    "Real saved Quran and book positions",
+    "Hissati teacher entry uses existing external browser, no iframe",
+    "Theme, font, pins and hiding survive reload",
+    "Touch reorder and restore hidden cards",
+    "Wamda completion persisted",
+    "Three real news headlines",
+    "Mobile and desktop without overflow",
+    "LTR layout without overflow",
+    "Nineteen categorized house sites",
+    "No uncaught JavaScript errors"
+  ],
+  "errors": []
+}
