@@ -36,6 +36,7 @@ export function useReaderLayout(active = true) {
   const reader = useRef<HTMLElement>(null);
   const toolbar = useRef<HTMLDivElement>(null);
   const headerHeight = useRef(56);
+  const scrollRequest = useRef(0);
 
   // Do this before either reader's passive restore/load effects mount its article.
   // In particular, the private reader initially calls this hook with active=false.
@@ -88,10 +89,17 @@ export function useReaderLayout(active = true) {
   }, []);
 
   const scrollTo = useCallback(
-    (target: HTMLElement | null) => {
+    async (target: HTMLElement | null) => {
+      const request = ++scrollRequest.current;
+      // A cold-cache font swap changes paragraph heights. Keep each reader's
+      // pending anchor until those metrics settle, before tracking scroll again.
+      // Resolve style/layout first so newly mounted chapter fonts are requested.
+      target?.getBoundingClientRect();
+      await document.fonts.ready;
+      if (!target?.isConnected || request !== scrollRequest.current) return;
       // Measure now as well as on ResizeObserver, before positioning a jump.
       measure();
-      target?.scrollIntoView({ block: "start", behavior: "instant" });
+      target.scrollIntoView({ block: "start", behavior: "instant" });
     },
     [measure],
   );

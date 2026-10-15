@@ -8,6 +8,11 @@ const book: CuratedBook = JSON.parse(readFileSync(new URL("./alhajda/book.json",
 test("all shipped chapter anchors resolve and survive reading-state restoration", () => {
   for (const [chapter, content] of book.chapters.entries()) {
     assert.ok(content.html.length > 0);
+    for (const image of content.html.matchAll(/<img\b[^>]*>/g)) {
+      const width = image[0].match(/\bwidth="(\d+)"/)?.[1];
+      assert.ok(width);
+      assert.ok(image[0].includes(`style="width:${width}px;max-width:100%;height:auto"`));
+    }
     for (const anchor of content.anchorIds) {
       assert.equal(chapterForAnchor(book, anchor), chapter);
       assert.deepEqual(curatedReading({ chapter, anchor }, book).anchor, anchor);

@@ -81,10 +81,11 @@ export default function AlhajdaReader() {
 
   useEffect(() => {
     if (!ready || !pending.current || !article.current) return;
-    const frame = requestAnimationFrame(() => {
-      const anchor = pending.current?.anchor;
-      scrollTo(anchor ? document.getElementById(anchor) : article.current);
-      pending.current = null;
+    const position = pending.current;
+    const frame = requestAnimationFrame(async () => {
+      const anchor = position.anchor;
+      await scrollTo(anchor ? document.getElementById(anchor) : article.current);
+      if (pending.current === position) pending.current = null;
     });
     return () => cancelAnimationFrame(frame);
   }, [ready, state.chapter, state.fontSize, scrollTo]);
@@ -119,9 +120,9 @@ export default function AlhajdaReader() {
     setContents(false);
     setQuery("");
     if (position.chapter === state.chapter)
-      requestAnimationFrame(() => {
-        scrollTo(position.anchor ? document.getElementById(position.anchor) : article.current);
-        pending.current = null;
+      requestAnimationFrame(async () => {
+        await scrollTo(position.anchor ? document.getElementById(position.anchor) : article.current);
+        if (pending.current === position) pending.current = null;
       });
   }
   function internalLink(event: MouseEvent<HTMLElement>) {

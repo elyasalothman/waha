@@ -98,10 +98,10 @@ export function PrivateReader({ bookId }: { bookId: string }) {
   useEffect(() => {
     const anchor = pendingAnchor.current;
     if (!anchor || !article.current) return;
-    const frame = requestAnimationFrame(() => {
+    const frame = requestAnimationFrame(async () => {
       const target = anchor.block ? document.getElementById(anchor.block) : article.current;
-      scrollTo(target ?? article.current);
-      pendingAnchor.current = null;
+      await scrollTo(target ?? article.current);
+      if (pendingAnchor.current === anchor) pendingAnchor.current = null;
     });
     return () => cancelAnimationFrame(frame);
   }, [page, mode, state.fontSize, loaded, scrollTo]);
@@ -139,9 +139,9 @@ export function PrivateReader({ bookId }: { bookId: string }) {
     setQuery("");
     // Same-page bookmarks still need an explicit scroll.
     if (anchor.page === state.anchor.page)
-      requestAnimationFrame(() => {
-        scrollTo(anchor.block ? document.getElementById(anchor.block) : article.current);
-        pendingAnchor.current = null;
+      requestAnimationFrame(async () => {
+        await scrollTo(anchor.block ? document.getElementById(anchor.block) : article.current);
+        if (pendingAnchor.current === anchor) pendingAnchor.current = null;
       });
   }
   function resize(change: number) {
