@@ -1,5 +1,10 @@
+import { collectedAtLabel } from "@/lib/news-quality";
 import type { Lang } from "@/lib/i18n";
-import { sourceKindLabel, worldSourceTone, type WorldCard as WorldCardRow } from "@/lib/square/world";
+import {
+  sourceKindLabel,
+  worldSourceTone,
+  type WorldCard as WorldCardRow,
+} from "@/lib/square/world";
 import { WorldBadge } from "./world-badge";
 
 export function WorldCard({ card, lang }: { card: WorldCardRow; lang: Lang }) {
@@ -9,7 +14,11 @@ export function WorldCard({ card, lang }: { card: WorldCardRow; lang: Lang }) {
   return (
     <article data-world-card={card.id} className="border-b border-border px-1 py-4">
       <div className="flex gap-3">
-        <span className="mt-0.5 w-1 shrink-0 self-stretch rounded-full" style={{ background: tone }} aria-hidden="true" />
+        <span
+          className="mt-0.5 w-1 shrink-0 self-stretch rounded-full"
+          style={{ background: tone }}
+          aria-hidden="true"
+        />
         <div className="min-w-0 flex-1">
           <header className="flex flex-wrap items-center gap-x-2 gap-y-1">
             <WorldBadge />
@@ -18,14 +27,21 @@ export function WorldCard({ card, lang }: { card: WorldCardRow; lang: Lang }) {
               target="_blank"
               rel="noreferrer"
               data-world-source={card.sourceId}
+              aria-label={`${L("موقع الناشر", "Publisher website")}: ${card.sourceLabel}`}
               className="text-xs text-muted hover:text-fg hover:underline"
             >
-              {sourceKindLabel(card.sourceKind, lang)} · {card.sourceLabel}
+              {sourceKindLabel(card.sourceKind, lang)} · {card.sourceLabel} ·{" "}
+              {L("موقع الناشر، وليس رابط الخبر", "Publisher homepage, not the article")}
             </a>
           </header>
-          <h3 className="mt-2 whitespace-pre-line text-[15px] font-medium leading-relaxed text-fg">{card.titleOrHook}</h3>
+          <h3 className="mt-2 whitespace-pre-line text-[15px] font-medium leading-relaxed text-fg">
+            {card.titleOrHook}
+          </h3>
           <p className="mt-1.5 text-sm leading-relaxed text-fg/80">{card.summary}</p>
-          <p className="mt-2 text-[11px] text-subtle">{L("بذرة ثابتة", "Static seed")}</p>
+          <p className="mt-2 text-[11px] text-subtle">
+            {L("محتوى أرشيفي تجريبي · ليس خبراً مباشراً", "Archived sample · not live news")} ·{" "}
+            {collectedAtLabel(card.fetchedAt, lang)}
+          </p>
         </div>
       </div>
     </article>

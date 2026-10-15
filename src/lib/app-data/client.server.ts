@@ -211,7 +211,9 @@ function tokenIdentityKey(token: string): string {
             .digest("base64url");
         }
       }
-    } catch {}
+    } catch {
+      // Non-JWT tokens still receive a stable hashed cache key below.
+    }
   }
   return createHash("sha256").update(token).digest("base64url");
 }

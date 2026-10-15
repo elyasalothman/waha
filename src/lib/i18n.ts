@@ -6,8 +6,8 @@ const strings = {
   workTagline: { ar: "مكتب المنشأة — عملاء وفواتير وساعات وبوابات", en: "A firm’s desk — clients, invoices, hours, and portals" },
   search: { ar: "ابحث في واحة…", en: "Search Waha…" },
   searchHint: { ar: "أو اضغط ⌘K", en: "or press ⌘K" },
-  home: { ar: "الميدان", en: "The Square" },
-  more: { ar: "المزيد", en: "More" },
+  home: { ar: "الرئيسية", en: "Home" },
+  more: { ar: "استكشف", en: "Explore" },
   createAccount: { ar: "إنشاء حساب", en: "Create account" },
   wahaForYou: { ar: "واحة من أجلك", en: "Waha for you" },
   wahaForYouBlurb: {
@@ -20,8 +20,8 @@ const strings = {
     en: "A guest reads the Square with no account. Slice and identity live here only if you create one.",
   },
   moreBlurb: {
-    ar: "حياتك ومالك وأدواتك والترفيه والاستوديو — من هنا، لا من شريط الميدان.",
-    en: "Life, money, tools, play, and studio — from here, not the Square bar.",
+    ar: "كل أدوات واحة في مكان واحد.",
+    en: "All your Waha tools in one place.",
   },
   life: { ar: "حياتك", en: "Life" },
   money: { ar: "مالك", en: "Money" },

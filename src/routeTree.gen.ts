@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AskRouteImport } from './routes/ask'
 import { Route as BooksRouteImport } from './routes/books'
 import { Route as ClipsRouteImport } from './routes/clips'
 import { Route as ForumRouteImport } from './routes/forum'
@@ -24,8 +25,10 @@ import { Route as StudioRouteImport } from './routes/studio'
 import { Route as ToolsRouteImport } from './routes/tools'
 import { Route as WorkspaceRouteImport } from './routes/workspace'
 import { Route as AppIdRouteImport } from './routes/app.$id'
+import { Route as BooksAlhajdaRouteImport } from './routes/books_.alhajda'
 import { Route as ForumIndexRouteImport } from './routes/forum.index'
 import { Route as ForumBoardRouteImport } from './routes/forum.$board'
+import { Route as BooksReadBookIdRouteImport } from './routes/books_.read.$bookId'
 import { Route as ForumBoardIndexRouteImport } from './routes/forum.$board.index'
 import { Route as ForumBoardTopicIdRouteImport } from './routes/forum.$board.$topicId'
 
@@ -37,6 +40,11 @@ const IndexRoute = IndexRouteImport.update({
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AskRoute = AskRouteImport.update({
+  id: '/ask',
+  path: '/ask',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BooksRoute = BooksRouteImport.update({
@@ -104,6 +112,11 @@ const AppIdRoute = AppIdRouteImport.update({
   path: '/app/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BooksAlhajdaRoute = BooksAlhajdaRouteImport.update({
+  id: '/books_/alhajda',
+  path: '/books/alhajda',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ForumIndexRoute = ForumIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -113,6 +126,11 @@ const ForumBoardRoute = ForumBoardRouteImport.update({
   id: '/$board',
   path: '/$board',
   getParentRoute: () => ForumRoute,
+} as any)
+const BooksReadBookIdRoute = BooksReadBookIdRouteImport.update({
+  id: '/books_/read/$bookId',
+  path: '/books/read/$bookId',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ForumBoardIndexRoute = ForumBoardIndexRouteImport.update({
   id: '/',
@@ -128,6 +146,7 @@ const ForumBoardTopicIdRoute = ForumBoardTopicIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/ask': typeof AskRoute
   '/books': typeof BooksRoute
   '/clips': typeof ClipsRoute
   '/forum': typeof ForumRouteWithChildren
@@ -141,14 +160,17 @@ export interface FileRoutesByFullPath {
   '/tools': typeof ToolsRoute
   '/workspace': typeof WorkspaceRoute
   '/app/$id': typeof AppIdRoute
+  '/books/alhajda': typeof BooksAlhajdaRoute
   '/forum/$board': typeof ForumBoardRouteWithChildren
   '/forum/': typeof ForumIndexRoute
+  '/books/read/$bookId': typeof BooksReadBookIdRoute
   '/forum/$board/$topicId': typeof ForumBoardTopicIdRoute
   '/forum/$board/': typeof ForumBoardIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/ask': typeof AskRoute
   '/books': typeof BooksRoute
   '/clips': typeof ClipsRoute
   '/games': typeof GamesRoute
@@ -161,7 +183,9 @@ export interface FileRoutesByTo {
   '/tools': typeof ToolsRoute
   '/workspace': typeof WorkspaceRoute
   '/app/$id': typeof AppIdRoute
+  '/books/alhajda': typeof BooksAlhajdaRoute
   '/forum': typeof ForumIndexRoute
+  '/books/read/$bookId': typeof BooksReadBookIdRoute
   '/forum/$board/$topicId': typeof ForumBoardTopicIdRoute
   '/forum/$board': typeof ForumBoardIndexRoute
 }
@@ -169,6 +193,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/ask': typeof AskRoute
   '/books': typeof BooksRoute
   '/clips': typeof ClipsRoute
   '/forum': typeof ForumRouteWithChildren
@@ -182,8 +207,10 @@ export interface FileRoutesById {
   '/tools': typeof ToolsRoute
   '/workspace': typeof WorkspaceRoute
   '/app/$id': typeof AppIdRoute
+  '/books_/alhajda': typeof BooksAlhajdaRoute
   '/forum/$board': typeof ForumBoardRouteWithChildren
   '/forum/': typeof ForumIndexRoute
+  '/books_/read/$bookId': typeof BooksReadBookIdRoute
   '/forum/$board/$topicId': typeof ForumBoardTopicIdRoute
   '/forum/$board/': typeof ForumBoardIndexRoute
 }
@@ -192,6 +219,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/admin'
+    | '/ask'
     | '/books'
     | '/clips'
     | '/forum'
@@ -205,14 +233,17 @@ export interface FileRouteTypes {
     | '/tools'
     | '/workspace'
     | '/app/$id'
+    | '/books/alhajda'
     | '/forum/$board'
     | '/forum/'
+    | '/books/read/$bookId'
     | '/forum/$board/$topicId'
     | '/forum/$board/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/admin'
+    | '/ask'
     | '/books'
     | '/clips'
     | '/games'
@@ -225,13 +256,16 @@ export interface FileRouteTypes {
     | '/tools'
     | '/workspace'
     | '/app/$id'
+    | '/books/alhajda'
     | '/forum'
+    | '/books/read/$bookId'
     | '/forum/$board/$topicId'
     | '/forum/$board'
   id:
     | '__root__'
     | '/'
     | '/admin'
+    | '/ask'
     | '/books'
     | '/clips'
     | '/forum'
@@ -245,8 +279,10 @@ export interface FileRouteTypes {
     | '/tools'
     | '/workspace'
     | '/app/$id'
+    | '/books_/alhajda'
     | '/forum/$board'
     | '/forum/'
+    | '/books_/read/$bookId'
     | '/forum/$board/$topicId'
     | '/forum/$board/'
   fileRoutesById: FileRoutesById
@@ -254,6 +290,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
+  AskRoute: typeof AskRoute
   BooksRoute: typeof BooksRoute
   ClipsRoute: typeof ClipsRoute
   ForumRoute: typeof ForumRouteWithChildren
@@ -267,6 +304,8 @@ export interface RootRouteChildren {
   ToolsRoute: typeof ToolsRoute
   WorkspaceRoute: typeof WorkspaceRoute
   AppIdRoute: typeof AppIdRoute
+  BooksAlhajdaRoute: typeof BooksAlhajdaRoute
+  BooksReadBookIdRoute: typeof BooksReadBookIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -283,6 +322,13 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin'
       preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ask': {
+      id: '/ask'
+      path: '/ask'
+      fullPath: '/ask'
+      preLoaderRoute: typeof AskRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/books': {
@@ -376,6 +422,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/books_/alhajda': {
+      id: '/books_/alhajda'
+      path: '/books/alhajda'
+      fullPath: '/books/alhajda'
+      preLoaderRoute: typeof BooksAlhajdaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/forum/': {
       id: '/forum/'
       path: '/'
@@ -389,6 +442,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/forum/$board'
       preLoaderRoute: typeof ForumBoardRouteImport
       parentRoute: typeof ForumRoute
+    }
+    '/books_/read/$bookId': {
+      id: '/books_/read/$bookId'
+      path: '/books/read/$bookId'
+      fullPath: '/books/read/$bookId'
+      preLoaderRoute: typeof BooksReadBookIdRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/forum/$board/': {
       id: '/forum/$board/'
@@ -436,6 +496,7 @@ const ForumRouteWithChildren = ForumRoute._addFileChildren(ForumRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
+  AskRoute: AskRoute,
   BooksRoute: BooksRoute,
   ClipsRoute: ClipsRoute,
   ForumRoute: ForumRouteWithChildren,
@@ -449,6 +510,8 @@ const rootRouteChildren: RootRouteChildren = {
   ToolsRoute: ToolsRoute,
   WorkspaceRoute: WorkspaceRoute,
   AppIdRoute: AppIdRoute,
+  BooksAlhajdaRoute: BooksAlhajdaRoute,
+  BooksReadBookIdRoute: BooksReadBookIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

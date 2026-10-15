@@ -14,6 +14,8 @@ export default tseslint.config(
       ".vercel/**",
       ".nitro/**",
       "node_modules/**",
+      ".recovery/**",
+      "public/pdfjs/**",
       "src/routeTree.gen.ts",
       "ios/**",
       "www/**",

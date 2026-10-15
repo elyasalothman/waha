@@ -182,7 +182,7 @@ describe("x square chrome", () => {
     const shadow = readFileSync(new URL("../../components/square/day-shadow.tsx", import.meta.url), "utf8");
     const strip = readFileSync(new URL("../../components/square/x-strip.tsx", import.meta.url), "utf8");
     const card = readFileSync(new URL("../../components/square/x-card.tsx", import.meta.url), "utf8");
-    assert.match(home, /SquarePage/);
+    assert.match(home, /HomePage/);
     assert.doesNotMatch(home, /DayShadow|Hub|BooksPage|WebView|<iframe/);
     assert.match(page, /DayShadow/);
     assert.match(page, /data-home-sections="day-shadow house-doors square"/);

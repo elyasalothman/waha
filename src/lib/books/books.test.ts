@@ -173,7 +173,8 @@ describe("books stay off the Maydan line", () => {
     assert.match(page, /data-kutubi-scope="device"/);
     assert.match(page, /data-kutubi-auth="none"/);
     assert.doesNotMatch(page, /data-kutubi-guest/);
-    assert.doesNotMatch(page, /useCurrentUserState|createAccount/);
+    assert.match(page, /PrivateShelf/);
+    assert.doesNotMatch(page, /SignInGate|RedirectToSignIn/);
     assert.match(page, /from ["']@\/components\/external-link["']/);
     assert.doesNotMatch(page, /<(input|form)\b/);
     assert.doesNotMatch(page, /fetch\(|scrape|cheerio|WebView/);
@@ -193,7 +194,7 @@ describe("books stay off the Maydan line", () => {
     assert.doesNotMatch(catalog, /id: "books"/);
     assert.doesNotMatch(nav, /to: "\/books"/);
     assert.match(card, /to="\/books"/);
-    assert.match(home, /SquarePage/);
+    assert.match(home, /HomePage/);
     assert.doesNotMatch(home, /BooksPage|lib\/books|waha:kutubi|كتبي|WebView/);
   });
 

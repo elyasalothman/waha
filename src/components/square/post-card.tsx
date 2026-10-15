@@ -27,7 +27,10 @@ export function PostCard({
   const L = (ar: string, en: string) => (lang === "ar" ? ar : en);
   const author = item.author;
   const letter = (lang === "ar" ? author.nameAr : author.nameEn).slice(0, 1);
-  const when = item.relativeTime ?? formatElapsed(item.createdAt, now, lang);
+  const when =
+    item.source === "seed"
+      ? L("منشور افتتاحي محفوظ", "Saved starter post")
+      : formatElapsed(item.createdAt, now, lang);
   const replyCount = item.userReplies.length;
   const href = author.href;
 
@@ -40,15 +43,25 @@ export function PostCard({
             <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
               {href ? (
                 <a href={href} className="font-medium text-fg hover:underline">
-                  {item.source === "seed" ? author.nameAr : lang === "ar" ? author.nameAr : author.nameEn}
+                  {item.source === "seed"
+                    ? author.nameAr
+                    : lang === "ar"
+                      ? author.nameAr
+                      : author.nameEn}
                 </a>
               ) : (
                 <span className="font-medium text-fg">
-                  {item.source === "seed" ? author.nameAr : lang === "ar" ? author.nameAr : author.nameEn}
+                  {item.source === "seed"
+                    ? author.nameAr
+                    : lang === "ar"
+                      ? author.nameAr
+                      : author.nameEn}
                 </span>
               )}
               {item.badge === "بيت" || author.kind === "house" ? <HouseBadge lang={lang} /> : null}
-              {item.badge === "عيّنة" || author.kind === "sample" ? <SampleStamp lang={lang} /> : null}
+              {item.badge === "عيّنة" || author.kind === "sample" ? (
+                <SampleStamp lang={lang} />
+              ) : null}
               {item.source === "you" ? (
                 <span className="text-[10px] text-subtle">{L("من جهازك", "from this device")}</span>
               ) : null}
@@ -60,10 +73,17 @@ export function PostCard({
             </p>
           </header>
 
-          <p className="mt-2 whitespace-pre-line text-[15px] leading-relaxed text-fg/95">{item.text}</p>
+          <p className="mt-2 whitespace-pre-line text-[15px] leading-relaxed text-fg/95">
+            {item.text}
+          </p>
 
           <footer className="mt-3 flex items-center gap-1 text-muted">
-            <Action label={L("إعجاب", "Like")} active={item.liked} count={item.likes} onClick={onLike}>
+            <Action
+              label={L("إعجاب", "Like")}
+              active={item.liked}
+              count={item.likes}
+              onClick={onLike}
+            >
               <Heart className={cn("size-4", item.liked && "fill-current")} strokeWidth={1.75} />
             </Action>
             <Action label={L("رد", "Reply")} count={replyCount} onClick={() => setOpen((v) => !v)}>
@@ -77,7 +97,9 @@ export function PostCard({
                 <p key={r.id} className="text-sm leading-relaxed text-fg/90">
                   <span className="text-muted">{r.authorName} · </span>
                   {r.text}
-                  <span className="ms-2 text-[11px] text-subtle">{formatElapsed(r.createdAt, now, lang)}</span>
+                  <span className="ms-2 text-[11px] text-subtle">
+                    {formatElapsed(r.createdAt, now, lang)}
+                  </span>
                 </p>
               ))}
               {open ? (

@@ -27,3 +27,7 @@ ios/**/*.xcuserstate
 ios/App/DerivedData/
 ios/App/build/
 www/.gitkeep
+
+# Generated, self-hosted PDF.js support assets
+public/pdfjs/
+.recovery/

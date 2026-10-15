@@ -1,3 +1,4 @@
+import { collectedAtLabel } from "@/lib/news-quality";
 import { ExternalLink } from "@/components/external-link";
 import type { Lang } from "@/lib/i18n";
 import { PALETTE } from "@/lib/palette";
@@ -27,7 +28,13 @@ export function XCard({ card, lang }: { card: XCardRow; lang: Lang }) {
               {card.authorHandle}
             </p>
           </header>
-          <p className="mt-2.5 whitespace-pre-line text-[15px] leading-relaxed text-fg">{card.text}</p>
+          <p className="mt-2.5 whitespace-pre-line text-[15px] leading-relaxed text-fg">
+            {card.text}
+          </p>
+          <p className="mt-2 text-xs text-muted">
+            {L("أرشيف إكس · لا يتحدث تلقائياً", "X archive · not updated automatically")} ·{" "}
+            {collectedAtLabel(card.fetchedAt, lang)}
+          </p>
           <ExternalLink
             href={card.sourceUrl}
             data-x-source={card.whitelistId}

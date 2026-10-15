@@ -1,0 +1,54 @@
+# Preserve repository ignore rules for source uploads.
+node_modules
+.vercel
+.tanstack
+.grok
+.project_id
+.node_modules.lock
+screenshots
+artifacts
+dist
+.output
+*.log
+.env
+.env.*
+.DS_Store
+.vite
+public/__grok
+AGENTS.md
+AGENTS.project.md
+
+# Capacitor / Xcode (keep the project; drop machine junk)
+ios/App/Pods/
+ios/App/Podfile.lock
+ios/App/App/public
+ios/capacitor-cordova-ios-plugins/
+ios/**/xcuserdata/
+ios/**/*.xcuserstate
+ios/App/DerivedData/
+ios/App/build/
+www/.gitkeep
+
+# Additional local-only evidence, caches, and credential files.
+.recovery
+.recovery/
+.git/
+.nitro/
+.npm/
+.npmrc
+.yarnrc
+.yarnrc.yml
+.pnpm-store/
+.cache/
+.aws/
+.ssh/
+.codex/
+
+# Nested iOS exclusions retained when .vercelignore replaces Git fallback.
+ios/App/output/
+ios/DerivedData/
+ios/xcuserdata/
+ios/App/App/capacitor.config.json
+ios/App/App/config.xml
+
+public/pdfjs/

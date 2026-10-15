@@ -2,18 +2,18 @@
 @import "tw-animate-css";
 
 @theme {
-  --color-bg: #0a120f;
-  --color-surface: #141c19;
-  --color-surface-2: #1b2521;
-  --color-fg: #e7eee6;
-  --color-muted: #a3b0a4;
-  --color-subtle: #8f9c91;
-  --color-primary: #9eb4a2;
-  --color-primary-fg: #0a120f;
-  --color-border: #2d3a35;
-  --color-danger: #c56d5c;
-  --color-success: #7f9d84;
-  --color-warn: #c4a572;
+  --color-bg: #f6f5f0;
+  --color-surface: #ffffff;
+  --color-surface-2: #e9eee8;
+  --color-fg: #192c2a;
+  --color-muted: #4d625f;
+  --color-subtle: #526761;
+  --color-primary: #146455;
+  --color-primary-fg: #ffffff;
+  --color-border: #d7e0d9;
+  --color-danger: #ac4035;
+  --color-success: #27724e;
+  --color-warn: #896319;
   --radius-xs: 4px;
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -23,13 +23,14 @@
   --font-sans: "IBM Plex Sans Arabic", "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Amiri", "IBM Plex Sans Arabic", serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  --shadow-soft: 0 1px 0 color-mix(in oklab, var(--color-fg) 6%, transparent),
+  --shadow-soft:
+    0 1px 0 color-mix(in oklab, var(--color-fg) 6%, transparent),
     0 18px 40px -24px rgb(0 0 0 / 0.55);
 }
 
 @layer base {
   html {
-    color-scheme: dark;
+    color-scheme: light;
     background: var(--color-bg);
     color: var(--color-fg);
     -webkit-font-smoothing: antialiased;
@@ -50,7 +51,7 @@
   html.standalone body {
     touch-action: manipulation;
     background: var(--color-bg);
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   html.native-ios,
@@ -153,5 +154,54 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Daylight: a clear reading canvas, emerald anchors, small botanical accents. */
+.waha-shell {
+  background-image: radial-gradient(ellipse at 20% 0%, #e4ece2 0, transparent 48%);
+}
+.waha-prayer-card {
+  border: 1px solid #ccdbcf;
+  border-radius: 24px;
+  background: linear-gradient(125deg, #e3eedf, #f4f6e7 70%);
+  box-shadow: 0 12px 30px -22px #35544c;
+}
+.waha-sun {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #e5eeac;
+  color: #315644;
+  font-size: 45px;
+  line-height: 1;
+}
+.waha-action {
+  color: var(--color-fg);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+.waha-action:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px -18px #35544c;
+}
+.waha-action-mint {
+  background: #e8efdf;
+}
+.waha-action-peach {
+  background: #f7eadd;
+}
+.waha-action-lilac {
+  background: #ece8f3;
+}
+@media (max-width: 639px) {
+  .waha-sun {
+    width: 48px;
+    height: 48px;
+    font-size: 34px;
   }
 }

@@ -32,8 +32,8 @@ export function Shell() {
   }, [hydrate]);
 
   return (
-    <div className="min-h-dvh bg-bg text-fg">
-      <aside className="fixed inset-y-0 start-0 z-30 hidden w-60 border-e border-border bg-bg lg:flex lg:flex-col">
+    <div className="waha-shell min-h-dvh bg-bg text-fg">
+      <aside className="fixed inset-y-0 start-0 z-30 hidden w-60 border-e border-border bg-surface lg:flex lg:flex-col">
         <div className="px-5 py-6">
           <Link to="/" className="inline-flex">
             <WahaWordmark lang={lang} />
@@ -50,14 +50,19 @@ export function Shell() {
         <nav className="flex flex-1 flex-col gap-0.5 px-3">
           {nav.map((item) => {
             const Icon = NAV_ICON[item.to as keyof typeof NAV_ICON] ?? GalleryVertical;
-            const active = item.to === "/" ? pathname === "/" : pathname === item.to || pathname.startsWith(`${item.to}/`);
+            const active =
+              item.to === "/"
+                ? pathname === "/"
+                : pathname === item.to || pathname.startsWith(`${item.to}/`);
             return (
               <Link
                 key={item.to}
                 to={item.to}
                 className={cn(
                   "flex h-11 items-center gap-3 rounded-md px-3 text-sm transition-colors duration-150",
-                  active ? "bg-surface-2 text-fg" : "text-muted hover:bg-surface hover:text-fg",
+                  active
+                    ? "bg-primary text-primary-fg shadow-sm"
+                    : "text-muted hover:bg-surface hover:text-fg",
                 )}
               >
                 {item.to === "/madar" ? (
@@ -131,12 +136,19 @@ export function Shell() {
       <nav
         className={cn(
           "native-safe-bottom fixed inset-x-0 bottom-0 z-30 grid border-t border-border bg-bg/95 pb-[env(safe-area-inset-bottom,0px)] lg:hidden",
-          mobileNav.length <= 2 ? "grid-cols-2" : mobileNav.length === 3 ? "grid-cols-3" : "grid-cols-4",
+          mobileNav.length <= 2
+            ? "grid-cols-2"
+            : mobileNav.length === 3
+              ? "grid-cols-3"
+              : "grid-cols-4",
         )}
       >
         {mobileNav.map((item) => {
           const Icon = NAV_ICON[item.to as keyof typeof NAV_ICON] ?? GalleryVertical;
-          const active = item.to === "/" ? pathname === "/" : pathname === item.to || pathname.startsWith(`${item.to}/`);
+          const active =
+            item.to === "/"
+              ? pathname === "/"
+              : pathname === item.to || pathname.startsWith(`${item.to}/`);
           return (
             <Link
               key={item.to}
@@ -146,7 +158,13 @@ export function Shell() {
                 active ? "text-fg" : "text-muted",
               )}
             >
-              <Icon className="size-5" />
+              {item.to === "/madar" ? (
+                <MadarMark className="size-5" />
+              ) : item.to === "/clips" ? (
+                <ClipsMark className="size-5" />
+              ) : (
+                <Icon className="size-5" />
+              )}
               {t(lang, item.key)}
             </Link>
           );
@@ -155,7 +173,7 @@ export function Shell() {
 
       <CommandPalette open={cmd} onOpenChange={setCmd} lang={lang} />
       <Toaster
-        theme="dark"
+        theme="light"
         position={lang === "ar" ? "bottom-left" : "bottom-right"}
         toastOptions={{
           className: "!bg-surface !text-fg !border-border",

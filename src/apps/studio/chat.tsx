@@ -245,7 +245,7 @@ export function ChatApp() {
     setBusy(true);
     try {
       const history = nextUser
-        .filter((m): m is { role: "user" | "assistant"; content: string } => m.role === "user" || m.role === "assistant")
+        .filter((m): m is Extract<Msg, { role: "user" | "assistant" }> => m.role === "user" || m.role === "assistant")
         .map((m) => ({ role: m.role, content: m.content }))
         .slice(-12);
       const cityPayload = {

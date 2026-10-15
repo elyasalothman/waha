@@ -171,7 +171,7 @@ test("PWA add-to-home-screen is واحة with a real manifest, not __grok", () =
   assert.equal(manifest.dir, "rtl");
   assert.equal(manifest.display, "standalone");
   assert.equal(manifest.start_url, "/");
-  assert.equal(manifest.theme_color, "#0a120f");
+  assert.equal(manifest.theme_color, "#f6f5f0");
   assert.ok(exists("public/icons/icon-180.png"));
   assert.ok(exists("public/icons/icon-192.png"));
   assert.ok(exists("public/icons/icon-512.png"));

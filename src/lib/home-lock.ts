@@ -1,4 +1,3 @@
-import { primaryLauncherDoors } from "./doors.ts";
 import { SHADE_FIELD_CROSSING } from "./shade-field.ts";
 
 export { SHADE_FIELD_CROSSING, SHADE_FIELD_LANES } from "./shade-field.ts";
@@ -6,8 +5,8 @@ export { SHADE_FIELD_CROSSING, SHADE_FIELD_LANES } from "./shade-field.ts";
 /** Reviewer lock: the first screen stays solemn. Games are never the hero. */
 export type HomeItem = { id: string; category: string; lane: string };
 
-/** King lock on `/`: filled square + thin shadow + house doors. */
-export const HOME_ABOVE_FOLD = ["day-shadow", "house-doors", "square"] as const;
+/** Homepage stays limited to the three daily essentials. */
+export const HOME_ABOVE_FOLD = ["news", "watchlist", "shortcuts"] as const;
 export const HOME_SHADOW_KEYS = ["now", "prayer", "weather"] as const;
 export const HOME_FORBIDDEN_COPY = ["ابدأ من هنا", "جديد في واحة"] as const;
 /** واحة من أجلك lives on account creation — never `/`, chrome, or `/settings`. */
@@ -54,12 +53,12 @@ export function homeShowsCityPicker(): boolean {
 }
 
 export function homeHouseDoorIds(): string[] {
-  return primaryLauncherDoors().map((d) => d.id);
+  return [];
 }
 
-/** `/` keeps ظل + ميدان together. Crossing is quiet — never slides or a books shelf. */
+/** The Square and prayer/weather stay under Explore, off the homepage. */
 export function homeKeepsShadeWithField(): boolean {
-  return true;
+  return false;
 }
 
 export function homeShowsDailySlides(): boolean {

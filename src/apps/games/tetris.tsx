@@ -331,7 +331,7 @@ export function TetrisApp() {
   }, [status, lock, tryMove]);
 
   function ghostY(p: Piece) {
-    let g = { ...p };
+    const g = { ...p };
     while (fits(board.current, { ...g, y: g.y + 1 })) g.y += 1;
     return g;
   }

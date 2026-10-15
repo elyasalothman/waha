@@ -1,0 +1,71 @@
+@import "./alhajda-source.css";
+.curated-reader {
+  min-width: 0;
+}
+.curated-reader[data-reader-theme="night"] {
+  --alhajda-ink: #eeeae0;
+  --alhajda-paper: #1b2427;
+}
+.curated-reader[data-reader-theme="night"] .alhajda-book .page {
+  --accent: #aac5ff;
+  --tint: #253242;
+}
+.curated-reader option {
+  color: #242b28;
+  background: #fffef9;
+}
+.curated-reader .alhajda-content {
+  line-height: 1.95;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.curated-reader .alhajda-content p {
+  margin-block: 0 1.25em;
+}
+.curated-reader .alhajda-content h1,
+.curated-reader .alhajda-content h2,
+.curated-reader .alhajda-content h3 {
+  font-weight: 700;
+  line-height: 1.6;
+  margin-block: 1.5em 0.75em;
+}
+.curated-reader .alhajda-content h1 {
+  font-size: 1.65em;
+}
+.curated-reader .alhajda-content h2 {
+  font-size: 1.35em;
+}
+.curated-reader .alhajda-content h3 {
+  font-size: 1.15em;
+}
+.curated-reader .alhajda-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-inline: auto;
+}
+.curated-reader .alhajda-content a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.curated-reader .alhajda-content a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+.curated-reader .alhajda-content .caption,
+.curated-reader .alhajda-content figcaption {
+  font-size: max(0.72em, 14px);
+  line-height: 1.8;
+}
+.curated-reader .alhajda-content .figure {
+  margin-block: 1.5em;
+}
+.curated-reader .alhajda-content table {
+  border-collapse: collapse;
+  max-width: 100%;
+}
+.curated-reader .alhajda-content th,
+.curated-reader .alhajda-content td {
+  border: 1px solid currentColor;
+  padding: 0.5em;
+}

@@ -2,7 +2,6 @@ import { useEffect, useState, type RefObject } from "react";
 import { Link } from "@tanstack/react-router";
 import { useHydrated } from "@/hooks/use-hydrated";
 import { useNow } from "@/hooks/use-now";
-import { formatLocalHm } from "@/lib/clock";
 import { cn } from "@/lib/cn";
 import { HOME_SHADOW_KEYS, homeShowsCityPicker } from "@/lib/home-lock";
 import { scrollToShade, type ShadeFieldLane } from "@/lib/shade-field";
@@ -34,7 +33,12 @@ export function DayShadow({
   const hydrated = useHydrated();
   const now = useNow(1_000);
   const snap = shadowDayNow(now, city);
-  const [liveWx, setLiveWx] = useState<{ text: string; label: string } | null>(null);
+  const [liveWx, setLiveWx] = useState<{
+    text: string;
+    label: string;
+    source: "live" | "cache" | "climate";
+    cityKey: string;
+  } | null>(null);
 
   useEffect(() => {
     let live = true;
@@ -43,6 +47,8 @@ export function DayShadow({
         if (!live) return;
         setLiveWx({
           text: formatCelsius(w.celsius),
+          source: w.source,
+          cityKey: `${city.lat},${city.lon}`,
           label: weatherLabel(w.payload.current.code, lang),
         });
       })
@@ -56,8 +62,18 @@ export function DayShadow({
 
   const L = (ar: string, en: string) => (lang === "ar" ? ar : en);
   const name = prayerLabel(snap, lang);
-  const weatherText = liveWx?.text || snap.weatherText;
-  const weatherSub = liveWx?.label || (lang === "ar" ? snap.weatherLabelAr : snap.weatherLabelEn);
+  const currentWx = liveWx?.cityKey === `${city.lat},${city.lon}` ? liveWx : null;
+  const weatherSource = currentWx?.source ?? snap.weatherSource;
+  const weatherText =
+    weatherSource === "climate"
+      ? L("الطقس غير متاح", "Weather unavailable")
+      : currentWx?.text || snap.weatherText;
+  const weatherSub =
+    weatherSource === "climate"
+      ? ""
+      : weatherSource === "cache"
+        ? L("آخر قراءة محفوظة", "Last saved reading")
+        : currentWx?.label || "";
   const following = t(lang, "nextPrayerFollowing");
 
   const inField = lane === "field";
@@ -90,7 +106,7 @@ export function DayShadow({
         </button>
         <span className="text-subtle">·</span>
         <span data-shadow-key="now" className="font-mono tabular-nums text-fg/80">
-          {hydrated ? formatLocalHm(now) : <Pulse className="h-3 w-10" />}
+          {hydrated ? snap.clock : <Pulse className="h-3 w-10" />}
         </span>
         <span className="ms-auto flex flex-wrap items-center gap-x-2.5">
           <Link
@@ -104,7 +120,12 @@ export function DayShadow({
               {hydrated ? snap.remainHms : <Pulse className="h-3 w-14" />}
             </span>
           </Link>
-          <Link to="/app/$id" params={{ id: "weather" }} data-shadow-key="weather" className="hover:text-fg">
+          <Link
+            to="/app/$id"
+            params={{ id: "weather" }}
+            data-shadow-key="weather"
+            className="hover:text-fg"
+          >
             <span className="font-mono tabular-nums" data-live="weather">
               {hydrated ? weatherText : <Pulse className="h-3 w-10" />}
             </span>
@@ -115,7 +136,7 @@ export function DayShadow({
 
       <section
         ref={heroRef}
-        className="scroll-mt-20 px-1 py-5"
+        className="waha-prayer-card scroll-mt-20 px-6 py-7 sm:px-8"
         aria-label={hydrated ? `${following} ${name}` : following}
         data-hero="next-prayer"
       >
@@ -123,18 +144,27 @@ export function DayShadow({
         <Link
           to="/app/$id"
           params={{ id: "salah" }}
-          className="mt-1 flex items-end justify-between gap-4 text-fg hover:text-primary"
+          className="mt-1 flex flex-wrap items-end justify-between gap-x-4 gap-y-3 text-fg hover:text-primary"
         >
-          <h2 className="font-display text-5xl leading-none tracking-tight sm:text-6xl" data-hero="prayer-name">
+          <h2
+            className="font-display text-5xl leading-none tracking-tight sm:text-6xl"
+            data-hero="prayer-name"
+          >
             {hydrated ? name : <Pulse className="h-10 w-28" />}
           </h2>
-          <p className="font-mono text-4xl tabular-nums leading-none tracking-tight text-primary sm:text-5xl" data-live="countdown">
+          <p
+            className="font-mono text-3xl tabular-nums leading-none tracking-tight text-primary sm:text-5xl"
+            data-live="countdown"
+          >
             {hydrated ? snap.remainShort : <Pulse className="h-9 w-24" />}
           </p>
         </Link>
         <p className="mt-2 text-sm text-muted">
           {L("موعدها", "at")}{" "}
-          <span className="font-mono tabular-nums text-fg/80">{hydrated ? snap.prayerHm : <Pulse className="h-3 w-12" />}</span>
+          <span className="font-mono tabular-nums text-fg/80">
+            {hydrated ? snap.prayerHm : <Pulse className="h-3 w-12" />}
+          </span>
+          <span className="ms-2">· {lang === "ar" ? city.ar : city.en}</span>
         </p>
       </section>
     </>

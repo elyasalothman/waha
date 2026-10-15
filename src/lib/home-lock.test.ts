@@ -45,9 +45,9 @@ describe("serious home lock", () => {
     assert.equal(ids.includes("luma"), false);
   });
 
-  it("binds / to the Maydan timeline — catalog stays under doors", () => {
+  it("binds / to daily essentials — Square stays available in Explore", () => {
     const home = readFileSync(new URL("../routes/index.tsx", import.meta.url), "utf8");
-    assert.match(home, /SquarePage/);
+    assert.match(home, /HomePage/);
     assert.equal(/Hub/.test(home), false);
     assert.equal(/byCategory|featuredFor/.test(home), false);
     assert.equal(/maydan/.test(home), false);
@@ -57,7 +57,7 @@ describe("serious home lock", () => {
     const home = readFileSync(new URL("../routes/index.tsx", import.meta.url), "utf8");
     const square = readFileSync(new URL("../components/square/square-page.tsx", import.meta.url), "utf8");
     const shadow = readFileSync(new URL("../components/square/day-shadow.tsx", import.meta.url), "utf8");
-    assert.match(home, /SquarePage/);
+    assert.match(home, /HomePage/);
     assert.doesNotMatch(home, /DayShadow/);
     assert.match(square, /DayShadow/);
     assert.match(square, /data-home-sections="day-shadow house-doors square"/);
@@ -71,7 +71,7 @@ describe("serious home lock", () => {
   it("keeps games heroines and doors off `/` — they live on /games", () => {
     const home = readFileSync(new URL("../routes/index.tsx", import.meta.url), "utf8");
     const square = readFileSync(new URL("../components/square/square-page.tsx", import.meta.url), "utf8");
-    assert.match(home, /SquarePage/);
+    assert.match(home, /HomePage/);
     assert.doesNotMatch(home, /\/games|GamesHub|gamesDoor|ألعاب واحة|abiar|majra|kutl|kalima/i);
     assert.doesNotMatch(square, /\/games|GamesHub|luma|kalima|abiar|majra|kutl/i);
   });
@@ -87,15 +87,15 @@ describe("serious home lock", () => {
 });
 
 describe("king lock — `/` after #8", () => {
-  it("keeps above the fold to thin shadow + house doors + the square", () => {
-    assert.deepEqual([...HOME_ABOVE_FOLD], ["day-shadow", "house-doors", "square"]);
+  it("keeps above the fold to news, watchlist, and shortcuts", () => {
+    assert.deepEqual([...HOME_ABOVE_FOLD], ["news", "watchlist", "shortcuts"]);
     assert.deepEqual([...HOME_SHADOW_KEYS], ["now", "prayer", "weather"]);
     assert.equal(homeShowsCityPicker(), false);
     assert.deepEqual([...HOME_FORBIDDEN_COPY], ["ابدأ من هنا", "جديد في واحة"]);
   });
 
   it("keeps quiet doors to تهجد · مداد · مواقعنا", () => {
-    assert.deepEqual(homeHouseDoorIds(), ["tahajjud", "midad", "sites"]);
+    assert.deepEqual(homeHouseDoorIds(), []);
     assert.deepEqual(
       primaryLauncherDoors().map((d) => d.title.ar),
       ["تهجد · عبادة", "مداد · رف كتب", "مواقعنا"],
@@ -150,15 +150,15 @@ describe("king lock — `/` after #8", () => {
     assert.match(logic, /export function mergeFeed\(local: SquareLocalState, tab: SquareTab/);
   });
 
-  it("keeps `/` = ميدان+ظل with a quiet crossing — no slides, no books shelf", () => {
+  it("keeps the Square crossing under Explore without slides or books", () => {
     const home = readFileSync(new URL("../routes/index.tsx", import.meta.url), "utf8");
     const square = readFileSync(new URL("../components/square/square-page.tsx", import.meta.url), "utf8");
     const shadow = readFileSync(new URL("../components/square/day-shadow.tsx", import.meta.url), "utf8");
-    assert.equal(homeKeepsShadeWithField(), true);
+    assert.equal(homeKeepsShadeWithField(), false);
     assert.equal(homeShowsDailySlides(), false);
     assert.equal(homeShowsBooksShelf(), false);
     assert.equal(homeShadeFieldCrossing(), "quiet");
-    assert.match(home, /SquarePage/);
+    assert.match(home, /HomePage/);
     assert.doesNotMatch(home, /DailySlides|BooksPage|lib\/books|kutub-shelf/);
     assert.doesNotMatch(square, /DailySlides|BooksPage|kutub-shelf|lib\/books/);
     assert.match(square, /DayShadow/);

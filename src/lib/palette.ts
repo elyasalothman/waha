@@ -1,25 +1,25 @@
-/** Waha well-night — dusty sage, a quiet well, no carnival. */
+/** Waha daylight — pearl canvas, deep ink, and botanical emerald. */
 
-export const PALETTE_ID = "waha-well-night" as const;
+export const PALETTE_ID = "waha-daylight" as const;
 
 export const PALETTE = {
-  bg: "#0a120f",
-  surface: "#141c19",
-  "surface-2": "#1b2521",
-  fg: "#e7eee6",
-  muted: "#a3b0a4",
-  subtle: "#8f9c91",
-  primary: "#9eb4a2",
-  "primary-fg": "#0a120f",
-  border: "#2d3a35",
-  danger: "#c56d5c",
-  success: "#7f9d84",
-  warn: "#c4a572",
+  bg: "#f6f5f0",
+  surface: "#ffffff",
+  "surface-2": "#e9eee8",
+  fg: "#192c2a",
+  muted: "#4d625f",
+  subtle: "#526761",
+  primary: "#146455",
+  "primary-fg": "#ffffff",
+  border: "#d7e0d9",
+  danger: "#ac4035",
+  success: "#27724e",
+  warn: "#896319",
 } as const;
 
 export type PaletteToken = keyof typeof PALETTE;
 
-/** Text that must stay readable on the night well. */
+/** Text that must stay readable on every daylight surface. */
 export const TEXT_ON_GROUNDS = [
   ["fg", "bg"],
   ["fg", "surface"],
@@ -82,7 +82,9 @@ export function themeColor(name: PaletteToken, raw?: string): string {
   const fromArg = raw?.trim();
   if (fromArg) return fromArg;
   if (typeof document !== "undefined") {
-    const live = getComputedStyle(document.documentElement).getPropertyValue(`--color-${name}`).trim();
+    const live = getComputedStyle(document.documentElement)
+      .getPropertyValue(`--color-${name}`)
+      .trim();
     if (live) return live;
   }
   return PALETTE[name];

@@ -1,14 +1,11 @@
 import { BooksMark } from "@/components/brand";
 import { ExternalLink } from "@/components/external-link";
 import { useCurrentUserState } from "@/lib/auth/use-current-user";
-import {
-  useBooks,
-  useKutubi,
-  type BookCard,
-  type BookUiSection,
-} from "@/lib/books";
+import { useBooks, useKutubi, type BookCard, type BookUiSection } from "@/lib/books";
 import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
+import { PrivateShelf } from "./private-shelf";
+import { Link } from "@tanstack/react-router";
 
 const SECTION_EN: Record<BookUiSection, string> = {
   أخلاق: "Akhlaq",
@@ -35,6 +32,31 @@ export function BooksPage() {
         <h1 className="mt-2 font-display text-4xl tracking-tight">{t(lang, "booksTitle")}</h1>
         <p className="mt-2 max-w-xl text-muted">{t(lang, "booksBlurb")}</p>
       </header>
+
+      <section
+        className="mb-8 rounded-2xl border border-primary/25 bg-surface p-5 sm:p-6"
+        data-curated-book-card="alhajda"
+      >
+        <p className="text-xs text-primary">
+          {L("الطبعة الرقمية الأولى · أكتوبر 2026", "First digital edition · October 2026")}
+        </p>
+        <h2 className="mt-2 font-display text-3xl">الهجدة</h2>
+        <p className="mt-2 text-lg">أسئلة تغيّر ما نراه</p>
+        <p className="mt-3 text-sm leading-relaxed text-muted">
+          {L(
+            "ستة فصول في الاختيار والعقل واليقين والطبيعة والعدالة والذاكرة، مع الصور والمراجع وحقوقها. اقرأ داخل واحة، وكبّر الخط، ثم عد إلى موضعك.",
+            "Six Arabic chapters on choice, mind, certainty, nature, justice and memory, with illustrations, references and credits. Read in Waha with adjustable text and a saved reading position.",
+          )}
+        </p>
+        <Link
+          to="/books/alhajda"
+          className="mt-4 inline-flex min-h-11 items-center rounded-lg bg-primary px-5 py-2 text-sm text-primary-fg"
+        >
+          {L("افتح كتاب الهجدة", "Read Alhajda")}
+        </Link>
+      </section>
+
+      <PrivateShelf />
 
       <section
         className="mb-10"
@@ -69,7 +91,9 @@ export function BooksPage() {
                       canOfferPublic
                         ? {
                             pending: Boolean(draft),
-                            label: draft ? t(lang, "kutubiPublicDraft") : t(lang, "kutubiOfferPublic"),
+                            label: draft
+                              ? t(lang, "kutubiPublicDraft")
+                              : t(lang, "kutubiOfferPublic"),
                             onClick: draft ? () => undefined : () => kutubi.requestPublic(book.id),
                           }
                         : undefined
@@ -85,7 +109,9 @@ export function BooksPage() {
       <div className="grid gap-10" data-books-public="council-shelf">
         {sections.map((group) => (
           <section key={group.section} data-books-section={group.section}>
-            <h2 className="font-display text-2xl tracking-tight">{L(group.section, SECTION_EN[group.section])}</h2>
+            <h2 className="font-display text-2xl tracking-tight">
+              {L(group.section, SECTION_EN[group.section])}
+            </h2>
             <ol className="mt-4 grid gap-3">
               {group.books.map((book) => {
                 const saved = kutubi.local.items.some((item) => item.bookId === book.id);
@@ -145,7 +171,9 @@ function BookCardView({
         >
           {book.stamp}
         </span>
-        <span className="rounded-md border border-border bg-surface-2 px-2 py-0.5 text-muted">{book.sourceLabel}</span>
+        <span className="rounded-md border border-border bg-surface-2 px-2 py-0.5 text-muted">
+          {book.sourceLabel}
+        </span>
         {opened ? <span className="text-primary">{lang === "ar" ? "فُتح" : "Opened"}</span> : null}
       </div>
       <h3 className="mt-2 font-display text-2xl tracking-tight">{book.titleAr}</h3>

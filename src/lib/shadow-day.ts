@@ -1,5 +1,5 @@
 import { DEFAULT_CITY, type City } from "./cities.ts";
-import { formatLiveHms, formatLocalHm, formatShortRemain, isVisibleHm } from "./clock.ts";
+import { formatLiveHms, formatHmInZone, formatShortRemain, isVisibleHm } from "./clock.ts";
 import { formatGregorian, formatHijri } from "./hijri.ts";
 import { nextPrayerVisible, type PrayerKey } from "./prayer.ts";
 import { climateFallbackC, formatCelsius, readWeatherCache, weatherLabel } from "./weather.ts";
@@ -18,6 +18,7 @@ export type ShadowDaySnapshot = {
   remainShort: string;
   weatherText: string;
   weatherC: number;
+  weatherSource: "cache" | "climate";
   weatherLabelAr: string;
   weatherLabelEn: string;
   cityAr: string;
@@ -33,27 +34,33 @@ function neverBlank(value: string, fallback: string): string {
 }
 
 /** Instant °C: cache if present, else Riyadh-month climate. Never empty, never waits. */
-export function instantWeatherC(lat: number, lon: number): { celsius: number; text: string; code: number } {
+export function instantWeatherC(
+  lat: number,
+  lon: number,
+): { celsius: number; text: string; code: number; source: "cache" | "climate" } {
   const cached = readWeatherCache(lat, lon);
   if (cached && Number.isFinite(cached.current.temperature)) {
     return {
       celsius: cached.current.temperature,
       text: formatCelsius(cached.current.temperature),
       code: cached.current.code,
+      source: "cache",
     };
   }
   const celsius = climateFallbackC();
-  return { celsius, text: formatCelsius(celsius), code: 1 };
+  return { celsius, text: formatCelsius(celsius), code: 1, source: "climate" };
 }
 
 /** Sync snapshot — clock, next prayer, weather °C, Hijri. Numbers on first paint. */
 export function shadowDayNow(now = new Date(), city: City = DEFAULT_CITY): ShadowDaySnapshot {
-  const clock = isVisibleHm(formatLocalHm(now)) ? formatLocalHm(now) : "00:00";
+  const clock = isVisibleHm(formatHmInZone(now, city.tz)) ? formatHmInZone(now, city.tz) : "00:00";
   const next = nextPrayerVisible(city.lat, city.lon, now, city.tz);
   const prayerHm = isVisibleHm(next.hm) ? next.hm : clock;
   const remainMs = Math.max(
     0,
-    (next.at instanceof Date && !Number.isNaN(next.at.getTime()) ? next.at.getTime() : now.getTime()) - now.getTime(),
+    (next.at instanceof Date && !Number.isNaN(next.at.getTime())
+      ? next.at.getTime()
+      : now.getTime()) - now.getTime(),
   );
   const remainHms = neverBlank(formatLiveHms(remainMs), "00:00:00");
   const remainShort = neverBlank(formatShortRemain(remainMs), "0:00");
@@ -73,6 +80,7 @@ export function shadowDayNow(now = new Date(), city: City = DEFAULT_CITY): Shado
     remainShort,
     weatherText: neverBlank(wx.text, formatCelsius(climateFallbackC())),
     weatherC: wx.celsius,
+    weatherSource: wx.source,
     weatherLabelAr: weatherLabel(wx.code, "ar"),
     weatherLabelEn: weatherLabel(wx.code, "en"),
     cityAr: city.ar || DEFAULT_CITY.ar,

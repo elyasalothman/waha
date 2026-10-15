@@ -1,0 +1,16 @@
+.reader-layout {
+  --reader-header-height: 3.5rem;
+  --reader-scroll-offset: 10rem;
+}
+.reader-layout .reader-toolbar {
+  position: sticky;
+  top: var(--reader-header-height);
+  z-index: 19;
+  padding-block: 0.5rem;
+  background-color: inherit;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+}
+.reader-layout .reader-content,
+.reader-layout .reader-content [id] {
+  scroll-margin-top: var(--reader-scroll-offset);
+}

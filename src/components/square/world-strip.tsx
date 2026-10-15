@@ -25,11 +25,21 @@ export function WorldStrip({
           <WorldBadge />
         </div>
         {active ? null : (
-          <button type="button" onClick={onOpenLane} className="shrink-0 text-xs text-primary hover:underline">
+          <button
+            type="button"
+            onClick={onOpenLane}
+            className="shrink-0 text-xs text-primary hover:underline"
+          >
             {L("الكل", "All")}
           </button>
         )}
       </header>
+      <p className="mt-2 text-xs text-muted">
+        {L(
+          "أرشيف تجريبي محفوظ؛ هذه ليست نشرة أخبار محدثة.",
+          "Saved sample archive; this is not a current news briefing.",
+        )}
+      </p>
       {active ? null : (
         <div className="mt-2 flex flex-nowrap gap-2 overflow-x-auto pb-1">
           {preview.map((card) => (
@@ -39,7 +49,9 @@ export function WorldStrip({
               onClick={onOpenLane}
               className="w-52 shrink-0 rounded-md border border-border/80 bg-bg/40 px-3 py-2 text-start hover:bg-surface-2"
             >
-              <p className="line-clamp-2 whitespace-pre-line text-xs leading-relaxed text-fg/90">{card.titleOrHook}</p>
+              <p className="line-clamp-2 whitespace-pre-line text-xs leading-relaxed text-fg/90">
+                {card.titleOrHook}
+              </p>
               <p className="mt-1 text-[10px] text-subtle">{card.sourceLabel}</p>
             </button>
           ))}

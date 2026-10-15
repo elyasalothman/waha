@@ -39,7 +39,7 @@ describe("quiet shade↔field crossing", () => {
     const css = readFileSync(new URL("../styles.css", import.meta.url), "utf8");
     const hook = readFileSync(new URL("../hooks/use-shade-field.ts", import.meta.url), "utf8");
 
-    assert.match(home, /SquarePage/);
+    assert.match(home, /HomePage/);
     assert.doesNotMatch(home, /DailySlides|BooksPage|lib\/books/);
     assert.match(square, /data-shade-field="quiet"/);
     assert.match(square, /data-lane=\{lane\}/);

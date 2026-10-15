@@ -1,15 +1,41 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { SquarePage } from "@/components/square/square-page";
 import { moreOverflowNav } from "@/lib/nav";
 import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
 
-export const Route = createFileRoute("/more")({ component: MorePage });
+export const Route = createFileRoute("/more")({
+  validateSearch: (search: Record<string, unknown>): { view?: "square" } => ({
+    view: search.view === "square" ? "square" : undefined,
+  }),
+  component: MorePage,
+});
 
 function MorePage() {
+  const { view } = Route.useSearch();
   const lang = useAppStore((s) => s.lang);
   const audience = useAppStore((s) => s.audience);
   const segment = useAppStore((s) => s.segment);
   const hubs = moreOverflowNav(audience, segment);
+
+  if (view === "square")
+    return (
+      <div>
+        <div className="mx-auto mb-4 max-w-3xl">
+          <Link
+            to="/more"
+            search={{}}
+            className="inline-flex min-h-11 items-center text-sm text-primary hover:underline"
+          >
+            {lang === "ar" ? "العودة إلى استكشف" : "Back to Explore"}
+          </Link>
+          <h1 className="font-display text-3xl">
+            {lang === "ar" ? "الميدان والأرشيف" : "Square & archive"}
+          </h1>
+        </div>
+        <SquarePage />
+      </div>
+    );
 
   return (
     <div className="mx-auto max-w-5xl">
@@ -17,6 +43,15 @@ function MorePage() {
         <h1 className="font-display text-4xl tracking-tight">{t(lang, "more")}</h1>
         <p className="mt-2 max-w-xl text-muted">{t(lang, "moreBlurb")}</p>
       </header>
+      <Link
+        to="/more"
+        search={{ view: "square" }}
+        className="mb-3 flex min-h-14 items-center rounded-xl border border-border bg-surface px-4 font-medium text-fg hover:bg-surface-2"
+      >
+        {lang === "ar"
+          ? "الميدان والأرشيف · الصلاة وآية اليوم"
+          : "Square & archive · Prayer & daily verse"}
+      </Link>
       <Link
         to="/forum"
         className="mb-6 flex min-h-14 items-center justify-between rounded-xl border border-border bg-surface px-4 text-fg hover:bg-surface-2"
@@ -36,6 +71,14 @@ function MorePage() {
             <span className="font-medium">{t(lang, hub.key)}</span>
           </Link>
         ))}
+        {audience === "personal" ? (
+          <Link
+            to="/workspace"
+            className="flex min-h-14 items-center rounded-xl border border-border bg-surface px-4 font-medium text-fg hover:bg-surface-2"
+          >
+            {t(lang, "workspace")}
+          </Link>
+        ) : null}
       </nav>
     </div>
   );

@@ -11,7 +11,6 @@ import { PALETTE } from "@/lib/palette";
 import { cn } from "@/lib/cn";
 import { useAppStore } from "@/store/app-store";
 import { DoorsStrip } from "@/components/doors-strip";
-import { HomeSpend } from "@/components/home-spend";
 import { Composer } from "./composer";
 import { DayAyah } from "./day-ayah";
 import { DayShadow } from "./day-shadow";
@@ -28,8 +27,6 @@ type MaydanLane = SquareTab | "world";
 
 export function SquarePage() {
   const lang = useAppStore((s) => s.lang);
-  const audience = useAppStore((s) => s.audience);
-  const segment = useAppStore((s) => s.segment);
   const user = useCurrentUser();
   const { local, publish, like, reply, saveProfile } = useSquare();
   const [tab, setTab] = useState<MaydanLane>("forYou");
@@ -56,26 +53,36 @@ export function SquarePage() {
 
   return (
     <div
-      className="mx-auto max-w-xl"
+      className="mx-auto max-w-3xl"
       data-home-sections="day-shadow house-doors square"
       data-guest-read="open"
       data-shade-field="quiet"
       data-lane={lane}
     >
       <DayShadow lane={lane} heroRef={heroRef} />
-      {audience === "personal" ? <HomeSpend lang={lang} segment={segment} /> : null}
       <div className="pt-3">
         <DoorsStrip lang={lang} row />
       </div>
       <DayAyah />
 
-      <header className="pt-3 pb-2" data-home-section="square">
-        <h1 className="font-display text-xl tracking-tight">{L("الميدان", "The Square")}</h1>
+      <header id="waha-square" className="scroll-mt-20 pt-3 pb-2" data-home-section="square">
+        <h2 className="font-display text-3xl tracking-tight">{L("من حولك", "Around you")}</h2>
+        <p className="mt-2 text-sm text-muted">
+          {L(
+            "الميدان · أفكار وأصوات من الواحة والعالم",
+            "The Square · Voices from Waha and beyond",
+          )}
+        </p>
       </header>
 
       <XStrip lang={lang} />
 
-      <WorldStrip lang={lang} cards={world} active={onWorldLane} onOpenLane={() => setTab("world")} />
+      <WorldStrip
+        lang={lang}
+        cards={world}
+        active={onWorldLane}
+        onOpenLane={() => setTab("world")}
+      />
 
       <div className="mt-3 grid grid-cols-3 rounded-lg border border-border bg-surface p-1">
         {(

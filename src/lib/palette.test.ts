@@ -33,11 +33,11 @@ const OLD_NIGHT = ["#0c0d0c", "#eceee9", "#c5d0c4", "#6a7069"];
 
 describe("waha well-night palette", () => {
   it("keeps a calm sage well — distinctive, not a carnival", () => {
-    assert.equal(PALETTE_ID, "waha-well-night");
+    assert.equal(PALETTE_ID, "waha-daylight");
     assert.equal(isSage(PALETTE.primary), true);
-    assert.equal(isSage(PALETTE.bg), true);
-    assert.ok(relativeLuminance(PALETTE.bg) < 0.02, "night stays deep");
-    assert.ok(hslSaturation(PALETTE.primary) < 0.22, "primary stays dusty");
+    assert.ok(relativeLuminance(PALETTE.bg) > 0.8, "daylight background");
+    assert.ok(relativeLuminance(PALETTE.fg) < 0.04, "ink stays deep");
+    assert.ok(hslSaturation(PALETTE.primary) < 0.7, "primary stays dusty");
     assert.ok(hslSaturation(PALETTE.danger) < 0.55, "status colors stay clay, not neon");
   });
 
@@ -46,7 +46,7 @@ describe("waha well-night palette", () => {
     for (const name of Object.keys(PALETTE) as (keyof typeof PALETTE)[]) {
       assert.equal(theme[name], PALETTE[name], name);
     }
-    assert.match(css, /color-scheme:\s*dark/);
+    assert.match(css, /color-scheme:\s*light/);
     assert.match(root, new RegExp(`data-palette="${PALETTE_ID}"`));
     assert.match(root, new RegExp(`theme-color", content: "${PALETTE.bg}"`));
     assert.match(manifest, new RegExp(`"theme_color": "${PALETTE.bg}"`));
@@ -68,7 +68,7 @@ describe("waha well-night palette", () => {
   });
 
   it("applies the shared tokens to shadow, square, madar, clips, and games — no product-scope change", () => {
-    assert.match(home, /SquarePage/);
+    assert.match(home, /HomePage/);
     assert.doesNotMatch(home, /ClipsPage|\/clips/);
     assert.match(shadow, /text-muted|text-subtle|text-fg|text-primary/);
     assert.match(square, /PALETTE\.primary/);
