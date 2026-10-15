@@ -4,12 +4,10 @@ import { signOut } from "@/lib/auth/client";
 import { useCurrentUserState } from "@/lib/auth/use-current-user";
 import { Link } from "@tanstack/react-router";
 import { HouseDoors } from "@/components/house-doors";
-import { HayatCard } from "@/components/hayat-card";
+import { PersonalDay } from "@/components/personal-day";
 import { Compass } from "lucide-react";
 import { CompanyWatchlist } from "@/components/company-watchlist";
 import { DailyActions } from "@/components/daily-actions";
-import { NewsLive } from "@/components/news-live";
-import { DailyDiscovery } from "@/components/daily-discovery";
 import { useAppStore } from "@/store/app-store";
 
 export function HomePage() {
@@ -111,9 +109,7 @@ export function HomePage() {
         )}
       </section>
       <div className="space-y-4">
-        <DailyDiscovery />
-        <NewsLive compact />
-        <HayatCard />
+        <PersonalDay userId={user?.id} interests={interests} />
         <HouseDoors />
         <CompanyWatchlist lang={lang} />
         <DailyActions lang={lang} />

@@ -25,6 +25,9 @@ const CANONICAL_HREFS: Record<HouseSiteId, string> = {
   qararak: "https://qararak.alhajda.com",
   manba: "https://manba.alhajda.com",
   khazana: "https://khazana.alhajda.com",
+  hudoo: "https://hudoo.alhajda.com",
+  manteq: "https://manteq.alhajda.com",
+  himaya: "https://himaya.alhajda.com",
 };
 
 const HOUSE_PRODUCT_HOSTS = [

@@ -168,6 +168,21 @@ export function NewsLive({ compact = false }: { compact?: boolean }) {
       <p role="status" className="mt-3 text-sm text-muted">
         {notice}
       </p>
+      {compact && data && (
+        <ol className="mt-4 divide-y divide-border" aria-label="أهم ثلاثة عناوين">
+          {data.items.slice(0, 3).map((item) => (
+            <li key={item.id} className="py-3">
+              <ExternalLink
+                href={item.href}
+                className="inline-flex min-h-11 items-center leading-7"
+              >
+                {item.title}
+              </ExternalLink>
+              <p className="text-xs text-muted">{item.source}</p>
+            </li>
+          ))}
+        </ol>
+      )}
       {!compact && (
         <>
           <div className="my-5 flex flex-wrap gap-2" aria-label="تصنيف الأخبار">

@@ -18,7 +18,10 @@ export type HouseSiteId =
   | "amlak"
   | "qararak"
   | "manba"
-  | "khazana";
+  | "khazana"
+  | "hudoo"
+  | "manteq"
+  | "himaya";
 
 export type HouseSite = {
   id: HouseSiteId;
@@ -159,7 +162,10 @@ const HOUSE_SITE_DRAFTS: readonly HouseSiteDraft[] = [
     href: "https://hissati.alhajda.com",
     icon: "GraduationCap",
     title: { ar: "حصتي", en: "Hissati" },
-    blurb: { ar: "تعلّم تفاعلي ومسارات ومستويات", en: "Interactive learning paths and levels" },
+    blurb: {
+      ar: "دفتر المعلم لمدرستي · تحضير أسبوعي وكشف الدرجات",
+      en: "Teacher notebook for Madrasati · weekly plans and grades",
+    },
     keywords: ["حصتي", "معلم", "حصة", "hissati", "teacher"],
     category: "life",
     lane: "house",
@@ -287,6 +293,45 @@ const HOUSE_SITE_DRAFTS: readonly HouseSiteDraft[] = [
     launcher: false,
     directory: true,
   },
+  {
+    id: "hudoo",
+    href: "https://hudoo.alhajda.com",
+    icon: "Globe",
+    title: { ar: "هدوء", en: "Hudoo" },
+    blurb: { ar: "قناة هدوء السوق", en: "Hudoo · Alhajda house" },
+    keywords: ["هدوء", "Hudoo"],
+    category: "life",
+    lane: "house",
+    audience: BOTH,
+    launcher: false,
+    directory: true,
+  },
+  {
+    id: "manteq",
+    href: "https://manteq.alhajda.com",
+    icon: "Globe",
+    title: { ar: "منطق", en: "Manteq" },
+    blurb: { ar: "إشارات ورقية للسوق", en: "Manteq · Alhajda house" },
+    keywords: ["منطق", "Manteq"],
+    category: "life",
+    lane: "house",
+    audience: BOTH,
+    launcher: false,
+    directory: true,
+  },
+  {
+    id: "himaya",
+    href: "https://himaya.alhajda.com",
+    icon: "Globe",
+    title: { ar: "حماية", en: "Himaya" },
+    blurb: { ar: "إضافة حجب الإعلانات", en: "Himaya · Alhajda house" },
+    keywords: ["حماية", "Himaya"],
+    category: "life",
+    lane: "house",
+    audience: BOTH,
+    launcher: false,
+    directory: true,
+  },
 ];
 
 export const HOUSE_SITES: readonly HouseSite[] = HOUSE_SITE_DRAFTS.map((site) => ({
@@ -317,3 +362,17 @@ export function primaryLauncherHouseSites(): HouseSite[] {
 export function isExternalHouseSite(site: Pick<HouseSite, "href">): boolean {
   return site.href.startsWith("https://");
 }
+
+export const HOUSE_GROUPS = [
+  { ar: "إيمان", en: "Faith", ids: ["tahajjud"] },
+  { ar: "قراءة", en: "Reading", ids: ["midad"] },
+  { ar: "لعب", en: "Play", ids: ["luma", "samar", "hayat"] },
+  { ar: "مال", en: "Money", ids: ["hudoo", "market", "manteq", "qararak"] },
+  {
+    ar: "عمل وتعليم",
+    en: "Work & learning",
+    ids: ["hissati", "amlak", "alhajda-tools", "manba", "mohsin", "agent"],
+  },
+  { ar: "حماية", en: "Protection", ids: ["himaya"] },
+  { ar: "الخزانة والبيت", en: "House & directory", ids: ["khazana", "home", "studio"] },
+] as const;

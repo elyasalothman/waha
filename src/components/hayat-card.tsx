@@ -6,9 +6,11 @@ import { useAppStore } from "@/store/app-store";
 export function HayatCard() {
   const lang = useAppStore((s) => s.lang);
   const hayat = getHouseSite("hayat")!;
+  const pushRecent = useAppStore((s) => s.pushRecent);
   return (
     <ExternalLink
       href={hayat.href}
+      onClick={() => pushRecent("hayat")}
       data-play-hayat
       className="flex min-h-28 items-center gap-4 rounded-2xl border border-primary/40 bg-primary/10 p-5 hover:bg-primary/15"
     >

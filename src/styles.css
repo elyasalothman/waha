@@ -809,3 +809,47 @@
   min-width: 44px;
   justify-content: center;
 }
+
+.personal-day[data-day-theme="night"] {
+  --color-bg: #142321;
+  --color-surface: #1d302d;
+  --color-surface-2: #293f39;
+  --color-fg: #edf4ed;
+  --color-muted: #bfd0c8;
+  --color-subtle: #b6c6bc;
+  --color-primary: #8cd9bd;
+  --color-primary-fg: #142321;
+  --color-border: #486158;
+  background: var(--color-bg);
+  color: var(--color-fg);
+  color-scheme: dark;
+}
+.personal-day[data-day-theme="gold"] {
+  --color-bg: #f8f2e5;
+  --color-surface: #fffcf5;
+  --color-surface-2: #f2e7cd;
+  --color-primary: #785719;
+  --color-border: #d4c39b;
+  background: var(--color-bg);
+}
+.personal-day {
+  line-height: 1.8;
+}
+.personal-day button:disabled {
+  opacity: 0.4;
+}
+.personal-day .text-sm {
+  font-size: 0.875em;
+}
+.personal-day .text-xs {
+  font-size: 0.75em;
+}
+.personal-day .text-lg {
+  font-size: 1.125em;
+}
+.personal-day .text-2xl {
+  font-size: 1.5em;
+}
+.personal-day .text-3xl {
+  font-size: 1.875em;
+}
