@@ -1,3 +1,4 @@
+import { ReadingShelf } from "./platform/shelf";
 import { BooksMark } from "@/components/brand";
 import { ExternalLink } from "@/components/external-link";
 import { useCurrentUserState } from "@/lib/auth/use-current-user";
@@ -32,6 +33,8 @@ export function BooksPage() {
         <h1 className="mt-2 font-display text-4xl tracking-tight">{t(lang, "booksTitle")}</h1>
         <p className="mt-2 max-w-xl text-muted">{t(lang, "booksBlurb")}</p>
       </header>
+
+      <ReadingShelf />
 
       <section
         className="mb-8 rounded-2xl border border-primary/25 bg-surface p-5 sm:p-6"

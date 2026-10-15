@@ -24,11 +24,13 @@ import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as StudioRouteImport } from './routes/studio'
 import { Route as ToolsRouteImport } from './routes/tools'
 import { Route as WorkspaceRouteImport } from './routes/workspace'
+import { Route as ApiBooksRouteImport } from './routes/api.books'
 import { Route as AppIdRouteImport } from './routes/app.$id'
 import { Route as BooksAlhajdaRouteImport } from './routes/books_.alhajda'
 import { Route as ForumIndexRouteImport } from './routes/forum.index'
 import { Route as ForumBoardRouteImport } from './routes/forum.$board'
 import { Route as ApiAuthSplatRouteImport } from './routes/api.auth.$'
+import { Route as BooksLibraryIdRouteImport } from './routes/books_.library.$id'
 import { Route as BooksReadBookIdRouteImport } from './routes/books_.read.$bookId'
 import { Route as ForumBoardIndexRouteImport } from './routes/forum.$board.index'
 import { Route as ForumBoardTopicIdRouteImport } from './routes/forum.$board.$topicId'
@@ -108,6 +110,11 @@ const WorkspaceRoute = WorkspaceRouteImport.update({
   path: '/workspace',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiBooksRoute = ApiBooksRouteImport.update({
+  id: '/api/books',
+  path: '/api/books',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AppIdRoute = AppIdRouteImport.update({
   id: '/app/$id',
   path: '/app/$id',
@@ -131,6 +138,11 @@ const ForumBoardRoute = ForumBoardRouteImport.update({
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BooksLibraryIdRoute = BooksLibraryIdRouteImport.update({
+  id: '/books_/library/$id',
+  path: '/books/library/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BooksReadBookIdRoute = BooksReadBookIdRouteImport.update({
@@ -165,11 +177,13 @@ export interface FileRoutesByFullPath {
   '/studio': typeof StudioRoute
   '/tools': typeof ToolsRoute
   '/workspace': typeof WorkspaceRoute
+  '/api/books': typeof ApiBooksRoute
   '/app/$id': typeof AppIdRoute
   '/books/alhajda': typeof BooksAlhajdaRoute
   '/forum/$board': typeof ForumBoardRouteWithChildren
   '/forum/': typeof ForumIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/books/library/$id': typeof BooksLibraryIdRoute
   '/books/read/$bookId': typeof BooksReadBookIdRoute
   '/forum/$board/$topicId': typeof ForumBoardTopicIdRoute
   '/forum/$board/': typeof ForumBoardIndexRoute
@@ -189,10 +203,12 @@ export interface FileRoutesByTo {
   '/studio': typeof StudioRoute
   '/tools': typeof ToolsRoute
   '/workspace': typeof WorkspaceRoute
+  '/api/books': typeof ApiBooksRoute
   '/app/$id': typeof AppIdRoute
   '/books/alhajda': typeof BooksAlhajdaRoute
   '/forum': typeof ForumIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/books/library/$id': typeof BooksLibraryIdRoute
   '/books/read/$bookId': typeof BooksReadBookIdRoute
   '/forum/$board/$topicId': typeof ForumBoardTopicIdRoute
   '/forum/$board': typeof ForumBoardIndexRoute
@@ -214,11 +230,13 @@ export interface FileRoutesById {
   '/studio': typeof StudioRoute
   '/tools': typeof ToolsRoute
   '/workspace': typeof WorkspaceRoute
+  '/api/books': typeof ApiBooksRoute
   '/app/$id': typeof AppIdRoute
   '/books_/alhajda': typeof BooksAlhajdaRoute
   '/forum/$board': typeof ForumBoardRouteWithChildren
   '/forum/': typeof ForumIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/books_/library/$id': typeof BooksLibraryIdRoute
   '/books_/read/$bookId': typeof BooksReadBookIdRoute
   '/forum/$board/$topicId': typeof ForumBoardTopicIdRoute
   '/forum/$board/': typeof ForumBoardIndexRoute
@@ -241,11 +259,13 @@ export interface FileRouteTypes {
     | '/studio'
     | '/tools'
     | '/workspace'
+    | '/api/books'
     | '/app/$id'
     | '/books/alhajda'
     | '/forum/$board'
     | '/forum/'
     | '/api/auth/$'
+    | '/books/library/$id'
     | '/books/read/$bookId'
     | '/forum/$board/$topicId'
     | '/forum/$board/'
@@ -265,10 +285,12 @@ export interface FileRouteTypes {
     | '/studio'
     | '/tools'
     | '/workspace'
+    | '/api/books'
     | '/app/$id'
     | '/books/alhajda'
     | '/forum'
     | '/api/auth/$'
+    | '/books/library/$id'
     | '/books/read/$bookId'
     | '/forum/$board/$topicId'
     | '/forum/$board'
@@ -289,11 +311,13 @@ export interface FileRouteTypes {
     | '/studio'
     | '/tools'
     | '/workspace'
+    | '/api/books'
     | '/app/$id'
     | '/books_/alhajda'
     | '/forum/$board'
     | '/forum/'
     | '/api/auth/$'
+    | '/books_/library/$id'
     | '/books_/read/$bookId'
     | '/forum/$board/$topicId'
     | '/forum/$board/'
@@ -315,9 +339,11 @@ export interface RootRouteChildren {
   StudioRoute: typeof StudioRoute
   ToolsRoute: typeof ToolsRoute
   WorkspaceRoute: typeof WorkspaceRoute
+  ApiBooksRoute: typeof ApiBooksRoute
   AppIdRoute: typeof AppIdRoute
   BooksAlhajdaRoute: typeof BooksAlhajdaRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
+  BooksLibraryIdRoute: typeof BooksLibraryIdRoute
   BooksReadBookIdRoute: typeof BooksReadBookIdRoute
 }
 
@@ -428,6 +454,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkspaceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/books': {
+      id: '/api/books'
+      path: '/api/books'
+      fullPath: '/api/books'
+      preLoaderRoute: typeof ApiBooksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/app/$id': {
       id: '/app/$id'
       path: '/app/$id'
@@ -461,6 +494,13 @@ declare module '@tanstack/react-router' {
       path: '/api/auth/$'
       fullPath: '/api/auth/$'
       preLoaderRoute: typeof ApiAuthSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/books_/library/$id': {
+      id: '/books_/library/$id'
+      path: '/books/library/$id'
+      fullPath: '/books/library/$id'
+      preLoaderRoute: typeof BooksLibraryIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/books_/read/$bookId': {
@@ -529,9 +569,11 @@ const rootRouteChildren: RootRouteChildren = {
   StudioRoute: StudioRoute,
   ToolsRoute: ToolsRoute,
   WorkspaceRoute: WorkspaceRoute,
+  ApiBooksRoute: ApiBooksRoute,
   AppIdRoute: AppIdRoute,
   BooksAlhajdaRoute: BooksAlhajdaRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
+  BooksLibraryIdRoute: BooksLibraryIdRoute,
   BooksReadBookIdRoute: BooksReadBookIdRoute,
 }
 export const routeTree = rootRouteImport

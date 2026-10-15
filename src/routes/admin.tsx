@@ -108,6 +108,9 @@ function AdminPage() {
     <div className="mx-auto max-w-2xl">
       <p className="text-xs tracking-wide text-muted">{t(lang, "admin")}</p>
       <h1 className="mt-2 font-display text-4xl tracking-tight">{t(lang, "admin")}</h1>
+      <Link to="/studio" className="mt-5 inline-flex min-h-11 items-center text-primary underline">
+        استوديو الكتب · إضافة كتاب ومعاينته
+      </Link>
       <dl className="mt-8 grid grid-cols-3 gap-2">
         {(
           [

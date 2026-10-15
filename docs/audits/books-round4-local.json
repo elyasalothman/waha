@@ -1,0 +1,76 @@
+{
+  "base": "http://localhost:8080",
+  "viewport": "390x844",
+  "checks": [
+    {
+      "name": "shelf",
+      "width": 390
+    },
+    {
+      "name": "midad-import-age-filter-and-shelf"
+    },
+    {
+      "name": "studio",
+      "width": 390
+    },
+    {
+      "name": "draft-reader",
+      "width": 390
+    },
+    {
+      "name": "paste-draft-font-night-chapter-and-position-restoration",
+      "draftUrl": "http://localhost:8080/books/library/draft-92d00e8c-3b97-441f-82b8-8231fd76d1d6",
+      "before": {
+        "chapter": 0,
+        "paragraph": 9,
+        "size": 24,
+        "night": true
+      }
+    },
+    {
+      "name": "draft-appears-on-shelf"
+    },
+    {
+      "name": "draft-reader",
+      "width": 390
+    },
+    {
+      "name": "import-اختبار.txt"
+    },
+    {
+      "name": "draft-reader",
+      "width": 390
+    },
+    {
+      "name": "import-اختبار.docx"
+    },
+    {
+      "name": "draft-reader",
+      "width": 390
+    },
+    {
+      "name": "import-اختبار.epub"
+    },
+    {
+      "name": "draft-reader",
+      "width": 390
+    },
+    {
+      "name": "import-original.pdf"
+    },
+    {
+      "name": "anonymous-publication-rejected",
+      "status": 503
+    },
+    {
+      "name": "midad-reader",
+      "width": 390
+    },
+    {
+      "name": "existing-alhajda-reader",
+      "width": 390
+    }
+  ],
+  "errors": [],
+  "publicPublishEndToEnd": "Blocked: production database/auth/admin configuration is absent; only rejection was tested."
+}
