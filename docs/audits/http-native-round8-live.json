@@ -1,0 +1,62 @@
+[
+  {
+    "path": "/ask",
+    "status": "200",
+    "initialStatus": "307",
+    "finalUrl": "https://waha.hajdah.com/ask?q="
+  },
+  {
+    "path": "/worship",
+    "status": "200"
+  },
+  {
+    "path": "/teacher",
+    "status": "200"
+  },
+  {
+    "path": "/compare",
+    "status": "200"
+  },
+  {
+    "path": "/money",
+    "status": "200"
+  },
+  {
+    "path": "/tools",
+    "status": "200"
+  },
+  {
+    "path": "/games",
+    "status": "200"
+  },
+  {
+    "path": "/today",
+    "status": "200"
+  },
+  {
+    "path": "/quran",
+    "status": "200",
+    "initialStatus": "307",
+    "finalUrl": "https://waha.hajdah.com/quran?surah=1&ayah=1"
+  },
+  {
+    "path": "/api/market",
+    "status": "200"
+  },
+  {
+    "path": "/api/auth/get-session",
+    "status": "200"
+  },
+  {
+    "path": "/sw.js",
+    "status": "200"
+  },
+  {
+    "check": "ordinary question after >16000 characters of conversation",
+    "response": {
+      "reply": "يا هلا وسهلا! كيف أقدر أساعدك؟",
+      "source": null
+    },
+    "requestCharacters": 24338
+  }
+]

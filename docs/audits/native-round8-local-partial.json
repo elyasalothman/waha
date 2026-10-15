@@ -1,0 +1,88 @@
+{
+  "base": "http://127.0.0.1:8081",
+  "results": [
+    {
+      "engine": "chromium",
+      "name": "Live question and actual Mohsen reply"
+    },
+    {
+      "engine": "chromium",
+      "name": "Floating ask navigation stays in Waha"
+    },
+    {
+      "engine": "chromium",
+      "name": "Context question preserved"
+    },
+    {
+      "engine": "chromium",
+      "name": "Context question preserved; non-JSON failure is readable and retryable"
+    },
+    {
+      "engine": "chromium",
+      "name": "Prayer, athkar and qibla inside Waha"
+    },
+    {
+      "engine": "chromium",
+      "name": "Weighted comparison updates actual scores"
+    },
+    {
+      "engine": "chromium",
+      "name": "Hissati frame renders source UI without leaving Waha"
+    },
+    {
+      "engine": "chromium",
+      "name": "Real market quotes with source and timestamps"
+    },
+    {
+      "engine": "chromium",
+      "name": "Internal features fit 375px"
+    },
+    {
+      "engine": "chromium",
+      "name": "Internal features fit 390px"
+    },
+    {
+      "engine": "chromium",
+      "name": "Internal features fit 430px"
+    },
+    {
+      "engine": "chromium",
+      "name": "No uncaught JavaScript errors"
+    },
+    {
+      "engine": "webkit",
+      "name": "Live question and actual Mohsen reply"
+    },
+    {
+      "engine": "webkit",
+      "name": "Floating ask navigation stays in Waha"
+    },
+    {
+      "engine": "webkit",
+      "name": "Context question preserved"
+    },
+    {
+      "engine": "webkit",
+      "name": "Prayer, athkar and qibla inside Waha"
+    },
+    {
+      "engine": "webkit",
+      "name": "Weighted comparison updates actual scores"
+    },
+    {
+      "engine": "webkit",
+      "name": "Hissati frame renders source UI without leaving Waha"
+    },
+    {
+      "engine": "webkit",
+      "name": "Real market quotes with source and timestamps"
+    },
+    {
+      "engine": "webkit",
+      "name": "Internal features fit 375px"
+    }
+  ],
+  "failures": [],
+  "complete": false,
+  "interruption": "WebKit direct test navigation interrupted by pending TanStack canonical /ask?q= navigation at 390px; live full audit completed separately."
+}
