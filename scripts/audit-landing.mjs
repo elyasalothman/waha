@@ -93,6 +93,16 @@ try {
     await page.waitForURL("**/today");
     await page.getByRole("heading", { name: "يومك في واحة", exact: true }).waitFor();
     check(`guest daily access ${width}`);
+    for (const path of ["/register?mode=signup", "/register?mode=signin", "/onboarding"]) {
+      const result = await page.goto(base + path, { waitUntil: "networkidle" });
+      assert.equal(result.status(), 200);
+      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), width);
+      await page.screenshot({
+        path: `${out}/${path.split("?")[0].slice(1)}-${path.includes("signin") ? "signin-" : ""}${width}.png`,
+        fullPage: true,
+      });
+    }
+    check(`registration, signin and onboarding fit ${width}`);
     await page.close();
   }
   const page = await context.newPage();
@@ -160,7 +170,13 @@ try {
     await page.evaluate(() => matchMedia("(prefers-reduced-motion: reduce)").matches),
     true,
   );
-  check("reduced motion preference supported");
+  assert.ok(
+    await page
+      .locator(".landing-pillar")
+      .first()
+      .evaluate((e) => parseFloat(getComputedStyle(e).transitionDuration) < 0.01),
+  );
+  check("reduced motion disables card transitions");
   // Simulated session tests routing only, never represents successful real login.
   const sessionContext = await browser.newContext({ ignoreHTTPSErrors: true });
   await sessionContext.route("**/api/auth/get-session", (route) =>
