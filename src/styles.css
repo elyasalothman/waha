@@ -223,3 +223,29 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+.news-ticker-track {
+  display: flex;
+  width: max-content;
+  max-width: none;
+  animation: waha-news-ticker 85s linear infinite;
+}
+.news-ticker:hover .news-ticker-track,
+.news-ticker:focus-within .news-ticker-track {
+  animation-play-state: paused;
+}
+@keyframes waha-news-ticker {
+  from {
+    transform: translateX(-15%);
+  }
+  to {
+    transform: translateX(65%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .news-ticker-track {
+    animation: none;
+    width: auto;
+    display: block;
+  }
+}

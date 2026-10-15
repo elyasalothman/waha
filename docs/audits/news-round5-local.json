@@ -1,0 +1,120 @@
+{
+  "base": "http://localhost:8080",
+  "at": "2026-10-15T20:48:31.590Z",
+  "checks": [
+    {
+      "name": "HTTP/SEO/390px /",
+      "data": {
+        "status": 200,
+        "width": 390,
+        "title": "واحتك الرقمية · واحة"
+      }
+    },
+    {
+      "name": "HTTP/SEO/390px /news",
+      "data": {
+        "status": 200,
+        "width": 390,
+        "title": "أخبار وبث واحة المباشر · واحة"
+      }
+    },
+    {
+      "name": "HTTP/SEO/390px /quran",
+      "data": {
+        "status": 200,
+        "width": 390,
+        "title": "القرآن الكريم والتلاوة والورد اليومي · واحة"
+      }
+    },
+    {
+      "name": "HTTP/SEO/390px /ask",
+      "data": {
+        "status": 200,
+        "width": 390,
+        "title": "اسأل محسن · واحة"
+      }
+    },
+    {
+      "name": "Live RSS and attributed bulletin",
+      "data": {
+        "items": 65,
+        "sources": [
+          {
+            "name": "BBC عربي",
+            "ok": true
+          },
+          {
+            "name": "الجزيرة",
+            "ok": true
+          },
+          {
+            "name": "الشرق",
+            "ok": true
+          }
+        ],
+        "updatedAt": "2026-10-15T20:47:46.885Z"
+      }
+    },
+    {
+      "name": "RSS cache and hourly bulletin stable",
+      "data": true
+    },
+    {
+      "name": "Category filter",
+      "data": true
+    },
+    {
+      "name": "News context reaches Mohsen",
+      "data": true
+    },
+    {
+      "name": "Real guest Mohsen chat",
+      "data": true
+    },
+    {
+      "name": "Mohsen rejects foreign origins",
+      "data": true
+    },
+    {
+      "name": "Quran position and daily wird survive reload",
+      "data": true
+    },
+    {
+      "name": "Resume exact verse",
+      "data": true
+    },
+    {
+      "name": "Reciter changes audio URL",
+      "data": "https://cdn.mp3quran.net/audio/mishary-alafasy/r1/112.mp3"
+    },
+    {
+      "name": "Quran context and scholar reminder",
+      "data": true
+    },
+    {
+      "name": "Daily challenge saved",
+      "data": true
+    },
+    {
+      "name": "Reduced motion ticker",
+      "data": true
+    },
+    {
+      "name": "LTR width /news",
+      "data": true
+    },
+    {
+      "name": "LTR width /quran",
+      "data": true
+    },
+    {
+      "name": "LTR width /ask",
+      "data": true
+    },
+    {
+      "name": "No uncaught JavaScript errors",
+      "data": true
+    }
+  ],
+  "errors": []
+}

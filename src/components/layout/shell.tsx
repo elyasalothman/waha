@@ -153,6 +153,31 @@ export function Shell() {
           className="scroll-mt-16 px-4 py-6 pb-24 lg:px-8 lg:pb-10"
         >
           <OfflineBanner lang={lang} />
+          <nav
+            aria-label="الأخبار والقرآن ومحسن"
+            className="mx-auto mb-5 flex max-w-3xl flex-wrap gap-2"
+          >
+            <Link
+              to="/news"
+              className="inline-flex min-h-11 items-center rounded-full border border-border px-4 text-sm"
+            >
+              الأخبار والبث
+            </Link>
+            <Link
+              to="/quran"
+              search={{ surah: 1, ayah: 1 }}
+              className="inline-flex min-h-11 items-center rounded-full border border-border px-4 text-sm"
+            >
+              القرآن الكريم
+            </Link>
+            <Link
+              to="/ask"
+              search={{ q: "" }}
+              className="inline-flex min-h-11 items-center rounded-full border border-border px-4 text-sm"
+            >
+              محسن
+            </Link>
+          </nav>
           <Outlet />
         </main>
       </div>
@@ -198,6 +223,15 @@ export function Shell() {
       <Suspense fallback={null}>
         {cmd ? <CommandPalette open={cmd} onOpenChange={setCmd} lang={lang} /> : null}
       </Suspense>
+      {pathname !== "/ask" && (
+        <Link
+          to="/ask"
+          search={{ q: "" }}
+          className="fixed bottom-[calc(4.5rem+env(safe-area-inset-bottom,0px))] end-4 z-20 inline-flex min-h-11 items-center rounded-full border border-border bg-primary px-4 py-3 text-sm font-semibold text-primary-fg shadow-lg lg:bottom-6"
+        >
+          اسأل محسن
+        </Link>
+      )}
       <Toaster
         theme="light"
         position={lang === "ar" ? "bottom-left" : "bottom-right"}

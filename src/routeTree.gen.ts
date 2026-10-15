@@ -20,11 +20,14 @@ import { Route as LifeRouteImport } from './routes/life'
 import { Route as MadarRouteImport } from './routes/madar'
 import { Route as MoneyRouteImport } from './routes/money'
 import { Route as MoreRouteImport } from './routes/more'
+import { Route as NewsRouteImport } from './routes/news'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as QuranRouteImport } from './routes/quran'
 import { Route as StudioRouteImport } from './routes/studio'
 import { Route as ToolsRouteImport } from './routes/tools'
 import { Route as WorkspaceRouteImport } from './routes/workspace'
 import { Route as ApiBooksRouteImport } from './routes/api.books'
+import { Route as ApiMohsenRouteImport } from './routes/api.mohsen'
 import { Route as AppIdRouteImport } from './routes/app.$id'
 import { Route as BooksAlhajdaRouteImport } from './routes/books_.alhajda'
 import { Route as ForumIndexRouteImport } from './routes/forum.index'
@@ -90,9 +93,19 @@ const MoreRoute = MoreRouteImport.update({
   path: '/more',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NewsRoute = NewsRouteImport.update({
+  id: '/news',
+  path: '/news',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuranRoute = QuranRouteImport.update({
+  id: '/quran',
+  path: '/quran',
   getParentRoute: () => rootRouteImport,
 } as any)
 const StudioRoute = StudioRouteImport.update({
@@ -113,6 +126,11 @@ const WorkspaceRoute = WorkspaceRouteImport.update({
 const ApiBooksRoute = ApiBooksRouteImport.update({
   id: '/api/books',
   path: '/api/books',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiMohsenRoute = ApiMohsenRouteImport.update({
+  id: '/api/mohsen',
+  path: '/api/mohsen',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppIdRoute = AppIdRouteImport.update({
@@ -173,11 +191,14 @@ export interface FileRoutesByFullPath {
   '/madar': typeof MadarRoute
   '/money': typeof MoneyRoute
   '/more': typeof MoreRoute
+  '/news': typeof NewsRoute
   '/onboarding': typeof OnboardingRoute
+  '/quran': typeof QuranRoute
   '/studio': typeof StudioRoute
   '/tools': typeof ToolsRoute
   '/workspace': typeof WorkspaceRoute
   '/api/books': typeof ApiBooksRoute
+  '/api/mohsen': typeof ApiMohsenRoute
   '/app/$id': typeof AppIdRoute
   '/books/alhajda': typeof BooksAlhajdaRoute
   '/forum/$board': typeof ForumBoardRouteWithChildren
@@ -199,11 +220,14 @@ export interface FileRoutesByTo {
   '/madar': typeof MadarRoute
   '/money': typeof MoneyRoute
   '/more': typeof MoreRoute
+  '/news': typeof NewsRoute
   '/onboarding': typeof OnboardingRoute
+  '/quran': typeof QuranRoute
   '/studio': typeof StudioRoute
   '/tools': typeof ToolsRoute
   '/workspace': typeof WorkspaceRoute
   '/api/books': typeof ApiBooksRoute
+  '/api/mohsen': typeof ApiMohsenRoute
   '/app/$id': typeof AppIdRoute
   '/books/alhajda': typeof BooksAlhajdaRoute
   '/forum': typeof ForumIndexRoute
@@ -226,11 +250,14 @@ export interface FileRoutesById {
   '/madar': typeof MadarRoute
   '/money': typeof MoneyRoute
   '/more': typeof MoreRoute
+  '/news': typeof NewsRoute
   '/onboarding': typeof OnboardingRoute
+  '/quran': typeof QuranRoute
   '/studio': typeof StudioRoute
   '/tools': typeof ToolsRoute
   '/workspace': typeof WorkspaceRoute
   '/api/books': typeof ApiBooksRoute
+  '/api/mohsen': typeof ApiMohsenRoute
   '/app/$id': typeof AppIdRoute
   '/books_/alhajda': typeof BooksAlhajdaRoute
   '/forum/$board': typeof ForumBoardRouteWithChildren
@@ -255,11 +282,14 @@ export interface FileRouteTypes {
     | '/madar'
     | '/money'
     | '/more'
+    | '/news'
     | '/onboarding'
+    | '/quran'
     | '/studio'
     | '/tools'
     | '/workspace'
     | '/api/books'
+    | '/api/mohsen'
     | '/app/$id'
     | '/books/alhajda'
     | '/forum/$board'
@@ -281,11 +311,14 @@ export interface FileRouteTypes {
     | '/madar'
     | '/money'
     | '/more'
+    | '/news'
     | '/onboarding'
+    | '/quran'
     | '/studio'
     | '/tools'
     | '/workspace'
     | '/api/books'
+    | '/api/mohsen'
     | '/app/$id'
     | '/books/alhajda'
     | '/forum'
@@ -307,11 +340,14 @@ export interface FileRouteTypes {
     | '/madar'
     | '/money'
     | '/more'
+    | '/news'
     | '/onboarding'
+    | '/quran'
     | '/studio'
     | '/tools'
     | '/workspace'
     | '/api/books'
+    | '/api/mohsen'
     | '/app/$id'
     | '/books_/alhajda'
     | '/forum/$board'
@@ -335,11 +371,14 @@ export interface RootRouteChildren {
   MadarRoute: typeof MadarRoute
   MoneyRoute: typeof MoneyRoute
   MoreRoute: typeof MoreRoute
+  NewsRoute: typeof NewsRoute
   OnboardingRoute: typeof OnboardingRoute
+  QuranRoute: typeof QuranRoute
   StudioRoute: typeof StudioRoute
   ToolsRoute: typeof ToolsRoute
   WorkspaceRoute: typeof WorkspaceRoute
   ApiBooksRoute: typeof ApiBooksRoute
+  ApiMohsenRoute: typeof ApiMohsenRoute
   AppIdRoute: typeof AppIdRoute
   BooksAlhajdaRoute: typeof BooksAlhajdaRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
@@ -426,11 +465,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MoreRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/news': {
+      id: '/news'
+      path: '/news'
+      fullPath: '/news'
+      preLoaderRoute: typeof NewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/onboarding': {
       id: '/onboarding'
       path: '/onboarding'
       fullPath: '/onboarding'
       preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quran': {
+      id: '/quran'
+      path: '/quran'
+      fullPath: '/quran'
+      preLoaderRoute: typeof QuranRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/studio': {
@@ -459,6 +512,13 @@ declare module '@tanstack/react-router' {
       path: '/api/books'
       fullPath: '/api/books'
       preLoaderRoute: typeof ApiBooksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/mohsen': {
+      id: '/api/mohsen'
+      path: '/api/mohsen'
+      fullPath: '/api/mohsen'
+      preLoaderRoute: typeof ApiMohsenRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/app/$id': {
@@ -565,11 +625,14 @@ const rootRouteChildren: RootRouteChildren = {
   MadarRoute: MadarRoute,
   MoneyRoute: MoneyRoute,
   MoreRoute: MoreRoute,
+  NewsRoute: NewsRoute,
   OnboardingRoute: OnboardingRoute,
+  QuranRoute: QuranRoute,
   StudioRoute: StudioRoute,
   ToolsRoute: ToolsRoute,
   WorkspaceRoute: WorkspaceRoute,
   ApiBooksRoute: ApiBooksRoute,
+  ApiMohsenRoute: ApiMohsenRoute,
   AppIdRoute: AppIdRoute,
   BooksAlhajdaRoute: BooksAlhajdaRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,

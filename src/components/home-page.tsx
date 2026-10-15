@@ -4,7 +4,8 @@ import { HayatCard } from "@/components/hayat-card";
 import { Compass } from "lucide-react";
 import { CompanyWatchlist } from "@/components/company-watchlist";
 import { DailyActions } from "@/components/daily-actions";
-import { DailyBriefing } from "@/components/daily-briefing";
+import { NewsLive } from "@/components/news-live";
+import { DailyDiscovery } from "@/components/daily-discovery";
 import { useAppStore } from "@/store/app-store";
 
 export function HomePage() {
@@ -28,9 +29,10 @@ export function HomePage() {
         </Link>
       </header>
       <div className="space-y-4">
+        <DailyDiscovery />
+        <NewsLive compact />
         <HayatCard />
         <HouseDoors />
-        <DailyBriefing lang={lang} />
         <CompanyWatchlist lang={lang} />
         <DailyActions lang={lang} />
       </div>
