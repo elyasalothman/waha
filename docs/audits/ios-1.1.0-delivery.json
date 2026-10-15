@@ -1,0 +1,31 @@
+{
+  "version": "1.1.0",
+  "sourceCommit": "1a6e7f2da221ab0431b426a99b2243131bc95f1a",
+  "remoteMainVerified": true,
+  "deployment": {
+    "id": "dpl_CQkrZzspNyGwTeYctueRCDQSLind",
+    "state": "READY",
+    "aliasError": null,
+    "url": "https://waha.hajdah.com"
+  },
+  "accountLifecycle": {
+    "signup": true,
+    "session": true,
+    "logout": true,
+    "login": true,
+    "delete": true,
+    "deletedLoginRejected": true,
+    "testAccountRemoved": true
+  },
+  "webkitDeleteUi": {
+    "viewport": "393x852",
+    "confirmationAndPassword": true,
+    "redirectToWelcome": true,
+    "nullSessionAfterDeletion": true,
+    "testAccountRemoved": true
+  },
+  "nativeArchiveVerified": false,
+  "testFlightVerified": false,
+  "nativeDeviceVerified": false,
+  "ciStatusChecksObserved": []
+}

@@ -104,6 +104,8 @@ try {
   assert.equal(await page.evaluate(() => window.__reminders.length), 1);
   await page.locator(".native-safe-bottom a").last().click();
   await page.waitForFunction(() => window.__nativeCalls.some((c) => c.method === "selection"));
+  await page.waitForURL("**/more");
+  await page.waitForLoadState("networkidle");
   results.push({
     name: "Native bridge simulation: appearance, opt-in/denied reminders, repeat schedules, cancellation, haptics",
     pass: true,
