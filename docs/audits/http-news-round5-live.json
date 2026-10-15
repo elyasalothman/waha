@@ -1,0 +1,83 @@
+{
+  "base": "https://waha.hajdah.com",
+  "at": "2026-10-15T20:52:15.064574+00:00",
+  "results": [
+    {
+      "path": "/news",
+      "status": 200,
+      "type": "text/html; charset=utf-8",
+      "bytes": 18436
+    },
+    {
+      "path": "/quran",
+      "status": 200,
+      "type": "text/html; charset=utf-8",
+      "bytes": 32908
+    },
+    {
+      "path": "/ask",
+      "status": 200,
+      "type": "text/html; charset=utf-8",
+      "bytes": 17139
+    },
+    {
+      "path": "/api/news",
+      "status": 200,
+      "type": "application/json",
+      "bytes": 54682,
+      "items": 65,
+      "sources": [
+        {
+          "name": "BBC عربي",
+          "ok": true
+        },
+        {
+          "name": "الجزيرة",
+          "ok": true
+        },
+        {
+          "name": "الشرق",
+          "ok": true
+        }
+      ],
+      "mode": "extractive",
+      "fetchedAt": "2026-10-15T20:51:36.331Z"
+    },
+    {
+      "path": "/api/auth/get-session",
+      "status": 200,
+      "type": "application/json",
+      "bytes": 4
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "type": "application/xml",
+      "bytes": 1599
+    },
+    {
+      "path": "/sw.js",
+      "status": 200,
+      "type": "application/javascript; charset=utf-8",
+      "bytes": 1831
+    },
+    {
+      "path": "/quran/1.json",
+      "status": 200,
+      "type": "application/json; charset=utf-8",
+      "bytes": 839
+    },
+    {
+      "path": "/quran/114.json",
+      "status": 200,
+      "type": "application/json; charset=utf-8",
+      "bytes": 635
+    },
+    {
+      "path": "/manifest.webmanifest",
+      "status": 200,
+      "type": "application/manifest+json; charset=utf-8",
+      "bytes": 660
+    }
+  ]
+}

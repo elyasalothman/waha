@@ -96,6 +96,10 @@ try {
   assert.ok(
     (await page.getByRole("button", { name: /متابعة آخر موضع/ }).innerText()).includes("2"),
   );
+  assert.match(
+    (await page.locator('[role="status"]').allTextContents()).join(" "),
+    /1\s*\/\s*10\s*آيات/,
+  );
   check("Quran position and daily wird survive reload");
   await page.getByRole("button", { name: /متابعة آخر موضع/ }).click();
   await page.waitForTimeout(400);
