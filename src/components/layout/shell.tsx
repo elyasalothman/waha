@@ -80,6 +80,7 @@ export function Shell() {
             return (
               <Link
                 key={item.to}
+                aria-current={active ? "page" : undefined}
                 to={item.to === "/" ? "/today" : item.to}
                 className={cn(
                   "flex h-11 items-center gap-3 rounded-md px-3 text-sm transition-colors duration-150",
@@ -205,6 +206,7 @@ export function Shell() {
           return (
             <Link
               key={item.to}
+              aria-current={active ? "page" : undefined}
               to={item.to === "/" ? "/today" : item.to}
               className={cn(
                 "flex min-h-14 flex-col items-center justify-center gap-1 text-[11px]",
@@ -227,7 +229,7 @@ export function Shell() {
       <Suspense fallback={null}>
         {cmd ? <CommandPalette open={cmd} onOpenChange={setCmd} lang={lang} /> : null}
       </Suspense>
-      {!["/ask", "/onboarding"].includes(pathname) && (
+      {!["/ask", "/onboarding", "/app/baloot"].includes(pathname) && (
         <Link
           to="/ask"
           search={{ q: "" }}

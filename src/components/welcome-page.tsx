@@ -153,6 +153,13 @@ export function WelcomePage() {
             </div>
           </div>
         </section>
+        <div className="landing-baloot">
+          <span>♠ جديد لجمعتكم</span>
+          <p>البلوت عليكم، والحساب على واحة.</p>
+          <Link to="/app/$id" params={{ id: "baloot" }}>
+            افتح حاسبة البلوت <ArrowUpLeft size={18} />
+          </Link>
+        </div>
         <div className="landing-ribbon">
           <span>عربية من القلب</span>
           <i /> <span>للجوال وللكمبيوتر</span>

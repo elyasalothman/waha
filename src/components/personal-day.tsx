@@ -27,6 +27,7 @@ const names: Record<string, string> = {
   wamda: "ومضة اليوم",
   hayat: "حياة",
   luma: "لُمعة",
+  baloot: "حاسبة البلوت",
   reading: "متابعة القراءة",
   knowledge: "معرفة اليوم",
   hissati: "حصص هذا الأسبوع",
@@ -170,6 +171,14 @@ export function PersonalDay({ userId, interests }: { userId?: string; interests:
         </button>
       </>
     ),
+    baloot: (
+      <>
+        <p className="mb-3 leading-7">جمعتكم، ونشرتكم. صن وحكم ومشاريع، والحساب علينا.</p>
+        <Link to="/app/$id" params={{ id: "baloot" }} className={featureButton}>
+          ♠ افتح نشرة البلوت
+        </Link>
+      </>
+    ),
     hayat: <HayatCard />,
     luma: (
       <ExternalLink
@@ -231,6 +240,14 @@ export function PersonalDay({ userId, interests }: { userId?: string; interests:
       data-day-theme={prefs.theme}
       style={{ fontSize: prefs.font }}
     >
+      <nav aria-label="انتقل إلى ركيزة يومك" className="daily-jumps">
+        {PILLARS.map((p) => (
+          <a key={p.id} href={`#pillar-${p.id}`}>
+            {p.ar}
+            <span aria-hidden="true">↙</span>
+          </a>
+        ))}
+      </nav>
       <div className="rounded-xl border border-border bg-surface p-4">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <p>
@@ -312,7 +329,7 @@ export function PersonalDay({ userId, interests }: { userId?: string; interests:
           key={pillar.id}
           data-pillar={pillar.id}
           aria-labelledby={`pillar-${pillar.id}`}
-          className="space-y-3"
+          className="daily-pillar space-y-3"
         >
           <div className="flex items-center gap-3">
             <span className="text-sm text-primary">0{index + 1}</span>

@@ -1,7 +1,7 @@
 export const PILLARS = [
   { id: "faith", ar: "ديني", en: "Faith", cards: ["prayer", "ayah", "athkar"] },
   { id: "news", ar: "أخبار", en: "News", cards: ["news"] },
-  { id: "fun", ar: "ممتع", en: "Fun", cards: ["wamda", "hayat", "luma"] },
+  { id: "fun", ar: "ممتع", en: "Fun", cards: ["wamda", "baloot", "hayat", "luma"] },
   { id: "learn", ar: "تعلم", en: "Learn", cards: ["reading", "knowledge", "hissati"] },
 ] as const;
 export type DayPrefs = {

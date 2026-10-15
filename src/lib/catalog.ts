@@ -197,7 +197,7 @@ export const CATALOG: CatalogItem[] = [
   { id: "merge2048", category: "games", lane: "play", audience: P, icon: "Grid2x2", title: { ar: "٢٠٤٨", en: "2048" }, blurb: { ar: "ادمج البلاطات حتى ٢٠٤٨", en: "Slide tiles until you hit 2048" } },
   { id: "tetris", category: "games", lane: "play", audience: P, icon: "Blocks", title: { ar: "تتريس", en: "Tetris" }, blurb: { ar: "لبنات كلاسيكية مع احتفاظ وشبح", en: "Classic pieces, with hold and a ghost" } },
   { id: "connect4", category: "games", lane: "play", audience: P, fresh: true, icon: "Columns3", title: { ar: "أربعة في صف", en: "Connect four" }, blurb: { ar: "ضد واحة أو مع جليس بجانبك", en: "Against Waha or the person beside you" } },
-  { id: "baloot", category: "games", lane: "play", audience: P, icon: "Diamond", title: { ar: "بلوت", en: "Baloot" }, blurb: { ar: "عداد لنا ولهم حتى ١٥٢", en: "Us and them, playing to 152" } },
+  { id: "baloot", category: "games", lane: "play", audience: P, icon: "Diamond", title: { ar: "حاسبة البلوت", en: "Baloot calculator" }, blurb: { ar: "صن وحكم ومشاريع · نشرتكم محفوظة حتى ١٥٢", en: "Sun, Hokom, projects and a saved scoreboard to 152" } },
   { id: "sudoku", category: "games", lane: "play", audience: P, icon: "Hash", title: { ar: "سودوكو", en: "Sudoku" }, blurb: { ar: "ألغاز مولَّدة بثلاثة مستويات", en: "Generated puzzles in three difficulties" } },
   { id: "xo", category: "games", lane: "play", audience: P, icon: "X", title: { ar: "إكس أو", en: "Tic-tac-toe" }, blurb: { ar: "ضد خصم لا يخطئ إن أردت", en: "Play a perfect opponent if you dare" } },
   { id: "reaction", category: "games", lane: "play", audience: P, icon: "Zap", title: { ar: "سرعة الرد", en: "Reaction" }, blurb: { ar: "اختبر زمن استجابتك", en: "Test your response time" } },

@@ -853,3 +853,134 @@
 .personal-day .text-3xl {
   font-size: 1.875em;
 }
+
+/* Daily editorial rhythm: clearer sections without extra image requests. */
+.daily-heading {
+  border-bottom: 1px solid var(--color-border);
+  padding: 1.25rem 0 1.75rem;
+}
+.daily-heading h1 {
+  font-size: clamp(2rem, 6vw, 2.75rem);
+  line-height: 1.35;
+}
+.daily-jumps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+.daily-jumps a {
+  display: flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: var(--color-surface);
+  color: var(--color-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.daily-jumps a:hover {
+  background: var(--color-surface-2);
+}
+.daily-pillar {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-border);
+}
+.daily-pillar h2 {
+  scroll-margin-top: 6rem;
+}
+.daily-pillar > div:first-child > span:first-child {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-surface-2);
+  font-variant-numeric: tabular-nums;
+}
+.daily-pillar article {
+  box-shadow: 0 6px 24px -20px #192c2a55;
+}
+.daily-pillar[data-pillar="faith"] article:first-of-type {
+  border-inline-start: 3px solid var(--color-primary);
+}
+.daily-pillar[data-pillar="fun"] [data-day-card="baloot"] {
+  background: linear-gradient(135deg, var(--color-surface), var(--color-surface-2));
+}
+.daily-pillar article p {
+  line-height: 1.85;
+}
+.waha-shell nav a[aria-current="page"] {
+  border-radius: 12px;
+  font-weight: 700;
+}
+.waha-shell > nav a[aria-current="page"] {
+  background: var(--color-surface-2);
+  box-shadow: inset 0 3px var(--color-primary);
+}
+.landing-baloot {
+  margin: 0 auto 2rem;
+  max-width: 1160px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid #d7e0d9;
+  border-radius: 20px;
+  background: #e9eee8;
+}
+.landing-baloot > span {
+  color: #146455;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.landing-baloot p {
+  flex: 1 1 220px;
+  font-size: 1.125rem;
+}
+.landing-baloot a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+  color: #146455;
+}
+.baloot-board button {
+  min-height: 44px;
+}
+.baloot-board:fullscreen {
+  background: var(--color-bg);
+  padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right))
+    max(1rem, env(safe-area-inset-bottom));
+}
+@keyframes baloot-celebrate {
+  from {
+    transform: translateY(12px) scale(0.97);
+    opacity: 0.3;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .baloot-win {
+    animation: baloot-celebrate 0.5s ease-out;
+  }
+  .daily-jumps a {
+    transition: background 0.15s ease;
+  }
+}
+@media (max-width: 600px) {
+  .landing-baloot {
+    margin-inline: 1rem;
+  }
+  .daily-jumps a {
+    padding-inline: 0.5rem;
+  }
+}

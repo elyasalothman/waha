@@ -27,11 +27,11 @@ export function HomePage() {
   const lang = useAppStore((s) => s.lang);
   return (
     <div
-      className="mx-auto max-w-3xl"
+      className="daily-home mx-auto max-w-3xl"
       data-home-sections="hayat house-sites news watchlist shortcuts"
       data-guest-read="open"
     >
-      <header className="mb-5 flex items-center justify-between gap-4">
+      <header className="daily-heading mb-5 flex items-center justify-between gap-4">
         <h1 className="font-display text-3xl tracking-tight">
           {lang === "ar" ? "يومك في واحة" : "Your day in Waha"}
         </h1>
