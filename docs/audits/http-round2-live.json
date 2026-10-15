@@ -1,0 +1,90 @@
+[
+  {
+    "path": "/",
+    "status": 200
+  },
+  {
+    "path": "/books",
+    "status": 200
+  },
+  {
+    "path": "/books/alhajda",
+    "status": 200
+  },
+  {
+    "path": "/games",
+    "status": 200
+  },
+  {
+    "path": "/life",
+    "status": 200
+  },
+  {
+    "path": "/money",
+    "status": 200
+  },
+  {
+    "path": "/tools",
+    "status": 200
+  },
+  {
+    "path": "/more",
+    "status": 200
+  },
+  {
+    "path": "/workspace",
+    "status": 200
+  },
+  {
+    "path": "/studio",
+    "status": 200
+  },
+  {
+    "path": "/madar",
+    "status": 200
+  },
+  {
+    "path": "/clips",
+    "status": 200
+  },
+  {
+    "path": "/forum",
+    "status": 200
+  },
+  {
+    "path": "/onboarding",
+    "status": 200
+  },
+  {
+    "path": "/admin",
+    "status": 200
+  },
+  {
+    "path": "/app/calc",
+    "status": 200
+  },
+  {
+    "path": "/app/vat",
+    "status": 200
+  },
+  {
+    "path": "/app/snake",
+    "status": 200
+  },
+  {
+    "path": "/api/auth/get-session",
+    "status": 200
+  },
+  {
+    "path": "/sw.js",
+    "status": 200
+  },
+  {
+    "path": "/offline.html",
+    "status": 200
+  },
+  {
+    "path": "/manifest.webmanifest",
+    "status": 200
+  }
+]

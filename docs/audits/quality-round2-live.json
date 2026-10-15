@@ -1,0 +1,180 @@
+{
+  "base": "https://waha.hajdah.com",
+  "viewport": "390×844",
+  "seo": [
+    {
+      "path": "/",
+      "title": "واحتك الرقمية · واحة",
+      "description": "أدوات يومك العربية: الصلاة والكتب والألعاب والتنظيم في مكان واحد."
+    },
+    {
+      "path": "/books",
+      "title": "رف الكتب · واحة",
+      "description": "اقرأ كتاب الهجدة وتصفح الكتب وأضف كتبك إلى رف محلي خاص على جهازك."
+    },
+    {
+      "path": "/games",
+      "title": "الألعاب · واحة",
+      "description": "ألعاب عربية خفيفة للذاكرة والكلمات والأرقام، مناسبة للجوال."
+    },
+    {
+      "path": "/life",
+      "title": "حياة · واحة",
+      "description": "مواقيت الصلاة والأذكار والطقس وأدوات العائلة والصحة ليوم أكثر تنظيمًا."
+    },
+    {
+      "path": "/money",
+      "title": "المال · واحة",
+      "description": "أدوات الميزانية والادخار والمصاريف والحسابات المالية اليومية."
+    },
+    {
+      "path": "/tools",
+      "title": "الأدوات · واحة",
+      "description": "حاسبات وتحويل وحدات وأدوات نصوص وتواريخ ورموز QR باللغة العربية."
+    },
+    {
+      "path": "/more",
+      "title": "استكشف واحة · واحة",
+      "description": "تصفح جميع تطبيقات واحة وابحث عن الأداة التي تحتاجها."
+    },
+    {
+      "path": "/workspace",
+      "title": "مساحة العمل · واحة",
+      "description": "نظم مهامك وملاحظاتك واجتماعاتك وعملاءك بأدوات واحة."
+    },
+    {
+      "path": "/studio",
+      "title": "الاستوديو · واحة",
+      "description": "مساحة واحة للكتابة والمساعدة والإبداع."
+    },
+    {
+      "path": "/madar",
+      "title": "مدار · واحة",
+      "description": "ابحث واستكشف عبر بوابة مدار في واحة."
+    },
+    {
+      "path": "/clips",
+      "title": "كليبس · واحة",
+      "description": "اكتشف بوابة كليبس من داخل واحة."
+    },
+    {
+      "path": "/forum",
+      "title": "المجالس · واحة",
+      "description": "تصفح مجالس واحة وموضوعاتها."
+    },
+    {
+      "path": "/onboarding",
+      "title": "مرحبًا في واحة · واحة",
+      "description": "خصص واحتك واختر الأدوات المناسبة ليومك."
+    },
+    {
+      "path": "/admin",
+      "title": "الإدارة · واحة",
+      "description": "إدارة محتوى واحة."
+    },
+    {
+      "path": "/app/calc",
+      "title": "الحاسبة · واحة",
+      "description": "علمية مع تاريخ العمليات"
+    },
+    {
+      "path": "/app/vat",
+      "title": "الضريبة والخصم · واحة",
+      "description": "أضف أو استخرج ١٥٪ واحسب التخفيض"
+    },
+    {
+      "path": "/app/snake",
+      "title": "الثعبان · واحة",
+      "description": "كلاسيكية الشبكة والسرعة"
+    }
+  ],
+  "checks": [
+    "Guest session: real endpoint returns 200 null, no-store",
+    "Unconfigured production rejects session tokens with explicit 503, no preview identity",
+    "Clips: no third-party iframe before explicit play",
+    "Search dialog: accessible name, trapped focus, Escape closes",
+    "Arabic RTL / English LTR fit 390px",
+    "Offline: visited public page works; private book navigation uses fallback; no auth/API/private pages in cache"
+  ],
+  "cachedPaths": [
+    "/offline.html",
+    "/assets/styles-Bnuy8_XW.css",
+    "/assets/jsx-runtime-Cltr0gcK.js",
+    "/assets/react-dom-c8CiVcdp.js",
+    "/assets/qss-3de60aZa.js",
+    "/assets/index-CqaXJsqB.js",
+    "/assets/link-CgaIfSOr.js",
+    "/assets/useRouter-CwjitLz4.js",
+    "/assets/matchContext-QyWPcK3M.js",
+    "/assets/useNavigate-B6BDdj1e.js",
+    "/assets/lazyRouteComponent-oId65GAy.js",
+    "/assets/createLucideIcon-CSACGEBt.js",
+    "/assets/icons-B6dX-msn.js",
+    "/assets/star-DMHLIKCD.js",
+    "/assets/app-store-DWZzXv1e.js",
+    "/assets/useSelector-OL35LtoR.js",
+    "/assets/external-link-C5nnO9mp.js",
+    "/assets/native-browser-Ds_gPJ0G.js",
+    "/assets/i18n-44bjqXWy.js",
+    "/assets/dist-DeLLdOTx.js",
+    "/assets/storage-DzskyFNs.js",
+    "/assets/preload-helper-Czpn1I53.js",
+    "/assets/use-current-user-B3ps88VB.js",
+    "/assets/cn-DojpP95n.js",
+    "/assets/button-6VYpsQbL.js",
+    "/assets/books-D7aPyo5X.js",
+    "/assets/catalog-BFQ83i62.js",
+    "/assets/model-BwLGHsxh.js",
+    "/assets/storage-CTLM-iQH.js",
+    "/assets/house-sites-8XzEJ6RB.js",
+    "/assets/x-DjyXm1xE.js",
+    "/games",
+    "/assets/external-link-D2ZRBZu7.js",
+    "/assets/games-DVg1dyJ_.js",
+    "/assets/arrow-right-Dv6985N7.js",
+    "/assets/game-hud-CW1t-33x.js",
+    "/assets/app-stage-pbeEUa5-.js",
+    "/assets/app-card-A2kMLlkN.js",
+    "/assets/life-CJPy4Cyy.js",
+    "/assets/hub-BsrQSf-K.js",
+    "/money",
+    "/assets/money-ZPbyYy6e.js",
+    "/assets/child-money-gate-BshpY7HN.js",
+    "/tools",
+    "/assets/tools-C-DnIqXE.js",
+    "/more",
+    "/assets/heart-CCAPe3YK.js",
+    "/assets/more-BogwoadY.js",
+    "/assets/shadow-day-YIbUXPZw.js",
+    "/assets/store-ChRDCVys.js",
+    "/assets/use-now-Do80whzI.js",
+    "/assets/input-DzGkRrYm.js",
+    "/assets/hijri-DjsZWHis.js",
+    "/assets/weather-Bf889HMl.js",
+    "/assets/seed-zeTKektK.js",
+    "/assets/use-hydrated-DalslJQo.js",
+    "/assets/prayer-oOvIKS1q.js",
+    "/assets/workspace-CEjGDiy0.js",
+    "/assets/studio-BeirZzt6.js",
+    "/assets/chat-DW1U-rRX.js",
+    "/assets/madar-DJkR1gIP.js",
+    "/assets/clips-Bd-fyb9F.js",
+    "/assets/admin-CQeLRHs4.js",
+    "/assets/forum.index-Dg1YquHV.js",
+    "/assets/forum-550qOlR6.js",
+    "/assets/onboarding-CP64Dhzv.js",
+    "/assets/admin-CeHsJ91D.js",
+    "/assets/app._id-BzPGwwbg.js",
+    "/assets/calc-CTS9IUpF.js",
+    "/assets/vat-C5YnyELQ.js",
+    "/assets/seg-CFpRvBM0.js",
+    "/assets/card-BVGFFeoT.js",
+    "/assets/snake-_yUT_r0h.js",
+    "/assets/routes-C536pjgX.js",
+    "/assets/plus-p-_deFXQ.js",
+    "/assets/dist-CmkOkBdS.js",
+    "/assets/command-palette-DRPNZG4M.js",
+    "/",
+    "/life"
+  ]
+}

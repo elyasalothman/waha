@@ -78,6 +78,7 @@ try {
   await page.waitForTimeout(500);
   assert.equal(await page.locator("iframe").count(), 0);
   await page.getByRole("button", { name: /شغّل:/ }).first().click();
+  await page.locator("iframe").first().waitFor({ state: "attached" });
   assert.equal(await page.locator("iframe").count(), 1);
   report.checks.push("Clips: no third-party iframe before explicit play");
   await page.goto(base, { waitUntil: "networkidle" });
