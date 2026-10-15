@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { INTERESTS, interestKey, normalizeInterests } from "@/lib/interests";
 import { AudienceSwitch } from "@/components/audience-switch";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { SignInButtons } from "@/lib/auth/gates";
 import { authEnabled } from "@/lib/auth/client";
 import { useCurrentUserState } from "@/lib/auth/use-current-user";
 import { t } from "@/lib/i18n";
@@ -26,6 +26,17 @@ function OnboardingPage() {
   const navigate = useNavigate();
   const { local, saveProfile } = useSquare();
   const { user, isPending } = useCurrentUserState();
+  const [interests, setInterests] = useState<string[]>([]);
+  const [storageError, setStorageError] = useState(false);
+  useEffect(() => {
+    try {
+      setInterests(
+        normalizeInterests(JSON.parse(localStorage.getItem(interestKey(user?.id)) || "[]")),
+      );
+    } catch {
+      /* Optional device preferences. */
+    }
+  }, [user?.id]);
   const [name, setName] = useState(local.profile.name);
   const L = (ar: string, en: string) => (lang === "ar" ? ar : en);
   const showSignIn = authEnabled && !isPending && !user;
@@ -43,8 +54,37 @@ function OnboardingPage() {
         </h2>
         <AudienceSwitch />
       </section>
-      <label className="mt-8 block text-xs text-muted">{L("اسم العرض", "Display name")}</label>
+      <fieldset className="mt-8">
+        <legend className="text-lg font-medium">ما الذي يهمك؟</legend>
+        <p className="mt-2 text-sm text-muted">
+          اختر اهتماماتك لتظهر اختصاراتها في «يومي». تُحفظ على هذا المتصفح، ويمكنك تغييرها هنا.
+        </p>
+        <div className="mt-4 grid grid-cols-2 gap-3">
+          {INTERESTS.map((item) => (
+            <label
+              key={item.id}
+              className="flex min-h-14 cursor-pointer items-center gap-3 rounded-xl border border-border bg-surface px-4 text-sm"
+            >
+              <input
+                type="checkbox"
+                checked={interests.includes(item.id)}
+                onChange={(e) =>
+                  setInterests((old) =>
+                    e.target.checked ? [...old, item.id] : old.filter((id) => id !== item.id),
+                  )
+                }
+                className="size-5 accent-primary"
+              />
+              {item.label}
+            </label>
+          ))}
+        </div>
+      </fieldset>
+      <label htmlFor="onboarding-name" className="mt-8 block text-xs text-muted">
+        {L("اسم العرض", "Display name")}
+      </label>
       <Input
+        id="onboarding-name"
         value={name}
         onChange={(e) => setName(e.target.value)}
         maxLength={40}
@@ -56,18 +96,38 @@ function OnboardingPage() {
           <p className="mb-2 text-xs text-muted">
             {L("تسجيل اختياري إن أحببت", "Optional sign-in")}
           </p>
-          <SignInButtons />
+          <Link
+            to="/register"
+            search={{ mode: "signup" }}
+            className="inline-flex min-h-11 items-center rounded-full border border-border px-5 text-sm"
+          >
+            تسجيل حساب في واحة
+          </Link>
         </div>
       ) : null}
+      {storageError && (
+        <p role="alert" className="mt-4 text-sm text-danger">
+          تعذّر حفظ التفضيلات. تحقق من إتاحة التخزين في المتصفح.
+        </p>
+      )}
       <div className="mt-6 flex justify-end">
         <Button
           type="button"
           onClick={() => {
             saveProfile({ name, bio: local.profile.bio });
-            void navigate({ to: "/" });
+            try {
+              localStorage.setItem(
+                interestKey(user?.id),
+                JSON.stringify(normalizeInterests(interests)),
+              );
+            } catch {
+              setStorageError(true);
+              return;
+            }
+            void navigate({ to: "/today" });
           }}
         >
-          {t(lang, "enterSquare")}
+          {L("إلى يومي", "Go to my day")}
         </Button>
       </div>
     </div>

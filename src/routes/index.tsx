@@ -1,19 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { HomePage } from "@/components/home-page";
-
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "واحتك الرقمية · واحة" },
-      {
-        name: "description",
-        content: "أدوات يومك العربية: الصلاة والكتب والألعاب والتنظيم في مكان واحد.",
-      },
-    ],
-  }),
-  component: Home,
-});
-
+import { createFileRoute, Navigate } from "@tanstack/react-router";
+import { WelcomePage } from "@/components/welcome-page";
+import { useCurrentUserState } from "@/lib/auth/use-current-user";
+import { welcomeHead } from "@/lib/welcome-seo";
+export const Route = createFileRoute("/")({ head: welcomeHead, component: Home });
 function Home() {
-  return <HomePage />;
+  const { user, isPending } = useCurrentUserState();
+  if (!isPending && user && !user.isDevFallback) return <Navigate to="/today" replace />;
+  return <WelcomePage />;
 }

@@ -1,0 +1,194 @@
+{
+  "base": "http://127.0.0.1:8080",
+  "at": "2026-10-15T21:08:15.511Z",
+  "checks": [
+    {
+      "name": "landing RTL, SEO, schema, targets 375",
+      "data": true
+    },
+    {
+      "name": "guest daily access 375",
+      "data": true
+    },
+    {
+      "name": "landing RTL, SEO, schema, targets 390",
+      "data": true
+    },
+    {
+      "name": "guest daily access 390",
+      "data": true
+    },
+    {
+      "name": "landing RTL, SEO, schema, targets 430",
+      "data": true
+    },
+    {
+      "name": "guest daily access 430",
+      "data": true
+    },
+    {
+      "name": "landing RTL, SEO, schema, targets 1440",
+      "data": true
+    },
+    {
+      "name": "guest daily access 1440",
+      "data": true
+    },
+    {
+      "name": "welcome always available",
+      "data": true
+    },
+    {
+      "name": "real signup fails closed with explicit 503; no fake account",
+      "data": true
+    },
+    {
+      "name": "forgot password has truthful availability",
+      "data": true
+    },
+    {
+      "name": "interests save, customize daily links, persist across reload",
+      "data": true
+    },
+    {
+      "name": "no overflow with LTR document",
+      "data": true
+    },
+    {
+      "name": "reduced motion preference supported",
+      "data": true
+    },
+    {
+      "name": "authenticated root redirect (simulated session, routing only)",
+      "data": true
+    },
+    {
+      "name": "welcome remains accessible to signed in user (simulated session)",
+      "data": true
+    },
+    {
+      "name": "no uncaught JavaScript errors",
+      "data": true
+    }
+  ],
+  "pages": [
+    {
+      "width": 375,
+      "status": 200,
+      "lcp": 616,
+      "cls": 0,
+      "images": [
+        {
+          "src": "/landing/quran.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/landing/quran.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/landing/news.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/landing/games.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/landing/books.jpg",
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "status": 200,
+      "lcp": 824,
+      "cls": 0,
+      "images": [
+        {
+          "src": "/landing/quran.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/landing/quran.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/landing/news.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/landing/games.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/landing/books.jpg",
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "width": 430,
+      "status": 200,
+      "lcp": 592,
+      "cls": 0,
+      "images": [
+        {
+          "src": "/landing/quran.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/landing/quran.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/landing/news.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/landing/games.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/landing/books.jpg",
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "status": 200,
+      "lcp": 512,
+      "cls": 0,
+      "images": [
+        {
+          "src": "/landing/quran.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/landing/quran.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/landing/news.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/landing/games.jpg",
+          "loaded": true
+        },
+        {
+          "src": "/landing/books.jpg",
+          "loaded": true
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "accountTest": {
+    "status": "blocked",
+    "httpStatus": 503,
+    "reason": "Production authentication environment missing; no account created, so no account to delete."
+  }
+}

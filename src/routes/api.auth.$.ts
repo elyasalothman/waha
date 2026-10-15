@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { authAvailability } from "@/lib/auth/availability.server";
 
 async function handle({ request }: { request: Request }) {
   // Deployed identities must persist in Postgres; never fall back to an ephemeral
@@ -7,13 +8,17 @@ async function handle({ request }: { request: Request }) {
   const hasSession =
     request.headers.has("authorization") ||
     /(?:^|;\s*)(?:__Host-|__Secure-)?grok-auth\./.test(request.headers.get("cookie") ?? "");
-  const configured = [
-    "DATABASE_URL",
-    "BETTER_AUTH_SECRET",
-    "BETTER_AUTH_URL",
-    "GROK_AUTH_CLIENT_ID",
-    "GROK_AUTH_CLIENT_SECRET",
-  ].every((key) => process.env[key]?.trim());
+  const availability = authAvailability();
+  const configured = /\/oauth2(?:\/|$)/.test(path) ? availability.google : availability.email;
+  if (path === "/api/auth/request-password-reset" && !availability.passwordReset) {
+    return Response.json(
+      {
+        code: "RESET_NOT_CONFIGURED",
+        message: "استعادة كلمة المرور غير متاحة حاليًا. خدمة البريد لم تُهيأ بعد.",
+      },
+      { status: 503, headers: { "Cache-Control": "no-store" } },
+    );
+  }
   if (
     import.meta.env.PROD &&
     !configured &&
@@ -22,7 +27,7 @@ async function handle({ request }: { request: Request }) {
     return Response.json(
       {
         code: "AUTH_NOT_CONFIGURED",
-        message: "تسجيل الدخول غير متاح مؤقتًا. يمكنك استخدام كتبك المحلية.",
+        message: "تسجيل الدخول غير متاح مؤقتًا. يمكنك تجربة واحة بدون حساب.",
       },
       { status: 503, headers: { "Cache-Control": "no-store" } },
     );

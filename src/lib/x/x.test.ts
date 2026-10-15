@@ -176,8 +176,8 @@ describe("x square chrome", () => {
     assert.doesNotMatch(card, /twitter\.com\/i\/oembed|platform\.twitter|widgets\.js/);
   });
 
-  it("keeps `/` as Maydan + thin shadow — books stay on /books, no WebView on the home line", () => {
-    const home = readFileSync(new URL("../../routes/index.tsx", import.meta.url), "utf8");
+  it("keeps `/today` as Maydan + thin shadow — books stay on /books, no WebView on the home line", () => {
+    const home = readFileSync(new URL("../../routes/today.tsx", import.meta.url), "utf8");
     const page = readFileSync(new URL("../../components/square/square-page.tsx", import.meta.url), "utf8");
     const shadow = readFileSync(new URL("../../components/square/day-shadow.tsx", import.meta.url), "utf8");
     const strip = readFileSync(new URL("../../components/square/x-strip.tsx", import.meta.url), "utf8");

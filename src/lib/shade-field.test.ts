@@ -32,8 +32,8 @@ describe("quiet shade↔field crossing", () => {
     assert.equal(laneFromHeroVisibility(false), "field");
   });
 
-  it("wires a quiet attach+return on `/` without slides or a books shelf", () => {
-    const home = readFileSync(new URL("../routes/index.tsx", import.meta.url), "utf8");
+  it("wires a quiet attach+return on `/today` without slides or a books shelf", () => {
+    const home = readFileSync(new URL("../routes/today.tsx", import.meta.url), "utf8");
     const square = readFileSync(new URL("../components/square/square-page.tsx", import.meta.url), "utf8");
     const shadow = readFileSync(new URL("../components/square/day-shadow.tsx", import.meta.url), "utf8");
     const css = readFileSync(new URL("../styles.css", import.meta.url), "utf8");

@@ -44,6 +44,10 @@ export function Shell() {
     hydrate();
   }, [hydrate]);
 
+  if (["/", "/welcome", "/register"].includes(pathname)) {
+    return <Outlet />;
+  }
+
   return (
     <div className="waha-shell min-h-dvh bg-bg text-fg">
       <a
@@ -71,12 +75,12 @@ export function Shell() {
             const Icon = NAV_ICON[item.to as keyof typeof NAV_ICON] ?? GalleryVertical;
             const active =
               item.to === "/"
-                ? pathname === "/"
+                ? pathname === "/" || pathname === "/today"
                 : pathname === item.to || pathname.startsWith(`${item.to}/`);
             return (
               <Link
                 key={item.to}
-                to={item.to}
+                to={item.to === "/" ? "/today" : item.to}
                 className={cn(
                   "flex h-11 items-center gap-3 rounded-md px-3 text-sm transition-colors duration-150",
                   active
@@ -196,12 +200,12 @@ export function Shell() {
           const Icon = NAV_ICON[item.to as keyof typeof NAV_ICON] ?? GalleryVertical;
           const active =
             item.to === "/"
-              ? pathname === "/"
+              ? pathname === "/" || pathname === "/today"
               : pathname === item.to || pathname.startsWith(`${item.to}/`);
           return (
             <Link
               key={item.to}
-              to={item.to}
+              to={item.to === "/" ? "/today" : item.to}
               className={cn(
                 "flex min-h-14 flex-col items-center justify-center gap-1 text-[11px]",
                 active ? "text-fg" : "text-muted",
@@ -223,7 +227,7 @@ export function Shell() {
       <Suspense fallback={null}>
         {cmd ? <CommandPalette open={cmd} onOpenChange={setCmd} lang={lang} /> : null}
       </Suspense>
-      {pathname !== "/ask" && (
+      {!["/ask", "/onboarding"].includes(pathname) && (
         <Link
           to="/ask"
           search={{ q: "" }}

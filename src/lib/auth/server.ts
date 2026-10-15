@@ -211,7 +211,42 @@ export const auth = betterAuth({
   session: { cookieCache: { enabled: true, maxAge: 300 } },
 
   // Local email/password — toggled only via `./email-password` (not a plugin).
-  ...(emailAndPasswordEnabled ? { emailAndPassword: { enabled: true } } : {}),
+  ...(emailAndPasswordEnabled
+    ? {
+        emailAndPassword: {
+          enabled: true,
+          minPasswordLength: 10,
+          maxPasswordLength: 128,
+          ...(env("RESEND_API_KEY") && env("AUTH_EMAIL_FROM")
+            ? {
+                sendResetPassword: async ({
+                  user,
+                  url,
+                }: {
+                  user: { email: string };
+                  url: string;
+                }) => {
+                  const result = await fetch("https://api.resend.com/emails", {
+                    method: "POST",
+                    headers: {
+                      Authorization: `Bearer ${env("RESEND_API_KEY")}`,
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                      from: env("AUTH_EMAIL_FROM"),
+                      to: user.email,
+                      subject: "استعادة كلمة مرور واحة",
+                      text: `لاستعادة كلمة مرورك في واحة، افتح الرابط التالي:\n${url}\nإن لم تطلب ذلك، تجاهل هذه الرسالة.`,
+                    }),
+                    signal: AbortSignal.timeout(10000),
+                  });
+                  if (!result.ok) throw new Error("Password reset delivery failed");
+                },
+              }
+            : {}),
+        },
+      }
+    : {}),
 
   // `__Host-` prefixed cookies: the browser REFUSES any same-named cookie that
   // carries a `Domain` attribute, so a sibling `*.grok.me` app cannot "toss" a

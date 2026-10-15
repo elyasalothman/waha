@@ -45,8 +45,8 @@ describe("serious home lock", () => {
     assert.equal(ids.includes("luma"), false);
   });
 
-  it("binds / to daily essentials — Square stays available in Explore", () => {
-    const home = readFileSync(new URL("../routes/index.tsx", import.meta.url), "utf8");
+  it("binds /today to daily essentials — Square stays available in Explore", () => {
+    const home = readFileSync(new URL("../routes/today.tsx", import.meta.url), "utf8");
     assert.match(home, /HomePage/);
     assert.equal(/Hub/.test(home), false);
     assert.equal(/byCategory|featuredFor/.test(home), false);
@@ -54,7 +54,7 @@ describe("serious home lock", () => {
   });
 
   it("keeps a thin live shadow on SquarePage — not a DayShadow-only home", () => {
-    const home = readFileSync(new URL("../routes/index.tsx", import.meta.url), "utf8");
+    const home = readFileSync(new URL("../routes/today.tsx", import.meta.url), "utf8");
     const square = readFileSync(new URL("../components/square/square-page.tsx", import.meta.url), "utf8");
     const shadow = readFileSync(new URL("../components/square/day-shadow.tsx", import.meta.url), "utf8");
     assert.match(home, /HomePage/);
@@ -68,8 +68,8 @@ describe("serious home lock", () => {
     assert.doesNotMatch(shadow, /t\(lang, "loading"\)/);
   });
 
-  it("keeps games heroines and doors off `/` — they live on /games", () => {
-    const home = readFileSync(new URL("../routes/index.tsx", import.meta.url), "utf8");
+  it("keeps games heroines and doors off `/today` — they live on /games", () => {
+    const home = readFileSync(new URL("../routes/today.tsx", import.meta.url), "utf8");
     const square = readFileSync(new URL("../components/square/square-page.tsx", import.meta.url), "utf8");
     assert.match(home, /HomePage/);
     assert.doesNotMatch(home, /\/games|GamesHub|gamesDoor|ألعاب واحة|abiar|majra|kutl|kalima/i);
@@ -103,7 +103,7 @@ describe("king lock — `/` after #8", () => {
   });
 
   it("keeps واحة من أجلك slices on account creation only — never `/` or settings", () => {
-    const home = readFileSync(new URL("../routes/index.tsx", import.meta.url), "utf8");
+    const home = readFileSync(new URL("../routes/today.tsx", import.meta.url), "utf8");
     const square = readFileSync(new URL("../components/square/square-page.tsx", import.meta.url), "utf8");
     const shell = readFileSync(new URL("../components/layout/shell.tsx", import.meta.url), "utf8");
     const onboarding = readFileSync(new URL("../routes/onboarding.tsx", import.meta.url), "utf8");
@@ -128,7 +128,7 @@ describe("king lock — `/` after #8", () => {
   });
 
   it("keeps روح الواحة — guest reads with no account; identity only at onboarding", () => {
-    const home = readFileSync(new URL("../routes/index.tsx", import.meta.url), "utf8");
+    const home = readFileSync(new URL("../routes/today.tsx", import.meta.url), "utf8");
     const square = readFileSync(new URL("../components/square/square-page.tsx", import.meta.url), "utf8");
     const shell = readFileSync(new URL("../components/layout/shell.tsx", import.meta.url), "utf8");
     const profile = readFileSync(new URL("../components/square/profile-panel.tsx", import.meta.url), "utf8");
@@ -144,14 +144,14 @@ describe("king lock — `/` after #8", () => {
     assert.doesNotMatch(shell, /SignInButtons|AudienceSwitch/);
     assert.doesNotMatch(profile, /SignInButtons/);
     assert.match(profile, /createAccount/);
-    assert.match(onboarding, /SignInButtons/);
+    assert.match(onboarding, /to="\/register"/);
     assert.match(onboarding, /data-identity="onboarding"/);
     assert.match(onboarding, /guestReadsFree/);
     assert.match(logic, /export function mergeFeed\(local: SquareLocalState, tab: SquareTab/);
   });
 
   it("keeps the Square crossing under Explore without slides or books", () => {
-    const home = readFileSync(new URL("../routes/index.tsx", import.meta.url), "utf8");
+    const home = readFileSync(new URL("../routes/today.tsx", import.meta.url), "utf8");
     const square = readFileSync(new URL("../components/square/square-page.tsx", import.meta.url), "utf8");
     const shadow = readFileSync(new URL("../components/square/day-shadow.tsx", import.meta.url), "utf8");
     assert.equal(homeKeepsShadeWithField(), false);

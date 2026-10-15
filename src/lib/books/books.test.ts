@@ -187,7 +187,7 @@ describe("books stay off the Maydan line", () => {
   it("opens باب مداد from the catalog onto /books — not a chrome tab, not featured on /", () => {
     const catalog = readFileSync(new URL("../catalog.ts", import.meta.url), "utf8");
     const nav = readFileSync(new URL("../nav.ts", import.meta.url), "utf8");
-    const home = readFileSync(new URL("../../routes/index.tsx", import.meta.url), "utf8");
+    const home = readFileSync(new URL("../../routes/today.tsx", import.meta.url), "utf8");
     const card = readFileSync(new URL("../../components/app-card.tsx", import.meta.url), "utf8");
     assert.match(catalog, /door\.id === "midad"/);
     assert.match(catalog, /portal: true/);

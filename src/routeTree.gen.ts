@@ -23,9 +23,13 @@ import { Route as MoreRouteImport } from './routes/more'
 import { Route as NewsRouteImport } from './routes/news'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as QuranRouteImport } from './routes/quran'
+import { Route as RegisterRouteImport } from './routes/register'
 import { Route as StudioRouteImport } from './routes/studio'
+import { Route as TodayRouteImport } from './routes/today'
 import { Route as ToolsRouteImport } from './routes/tools'
+import { Route as WelcomeRouteImport } from './routes/welcome'
 import { Route as WorkspaceRouteImport } from './routes/workspace'
+import { Route as ApiAuthStatusRouteImport } from './routes/api.auth-status'
 import { Route as ApiBooksRouteImport } from './routes/api.books'
 import { Route as ApiMohsenRouteImport } from './routes/api.mohsen'
 import { Route as AppIdRouteImport } from './routes/app.$id'
@@ -108,9 +112,19 @@ const QuranRoute = QuranRouteImport.update({
   path: '/quran',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StudioRoute = StudioRouteImport.update({
   id: '/studio',
   path: '/studio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TodayRoute = TodayRouteImport.update({
+  id: '/today',
+  path: '/today',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ToolsRoute = ToolsRouteImport.update({
@@ -118,9 +132,19 @@ const ToolsRoute = ToolsRouteImport.update({
   path: '/tools',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WelcomeRoute = WelcomeRouteImport.update({
+  id: '/welcome',
+  path: '/welcome',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WorkspaceRoute = WorkspaceRouteImport.update({
   id: '/workspace',
   path: '/workspace',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthStatusRoute = ApiAuthStatusRouteImport.update({
+  id: '/api/auth-status',
+  path: '/api/auth-status',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiBooksRoute = ApiBooksRouteImport.update({
@@ -194,9 +218,13 @@ export interface FileRoutesByFullPath {
   '/news': typeof NewsRoute
   '/onboarding': typeof OnboardingRoute
   '/quran': typeof QuranRoute
+  '/register': typeof RegisterRoute
   '/studio': typeof StudioRoute
+  '/today': typeof TodayRoute
   '/tools': typeof ToolsRoute
+  '/welcome': typeof WelcomeRoute
   '/workspace': typeof WorkspaceRoute
+  '/api/auth-status': typeof ApiAuthStatusRoute
   '/api/books': typeof ApiBooksRoute
   '/api/mohsen': typeof ApiMohsenRoute
   '/app/$id': typeof AppIdRoute
@@ -223,9 +251,13 @@ export interface FileRoutesByTo {
   '/news': typeof NewsRoute
   '/onboarding': typeof OnboardingRoute
   '/quran': typeof QuranRoute
+  '/register': typeof RegisterRoute
   '/studio': typeof StudioRoute
+  '/today': typeof TodayRoute
   '/tools': typeof ToolsRoute
+  '/welcome': typeof WelcomeRoute
   '/workspace': typeof WorkspaceRoute
+  '/api/auth-status': typeof ApiAuthStatusRoute
   '/api/books': typeof ApiBooksRoute
   '/api/mohsen': typeof ApiMohsenRoute
   '/app/$id': typeof AppIdRoute
@@ -253,9 +285,13 @@ export interface FileRoutesById {
   '/news': typeof NewsRoute
   '/onboarding': typeof OnboardingRoute
   '/quran': typeof QuranRoute
+  '/register': typeof RegisterRoute
   '/studio': typeof StudioRoute
+  '/today': typeof TodayRoute
   '/tools': typeof ToolsRoute
+  '/welcome': typeof WelcomeRoute
   '/workspace': typeof WorkspaceRoute
+  '/api/auth-status': typeof ApiAuthStatusRoute
   '/api/books': typeof ApiBooksRoute
   '/api/mohsen': typeof ApiMohsenRoute
   '/app/$id': typeof AppIdRoute
@@ -285,9 +321,13 @@ export interface FileRouteTypes {
     | '/news'
     | '/onboarding'
     | '/quran'
+    | '/register'
     | '/studio'
+    | '/today'
     | '/tools'
+    | '/welcome'
     | '/workspace'
+    | '/api/auth-status'
     | '/api/books'
     | '/api/mohsen'
     | '/app/$id'
@@ -314,9 +354,13 @@ export interface FileRouteTypes {
     | '/news'
     | '/onboarding'
     | '/quran'
+    | '/register'
     | '/studio'
+    | '/today'
     | '/tools'
+    | '/welcome'
     | '/workspace'
+    | '/api/auth-status'
     | '/api/books'
     | '/api/mohsen'
     | '/app/$id'
@@ -343,9 +387,13 @@ export interface FileRouteTypes {
     | '/news'
     | '/onboarding'
     | '/quran'
+    | '/register'
     | '/studio'
+    | '/today'
     | '/tools'
+    | '/welcome'
     | '/workspace'
+    | '/api/auth-status'
     | '/api/books'
     | '/api/mohsen'
     | '/app/$id'
@@ -374,9 +422,13 @@ export interface RootRouteChildren {
   NewsRoute: typeof NewsRoute
   OnboardingRoute: typeof OnboardingRoute
   QuranRoute: typeof QuranRoute
+  RegisterRoute: typeof RegisterRoute
   StudioRoute: typeof StudioRoute
+  TodayRoute: typeof TodayRoute
   ToolsRoute: typeof ToolsRoute
+  WelcomeRoute: typeof WelcomeRoute
   WorkspaceRoute: typeof WorkspaceRoute
+  ApiAuthStatusRoute: typeof ApiAuthStatusRoute
   ApiBooksRoute: typeof ApiBooksRoute
   ApiMohsenRoute: typeof ApiMohsenRoute
   AppIdRoute: typeof AppIdRoute
@@ -486,11 +538,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QuranRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/studio': {
       id: '/studio'
       path: '/studio'
       fullPath: '/studio'
       preLoaderRoute: typeof StudioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/today': {
+      id: '/today'
+      path: '/today'
+      fullPath: '/today'
+      preLoaderRoute: typeof TodayRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tools': {
@@ -500,11 +566,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ToolsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/welcome': {
+      id: '/welcome'
+      path: '/welcome'
+      fullPath: '/welcome'
+      preLoaderRoute: typeof WelcomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/workspace': {
       id: '/workspace'
       path: '/workspace'
       fullPath: '/workspace'
       preLoaderRoute: typeof WorkspaceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/auth-status': {
+      id: '/api/auth-status'
+      path: '/api/auth-status'
+      fullPath: '/api/auth-status'
+      preLoaderRoute: typeof ApiAuthStatusRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/books': {
@@ -628,9 +708,13 @@ const rootRouteChildren: RootRouteChildren = {
   NewsRoute: NewsRoute,
   OnboardingRoute: OnboardingRoute,
   QuranRoute: QuranRoute,
+  RegisterRoute: RegisterRoute,
   StudioRoute: StudioRoute,
+  TodayRoute: TodayRoute,
   ToolsRoute: ToolsRoute,
+  WelcomeRoute: WelcomeRoute,
   WorkspaceRoute: WorkspaceRoute,
+  ApiAuthStatusRoute: ApiAuthStatusRoute,
   ApiBooksRoute: ApiBooksRoute,
   ApiMohsenRoute: ApiMohsenRoute,
   AppIdRoute: AppIdRoute,
