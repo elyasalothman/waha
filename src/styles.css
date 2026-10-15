@@ -205,3 +205,21 @@
     font-size: 34px;
   }
 }
+
+/* Consistent keyboard focus and readable mixed Arabic/Latin content. */
+:where(a, button, input, textarea, select):focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+:where(input, textarea)::placeholder {
+  text-align: start;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

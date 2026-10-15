@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ClipsMark } from "@/components/brand";
 import { useClips, type ClipCard } from "@/lib/clips";
 import { t } from "@/lib/i18n";
@@ -58,6 +59,7 @@ function ClipCardView({
   originalLabel: string;
   onPlay: () => void;
 }) {
+  const [playing, setPlaying] = useState(false);
   return (
     <article
       className="overflow-hidden rounded-xl border border-border bg-surface shadow-(--shadow-soft)"
@@ -65,22 +67,43 @@ function ClipCardView({
       data-on-maydan="false"
     >
       <div className="relative aspect-video bg-surface-2">
-        <iframe
-          src={clip.embedUrl}
-          title={clip.titleAr}
-          className="absolute inset-0 size-full border-0"
-          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          loading="lazy"
-          allowFullScreen
-          data-embed="youtube-nocookie"
-          onLoad={onPlay}
-        />
+        {playing ? (
+          <iframe
+            src={clip.embedUrl}
+            title={clip.titleAr}
+            className="absolute inset-0 size-full border-0"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            loading="lazy"
+            allowFullScreen
+            data-embed="youtube-nocookie"
+          />
+        ) : (
+          <button
+            type="button"
+            className="flex size-full min-h-44 flex-col items-center justify-center gap-3 bg-surface-2 px-6 text-center text-primary"
+            aria-label={`${lang === "ar" ? "شغّل" : "Play"}: ${clip.titleAr}`}
+            onClick={() => {
+              setPlaying(true);
+              onPlay();
+            }}
+          >
+            <span
+              aria-hidden="true"
+              className="flex size-14 items-center justify-center rounded-full border border-primary/30 text-2xl"
+            >
+              ▶
+            </span>
+            <span className="text-sm">{lang === "ar" ? "ابدأ المشاهدة" : "Start watching"}</span>
+          </button>
+        )}
       </div>
 
       <div className="p-4">
         <div className="flex flex-wrap items-center gap-2 text-xs text-subtle">
-          <span className="rounded-md border border-border bg-surface-2 px-2 py-0.5 text-muted">{topicLabel}</span>
+          <span className="rounded-md border border-border bg-surface-2 px-2 py-0.5 text-muted">
+            {topicLabel}
+          </span>
           <span>{clip.stamp}</span>
           {seen ? <span className="text-primary">{lang === "ar" ? "شُوهد" : "Seen"}</span> : null}
         </div>

@@ -3,12 +3,26 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/input";
 import { getForumBoard, isForumBoardId } from "@/lib/forum/boards";
-import { createReply, findTopic, readForumDraft, repliesFor, writeForumDraft } from "@/lib/forum/store";
+import {
+  createReply,
+  findTopic,
+  readForumDraft,
+  repliesFor,
+  writeForumDraft,
+} from "@/lib/forum/store";
 import { readHiddenPosts } from "@/lib/admin";
 import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
 
-export const Route = createFileRoute("/forum/$board/$topicId")({ component: ForumTopicPage });
+export const Route = createFileRoute("/forum/$board/$topicId")({
+  head: () => ({
+    meta: [
+      { title: "نقاش المجلس · واحة" },
+      { name: "description", content: "قراءة موضوع وردود مجلس واحة." },
+    ],
+  }),
+  component: ForumTopicPage,
+});
 
 function ForumTopicPage() {
   const lang = useAppStore((s) => s.lang);
@@ -59,9 +73,13 @@ function ForumTopicPage() {
           {board.title[lang]}
         </Link>
       </p>
-      <h1 className="mt-4 font-display text-4xl leading-tight tracking-tight">{data.topic.title}</h1>
+      <h1 className="mt-4 font-display text-4xl leading-tight tracking-tight">
+        {data.topic.title}
+      </h1>
       <p className="mt-2 text-xs text-subtle">{data.topic.author.name}</p>
-      <p className="mt-6 whitespace-pre-wrap text-base leading-relaxed text-fg">{data.topic.body}</p>
+      <p className="mt-6 whitespace-pre-wrap text-base leading-relaxed text-fg">
+        {data.topic.body}
+      </p>
 
       <ol className="mt-10 space-y-3">
         {data.replies.map((reply) => (

@@ -4,7 +4,18 @@ import { Hub } from "@/components/hub";
 import { isChildMode } from "@/lib/child-mode";
 import { useAppStore } from "@/store/app-store";
 
-export const Route = createFileRoute("/money")({ component: MoneyPage });
+export const Route = createFileRoute("/money")({
+  head: () => ({
+    meta: [
+      { title: "المال · واحة" },
+      {
+        name: "description",
+        content: "أدوات الميزانية والادخار والمصاريف والحسابات المالية اليومية.",
+      },
+    ],
+  }),
+  component: MoneyPage,
+});
 
 function MoneyPage() {
   const lang = useAppStore((s) => s.lang);

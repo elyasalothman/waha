@@ -5,6 +5,12 @@ import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
 
 export const Route = createFileRoute("/more")({
+  head: () => ({
+    meta: [
+      { title: "استكشف واحة · واحة" },
+      { name: "description", content: "تصفح جميع تطبيقات واحة وابحث عن الأداة التي تحتاجها." },
+    ],
+  }),
   validateSearch: (search: Record<string, unknown>): { view?: "square" } => ({
     view: search.view === "square" ? "square" : undefined,
   }),

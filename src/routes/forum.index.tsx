@@ -5,7 +5,15 @@ import { readHiddenPosts } from "@/lib/admin";
 import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
 
-export const Route = createFileRoute("/forum/")({ component: ForumIndex });
+export const Route = createFileRoute("/forum/")({
+  head: () => ({
+    meta: [
+      { title: "المجالس · واحة" },
+      { name: "description", content: "تصفح مجالس واحة وموضوعاتها." },
+    ],
+  }),
+  component: ForumIndex,
+});
 
 function ForumIndex() {
   const lang = useAppStore((s) => s.lang);

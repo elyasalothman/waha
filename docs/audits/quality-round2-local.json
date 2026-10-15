@@ -1,0 +1,141 @@
+{
+  "base": "http://127.0.0.1:8081",
+  "viewport": "390×844",
+  "seo": [
+    {
+      "path": "/",
+      "title": "واحتك الرقمية · واحة",
+      "description": "أدوات يومك العربية: الصلاة والكتب والألعاب والتنظيم في مكان واحد."
+    },
+    {
+      "path": "/books",
+      "title": "رف الكتب · واحة",
+      "description": "اقرأ كتاب الهجدة وتصفح الكتب وأضف كتبك إلى رف محلي خاص على جهازك."
+    },
+    {
+      "path": "/games",
+      "title": "الألعاب · واحة",
+      "description": "ألعاب عربية خفيفة للذاكرة والكلمات والأرقام، مناسبة للجوال."
+    },
+    {
+      "path": "/life",
+      "title": "حياة · واحة",
+      "description": "مواقيت الصلاة والأذكار والطقس وأدوات العائلة والصحة ليوم أكثر تنظيمًا."
+    },
+    {
+      "path": "/money",
+      "title": "المال · واحة",
+      "description": "أدوات الميزانية والادخار والمصاريف والحسابات المالية اليومية."
+    },
+    {
+      "path": "/tools",
+      "title": "الأدوات · واحة",
+      "description": "حاسبات وتحويل وحدات وأدوات نصوص وتواريخ ورموز QR باللغة العربية."
+    },
+    {
+      "path": "/more",
+      "title": "استكشف واحة · واحة",
+      "description": "تصفح جميع تطبيقات واحة وابحث عن الأداة التي تحتاجها."
+    },
+    {
+      "path": "/workspace",
+      "title": "مساحة العمل · واحة",
+      "description": "نظم مهامك وملاحظاتك واجتماعاتك وعملاءك بأدوات واحة."
+    },
+    {
+      "path": "/studio",
+      "title": "الاستوديو · واحة",
+      "description": "مساحة واحة للكتابة والمساعدة والإبداع."
+    },
+    {
+      "path": "/madar",
+      "title": "مدار · واحة",
+      "description": "ابحث واستكشف عبر بوابة مدار في واحة."
+    },
+    {
+      "path": "/clips",
+      "title": "كليبس · واحة",
+      "description": "اكتشف بوابة كليبس من داخل واحة."
+    },
+    {
+      "path": "/forum",
+      "title": "المجالس · واحة",
+      "description": "تصفح مجالس واحة وموضوعاتها."
+    },
+    {
+      "path": "/onboarding",
+      "title": "مرحبًا في واحة · واحة",
+      "description": "خصص واحتك واختر الأدوات المناسبة ليومك."
+    },
+    {
+      "path": "/admin",
+      "title": "الإدارة · واحة",
+      "description": "إدارة محتوى واحة."
+    },
+    {
+      "path": "/app/calc",
+      "title": "الحاسبة · واحة",
+      "description": "علمية مع تاريخ العمليات"
+    },
+    {
+      "path": "/app/vat",
+      "title": "الضريبة والخصم · واحة",
+      "description": "أضف أو استخرج ١٥٪ واحسب التخفيض"
+    },
+    {
+      "path": "/app/snake",
+      "title": "الثعبان · واحة",
+      "description": "كلاسيكية الشبكة والسرعة"
+    }
+  ],
+  "checks": [
+    "Guest session: real endpoint returns 200 null, no-store",
+    "Unconfigured production rejects session tokens with explicit 503, no preview identity",
+    "Search dialog: accessible name, trapped focus, Escape closes",
+    "Arabic RTL / English LTR fit 390px",
+    "Offline: visited public page works; private book navigation uses fallback; no auth/API/private pages in cache"
+  ],
+  "cachedPaths": [
+    "/offline.html",
+    "/assets/command-palette-Cs7jEP-U.js",
+    "/",
+    "/assets/jsx-runtime-Cltr0gcK.js",
+    "/assets/react-dom-c8CiVcdp.js",
+    "/assets/qss-3de60aZa.js",
+    "/assets/link-CgaIfSOr.js",
+    "/assets/useRouter-CwjitLz4.js",
+    "/assets/lazyRouteComponent-oId65GAy.js",
+    "/assets/useNavigate-B6BDdj1e.js",
+    "/assets/useSelector-OL35LtoR.js",
+    "/assets/createLucideIcon-CSACGEBt.js",
+    "/assets/icons-B6dX-msn.js",
+    "/assets/x-DjyXm1xE.js",
+    "/assets/star-DMHLIKCD.js",
+    "/assets/house-sites-8XzEJ6RB.js",
+    "/assets/styles-BryuClv7.css",
+    "/assets/app-store-DWZzXv1e.js",
+    "/assets/preload-helper-Czpn1I53.js",
+    "/assets/native-browser-Ds_gPJ0G.js",
+    "/assets/button-6VYpsQbL.js",
+    "/assets/i18n-44bjqXWy.js",
+    "/assets/dist-DeLLdOTx.js",
+    "/assets/external-link-C5nnO9mp.js",
+    "/assets/matchContext-QyWPcK3M.js",
+    "/assets/catalog-BFQ83i62.js",
+    "/assets/cn-DojpP95n.js",
+    "/assets/external-link-D2ZRBZu7.js",
+    "/assets/plus-p-_deFXQ.js",
+    "/assets/app-card-Cs0t9UuT.js",
+    "/assets/routes-BDLcuqOE.js",
+    "/assets/dist-CmkOkBdS.js",
+    "/life",
+    "/assets/life-qkc-61fm.js",
+    "/assets/hub-B8Aq8ygd.js",
+    "/assets/model-BwLGHsxh.js",
+    "/assets/storage-CTLM-iQH.js",
+    "/assets/storage-DzskyFNs.js",
+    "/assets/books-DPDYFhVp.js",
+    "/assets/use-current-user-B3ps88VB.js",
+    "/assets/index-BWXx7597.js"
+  ]
+}

@@ -17,7 +17,7 @@ export function BooksPage() {
   const lang = useAppStore((s) => s.lang);
   const { sections, local, markOpened } = useBooks();
   const kutubi = useKutubi();
-  const { user, isPending } = useCurrentUserState();
+  const { user, isPending, sessionError, retrySession } = useCurrentUserState();
   const L = (ar: string, en: string) => (lang === "ar" ? ar : en);
   /** أضف للعامة فقط بحساب حقيقي — كتبي نفسها بلا حساب. */
   const canOfferPublic = !isPending && Boolean(user && !user.isDevFallback);
@@ -56,6 +56,26 @@ export function BooksPage() {
         </Link>
       </section>
 
+      {sessionError ? (
+        <div
+          role="status"
+          className="mb-6 rounded-xl border border-warn/40 bg-surface p-4 text-sm leading-relaxed text-muted"
+        >
+          <p>
+            {L(
+              "تعذّر التحقق من الحساب. يمكنك مواصلة القراءة واستخدام كتبك المحلية.",
+              "Account verification is unavailable. You can still read and use your local books.",
+            )}
+          </p>
+          <button
+            type="button"
+            onClick={retrySession}
+            className="mt-2 min-h-11 rounded-lg border border-border px-4 text-primary"
+          >
+            {L("إعادة المحاولة", "Try again")}
+          </button>
+        </div>
+      ) : null}
       <PrivateShelf />
 
       <section

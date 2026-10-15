@@ -14,7 +14,15 @@ import { readHiddenPosts } from "@/lib/admin";
 import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
 
-export const Route = createFileRoute("/forum/$board/")({ component: ForumBoardPage });
+export const Route = createFileRoute("/forum/$board/")({
+  head: () => ({
+    meta: [
+      { title: "موضوعات المجلس · واحة" },
+      { name: "description", content: "اقرأ موضوعات المجلس وشارك أفكارك في واحة." },
+    ],
+  }),
+  component: ForumBoardPage,
+});
 
 function ForumBoardPage() {
   const lang = useAppStore((s) => s.lang);

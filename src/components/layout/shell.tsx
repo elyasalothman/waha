@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { Link, Outlet, useRouterState } from "@tanstack/react-router";
 import { Ellipsis, GalleryVertical, Search } from "lucide-react";
 import { ClipsMark, MadarMark, WahaWordmark } from "@/components/brand";
-import { CommandPalette } from "@/components/command-palette";
+const CommandPalette = lazy(() =>
+  import("@/components/command-palette").then((m) => ({ default: m.CommandPalette })),
+);
 import { LangToggle } from "@/components/city-select";
 import { OfflineBanner } from "@/components/offline-banner";
 import { DoorsStrip } from "@/components/doors-strip";
@@ -24,6 +26,17 @@ export function Shell() {
   const hydrate = useAppStore((s) => s.hydrate);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [cmd, setCmd] = useState(false);
+  useEffect(() => {
+    if (cmd) return;
+    const openSearch = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        setCmd(true);
+      }
+    };
+    window.addEventListener("keydown", openSearch);
+    return () => window.removeEventListener("keydown", openSearch);
+  }, [cmd]);
   const nav = chromeNav(audience, segment);
   const mobileNav = mobileChromeNav(audience, segment);
 
@@ -182,7 +195,9 @@ export function Shell() {
         })}
       </nav>
 
-      <CommandPalette open={cmd} onOpenChange={setCmd} lang={lang} />
+      <Suspense fallback={null}>
+        {cmd ? <CommandPalette open={cmd} onOpenChange={setCmd} lang={lang} /> : null}
+      </Suspense>
       <Toaster
         theme="light"
         position={lang === "ar" ? "bottom-left" : "bottom-right"}

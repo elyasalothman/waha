@@ -4,6 +4,7 @@ import { PreviewHostBridge } from "@/components/preview-host-bridge";
 import { NativeIosChrome } from "@/components/native-ios-chrome";
 import { Shell } from "@/components/layout/shell";
 import { useAppStore } from "@/store/app-store";
+import { PwaRegistration } from "@/components/pwa-registration";
 import appCss from "../styles.css?url";
 
 const APP_NAME = "واحة · Waha";
@@ -57,6 +58,7 @@ function RootDocument() {
         <HeadContent />
       </head>
       <body className="bg-bg text-fg">
+        <PwaRegistration />
         <NativeIosChrome />
         <PreviewHostBridge />
         <AuthProvider>

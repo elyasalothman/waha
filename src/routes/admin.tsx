@@ -16,7 +16,16 @@ import { allTopics, readForumDraft } from "@/lib/forum/store";
 import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
 
-export const Route = createFileRoute("/admin")({ component: AdminPage });
+export const Route = createFileRoute("/admin")({
+  head: () => ({
+    meta: [
+      { title: "الإدارة · واحة" },
+      { name: "description", content: "إدارة محتوى واحة." },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
+  }),
+  component: AdminPage,
+});
 
 function unlocked(): boolean {
   try {
@@ -125,7 +134,12 @@ function AdminPage() {
                 className="flex items-center justify-between gap-3 rounded-xl border border-border bg-surface px-4 py-3 text-sm"
               >
                 <span className={isHidden ? "text-subtle line-through" : ""}>{topic.title}</span>
-                <Button type="button" size="sm" variant="secondary" onClick={() => toggle("forum", topic.id, isHidden)}>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="secondary"
+                  onClick={() => toggle("forum", topic.id, isHidden)}
+                >
                   {isHidden ? t(lang, "unhide") : t(lang, "hide")}
                 </Button>
               </li>
@@ -145,7 +159,12 @@ function AdminPage() {
                 className="flex items-center justify-between gap-3 rounded-xl border border-border bg-surface px-4 py-3 text-sm"
               >
                 <span className={isHidden ? "text-subtle line-through" : ""}>{post.text}</span>
-                <Button type="button" size="sm" variant="secondary" onClick={() => toggle("maydan", post.id, isHidden)}>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="secondary"
+                  onClick={() => toggle("maydan", post.id, isHidden)}
+                >
                   {isHidden ? t(lang, "unhide") : t(lang, "hide")}
                 </Button>
               </li>

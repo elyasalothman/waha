@@ -31,6 +31,8 @@ export type CurrentUserState = {
   user: AppUser | null;
   /** True while the session is still resolving — don't treat `user: null` as signed out yet. */
   isPending: boolean;
+  sessionError?: boolean;
+  retrySession?: () => void;
 };
 
 /**
@@ -57,7 +59,7 @@ export type CurrentUserState = {
 export function useCurrentUserState(): CurrentUserState {
   if (!authEnabled) return { user: DEV_USER, isPending: false };
   // eslint-disable-next-line react-hooks/rules-of-hooks -- authEnabled is constant for the app's lifetime
-  const { data, isPending } = authClient.useSession();
+  const { data, isPending, error, refetch } = authClient.useSession();
   const user = data?.user;
   return {
     user: user
@@ -70,6 +72,10 @@ export function useCurrentUserState(): CurrentUserState {
         }
       : null,
     isPending,
+    sessionError: Boolean(error),
+    retrySession: () => {
+      void refetch();
+    },
   };
 }
 

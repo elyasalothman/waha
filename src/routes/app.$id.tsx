@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { createFileRoute, Link, Navigate } from "@tanstack/react-router";
 import { APPS } from "@/apps/registry";
 import { AppStage } from "@/components/app-stage";
@@ -8,7 +8,18 @@ import { hideMoney, isMoneySurface } from "@/lib/child-mode";
 import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
 
-export const Route = createFileRoute("/app/$id")({ component: AppPage });
+export const Route = createFileRoute("/app/$id")({
+  head: ({ params }) => {
+    const item = getApp(params.id);
+    return {
+      meta: [
+        { title: `${item?.title.ar ?? "أداة غير موجودة"} · واحة` },
+        { name: "description", content: item?.blurb.ar ?? "استكشف أدوات واحة العربية." },
+      ],
+    };
+  },
+  component: AppPage,
+});
 
 function AppPage() {
   const { id } = Route.useParams();
@@ -73,10 +84,23 @@ function AppPage() {
       item={item}
       lang={lang}
       compact={id === "chat"}
-      wide={item.category === "games" || item.id === "invoice" || item.id === "asma" || item.id === "names"}
+      wide={
+        item.category === "games" ||
+        item.id === "invoice" ||
+        item.id === "asma" ||
+        item.id === "names"
+      }
     >
       {Comp ? (
-        <Comp />
+        <Suspense
+          fallback={
+            <p role="status" className="min-h-40 animate-pulse py-8 text-center text-muted">
+              {t(lang, "loading")}
+            </p>
+          }
+        >
+          <Comp />
+        </Suspense>
       ) : (
         <p className="text-sm text-muted">{t(lang, "loading")}</p>
       )}

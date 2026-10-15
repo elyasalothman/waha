@@ -10,7 +10,16 @@ import { t } from "@/lib/i18n";
 import { useSquare } from "@/lib/square/store";
 import { useAppStore } from "@/store/app-store";
 
-export const Route = createFileRoute("/onboarding")({ component: OnboardingPage });
+export const Route = createFileRoute("/onboarding")({
+  head: () => ({
+    meta: [
+      { title: "مرحبًا في واحة · واحة" },
+      { name: "description", content: "خصص واحتك واختر الأدوات المناسبة ليومك." },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
+  }),
+  component: OnboardingPage,
+});
 
 function OnboardingPage() {
   const lang = useAppStore((s) => s.lang);
@@ -44,7 +53,9 @@ function OnboardingPage() {
       />
       {showSignIn ? (
         <div className="mt-6" data-identity="sign-in">
-          <p className="mb-2 text-xs text-muted">{L("تسجيل اختياري إن أحببت", "Optional sign-in")}</p>
+          <p className="mb-2 text-xs text-muted">
+            {L("تسجيل اختياري إن أحببت", "Optional sign-in")}
+          </p>
           <SignInButtons />
         </div>
       ) : null}

@@ -3,7 +3,15 @@ import { ChatApp } from "@/apps/studio/chat";
 import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
 
-export const Route = createFileRoute("/studio")({ component: StudioPage });
+export const Route = createFileRoute("/studio")({
+  head: () => ({
+    meta: [
+      { title: "الاستوديو · واحة" },
+      { name: "description", content: "مساحة واحة للكتابة والمساعدة والإبداع." },
+    ],
+  }),
+  component: StudioPage,
+});
 
 function StudioPage() {
   const lang = useAppStore((s) => s.lang);
