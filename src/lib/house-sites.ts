@@ -1,4 +1,4 @@
-/** Official Alhajda house index — not cloned inside Waha. */
+/** Official Alhajda house index and full-site source URLs. */
 export const ALHAJDA_SITES_INDEX = "https://alhajda.com/sites";
 
 export type HouseSiteId =
@@ -25,7 +25,7 @@ export type HouseSiteId =
 
 export type HouseSite = {
   id: HouseSiteId;
-  /** Live product URL — always https, never an in-app clone. */
+  /** Full source product URL; native feature destinations live in house-integrations. */
   href: string;
   host: string;
   icon: string;
@@ -47,8 +47,8 @@ const BOTH: Array<"personal" | "work"> = ["personal", "work"];
 type HouseSiteDraft = Omit<HouseSite, "host">;
 
 /**
- * Alhajda house products. Each href is the live product — Waha must not
- * iframe or reimplement Tahajjud / Midad / Mohsin.
+ * Alhajda house products. Each href remains the full source product.
+ * Waha provides internal features where supported.
  */
 const HOUSE_SITE_DRAFTS: readonly HouseSiteDraft[] = [
   {

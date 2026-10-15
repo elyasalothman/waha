@@ -1,3 +1,4 @@
+import { HOUSE_INTEGRATIONS } from "@/lib/house-integrations";
 import { Link } from "@tanstack/react-router";
 import { ExternalLink } from "@/components/external-link";
 import { doorOpenHref, doorOpensInternalShelf, primaryLauncherDoors, type Door } from "@/lib/doors";
@@ -15,9 +16,20 @@ function DoorShell({
   className: string;
   children: ReactNode;
 }) {
-  if (doorOpensInternalShelf(door)) {
+  if (doorOpensInternalShelf(door))
     return (
       <Link to="/books" data-door={door.id} data-opens={doorOpenHref(door)} className={className}>
+        {children}
+      </Link>
+    );
+  if (HOUSE_INTEGRATIONS[door.id]) {
+    return (
+      <Link
+        to={HOUSE_INTEGRATIONS[door.id]}
+        data-door={door.id}
+        data-opens={doorOpenHref(door)}
+        className={className}
+      >
         {children}
       </Link>
     );
@@ -41,7 +53,11 @@ export function DoorsStrip({
   const doors = primaryLauncherDoors();
   if (row) {
     return (
-      <nav aria-label={t(lang, "ourSites")} className="flex flex-wrap gap-2" data-home-section="house-doors">
+      <nav
+        aria-label={t(lang, "ourSites")}
+        className="flex flex-wrap gap-2"
+        data-home-section="house-doors"
+      >
         {doors.map((door) => {
           const Icon = appIcon(door.icon);
           const shelf = doorOpensInternalShelf(door);
@@ -54,7 +70,10 @@ export function DoorsStrip({
                 shelf ? "border-primary/40" : "border-border",
               )}
             >
-              <Icon className={cn("size-4 shrink-0", shelf ? "text-primary" : "text-muted")} strokeWidth={1.75} />
+              <Icon
+                className={cn("size-4 shrink-0", shelf ? "text-primary" : "text-muted")}
+                strokeWidth={1.75}
+              />
               <span>{door.title[lang]}</span>
             </DoorShell>
           );
@@ -77,7 +96,10 @@ export function DoorsStrip({
                 shelf ? "border-primary/40" : "border-border",
               )}
             >
-              <Icon className={cn("size-4 shrink-0", shelf ? "text-primary" : "text-muted")} strokeWidth={1.75} />
+              <Icon
+                className={cn("size-4 shrink-0", shelf ? "text-primary" : "text-muted")}
+                strokeWidth={1.75}
+              />
               <span className="truncate">{door.title[lang]}</span>
             </DoorShell>
           );
@@ -109,7 +131,9 @@ export function DoorsStrip({
             </span>
             <span className="min-w-0">
               <span className="block font-medium leading-tight">{door.title[lang]}</span>
-              <span className="mt-0.5 block text-sm leading-snug text-muted">{door.blurb[lang]}</span>
+              <span className="mt-0.5 block text-sm leading-snug text-muted">
+                {door.blurb[lang]}
+              </span>
             </span>
           </DoorShell>
         );

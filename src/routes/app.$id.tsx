@@ -1,3 +1,4 @@
+import { HOUSE_INTEGRATIONS } from "@/lib/house-integrations";
 import { Suspense, useEffect } from "react";
 import { createFileRoute, Link, Navigate } from "@tanstack/react-router";
 import { APPS } from "@/apps/registry";
@@ -33,8 +34,10 @@ function AppPage() {
   }, [item, pushRecent]);
 
   useEffect(() => {
-    if (item?.href) window.location.replace(item.href);
-  }, [item]);
+    if (item?.href && !HOUSE_INTEGRATIONS[id]) window.location.replace(item.href);
+  }, [item, id]);
+
+  if (HOUSE_INTEGRATIONS[id]) return <Navigate to={HOUSE_INTEGRATIONS[id]} />;
 
   if (id === "madar") {
     return <Navigate to="/madar" />;

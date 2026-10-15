@@ -1,3 +1,4 @@
+import { HOUSE_INTEGRATIONS } from "@/lib/house-integrations";
 import { Link } from "@tanstack/react-router";
 import type { CatalogItem } from "@/lib/catalog";
 import { BooksMark, ClipsMark, MadarMark } from "@/components/brand";
@@ -89,6 +90,13 @@ export function AppCard({
       </Link>
     );
   }
+
+  if (item.href && HOUSE_INTEGRATIONS[item.id])
+    return (
+      <Link to={HOUSE_INTEGRATIONS[item.id]} className={className}>
+        <CardBody item={item} lang={lang} large={large} compact={compact} />
+      </Link>
+    );
 
   if (item.href) {
     return (

@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { ExternalLink } from "@/components/external-link";
+import { MOHSEN_MESSAGE_LIMIT, mohsenHistory } from "@/lib/mohsen-request";
 import { featureButton } from "@/lib/share-card";
 export const Route = createFileRoute("/ask")({
   validateSearch: (search: Record<string, unknown>) => ({
-    q: typeof search.q === "string" ? search.q.slice(0, 2500) : "",
+    q: typeof search.q === "string" ? search.q.slice(0, MOHSEN_MESSAGE_LIMIT) : "",
   }),
   head: () => ({
     meta: [
@@ -18,6 +19,7 @@ export const Route = createFileRoute("/ask")({
 function Ask() {
   const { q } = Route.useSearch();
   const [input, setInput] = useState(q);
+  const [ready, setReady] = useState(false);
   const [messages, setMessages] = useState<
     { role: "user" | "assistant"; content: string; source?: string | null }[]
   >([]);
@@ -25,7 +27,10 @@ function Ask() {
   const [error, setError] = useState("");
   const end = useRef<HTMLDivElement>(null);
   const controller = useRef<AbortController | null>(null);
-  useEffect(() => setInput(q), [q]);
+  useEffect(() => {
+    setInput(q);
+    setReady(true);
+  }, [q]);
   useEffect(() => () => controller.current?.abort(), []);
   useEffect(() => {
     end.current?.scrollIntoView({ block: "nearest" });
@@ -36,10 +41,11 @@ function Ask() {
     if (!text || busy) return;
     setBusy(true);
     setError("");
-    const history = messages.slice(-8);
+    const history = mohsenHistory(messages);
     setMessages((m) => [...m, { role: "user", content: text }]);
     setInput("");
     controller.current = new AbortController();
+    const timeout = window.setTimeout(() => controller.current?.abort(), 35000);
     try {
       const r = await fetch("/api/mohsen", {
         method: "POST",
@@ -47,15 +53,26 @@ function Ask() {
         body: JSON.stringify({ message: text, messages: history }),
         signal: controller.current.signal,
       });
+      if (!r.headers.get("content-type")?.includes("application/json"))
+        throw new Error("وصل رد غير متوقع. أعد المحاولة بعد تحديث الصفحة.");
       const data = await r.json();
       if (!r.ok) throw new Error(data.error || "تعذّر الاتصال");
+      if (typeof data.reply !== "string" || !data.reply.trim())
+        throw new Error("لم يصل رد من محسن؛ أعد المحاولة.");
       setMessages((m) => [...m, { role: "assistant", content: data.reply, source: data.source }]);
     } catch (e) {
-      if (!controller.current?.signal.aborted) {
-        setError(e instanceof Error ? e.message : "تعذّر الاتصال");
+      {
+        setError(
+          controller.current?.signal.aborted
+            ? "انتهت مهلة الاتصال؛ أعد المحاولة."
+            : e instanceof Error
+              ? e.message
+              : "تعذّر الاتصال",
+        );
         setInput(text);
       }
     } finally {
+      window.clearTimeout(timeout);
       setBusy(false);
     }
   }
@@ -96,22 +113,27 @@ function Ask() {
       )}
       <form
         onSubmit={send}
-        className="sticky bottom-16 rounded-2xl border border-border bg-bg p-3 lg:bottom-3"
+        className="rounded-2xl border border-border bg-bg p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]"
       >
         <label htmlFor="mohsen-message" className="mb-2 block text-sm">
           سؤالك لمحسن
         </label>
         <textarea
           id="mohsen-message"
+          disabled={!ready}
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          maxLength={3000}
+          maxLength={MOHSEN_MESSAGE_LIMIT}
           rows={3}
           className="w-full resize-y rounded-xl border border-border bg-surface p-3 text-base"
           placeholder="اكتب سؤالك هنا…"
         />
         <div className="mt-2 flex flex-wrap gap-2">
-          <button type="submit" className={featureButton} disabled={busy || !input.trim()}>
+          <button
+            type="submit"
+            className={featureButton}
+            disabled={!ready || busy || !input.trim()}
+          >
             {busy ? "جارٍ الإرسال…" : "إرسال"}
           </button>
           <ExternalLink href="https://ai.alhajda.com/" className={featureButton}>

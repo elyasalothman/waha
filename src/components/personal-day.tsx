@@ -1,3 +1,4 @@
+import { MarketBrief } from "@/components/market-brief";
 import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import {
@@ -211,22 +212,12 @@ export function PersonalDay({ userId, interests }: { userId?: string; interests:
           دفتر المعلم لمنصة مدرستي: تحضير الأهداف الأسبوعية وكشف الدرجات.
         </p>
         <p className="mb-3 text-sm text-muted">
-          افتح خطتك داخل حصتي للاطلاع على حصصك؛ بياناتها وحسابها محفوظان في حصتي.
+          استخدم دفتر المعلم المدمج؛ بياناته وحسابه محفوظان في حصتي.
         </p>
         <div className="flex flex-wrap gap-2">
-          <ExternalLink
-            href="https://hissati.alhajda.com/app/weekly"
-            className={featureButton}
-            data-hissati="weekly"
-          >
-            حصص هذا الأسبوع ↗
-          </ExternalLink>
-          <ExternalLink href="https://hissati.alhajda.com/app/tahdeeri" className={featureButton}>
-            تحضيري ↗
-          </ExternalLink>
-          <ExternalLink href="https://hissati.alhajda.com/app/grades" className={featureButton}>
-            كشف الدرجات ↗
-          </ExternalLink>
+          <Link to="/teacher" className={featureButton} data-hissati="weekly">
+            حصص هذا الأسبوع · التحضير والدرجات
+          </Link>
           <ExternalLink href="https://hissati.alhajda.com" className={featureButton}>
             افتح حصتي كاملًا ↗
           </ExternalLink>
@@ -334,6 +325,12 @@ export function PersonalDay({ userId, interests }: { userId?: string; interests:
               </span>
             )}
           </div>
+          {pillar.id === "news" && <MarketBrief />}
+          {pillar.id === "learn" && (
+            <Link to="/compare" className={featureButton}>
+              قرارك · مقارنة الخيارات
+            </Link>
+          )}
           {pillar.id === "fun" && recent.some((id) => id === "hayat" || id === "luma") && (
             <p className="text-sm text-muted">
               آخر لعبة فتحتها:{" "}

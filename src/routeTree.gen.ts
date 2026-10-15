@@ -14,6 +14,7 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AskRouteImport } from './routes/ask'
 import { Route as BooksRouteImport } from './routes/books'
 import { Route as ClipsRouteImport } from './routes/clips'
+import { Route as CompareRouteImport } from './routes/compare'
 import { Route as ForumRouteImport } from './routes/forum'
 import { Route as GamesRouteImport } from './routes/games'
 import { Route as LifeRouteImport } from './routes/life'
@@ -25,12 +26,15 @@ import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as QuranRouteImport } from './routes/quran'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as StudioRouteImport } from './routes/studio'
+import { Route as TeacherRouteImport } from './routes/teacher'
 import { Route as TodayRouteImport } from './routes/today'
 import { Route as ToolsRouteImport } from './routes/tools'
 import { Route as WelcomeRouteImport } from './routes/welcome'
 import { Route as WorkspaceRouteImport } from './routes/workspace'
+import { Route as WorshipRouteImport } from './routes/worship'
 import { Route as ApiAuthStatusRouteImport } from './routes/api.auth-status'
 import { Route as ApiBooksRouteImport } from './routes/api.books'
+import { Route as ApiMarketRouteImport } from './routes/api.market'
 import { Route as ApiMohsenRouteImport } from './routes/api.mohsen'
 import { Route as AppIdRouteImport } from './routes/app.$id'
 import { Route as BooksAlhajdaRouteImport } from './routes/books_.alhajda'
@@ -65,6 +69,11 @@ const BooksRoute = BooksRouteImport.update({
 const ClipsRoute = ClipsRouteImport.update({
   id: '/clips',
   path: '/clips',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompareRoute = CompareRouteImport.update({
+  id: '/compare',
+  path: '/compare',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ForumRoute = ForumRouteImport.update({
@@ -122,6 +131,11 @@ const StudioRoute = StudioRouteImport.update({
   path: '/studio',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TeacherRoute = TeacherRouteImport.update({
+  id: '/teacher',
+  path: '/teacher',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TodayRoute = TodayRouteImport.update({
   id: '/today',
   path: '/today',
@@ -142,6 +156,11 @@ const WorkspaceRoute = WorkspaceRouteImport.update({
   path: '/workspace',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorshipRoute = WorshipRouteImport.update({
+  id: '/worship',
+  path: '/worship',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiAuthStatusRoute = ApiAuthStatusRouteImport.update({
   id: '/api/auth-status',
   path: '/api/auth-status',
@@ -150,6 +169,11 @@ const ApiAuthStatusRoute = ApiAuthStatusRouteImport.update({
 const ApiBooksRoute = ApiBooksRouteImport.update({
   id: '/api/books',
   path: '/api/books',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiMarketRoute = ApiMarketRouteImport.update({
+  id: '/api/market',
+  path: '/api/market',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiMohsenRoute = ApiMohsenRouteImport.update({
@@ -209,6 +233,7 @@ export interface FileRoutesByFullPath {
   '/ask': typeof AskRoute
   '/books': typeof BooksRoute
   '/clips': typeof ClipsRoute
+  '/compare': typeof CompareRoute
   '/forum': typeof ForumRouteWithChildren
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
@@ -220,12 +245,15 @@ export interface FileRoutesByFullPath {
   '/quran': typeof QuranRoute
   '/register': typeof RegisterRoute
   '/studio': typeof StudioRoute
+  '/teacher': typeof TeacherRoute
   '/today': typeof TodayRoute
   '/tools': typeof ToolsRoute
   '/welcome': typeof WelcomeRoute
   '/workspace': typeof WorkspaceRoute
+  '/worship': typeof WorshipRoute
   '/api/auth-status': typeof ApiAuthStatusRoute
   '/api/books': typeof ApiBooksRoute
+  '/api/market': typeof ApiMarketRoute
   '/api/mohsen': typeof ApiMohsenRoute
   '/app/$id': typeof AppIdRoute
   '/books/alhajda': typeof BooksAlhajdaRoute
@@ -243,6 +271,7 @@ export interface FileRoutesByTo {
   '/ask': typeof AskRoute
   '/books': typeof BooksRoute
   '/clips': typeof ClipsRoute
+  '/compare': typeof CompareRoute
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
   '/madar': typeof MadarRoute
@@ -253,12 +282,15 @@ export interface FileRoutesByTo {
   '/quran': typeof QuranRoute
   '/register': typeof RegisterRoute
   '/studio': typeof StudioRoute
+  '/teacher': typeof TeacherRoute
   '/today': typeof TodayRoute
   '/tools': typeof ToolsRoute
   '/welcome': typeof WelcomeRoute
   '/workspace': typeof WorkspaceRoute
+  '/worship': typeof WorshipRoute
   '/api/auth-status': typeof ApiAuthStatusRoute
   '/api/books': typeof ApiBooksRoute
+  '/api/market': typeof ApiMarketRoute
   '/api/mohsen': typeof ApiMohsenRoute
   '/app/$id': typeof AppIdRoute
   '/books/alhajda': typeof BooksAlhajdaRoute
@@ -276,6 +308,7 @@ export interface FileRoutesById {
   '/ask': typeof AskRoute
   '/books': typeof BooksRoute
   '/clips': typeof ClipsRoute
+  '/compare': typeof CompareRoute
   '/forum': typeof ForumRouteWithChildren
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
@@ -287,12 +320,15 @@ export interface FileRoutesById {
   '/quran': typeof QuranRoute
   '/register': typeof RegisterRoute
   '/studio': typeof StudioRoute
+  '/teacher': typeof TeacherRoute
   '/today': typeof TodayRoute
   '/tools': typeof ToolsRoute
   '/welcome': typeof WelcomeRoute
   '/workspace': typeof WorkspaceRoute
+  '/worship': typeof WorshipRoute
   '/api/auth-status': typeof ApiAuthStatusRoute
   '/api/books': typeof ApiBooksRoute
+  '/api/market': typeof ApiMarketRoute
   '/api/mohsen': typeof ApiMohsenRoute
   '/app/$id': typeof AppIdRoute
   '/books_/alhajda': typeof BooksAlhajdaRoute
@@ -312,6 +348,7 @@ export interface FileRouteTypes {
     | '/ask'
     | '/books'
     | '/clips'
+    | '/compare'
     | '/forum'
     | '/games'
     | '/life'
@@ -323,12 +360,15 @@ export interface FileRouteTypes {
     | '/quran'
     | '/register'
     | '/studio'
+    | '/teacher'
     | '/today'
     | '/tools'
     | '/welcome'
     | '/workspace'
+    | '/worship'
     | '/api/auth-status'
     | '/api/books'
+    | '/api/market'
     | '/api/mohsen'
     | '/app/$id'
     | '/books/alhajda'
@@ -346,6 +386,7 @@ export interface FileRouteTypes {
     | '/ask'
     | '/books'
     | '/clips'
+    | '/compare'
     | '/games'
     | '/life'
     | '/madar'
@@ -356,12 +397,15 @@ export interface FileRouteTypes {
     | '/quran'
     | '/register'
     | '/studio'
+    | '/teacher'
     | '/today'
     | '/tools'
     | '/welcome'
     | '/workspace'
+    | '/worship'
     | '/api/auth-status'
     | '/api/books'
+    | '/api/market'
     | '/api/mohsen'
     | '/app/$id'
     | '/books/alhajda'
@@ -378,6 +422,7 @@ export interface FileRouteTypes {
     | '/ask'
     | '/books'
     | '/clips'
+    | '/compare'
     | '/forum'
     | '/games'
     | '/life'
@@ -389,12 +434,15 @@ export interface FileRouteTypes {
     | '/quran'
     | '/register'
     | '/studio'
+    | '/teacher'
     | '/today'
     | '/tools'
     | '/welcome'
     | '/workspace'
+    | '/worship'
     | '/api/auth-status'
     | '/api/books'
+    | '/api/market'
     | '/api/mohsen'
     | '/app/$id'
     | '/books_/alhajda'
@@ -413,6 +461,7 @@ export interface RootRouteChildren {
   AskRoute: typeof AskRoute
   BooksRoute: typeof BooksRoute
   ClipsRoute: typeof ClipsRoute
+  CompareRoute: typeof CompareRoute
   ForumRoute: typeof ForumRouteWithChildren
   GamesRoute: typeof GamesRoute
   LifeRoute: typeof LifeRoute
@@ -424,12 +473,15 @@ export interface RootRouteChildren {
   QuranRoute: typeof QuranRoute
   RegisterRoute: typeof RegisterRoute
   StudioRoute: typeof StudioRoute
+  TeacherRoute: typeof TeacherRoute
   TodayRoute: typeof TodayRoute
   ToolsRoute: typeof ToolsRoute
   WelcomeRoute: typeof WelcomeRoute
   WorkspaceRoute: typeof WorkspaceRoute
+  WorshipRoute: typeof WorshipRoute
   ApiAuthStatusRoute: typeof ApiAuthStatusRoute
   ApiBooksRoute: typeof ApiBooksRoute
+  ApiMarketRoute: typeof ApiMarketRoute
   ApiMohsenRoute: typeof ApiMohsenRoute
   AppIdRoute: typeof AppIdRoute
   BooksAlhajdaRoute: typeof BooksAlhajdaRoute
@@ -473,6 +525,13 @@ declare module '@tanstack/react-router' {
       path: '/clips'
       fullPath: '/clips'
       preLoaderRoute: typeof ClipsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compare': {
+      id: '/compare'
+      path: '/compare'
+      fullPath: '/compare'
+      preLoaderRoute: typeof CompareRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/forum': {
@@ -552,6 +611,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudioRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/teacher': {
+      id: '/teacher'
+      path: '/teacher'
+      fullPath: '/teacher'
+      preLoaderRoute: typeof TeacherRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/today': {
       id: '/today'
       path: '/today'
@@ -580,6 +646,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkspaceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/worship': {
+      id: '/worship'
+      path: '/worship'
+      fullPath: '/worship'
+      preLoaderRoute: typeof WorshipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/auth-status': {
       id: '/api/auth-status'
       path: '/api/auth-status'
@@ -592,6 +665,13 @@ declare module '@tanstack/react-router' {
       path: '/api/books'
       fullPath: '/api/books'
       preLoaderRoute: typeof ApiBooksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/market': {
+      id: '/api/market'
+      path: '/api/market'
+      fullPath: '/api/market'
+      preLoaderRoute: typeof ApiMarketRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/mohsen': {
@@ -699,6 +779,7 @@ const rootRouteChildren: RootRouteChildren = {
   AskRoute: AskRoute,
   BooksRoute: BooksRoute,
   ClipsRoute: ClipsRoute,
+  CompareRoute: CompareRoute,
   ForumRoute: ForumRouteWithChildren,
   GamesRoute: GamesRoute,
   LifeRoute: LifeRoute,
@@ -710,12 +791,15 @@ const rootRouteChildren: RootRouteChildren = {
   QuranRoute: QuranRoute,
   RegisterRoute: RegisterRoute,
   StudioRoute: StudioRoute,
+  TeacherRoute: TeacherRoute,
   TodayRoute: TodayRoute,
   ToolsRoute: ToolsRoute,
   WelcomeRoute: WelcomeRoute,
   WorkspaceRoute: WorkspaceRoute,
+  WorshipRoute: WorshipRoute,
   ApiAuthStatusRoute: ApiAuthStatusRoute,
   ApiBooksRoute: ApiBooksRoute,
+  ApiMarketRoute: ApiMarketRoute,
   ApiMohsenRoute: ApiMohsenRoute,
   AppIdRoute: AppIdRoute,
   BooksAlhajdaRoute: BooksAlhajdaRoute,

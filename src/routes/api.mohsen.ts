@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { MOHSEN_BODY_LIMIT, MOHSEN_MESSAGE_LIMIT, mohsenHistory } from "@/lib/mohsen-request";
 export const Route = createFileRoute("/api/mohsen")({
   server: {
     handlers: {
@@ -9,29 +10,19 @@ export const Route = createFileRoute("/api/mohsen")({
           return Response.json({ error: "أصل غير مسموح" }, { status: 403, headers });
         try {
           const raw = await request.text();
-          if (raw.length > 16000)
+          if (raw.length > MOHSEN_BODY_LIMIT)
             return Response.json({ error: "الرسالة طويلة" }, { status: 413, headers });
           const body = JSON.parse(raw);
           if (
             typeof body.message !== "string" ||
             !body.message.trim() ||
-            body.message.length > 3000
+            body.message.length > MOHSEN_MESSAGE_LIMIT
           )
-            return Response.json({ error: "اكتب سؤالًا أقصر" }, { status: 400, headers });
-          const history = Array.isArray(body.messages)
-            ? body.messages
-                .slice(-8)
-                .filter(
-                  (m: { role?: string; content?: string }) =>
-                    ["user", "assistant"].includes(m?.role ?? "") &&
-                    typeof m?.content === "string" &&
-                    m.content.length <= 3000,
-                )
-                .map((m: { role: string; content: string }) => ({
-                  role: m.role,
-                  content: m.content,
-                }))
-            : [];
+            return Response.json(
+              { error: "اكتب سؤالًا بين حرف واحد و٨٠٠٠ حرف" },
+              { status: 400, headers },
+            );
+          const history = mohsenHistory(body.messages);
           const r = await fetch("https://ai.alhajda.com/api/chat", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -51,7 +42,9 @@ export const Route = createFileRoute("/api/mohsen")({
             },
             { headers },
           );
-        } catch {
+        } catch (error) {
+          if (error instanceof SyntaxError)
+            return Response.json({ error: "صيغة الطلب غير صالحة" }, { status: 400, headers });
           return Response.json(
             { error: "تعذّر الاتصال بمحسن. جرّب لاحقًا أو افتح موقعه." },
             { status: 503, headers },

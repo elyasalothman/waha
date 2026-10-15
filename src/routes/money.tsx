@@ -1,3 +1,4 @@
+import { MarketBrief } from "@/components/market-brief";
 import { createFileRoute } from "@tanstack/react-router";
 import { ChildMoneyGate } from "@/components/child-money-gate";
 import { Hub } from "@/components/hub";
@@ -21,5 +22,10 @@ function MoneyPage() {
   const lang = useAppStore((s) => s.lang);
   const segment = useAppStore((s) => s.segment);
   if (isChildMode(segment)) return <ChildMoneyGate lang={lang} />;
-  return <Hub category="money" />;
+  return (
+    <div className="space-y-6">
+      <MarketBrief />
+      <Hub category="money" />
+    </div>
+  );
 }

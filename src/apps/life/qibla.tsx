@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { featureButton } from "@/lib/share-card";
 import { CitySelect } from "@/components/city-select";
 import { Card } from "@/components/ui/card";
 import { qiblaDeg } from "@/lib/prayer";
@@ -8,6 +9,23 @@ export function QiblaApp() {
   const lang = useAppStore((s) => s.lang);
   const city = useAppStore((s) => s.city);
   const bearing = ((qiblaDeg(city.lat, city.lon) % 360) + 360) % 360;
+  const [notice, setNotice] = useState("");
+  async function enableCompass() {
+    if (typeof DeviceOrientationEvent === "undefined") {
+      setNotice("البوصلة غير متاحة. الاتجاه بالدرجات من الشمال.");
+      return;
+    }
+    const sensor = DeviceOrientationEvent as typeof DeviceOrientationEvent & {
+      requestPermission?: () => Promise<string>;
+    };
+    try {
+      if (sensor.requestPermission && (await sensor.requestPermission()) !== "granted")
+        setNotice("لم يُسمح بالبوصلة. الاتجاه المعروض بالدرجات من الشمال.");
+      else setNotice("حرّك الهاتف برفق حتى تصل قراءة البوصلة.");
+    } catch {
+      setNotice("تعذّر تشغيل البوصلة. الاتجاه المعروض بالدرجات من الشمال.");
+    }
+  }
   const [heading, setHeading] = useState<number | null>(null);
 
   useEffect(() => {
@@ -25,6 +43,12 @@ export function QiblaApp() {
   return (
     <div className="space-y-4">
       <CitySelect />
+      <button className={featureButton} onClick={enableCompass}>
+        {lang === "ar" ? "تفعيل البوصلة" : "Enable compass"}
+      </button>
+      <p role="status" className="text-sm text-muted">
+        {notice}
+      </p>
       <Card className="flex flex-col items-center p-6">
         <div className="relative size-56">
           <div className="absolute inset-0 rounded-full border border-border bg-surface-2" />
