@@ -79,3 +79,24 @@ test("invalid inputs and storage rejected", () => {
   assert.equal(validGame({ names: ["لنا", "لهم"], rounds: [{ id: "x", hand: {} }] }), null);
   assert.ok(validGame({ names: ["لنا", "لهم"], rounds: [{ id: "x", hand: newHand() }] }));
 });
+
+test("doubled raw ties go to original buyer, and sun double is 52", () => {
+  assert.deepEqual(scoreHand({ ...newHand(), raw: 81, level: 2 }).points, [32, 0]);
+  assert.deepEqual(scoreHand({ ...newHand(), raw: 81, level: 3 }).points, [48, 0]);
+  assert.deepEqual(scoreHand({ ...newHand(), mode: "sun", raw: 80, level: 2 }).points, [52, 0]);
+});
+test("both teams past 152 use highest total, tied totals continue", () => {
+  const rounds = Array.from({ length: 19 }, (_, i) => ({
+    id: String(i),
+    hand: { ...newHand(), raw: 81 },
+  }));
+  assert.deepEqual(matchScore(rounds), { totals: [152, 152], winner: null });
+  assert.equal(matchScore([...rounds, { id: "extra", hand: newHand() }]).winner, 0);
+});
+test("kaboot winner projects survive; losing projects and baloot disappear", () => {
+  const h = newHand();
+  h.projects[0].fifty = 1;
+  h.projects[0].baloot = 1;
+  assert.deepEqual(scoreHand({ ...h, kaboot: 0, level: 2 }).points, [37, 0]);
+  assert.deepEqual(scoreHand({ ...h, kaboot: 1, level: 2 }).points, [0, 25]);
+});

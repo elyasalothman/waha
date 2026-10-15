@@ -1,0 +1,123 @@
+{
+  "base": "https://waha.hajdah.com",
+  "results": [
+    {
+      "engine": "chromium",
+      "width": 375,
+      "page": "baloot",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "page": "baloot",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "width": 430,
+      "page": "baloot",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "page": "/",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "page": "/",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "width": 430,
+      "page": "/",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "page": "/today",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "page": "/today",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "width": 430,
+      "page": "/today",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "interactions": "add/reload/edit/undo/sun/coffee/kaboot/fullscreen/today",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "page": "baloot",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "page": "baloot",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 430,
+      "page": "baloot",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "page": "/",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "page": "/",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 430,
+      "page": "/",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "page": "/today",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "page": "/today",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 430,
+      "page": "/today",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "interactions": "add/reload/edit/undo/sun/coffee/kaboot/fullscreen/today",
+      "pass": true
+    }
+  ]
+}
