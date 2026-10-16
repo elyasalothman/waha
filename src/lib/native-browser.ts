@@ -1,3 +1,4 @@
+import { internalHouseHref } from "./house-integrations.ts";
 /**
  * Native exits from واحة.
  *
@@ -83,8 +84,9 @@ export const HOUSE_DESTINATIONS: readonly HouseDestination[] = [
 
 export function isNativeIos(): boolean {
   if (typeof window === "undefined") return false;
-  const cap = (window as Window & { Capacitor?: { isNativePlatform?: () => boolean; isNative?: boolean } })
-    .Capacitor;
+  const cap = (
+    window as Window & { Capacitor?: { isNativePlatform?: () => boolean; isNative?: boolean } }
+  ).Capacitor;
   return !!(cap && (cap.isNativePlatform?.() || cap.isNative === true));
 }
 
@@ -99,7 +101,10 @@ export function assertHttpsUrl(href: string): string {
   return url.toString();
 }
 
-export function isSameOriginHref(href: string, origin = typeof window !== "undefined" ? window.location.origin : ""): boolean {
+export function isSameOriginHref(
+  href: string,
+  origin = typeof window !== "undefined" ? window.location.origin : "",
+): boolean {
   if (!origin) return false;
   try {
     return new URL(href, origin).origin === origin;
@@ -114,7 +119,10 @@ export function isHouseDoorHost(hostname: string): boolean {
   return host === "hajdah.com" || host === "alhajda.com" || host.endsWith(".alhajda.com");
 }
 
-export function isHouseDoorUrl(href: string, origin = typeof window !== "undefined" ? window.location.origin : ""): boolean {
+export function isHouseDoorUrl(
+  href: string,
+  origin = typeof window !== "undefined" ? window.location.origin : "",
+): boolean {
   try {
     const url = new URL(href, origin || "https://waha.hajdah.com");
     if (url.protocol !== "https:") return false;
@@ -124,8 +132,12 @@ export function isHouseDoorUrl(href: string, origin = typeof window !== "undefin
   }
 }
 
-export function shouldOpenExternally(href: string, origin = typeof window !== "undefined" ? window.location.origin : ""): boolean {
-  if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) return false;
+export function shouldOpenExternally(
+  href: string,
+  origin = typeof window !== "undefined" ? window.location.origin : "",
+): boolean {
+  if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:"))
+    return false;
   if (href.startsWith("/") && !href.startsWith("//")) return false;
   try {
     const url = new URL(href, origin || "https://waha.hajdah.com");
@@ -137,7 +149,10 @@ export function shouldOpenExternally(href: string, origin = typeof window !== "u
   }
 }
 
-export function resolveNativeOpenPath(href: string, origin = typeof window !== "undefined" ? window.location.origin : ""): NativeOpenPath {
+export function resolveNativeOpenPath(
+  href: string,
+  origin = typeof window !== "undefined" ? window.location.origin : "",
+): NativeOpenPath {
   return isHouseDoorUrl(href, origin) ? "inapp-webview" : "system-browser";
 }
 
@@ -178,7 +193,11 @@ export function houseDoorChrome(href: string, lang: "ar" | "en" = "ar"): HouseDo
   if (host === "luma.alhajda.com") {
     return { url: url.toString(), title: lang === "ar" ? "لُمعة" : "Luma", closeLabel };
   }
-  return { url: url.toString(), title: host || (lang === "ar" ? "باب البيت" : "House door"), closeLabel };
+  return {
+    url: url.toString(),
+    title: host || (lang === "ar" ? "باب البيت" : "House door"),
+    closeLabel,
+  };
 }
 
 async function defaultOpenInAppWebView(options: HouseDoorOpenOptions): Promise<void> {
@@ -199,7 +218,10 @@ function defaultOpenWebTab(url: string): boolean {
 }
 
 /** Always the in-app WKWebView path — house doors must not call Browser.open. */
-export async function openHouseDoor(href: string, deps: NativeOpenDeps = {}): Promise<NativeOpenResult> {
+export async function openHouseDoor(
+  href: string,
+  deps: NativeOpenDeps = {},
+): Promise<NativeOpenResult> {
   let safe: string;
   try {
     safe = assertHttpsUrl(href);
@@ -221,7 +243,16 @@ export async function openHouseDoor(href: string, deps: NativeOpenDeps = {}): Pr
   return opened ? { ok: true, path: "web-tab" } : { ok: false, reason: "no-window" };
 }
 
-export async function openExternalUrl(href: string, deps: NativeOpenDeps = {}): Promise<NativeOpenResult> {
+export async function openExternalUrl(
+  href: string,
+  deps: NativeOpenDeps = {},
+): Promise<NativeOpenResult> {
+  const internal = internalHouseHref(href);
+  if (internal && typeof window !== "undefined") {
+    window.location.assign(internal);
+    return { ok: true, path: "inapp-webview" };
+  }
+
   let safe: string;
   try {
     safe = assertHttpsUrl(href);

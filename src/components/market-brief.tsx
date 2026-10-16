@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { ExternalLink } from "@/components/external-link";
 import { featureButton } from "@/lib/share-card";
 type Quote = {
   symbol: string;
@@ -65,9 +64,6 @@ export function MarketBrief() {
           ))}
         </ul>
       )}
-      <ExternalLink href="https://market.alhajda.com" className={featureButton}>
-        افتح الموقع الكامل ↗
-      </ExternalLink>
     </section>
   );
 }

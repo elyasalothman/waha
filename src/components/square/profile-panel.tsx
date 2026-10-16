@@ -1,3 +1,4 @@
+import { internalHouseHref } from "@/lib/house-integrations";
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
@@ -41,14 +42,28 @@ export function ProfilePanel({
 
   return (
     <div className="fixed inset-0 z-40 flex items-end justify-center sm:items-center">
-      <button type="button" className="absolute inset-0 bg-bg/70" aria-label={L("إغلاق", "Close")} onClick={onClose} />
+      <button
+        type="button"
+        className="absolute inset-0 bg-bg/70"
+        aria-label={L("إغلاق", "Close")}
+        onClick={onClose}
+      />
       <div className="relative z-10 w-full max-w-md rounded-t-xl border border-border bg-surface p-5 shadow-(--shadow-soft) sm:rounded-xl">
         <h2 className="font-display text-2xl">{L("ملفك في الميدان", "Your Square profile")}</h2>
         <p className="mt-1 text-sm text-muted">
-          {L("اسم العرض ونبذة تُحفظان على هذا الجهاز. الحساب اختياري.", "Display name and bio stay on this device. An account is optional.")}
+          {L(
+            "اسم العرض ونبذة تُحفظان على هذا الجهاز. الحساب اختياري.",
+            "Display name and bio stay on this device. An account is optional.",
+          )}
         </p>
         <label className="mt-4 block text-xs text-muted">{L("اسم العرض", "Display name")}</label>
-        <Input value={name} onChange={(e) => setName(e.target.value)} maxLength={40} placeholder={L("ضيف الواحة", "Oasis guest")} className="mt-1" />
+        <Input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          maxLength={40}
+          placeholder={L("ضيف الواحة", "Oasis guest")}
+          className="mt-1"
+        />
         <label className="mt-3 block text-xs text-muted">{L("نبذة", "Bio")}</label>
         <Textarea
           value={bio}
@@ -69,7 +84,9 @@ export function ProfilePanel({
           </Link>
         </p>
         <div className="mt-5 border-t border-border/70 pt-3" data-soft-money="profile">
-          <p className="text-[11px] text-subtle">{L("دعم / منتجات البيت", "Support / house products")}</p>
+          <p className="text-[11px] text-subtle">
+            {L("دعم / منتجات البيت", "Support / house products")}
+          </p>
           <nav className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted">
             {onSupport ? (
               <button type="button" onClick={onSupport} className="hover:text-fg">
@@ -79,7 +96,11 @@ export function ProfilePanel({
             {houseProductDoors().map((door) => (
               <span key={door.id} className="inline-flex items-center gap-2">
                 <span aria-hidden="true">·</span>
-                <a href={door.href} data-door={door.id} className="hover:text-fg">
+                <a
+                  href={internalHouseHref(door.href)}
+                  data-door={door.id}
+                  className="hover:text-fg"
+                >
                   {lang === "ar" ? door.title.ar.split(" · ")[0] : door.title.en.split(" · ")[0]}
                 </a>
               </span>

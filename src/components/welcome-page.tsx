@@ -11,7 +11,6 @@ import {
   Gamepad2,
   GraduationCap,
 } from "lucide-react";
-import { directoryHouseSites } from "@/lib/house-sites";
 import { WahaWordmark } from "@/components/brand";
 
 const pillars = [
@@ -57,7 +56,7 @@ const features = [
   {
     Icon: Newspaper,
     title: "بث الأخبار المسموع",
-    text: "موجز آلي استخراجي من العناوين، مع المصدر ووقت التحديث. يعمل حاليًا دون توليد بالذكاء الاصطناعي.",
+    text: "موجز آلي استخراجي من العناوين، مع المصدر ووقت التحديث.",
   },
   {
     Icon: BookOpen,
@@ -81,7 +80,6 @@ const features = [
   },
 ];
 export function WelcomePage() {
-  const sites = directoryHouseSites();
   return (
     <div className="landing" dir="rtl" lang="ar">
       <a
@@ -213,27 +211,11 @@ export function WelcomePage() {
         <section className="landing-section landing-house">
           <div>
             <p className="landing-eyebrow">أهلًا بك في البيت</p>
-            <h2>واحة من بيت الهجدة.</h2>
-            <p>
-              باب واحد إلى {sites.length} موقعًا من مواقعنا. أدوات وتجارب لها روح واحدة، ولكل منها
-              عالمها.
-            </p>
-            <a
-              className="landing-secondary"
-              href="https://alhajda.com/sites"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              اكتشف مواقع البيت <ArrowUpLeft size={18} />
-            </a>
-          </div>
-          <div className="landing-house-sites">
-            {sites.map((s) => (
-              <a key={s.id} href={s.href} target="_blank" rel="noopener noreferrer">
-                {s.title.ar}
-                <ArrowUpLeft size={14} />
-              </a>
-            ))}
+            <h2>تطبيقاتك في واحة.</h2>
+            <p>أدوات للكتابة والقرار والعبادة واللعب، تفتحها وتعود منها في المكان نفسه.</p>
+            <Link className="landing-secondary" to="/app/$id" params={{ id: "sites" }}>
+              اكتشف تطبيقات واحة <ArrowUpLeft size={18} />
+            </Link>
           </div>
         </section>
         <section className="landing-section landing-faq">
@@ -242,7 +224,7 @@ export function WelcomePage() {
           {[
             [
               "هل أحتاج حسابًا لاستخدام واحة؟",
-              "يمكنك تجربة القرآن والأخبار والألعاب والكتب العامة دون حساب. التسجيل يفتح لك حسابك عندما تتوفر خدمة المصادقة، والتخصيص الحالي محفوظ على جهازك.",
+              "يمكنك تجربة القرآن والأخبار والألعاب والكتب العامة دون حساب. سجّل لحفظ حسابك، وتبقى تفضيلاتك الشخصية محفوظة على جهازك.",
             ],
             [
               "هل موجز الأخبار بالذكاء الاصطناعي؟",
@@ -258,7 +240,7 @@ export function WelcomePage() {
             ],
             [
               "هل يوجد تطبيق آيفون؟",
-              "قريبًا على آيفون. لا يتوفر رابط متجر حتى الآن، ويمكنك حاليًا استخدام واحة من المتصفح وإضافتها إلى الشاشة الرئيسية.",
+              "استخدم واحة على آيفون من المتصفح وأضفها إلى الشاشة الرئيسية.",
             ],
           ].map(([q, a]) => (
             <details key={q}>
@@ -282,7 +264,6 @@ export function WelcomePage() {
               جرّب بدون حساب
             </Link>
           </div>
-          <p className="landing-iphone">قريبًا على آيفون</p>
         </section>
       </main>
       <footer className="landing-footer">

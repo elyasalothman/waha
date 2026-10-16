@@ -136,9 +136,6 @@ function Ask() {
           >
             {busy ? "جارٍ الإرسال…" : "إرسال"}
           </button>
-          <ExternalLink href="https://ai.alhajda.com/" className={featureButton}>
-            افتح محسن كاملًا ↗
-          </ExternalLink>
         </div>
       </form>
     </div>

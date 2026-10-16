@@ -1,3 +1,5 @@
+import { HouseExperience } from "@/components/house-experience";
+import { getHouseSite } from "@/lib/house-sites";
 import { HOUSE_INTEGRATIONS } from "@/lib/house-integrations";
 import { Suspense, useEffect } from "react";
 import { createFileRoute, Link, Navigate } from "@tanstack/react-router";
@@ -11,7 +13,7 @@ import { useAppStore } from "@/store/app-store";
 
 export const Route = createFileRoute("/app/$id")({
   head: ({ params }) => {
-    const item = getApp(params.id);
+    const item = getApp(params.id) ?? getHouseSite(params.id);
     return {
       meta: [
         { title: `${item?.title.ar ?? "أداة غير موجودة"} · واحة` },
@@ -33,11 +35,9 @@ function AppPage() {
     if (item) pushRecent(item.id);
   }, [item, pushRecent]);
 
-  useEffect(() => {
-    if (item?.href && !HOUSE_INTEGRATIONS[id]) window.location.replace(item.href);
-  }, [item, id]);
-
-  if (HOUSE_INTEGRATIONS[id]) return <Navigate to={HOUSE_INTEGRATIONS[id]} />;
+  const destination = HOUSE_INTEGRATIONS[id];
+  if (destination && destination !== `/app/${id}`) return <Navigate to={destination} />;
+  if (getHouseSite(id)) return <HouseExperience key={id} id={id} />;
 
   if (id === "madar") {
     return <Navigate to="/madar" />;

@@ -1,7 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ExternalLink } from "@/components/external-link";
-import { featureButton } from "@/lib/share-card";
 import { weightedScore } from "@/lib/decision";
 export const Route = createFileRoute("/compare")({
   head: () => ({
@@ -123,9 +121,6 @@ function Compare() {
               : `الأعلى حسب معاييرك: ${names[scores[0] > scores[1] ? 0 : 1]}`}
         </p>
       </div>
-      <ExternalLink href="https://qararak.alhajda.com" className={featureButton}>
-        افتح الموقع الكامل ↗
-      </ExternalLink>
     </div>
   );
 }

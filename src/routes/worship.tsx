@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, Suspense, lazy } from "react";
-import { ExternalLink } from "@/components/external-link";
 import { featureButton } from "@/lib/share-card";
 const Salah = lazy(() => import("@/apps/life/salah").then((m) => ({ default: m.SalahApp })));
 const Athkar = lazy(() => import("@/apps/life/athkar").then((m) => ({ default: m.AthkarApp })));
@@ -45,9 +44,6 @@ function Worship() {
       <Suspense fallback={<p role="status">جارٍ التحميل…</p>}>
         {tab === "prayer" ? <Salah /> : tab === "athkar" ? <Athkar /> : <Qibla />}
       </Suspense>
-      <ExternalLink href="https://tahajjud.alhajda.com" className={featureButton}>
-        افتح الموقع الكامل ↗
-      </ExternalLink>
     </div>
   );
 }

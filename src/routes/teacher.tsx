@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ExternalLink } from "@/components/external-link";
 import { featureButton } from "@/lib/share-card";
 export const Route = createFileRoute("/teacher")({
   head: () => ({
@@ -55,9 +54,6 @@ function Teacher() {
             {label}
           </button>
         ))}
-        <ExternalLink href={`https://hissati.alhajda.com/app/${section}`} className={featureButton}>
-          افتح الموقع الكامل ↗
-        </ExternalLink>
       </div>
       {started ? (
         <iframe

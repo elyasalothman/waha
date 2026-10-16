@@ -25,7 +25,7 @@ export function HouseDoors() {
   return (
     <section aria-labelledby="house-sites-title" data-home-section="house-sites">
       <h2 id="house-sites-title" className="mb-3 font-display text-2xl">
-        {lang === "ar" ? "مواقعنا" : "Our sites"}
+        {lang === "ar" ? "تطبيقات واحة" : "Waha apps"}
       </h2>
       {HOUSE_GROUPS.map((group) => (
         <div key={group.en} className="mb-5">
@@ -50,14 +50,6 @@ export function HouseDoors() {
                         </span>
                       </span>
                     </FeatureLink>
-                    {HOUSE_INTEGRATIONS[site.id] && (
-                      <ExternalLink
-                        href={site.href}
-                        className="inline-flex min-h-11 items-center px-3 text-xs text-muted"
-                      >
-                        {lang === "ar" ? "افتح الموقع الكامل ↗" : "Open full site ↗"}
-                      </ExternalLink>
-                    )}
                   </div>
                 );
               })}

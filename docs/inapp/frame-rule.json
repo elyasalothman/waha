@@ -1,0 +1,13 @@
+{
+  "zone": "alhajda.com",
+  "phase": "http_response_headers_transform",
+  "ref": "waha_inapp_frames_20261016",
+  "expression": "http.host in {\"hayat.alhajda.com\" \"luma.alhajda.com\" \"games.alhajda.com\"}",
+  "action": "rewrite",
+  "action_parameters": {
+    "headers": {
+      "X-Frame-Options": { "operation": "remove" },
+      "Content-Security-Policy": { "operation": "set", "value": "frame-ancestors 'self' https://waha.hajdah.com capacitor://localhost" }
+    }
+  }
+}

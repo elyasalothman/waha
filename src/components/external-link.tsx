@@ -1,3 +1,5 @@
+import { Link } from "@tanstack/react-router";
+import { internalHouseHref } from "@/lib/house-integrations";
 import type { AnchorHTMLAttributes, MouseEvent } from "react";
 import { openExternalUrl } from "@/lib/native-browser";
 
@@ -8,6 +10,13 @@ export function ExternalLink({
   children,
   ...props
 }: AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }) {
+  const internal = internalHouseHref(href);
+  if (internal)
+    return (
+      <Link to={internal} onClick={onClick} {...props}>
+        {children}
+      </Link>
+    );
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
     onClick?.(event);
     if (event.defaultPrevented) return;
