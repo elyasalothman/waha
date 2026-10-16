@@ -1,0 +1,241 @@
+{
+  "status": "partial",
+  "limitation": "38 catalog clicks passed; Chromium tools passed; WebKit property submission timed out.",
+  "results": [
+    {
+      "engine": "chromium",
+      "card": "tahajjud",
+      "href": "/worship",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "card": "midad",
+      "href": "/books",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "card": "luma",
+      "href": "/app/luma",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "card": "hayat",
+      "href": "/app/hayat",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "card": "samar",
+      "href": "/app/samar",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "card": "market",
+      "href": "/money",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "card": "qararak",
+      "href": "/compare",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "card": "hudoo",
+      "href": "/app/hudoo",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "card": "manteq",
+      "href": "/app/manteq",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "card": "mohsin",
+      "href": "/ask",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "card": "alhajda-tools",
+      "href": "/tools",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "card": "agent",
+      "href": "/app/agent",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "card": "hissati",
+      "href": "/app/hissati",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "card": "amlak",
+      "href": "/app/amlak",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "card": "manba",
+      "href": "/app/manba",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "card": "himaya",
+      "href": "/app/himaya",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "card": "home",
+      "href": "/app/home",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "card": "studio",
+      "href": "/app/studio",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "card": "khazana",
+      "href": "/app/khazana",
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "localTools": true,
+      "exits": [],
+      "popups": [],
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "card": "tahajjud",
+      "href": "/worship",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "card": "midad",
+      "href": "/books",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "card": "luma",
+      "href": "/app/luma",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "card": "hayat",
+      "href": "/app/hayat",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "card": "samar",
+      "href": "/app/samar",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "card": "market",
+      "href": "/money",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "card": "qararak",
+      "href": "/compare",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "card": "hudoo",
+      "href": "/app/hudoo",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "card": "manteq",
+      "href": "/app/manteq",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "card": "mohsin",
+      "href": "/ask",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "card": "alhajda-tools",
+      "href": "/tools",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "card": "agent",
+      "href": "/app/agent",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "card": "hissati",
+      "href": "/app/hissati",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "card": "amlak",
+      "href": "/app/amlak",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "card": "manba",
+      "href": "/app/manba",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "card": "himaya",
+      "href": "/app/himaya",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "card": "home",
+      "href": "/app/home",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "card": "studio",
+      "href": "/app/studio",
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "card": "khazana",
+      "href": "/app/khazana",
+      "pass": true
+    }
+  ]
+}

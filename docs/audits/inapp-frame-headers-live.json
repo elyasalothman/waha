@@ -1,0 +1,26 @@
+[
+  {
+    "url": "https://hayat.alhajda.com",
+    "status": 200,
+    "frameOptions": null,
+    "csp": "frame-ancestors 'self' https://waha.hajdah.com capacitor://localhost"
+  },
+  {
+    "url": "https://games.alhajda.com",
+    "status": 200,
+    "frameOptions": null,
+    "csp": "frame-ancestors 'self' https://waha.hajdah.com capacitor://localhost"
+  },
+  {
+    "url": "https://luma.alhajda.com/samar/",
+    "status": 200,
+    "frameOptions": null,
+    "csp": "frame-ancestors 'self' https://waha.hajdah.com capacitor://localhost"
+  },
+  {
+    "url": "https://hissati.alhajda.com",
+    "status": 200,
+    "frameOptions": null,
+    "csp": null
+  }
+]
