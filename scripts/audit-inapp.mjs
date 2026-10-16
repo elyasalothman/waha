@@ -92,6 +92,11 @@ for (const [engine, type] of Object.entries({ chromium, webkit }).filter(
     await page.getByRole("button", { name: "حذف وحدة اختبار" }).waitFor();
     await page.getByRole("button", { name: "حذف وحدة اختبار" }).click();
     await page.goto(base + "/app/agent", { waitUntil: "domcontentloaded" });
+    await page.waitForFunction(() =>
+      [...document.querySelectorAll("button")].some(
+        (n) => n.textContent.includes("أضف المهمة") && !n.disabled,
+      ),
+    );
     await page.getByLabel("المهمة", { exact: true }).fill("اختبار المهمة");
     await page.getByRole("button", { name: "أضف المهمة" }).click();
     await page.getByRole("checkbox").check();
