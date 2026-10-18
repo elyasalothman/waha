@@ -48,20 +48,28 @@ export function SuperAppHome() {
     .slice(0, 4);
   return (
     <div className="mx-auto max-w-3xl space-y-8" data-superapp="1.2.0">
-      <header className="rounded-3xl border border-border bg-surface p-6">
-        <p className="mb-2 text-sm text-primary">
-          {lang === "ar" ? "واحة · عالم الهجدة بين يديك" : "Waha · Alhajda in your hands"}
-        </p>
-        <h1 className="font-display text-4xl">
-          {lang === "ar" ? "مكان واحد، ليومك كله" : "One place for your whole day"}
-        </h1>
-        <p className="mt-3 leading-7 text-muted">
-          {lang === "ar"
-            ? "تعلّم، اقرأ، العب، واطمئن. خدماتك المفضلة تبدأ من هنا."
-            : "Learn, read, play and reflect. Your favorite services start here."}
-        </p>
+      <header>
+        <p className="text-sm text-primary">واحة · عالمك بين يديك</p>
+        <h1 className="font-display text-3xl">تطبيقاتك، ليومك كله</h1>
       </header>
       <ServiceGrid compact />
+      <div className="grid grid-cols-2 gap-3" aria-label="ودجات اليوم">
+        {[
+          ["weather", "الطقس الآن"],
+          ["salah", "الصلاة القادمة"],
+          ["hissati", "درس اليوم"],
+          ["news", "الموجز"],
+        ].map(([id, label]) => (
+          <Link
+            key={id}
+            to={id === "news" ? "/news" : "/app/$id"}
+            params={{ id }}
+            className="min-h-20 rounded-2xl border border-border bg-surface p-4"
+          >
+            {label} ←
+          </Link>
+        ))}
+      </div>
       {resume.length > 0 && (
         <section aria-label="تابع من حيث توقفت">
           <h2 className="mb-3 font-display text-2xl">

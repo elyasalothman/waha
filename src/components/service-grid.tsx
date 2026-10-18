@@ -9,6 +9,8 @@ import { hideMoney, isMoneySurface } from "@/lib/child-mode";
 
 export function ServiceGrid({ compact = false }: { compact?: boolean }) {
   const [query, setQuery] = useState("");
+  const [page, setPage] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
   const [pillar, setPillar] = useState("all");
   const lang = useAppStore((s) => s.lang);
   const segment = useAppStore((s) => s.segment);
@@ -21,6 +23,8 @@ export function ServiceGrid({ compact = false }: { compact?: boolean }) {
     compact && !query.trim()
       ? HOME_SERVICE_IDS.map((id) => items.find((s) => s.id === id)).filter((s) => s != null)
       : items;
+  const pages = Math.max(1, Math.ceil(shown.length / 8));
+  const visible = compact && !query ? shown.slice(page * 8, page * 8 + 8) : shown;
   return (
     <section className="space-y-4" aria-label={lang === "ar" ? "خدمات واحة" : "Waha services"}>
       <div className="flex items-center justify-between gap-3">
@@ -72,16 +76,24 @@ export function ServiceGrid({ compact = false }: { compact?: boolean }) {
         </p>
       )}
       <div
-        className={`grid gap-3 ${compact ? "grid-cols-3 sm:grid-cols-4" : "grid-cols-2 sm:grid-cols-3"}`}
+        onTouchStart={(e) => setTouchStart(e.touches[0].clientX)}
+        onTouchEnd={(e) => {
+          if (touchStart === null || !compact || query) return;
+          const delta = e.changedTouches[0].clientX - touchStart;
+          if (Math.abs(delta) > 45)
+            setPage((p) => Math.max(0, Math.min(pages - 1, p + (delta > 0 ? 1 : -1))));
+          setTouchStart(null);
+        }}
+        className={`grid gap-3 ${compact ? "grid-cols-4" : "grid-cols-2 sm:grid-cols-3"}`}
       >
-        {shown.map((s) => {
+        {visible.map((s) => {
           const Icon = appIcon(s.icon);
           return (
             <Link
               to={s.href}
               key={s.id}
               onClick={() => pushRecent(s.id)}
-              className="group flex min-w-0 flex-col items-center gap-3 rounded-2xl border border-border bg-surface p-4 text-center hover:bg-surface-2"
+              className="group flex min-w-0 flex-col items-center gap-3 rounded-2xl border border-border bg-surface p-2 py-4 text-center hover:bg-surface-2"
             >
               <span className="grid size-11 place-items-center rounded-2xl bg-surface-2 text-primary">
                 <Icon className="size-5" strokeWidth={1.7} />
@@ -92,6 +104,21 @@ export function ServiceGrid({ compact = false }: { compact?: boolean }) {
           );
         })}
       </div>
+      {compact && !query && (
+        <nav aria-label="صفحات التطبيقات" className="flex justify-center gap-3">
+          {Array.from({ length: pages }, (_, i) => (
+            <button
+              key={i}
+              aria-label={`صفحة ${i + 1}`}
+              aria-current={page === i ? "page" : undefined}
+              onClick={() => setPage(i)}
+              className={`min-h-11 min-w-11 rounded-full ${page === i ? "bg-primary text-primary-fg" : "bg-surface-2"}`}
+            >
+              {i + 1}
+            </button>
+          ))}
+        </nav>
+      )}
       {!shown.length && (
         <p className="rounded-xl border border-border p-5 text-muted">
           {lang === "ar"
