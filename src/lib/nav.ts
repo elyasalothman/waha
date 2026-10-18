@@ -59,6 +59,7 @@ export function mobileChromeNav(
   return [
     { to: "/", key: "home" },
     { to: "/more", key: "services" },
+    { to: "/store", key: "store" },
     { to: "/ask", key: "askTab" },
     { to: "/me", key: "me" },
   ];

@@ -22,7 +22,7 @@ describe("chrome nav lock", () => {
     );
     assert.deepEqual(
       mobileChromeNav("personal").map((item) => item.to),
-      ["/", "/more", "/ask", "/me"],
+      ["/", "/more", "/store", "/ask", "/me"],
     );
     assert.equal(
       chromeNav("personal").some((item) => item.to === "/settings"),

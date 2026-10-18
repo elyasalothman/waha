@@ -26,6 +26,7 @@ import { Route as NewsRouteImport } from './routes/news'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as QuranRouteImport } from './routes/quran'
 import { Route as RegisterRouteImport } from './routes/register'
+import { Route as StoreRouteImport } from './routes/store'
 import { Route as StudioRouteImport } from './routes/studio'
 import { Route as TeacherRouteImport } from './routes/teacher'
 import { Route as TodayRouteImport } from './routes/today'
@@ -131,6 +132,11 @@ const QuranRoute = QuranRouteImport.update({
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
   path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StoreRoute = StoreRouteImport.update({
+  id: '/store',
+  path: '/store',
   getParentRoute: () => rootRouteImport,
 } as any)
 const StudioRoute = StudioRouteImport.update({
@@ -257,6 +263,7 @@ export interface FileRoutesByFullPath {
   '/onboarding': typeof OnboardingRoute
   '/quran': typeof QuranRoute
   '/register': typeof RegisterRoute
+  '/store': typeof StoreRoute
   '/studio': typeof StudioRoute
   '/teacher': typeof TeacherRoute
   '/today': typeof TodayRoute
@@ -296,6 +303,7 @@ export interface FileRoutesByTo {
   '/onboarding': typeof OnboardingRoute
   '/quran': typeof QuranRoute
   '/register': typeof RegisterRoute
+  '/store': typeof StoreRoute
   '/studio': typeof StudioRoute
   '/teacher': typeof TeacherRoute
   '/today': typeof TodayRoute
@@ -336,6 +344,7 @@ export interface FileRoutesById {
   '/onboarding': typeof OnboardingRoute
   '/quran': typeof QuranRoute
   '/register': typeof RegisterRoute
+  '/store': typeof StoreRoute
   '/studio': typeof StudioRoute
   '/teacher': typeof TeacherRoute
   '/today': typeof TodayRoute
@@ -378,6 +387,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/quran'
     | '/register'
+    | '/store'
     | '/studio'
     | '/teacher'
     | '/today'
@@ -417,6 +427,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/quran'
     | '/register'
+    | '/store'
     | '/studio'
     | '/teacher'
     | '/today'
@@ -456,6 +467,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/quran'
     | '/register'
+    | '/store'
     | '/studio'
     | '/teacher'
     | '/today'
@@ -497,6 +509,7 @@ export interface RootRouteChildren {
   OnboardingRoute: typeof OnboardingRoute
   QuranRoute: typeof QuranRoute
   RegisterRoute: typeof RegisterRoute
+  StoreRoute: typeof StoreRoute
   StudioRoute: typeof StudioRoute
   TeacherRoute: typeof TeacherRoute
   TodayRoute: typeof TodayRoute
@@ -635,6 +648,13 @@ declare module '@tanstack/react-router' {
       path: '/register'
       fullPath: '/register'
       preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/store': {
+      id: '/store'
+      path: '/store'
+      fullPath: '/store'
+      preLoaderRoute: typeof StoreRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/studio': {
@@ -831,6 +851,7 @@ const rootRouteChildren: RootRouteChildren = {
   OnboardingRoute: OnboardingRoute,
   QuranRoute: QuranRoute,
   RegisterRoute: RegisterRoute,
+  StoreRoute: StoreRoute,
   StudioRoute: StudioRoute,
   TeacherRoute: TeacherRoute,
   TodayRoute: TodayRoute,

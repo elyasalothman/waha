@@ -1,7 +1,16 @@
 /* Public shell only. Authentication, APIs and private books never enter CacheStorage. */
-const VERSION = "waha-public-v3";
+const VERSION = "waha-public-v4";
 const OFFLINE = "/offline.html";
-const PUBLIC_PAGES = new Set(["/welcome", "/life", "/games", "/money", "/tools", "/more", "/quran"]);
+const PUBLIC_PAGES = new Set([
+  "/store",
+  "/welcome",
+  "/life",
+  "/games",
+  "/money",
+  "/tools",
+  "/more",
+  "/quran",
+]);
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(VERSION).then((cache) => cache.add(OFFLINE)));
 });

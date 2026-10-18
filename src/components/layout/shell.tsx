@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import { Link, Outlet, useRouterState } from "@tanstack/react-router";
 import {
   GalleryVertical,
+  ShoppingBag,
   Search,
   LayoutGrid,
   MessageCircle,
@@ -26,6 +27,7 @@ import { Toaster } from "sonner";
 
 const NAV_ICON = {
   "/": Home,
+  "/store": ShoppingBag,
   "/ask": MessageCircle,
   "/me": UserRound,
   "/more": LayoutGrid,
@@ -254,7 +256,9 @@ export function Shell() {
             ? "grid-cols-2"
             : mobileNav.length === 3
               ? "grid-cols-3"
-              : "grid-cols-4",
+              : mobileNav.length === 5
+                ? "grid-cols-5"
+                : "grid-cols-4",
         )}
       >
         {mobileNav.map((item) => {

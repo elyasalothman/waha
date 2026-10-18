@@ -21,6 +21,15 @@ const destinations: Record<string, string> = {
 };
 const essentials: Service[] = [
   {
+    id: "store",
+    href: "/store",
+    title: { ar: "المتجر", en: "Store" },
+    blurb: { ar: "منتجاتنا المجانية ومكتبتك", en: "Our free products and your library" },
+    icon: "ShoppingBag",
+    pillar: "learn",
+    keywords: "متجر سوق منتجات مكتبة مجاني store shop",
+  },
+  {
     id: "dallah",
     href: "/play/dallah",
     title: { ar: "قفز الدلّة", en: "Dallah Jump" },
@@ -115,6 +124,7 @@ export const SERVICES: readonly Service[] = [
   })),
 ];
 export const HOME_SERVICE_IDS = [
+  "store",
   "camera",
   "weather",
   "calc",

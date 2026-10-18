@@ -9,6 +9,7 @@ const strings = {
   },
   search: { ar: "ابحث في واحة…", en: "Search Waha…" },
   searchHint: { ar: "أو اضغط ⌘K", en: "or press ⌘K" },
+  store: { ar: "المتجر", en: "Store" },
   services: { ar: "الخدمات", en: "Services" },
   askTab: { ar: "اسأل", en: "Ask" },
   me: { ar: "أنا", en: "Me" },
