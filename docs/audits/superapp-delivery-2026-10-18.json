@@ -1,0 +1,87 @@
+{
+  "version": "1.2.0",
+  "buildFloor": 3,
+  "sourceCommit": "65587b30b2b49bcaf683fefef346f03c92c2c72a",
+  "author": "Elyas Alothman <97187596+elyasalothman@users.noreply.github.com>",
+  "remoteMainVerifiedAtCodePush": true,
+  "deployment": {
+    "id": "dpl_7ETTL9MtFJQL8XLWMecotafhV5iL",
+    "state": "READY",
+    "aliasError": null,
+    "url": "https://waha.hajdah.com"
+  },
+  "validation": {
+    "lintErrors": 0,
+    "existingLintWarnings": 23,
+    "typecheck": true,
+    "appTests": {
+      "pass": 277,
+      "fail": 0
+    },
+    "iosSourceTests": {
+      "pass": 12,
+      "fail": 0
+    },
+    "templateTests": {
+      "pass": 196,
+      "fail": 15,
+      "sameFailuresOnCleanBaseline": true
+    },
+    "liveInteractions": {
+      "pass": 22,
+      "fail": 0
+    },
+    "liveFramesFinal": {
+      "pass": 6,
+      "fail": 0,
+      "worldCompletionAndSaveTested": false
+    },
+    "localIosSimulation": {
+      "pass": 8,
+      "fail": 0
+    },
+    "liveAccountLifecycle": {
+      "signup": true,
+      "session": true,
+      "logout": true,
+      "login": true,
+      "delete": true,
+      "deletedLoginRejected": true,
+      "testAccountRemoved": true
+    },
+    "liveGeneralMohsenReply": true,
+    "liveIosReleaseGate": true,
+    "capSyncIos": true,
+    "liveRouteAudit": {
+      "visits": 330,
+      "routesPerEngine": 165,
+      "engines": [
+        "Chromium",
+        "WebKit"
+      ],
+      "viewport": "393x852",
+      "httpAndJsAndOverflowChecksPassed": 330,
+      "uncaughtJavaScriptErrors": 0,
+      "horizontalOverflows": 0,
+      "healthyVisits": 322,
+      "degradedWeather429Visits": 8
+    },
+    "externalLinks": {
+      "total": 127,
+      "http200": 102,
+      "http403": 4,
+      "http406": 1,
+      "http429": 12,
+      "connectionOrTlsFailed": 7,
+      "redirectTimedOut": 1
+    }
+  },
+  "knownLimits": [
+    "WebKit Linux offline service-worker reload failed",
+    "Some weather requests returned HTTP429",
+    "15 pre-existing template test failures",
+    "No new SSO or cross-service XP sync; local progress explicitly labeled",
+    "No continuous X monitoring configured",
+    "Native iPhone, IPA archive, and TestFlight not verified"
+  ]
+}

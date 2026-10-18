@@ -1,0 +1,20 @@
+[
+  {
+    "engine": "webkit",
+    "type": "hissati",
+    "pass": true,
+    "proof": "encyclopedia body with 16 paths"
+  },
+  {
+    "engine": "webkit",
+    "type": "dallah",
+    "pass": true,
+    "proof": "play, jump and running timer"
+  },
+  {
+    "engine": "webkit",
+    "type": "hayat-world",
+    "pass": true,
+    "proof": "canvas present; world completion and saving untested"
+  }
+]
