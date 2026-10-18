@@ -171,18 +171,6 @@ export function StoreFront() {
         </article>
       ) : (
         <>
-          <div className="relative overflow-hidden rounded-3xl border border-primary/30 bg-gradient-to-bl from-primary/20 via-surface to-bg p-6">
-            <Gift className="mb-5 size-9 text-primary" aria-hidden="true" />
-            <p className="mb-2 text-sm text-primary">من بيت الهجدة، إلى يومك</p>
-            <h1 className="font-display text-3xl leading-relaxed">
-              {libraryView ? "مكتبتك، على هذا الجهاز" : "شيء تتعلّمه. كتاب تقرؤه. لعبة تحبّها."}
-            </h1>
-            <p className="mt-3 text-sm leading-7 text-muted">
-              {libraryView
-                ? "كل ما حصلت عليه، لتعود إليه بسهولة. الحفظ محلي ولا تتم مزامنته مع الحساب."
-                : "منتجاتنا أولًا · مجاني لفترة الإطلاق. اختر ما يعجبك وأضفه إلى مكتبتك."}
-            </p>
-          </div>
           {home && featured && (
             <article
               className="space-y-3 rounded-3xl border-2 border-primary/60 bg-surface p-5"
@@ -216,6 +204,18 @@ export function StoreFront() {
               </button>
             </article>
           )}
+          <div className="relative overflow-hidden rounded-3xl border border-primary/30 bg-gradient-to-bl from-primary/20 via-surface to-bg p-6">
+            <Gift className="mb-5 size-9 text-primary" aria-hidden="true" />
+            <p className="mb-2 text-sm text-primary">من بيت الهجدة، إلى يومك</p>
+            <h1 className="font-display text-3xl leading-relaxed">
+              {libraryView ? "مكتبتك، على هذا الجهاز" : "شيء تتعلّمه. كتاب تقرؤه. لعبة تحبّها."}
+            </h1>
+            <p className="mt-3 text-sm leading-7 text-muted">
+              {libraryView
+                ? "كل ما حصلت عليه، لتعود إليه بسهولة. الحفظ محلي ولا تتم مزامنته مع الحساب."
+                : "منتجاتنا أولًا · مجاني لفترة الإطلاق. اختر ما يعجبك وأضفه إلى مكتبتك."}
+            </p>
+          </div>
           {home && proTools.length > 0 && (
             <section aria-label={PRO_SECTION_TITLE} className="space-y-3">
               <h2 className="font-display text-xl">{PRO_SECTION_TITLE}</h2>
