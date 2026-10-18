@@ -88,6 +88,19 @@ export const STORE_PRODUCTS: readonly StoreProduct[] = [
     href: HOUSE_INTEGRATIONS[s.id],
     childSafe: s.id === "tahajjud",
   })),
+  {
+    ...free,
+    id: "video",
+    name: "فيديو · مشهد",
+    description:
+      "منصة فيديو عربية من الهجدة: أخبار وتعليم وقرآن وتقنية وطبخ ورياضة وأطفال ووثائقيات، بمشغّل يوتيوب الرسمي ومقاطع حرة الترخيص.",
+    category: "learn" as const,
+    icon: "Clapperboard",
+    source: "بيت الهجدة · مشهد",
+    sourceUrl: "https://tube.alhajda.com",
+    href: "/app/video",
+    childSafe: false,
+  },
   ...CATALOG.filter((s) => s.category === "games" && !s.href).map((s) => ({
     ...free,
     id: `game-${s.id}`,

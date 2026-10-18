@@ -77,6 +77,7 @@ export const CATALOG: CatalogItem[] = [
   { id: "camera", category: "tools", lane: "tools", audience: B, icon: "Camera", title: { ar: "الكاميرا", en: "Camera" }, blurb: { ar: "التقاط صور ومعرض خاص على جهازك", en: "Capture photos in a local gallery" } },
   { id: "search", category: "tools", lane: "tools", audience: B, icon: "Search", title: { ar: "بحث واحة", en: "Waha Search" }, blurb: { ar: "منظومتنا أولًا ثم ويكيبيديا العربية", en: "Our ecosystem first, then Arabic Wikipedia" } },
   { id: "browser", category: "tools", lane: "tools", audience: B, icon: "Globe", title: { ar: "متصفح واحة", en: "Waha Browser" }, blurb: { ar: "تصفح آمن داخل واحة", en: "Browse within Waha" } },
+  { id: "video", category: "tools", lane: "tools", audience: B, icon: "Clapperboard", title: { ar: "فيديو", en: "Video" }, blurb: { ar: "مشهد: فيديو عربي من قنوات موثوقة ومقاطع حرة", en: "Mashhad: Arabic video from trusted channels" } },
   ...launcherDoors().map((door) =>
     door.id === "midad"
       ? {

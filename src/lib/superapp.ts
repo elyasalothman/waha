@@ -130,6 +130,7 @@ export const HOME_SERVICE_IDS = [
   "calc",
   "search",
   "browser",
+  "video",
   "tahajjud",
   "quran",
   "news",

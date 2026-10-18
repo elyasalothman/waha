@@ -24,6 +24,7 @@ import {
   Car,
   CircleDollarSign,
   CircleDot,
+  Clapperboard,
   Clock,
   CloudSun,
   Coins,
@@ -205,6 +206,7 @@ export const ICONS: Record<string, LucideIcon> = {
   Wrench,
   TrendingUp,
   Briefcase,
+  Clapperboard,
 };
 
 export function appIcon(name: string): LucideIcon {
