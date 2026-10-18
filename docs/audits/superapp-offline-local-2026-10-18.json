@@ -1,0 +1,22 @@
+[
+  {
+    "engine": "chromium",
+    "name": "visited public services catalog and search offline",
+    "pass": true
+  },
+  {
+    "engine": "chromium",
+    "name": "uncached root shows offline fallback",
+    "pass": true
+  },
+  {
+    "engine": "chromium",
+    "name": "unavailable exchange feed shows error, no fabricated price",
+    "pass": true
+  },
+  {
+    "engine": "webkit",
+    "pass": false,
+    "error": "page.reload: WebKit encountered an internal error\nCall log:\n\u001b[2m  - waiting for navigation until \"domcontentloaded\"\u001b[22m\n"
+  }
+]

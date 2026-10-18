@@ -1,6 +1,15 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { Link, Outlet, useRouterState } from "@tanstack/react-router";
-import { Ellipsis, GalleryVertical, Search } from "lucide-react";
+import {
+  GalleryVertical,
+  Search,
+  LayoutGrid,
+  MessageCircle,
+  UserRound,
+  Home,
+  Moon,
+  Sun,
+} from "lucide-react";
 import { ClipsMark, MadarMark, WahaWordmark } from "@/components/brand";
 const CommandPalette = lazy(() =>
   import("@/components/command-palette").then((m) => ({ default: m.CommandPalette })),
@@ -16,8 +25,10 @@ import { useAppStore } from "@/store/app-store";
 import { Toaster } from "sonner";
 
 const NAV_ICON = {
-  "/": GalleryVertical,
-  "/more": Ellipsis,
+  "/": Home,
+  "/ask": MessageCircle,
+  "/me": UserRound,
+  "/more": LayoutGrid,
 } as const;
 
 export function Shell() {
@@ -25,8 +36,52 @@ export function Shell() {
   const audience = useAppStore((s) => s.audience);
   const segment = useAppStore((s) => s.segment);
   const hydrate = useAppStore((s) => s.hydrate);
+  const pushRecent = useAppStore((s) => s.pushRecent);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  useEffect(() => {
+    let active = true;
+    void import("@/lib/superapp")
+      .then(({ SERVICES }) => {
+        if (!active) return;
+        const service = SERVICES.find((item) => item.href === pathname);
+        if (service) pushRecent(service.id);
+      })
+      .catch(() => {
+        /* Recent history is optional when offline. */
+      });
+    return () => {
+      active = false;
+    };
+  }, [pathname, pushRecent]);
   const [cmd, setCmd] = useState(false);
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    const scheme = matchMedia("(prefers-color-scheme: dark)");
+    const apply = () => {
+      let preference = null;
+      try {
+        preference = localStorage.getItem("waha:theme");
+      } catch {
+        /* system default */
+      }
+      const next = preference ? preference === "dark" : scheme.matches;
+      setDark(next);
+      document.documentElement.classList.toggle("waha-dark", next);
+    };
+    apply();
+    scheme.addEventListener("change", apply);
+    return () => scheme.removeEventListener("change", apply);
+  }, []);
+  const toggleTheme = () => {
+    const next = !dark;
+    setDark(next);
+    document.documentElement.classList.toggle("waha-dark", next);
+    try {
+      localStorage.setItem("waha:theme", next ? "dark" : "light");
+    } catch {
+      /* session only */
+    }
+  };
   useEffect(() => {
     if (cmd) return;
     const openSearch = (event: KeyboardEvent) => {
@@ -45,7 +100,7 @@ export function Shell() {
     hydrate();
   }, [hydrate]);
 
-  if (["/", "/welcome", "/register"].includes(pathname)) {
+  if (["/welcome", "/register"].includes(pathname)) {
     return <Outlet />;
   }
 
@@ -103,6 +158,10 @@ export function Shell() {
           })}
         </nav>
         <div className="flex items-center justify-between px-4 py-4">
+          <Link to="/me" className="inline-flex min-h-11 items-center gap-2 text-sm">
+            <UserRound className="size-4" />
+            {t(lang, "me")}
+          </Link>
           <LangToggle lang={lang} />
         </div>
       </aside>
@@ -112,30 +171,15 @@ export function Shell() {
           <Link to="/" className="inline-flex min-h-11 shrink-0 items-center lg:hidden">
             <WahaWordmark lang={lang} />
           </Link>
-          <div className="ms-auto flex shrink-0 items-center gap-2">
-            <Link
-              to="/clips"
-              className={cn(
-                "flex size-11 items-center justify-center rounded-md border border-border bg-surface text-primary hover:bg-surface-2",
-                pathname === "/clips" && "bg-surface-2",
-              )}
-              aria-label={t(lang, "clips")}
-              title={t(lang, "clips")}
-            >
-              <ClipsMark className="size-5" />
-            </Link>
-            <Link
-              to="/madar"
-              className={cn(
-                "flex size-11 items-center justify-center rounded-md border border-border bg-surface text-primary hover:bg-surface-2",
-                pathname === "/madar" && "bg-surface-2",
-              )}
-              aria-label={t(lang, "madar")}
-              title={t(lang, "madar")}
-            >
-              <MadarMark className="size-5" />
-            </Link>
-          </div>
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label={lang === "ar" ? "تبديل الوضع الداكن" : "Toggle dark mode"}
+            aria-pressed={dark}
+            className="ms-auto grid size-11 shrink-0 place-items-center rounded-xl border border-border text-primary"
+          >
+            {dark ? <Sun className="size-5" /> : <Moon className="size-5" />}
+          </button>
           <button
             type="button"
             onClick={() => setCmd(true)}
@@ -159,31 +203,45 @@ export function Shell() {
           className="scroll-mt-16 px-4 py-6 pb-24 lg:px-8 lg:pb-10"
         >
           <OfflineBanner lang={lang} />
-          <nav
-            aria-label="الأخبار والقرآن ومحسن"
-            className="mx-auto mb-5 flex max-w-3xl flex-wrap gap-2"
-          >
-            <Link
-              to="/news"
-              className="inline-flex min-h-11 items-center rounded-full border border-border px-4 text-sm"
+          {!["/", "/today"].includes(pathname) && (
+            <nav
+              aria-label="الأخبار والقرآن ومحسن"
+              className="mx-auto mb-5 flex max-w-3xl flex-wrap gap-2"
             >
-              الأخبار والبث
-            </Link>
-            <Link
-              to="/quran"
-              search={{ surah: 1, ayah: 1 }}
-              className="inline-flex min-h-11 items-center rounded-full border border-border px-4 text-sm"
-            >
-              القرآن الكريم
-            </Link>
-            <Link
-              to="/ask"
-              search={{ q: "" }}
-              className="inline-flex min-h-11 items-center rounded-full border border-border px-4 text-sm"
-            >
-              محسن
-            </Link>
-          </nav>
+              <Link
+                to="/madar"
+                className="inline-flex min-h-11 items-center rounded-full border border-border px-4 text-sm"
+              >
+                {t(lang, "madar")}
+              </Link>
+              <Link
+                to="/clips"
+                className="inline-flex min-h-11 items-center rounded-full border border-border px-4 text-sm"
+              >
+                {t(lang, "clips")}
+              </Link>
+              <Link
+                to="/news"
+                className="inline-flex min-h-11 items-center rounded-full border border-border px-4 text-sm"
+              >
+                الأخبار والبث
+              </Link>
+              <Link
+                to="/quran"
+                search={{ surah: 1, ayah: 1 }}
+                className="inline-flex min-h-11 items-center rounded-full border border-border px-4 text-sm"
+              >
+                القرآن الكريم
+              </Link>
+              <Link
+                to="/ask"
+                search={{ q: "" }}
+                className="inline-flex min-h-11 items-center rounded-full border border-border px-4 text-sm"
+              >
+                محسن
+              </Link>
+            </nav>
+          )}
           {pathname === "/today" ? <NativeReminders /> : null}
           <Outlet />
         </main>
@@ -231,17 +289,8 @@ export function Shell() {
       <Suspense fallback={null}>
         {cmd ? <CommandPalette open={cmd} onOpenChange={setCmd} lang={lang} /> : null}
       </Suspense>
-      {!["/ask", "/onboarding", "/app/baloot"].includes(pathname) && (
-        <Link
-          to="/ask"
-          search={{ q: "" }}
-          className="fixed bottom-[calc(4.5rem+env(safe-area-inset-bottom,0px))] end-4 z-20 inline-flex min-h-11 items-center rounded-full border border-border bg-primary px-4 py-3 text-sm font-semibold text-primary-fg shadow-lg lg:bottom-6"
-        >
-          اسأل محسن
-        </Link>
-      )}
       <Toaster
-        theme="light"
+        theme={dark ? "dark" : "light"}
         position={lang === "ar" ? "bottom-left" : "bottom-right"}
         toastOptions={{
           className: "!bg-surface !text-fg !border-border",

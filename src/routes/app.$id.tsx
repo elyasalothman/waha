@@ -1,7 +1,7 @@
 import { HouseExperience } from "@/components/house-experience";
 import { getHouseSite } from "@/lib/house-sites";
 import { HOUSE_INTEGRATIONS } from "@/lib/house-integrations";
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { createFileRoute, Link, Navigate } from "@tanstack/react-router";
 import { APPS } from "@/apps/registry";
 import { AppStage } from "@/components/app-stage";
@@ -26,6 +26,8 @@ export const Route = createFileRoute("/app/$id")({
 
 function AppPage() {
   const { id } = Route.useParams();
+  const [clientReady, setClientReady] = useState(false);
+  useEffect(() => setClientReady(true), []);
   const item = getApp(id);
   const lang = useAppStore((s) => s.lang);
   const segment = useAppStore((s) => s.segment);
@@ -94,7 +96,7 @@ function AppPage() {
         item.id === "names"
       }
     >
-      {Comp ? (
+      {Comp && clientReady ? (
         <Suspense
           fallback={
             <p role="status" className="min-h-40 animate-pulse py-8 text-center text-muted">

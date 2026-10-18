@@ -19,6 +19,7 @@ import { Route as ForumRouteImport } from './routes/forum'
 import { Route as GamesRouteImport } from './routes/games'
 import { Route as LifeRouteImport } from './routes/life'
 import { Route as MadarRouteImport } from './routes/madar'
+import { Route as MeRouteImport } from './routes/me'
 import { Route as MoneyRouteImport } from './routes/money'
 import { Route as MoreRouteImport } from './routes/more'
 import { Route as NewsRouteImport } from './routes/news'
@@ -40,6 +41,7 @@ import { Route as AppIdRouteImport } from './routes/app.$id'
 import { Route as BooksAlhajdaRouteImport } from './routes/books_.alhajda'
 import { Route as ForumIndexRouteImport } from './routes/forum.index'
 import { Route as ForumBoardRouteImport } from './routes/forum.$board'
+import { Route as PlayGameRouteImport } from './routes/play.$game'
 import { Route as ApiAuthSplatRouteImport } from './routes/api.auth.$'
 import { Route as BooksLibraryIdRouteImport } from './routes/books_.library.$id'
 import { Route as BooksReadBookIdRouteImport } from './routes/books_.read.$bookId'
@@ -94,6 +96,11 @@ const LifeRoute = LifeRouteImport.update({
 const MadarRoute = MadarRouteImport.update({
   id: '/madar',
   path: '/madar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeRoute = MeRouteImport.update({
+  id: '/me',
+  path: '/me',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MoneyRoute = MoneyRouteImport.update({
@@ -201,6 +208,11 @@ const ForumBoardRoute = ForumBoardRouteImport.update({
   path: '/$board',
   getParentRoute: () => ForumRoute,
 } as any)
+const PlayGameRoute = PlayGameRouteImport.update({
+  id: '/play/$game',
+  path: '/play/$game',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
@@ -238,6 +250,7 @@ export interface FileRoutesByFullPath {
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
   '/madar': typeof MadarRoute
+  '/me': typeof MeRoute
   '/money': typeof MoneyRoute
   '/more': typeof MoreRoute
   '/news': typeof NewsRoute
@@ -258,6 +271,7 @@ export interface FileRoutesByFullPath {
   '/app/$id': typeof AppIdRoute
   '/books/alhajda': typeof BooksAlhajdaRoute
   '/forum/$board': typeof ForumBoardRouteWithChildren
+  '/play/$game': typeof PlayGameRoute
   '/forum/': typeof ForumIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/books/library/$id': typeof BooksLibraryIdRoute
@@ -275,6 +289,7 @@ export interface FileRoutesByTo {
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
   '/madar': typeof MadarRoute
+  '/me': typeof MeRoute
   '/money': typeof MoneyRoute
   '/more': typeof MoreRoute
   '/news': typeof NewsRoute
@@ -294,6 +309,7 @@ export interface FileRoutesByTo {
   '/api/mohsen': typeof ApiMohsenRoute
   '/app/$id': typeof AppIdRoute
   '/books/alhajda': typeof BooksAlhajdaRoute
+  '/play/$game': typeof PlayGameRoute
   '/forum': typeof ForumIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/books/library/$id': typeof BooksLibraryIdRoute
@@ -313,6 +329,7 @@ export interface FileRoutesById {
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
   '/madar': typeof MadarRoute
+  '/me': typeof MeRoute
   '/money': typeof MoneyRoute
   '/more': typeof MoreRoute
   '/news': typeof NewsRoute
@@ -333,6 +350,7 @@ export interface FileRoutesById {
   '/app/$id': typeof AppIdRoute
   '/books_/alhajda': typeof BooksAlhajdaRoute
   '/forum/$board': typeof ForumBoardRouteWithChildren
+  '/play/$game': typeof PlayGameRoute
   '/forum/': typeof ForumIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/books_/library/$id': typeof BooksLibraryIdRoute
@@ -353,6 +371,7 @@ export interface FileRouteTypes {
     | '/games'
     | '/life'
     | '/madar'
+    | '/me'
     | '/money'
     | '/more'
     | '/news'
@@ -373,6 +392,7 @@ export interface FileRouteTypes {
     | '/app/$id'
     | '/books/alhajda'
     | '/forum/$board'
+    | '/play/$game'
     | '/forum/'
     | '/api/auth/$'
     | '/books/library/$id'
@@ -390,6 +410,7 @@ export interface FileRouteTypes {
     | '/games'
     | '/life'
     | '/madar'
+    | '/me'
     | '/money'
     | '/more'
     | '/news'
@@ -409,6 +430,7 @@ export interface FileRouteTypes {
     | '/api/mohsen'
     | '/app/$id'
     | '/books/alhajda'
+    | '/play/$game'
     | '/forum'
     | '/api/auth/$'
     | '/books/library/$id'
@@ -427,6 +449,7 @@ export interface FileRouteTypes {
     | '/games'
     | '/life'
     | '/madar'
+    | '/me'
     | '/money'
     | '/more'
     | '/news'
@@ -447,6 +470,7 @@ export interface FileRouteTypes {
     | '/app/$id'
     | '/books_/alhajda'
     | '/forum/$board'
+    | '/play/$game'
     | '/forum/'
     | '/api/auth/$'
     | '/books_/library/$id'
@@ -466,6 +490,7 @@ export interface RootRouteChildren {
   GamesRoute: typeof GamesRoute
   LifeRoute: typeof LifeRoute
   MadarRoute: typeof MadarRoute
+  MeRoute: typeof MeRoute
   MoneyRoute: typeof MoneyRoute
   MoreRoute: typeof MoreRoute
   NewsRoute: typeof NewsRoute
@@ -485,6 +510,7 @@ export interface RootRouteChildren {
   ApiMohsenRoute: typeof ApiMohsenRoute
   AppIdRoute: typeof AppIdRoute
   BooksAlhajdaRoute: typeof BooksAlhajdaRoute
+  PlayGameRoute: typeof PlayGameRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   BooksLibraryIdRoute: typeof BooksLibraryIdRoute
   BooksReadBookIdRoute: typeof BooksReadBookIdRoute
@@ -560,6 +586,13 @@ declare module '@tanstack/react-router' {
       path: '/madar'
       fullPath: '/madar'
       preLoaderRoute: typeof MadarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/me': {
+      id: '/me'
+      path: '/me'
+      fullPath: '/me'
+      preLoaderRoute: typeof MeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/money': {
@@ -709,6 +742,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ForumBoardRouteImport
       parentRoute: typeof ForumRoute
     }
+    '/play/$game': {
+      id: '/play/$game'
+      path: '/play/$game'
+      fullPath: '/play/$game'
+      preLoaderRoute: typeof PlayGameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/auth/$': {
       id: '/api/auth/$'
       path: '/api/auth/$'
@@ -784,6 +824,7 @@ const rootRouteChildren: RootRouteChildren = {
   GamesRoute: GamesRoute,
   LifeRoute: LifeRoute,
   MadarRoute: MadarRoute,
+  MeRoute: MeRoute,
   MoneyRoute: MoneyRoute,
   MoreRoute: MoreRoute,
   NewsRoute: NewsRoute,
@@ -803,6 +844,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiMohsenRoute: ApiMohsenRoute,
   AppIdRoute: AppIdRoute,
   BooksAlhajdaRoute: BooksAlhajdaRoute,
+  PlayGameRoute: PlayGameRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
   BooksLibraryIdRoute: BooksLibraryIdRoute,
   BooksReadBookIdRoute: BooksReadBookIdRoute,

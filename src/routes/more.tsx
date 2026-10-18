@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ServiceGrid } from "@/components/service-grid";
 import { SquarePage } from "@/components/square/square-page";
 import { moreOverflowNav } from "@/lib/nav";
 import { t } from "@/lib/i18n";
@@ -49,10 +50,11 @@ function MorePage() {
         <h1 className="font-display text-4xl tracking-tight">{t(lang, "more")}</h1>
         <p className="mt-2 max-w-xl text-muted">{t(lang, "moreBlurb")}</p>
       </header>
+      <ServiceGrid />
       <Link
         to="/more"
         search={{ view: "square" }}
-        className="mb-3 flex min-h-14 items-center rounded-xl border border-border bg-surface px-4 font-medium text-fg hover:bg-surface-2"
+        className="mt-6 mb-3 flex min-h-14 items-center rounded-xl border border-border bg-surface px-4 font-medium text-fg hover:bg-surface-2"
       >
         {lang === "ar"
           ? "الميدان والأرشيف · الصلاة وآية اليوم"

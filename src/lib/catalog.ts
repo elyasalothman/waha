@@ -1,5 +1,5 @@
-import { doorExternalHref, getDoor, launcherDoors } from "@/lib/doors";
-import { forSeriousHome, isPlayItem } from "@/lib/home-lock";
+import { doorExternalHref, getDoor, launcherDoors } from "./doors.ts";
+import { forSeriousHome, isPlayItem } from "./home-lock.ts";
 
 export type Audience = "personal" | "work";
 export type Category = "life" | "money" | "tools" | "games" | "workspace" | "studio";
@@ -242,7 +242,7 @@ export function featuredForHome(audience: Audience) {
   return forSeriousHome(featuredFor(audience));
 }
 
-export { forSeriousHome, isPlayItem } from "@/lib/home-lock";
+export { forSeriousHome, isPlayItem } from "./home-lock.ts";
 
 export function freshFor(audience: Audience) {
   return CATALOG.filter((a) => a.fresh && a.audience.includes(audience));

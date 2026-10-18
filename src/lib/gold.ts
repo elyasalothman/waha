@@ -1,7 +1,4 @@
 const OZ_GRAMS = 31.1034768;
-const FALLBACK_USD_OZ = 2650;
-const FALLBACK_USD_SAR = 3.75;
-
 export type GoldQuote = {
   usdOz: number;
   usdSar: number;
@@ -9,6 +6,7 @@ export type GoldQuote = {
   sarG21: number;
   sarG18: number;
   approx: boolean;
+  updatedAt?: string;
 };
 
 function pack(usdOz: number, usdSar: number, approx: boolean): GoldQuote {
@@ -24,26 +22,17 @@ function pack(usdOz: number, usdSar: number, approx: boolean): GoldQuote {
 }
 
 export async function fetchGold(): Promise<GoldQuote> {
-  try {
-    const [goldRes, fxRes] = await Promise.all([
-      fetch("https://api.gold-api.com/price/XAU"),
-      fetch("https://api.frankfurter.app/latest?from=USD&to=SAR"),
-    ]);
-    let usdOz = FALLBACK_USD_OZ;
-    let usdSar = FALLBACK_USD_SAR;
-    let approx = false;
-    if (goldRes.ok) {
-      const g = (await goldRes.json()) as { price?: number };
-      if (typeof g.price === "number" && g.price > 0) usdOz = g.price;
-      else approx = true;
-    } else approx = true;
-    if (fxRes.ok) {
-      const f = (await fxRes.json()) as { rates?: { SAR?: number } };
-      if (typeof f.rates?.SAR === "number" && f.rates.SAR > 0) usdSar = f.rates.SAR;
-      else approx = true;
-    } else approx = true;
-    return pack(usdOz, usdSar, approx);
-  } catch {
-    return pack(FALLBACK_USD_OZ, FALLBACK_USD_SAR, true);
-  }
+  const response = await fetch("/api/gold", { signal: AbortSignal.timeout(10000) });
+  if (!response.ok) throw new Error("Gold unavailable");
+  const data = await response.json();
+  if (
+    typeof data.usdOz !== "number" ||
+    !Number.isFinite(data.usdOz) ||
+    data.usdOz <= 0 ||
+    typeof data.usdSar !== "number" ||
+    !Number.isFinite(data.usdSar) ||
+    data.usdSar <= 0
+  )
+    throw new Error("Invalid quote");
+  return { ...pack(data.usdOz, data.usdSar, false), updatedAt: data.updatedAt };
 }
