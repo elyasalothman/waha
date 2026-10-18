@@ -1,0 +1,43 @@
+{
+  "base": "https://waha.hajdah.com",
+  "results": [
+    {
+      "theme": "dark",
+      "viewport": "393x852",
+      "engine": "chromium",
+      "pass": true,
+      "checks": [
+        "catalog",
+        "category",
+        "product",
+        "acquire and internal reader",
+        "library after navigation",
+        "deduplication",
+        "offline reload and search",
+        "services entry",
+        "RTL and overflow",
+        "child filter",
+        "no page errors"
+      ]
+    },
+    {
+      "theme": "light",
+      "viewport": "393x852",
+      "engine": "chromium",
+      "pass": true,
+      "checks": [
+        "catalog",
+        "category",
+        "product",
+        "acquire and internal reader",
+        "library after navigation",
+        "deduplication",
+        "offline reload and search",
+        "services entry",
+        "RTL and overflow",
+        "child filter",
+        "no page errors"
+      ]
+    }
+  ]
+}
