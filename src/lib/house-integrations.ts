@@ -30,6 +30,7 @@ export function internalHouseHref(href: string): string | undefined {
       "hajdah.com": "studio",
       "tahajjud.alhajda.com": "tahajjud",
       "midad.alhajda.com": "midad",
+      "si.alhajda.com": "mohsin",
       "ai.alhajda.com": "mohsin",
       "tools.alhajda.com": "alhajda-tools",
       "games.alhajda.com": "luma",

@@ -107,11 +107,11 @@ const HOUSE_SITE_DRAFTS: readonly HouseSiteDraft[] = [
   },
   {
     id: "mohsin",
-    href: "https://ai.alhajda.com",
+    href: "https://si.alhajda.com",
     icon: "Sparkles",
     title: { ar: "محسن", en: "Mohsin" },
     blurb: { ar: "مساعد الهجدة للكتابة والسؤال", en: "The house assistant for writing and asking" },
-    keywords: ["محسن", "ذكاء", "مساعد", "mohsin", "mohsen", "ai"],
+    keywords: ["محسن", "ذكاء", "مساعد", "mohsin", "mohsen", "ai", "ai.alhajda", "si.alhajda"],
     category: "life",
     lane: "house",
     audience: PERSONAL,

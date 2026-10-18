@@ -101,7 +101,7 @@ Browser Use · دخان واحة · مختبرات واحة · باني واحة
 - رسائل لإلياس من البوتات
 
 ## روابط بيت
-- محسن https://ai.alhajda.com
+- محسن https://si.alhajda.com
 - تهجد https://tahajjud.alhajda.com
 - مداد https://midad.alhajda.com/library
 - ألعاب https://games.alhajda.com

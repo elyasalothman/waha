@@ -31,7 +31,7 @@ describe("ask media wave 1", () => {
             ok: true,
             kind: "image",
             mime: "image/png",
-            url: "https://ai.alhajda.com/media/oasis.png",
+            url: "https://si.alhajda.com/media/oasis.png",
             provider: "fal",
             model: "hidden",
           },
@@ -45,7 +45,7 @@ describe("ask media wave 1", () => {
     assert.equal(res.badge, ASK_MEDIA_BADGE);
     assert.equal(res.source_label, ASK_MEDIA_SOURCE);
     assert.equal(res.mime, "image/png");
-    assert.equal(res.url, "https://ai.alhajda.com/media/oasis.png");
+    assert.equal(res.url, "https://si.alhajda.com/media/oasis.png");
     assert.equal("provider" in res, false);
     assert.equal("model" in res, false);
     assert.doesNotMatch(JSON.stringify(res), /fal|replicate|xai|FAL_KEY/i);
@@ -159,7 +159,7 @@ describe("ask media wave 1", () => {
     for (const src of [ai, core, chat]) {
       assert.doesNotMatch(src, /XAI_API_KEY|grok-4|https:\/\/api\.x\.ai/);
     }
-    assert.match(core, /ai\.alhajda\.com\/api\/media\/generate/);
+    assert.match(core, /si\.alhajda\.com\/api\/media\/generate/);
     assert.match(ai, /generateAskMedia/);
     assert.doesNotMatch(ai, /FAL_KEY|REPLICATE_API|fal\.ai|replicate\.com/);
     assert.match(chat, /generateAskMedia/);

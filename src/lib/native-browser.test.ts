@@ -29,7 +29,7 @@ describe("house destinations", () => {
     );
     assert.equal(houseDestination("tahajjud").href, "https://tahajjud.alhajda.com/");
     assert.equal(houseDestination("midad").href, "https://midad.alhajda.com/library");
-    assert.equal(houseDestination("mohsen").href, "https://ai.alhajda.com/");
+    assert.equal(houseDestination("mohsen").href, "https://si.alhajda.com/");
     assert.equal(houseDestination("games").href, "https://games.alhajda.com/");
     assert.equal(houseDestination("hayat").href, "https://hayat.alhajda.com/");
     for (const row of HOUSE_DESTINATIONS) {
@@ -98,7 +98,7 @@ describe("native open path", () => {
       ["https://alhajda.com/sites", "inapp-webview"],
       ["https://games.alhajda.com/", "inapp-webview"],
       ["https://luma.alhajda.com/", "inapp-webview"],
-      ["https://ai.alhajda.com/", "inapp-webview"],
+      ["https://si.alhajda.com/", "inapp-webview"],
       ["https://hayat.alhajda.com/", "inapp-webview"],
       ["https://www.absher.sa", "system-browser"],
       ["https://islamhouse.com/ar/books/231837/", "system-browser"],

@@ -11,7 +11,7 @@ const CANONICAL_HREFS: Record<HouseSiteId, string> = {
   tahajjud: "https://tahajjud.alhajda.com",
   midad: "https://midad.alhajda.com/library",
   sites: "https://alhajda.com/sites",
-  mohsin: "https://ai.alhajda.com",
+  mohsin: "https://si.alhajda.com",
   luma: "https://games.alhajda.com",
   "alhajda-tools": "https://tools.alhajda.com",
   agent: "https://agent.alhajda.com",
@@ -33,7 +33,7 @@ const CANONICAL_HREFS: Record<HouseSiteId, string> = {
 const HOUSE_PRODUCT_HOSTS = [
   "tahajjud.alhajda.com",
   "midad.alhajda.com",
-  "ai.alhajda.com",
+  "si.alhajda.com",
   "games.alhajda.com",
   "agent.alhajda.com",
   "hissati.alhajda.com",

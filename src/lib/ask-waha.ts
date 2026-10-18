@@ -71,7 +71,7 @@ export type MohsenCall = (input: {
   messages: ChatTurn[];
 }) => Promise<MohsenFields>;
 
-const MOHSEN_URL = "https://ai.alhajda.com/api/chat";
+const MOHSEN_URL = "https://si.alhajda.com/api/chat";
 /** Royal v0.2: Mohsen budget ≤8s; timeout is an honest لا أعرف. */
 export const ASK_WAHA_MOHSEN_TIMEOUT_MS = 8_000;
 const BLOCKED_CITE_HOSTS = new Set(["api.x.ai"]);
@@ -88,7 +88,7 @@ export const DAY_CITATIONS: AskCitation[] = [
 
 /** House corpus the identity/law path actually speaks from. */
 export const HOUSE_CITATIONS: AskCitation[] = [
-  { title: "محسن", url: "https://ai.alhajda.com" },
+  { title: "محسن", url: "https://si.alhajda.com" },
   { title: "الهجدة", url: "https://alhajda.com" },
   { title: "مواقعنا", url: "https://alhajda.com/sites" },
   { title: "مداد", url: "https://midad.alhajda.com/library" },

@@ -23,7 +23,7 @@ export const Route = createFileRoute("/api/mohsen")({
               { status: 400, headers },
             );
           const history = mohsenHistory(body.messages);
-          const r = await fetch("https://ai.alhajda.com/api/chat", {
+          const r = await fetch("https://si.alhajda.com/api/chat", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ message: body.message, messages: history }),

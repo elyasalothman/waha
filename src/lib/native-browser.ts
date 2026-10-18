@@ -62,7 +62,7 @@ export const HOUSE_DESTINATIONS: readonly HouseDestination[] = [
     en: "Mohsen",
     blurbAr: "محادثة",
     blurbEn: "Chat",
-    href: "https://ai.alhajda.com/",
+    href: "https://si.alhajda.com/",
   },
   {
     id: "games",

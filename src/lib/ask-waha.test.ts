@@ -264,7 +264,7 @@ describe("ask waha §5 smoke", () => {
     const core = readFileSync(new URL("./ask-waha.ts", import.meta.url), "utf8");
     assert.doesNotMatch(ai, /XAI_API_KEY|grok-4|https:\/\/api\.x\.ai/);
     assert.doesNotMatch(core, /XAI_API_KEY|grok-4|https:\/\/api\.x\.ai/);
-    assert.match(core, /ai\.alhajda\.com\/api\/chat/);
+    assert.match(core, /si\.alhajda\.com\/api\/chat/);
   });
 
   it("5. فشل محسن → عجز صادق + لا أعرف، بلا رجوع لـ Grok", async () => {

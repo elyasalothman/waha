@@ -5,7 +5,7 @@ export const ASK_MEDIA_SOURCE = "محسن";
 export const ASK_MEDIA_PROMPT_MAX = 2000;
 export const ASK_MEDIA_TIMEOUT_MS = 45_000;
 
-export const MOHSEN_MEDIA_URL = "https://ai.alhajda.com/api/media/generate";
+export const MOHSEN_MEDIA_URL = "https://si.alhajda.com/api/media/generate";
 
 export type AskMediaKind = "image" | "video";
 

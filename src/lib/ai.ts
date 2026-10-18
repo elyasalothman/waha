@@ -54,7 +54,7 @@ const MediaInput = z.object({
 });
 
 /**
- * انظر — نص→وسائط عبر محسن فقط (serverFn → ai.alhajda.com).
+ * انظر — نص→وسائط عبر محسن فقط (serverFn → si.alhajda.com).
  * بلا مفاتيح في العميل. بلا مزود ظاهر. فيديو stub.
  */
 export const generateAskMedia = createServerFn({ method: "POST" })
