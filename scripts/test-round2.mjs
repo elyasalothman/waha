@@ -25,6 +25,7 @@ const context = await browser.newContext({
   ignoreHTTPSErrors: true,
   serviceWorkers: "block",
 });
+await context.addInitScript(() => localStorage.setItem("waha:theme", "dark"));
 const page = await context.newPage();
 const errors = [];
 page.on("pageerror", (e) => errors.push(e.message));
@@ -158,7 +159,8 @@ await writeFile(
       base,
       viewport: "393x852",
       engine: "webkit",
-      network: "weather/search mocked; camera permission denied; no real iPhone",
+      network:
+        "weather/search mocked; camera permission denied and seeded IndexedDB restore/delete; dark mode; no real iPhone",
       results,
       errors,
     },

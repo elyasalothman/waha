@@ -1,0 +1,29 @@
+{
+  "sha": "984a176d971363243d11c731a15da4d2c161fbff",
+  "deployment": "dpl_FsVo6Y5PSpQbMeuAAXAuVkVcLSDV",
+  "state": "READY",
+  "aliasError": null,
+  "domains": ["waha.hajdah.com", "waha.alhajda.com"],
+  "ios": {
+    "version": "1.2.1",
+    "build": 4,
+    "capacitorSync": true,
+    "archive": false,
+    "deviceCameraTest": false
+  },
+  "checks": {
+    "typecheck": true,
+    "test": true,
+    "applicationTests": 280,
+    "lintErrors": 0,
+    "existingLintWarnings": 23,
+    "build": true
+  },
+  "limitations": [
+    "Open-Meteo real request HTTP429",
+    "Weather and Wikipedia mocked in deterministic WebKit test",
+    "New tools not yet included in native offline fallback",
+    "No real iPhone or TestFlight verification",
+    "Prayer/news/lesson top widgets remain shortcuts to detailed day cards"
+  ]
+}

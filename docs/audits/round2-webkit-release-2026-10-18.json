@@ -1,0 +1,33 @@
+{
+  "base": "https://waha.hajdah.com",
+  "viewport": "393x852",
+  "engine": "webkit",
+  "network": "weather/search mocked; camera permission denied; no real iPhone",
+  "results": [
+    {
+      "name": "home",
+      "pass": true
+    },
+    {
+      "name": "weather",
+      "pass": true
+    },
+    {
+      "name": "calculator",
+      "pass": true
+    },
+    {
+      "name": "search",
+      "pass": true
+    },
+    {
+      "name": "browser",
+      "pass": true
+    },
+    {
+      "name": "camera",
+      "pass": true
+    }
+  ],
+  "errors": []
+}
