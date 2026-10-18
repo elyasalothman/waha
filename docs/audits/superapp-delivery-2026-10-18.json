@@ -23,9 +23,11 @@
       "fail": 0
     },
     "templateTests": {
-      "pass": 196,
-      "fail": 15,
-      "sameFailuresOnCleanBaseline": true
+      "pass": 207,
+      "fail": 0,
+      "skipped": 4,
+      "skipReason": "Legacy Grok agent/OG documents are not shipped in Waha",
+      "previousBaselineFailures": 15
     },
     "liveInteractions": {
       "pass": 22,
@@ -79,9 +81,9 @@
   "knownLimits": [
     "WebKit Linux offline service-worker reload failed",
     "Some weather requests returned HTTP429",
-    "15 pre-existing template test failures",
     "No new SSO or cross-service XP sync; local progress explicitly labeled",
     "No continuous X monitoring configured",
-    "Native iPhone, IPA archive, and TestFlight not verified"
+    "Native iPhone, IPA archive, and TestFlight not verified",
+    "4 legacy Grok documentation integration checks explicitly skipped; documents absent"
   ]
 }

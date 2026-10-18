@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { execFile } from "node:child_process";
-import { mkdirSync, mkdtempSync, symlinkSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
@@ -14,7 +14,12 @@ import {
 } from "./with-app-env.mjs";
 
 const execFileAsync = promisify(execFile);
-const WRAPPER = join(projectRoot(), "scripts/with-app-env.mjs");
+const CLI_FIXTURE = makeWorkspace('{"VITE_AUTH_ENABLED":"false"}');
+mkdirSync(join(CLI_FIXTURE, "scripts"));
+const WRAPPER = join(CLI_FIXTURE, "scripts/with-app-env.mjs");
+writeFileSync(WRAPPER, readFileSync(join(projectRoot(), "scripts/with-app-env.mjs")));
+const DEFAULT_CLI_ENV = { ...process.env };
+delete DEFAULT_CLI_ENV.VITE_AUTH_ENABLED;
 const PRINT_FLAG = "process.stdout.write(String(process.env.VITE_AUTH_ENABLED));";
 
 function makeWorkspace(appEnvJson) {
@@ -59,8 +64,8 @@ test("an explicit process-env override wins over the file", () => {
   assert.equal(merged.PATH, "/usr/bin");
 });
 
-test("the template ships auth off", () => {
-  assert.deepEqual(readAppEnv(projectRoot()), { VITE_AUTH_ENABLED: "false" });
+test("a fresh workspace ships without auth overrides", () => {
+  assert.deepEqual(readAppEnv(makeWorkspace()), {});
 });
 
 test("vite loadEnv resolves the wrapped value", () => {
@@ -74,12 +79,11 @@ test("vite loadEnv resolves the wrapped value", () => {
 });
 
 test("the wrapped command runs with the app env applied", async () => {
-  const { stdout } = await execFileAsync(process.execPath, [
-    WRAPPER,
+  const { stdout } = await execFileAsync(
     process.execPath,
-    "-e",
-    PRINT_FLAG,
-  ]);
+    [WRAPPER, process.execPath, "-e", PRINT_FLAG],
+    { env: DEFAULT_CLI_ENV },
+  );
   assert.equal(stdout, "false");
 });
 
@@ -117,12 +121,11 @@ test("the CLI still runs when invoked through a symlinked path", async () => {
   // node realpaths import.meta.url but not process.argv[1], so a raw comparison
   // turns the wrapper into a no-op that exits 0 without starting anything.
   const link = join(mkdtempSync(join(tmpdir(), "app-env-link-")), "scripts");
-  symlinkSync(join(projectRoot(), "scripts"), link);
-  const { stdout } = await execFileAsync(process.execPath, [
-    join(link, "with-app-env.mjs"),
+  symlinkSync(join(CLI_FIXTURE, "scripts"), link);
+  const { stdout } = await execFileAsync(
     process.execPath,
-    "-e",
-    PRINT_FLAG,
-  ]);
+    [join(link, "with-app-env.mjs"), process.execPath, "-e", PRINT_FLAG],
+    { env: DEFAULT_CLI_ENV },
+  );
   assert.equal(stdout, "false");
 });
