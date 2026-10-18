@@ -1,0 +1,83 @@
+name: build-installers
+
+on:
+  push:
+    branches: [main, "desktop/waha-desktop"]
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+
+  installers:
+    needs: test
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: windows-latest
+            args: "--bundles msi,nsis"
+            rust_targets: ""
+          - platform: macos-latest
+            args: "--target universal-apple-darwin --bundles app,dmg"
+            rust_targets: "aarch64-apple-darwin,x86_64-apple-darwin"
+          - platform: ubuntu-22.04
+            args: "--bundles deb,appimage"
+            rust_targets: ""
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Linux system deps
+        if: matrix.platform == 'ubuntu-22.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.rust_targets }}
+      - uses: swatinem/rust-cache@v2
+        with: { workspaces: "./src-tauri -> target" }
+      - run: npm ci
+      - name: Build unsigned installers and attach to draft release v0.1.0
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # Temporarily hosted on an orphan branch of elyasalothman/waha: prefix the tag there.
+          tagName: ${{ github.repository == 'elyasalothman/waha' && 'desktop-v__VERSION__' || 'v__VERSION__' }}
+          releaseCommitish: ${{ github.sha }}
+          releaseName: "واحة للكمبيوتر v__VERSION__"
+          releaseBody: |
+            نسخة تجريبية غير موقّعة. ويندوز: قد يظهر تحذير SmartScreen («مزيد من المعلومات» ← «تشغيل على أي حال»). ماك: افتح التطبيق بزر الفأرة الأيمن ← «فتح» أول مرة.
+            Unsigned preview build — Windows SmartScreen / macOS Gatekeeper will warn.
+          releaseDraft: true
+          prerelease: true
+          args: ${{ matrix.args }}
+      - name: Upload installers as workflow artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: waha-desktop-${{ matrix.platform }}
+          if-no-files-found: error
+          path: |
+            src-tauri/target/release/bundle/msi/*.msi
+            src-tauri/target/release/bundle/nsis/*.exe
+            src-tauri/target/universal-apple-darwin/release/bundle/dmg/*.dmg
+            src-tauri/target/release/bundle/deb/*.deb
+            src-tauri/target/release/bundle/appimage/*.AppImage
