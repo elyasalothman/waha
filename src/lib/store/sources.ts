@@ -1,0 +1,237 @@
+// Source snapshot: Hissati learning/content.ts and Waha Midad import, 2026-10-18.
+export const LEARNING_TRACKS = [
+  {
+    "id": "ai",
+    "title": "الذكاء الاصطناعي",
+    "symbol": "✦",
+    "description": "من التعلّم من الأمثلة إلى أوامر أفضل واستخدام مسؤول.",
+    "lessons": 6
+  },
+  {
+    "id": "invest",
+    "title": "الأسهم والاستثمار",
+    "symbol": "↗",
+    "description": "افهم الملكية والعائد والمخاطر، قبل أي قرار مالي. تعليم لا توصية.",
+    "lessons": 6
+  },
+  {
+    "id": "code",
+    "title": "البرمجة",
+    "symbol": "</>",
+    "description": "حوّل فكرة إلى خطوات، واقرأ الشيفرة بعين ناقدة.",
+    "lessons": 6
+  },
+  {
+    "id": "space",
+    "title": "العلوم والفضاء",
+    "symbol": "◌",
+    "description": "من التجربة العادلة إلى الضوء الذي يحمل أخبار النجوم.",
+    "lessons": 6
+  },
+  {
+    "id": "money",
+    "title": "المال الشخصي",
+    "symbol": "◈",
+    "description": "ميزانية وادخار وفهم تكلفة الاقتراض. أمثلة تعليمية.",
+    "lessons": 6
+  },
+  {
+    "id": "logic",
+    "title": "المنطق والرياضيات",
+    "symbol": "∑",
+    "description": "ألغاز صغيرة تبني حدسًا للأعداد والأدلة والاحتمال.",
+    "lessons": 6
+  },
+  {
+    "id": "teacher",
+    "title": "صنعة التعليم",
+    "symbol": "▤",
+    "description": "من هدف واضح إلى تقويم يساعد الطالب على التعلّم.",
+    "lessons": 6
+  },
+  {
+    "id": "history",
+    "title": "التاريخ والحضارات",
+    "symbol": "🏛",
+    "description": "من آثار الماضي إلى قراءة نقدية للحضارات وتبادل المعرفة.",
+    "lessons": 6
+  },
+  {
+    "id": "english",
+    "title": "الإنجليزية للمبتدئين",
+    "symbol": "Aa",
+    "description": "تحيات وأرقام وعائلة وطعام واتجاهات وروتين يومي، مع الاستماع للنطق الإنجليزي. المستويات داخل هذا المسار وليست شهادة لغوية.",
+    "lessons": 6
+  },
+  {
+    "id": "health",
+    "title": "الصحة والتغذية الأساسية",
+    "symbol": "♡",
+    "description": "مبادئ الغذاء المتوازن والماء والألياف وقراءة الملصقات. محتوى تعليمي عام، بلا تشخيص أو وصفات علاجية. استشر مختصًا لتقييم حالتك واحتياجاتك الفردية، خاصة عند وجود مرض أو حساسية أو تعليمات طبية.",
+    "lessons": 6
+  },
+  {
+    "id": "astronomy",
+    "title": "الفلك للمبتدئين",
+    "symbol": "🔭",
+    "description": "رحلة تعليمية عامة من النظام الشمسي والأرض والقمر والفصول إلى النجوم والمجرات والرصد الآمن، بمصادر NASA وESA.",
+    "lessons": 6
+  },
+  {
+    "id": "design",
+    "title": "أساسيات التصميم للمبتدئين",
+    "symbol": "🎨",
+    "description": "تعلم تنظيم العناصر واللون والطباعة والتجاوب ونقد التصميم بمبادئ واضحة وتمارين عملية.",
+    "lessons": 6
+  },
+  {
+    "id": "entrepreneurship",
+    "title": "أساسيات ريادة الأعمال للمبتدئين",
+    "symbol": "💡",
+    "description": "من مشكلة حقيقية إلى تجربة صغيرة ونموذج عمل وقياس النتائج. المحتوى تعليمي عام وليس استشارة قانونية أو مالية، ولا يتضمن نصائح استثمارية أو مالية شخصية أو وعودًا بالربح.",
+    "lessons": 6
+  },
+  {
+    "id": "arabic",
+    "title": "أساسيات الإملاء والنحو العربي",
+    "symbol": "✍️",
+    "description": "من أقسام الكلمة والجمل البسيطة إلى الهمزة والتاء والإعراب والترقيم، بأمثلة مضبوطة ومصادر تعليمية وجامعية.",
+    "lessons": 6
+  },
+  {
+    "id": "critical",
+    "title": "الإعلام والتفكير النقدي",
+    "symbol": "🔎",
+    "description": "ميّز الحقيقة والرأي، وافحص المصادر والصور، وتعلّم القراءة الجانبية والمغالطات والسببية بأمثلة محايدة غير سياسية.",
+    "lessons": 6
+  },
+  {
+    "id": "finance",
+    "title": "المالية الشخصية",
+    "symbol": "🧾",
+    "description": "افهم الميزانية والحاجة والرغبة والطوارئ والدين والتضخم والمخاطرة والاحتيال؛ تعليم بحت بلا توصيات أو أرقام سوق.",
+    "lessons": 6
+  }
+] as const;
+export const MIDAD_BOOKS = [
+  {
+    "id": "midad-elevator-key",
+    "title": "مفتاح المصعد",
+    "author": "هدى المنيف",
+    "category": "أدب",
+    "audience": "أطفال",
+    "cover": "",
+    "chapterCount": 3,
+    "source": "مداد · نصوص البيت الأصلية"
+  },
+  {
+    "id": "midad-map-in-my-head",
+    "title": "خريطة في رأسي",
+    "author": "هدى المنيف",
+    "category": "عادات",
+    "audience": "يافعون",
+    "cover": "",
+    "chapterCount": 3,
+    "source": "مداد · نصوص البيت الأصلية"
+  },
+  {
+    "id": "midad-office-that-stays-on",
+    "title": "المكتب الذي لا ينطفئ",
+    "author": "مازن الدوسري",
+    "category": "عادات",
+    "audience": "شباب",
+    "cover": "",
+    "chapterCount": 3,
+    "source": "مداد · نصوص البيت الأصلية"
+  },
+  {
+    "id": "midad-after-dinner",
+    "title": "بعد العشاء",
+    "author": "أميمة الحارثي",
+    "category": "عادات",
+    "audience": "كبار",
+    "cover": "",
+    "chapterCount": 3,
+    "source": "مداد · نصوص البيت الأصلية"
+  },
+  {
+    "id": "midad-robot-does-not-know-heat",
+    "title": "الروبوت الذي لا يعرف الحرّ",
+    "author": "هدى المنيف",
+    "category": "علوم",
+    "audience": "أطفال",
+    "cover": "",
+    "chapterCount": 1,
+    "source": "مداد · نصوص البيت الأصلية"
+  },
+  {
+    "id": "midad-gum-riyal",
+    "title": "ريال العلكة",
+    "author": "هدى المنيف",
+    "category": "فكر",
+    "audience": "أطفال",
+    "cover": "",
+    "chapterCount": 1,
+    "source": "مداد · نصوص البيت الأصلية"
+  },
+  {
+    "id": "midad-homework-in-the-family-group",
+    "title": "واجب في مجموعة العائلة",
+    "author": "مازن الدوسري",
+    "category": "عادات",
+    "audience": "يافعون",
+    "cover": "",
+    "chapterCount": 1,
+    "source": "مداد · نصوص البيت الأصلية"
+  },
+  {
+    "id": "midad-ask-the-machine-then-someone",
+    "title": "اسأل الآلة، ثم اسأل أحداً",
+    "author": "مازن الدوسري",
+    "category": "علوم",
+    "audience": "يافعون",
+    "cover": "",
+    "chapterCount": 1,
+    "source": "مداد · نصوص البيت الأصلية"
+  },
+  {
+    "id": "midad-salary-is-not-your-self",
+    "title": "الراتب ليس شخصيتك",
+    "author": "أميمة الحارثي",
+    "category": "فكر",
+    "audience": "شباب",
+    "cover": "",
+    "chapterCount": 1,
+    "source": "مداد · نصوص البيت الأصلية"
+  },
+  {
+    "id": "midad-machine-on-riyadh-shift",
+    "title": "الآلة في وردية الرياض",
+    "author": "مازن الدوسري",
+    "category": "علوم",
+    "audience": "شباب",
+    "cover": "",
+    "chapterCount": 1,
+    "source": "مداد · نصوص البيت الأصلية"
+  },
+  {
+    "id": "midad-money-the-screen-cannot-see",
+    "title": "المال الذي لا تراه الشاشة",
+    "author": "أميمة الحارثي",
+    "category": "فكر",
+    "audience": "كبار",
+    "cover": "",
+    "chapterCount": 1,
+    "source": "مداد · نصوص البيت الأصلية"
+  },
+  {
+    "id": "midad-learning-after-we-thought-we-were-done",
+    "title": "نتعلّم بعد أن ظننا أننا انتهينا",
+    "author": "أميمة الحارثي",
+    "category": "عادات",
+    "audience": "كبار",
+    "cover": "",
+    "chapterCount": 1,
+    "source": "مداد · نصوص البيت الأصلية"
+  }
+] as const;
