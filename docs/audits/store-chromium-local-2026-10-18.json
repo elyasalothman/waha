@@ -1,0 +1,43 @@
+{
+  "base": "http://127.0.0.1:8081",
+  "results": [
+    {
+      "theme": "dark",
+      "viewport": "393x852",
+      "engine": "chromium",
+      "pass": true,
+      "checks": [
+        "catalog",
+        "category",
+        "product",
+        "acquire and internal reader",
+        "library after navigation",
+        "deduplication",
+        "cached catalog and offline search",
+        "services entry",
+        "RTL and overflow",
+        "child filter",
+        "no page errors"
+      ]
+    },
+    {
+      "theme": "light",
+      "viewport": "393x852",
+      "engine": "chromium",
+      "pass": true,
+      "checks": [
+        "catalog",
+        "category",
+        "product",
+        "acquire and internal reader",
+        "library after navigation",
+        "deduplication",
+        "cached catalog and offline search",
+        "services entry",
+        "RTL and overflow",
+        "child filter",
+        "no page errors"
+      ]
+    }
+  ]
+}
