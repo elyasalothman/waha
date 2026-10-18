@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
-import { ShoppingBag, Library, ArrowRight, Gift } from "lucide-react";
+import { ShoppingBag, Library, ArrowRight, Gift, Sparkles, Check } from "lucide-react";
 import { appIcon } from "@/lib/icons";
 import { normalizeSearch } from "@/lib/superapp";
 import {
@@ -9,9 +9,12 @@ import {
   visibleProducts,
   normalizeLibrary,
   acquireProduct,
+  PRO_SECTION_TITLE,
   type StoreCategory,
+  type StoreProduct,
 } from "@/lib/store/catalog";
 import { useAppStore } from "@/store/app-store";
+import { featuredProTool } from "@/lib/store/pro";
 
 const button =
   "min-h-11 rounded-xl border border-border px-4 py-2 text-sm hover:bg-surface-2 focus-visible:outline-2 focus-visible:outline-primary";
@@ -36,14 +39,29 @@ export function StoreFront() {
     load();
     setReady(true);
     window.addEventListener("storage", load);
-    return () => window.removeEventListener("storage", load);
+    // Warm the pro tool bundles so they also open offline after this visit.
+    const warm = () => {
+      void import("@/apps/pro/cv-builder");
+      void import("@/apps/pro/pdf-studio");
+      void import("@/apps/pro/scanner");
+      void import("@/apps/pro/image-studio");
+    };
+    const idle = window.setTimeout(warm, 1500);
+    return () => {
+      window.removeEventListener("storage", load);
+      window.clearTimeout(idle);
+    };
   }, []);
   const products = visibleProducts(child);
   const product = products.find((p) => p.id === selected);
   const owned = products.filter((p) => library.includes(p.id));
+  const home = !libraryView && category === "all" && !query;
+  const featured = products.find((p) => p.id === featuredProTool().id);
+  const proTools = products.filter((p) => p.category === "pro");
   const shown = (libraryView ? owned : products).filter(
     (p) =>
       (category === "all" || p.category === category) &&
+      !(home && p.category === "pro") &&
       normalizeSearch(`${p.name} ${p.description} ${p.source}`).includes(normalizeSearch(query)),
   );
   async function acquire(id: string, href: string) {
@@ -67,6 +85,11 @@ export function StoreFront() {
       );
     }
   }
+  const openProduct = (id: string) => {
+    setSelected(id);
+    setError("");
+    window.scrollTo({ top: 0 });
+  };
   const back = () => {
     setSelected(null);
     setError("");
@@ -115,8 +138,19 @@ export function StoreFront() {
           <h1 className="font-display text-3xl">{product.name}</h1>
           <p className="leading-8 text-muted">{product.description}</p>
           <p className="text-lg">
-            مجاني <span className="text-sm text-primary">· مجاني لفترة الإطلاق</span>
+            مجاني <span className="text-sm text-primary">· مجانًا لفترة الإطلاق</span>
           </p>
+          {product.marketRef && <p className="text-sm text-muted">{product.marketRef}</p>}
+          {product.features && (
+            <ul className="space-y-1 text-sm">
+              {product.features.map((f) => (
+                <li key={f} className="flex items-center gap-2">
+                  <Check className="size-4 text-primary" aria-hidden="true" />
+                  {f}
+                </li>
+              ))}
+            </ul>
+          )}
           <p className="break-words text-xs text-muted">
             المصدر: <span dir="ltr">{product.sourceUrl}</span>
           </p>
@@ -149,6 +183,59 @@ export function StoreFront() {
                 : "منتجاتنا أولًا · مجاني لفترة الإطلاق. اختر ما يعجبك وأضفه إلى مكتبتك."}
             </p>
           </div>
+          {home && featured && (
+            <article
+              className="space-y-3 rounded-3xl border-2 border-primary/60 bg-surface p-5"
+              aria-label="المنتج المميز"
+            >
+              <p className="flex items-center gap-1.5 text-sm text-primary">
+                <Sparkles className="size-4" aria-hidden="true" />
+                {PRO_SECTION_TITLE}
+              </p>
+              <div className="flex items-start gap-4">
+                <span className="grid size-16 shrink-0 place-items-center rounded-2xl bg-primary/15 text-primary">
+                  <ProIcon icon={featured.icon} />
+                </span>
+                <div className="min-w-0 space-y-1">
+                  <h2 className="font-display text-2xl">{featured.name}</h2>
+                  <p className="text-sm leading-7 text-muted">{featured.description}</p>
+                </div>
+              </div>
+              <p className="flex flex-wrap items-center gap-2">
+                <span className="rounded-full bg-primary px-3 py-1 text-sm font-medium text-primary-fg">
+                  مجانًا لفترة الإطلاق
+                </span>
+                <span className="text-xs text-muted">{featured.marketRef}</span>
+              </p>
+              <button
+                disabled={!ready}
+                className="min-h-12 w-full rounded-xl bg-primary px-4 py-3 font-medium text-primary-fg disabled:opacity-50"
+                onClick={() => acquire(featured.id, featured.href)}
+              >
+                {library.includes(featured.id) ? "افتح من مكتبتي" : "احصل عليه مجانًا"}
+              </button>
+            </article>
+          )}
+          {home && proTools.length > 0 && (
+            <section aria-label={PRO_SECTION_TITLE} className="space-y-3">
+              <h2 className="font-display text-xl">{PRO_SECTION_TITLE}</h2>
+              <p className="text-xs leading-6 text-muted">
+                أدوات من صنع واحة تعمل على جهازك. المقارنة بأسعار تقريبية لبرامج مدفوعة مشابهة، لا
+                بمنتج بعينه.
+              </p>
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                {proTools.map((p) => (
+                  <ProductCard
+                    key={p.id}
+                    p={p}
+                    owned={library.includes(p.id)}
+                    onOpen={openProduct}
+                  />
+                ))}
+              </div>
+              <h2 className="pt-2 font-display text-xl">من بيت الهجدة</h2>
+            </section>
+          )}
           <label className="block">
             <span className="sr-only">ابحث في المتجر</span>
             <input
@@ -176,27 +263,7 @@ export function StoreFront() {
           </p>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
             {shown.map((p) => (
-              <button
-                key={p.id}
-                onClick={() => {
-                  setSelected(p.id);
-                  setError("");
-                  window.scrollTo({ top: 0 });
-                }}
-                className="flex min-w-0 flex-col overflow-hidden rounded-2xl border border-border bg-surface text-start hover:border-primary focus-visible:outline-2 focus-visible:outline-primary"
-                aria-label={`عرض ${p.name}`}
-              >
-                <ProductArt icon={p.icon} />
-                <span className="flex flex-1 flex-col gap-2 p-3">
-                  <span className="text-[11px] text-primary">{p.source}</span>
-                  <span className="font-medium leading-7">{p.name}</span>
-                  <span className="line-clamp-2 text-xs leading-6 text-muted">{p.description}</span>
-                  <span className="mt-auto pt-2 text-sm">
-                    {library.includes(p.id) ? "في مكتبتك ✓" : "مجاني"}
-                  </span>
-                  <span className="text-[10px] text-primary">مجاني لفترة الإطلاق</span>
-                </span>
-              </button>
+              <ProductCard key={p.id} p={p} owned={library.includes(p.id)} onOpen={openProduct} />
             ))}
           </div>
           {!shown.length && (
@@ -222,6 +289,37 @@ export function StoreFront() {
         </p>
       )}
     </section>
+  );
+}
+function ProIcon({ icon }: { icon: string }) {
+  const Icon = appIcon(icon);
+  return <Icon className="size-8" strokeWidth={1.5} aria-hidden="true" />;
+}
+function ProductCard({
+  p,
+  owned,
+  onOpen,
+}: {
+  p: StoreProduct;
+  owned: boolean;
+  onOpen: (id: string) => void;
+}) {
+  return (
+    <button
+      onClick={() => onOpen(p.id)}
+      className="flex min-w-0 flex-col overflow-hidden rounded-2xl border border-border bg-surface text-start hover:border-primary focus-visible:outline-2 focus-visible:outline-primary"
+      aria-label={`عرض ${p.name}`}
+    >
+      <ProductArt icon={p.icon} />
+      <span className="flex flex-1 flex-col gap-2 p-3">
+        <span className="text-[11px] text-primary">{p.source}</span>
+        <span className="font-medium leading-7">{p.name}</span>
+        <span className="line-clamp-2 text-xs leading-6 text-muted">{p.description}</span>
+        {p.marketRef && <span className="text-[11px] leading-5 text-muted">{p.marketRef}</span>}
+        <span className="mt-auto pt-2 text-sm">{owned ? "في مكتبتك ✓" : "مجاني"}</span>
+        <span className="text-[10px] text-primary">مجانًا لفترة الإطلاق</span>
+      </span>
+    </button>
   );
 }
 function ProductArt({ icon, large = false }: { icon: string; large?: boolean }) {

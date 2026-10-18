@@ -43,6 +43,7 @@ import { Route as BooksAlhajdaRouteImport } from './routes/books_.alhajda'
 import { Route as ForumIndexRouteImport } from './routes/forum.index'
 import { Route as ForumBoardRouteImport } from './routes/forum.$board'
 import { Route as PlayGameRouteImport } from './routes/play.$game'
+import { Route as ProIdRouteImport } from './routes/pro.$id'
 import { Route as ApiAuthSplatRouteImport } from './routes/api.auth.$'
 import { Route as BooksLibraryIdRouteImport } from './routes/books_.library.$id'
 import { Route as BooksReadBookIdRouteImport } from './routes/books_.read.$bookId'
@@ -219,6 +220,11 @@ const PlayGameRoute = PlayGameRouteImport.update({
   path: '/play/$game',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProIdRoute = ProIdRouteImport.update({
+  id: '/pro/$id',
+  path: '/pro/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
@@ -279,6 +285,7 @@ export interface FileRoutesByFullPath {
   '/books/alhajda': typeof BooksAlhajdaRoute
   '/forum/$board': typeof ForumBoardRouteWithChildren
   '/play/$game': typeof PlayGameRoute
+  '/pro/$id': typeof ProIdRoute
   '/forum/': typeof ForumIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/books/library/$id': typeof BooksLibraryIdRoute
@@ -318,6 +325,7 @@ export interface FileRoutesByTo {
   '/app/$id': typeof AppIdRoute
   '/books/alhajda': typeof BooksAlhajdaRoute
   '/play/$game': typeof PlayGameRoute
+  '/pro/$id': typeof ProIdRoute
   '/forum': typeof ForumIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/books/library/$id': typeof BooksLibraryIdRoute
@@ -360,6 +368,7 @@ export interface FileRoutesById {
   '/books_/alhajda': typeof BooksAlhajdaRoute
   '/forum/$board': typeof ForumBoardRouteWithChildren
   '/play/$game': typeof PlayGameRoute
+  '/pro/$id': typeof ProIdRoute
   '/forum/': typeof ForumIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/books_/library/$id': typeof BooksLibraryIdRoute
@@ -403,6 +412,7 @@ export interface FileRouteTypes {
     | '/books/alhajda'
     | '/forum/$board'
     | '/play/$game'
+    | '/pro/$id'
     | '/forum/'
     | '/api/auth/$'
     | '/books/library/$id'
@@ -442,6 +452,7 @@ export interface FileRouteTypes {
     | '/app/$id'
     | '/books/alhajda'
     | '/play/$game'
+    | '/pro/$id'
     | '/forum'
     | '/api/auth/$'
     | '/books/library/$id'
@@ -483,6 +494,7 @@ export interface FileRouteTypes {
     | '/books_/alhajda'
     | '/forum/$board'
     | '/play/$game'
+    | '/pro/$id'
     | '/forum/'
     | '/api/auth/$'
     | '/books_/library/$id'
@@ -524,6 +536,7 @@ export interface RootRouteChildren {
   AppIdRoute: typeof AppIdRoute
   BooksAlhajdaRoute: typeof BooksAlhajdaRoute
   PlayGameRoute: typeof PlayGameRoute
+  ProIdRoute: typeof ProIdRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   BooksLibraryIdRoute: typeof BooksLibraryIdRoute
   BooksReadBookIdRoute: typeof BooksReadBookIdRoute
@@ -769,6 +782,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlayGameRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pro/$id': {
+      id: '/pro/$id'
+      path: '/pro/$id'
+      fullPath: '/pro/$id'
+      preLoaderRoute: typeof ProIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/auth/$': {
       id: '/api/auth/$'
       path: '/api/auth/$'
@@ -866,6 +886,7 @@ const rootRouteChildren: RootRouteChildren = {
   AppIdRoute: AppIdRoute,
   BooksAlhajdaRoute: BooksAlhajdaRoute,
   PlayGameRoute: PlayGameRoute,
+  ProIdRoute: ProIdRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
   BooksLibraryIdRoute: BooksLibraryIdRoute,
   BooksReadBookIdRoute: BooksReadBookIdRoute,

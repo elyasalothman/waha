@@ -1,5 +1,5 @@
 /* Public shell only. Authentication, APIs and private books never enter CacheStorage. */
-const VERSION = "waha-public-v4";
+const VERSION = "waha-public-v5";
 const OFFLINE = "/offline.html";
 const PUBLIC_PAGES = new Set([
   "/store",
@@ -10,6 +10,10 @@ const PUBLIC_PAGES = new Set([
   "/tools",
   "/more",
   "/quran",
+  "/pro/cv",
+  "/pro/pdf",
+  "/pro/scan",
+  "/pro/image",
 ]);
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(VERSION).then((cache) => cache.add(OFFLINE)));

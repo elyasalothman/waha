@@ -2,8 +2,9 @@ import { LEARNING_TRACKS, MIDAD_BOOKS } from "./sources.ts";
 import { CATALOG } from "../catalog.ts";
 import { HOUSE_SITES } from "../house-sites.ts";
 import { HOUSE_INTEGRATIONS } from "../house-integrations.ts";
+import { PRO_TOOLS } from "./pro.ts";
 
-export type StoreCategory = "learn" | "books" | "games" | "faith";
+export type StoreCategory = "pro" | "learn" | "books" | "games" | "faith";
 export type StoreProduct = {
   id: string;
   name: string;
@@ -18,8 +19,12 @@ export type StoreProduct = {
   type: "own" | "affiliate";
   affiliate: { enabled: false; url: null };
   childSafe: boolean;
+  /** Pro tools only: honest generic reference to what comparable paid products cost. */
+  marketRef?: string;
+  features?: string[];
 };
 export const STORE_CATEGORIES: { id: StoreCategory; label: string }[] = [
+  { id: "pro", label: "بدائل المدفوع" },
   { id: "learn", label: "تعلّم" },
   { id: "books", label: "كتب" },
   { id: "games", label: "ألعاب" },
@@ -31,7 +36,22 @@ const free = {
   type: "own",
   affiliate: { enabled: false, url: null },
 } as const;
+export const PRO_SECTION_TITLE = "بدائل مجانية لبرامج مدفوعة";
 export const STORE_PRODUCTS: readonly StoreProduct[] = [
+  ...PRO_TOOLS.map((t) => ({
+    ...free,
+    id: t.id,
+    name: t.name,
+    description: t.description,
+    category: "pro" as const,
+    icon: t.icon,
+    source: "واحة · أدوات احترافية",
+    sourceUrl: `https://waha.hajdah.com/pro/${t.slug}`,
+    href: `/pro/${t.slug}`,
+    childSafe: true,
+    marketRef: t.marketRef,
+    features: t.features,
+  })),
   ...LEARNING_TRACKS.map((t) => ({
     ...free,
     id: `hissati-${t.id}`,

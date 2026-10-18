@@ -80,7 +80,7 @@ try {
     await page.waitForFunction(() => !!navigator.serviceWorker.controller);
     assert.ok(
       await page.evaluate(async () => {
-        const cache = await caches.open("waha-public-v4");
+        const cache = await caches.open("waha-public-v5");
         return !!(await cache.match(location.origin + "/store"));
       }),
       "public catalog cached",
