@@ -10,6 +10,10 @@ import appCss from "../styles.css?url";
 const APP_NAME = "واحة · Waha";
 const PWA_NAME = "واحة";
 
+// Cloudflare Web Analytics (free, cookie-less). Loads only on the production host.
+const cfWebAnalytics =
+  '(function(){if(location.hostname!=="waha.hajdah.com")return;var s=document.createElement("script");s.defer=true;s.src="https://static.cloudflareinsights.com/beacon.min.js";s.setAttribute("data-cf-beacon",\'{"token":"225785b6d91548eba8ce3b39fd3d14af","spa":true}\');document.head.appendChild(s);})();';
+
 export const Route = createRootRoute({
   head: () => ({
     meta: [
@@ -56,6 +60,7 @@ function RootDocument() {
     >
       <head>
         <HeadContent />
+        <script dangerouslySetInnerHTML={{ __html: cfWebAnalytics }} />
       </head>
       <body className="bg-bg text-fg">
         <PwaRegistration />
