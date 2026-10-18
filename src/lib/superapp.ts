@@ -131,6 +131,7 @@ export const HOME_SERVICE_IDS = [
   "search",
   "browser",
   "video",
+  "shield",
   "tahajjud",
   "quran",
   "news",

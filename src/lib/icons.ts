@@ -25,6 +25,7 @@ import {
   CircleDollarSign,
   CircleDot,
   Clapperboard,
+  ShieldCheck,
   Clock,
   CloudSun,
   Coins,
@@ -207,6 +208,7 @@ export const ICONS: Record<string, LucideIcon> = {
   TrendingUp,
   Briefcase,
   Clapperboard,
+  ShieldCheck,
 };
 
 export function appIcon(name: string): LucideIcon {
