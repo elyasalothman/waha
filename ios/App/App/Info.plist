@@ -65,5 +65,13 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>تستخدم واحة الكاميرا بإذنك لالتقاط صور وحفظها على جهازك.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>تحتاج واحة إذنك لاختيار صور من مكتبة جهازك عند استخدام الكاميرا.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>تحتاج واحة إذنك لحفظ الصور في مكتبة جهازك عند طلبك.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>تستخدم واحة موقعك بإذنك لعرض طقس منطقتك أثناء استخدام التطبيق.</string>
 </dict>
 </plist>

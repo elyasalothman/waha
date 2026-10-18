@@ -255,6 +255,7 @@ export const APPS: Record<string, ComponentType> = {
   mines: MinesApp,
   search: lazy(() => import("@/apps/tools/search").then((m) => ({ default: m.SearchApp }))),
   browser: lazy(() => import("@/apps/tools/browser").then((m) => ({ default: m.BrowserApp }))),
+  camera: lazy(() => import("@/apps/tools/camera").then((m) => ({ default: m.CameraApp }))),
   calc: CalcApp,
   units: UnitsApp,
   password: PasswordApp,

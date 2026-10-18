@@ -115,6 +115,7 @@ export const SERVICES: readonly Service[] = [
   })),
 ];
 export const HOME_SERVICE_IDS = [
+  "camera",
   "weather",
   "calc",
   "search",

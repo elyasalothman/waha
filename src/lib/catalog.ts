@@ -74,6 +74,7 @@ export function lumaGamesItem(): CatalogItem | undefined {
 const LUMA_GAMES = lumaGamesItem();
 
 export const CATALOG: CatalogItem[] = [
+  { id: "camera", category: "tools", lane: "tools", audience: B, icon: "Camera", title: { ar: "الكاميرا", en: "Camera" }, blurb: { ar: "التقاط صور ومعرض خاص على جهازك", en: "Capture photos in a local gallery" } },
   { id: "search", category: "tools", lane: "tools", audience: B, icon: "Search", title: { ar: "بحث واحة", en: "Waha Search" }, blurb: { ar: "منظومتنا أولًا ثم ويكيبيديا العربية", en: "Our ecosystem first, then Arabic Wikipedia" } },
   { id: "browser", category: "tools", lane: "tools", audience: B, icon: "Globe", title: { ar: "متصفح واحة", en: "Waha Browser" }, blurb: { ar: "تصفح آمن داخل واحة", en: "Browse within Waha" } },
   ...launcherDoors().map((door) =>
