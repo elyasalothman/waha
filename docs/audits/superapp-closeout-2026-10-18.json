@@ -1,0 +1,186 @@
+{
+  "checkedAt": "2026-10-18T11:51:21.188375+00:00",
+  "version": "1.2.0",
+  "iosBuild": 3,
+  "mainCommit": "8ca8284fbdff927fd02979dbbf0b21dc6db1bb94",
+  "productionSourceCommit": "65587b30b2b49bcaf683fefef346f03c92c2c72a",
+  "applicationSourceMatchesProduction": true,
+  "url": "https://waha.hajdah.com",
+  "deploymentId": "dpl_7ETTL9MtFJQL8XLWMecotafhV5iL",
+  "deploymentState": "READY",
+  "aliasError": null,
+  "checks": {
+    "lint": {
+      "errors": 0,
+      "warnings": 23
+    },
+    "typecheck": true,
+    "npmTest": {
+      "scriptPass": 207,
+      "scriptFail": 0,
+      "scriptSkipped": 4,
+      "skipReason": "Optional legacy Grok instruction documents absent",
+      "appPass": 277,
+      "appFail": 0
+    },
+    "build": true,
+    "capSyncIos": true,
+    "homeHttpStatus": 200,
+    "profileHttpStatus": 200,
+    "profileVersionVisible": true,
+    "liveInteractions": [
+      {
+        "engine": "chromium",
+        "name": "home and native-feeling navigation",
+        "pass": true
+      },
+      {
+        "engine": "chromium",
+        "name": "Arabic service search and internal Hissati encyclopedia",
+        "pass": true
+      },
+      {
+        "engine": "chromium",
+        "name": "resume history survives reload",
+        "pass": true
+      },
+      {
+        "engine": "chromium",
+        "name": "daily XP awarded once and persists",
+        "pass": true
+      },
+      {
+        "engine": "chromium",
+        "name": "dark mode persists",
+        "pass": true
+      },
+      {
+        "engine": "chromium",
+        "name": "omnibox searches house services without hidden second filter",
+        "pass": true
+      },
+      {
+        "engine": "chromium",
+        "name": "Dallah and open-world games stay in Waha",
+        "pass": true
+      },
+      {
+        "engine": "chromium",
+        "name": "ask answers today and prayer questions",
+        "pass": true
+      },
+      {
+        "engine": "chromium",
+        "name": "catalog and profile navigation",
+        "pass": true
+      },
+      {
+        "engine": "chromium",
+        "name": "RTL, LTR and horizontal overflow",
+        "pass": true
+      },
+      {
+        "engine": "chromium",
+        "name": "no uncaught JavaScript errors",
+        "pass": true
+      },
+      {
+        "engine": "webkit",
+        "name": "home and native-feeling navigation",
+        "pass": true
+      },
+      {
+        "engine": "webkit",
+        "name": "Arabic service search and internal Hissati encyclopedia",
+        "pass": true
+      },
+      {
+        "engine": "webkit",
+        "name": "resume history survives reload",
+        "pass": true
+      },
+      {
+        "engine": "webkit",
+        "name": "daily XP awarded once and persists",
+        "pass": true
+      },
+      {
+        "engine": "webkit",
+        "name": "dark mode persists",
+        "pass": true
+      },
+      {
+        "engine": "webkit",
+        "name": "omnibox searches house services without hidden second filter",
+        "pass": true
+      },
+      {
+        "engine": "webkit",
+        "name": "Dallah and open-world games stay in Waha",
+        "pass": true
+      },
+      {
+        "engine": "webkit",
+        "name": "ask answers today and prayer questions",
+        "pass": true
+      },
+      {
+        "engine": "webkit",
+        "name": "catalog and profile navigation",
+        "pass": true
+      },
+      {
+        "engine": "webkit",
+        "name": "RTL, LTR and horizontal overflow",
+        "pass": true
+      },
+      {
+        "engine": "webkit",
+        "name": "no uncaught JavaScript errors",
+        "pass": true
+      }
+    ],
+    "liveFrames": [
+      {
+        "engine": "chromium",
+        "type": "hissati",
+        "pass": true,
+        "proof": "encyclopedia body with 16 paths"
+      },
+      {
+        "engine": "chromium",
+        "type": "dallah",
+        "pass": true,
+        "proof": "play, jump and running timer"
+      },
+      {
+        "engine": "chromium",
+        "type": "hayat-world",
+        "pass": true,
+        "proof": "canvas present; world completion and saving untested"
+      },
+      {
+        "engine": "webkit",
+        "type": "hissati",
+        "pass": true,
+        "proof": "encyclopedia body with 16 paths"
+      },
+      {
+        "engine": "webkit",
+        "type": "dallah",
+        "pass": true,
+        "proof": "play, jump and running timer"
+      },
+      {
+        "engine": "webkit",
+        "type": "hayat-world",
+        "pass": true,
+        "proof": "canvas present; world completion and saving untested"
+      }
+    ]
+  },
+  "nativeLimits": [
+    "CocoaPods and xcodebuild unavailable on Linux",
+    "No physical iPhone validation or TestFlight upload"
+  ]
+}
