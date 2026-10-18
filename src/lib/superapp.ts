@@ -115,6 +115,10 @@ export const SERVICES: readonly Service[] = [
   })),
 ];
 export const HOME_SERVICE_IDS = [
+  "weather",
+  "calc",
+  "search",
+  "browser",
   "tahajjud",
   "quran",
   "news",
