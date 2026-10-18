@@ -16,6 +16,8 @@ export type WeatherDay = {
 export type WeatherPayload = {
   current: WeatherCurrent;
   daily: WeatherDay[];
+  updatedAt?: string;
+  hourly?: { time: string; temperature: number; code: number }[];
 };
 
 const WMO: Record<number, { ar: string; en: string }> = {
@@ -100,7 +102,9 @@ export function writeWeatherCache(lat: number, lon: number, payload: WeatherPayl
   if (!canUseStorage()) return;
   try {
     const raw = localStorage.getItem(CACHE_KEY);
-    const parsed = raw ? (JSON.parse(raw) as Record<string, { at: number; payload: WeatherPayload }>) : {};
+    const parsed = raw
+      ? (JSON.parse(raw) as Record<string, { at: number; payload: WeatherPayload }>)
+      : {};
     parsed[key] = entry;
     localStorage.setItem(CACHE_KEY, JSON.stringify(parsed));
   } catch {
@@ -113,11 +117,15 @@ export function formatCelsius(temp: number): string {
   return `${n}°C`;
 }
 
-export async function fetchWeather(lat: number, lon: number, signal?: AbortSignal): Promise<WeatherPayload> {
+export async function fetchWeather(
+  lat: number,
+  lon: number,
+  signal?: AbortSignal,
+): Promise<WeatherPayload> {
   const url =
     `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
     `&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature` +
-    `&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=5`;
+    `&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7`;
   const res = await fetch(url, { signal });
   if (!res.ok) throw new Error("weather");
   const data = (await res.json()) as {
@@ -128,6 +136,7 @@ export async function fetchWeather(lat: number, lon: number, signal?: AbortSigna
       wind_speed_10m: number;
       weather_code: number;
     };
+    hourly?: { time: string[]; temperature_2m: number[]; weather_code: number[] };
     daily: {
       time: string[];
       weather_code: number[];
@@ -135,7 +144,15 @@ export async function fetchWeather(lat: number, lon: number, signal?: AbortSigna
       temperature_2m_min: number[];
     };
   };
+  if (!Number.isFinite(data.current?.temperature_2m) || !Array.isArray(data.daily?.time))
+    throw new Error("Invalid weather");
   return {
+    updatedAt: new Date().toISOString(),
+    hourly: data.hourly?.time.map((time, i) => ({
+      time,
+      temperature: data.hourly!.temperature_2m[i],
+      code: data.hourly!.weather_code[i],
+    })),
     current: {
       temperature: data.current.temperature_2m,
       apparent: data.current.apparent_temperature,
