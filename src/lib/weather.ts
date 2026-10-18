@@ -17,6 +17,7 @@ export type WeatherPayload = {
   current: WeatherCurrent;
   daily: WeatherDay[];
   updatedAt?: string;
+  localTime?: string;
   hourly?: { time: string; temperature: number; code: number }[];
 };
 
@@ -130,6 +131,7 @@ export async function fetchWeather(
   if (!res.ok) throw new Error("weather");
   const data = (await res.json()) as {
     current: {
+      time?: string;
       temperature_2m: number;
       apparent_temperature: number;
       relative_humidity_2m: number;
@@ -148,6 +150,7 @@ export async function fetchWeather(
     throw new Error("Invalid weather");
   return {
     updatedAt: new Date().toISOString(),
+    localTime: data.current.time,
     hourly: data.hourly?.time.map((time, i) => ({
       time,
       temperature: data.hourly!.temperature_2m[i],

@@ -1,3 +1,4 @@
+import { HomeWeather } from "./home-weather";
 import { lazy, Suspense, useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ServiceGrid } from "./service-grid";
@@ -66,7 +67,7 @@ export function SuperAppHome() {
             params={{ id }}
             className="min-h-20 rounded-2xl border border-border bg-surface p-4"
           >
-            {label} ←
+            {id === "weather" ? <HomeWeather /> : <>{label} ←</>}
           </Link>
         ))}
       </div>

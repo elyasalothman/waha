@@ -118,14 +118,7 @@ export function WeatherApp() {
           <h2 className="font-display text-xl">الساعات القادمة</h2>
           <div className="flex gap-2 overflow-x-auto pb-2">
             {data.hourly
-              ?.filter(
-                (h) =>
-                  h.time >=
-                  new Date(Date.now() - 3600000)
-                    .toLocaleString("sv-SE")
-                    .replace(" ", "T")
-                    .slice(0, 16),
-              )
+              ?.filter((h) => h.time >= (data.localTime ?? new Date().toISOString().slice(0, 16)))
               .slice(0, 24)
               .map((h) => (
                 <div

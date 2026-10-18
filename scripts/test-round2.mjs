@@ -125,6 +125,31 @@ await check("camera", async () => {
   await page.getByRole("button", { name: "فتح الكاميرا", exact: true }).waitFor();
   await page.getByRole("button", { name: "فتح الكاميرا", exact: true }).click();
   await page.getByRole("alert").filter({ hasText: "تعذر فتح الكاميرا" }).waitFor();
+  await page.evaluate(async () => {
+    await new Promise((resolve, reject) => {
+      const request = indexedDB.open("waha-camera", 1);
+      request.onsuccess = () => {
+        const db = request.result;
+        const tx = db.transaction("photos", "readwrite");
+        tx.objectStore("photos").put({
+          id: "webkit-fixture",
+          at: "2026-10-18T12:00:00Z",
+          data: "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+        });
+        tx.oncomplete = () => {
+          db.close();
+          resolve(true);
+        };
+        tx.onerror = () => reject(tx.error);
+      };
+      request.onerror = () => reject(request.error);
+    });
+  });
+  await page.reload({ waitUntil: "domcontentloaded" });
+  await page.getByRole("heading", { name: "المعرض المحلي · 1" }).waitFor();
+  await page.getByRole("link", { name: "تنزيل", exact: true }).waitFor();
+  await page.getByRole("button", { name: "حذف", exact: true }).click();
+  await page.getByRole("heading", { name: "المعرض المحلي · 0" }).waitFor();
 });
 await writeFile(
   `${out}/report.json`,
