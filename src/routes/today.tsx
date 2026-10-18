@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { HomePage } from "@/components/home-page";
+import { SuperAppHome as HomePage } from "@/components/superapp-home";
 export const Route = createFileRoute("/today")({
   head: () => ({
     meta: [

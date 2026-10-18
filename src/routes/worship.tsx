@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, Suspense, lazy } from "react";
+import { useHydrated } from "@/hooks/use-hydrated";
 import { featureButton } from "@/lib/share-card";
 const Salah = lazy(() => import("@/apps/life/salah").then((m) => ({ default: m.SalahApp })));
 const Athkar = lazy(() => import("@/apps/life/athkar").then((m) => ({ default: m.AthkarApp })));
@@ -18,6 +19,7 @@ export const Route = createFileRoute("/worship")({
 });
 function Worship() {
   const [tab, setTab] = useState("prayer");
+  const ready = useHydrated();
   return (
     <div className="mx-auto max-w-3xl space-y-5">
       <h1 className="font-display text-3xl">تهجد داخل واحة</h1>
@@ -42,7 +44,15 @@ function Worship() {
         </Link>
       </div>
       <Suspense fallback={<p role="status">جارٍ التحميل…</p>}>
-        {tab === "prayer" ? <Salah /> : tab === "athkar" ? <Athkar /> : <Qibla />}
+        {!ready ? (
+          <p role="status">جارٍ التحميل…</p>
+        ) : tab === "prayer" ? (
+          <Salah />
+        ) : tab === "athkar" ? (
+          <Athkar />
+        ) : (
+          <Qibla />
+        )}
       </Suspense>
     </div>
   );

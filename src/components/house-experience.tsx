@@ -108,7 +108,7 @@ export function HouseExperience({ id }: { id: string }) {
             <>
               <p className="text-sm text-muted">
                 {id === "hissati"
-                  ? "حصتي داخل واحة: تعلم تفاعلي ودفتر المعلم. حساب حصتي مستقل؛ قد يقيّد Safari تسجيل الدخول داخل الإطار."
+                  ? "موسوعة حصتي داخل واحة: ١٦ مسارًا للتعلّم ودفتر المعلم. حساب حصتي مستقل؛ قد يقيّد Safari تسجيل الدخول داخل الإطار."
                   : "ابدأ التجربة عند الطلب. تبقى أدوات الرجوع وملء الشاشة داخل واحة."}
               </p>
               <div className="flex flex-wrap gap-2">
@@ -133,7 +133,13 @@ export function HouseExperience({ id }: { id: string }) {
               {started && (
                 <iframe
                   title={`${site.title.ar} داخل واحة`}
-                  src={id === "samar" ? `${site.href}/samar/` : site.href}
+                  src={
+                    id === "samar"
+                      ? `${site.href}/samar/`
+                      : id === "hissati"
+                        ? `${site.href}/explore`
+                        : site.href
+                  }
                   sandbox="allow-scripts allow-same-origin allow-forms allow-downloads allow-modals"
                   allow="fullscreen"
                   referrerPolicy="strict-origin-when-cross-origin"

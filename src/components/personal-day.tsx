@@ -260,15 +260,17 @@ export function PersonalDay({ userId, interests }: { userId?: string; interests:
               : "أهلًا بك"}{" "}
             · أربع ركائز ليومك
           </p>
-          <button
-            className={featureButton}
-            onClick={() => setEditing(!editing)}
-            aria-expanded={editing}
-          >
-            تخصيص البطاقات والمظهر
-          </button>
+          {userId && (
+            <button
+              className={featureButton}
+              onClick={() => setEditing(!editing)}
+              aria-expanded={editing}
+            >
+              تخصيص البطاقات والمظهر
+            </button>
+          )}
         </div>
-        {editing && (
+        {userId && editing && (
           <div className="mt-4 space-y-4">
             <p className="text-sm text-muted">
               اسحب البطاقات داخل الركيزة، أو استخدم السهمين. تبقى الركائز الأربع ثابتة. الحفظ محلي
@@ -405,7 +407,7 @@ export function PersonalDay({ userId, interests }: { userId?: string; interests:
                   {prefs.pinned.includes(id) ? "★ " : ""}
                   {names[id]}
                 </h3>
-                {editing && (
+                {userId && editing && (
                   <div className="flex flex-wrap gap-1">
                     <button
                       className={featureButton}

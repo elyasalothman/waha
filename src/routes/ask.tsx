@@ -1,5 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import {
+  isDayQuestion,
+  isTodayOverviewQuestion,
+  runAskWaha,
+  dayContextFromSnap,
+} from "@/lib/ask-waha";
+import { shadowDayNow } from "@/lib/shadow-day";
+import { useAppStore } from "@/store/app-store";
 import { ExternalLink } from "@/components/external-link";
 import { MOHSEN_MESSAGE_LIMIT, mohsenHistory } from "@/lib/mohsen-request";
 import { featureButton } from "@/lib/share-card";
@@ -18,6 +26,8 @@ export const Route = createFileRoute("/ask")({
 });
 function Ask() {
   const { q } = Route.useSearch();
+  const city = useAppStore((s) => s.city);
+  const lang = useAppStore((s) => s.lang);
   const [input, setInput] = useState(q);
   const [ready, setReady] = useState(false);
   const [messages, setMessages] = useState<
@@ -47,6 +57,56 @@ function Ask() {
     controller.current = new AbortController();
     const timeout = window.setTimeout(() => controller.current?.abort(), 35000);
     try {
+      if (isDayQuestion(text)) {
+        const snapshot = shadowDayNow(new Date(), city);
+        const result = await runAskWaha({
+          loadDay: () => dayContextFromSnap(snapshot),
+          mode: "chat",
+          messages: [{ role: "user", content: text }],
+          city,
+          lang,
+        });
+        if (result.ok) {
+          setMessages((m) => [
+            ...m,
+            {
+              role: "assistant",
+              content:
+                result.text +
+                (snapshot.weatherSource === "climate" && result.text.includes("°")
+                  ? "\nالحرارة المذكورة تقدير موسمي، وليست رصدًا حيًا."
+                  : ""),
+              source: "https://waha.hajdah.com/worship",
+            },
+          ]);
+          if (isTodayOverviewQuestion(text)) {
+            try {
+              const response = await fetch("/api/news", { signal: AbortSignal.timeout(5000) });
+              if (!response.ok) throw new Error();
+              const news = await response.json();
+              const item = news.items?.[0];
+              if (
+                item &&
+                typeof item.title === "string" &&
+                typeof item.href === "string" &&
+                item.href.startsWith("https://")
+              ) {
+                setMessages((m) => [
+                  ...m,
+                  {
+                    role: "assistant",
+                    content: `من موجز الأخبار · ${item.source || "مصدر الخبر"}\n${item.title}\n${item.publishedAt || ""}`,
+                    source: item.href,
+                  },
+                ]);
+              }
+            } catch {
+              /* Calculated day answer remains available without news. */
+            }
+          }
+          return;
+        }
+      }
       const r = await fetch("/api/mohsen", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

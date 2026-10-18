@@ -2,7 +2,14 @@ import { withoutMoneyNav } from "./child-mode.ts";
 import type { I18nKey } from "@/lib/i18n";
 
 /** Catalog wells — launcher / المزيد only, never the Square bar. */
-export const CATALOG_TAB_PATHS = ["/life", "/money", "/tools", "/games", "/studio", "/workspace"] as const;
+export const CATALOG_TAB_PATHS = [
+  "/life",
+  "/money",
+  "/tools",
+  "/games",
+  "/studio",
+  "/workspace",
+] as const;
 
 export type ChromeNavItem = { to: string; key: I18nKey };
 
@@ -38,18 +45,29 @@ export const WORK_MORE_OVERFLOW_NAV: readonly ChromeNavItem[] = [
 /** Play lives under المزيد — not a first-row tab. */
 export const TOOLS_OVERFLOW_NAV: readonly ChromeNavItem[] = [{ to: "/games", key: "games" }];
 
-const MOBILE_HIDDEN = new Set(["/madar", "/clips"]);
-
-export function chromeNav(audience: "personal" | "work", segment?: unknown): readonly ChromeNavItem[] {
-  const base = audience === "personal" ? PERSONAL_NAV : WORK_NAV;
-  return withoutMoneyNav(base, segment);
+export function chromeNav(
+  audience: "personal" | "work",
+  segment?: unknown,
+): readonly ChromeNavItem[] {
+  return withoutMoneyNav(audience === "personal" ? PERSONAL_NAV : WORK_NAV, segment);
 }
 
-export function mobileChromeNav(audience: "personal" | "work", segment?: unknown): readonly ChromeNavItem[] {
-  return chromeNav(audience, segment).filter((item) => !MOBILE_HIDDEN.has(item.to));
+export function mobileChromeNav(
+  _audience: "personal" | "work",
+  _segment?: unknown,
+): readonly ChromeNavItem[] {
+  return [
+    { to: "/", key: "home" },
+    { to: "/more", key: "services" },
+    { to: "/ask", key: "askTab" },
+    { to: "/me", key: "me" },
+  ];
 }
 
-export function moreOverflowNav(audience: "personal" | "work", segment?: unknown): readonly ChromeNavItem[] {
+export function moreOverflowNav(
+  audience: "personal" | "work",
+  segment?: unknown,
+): readonly ChromeNavItem[] {
   const base = audience === "work" ? WORK_MORE_OVERFLOW_NAV : MORE_OVERFLOW_NAV;
   return withoutMoneyNav(base, segment);
 }

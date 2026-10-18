@@ -26,7 +26,7 @@ export function AppStage({
       <Link
         to={hub}
         className={cn(
-          "inline-flex items-center gap-2 text-sm text-muted hover:text-fg",
+          "inline-flex min-h-11 items-center gap-2 text-sm text-muted hover:text-fg",
           compact ? "mb-3" : "mb-6",
         )}
       >

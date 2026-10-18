@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { NAZARI } from "@/lib/nazari";
 import { t } from "@/lib/i18n";
@@ -17,7 +17,8 @@ function shuffle<T>(arr: T[]) {
 
 export function NazariApp() {
   const lang = useAppStore((s) => s.lang);
-  const [order, setOrder] = useState(() => shuffle(NAZARI.map((_, i) => i)));
+  const [order, setOrder] = useState(() => NAZARI.map((_, i) => i));
+  useEffect(() => setOrder(shuffle(NAZARI.map((_, index) => index))), []);
   const [i, setI] = useState(0);
   const [picked, setPicked] = useState<number | null>(null);
   const [score, setScore] = useState(0);
@@ -66,7 +67,9 @@ export function NazariApp() {
             : L("راجع المسائل وأعد المحاولة.", "Review the misses and try again.")}
         </p>
         <Button onClick={restart}>{t(lang, "restart")}</Button>
-        <p className="text-xs text-subtle">{L("للتعلّم فقط، وليس اختباراً رسمياً.", "For practice only — not the official exam.")}</p>
+        <p className="text-xs text-subtle">
+          {L("للتعلّم فقط، وليس اختباراً رسمياً.", "For practice only — not the official exam.")}
+        </p>
       </div>
     );
   }
@@ -101,9 +104,13 @@ export function NazariApp() {
         })}
       </div>
       {picked != null ? (
-        <Button onClick={next}>{i + 1 >= total ? L("النتيجة", "Result") : L("التالي", "Next")}</Button>
+        <Button onClick={next}>
+          {i + 1 >= total ? L("النتيجة", "Result") : L("التالي", "Next")}
+        </Button>
       ) : null}
-      <p className="text-xs text-subtle">{L("للتعلّم فقط، وليس اختباراً رسمياً.", "For practice only — not the official exam.")}</p>
+      <p className="text-xs text-subtle">
+        {L("للتعلّم فقط، وليس اختباراً رسمياً.", "For practice only — not the official exam.")}
+      </p>
     </div>
   );
 }

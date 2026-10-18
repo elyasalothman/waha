@@ -3,13 +3,12 @@ import { useNavigate } from "@tanstack/react-router";
 import { Command } from "cmdk";
 import * as Dialog from "@radix-ui/react-dialog";
 import { BooksMark, ClipsMark, MadarMark } from "@/components/brand";
-import { searchCatalog } from "@/lib/catalog";
+import { findServices } from "@/lib/superapp";
 import { hideMoney, isMoneySurface } from "@/lib/child-mode";
 import { appIcon } from "@/lib/icons";
 import { t, type Lang } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
 import { useAppStore } from "@/store/app-store";
-import { openExternalUrl } from "@/lib/native-browser";
 
 export function CommandPalette({
   open,
@@ -21,13 +20,13 @@ export function CommandPalette({
   lang: Lang;
 }) {
   const navigate = useNavigate();
-  const audience = useAppStore((s) => s.audience);
+
   const segment = useAppStore((s) => s.segment);
   const [q, setQ] = useState("");
   const items = useMemo(() => {
-    const found = searchCatalog(q, audience);
+    const found = findServices(q);
     return hideMoney(segment) ? found.filter((item) => !isMoneySurface(item)) : found;
-  }, [q, audience, segment]);
+  }, [q, segment]);
 
   useEffect(() => {
     if (!open) setQ("");
@@ -63,6 +62,7 @@ export function CommandPalette({
           </Dialog.Close>
           <Command
             className="relative z-10 w-full max-w-lg overflow-hidden rounded-xl border border-border bg-surface shadow-(--shadow-soft)"
+            shouldFilter={false}
             label={t(lang, "search")}
           >
             <Command.Input
@@ -109,23 +109,7 @@ export function CommandPalette({
                     value={`${item.title.ar} ${item.title.en} ${item.id}`}
                     onSelect={() => {
                       onOpenChange(false);
-                      if (item.portal && item.id === "madar") {
-                        void navigate({ to: "/madar" });
-                        return;
-                      }
-                      if (item.portal && item.id === "clips") {
-                        void navigate({ to: "/clips" });
-                        return;
-                      }
-                      if (item.portal && item.id === "midad") {
-                        void navigate({ to: "/books" });
-                        return;
-                      }
-                      if (item.href) {
-                        void openExternalUrl(item.href);
-                        return;
-                      }
-                      void navigate({ to: "/app/$id", params: { id: item.id } });
+                      void navigate({ to: item.href });
                     }}
                     className={cn(
                       "flex cursor-pointer items-center gap-3 rounded-md min-h-11 px-3 py-2 text-sm text-fg data-[selected=true]:bg-surface-2",
@@ -133,7 +117,7 @@ export function CommandPalette({
                   >
                     <Icon className="size-4 text-primary" />
                     <span className="flex-1">{item.title[lang]}</span>
-                    <span className="text-xs text-subtle">{item.category}</span>
+                    <span className="text-xs text-subtle">{item.pillar}</span>
                   </Command.Item>
                 );
               })}

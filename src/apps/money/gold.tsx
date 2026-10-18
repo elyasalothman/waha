@@ -7,19 +7,36 @@ import { useAppStore } from "@/store/app-store";
 export function GoldApp() {
   const lang = useAppStore((s) => s.lang);
   const [q, setQ] = useState<GoldQuote | null>(null);
+  const [failed, setFailed] = useState(false);
+  const [attempt, setAttempt] = useState(0);
   const [grams, setGrams] = useState(10);
   const L = (ar: string, en: string) => (lang === "ar" ? ar : en);
 
   useEffect(() => {
     let live = true;
+    setFailed(false);
     fetchGold()
       .then((g) => live && setQ(g))
-      .catch(() => {});
+      .catch(() => {
+        if (live) setFailed(true);
+      });
     return () => {
       live = false;
     };
-  }, []);
+  }, [attempt]);
 
+  if (failed)
+    return (
+      <div role="status" className="space-y-3">
+        <p>{L("تعذّر تحديث سعر الذهب.", "Gold quote is unavailable.")}</p>
+        <button
+          onClick={() => setAttempt((n) => n + 1)}
+          className="min-h-11 rounded-xl border border-border px-4"
+        >
+          {L("إعادة المحاولة", "Retry")}
+        </button>
+      </div>
+    );
   if (!q) return <p className="text-sm text-muted">{t(lang, "loading")}</p>;
 
   const loc = lang === "ar" ? "ar-SA" : "en-SA";
@@ -27,7 +44,15 @@ export function GoldApp() {
 
   return (
     <div className="space-y-4">
-      {q.approx ? <p className="text-xs text-subtle">{L("الأسعار تقريبية إذا تعذّر المصدر الحي", "Prices are approximate if the live feed is down")}</p> : null}
+      <p className="break-words text-xs text-muted">Gold-API / ExchangeRate-API · {q.updatedAt}</p>
+      {q.approx ? (
+        <p className="text-xs text-subtle">
+          {L(
+            "الأسعار تقريبية إذا تعذّر المصدر الحي",
+            "Prices are approximate if the live feed is down",
+          )}
+        </p>
+      ) : null}
       <div className="grid grid-cols-3 gap-2">
         {[
           { k: "24k", v: q.sarG24 },
@@ -36,14 +61,21 @@ export function GoldApp() {
         ].map((row) => (
           <div key={row.k} className="rounded-xl border border-border bg-surface p-4">
             <p className="text-xs text-muted">{row.k}</p>
-            <p className="mt-1 font-display text-xl tabular-nums whitespace-nowrap">{money(row.v)}</p>
+            <p className="mt-1 font-display text-xl tabular-nums whitespace-nowrap">
+              {money(row.v)}
+            </p>
             <p className="text-xs text-subtle">{L("ريال / غرام", "SAR / g")}</p>
           </div>
         ))}
       </div>
       <label className="block max-w-56 text-sm">
         <span className="mb-1 block text-muted">{L("كم غراماً؟", "How many grams?")}</span>
-        <Input type="number" min={0} value={grams} onChange={(e) => setGrams(Number(e.target.value) || 0)} />
+        <Input
+          type="number"
+          min={0}
+          value={grams}
+          onChange={(e) => setGrams(Number(e.target.value) || 0)}
+        />
       </label>
       <div className="grid gap-2 sm:grid-cols-3">
         {[
@@ -58,7 +90,10 @@ export function GoldApp() {
         ))}
       </div>
       <p className="text-xs text-subtle">
-        {L(`الأونصة ${money(q.usdOz)} دولار · الدولار ${q.usdSar.toFixed(3)} ريال`, `Ounce ${money(q.usdOz)} USD · USD ${q.usdSar.toFixed(3)} SAR`)}
+        {L(
+          `الأونصة ${money(q.usdOz)} دولار · الدولار ${q.usdSar.toFixed(3)} ريال`,
+          `Ounce ${money(q.usdOz)} USD · USD ${q.usdSar.toFixed(3)} SAR`,
+        )}
       </p>
     </div>
   );

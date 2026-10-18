@@ -22,18 +22,39 @@ describe("chrome nav lock", () => {
     );
     assert.deepEqual(
       mobileChromeNav("personal").map((item) => item.to),
-      ["/", "/more"],
+      ["/", "/more", "/ask", "/me"],
     );
-    assert.equal(chromeNav("personal").some((item) => item.to === "/settings"), false);
-    assert.equal(chromeNav("personal").some((item) => item.to === "/onboarding"), false);
-    assert.equal(moreOverflowNav("personal").some((item) => item.to === "/settings"), false);
-    assert.equal(moreOverflowNav("personal").some((item) => item.to === "/onboarding"), false);
+    assert.equal(
+      chromeNav("personal").some((item) => item.to === "/settings"),
+      false,
+    );
+    assert.equal(
+      chromeNav("personal").some((item) => item.to === "/onboarding"),
+      false,
+    );
+    assert.equal(
+      moreOverflowNav("personal").some((item) => item.to === "/settings"),
+      false,
+    );
+    assert.equal(
+      moreOverflowNav("personal").some((item) => item.to === "/onboarding"),
+      false,
+    );
   });
 
   it("keeps مقاطع مفيدة on the chrome like مدار — never under المزيد", () => {
-    assert.equal(chromeNav("personal").some((item) => item.to === "/clips"), true);
-    assert.equal(chromeNav("work").some((item) => item.to === "/clips"), true);
-    assert.equal(moreOverflowNav("personal").some((item) => item.to === "/clips"), false);
+    assert.equal(
+      chromeNav("personal").some((item) => item.to === "/clips"),
+      true,
+    );
+    assert.equal(
+      chromeNav("work").some((item) => item.to === "/clips"),
+      true,
+    );
+    assert.equal(
+      moreOverflowNav("personal").some((item) => item.to === "/clips"),
+      false,
+    );
     assert.equal((CATALOG_TAB_PATHS as readonly string[]).includes("/clips"), false);
   });
 
@@ -55,7 +76,10 @@ describe("chrome nav lock", () => {
   });
 
   it("keeps Play off the first-row and nests it under المزيد", () => {
-    assert.equal(chromeNav("personal").some((item) => item.to === "/games"), false);
+    assert.equal(
+      chromeNav("personal").some((item) => item.to === "/games"),
+      false,
+    );
     assert.deepEqual(
       TOOLS_OVERFLOW_NAV.map((item) => item.to),
       ["/games"],

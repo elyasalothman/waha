@@ -102,7 +102,7 @@ try {
   await page.getByRole("button", { name: /الورد ٨ مساءً/ }).click();
   await page.getByRole("button", { name: /الورد ٨ مساءً: متوقف/ }).waitFor();
   assert.equal(await page.evaluate(() => window.__reminders.length), 1);
-  await page.locator(".native-safe-bottom a").last().click();
+  await page.locator('.native-safe-bottom a[href="/more"]').click();
   await page.waitForFunction(() => window.__nativeCalls.some((c) => c.method === "selection"));
   await page.waitForURL("**/more");
   await page.waitForLoadState("networkidle");

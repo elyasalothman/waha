@@ -1005,3 +1005,23 @@ html.native-ios .native-safe-bottom a { border-radius: 16px; margin: 4px 12px; }
 html.native-ios .native-safe-bottom a[aria-current="page"] { background: var(--color-surface-2); }
 html.native-ios.native-dark body { color-scheme: dark; }
 html.native-ios.native-dark .waha-shell { background-image: none; }
+
+/* Shared web and native appearance. */
+html.waha-dark {
+  color-scheme: dark;
+  --color-bg: #171b19;
+  --color-surface: #202822;
+  --color-surface-2: #2c362f;
+  --color-fg: #f0f2eb;
+  --color-muted: #bdc9bf;
+  --color-subtle: #b0bdb3;
+  --color-primary: #8cd7bc;
+  --color-primary-fg: #10271e;
+  --color-border: #435047;
+  --color-danger: #ffa297;
+  --color-success: #93d5a8;
+  --color-warn: #e9c77c;
+}
+html.waha-dark .waha-shell { background-image: none; }
+html.waha-dark body { color-scheme: dark; }
+.native-safe-bottom a[aria-current="page"] { background: var(--color-surface-2); color: var(--color-primary); }

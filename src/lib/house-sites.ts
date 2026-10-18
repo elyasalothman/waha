@@ -163,8 +163,8 @@ const HOUSE_SITE_DRAFTS: readonly HouseSiteDraft[] = [
     icon: "GraduationCap",
     title: { ar: "حصتي", en: "Hissati" },
     blurb: {
-      ar: "دفتر المعلم لمدرستي · تحضير أسبوعي وكشف الدرجات",
-      en: "Teacher notebook for Madrasati · weekly plans and grades",
+      ar: "موسوعة حصتي · ١٦ مسارًا للتعلّم ودفتر المعلم",
+      en: "Hissati encyclopedia · 16 learning paths and teacher notebook",
     },
     keywords: ["حصتي", "معلم", "حصة", "hissati", "teacher"],
     category: "life",
