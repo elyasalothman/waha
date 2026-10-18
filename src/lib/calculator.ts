@@ -11,7 +11,7 @@ export function calculate(input: string): number {
     .replaceAll("√", "sqrt")
     .replace(/\s/g, "");
   if (!source || source.length > 500) throw new Error("Invalid expression");
-  const tokens = source.match(/\d*\.?\d+(?:e[+-]?\d+)?|[a-z]+|[()+*/^%\-]/g) ?? [];
+  const tokens = source.match(/\d*\.?\d+(?:e[+-]?\d+)?|[a-z]+|[()+*/^%-]/g) ?? [];
   if (tokens.join("") !== source) throw new Error("Invalid token");
   let pos = 0;
   const functions: Record<string, (x: number) => number> = {

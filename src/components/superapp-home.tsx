@@ -47,7 +47,7 @@ export function SuperAppHome() {
     .filter((s) => s != null)
     .slice(0, 4);
   return (
-    <div className="mx-auto max-w-3xl space-y-8" data-superapp="1.2.0">
+    <div className="mx-auto max-w-3xl space-y-8" data-superapp="1.2.1">
       <header>
         <p className="text-sm text-primary">واحة · عالمك بين يديك</p>
         <h1 className="font-display text-3xl">تطبيقاتك، ليومك كله</h1>

@@ -15,6 +15,6 @@ test("release permits disabled accounts and rejects missing/enabled capabilities
     assert.throws(() => verifyIosRelease(project, flags));
   }
   assert.throws(() =>
-    verifyIosRelease(project.replaceAll("1.2.0", "1.0.0"), { email: false, google: false }),
+    verifyIosRelease(project.replaceAll("1.2.1", "1.0.0"), { email: false, google: false }),
   );
 });

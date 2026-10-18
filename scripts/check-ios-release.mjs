@@ -3,9 +3,9 @@ import assert from "node:assert/strict";
 
 export function verifyIosRelease(project, availability) {
   assert.equal(
-    (project.match(/MARKETING_VERSION = 1\.2\.0;/g) || []).length,
+    (project.match(/MARKETING_VERSION = 1\.2\.1;/g) || []).length,
     2,
-    "Both configurations must be 1.2.0",
+    "Both configurations must be 1.2.1",
   );
   assert.equal(
     (project.match(/IPHONEOS_DEPLOYMENT_TARGET = 17\.0;/g) || []).length,
@@ -28,5 +28,5 @@ if (process.argv[1]?.endsWith("/check-ios-release.mjs")) {
     readFileSync("ios/App/App.xcodeproj/project.pbxproj", "utf8"),
     await response.json(),
   );
-  console.log("iOS 1.2.0 release source and production account gate passed");
+  console.log("iOS 1.2.1 release source and production account gate passed");
 }

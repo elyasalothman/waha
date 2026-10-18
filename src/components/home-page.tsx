@@ -109,7 +109,7 @@ export function HomePage() {
         </section>
       )}
       <div className="space-y-4 rounded-xl border border-border bg-surface p-5">
-        <h2 className="font-display text-2xl">واحة 1.2.0</h2>
+        <h2 className="font-display text-2xl">واحة 1.2.1</h2>
         <p className="text-sm leading-7 text-muted">
           حساب واحة يتيح هويتك واهتماماتك. تقدمك ونقاطك وسلسلتك وتفضيلاتك محفوظة محليًا على هذا
           الجهاز، وحسابات حصتي والألعاب مستقلة. حذف بيانات المتصفح يمسح الحفظ المحلي.
