@@ -1,0 +1,15 @@
+{
+  "deploymentId": "dpl_2M1eKz4nG19kXtTv4JnakAyuBgS2",
+  "checkedAt": "2026-10-21T23:28:07Z",
+  "window": "10m",
+  "errorLevelRecords": 2,
+  "recordPaths": [
+    "/api/books"
+  ],
+  "classification": "pg-connection-string future sslmode semantics warnings on stderr; no runtime exception in inspected records",
+  "browserNetworkLimits": [
+    "weather HTTP429",
+    "Cloudflare Analytics CORS and RUM submission failures"
+  ],
+  "uncaughtPageErrorsInFeatureAudit": 0
+}

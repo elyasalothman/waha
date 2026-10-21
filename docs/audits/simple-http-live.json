@@ -1,0 +1,120 @@
+{
+  "base": "https://waha.hajdah.com",
+  "results": [
+    {
+      "path": "/",
+      "status": 200,
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "path": "/books",
+      "status": 200,
+      "url": "https://waha.hajdah.com/books"
+    },
+    {
+      "path": "/books/trading-guide",
+      "status": 200,
+      "url": "https://waha.hajdah.com/books/trading-guide"
+    },
+    {
+      "path": "/books/trading-guide/trading-guide.pdf",
+      "status": 200,
+      "url": "https://waha.hajdah.com/books/trading-guide/trading-guide.pdf"
+    },
+    {
+      "path": "/books/alhajda",
+      "status": 200,
+      "url": "https://waha.hajdah.com/books/alhajda"
+    },
+    {
+      "path": "/books/library/midad-elevator-key",
+      "status": 200,
+      "url": "https://waha.hajdah.com/books/library/midad-elevator-key"
+    },
+    {
+      "path": "/games",
+      "status": 200,
+      "url": "https://waha.hajdah.com/games"
+    },
+    {
+      "path": "/tools",
+      "status": 200,
+      "url": "https://waha.hajdah.com/tools"
+    },
+    {
+      "path": "/me",
+      "status": 200,
+      "url": "https://waha.hajdah.com/me"
+    },
+    {
+      "path": "/more",
+      "status": 200,
+      "url": "https://waha.hajdah.com/more"
+    },
+    {
+      "path": "/today",
+      "status": 200,
+      "url": "https://waha.hajdah.com/today"
+    },
+    {
+      "path": "/life",
+      "status": 200,
+      "url": "https://waha.hajdah.com/life"
+    },
+    {
+      "path": "/money",
+      "status": 200,
+      "url": "https://waha.hajdah.com/money"
+    },
+    {
+      "path": "/madar",
+      "status": 200,
+      "url": "https://waha.hajdah.com/madar"
+    },
+    {
+      "path": "/worship",
+      "status": 200,
+      "url": "https://waha.hajdah.com/worship"
+    },
+    {
+      "path": "/store",
+      "status": 200,
+      "url": "https://waha.hajdah.com/store"
+    },
+    {
+      "path": "/forum",
+      "status": 200,
+      "url": "https://waha.hajdah.com/forum"
+    },
+    {
+      "path": "/clips",
+      "status": 200,
+      "url": "https://waha.hajdah.com/clips"
+    },
+    {
+      "path": "/news",
+      "status": 200,
+      "url": "https://waha.hajdah.com/news"
+    },
+    {
+      "path": "/studio",
+      "status": 200,
+      "url": "https://waha.hajdah.com/studio"
+    },
+    {
+      "path": "/workspace",
+      "status": 200,
+      "url": "https://waha.hajdah.com/workspace"
+    },
+    {
+      "path": "/teacher",
+      "status": 200,
+      "url": "https://waha.hajdah.com/teacher"
+    },
+    {
+      "path": "alternate-domain",
+      "status": 200,
+      "url": "https://waha.alhajda.com"
+    }
+  ]
+}

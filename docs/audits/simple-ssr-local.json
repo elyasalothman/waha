@@ -1,0 +1,11 @@
+{
+  "target": "final production build before hydration",
+  "headerVisible": false,
+  "toolbarVisible": false,
+  "toggle": {
+    "x": 16,
+    "y": 784,
+    "width": 121.265625,
+    "height": 44
+  }
+}

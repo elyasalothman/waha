@@ -1,0 +1,39 @@
+{
+  "id": "dpl_2M1eKz4nG19kXtTv4JnakAyuBgS2",
+  "name": "waha",
+  "url": "waha-o9ifrei0w-elyasalothman-3228.vercel.app",
+  "type": "LAMBDAS",
+  "state": "READY",
+  "createdAt": 1792625199012,
+  "creator": {
+    "uid": "qo5AKjSh5273knDRenT8wIlu",
+    "username": "elyasalothman-3228"
+  },
+  "project": {
+    "id": "prj_h1Gk05nYTifnTA3hoSyOEPxTK9n6",
+    "name": "waha",
+    "framework": "tanstack-start"
+  },
+  "meta": {
+    "githubCommitRef": "33dc12951b99f55dd9bda27bbef3f7adbb211556",
+    "githubCommitSha": "33dc12951b99f55dd9bda27bbef3f7adbb211556",
+    "githubCommitMessage": "تبسيط واحة وتوحيد القراءة الغامرة والليلية ودليل المضاربة",
+    "githubRepo": "waha",
+    "githubOrg": "elyasalothman"
+  },
+  "alias": [
+    "waha.hajdah.com",
+    "waha.alhajda.com",
+    "waha-eta.vercel.app",
+    "waha-elyasalothman-3228.vercel.app",
+    "waha-git-33dc12951b99f55dd9bda27bbef3-7325f3-elyasalothman-3228.vercel.app"
+  ],
+  "target": "production",
+  "regions": [
+    "iad1"
+  ],
+  "buildingAt": 1792625200560,
+  "ready": 1792625231196,
+  "readyState": "READY",
+  "aliasError": null
+}

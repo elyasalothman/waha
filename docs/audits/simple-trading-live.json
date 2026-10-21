@@ -1,0 +1,353 @@
+{
+  "base": "https://waha.hajdah.com",
+  "checkedAt": "2026-10-21T23:28:15.762Z",
+  "checks": [
+    {
+      "name": "320x740 shelf",
+      "page": 320,
+      "viewport": 320
+    },
+    {
+      "name": "320x740 Arabic font and unrestricted viewport",
+      "family": "AlhajdaNaskh, \"Noto Naskh Arabic\", serif",
+      "size": 24,
+      "lineHeight": 46.8,
+      "direction": "rtl",
+      "fontLoaded": true,
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover"
+    },
+    {
+      "name": "320x740 cover",
+      "page": 320,
+      "viewport": 320
+    },
+    {
+      "name": "320x740 chapter and tables",
+      "page": 320,
+      "viewport": 320
+    },
+    {
+      "name": "320x740 contained keyboard-focusable table",
+      "scroll": 480,
+      "visible": 254,
+      "tabindex": "0"
+    },
+    {
+      "name": "320x740 enlarged text",
+      "page": 320,
+      "viewport": 320
+    },
+    {
+      "name": "320x740 progress, theme, size and bookmark restored",
+      "anchor": "tg-p-44",
+      "anchorY": 15.671875
+    },
+    {
+      "name": "320x740 search jump",
+      "page": 320,
+      "viewport": 320
+    },
+    {
+      "name": "320x740 search jumps to source anchor"
+    },
+    {
+      "name": "320x740 cross-chapter source link"
+    },
+    {
+      "name": "320x740 repeated next and previous controls"
+    },
+    {
+      "name": "320x740 200 percent text reflow",
+      "page": 320,
+      "viewport": 320
+    },
+    {
+      "name": "320x740 Alhajda saved progress untouched"
+    },
+    {
+      "name": "320x740 library return and browser back/forward"
+    },
+    {
+      "name": "360x800 shelf",
+      "page": 360,
+      "viewport": 360
+    },
+    {
+      "name": "360x800 Arabic font and unrestricted viewport",
+      "family": "AlhajdaNaskh, \"Noto Naskh Arabic\", serif",
+      "size": 24,
+      "lineHeight": 46.8,
+      "direction": "rtl",
+      "fontLoaded": true,
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover"
+    },
+    {
+      "name": "360x800 cover",
+      "page": 360,
+      "viewport": 360
+    },
+    {
+      "name": "360x800 chapter and tables",
+      "page": 360,
+      "viewport": 360
+    },
+    {
+      "name": "360x800 contained keyboard-focusable table",
+      "scroll": 480,
+      "visible": 294,
+      "tabindex": "0"
+    },
+    {
+      "name": "360x800 enlarged text",
+      "page": 360,
+      "viewport": 360
+    },
+    {
+      "name": "360x800 progress, theme, size and bookmark restored",
+      "anchor": "tg-p-44",
+      "anchorY": 16.046875
+    },
+    {
+      "name": "360x800 search jump",
+      "page": 360,
+      "viewport": 360
+    },
+    {
+      "name": "360x800 search jumps to source anchor"
+    },
+    {
+      "name": "360x800 cross-chapter source link"
+    },
+    {
+      "name": "360x800 repeated next and previous controls"
+    },
+    {
+      "name": "360x800 200 percent text reflow",
+      "page": 360,
+      "viewport": 360
+    },
+    {
+      "name": "360x800 Alhajda saved progress untouched"
+    },
+    {
+      "name": "360x800 library return and browser back/forward"
+    },
+    {
+      "name": "390x844 shelf",
+      "page": 390,
+      "viewport": 390
+    },
+    {
+      "name": "390x844 Arabic font and unrestricted viewport",
+      "family": "AlhajdaNaskh, \"Noto Naskh Arabic\", serif",
+      "size": 24,
+      "lineHeight": 46.8,
+      "direction": "rtl",
+      "fontLoaded": true,
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover"
+    },
+    {
+      "name": "390x844 cover",
+      "page": 390,
+      "viewport": 390
+    },
+    {
+      "name": "390x844 chapter and tables",
+      "page": 390,
+      "viewport": 390
+    },
+    {
+      "name": "390x844 contained keyboard-focusable table",
+      "scroll": 544,
+      "visible": 324,
+      "tabindex": "0"
+    },
+    {
+      "name": "390x844 enlarged text",
+      "page": 390,
+      "viewport": 390
+    },
+    {
+      "name": "maximum font size",
+      "page": 390,
+      "viewport": 390
+    },
+    {
+      "name": "font size bounds 18–40 px"
+    },
+    {
+      "name": "390x844 progress, theme, size and bookmark restored",
+      "anchor": "tg-p-40",
+      "anchorY": 15.8125
+    },
+    {
+      "name": "390x844 search jump",
+      "page": 390,
+      "viewport": 390
+    },
+    {
+      "name": "390x844 search jumps to source anchor"
+    },
+    {
+      "name": "390x844 cross-chapter source link"
+    },
+    {
+      "name": "390x844 repeated next and previous controls"
+    },
+    {
+      "name": "390x844 200 percent text reflow",
+      "page": 390,
+      "viewport": 390
+    },
+    {
+      "name": "390x844 Alhajda saved progress untouched"
+    },
+    {
+      "name": "public PDF status, content type and bytes",
+      "bytes": 1397151
+    },
+    {
+      "name": "390x844 library return and browser back/forward"
+    },
+    {
+      "name": "768x1024 shelf",
+      "page": 768,
+      "viewport": 768
+    },
+    {
+      "name": "768x1024 Arabic font and unrestricted viewport",
+      "family": "AlhajdaNaskh, \"Noto Naskh Arabic\", serif",
+      "size": 24,
+      "lineHeight": 46.8,
+      "direction": "rtl",
+      "fontLoaded": true,
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover"
+    },
+    {
+      "name": "768x1024 cover",
+      "page": 768,
+      "viewport": 768
+    },
+    {
+      "name": "768x1024 chapter and tables",
+      "page": 768,
+      "viewport": 768
+    },
+    {
+      "name": "768x1024 contained keyboard-focusable table",
+      "scroll": 678,
+      "visible": 678,
+      "tabindex": "0"
+    },
+    {
+      "name": "768x1024 enlarged text",
+      "page": 768,
+      "viewport": 768
+    },
+    {
+      "name": "768x1024 progress, theme, size and bookmark restored",
+      "anchor": "tg-p-39",
+      "anchorY": 16.1875
+    },
+    {
+      "name": "768x1024 search jump",
+      "page": 768,
+      "viewport": 768
+    },
+    {
+      "name": "768x1024 search jumps to source anchor"
+    },
+    {
+      "name": "768x1024 cross-chapter source link"
+    },
+    {
+      "name": "768x1024 repeated next and previous controls"
+    },
+    {
+      "name": "768x1024 200 percent text reflow",
+      "page": 768,
+      "viewport": 768
+    },
+    {
+      "name": "768x1024 Alhajda saved progress untouched"
+    },
+    {
+      "name": "768x1024 library return and browser back/forward"
+    },
+    {
+      "name": "844x390 shelf",
+      "page": 844,
+      "viewport": 844
+    },
+    {
+      "name": "844x390 Arabic font and unrestricted viewport",
+      "family": "AlhajdaNaskh, \"Noto Naskh Arabic\", serif",
+      "size": 24,
+      "lineHeight": 46.8,
+      "direction": "rtl",
+      "fontLoaded": true,
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover"
+    },
+    {
+      "name": "844x390 cover",
+      "page": 844,
+      "viewport": 844
+    },
+    {
+      "name": "844x390 chapter and tables",
+      "page": 844,
+      "viewport": 844
+    },
+    {
+      "name": "844x390 contained keyboard-focusable table",
+      "scroll": 754,
+      "visible": 754,
+      "tabindex": "0"
+    },
+    {
+      "name": "844x390 enlarged text",
+      "page": 844,
+      "viewport": 844
+    },
+    {
+      "name": "844x390 progress, theme, size and bookmark restored",
+      "anchor": "tg-p-42",
+      "anchorY": 16.484375
+    },
+    {
+      "name": "844x390 search jump",
+      "page": 844,
+      "viewport": 844
+    },
+    {
+      "name": "844x390 search jumps to source anchor"
+    },
+    {
+      "name": "844x390 cross-chapter source link"
+    },
+    {
+      "name": "844x390 repeated next and previous controls"
+    },
+    {
+      "name": "844x390 200 percent text reflow",
+      "page": 844,
+      "viewport": 844
+    },
+    {
+      "name": "844x390 Alhajda saved progress untouched"
+    },
+    {
+      "name": "844x390 library return and browser back/forward"
+    },
+    {
+      "name": "blocked storage remains readable",
+      "page": 390,
+      "viewport": 390
+    },
+    {
+      "name": "corrupt progress and blocked storage fail safely"
+    }
+  ],
+  "errors": [],
+  "note": "Browser emulator coverage; 200% text-size stress tested. Physical iOS/VoiceOver and native pinch zoom were not tested."
+}

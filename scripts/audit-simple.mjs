@@ -7,7 +7,22 @@ const report = process.argv[3] || "docs/audits/simple-local.json";
 const shots = process.env.AUDIT_SCREENSHOTS || "/tmp/waha-simple-audit";
 await mkdir(shots, { recursive: true });
 await mkdir("docs/audits", { recursive: true });
-const browser = await chromium.launch({ headless: true, args: ["--no-sandbox"] });
+const proxy =
+  base.startsWith("https:") && process.env.HTTPS_PROXY ? new URL(process.env.HTTPS_PROXY) : null;
+const browser = await chromium.launch({
+  headless: true,
+  args: ["--no-sandbox"],
+  ...(proxy
+    ? {
+        proxy: {
+          server: proxy.origin,
+          username: decodeURIComponent(proxy.username),
+          password: decodeURIComponent(proxy.password),
+          bypass: "localhost,127.0.0.1",
+        },
+      }
+    : {}),
+});
 const context = await browser.newContext({
   viewport: { width: 390, height: 844 },
   isMobile: true,
