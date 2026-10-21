@@ -1,6 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { findServices, SERVICES, progressState, progressSummary } from "./superapp.ts";
+import {
+  findServices,
+  SERVICES,
+  HOME_SERVICE_IDS,
+  progressState,
+  progressSummary,
+} from "./superapp.ts";
 import { CATALOG } from "./catalog.ts";
 import { HOUSE_SITES } from "./house-sites.ts";
 test("all tools and house services have unique internal destinations", () => {
@@ -34,4 +40,16 @@ test("XP counts distinct valid completed days, streak accepts yesterday but brea
   assert.equal(progressSummary(progress, "2026-10-19").streak, 0);
   assert.equal(progressSummary({ days: ["2099-01-01"] }, "2026-10-18").xp, 0);
   assert.deepEqual(progressState(null), { days: [] });
+});
+
+test("home shortcuts stay small and all services fit the four browse sections", () => {
+  assert.ok(HOME_SERVICE_IDS.length >= 6 && HOME_SERVICE_IDS.length <= 8);
+  assert.equal(new Set(HOME_SERVICE_IDS).size, HOME_SERVICE_IDS.length);
+  for (const id of HOME_SERVICE_IDS)
+    assert.ok(
+      SERVICES.some((service) => service.id === id),
+      id,
+    );
+  for (const service of SERVICES)
+    assert.ok(["faith", "learn", "news", "fun"].includes(service.pillar), service.id);
 });

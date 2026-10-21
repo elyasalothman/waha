@@ -1,3 +1,4 @@
+import { ReaderControls } from "./reader-controls";
 import { Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState, type MouseEvent } from "react";
 import { BookmarkPlus, Minus, Plus, List } from "lucide-react";
@@ -36,7 +37,8 @@ export default function CuratedBookReader({
   const [contents, setContents] = useState(false);
   const [marks, setMarks] = useState(false);
   const [query, setQuery] = useState("");
-  const { reader, toolbar, getViewport, scrollTo } = useReaderLayout();
+  const { reader, toolbar, getViewport, scrollTo, controlsVisible, toggleControls } =
+    useReaderLayout();
   const article = useRef<HTMLElement>(null);
   const pending = useRef<CuratedPosition | null>(null);
   const latest = useRef(state);
@@ -174,7 +176,7 @@ export default function CuratedBookReader({
   const hits = useMemo(() => searchCuratedBook(book, query), [book, query]);
   const colors =
     state.theme === "night"
-      ? { backgroundColor: "#1b2427", color: "#eeeae0" }
+      ? { backgroundColor: "#28231e", color: "#f5ead6" }
       : state.theme === "warm"
         ? { backgroundColor: "#f7edda", color: "#30271f" }
         : { backgroundColor: "#fffef9", color: "#242b28" };
@@ -187,6 +189,7 @@ export default function CuratedBookReader({
       data-curated-book={bookId}
       data-reader-theme={state.theme}
     >
+      <ReaderControls visible={controlsVisible} onToggle={toggleControls} />
       <Link to="/books" className="inline-flex min-h-11 items-center text-sm underline">
         {L("العودة إلى المكتبة", "Back to library")}
       </Link>
@@ -258,6 +261,19 @@ export default function CuratedBookReader({
           <option value="warm">{L("دافئ", "Warm")}</option>
           <option value="night">{L("ليل", "Night")}</option>
         </select>
+        <button
+          type="button"
+          className={control}
+          aria-pressed={state.theme === "night"}
+          onClick={() =>
+            setState((current) => ({
+              ...current,
+              theme: current.theme === "night" ? "paper" : "night",
+            }))
+          }
+        >
+          {L("وضع ليلي", "Night mode")}
+        </button>
         <button
           type="button"
           className={control}

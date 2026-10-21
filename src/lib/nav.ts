@@ -15,17 +15,13 @@ export type ChromeNavItem = { to: string; key: I18nKey };
 
 export const PERSONAL_NAV: readonly ChromeNavItem[] = [
   { to: "/", key: "home" },
-  { to: "/madar", key: "madar" },
-  { to: "/clips", key: "clips" },
-  { to: "/more", key: "more" },
+  { to: "/books", key: "books" },
+  { to: "/tools", key: "tools" },
+  { to: "/games", key: "games" },
+  { to: "/me", key: "me" },
 ];
 
-export const WORK_NAV: readonly ChromeNavItem[] = [
-  { to: "/", key: "home" },
-  { to: "/madar", key: "madar" },
-  { to: "/clips", key: "clips" },
-  { to: "/more", key: "more" },
-];
+export const WORK_NAV = PERSONAL_NAV;
 
 export const MORE_OVERFLOW_NAV: readonly ChromeNavItem[] = [
   { to: "/life", key: "life" },
@@ -56,13 +52,7 @@ export function mobileChromeNav(
   _audience: "personal" | "work",
   _segment?: unknown,
 ): readonly ChromeNavItem[] {
-  return [
-    { to: "/", key: "home" },
-    { to: "/more", key: "services" },
-    { to: "/store", key: "store" },
-    { to: "/ask", key: "askTab" },
-    { to: "/me", key: "me" },
-  ];
+  return chromeNav(_audience, _segment);
 }
 
 export function moreOverflowNav(

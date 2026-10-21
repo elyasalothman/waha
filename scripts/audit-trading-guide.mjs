@@ -47,6 +47,7 @@ async function state(page) {
 async function ready(page) {
   await page.locator(".trading-guide-content").waitFor();
   await page.evaluate(() => document.fonts.ready);
+  await page.keyboard.press("Escape");
 }
 async function noOverflow(page, label) {
   const sizes = await page.evaluate(() => ({

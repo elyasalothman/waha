@@ -61,6 +61,11 @@ try {
       timeout: 60000,
     });
     await page.waitForTimeout(1200);
+    if (path === "/books/alhajda") {
+      await page.waitForFunction(
+        () => document.documentElement.dataset.readerControls === "hidden",
+      );
+    }
     const metrics = await page.evaluate(() => ({
       width: document.documentElement.scrollWidth,
       viewport: 390,
@@ -75,7 +80,12 @@ try {
         ),
       ],
       smallTargets: [...document.querySelectorAll("button,a,input,select")]
-        .filter((element) => !element.closest(".sr-only") && !element.disabled)
+        .filter(
+          (element) =>
+            !element.closest(".sr-only") &&
+            !element.disabled &&
+            element.checkVisibility({ checkVisibilityCSS: true }),
+        )
         .map((element) => {
           const rect = element.getBoundingClientRect();
           return {

@@ -1,0 +1,69 @@
+{
+  "base": "http://127.0.0.1:8080",
+  "at": "2026-10-21T23:16:44.131Z",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "browser": "151.0.7922.34",
+  "checks": [
+    {
+      "name": "home mobile tabs and overflow",
+      "status": "passed",
+      "detail": {
+        "labels": [
+          "الرئيسية",
+          "الكتب",
+          "الأدوات",
+          "الألعاب",
+          "حسابي"
+        ]
+      }
+    },
+    {
+      "name": "prominent home search and services",
+      "status": "passed"
+    },
+    {
+      "name": "trading guide shelf entry opens",
+      "status": "passed"
+    },
+    {
+      "name": "trading immersive tap and night persistence",
+      "status": "passed",
+      "detail": {
+        "background": "rgb(40, 35, 30)",
+        "color": "rgb(245, 234, 214)"
+      }
+    },
+    {
+      "name": "alhajda immersive tap and night persistence",
+      "status": "passed",
+      "detail": {
+        "background": "rgb(40, 35, 30)",
+        "color": "rgb(245, 234, 214)"
+      }
+    },
+    {
+      "name": "platform immersive tap and night persistence",
+      "status": "passed",
+      "detail": {
+        "background": "rgb(40, 35, 30)",
+        "color": "rgb(245, 234, 214)"
+      }
+    },
+    {
+      "name": "browser runtime errors",
+      "status": "passed"
+    }
+  ],
+  "failures": [
+    {
+      "name": "private book reader immersive and persisted night",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n'false' !== 'true'\n"
+    }
+  ],
+  "errors": [],
+  "screenshots": "/tmp/waha-simple-audit",
+  "limitations": "Chromium mobile emulation; physical iOS, VoiceOver, native safe-area hardware and real PDF import not covered. Private reader uses synthetic isolated local fixture."
+}

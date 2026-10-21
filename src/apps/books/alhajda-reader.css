@@ -3,8 +3,8 @@
   min-width: 0;
 }
 .curated-reader[data-reader-theme="night"] {
-  --alhajda-ink: #eeeae0;
-  --alhajda-paper: #1b2427;
+  --alhajda-ink: #f5ead6;
+  --alhajda-paper: #28231e;
 }
 .curated-reader[data-reader-theme="night"] .alhajda-book .page {
   --accent: #aac5ff;

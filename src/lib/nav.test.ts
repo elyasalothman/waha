@@ -10,87 +10,23 @@ import {
   WORK_NAV,
 } from "./nav.ts";
 
-describe("chrome nav lock", () => {
-  it("keeps the first-row bar to الميدان + مدار + مقاطع + المزيد", () => {
-    assert.deepEqual(
-      chromeNav("personal").map((item) => item.to),
-      ["/", "/madar", "/clips", "/more"],
-    );
-    assert.deepEqual(
-      chromeNav("work").map((item) => item.to),
-      ["/", "/madar", "/clips", "/more"],
-    );
-    assert.deepEqual(
-      mobileChromeNav("personal").map((item) => item.to),
-      ["/", "/more", "/store", "/ask", "/me"],
-    );
-    assert.equal(
-      chromeNav("personal").some((item) => item.to === "/settings"),
-      false,
-    );
-    assert.equal(
-      chromeNav("personal").some((item) => item.to === "/onboarding"),
-      false,
-    );
-    assert.equal(
-      moreOverflowNav("personal").some((item) => item.to === "/settings"),
-      false,
-    );
-    assert.equal(
-      moreOverflowNav("personal").some((item) => item.to === "/onboarding"),
-      false,
-    );
-  });
-
-  it("keeps مقاطع مفيدة on the chrome like مدار — never under المزيد", () => {
-    assert.equal(
-      chromeNav("personal").some((item) => item.to === "/clips"),
-      true,
-    );
-    assert.equal(
-      chromeNav("work").some((item) => item.to === "/clips"),
-      true,
-    );
-    assert.equal(
-      moreOverflowNav("personal").some((item) => item.to === "/clips"),
-      false,
-    );
-    assert.equal((CATALOG_TAB_PATHS as readonly string[]).includes("/clips"), false);
-  });
-
-  it("drops حياتك / مالك / أدواتك / الترفيه / الاستوديو from the Square bar", () => {
+describe("simple Waha navigation", () => {
+  it("keeps the same five core destinations on mobile and desktop for both audiences", () => {
+    const expected = ["/", "/books", "/tools", "/games", "/me"];
     for (const audience of ["personal", "work"] as const) {
-      const paths = chromeNav(audience).map((item) => item.to);
-      for (const tab of CATALOG_TAB_PATHS) {
-        assert.equal(paths.includes(tab), false, `${audience} ${tab}`);
-      }
+      assert.deepEqual(
+        chromeNav(audience).map((item) => item.to),
+        expected,
+      );
+      assert.deepEqual(
+        mobileChromeNav(audience).map((item) => item.to),
+        expected,
+      );
     }
-    assert.equal(
-      PERSONAL_NAV.some((item) => (CATALOG_TAB_PATHS as readonly string[]).includes(item.to)),
-      false,
-    );
-    assert.equal(
-      WORK_NAV.some((item) => (CATALOG_TAB_PATHS as readonly string[]).includes(item.to)),
-      false,
-    );
+    assert.deepEqual(PERSONAL_NAV, WORK_NAV);
   });
 
-  it("keeps Play off the first-row and nests it under المزيد", () => {
-    assert.equal(
-      chromeNav("personal").some((item) => item.to === "/games"),
-      false,
-    );
-    assert.deepEqual(
-      TOOLS_OVERFLOW_NAV.map((item) => item.to),
-      ["/games"],
-    );
-    assert.equal(
-      moreOverflowNav("personal").some((item) => item.to === "/games"),
-      true,
-    );
-  });
-
-  it("moves catalog wells to المزيد without deleting them", () => {
+  it("keeps legacy catalog sections reachable without adding tabs", () => {
     assert.deepEqual(
       moreOverflowNav("personal").map((item) => item.to),
       ["/life", "/money", "/tools", "/games", "/studio"],
@@ -99,9 +35,14 @@ describe("chrome nav lock", () => {
       moreOverflowNav("work").map((item) => item.to),
       ["/workspace", "/money", "/tools", "/studio"],
     );
+    assert.deepEqual(
+      TOOLS_OVERFLOW_NAV.map((item) => item.to),
+      ["/games"],
+    );
+    assert.ok((CATALOG_TAB_PATHS as readonly string[]).includes("/life"));
   });
 
-  it("hides /money from المزيد when the child slice is on", () => {
+  it("keeps money out of child navigation", () => {
     assert.equal(
       moreOverflowNav("personal", "child").some((item) => item.to === "/money"),
       false,

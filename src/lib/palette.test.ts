@@ -15,17 +15,26 @@ import {
 
 const css = readFileSync(new URL("../styles.css", import.meta.url), "utf8");
 const root = readFileSync(new URL("../routes/__root.tsx", import.meta.url), "utf8");
-const manifest = readFileSync(new URL("../../public/manifest.webmanifest", import.meta.url), "utf8");
+const manifest = readFileSync(
+  new URL("../../public/manifest.webmanifest", import.meta.url),
+  "utf8",
+);
 const favicon = readFileSync(new URL("../../public/favicon.svg", import.meta.url), "utf8");
 const home = readFileSync(new URL("../routes/today.tsx", import.meta.url), "utf8");
-const shadow = readFileSync(new URL("../components/square/day-shadow.tsx", import.meta.url), "utf8");
-const square = readFileSync(new URL("../components/square/square-page.tsx", import.meta.url), "utf8");
+const shadow = readFileSync(
+  new URL("../components/square/day-shadow.tsx", import.meta.url),
+  "utf8",
+);
+const square = readFileSync(
+  new URL("../components/square/square-page.tsx", import.meta.url),
+  "utf8",
+);
 const madar = readFileSync(new URL("../apps/madar/portal.tsx", import.meta.url), "utf8");
 const games = readFileSync(new URL("../routes/games.tsx", import.meta.url), "utf8");
 const clips = readFileSync(new URL("../apps/clips/page.tsx", import.meta.url), "utf8");
 const accounts = readFileSync(new URL("./square/accounts.ts", import.meta.url), "utf8");
 const routes = readFileSync(new URL("../routeTree.gen.ts", import.meta.url), "utf8");
-const nav = readFileSync(new URL("./nav.ts", import.meta.url), "utf8");
+const catalog = readFileSync(new URL("./catalog.ts", import.meta.url), "utf8");
 const pwa = readFileSync(new URL("../../scripts/grok-pwa-shared.mjs", import.meta.url), "utf8");
 const install = readFileSync(new URL("../../scripts/install-page.html", import.meta.url), "utf8");
 
@@ -80,7 +89,7 @@ describe("waha well-night palette", () => {
     assert.match(clips, /data-on-maydan="false"/);
     assert.match(clips, /text-muted/);
     assert.match(clips, /bg-surface/);
-    assert.match(nav, /to: "\/clips"/);
+    assert.match(catalog, /id: "clips".*portal: true/);
     for (const file of [shadow, square, madar, games, clips]) {
       for (const hex of OLD_NIGHT) {
         assert.equal(file.toLowerCase().includes(hex), false, hex);
@@ -90,7 +99,10 @@ describe("waha well-night palette", () => {
 
   it("does not paint separators with the border token", () => {
     assert.doesNotMatch(shadow, /text-border/);
-    const post = readFileSync(new URL("../components/square/post-card.tsx", import.meta.url), "utf8");
+    const post = readFileSync(
+      new URL("../components/square/post-card.tsx", import.meta.url),
+      "utf8",
+    );
     assert.doesNotMatch(post, /text-border/);
   });
 

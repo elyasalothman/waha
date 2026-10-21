@@ -124,26 +124,14 @@ export const SERVICES: readonly Service[] = [
   })),
 ];
 export const HOME_SERVICE_IDS = [
-  "store",
-  "camera",
-  "weather",
-  "calc",
-  "search",
-  "browser",
-  "video",
-  "shield",
-  "tahajjud",
-  "quran",
-  "news",
-  "hissati",
   "midad",
+  "quran",
+  "tahajjud",
+  "hissati",
+  "store",
+  "calc",
   "mohsin",
-  "luma",
   "dallah",
-  "baloot",
-  "sites",
-  "alhajda-tools",
-  "agent",
 ];
 export function normalizeSearch(value: string) {
   return value

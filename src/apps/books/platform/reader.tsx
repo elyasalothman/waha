@@ -1,3 +1,6 @@
+import { useReaderLayout } from "../reader-layout";
+import { ReaderControls } from "../reader-controls";
+import "../reader-layout.css";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import midad from "@/lib/books/platform/midad.json";
@@ -12,6 +15,7 @@ export function PlatformReader({ id }: { id: string }) {
   const [position, setPosition] = useState<Position>(defaults);
   const [revision, setRevision] = useState(0);
   const article = useRef<HTMLElement>(null);
+  const { reader, toolbar, controlsVisible, toggleControls } = useReaderLayout(Boolean(book));
   const pendingRestore = useRef(0);
   useEffect(() => {
     const controller = new AbortController();
@@ -126,11 +130,14 @@ export function PlatformReader({ id }: { id: string }) {
   if (!book) return <p role="status">جارٍ تحميل الكتاب…</p>;
   const current = book.chapters[position.chapter];
   return (
-    <div
+    <section
+      ref={reader}
       dir="rtl"
       data-platform-reader={id}
-      className={`mx-auto min-w-0 max-w-2xl rounded-xl p-4 sm:p-6 [overflow-wrap:anywhere] ${position.night ? "bg-[#172520] text-[#f5efe3]" : "bg-[#fbf6e9] text-[#243e32]"}`}
+      data-reader-theme={position.night ? "night" : "paper"}
+      className={`reader-layout mx-auto min-w-0 max-w-2xl rounded-xl p-4 sm:p-6 [overflow-wrap:anywhere] ${position.night ? "bg-[#28231e] text-[#f5ead6]" : "bg-[#fbf6e9] text-[#243e32]"}`}
     >
+      <ReaderControls visible={controlsVisible} onToggle={toggleControls} />
       <Link to="/books" className="inline-flex min-h-11 items-center underline">
         العودة إلى المكتبة
       </Link>
@@ -140,7 +147,11 @@ export function PlatformReader({ id }: { id: string }) {
           {book.author} · {book.category} · {book.audience}
         </p>
       </header>
-      <div className="mt-5 flex flex-wrap items-center gap-2" aria-label="إعدادات القراءة">
+      <div
+        ref={toolbar}
+        className="reader-toolbar mt-5 flex flex-wrap items-center gap-2"
+        aria-label="إعدادات القراءة"
+      >
         <button
           className={control}
           aria-label="تصغير الخط"
@@ -165,10 +176,10 @@ export function PlatformReader({ id }: { id: string }) {
           aria-pressed={position.night}
           onClick={() => setPosition((p) => ({ ...p, night: !p.night }))}
         >
-          الوضع الليلي
+          وضع ليلي
         </button>
       </div>
-      <label className="mt-4 block text-sm">
+      <label className="reader-secondary-controls mt-4 block text-sm">
         الفهرس
         <select
           className={`${control} mt-2 w-full bg-transparent`}
@@ -214,6 +225,6 @@ export function PlatformReader({ id }: { id: string }) {
           الفصل التالي
         </button>
       </nav>
-    </div>
+    </section>
   );
 }

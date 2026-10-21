@@ -125,12 +125,11 @@ describe("clips stay off the Maydan line", () => {
     assert.doesNotMatch(page, /square\/|maydan-seed/);
   });
 
-  it("puts clips on the chrome like مدار — not inside SquarePage", () => {
+  it("keeps clips discoverable in services without adding a navigation tab", () => {
     const shell = readFileSync(new URL("../../components/layout/shell.tsx", import.meta.url), "utf8");
     const nav = readFileSync(new URL("../nav.ts", import.meta.url), "utf8");
-    assert.match(shell, /to="\/clips"/);
-    assert.match(shell, /to="\/madar"/);
-    assert.match(nav, /to: "\/clips"/);
+    assert.match(shell, /to="\/more"/);
+    assert.doesNotMatch(nav, /to: "\/clips"/);
     const catalog = readFileSync(new URL("../catalog.ts", import.meta.url), "utf8");
     assert.match(catalog, /id: "clips".*portal: true/);
     assert.doesNotMatch(catalog, /id: "clips"[\s\S]{0,200}featured: true/);

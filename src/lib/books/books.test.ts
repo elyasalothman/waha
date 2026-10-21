@@ -184,7 +184,7 @@ describe("books stay off the Maydan line", () => {
     assert.match(strip, /doorOpensInternalShelf/);
   });
 
-  it("opens باب مداد from the catalog onto /books — not a chrome tab, not featured on /", () => {
+  it("opens باب مداد from the catalog and simplified navigation onto /books", () => {
     const catalog = readFileSync(new URL("../catalog.ts", import.meta.url), "utf8");
     const nav = readFileSync(new URL("../nav.ts", import.meta.url), "utf8");
     const home = readFileSync(new URL("../../routes/today.tsx", import.meta.url), "utf8");
@@ -192,7 +192,7 @@ describe("books stay off the Maydan line", () => {
     assert.match(catalog, /door\.id === "midad"/);
     assert.match(catalog, /portal: true/);
     assert.doesNotMatch(catalog, /id: "books"/);
-    assert.doesNotMatch(nav, /to: "\/books"/);
+    assert.match(nav, /to: "\/books"/);
     assert.match(card, /to="\/books"/);
     assert.match(home, /HomePage/);
     assert.doesNotMatch(home, /BooksPage|lib\/books|waha:kutubi|كتبي|WebView/);

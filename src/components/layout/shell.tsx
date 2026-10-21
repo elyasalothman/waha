@@ -2,6 +2,9 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import { Link, Outlet, useRouterState } from "@tanstack/react-router";
 import {
   GalleryVertical,
+  BookOpen,
+  Gamepad2,
+  ArrowRight,
   ShoppingBag,
   Search,
   LayoutGrid,
@@ -28,6 +31,9 @@ import { Toaster } from "sonner";
 const NAV_ICON = {
   "/": Home,
   "/store": ShoppingBag,
+  "/books": BookOpen,
+  "/games": Gamepad2,
+  "/tools": LayoutGrid,
   "/ask": MessageCircle,
   "/me": UserRound,
   "/more": LayoutGrid,
@@ -139,7 +145,7 @@ export function Shell() {
               <Link
                 key={item.to}
                 aria-current={active ? "page" : undefined}
-                to={item.to === "/" ? "/today" : item.to}
+                to={item.to}
                 className={cn(
                   "flex h-11 items-center gap-3 rounded-md px-3 text-sm transition-colors duration-150",
                   active
@@ -182,18 +188,20 @@ export function Shell() {
           >
             {dark ? <Sun className="size-5" /> : <Moon className="size-5" />}
           </button>
-          <button
-            type="button"
-            onClick={() => setCmd(true)}
-            aria-label={t(lang, "search")}
-            className="flex h-11 min-w-0 flex-1 items-center gap-2 rounded-md border border-border bg-surface px-3 text-start text-sm text-muted lg:max-w-md"
-          >
-            <Search className="size-4 shrink-0" />
-            <span className="truncate">{t(lang, "search")}</span>
-            <kbd className="ms-auto hidden rounded border border-border px-1.5 font-mono text-[10px] text-subtle sm:inline">
-              ⌘K
-            </kbd>
-          </button>
+          {pathname !== "/" && (
+            <button
+              type="button"
+              onClick={() => setCmd(true)}
+              aria-label={t(lang, "search")}
+              className="flex h-11 min-w-0 flex-1 items-center gap-2 rounded-md border border-border bg-surface px-3 text-start text-sm text-muted lg:max-w-md"
+            >
+              <Search className="size-4 shrink-0" />
+              <span className="truncate">{t(lang, "search")}</span>
+              <kbd className="ms-auto hidden rounded border border-border px-1.5 font-mono text-[10px] text-subtle sm:inline">
+                ⌘K
+              </kbd>
+            </button>
+          )}
           <div className="lg:hidden">
             <LangToggle lang={lang} />
           </div>
@@ -205,42 +213,20 @@ export function Shell() {
           className="scroll-mt-16 px-4 py-6 pb-24 lg:px-8 lg:pb-10"
         >
           <OfflineBanner lang={lang} />
-          {!["/", "/today"].includes(pathname) && (
+          {pathname !== "/" && (
             <nav
-              aria-label="الأخبار والقرآن ومحسن"
-              className="mx-auto mb-5 flex max-w-3xl flex-wrap gap-2"
+              aria-label={lang === "ar" ? "التنقل" : "Navigation"}
+              className="mx-auto mb-5 flex max-w-3xl justify-between gap-3"
             >
               <Link
-                to="/madar"
-                className="inline-flex min-h-11 items-center rounded-full border border-border px-4 text-sm"
+                to="/"
+                className="inline-flex min-h-11 items-center gap-2 text-base text-primary"
               >
-                {t(lang, "madar")}
+                <ArrowRight className="size-4 rtl:rotate-0 ltr:rotate-180" aria-hidden="true" />
+                {lang === "ar" ? "العودة للرئيسية" : "Back home"}
               </Link>
-              <Link
-                to="/clips"
-                className="inline-flex min-h-11 items-center rounded-full border border-border px-4 text-sm"
-              >
-                {t(lang, "clips")}
-              </Link>
-              <Link
-                to="/news"
-                className="inline-flex min-h-11 items-center rounded-full border border-border px-4 text-sm"
-              >
-                الأخبار والبث
-              </Link>
-              <Link
-                to="/quran"
-                search={{ surah: 1, ayah: 1 }}
-                className="inline-flex min-h-11 items-center rounded-full border border-border px-4 text-sm"
-              >
-                القرآن الكريم
-              </Link>
-              <Link
-                to="/ask"
-                search={{ q: "" }}
-                className="inline-flex min-h-11 items-center rounded-full border border-border px-4 text-sm"
-              >
-                محسن
+              <Link to="/more" className="inline-flex min-h-11 items-center text-base text-primary">
+                {lang === "ar" ? "كل الخدمات" : "All services"}
               </Link>
             </nav>
           )}
@@ -271,9 +257,9 @@ export function Shell() {
             <Link
               key={item.to}
               aria-current={active ? "page" : undefined}
-              to={item.to === "/" ? "/today" : item.to}
+              to={item.to}
               className={cn(
-                "flex min-h-14 flex-col items-center justify-center gap-1 text-[11px]",
+                "flex min-h-14 flex-col items-center justify-center gap-1 text-sm",
                 active ? "text-fg" : "text-muted",
               )}
             >

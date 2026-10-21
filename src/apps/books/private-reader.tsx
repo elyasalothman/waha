@@ -1,3 +1,4 @@
+import { ReaderControls } from "./reader-controls";
 import { Link } from "@tanstack/react-router";
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { BookmarkPlus, Download, Minus, Plus } from "lucide-react";
@@ -34,7 +35,8 @@ export function PrivateReader({ bookId }: { bookId: string }) {
   const [mode, setMode] = useState<"text" | "original">("text");
   const [query, setQuery] = useState("");
   const [showMarks, setShowMarks] = useState(false);
-  const { reader, toolbar, getViewport, scrollTo } = useReaderLayout(loaded && Boolean(book));
+  const { reader, toolbar, getViewport, scrollTo, controlsVisible, toggleControls } =
+    useReaderLayout(loaded && Boolean(book));
   const article = useRef<HTMLElement>(null);
   const pendingAnchor = useRef<ReadingAnchor | null>(null);
   const latest = useRef(state);
@@ -196,7 +198,7 @@ export function PrivateReader({ bookId }: { bookId: string }) {
     );
   const colors =
     state.theme === "night"
-      ? { backgroundColor: "#1c2428", color: "#eeeae0" }
+      ? { backgroundColor: "#28231e", color: "#f5ead6" }
       : state.theme === "warm"
         ? { backgroundColor: "#f7edda", color: "#30271f" }
         : { backgroundColor: "#fffef9", color: "#242b28" };
@@ -206,7 +208,9 @@ export function PrivateReader({ bookId }: { bookId: string }) {
       style={colors}
       className="reader-layout mx-auto max-w-4xl rounded-2xl border border-current/10 p-4 sm:p-7"
       data-private-reader="local-v1"
+      data-reader-theme={state.theme}
     >
+      <ReaderControls visible={controlsVisible} onToggle={toggleControls} />
       <Link to="/books" className="inline-flex min-h-11 items-center text-sm underline">
         {L("العودة إلى المكتبة", "Back to library")}
       </Link>
@@ -276,6 +280,19 @@ export function PrivateReader({ bookId }: { bookId: string }) {
           <option value="warm">{L("دافئ", "Warm")}</option>
           <option value="night">{L("ليل", "Night")}</option>
         </select>
+        <button
+          type="button"
+          className={control}
+          aria-pressed={state.theme === "night"}
+          onClick={() =>
+            setState((current) => ({
+              ...current,
+              theme: current.theme === "night" ? "paper" : "night",
+            }))
+          }
+        >
+          {L("وضع ليلي", "Night mode")}
+        </button>
         <button type="button" className={control} onClick={bookmark}>
           <BookmarkPlus className="size-4" />
           {L("حفظ موضع", "Bookmark")}
