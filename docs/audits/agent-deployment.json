@@ -1,0 +1,39 @@
+{
+  "id": "dpl_HySgjxCo3JGPXcCT77kkdGuta4dU",
+  "name": "waha",
+  "url": "waha-f0qn783q3-elyasalothman-3228.vercel.app",
+  "type": "LAMBDAS",
+  "state": "READY",
+  "createdAt": 1792626418445,
+  "creator": {
+    "uid": "qo5AKjSh5273knDRenT8wIlu",
+    "username": "elyasalothman-3228"
+  },
+  "project": {
+    "id": "prj_h1Gk05nYTifnTA3hoSyOEPxTK9n6",
+    "name": "waha",
+    "framework": "tanstack-start"
+  },
+  "meta": {
+    "githubCommitRef": "63fbdea2e338b1f2342896469a52579d15870dc4",
+    "githubCommitSha": "63fbdea2e338b1f2342896469a52579d15870dc4",
+    "githubCommitMessage": "إضافة وكيل واحة والإعدادات المتقدمة وودجات الطقس والأخبار والبث",
+    "githubRepo": "waha",
+    "githubOrg": "elyasalothman"
+  },
+  "alias": [
+    "waha.hajdah.com",
+    "waha.alhajda.com",
+    "waha-eta.vercel.app",
+    "waha-elyasalothman-3228.vercel.app",
+    "waha-git-63fbdea2e338b1f2342896469a52-0d6b92-elyasalothman-3228.vercel.app"
+  ],
+  "target": "production",
+  "regions": [
+    "iad1"
+  ],
+  "buildingAt": 1792626419581,
+  "ready": 1792626449166,
+  "readyState": "READY",
+  "aliasError": null
+}

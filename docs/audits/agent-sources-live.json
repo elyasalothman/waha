@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-21T23:48:57.804Z",
+  "url": "https://waha.hajdah.com/",
+  "homeHeadlines": 3,
+  "news": {
+    "status": "passed",
+    "text": "آخر العناوين · راجع المصدر\n\nمحكمة أميركية تلزم ميتا بدفع 25 مليار دولار بتهمة تضليل المستهلكين ←\nسماع دوي انفجارات في إيران، ونتيناهو يتمسك بـ \"إسقاط النظام\" ←\nتصعيد عسكري في اليمن.. ونحو ربع مليون نازح جراء المواجهات ←",
+    "headlines": 3
+  },
+  "weather": {
+    "status": "unavailable",
+    "text": "تعذّر جلب الطقس الآن. افتح تطبيق الطقس وأعد المحاولة"
+  },
+  "errors": [],
+  "network": [
+    {
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+      "status": 429
+    },
+    {
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+      "status": 429
+    }
+  ],
+  "limitations": "شبكة الفحص عبر وكيلHTTPS مع استثناء شهادة في المتصفح فقط، لا محاكاة لبيانات الأخبار أو الطقس",
+  "weatherRetestedAt": "2026-10-21T23:49:28.295Z"
+}

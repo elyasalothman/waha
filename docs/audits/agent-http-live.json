@@ -1,0 +1,146 @@
+{
+  "at": "2026-10-21T23:48:14.571986+00:00",
+  "checks": [
+    {
+      "url": "https://waha.hajdah.com/",
+      "status": 200,
+      "bytes": 189482,
+      "hasAgent": true
+    },
+    {
+      "url": "https://waha.hajdah.com/settings",
+      "status": 200,
+      "bytes": 42721,
+      "hasSettings": true
+    },
+    {
+      "url": "https://waha.hajdah.com/me",
+      "status": 200,
+      "bytes": 23514
+    },
+    {
+      "url": "https://waha.hajdah.com/tools",
+      "status": 200,
+      "bytes": 39792
+    },
+    {
+      "url": "https://waha.hajdah.com/games",
+      "status": 200,
+      "bytes": 43316
+    },
+    {
+      "url": "https://waha.hajdah.com/books",
+      "status": 200,
+      "bytes": 60459
+    },
+    {
+      "url": "https://waha.hajdah.com/books/alhajda",
+      "status": 200,
+      "bytes": 29010
+    },
+    {
+      "url": "https://waha.hajdah.com/books/trading-guide",
+      "status": 200,
+      "bytes": 29832
+    },
+    {
+      "url": "https://waha.hajdah.com/news",
+      "status": 200,
+      "bytes": 24124
+    },
+    {
+      "url": "https://waha.hajdah.com/quran?surah=2&ayah=5",
+      "status": 200,
+      "bytes": 38611
+    },
+    {
+      "url": "https://waha.hajdah.com/app/calc",
+      "status": 200,
+      "bytes": 23231
+    },
+    {
+      "url": "https://waha.hajdah.com/app/weather",
+      "status": 200,
+      "bytes": 23142
+    },
+    {
+      "url": "https://waha.hajdah.com/app/browser",
+      "status": 200,
+      "bytes": 23015
+    },
+    {
+      "url": "https://waha.hajdah.com/app/notes",
+      "status": 200,
+      "bytes": 23041
+    },
+    {
+      "url": "https://waha.hajdah.com/app/tasks",
+      "status": 200,
+      "bytes": 23025
+    },
+    {
+      "url": "https://waha.hajdah.com/api/auth/get-session",
+      "status": 200,
+      "bytes": 4
+    },
+    {
+      "url": "https://waha.hajdah.com/api/news",
+      "status": 200,
+      "bytes": 55022,
+      "feedStatus": "live",
+      "headlineCount": 69,
+      "sources": [
+        {
+          "name": "BBC عربي",
+          "ok": true
+        },
+        {
+          "name": "الجزيرة",
+          "ok": true
+        },
+        {
+          "name": "الشرق",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "url": "https://waha.hajdah.com/sw.js",
+      "status": 200,
+      "bytes": 1925
+    },
+    {
+      "url": "https://waha.hajdah.com/manifest.webmanifest",
+      "status": 200,
+      "bytes": 660
+    },
+    {
+      "url": "https://waha.hajdah.com/offline.html",
+      "status": 200,
+      "bytes": 1700
+    },
+    {
+      "url": "https://waha.alhajda.com/",
+      "status": 200,
+      "bytes": 188422,
+      "hasAgent": true
+    },
+    {
+      "url": "https://waha.alhajda.com/settings",
+      "status": 200,
+      "bytes": 42722,
+      "hasSettings": true
+    },
+    {
+      "url": "https://waha.alhajda.com/news",
+      "status": 200,
+      "bytes": 24125
+    },
+    {
+      "url": "https://waha.alhajda.com/books",
+      "status": 200,
+      "bytes": 60460
+    }
+  ],
+  "passed": 24
+}

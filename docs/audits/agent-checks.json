@@ -23,5 +23,17 @@
     "Open-Meteo HTTP429 through test proxy",
     "real local agent fallback HTTP422; upstream internal inference unavailable",
     "no physical iPhone, VoiceOver, microphone or iOS archive tested"
-  ]
+  ],
+  "production": {
+    "sha": "63fbdea2e338b1f2342896469a52579d15870dc4",
+    "deployment": "dpl_HySgjxCo3JGPXcCT77kkdGuta4dU",
+    "ready": true,
+    "aliasError": null,
+    "agentChecks": 17,
+    "readerRegressionChecks": 9,
+    "httpPassed": 24,
+    "realFallbackStatus": 422,
+    "newsStatus": "live",
+    "newsSourcesConnected": 3
+  }
 }
