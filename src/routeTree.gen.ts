@@ -40,6 +40,7 @@ import { Route as ApiMarketRouteImport } from './routes/api.market'
 import { Route as ApiMohsenRouteImport } from './routes/api.mohsen'
 import { Route as AppIdRouteImport } from './routes/app.$id'
 import { Route as BooksAlhajdaRouteImport } from './routes/books_.alhajda'
+import { Route as BooksTradingGuideRouteImport } from './routes/books_.trading-guide'
 import { Route as ForumIndexRouteImport } from './routes/forum.index'
 import { Route as ForumBoardRouteImport } from './routes/forum.$board'
 import { Route as PlayGameRouteImport } from './routes/play.$game'
@@ -205,6 +206,11 @@ const BooksAlhajdaRoute = BooksAlhajdaRouteImport.update({
   path: '/books/alhajda',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BooksTradingGuideRoute = BooksTradingGuideRouteImport.update({
+  id: '/books_/trading-guide',
+  path: '/books/trading-guide',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ForumIndexRoute = ForumIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -283,6 +289,7 @@ export interface FileRoutesByFullPath {
   '/api/mohsen': typeof ApiMohsenRoute
   '/app/$id': typeof AppIdRoute
   '/books/alhajda': typeof BooksAlhajdaRoute
+  '/books/trading-guide': typeof BooksTradingGuideRoute
   '/forum/$board': typeof ForumBoardRouteWithChildren
   '/play/$game': typeof PlayGameRoute
   '/pro/$id': typeof ProIdRoute
@@ -324,6 +331,7 @@ export interface FileRoutesByTo {
   '/api/mohsen': typeof ApiMohsenRoute
   '/app/$id': typeof AppIdRoute
   '/books/alhajda': typeof BooksAlhajdaRoute
+  '/books/trading-guide': typeof BooksTradingGuideRoute
   '/play/$game': typeof PlayGameRoute
   '/pro/$id': typeof ProIdRoute
   '/forum': typeof ForumIndexRoute
@@ -366,6 +374,7 @@ export interface FileRoutesById {
   '/api/mohsen': typeof ApiMohsenRoute
   '/app/$id': typeof AppIdRoute
   '/books_/alhajda': typeof BooksAlhajdaRoute
+  '/books_/trading-guide': typeof BooksTradingGuideRoute
   '/forum/$board': typeof ForumBoardRouteWithChildren
   '/play/$game': typeof PlayGameRoute
   '/pro/$id': typeof ProIdRoute
@@ -410,6 +419,7 @@ export interface FileRouteTypes {
     | '/api/mohsen'
     | '/app/$id'
     | '/books/alhajda'
+    | '/books/trading-guide'
     | '/forum/$board'
     | '/play/$game'
     | '/pro/$id'
@@ -451,6 +461,7 @@ export interface FileRouteTypes {
     | '/api/mohsen'
     | '/app/$id'
     | '/books/alhajda'
+    | '/books/trading-guide'
     | '/play/$game'
     | '/pro/$id'
     | '/forum'
@@ -492,6 +503,7 @@ export interface FileRouteTypes {
     | '/api/mohsen'
     | '/app/$id'
     | '/books_/alhajda'
+    | '/books_/trading-guide'
     | '/forum/$board'
     | '/play/$game'
     | '/pro/$id'
@@ -535,6 +547,7 @@ export interface RootRouteChildren {
   ApiMohsenRoute: typeof ApiMohsenRoute
   AppIdRoute: typeof AppIdRoute
   BooksAlhajdaRoute: typeof BooksAlhajdaRoute
+  BooksTradingGuideRoute: typeof BooksTradingGuideRoute
   PlayGameRoute: typeof PlayGameRoute
   ProIdRoute: typeof ProIdRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
@@ -761,6 +774,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BooksAlhajdaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/books_/trading-guide': {
+      id: '/books_/trading-guide'
+      path: '/books/trading-guide'
+      fullPath: '/books/trading-guide'
+      preLoaderRoute: typeof BooksTradingGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/forum/': {
       id: '/forum/'
       path: '/'
@@ -885,6 +905,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiMohsenRoute: ApiMohsenRoute,
   AppIdRoute: AppIdRoute,
   BooksAlhajdaRoute: BooksAlhajdaRoute,
+  BooksTradingGuideRoute: BooksTradingGuideRoute,
   PlayGameRoute: PlayGameRoute,
   ProIdRoute: ProIdRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
