@@ -1,0 +1,101 @@
+{
+  "base": "http://127.0.0.1:8081",
+  "at": "2026-10-21T23:44:18.269Z",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "browser": "151.0.7922.34",
+  "checks": [
+    {
+      "name": "home mobile tabs and overflow",
+      "status": "passed",
+      "detail": {
+        "labels": [
+          "الرئيسية",
+          "الكتب",
+          "الأدوات",
+          "الألعاب",
+          "حسابي"
+        ]
+      }
+    },
+    {
+      "name": "five mobile tabs navigate",
+      "status": "passed"
+    },
+    {
+      "name": "trading guide shelf entry opens",
+      "status": "passed"
+    },
+    {
+      "name": "trading immersive tap and night persistence",
+      "status": "passed",
+      "detail": {
+        "background": "rgb(40, 35, 30)",
+        "color": "rgb(245, 234, 214)",
+        "contrast": 13.059765207039954
+      }
+    },
+    {
+      "name": "alhajda immersive tap and night persistence",
+      "status": "passed",
+      "detail": {
+        "background": "rgb(40, 35, 30)",
+        "color": "rgb(245, 234, 214)",
+        "contrast": 13.059765207039954
+      }
+    },
+    {
+      "name": "platform immersive tap and night persistence",
+      "status": "passed",
+      "detail": {
+        "background": "rgb(40, 35, 30)",
+        "color": "rgb(245, 234, 214)",
+        "contrast": 13.059765207039954
+      }
+    },
+    {
+      "name": "private book reader immersive and persisted night",
+      "status": "passed"
+    },
+    {
+      "name": "browser runtime errors",
+      "status": "passed"
+    }
+  ],
+  "failures": [
+    {
+      "name": "prominent home search and services",
+      "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(box.y < 500 && box.height >= 44)\n"
+    }
+  ],
+  "debug": [
+    {
+      "stage": "private-pre-reload",
+      "pressed": "true"
+    },
+    {
+      "stage": "private-before-reveal",
+      "pressed": "true",
+      "htmlTheme": "night",
+      "storage": {
+        "id": "qa-simple-local",
+        "anchor": {
+          "page": 1,
+          "block": "qa-0"
+        },
+        "fontSize": 24,
+        "theme": "night",
+        "bookmarks": []
+      }
+    },
+    {
+      "stage": "private-restored",
+      "pressed": "true"
+    }
+  ],
+  "errors": [],
+  "screenshots": "/tmp/waha-simple-audit",
+  "limitations": "Chromium mobile emulation; physical iOS, VoiceOver, native safe-area hardware and real PDF import not covered. Private reader uses synthetic isolated local fixture."
+}

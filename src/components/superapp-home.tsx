@@ -1,3 +1,5 @@
+import { useSettings } from "@/store/settings-store";
+import { HomeNews } from "./home-news";
 import { HomeWeather } from "./home-weather";
 import { lazy, Suspense, useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
@@ -13,6 +15,7 @@ const SquarePage = lazy(() =>
   import("./square/square-page").then((m) => ({ default: m.SquarePage })),
 );
 export function SuperAppHome() {
+  const settings = useSettings((s) => s.settings);
   const { user } = useCurrentUserState();
   const lang = useAppStore((s) => s.lang);
   const recent = useAppStore((s) => s.recent);
@@ -48,12 +51,43 @@ export function SuperAppHome() {
     .filter((s) => s != null)
     .slice(0, 4);
   return (
-    <div className="mx-auto max-w-3xl space-y-8" data-superapp="1.2.1">
+    <div className="mx-auto max-w-3xl space-y-6" data-superapp="1.2.1">
       <header>
         <p className="text-sm text-primary">واحة · عالمك بين يديك</p>
         <h1 className="font-display text-3xl">أهلًا بك في واحة</h1>
       </header>
+      {settings.agentEnabled && (
+        <button
+          onClick={() => window.dispatchEvent(new Event("waha:agent:open"))}
+          className="flex min-h-14 w-full items-center gap-3 rounded-2xl border border-primary/30 bg-surface px-5 text-start text-lg text-primary"
+        >
+          ✦ اطلب من واحة <span className="ms-auto text-xs">⌘K</span>
+        </button>
+      )}
+      <div className="grid grid-cols-2 gap-3" aria-label="الطقس والأخبار والبث">
+        {settings.weatherWidget && (
+          <Link
+            to="/app/$id"
+            params={{ id: "weather" }}
+            className="rounded-2xl border border-border bg-surface p-4"
+          >
+            <HomeWeather />
+          </Link>
+        )}
+        {settings.liveWidget && (
+          <Link
+            to="/news"
+            hash="live-bulletin"
+            className="flex min-h-20 flex-col justify-center rounded-2xl border border-border bg-surface p-4"
+          >
+            <span className="text-red-700">● مباشر</span>
+            <span>البث المباشر ←</span>
+            <span className="text-xs text-muted">موجز عناوين مسموع</span>
+          </Link>
+        )}
+      </div>
       <ServiceGrid compact />
+      {settings.newsWidget && <HomeNews />}
       <details className="rounded-2xl border border-border bg-surface p-5">
         <summary className="min-h-11 cursor-pointer content-center text-lg font-medium">
           يومك ومتابعتك
@@ -61,10 +95,8 @@ export function SuperAppHome() {
         <div className="mt-5 space-y-8">
           <div className="grid grid-cols-2 gap-3" aria-label="ودجات اليوم">
             {[
-              ["weather", "الطقس الآن"],
               ["salah", "الصلاة القادمة"],
               ["hissati", "درس اليوم"],
-              ["news", "الموجز"],
             ].map(([id, label]) => (
               <Link
                 key={id}

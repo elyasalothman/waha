@@ -1,0 +1,70 @@
+{
+  "base": "http://127.0.0.1:8081",
+  "at": "2026-10-21T23:38:07.268Z",
+  "viewport": "390x844",
+  "checks": [
+    {
+      "name": "الرئيسية والودجات و390px"
+    },
+    {
+      "name": "أمر الحساب المحلي بلا خادم"
+    },
+    {
+      "name": "بحث واحة ونتائج قابلة للفتح"
+    },
+    {
+      "name": "فتح الحاسبة فعليًا"
+    },
+    {
+      "name": "الملاحظة تتطلب تأكيدًا وتُحفظ ويمكن التراجع"
+    },
+    {
+      "name": "الوضع الليلي تأكيد وتراجع"
+    },
+    {
+      "name": "فتح القرآن بالسورة والآية"
+    },
+    {
+      "name": "فتح البث عند المشغل"
+    },
+    {
+      "name": "اختصار لوحة المفاتيح وEscape وحبس التركيز"
+    },
+    {
+      "name": "حدود API: رفض الأصل والطلب التالف"
+    },
+    {
+      "name": "عدم وجود استثناءات JavaScript"
+    }
+  ],
+  "failures": [
+    {
+      "name": "إعدادات المظهر والتخصيص والاستعادة",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n1 !== 0\n"
+    }
+  ],
+  "errors": [],
+  "network": [
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap",
+      "status": 407
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap",
+      "status": 407
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap",
+      "status": 407
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap",
+      "status": 407
+    },
+    {
+      "url": "http://127.0.0.1:8081/api/agent",
+      "status": 400
+    }
+  ],
+  "limitations": "متصفح Chromium محاكى؛ لا إثبات iPhone أو ميكروفون فعلي. لم تُحاكَ بيانات الطقس والأخبار."
+}

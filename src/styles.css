@@ -999,13 +999,29 @@ html.native-ios.native-dark {
   --color-primary-fg: #10251e;
   --color-border: #355249;
 }
-html.native-ios .native-safe-top { height: calc(3.5rem + env(safe-area-inset-top, 0px)); }
-html.native-ios #main-content { padding-bottom: calc(6rem + env(safe-area-inset-bottom, 0px)); }
-html.native-ios .native-safe-bottom { backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
-html.native-ios .native-safe-bottom a { border-radius: 16px; margin: 4px 12px; }
-html.native-ios .native-safe-bottom a[aria-current="page"] { background: var(--color-surface-2); }
-html.native-ios.native-dark body { color-scheme: dark; }
-html.native-ios.native-dark .waha-shell { background-image: none; }
+html.native-ios .native-safe-top {
+  height: calc(3.5rem + env(safe-area-inset-top, 0px));
+}
+html.native-ios #main-content {
+  padding-bottom: calc(6rem + env(safe-area-inset-bottom, 0px));
+}
+html.native-ios .native-safe-bottom {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+html.native-ios .native-safe-bottom a {
+  border-radius: 16px;
+  margin: 4px 12px;
+}
+html.native-ios .native-safe-bottom a[aria-current="page"] {
+  background: var(--color-surface-2);
+}
+html.native-ios.native-dark body {
+  color-scheme: dark;
+}
+html.native-ios.native-dark .waha-shell {
+  background-image: none;
+}
 
 /* Shared web and native appearance. */
 html.waha-dark {
@@ -1023,6 +1039,38 @@ html.waha-dark {
   --color-success: #93d5a8;
   --color-warn: #e9c77c;
 }
-html.waha-dark .waha-shell { background-image: none; }
-html.waha-dark body { color-scheme: dark; }
-.native-safe-bottom a[aria-current="page"] { background: var(--color-surface-2); color: var(--color-primary); }
+html.waha-dark .waha-shell {
+  background-image: none;
+}
+html.waha-dark body {
+  color-scheme: dark;
+}
+.native-safe-bottom a[aria-current="page"] {
+  background: var(--color-surface-2);
+  color: var(--color-primary);
+}
+html[data-reduced-motion="true"] *,
+html[data-reduced-motion="true"] *::before,
+html[data-reduced-motion="true"] *::after {
+  animation-duration: 0.01ms !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+html[data-density="compact"] [data-superapp] {
+  gap: 0.75rem;
+}
+html[data-density="compact"] [data-superapp] .rounded-2xl {
+  padding-block: 0.5rem;
+}
+html[data-background="sand"] [data-superapp] {
+  background: linear-gradient(145deg, #c49a4a18, transparent);
+}
+html[data-background="garden"] [data-superapp] {
+  background: linear-gradient(145deg, #14645520, transparent);
+}
+html[data-reading-font="sans"] [data-reader-theme] article {
+  font-family: var(--font-sans);
+}
+html:has(.reader-layout):not([data-reader-controls="visible"]) .agent-fab {
+  display: none;
+}

@@ -1,0 +1,131 @@
+{
+  "base": "http://127.0.0.1:8081",
+  "at": "2026-10-21T23:45:23.231Z",
+  "viewport": "390x844",
+  "checks": [
+    {
+      "name": "الرئيسية والودجات و390px"
+    },
+    {
+      "name": "أمر الحساب المحلي بلا خادم"
+    },
+    {
+      "name": "بحث واحة ونتائج قابلة للفتح"
+    },
+    {
+      "name": "فتح الحاسبة فعليًا"
+    },
+    {
+      "name": "الملاحظة تتطلب تأكيدًا وتُحفظ ويمكن التراجع"
+    },
+    {
+      "name": "الوضع الليلي تأكيد وتراجع"
+    },
+    {
+      "name": "فتح القرآن بالسورة والآية"
+    },
+    {
+      "name": "فتح البث عند المشغل"
+    },
+    {
+      "name": "إعدادات المظهر والتخصيص والاستعادة"
+    },
+    {
+      "name": "تغيير اللغة بالوكيل وتراجع RTL/LTR"
+    },
+    {
+      "name": "set_setting عبر مسار بديل محاكى يطلب تأكيدًا"
+    },
+    {
+      "name": "رد نموذج محاكى بأداة حذف يُرفض دون تنفيذ"
+    },
+    {
+      "name": "الاستيراد التالف يُرفض دون فقد الإعدادات"
+    },
+    {
+      "name": "تفضيل الليل للقراءة الجديدة والوكيل يحترم الغمر"
+    },
+    {
+      "name": "اختصار لوحة المفاتيح وEscape وحبس التركيز"
+    },
+    {
+      "name": "حدود API: رفض الأصل والطلب التالف"
+    },
+    {
+      "name": "عدم وجود استثناءات JavaScript"
+    }
+  ],
+  "failures": [],
+  "errors": [],
+  "network": [
+    {
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+      "status": 429
+    },
+    {
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+      "status": 429
+    },
+    {
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+      "status": 429
+    },
+    {
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+      "status": 429
+    },
+    {
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+      "status": 429
+    },
+    {
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+      "status": 429
+    },
+    {
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+      "status": 429
+    },
+    {
+      "url": "http://127.0.0.1:8081/api/agent",
+      "status": 400
+    },
+    {
+      "url": "http://127.0.0.1:8081/api/agent",
+      "status": 422
+    }
+  ],
+  "realFallback": {
+    "status": 422,
+    "body": {
+      "error": "لم أفهم الطلب. جرّب: افتح الحاسبة، كم ٢٥×٤، شغل البث"
+    }
+  },
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 429 (Too Many Requests)",
+    "Failed to load resource: the server responded with a status of 429 (Too Many Requests)",
+    "Failed to load resource: the server responded with a status of 429 (Too Many Requests)",
+    "Failed to load resource: the server responded with a status of 429 (Too Many Requests)",
+    "Failed to load resource: the server responded with a status of 429 (Too Many Requests)",
+    "Failed to load resource: the server responded with a status of 429 (Too Many Requests)",
+    "Failed to load resource: the server responded with a status of 429 (Too Many Requests)",
+    "Failed to load resource: the server responded with a status of 400 ()",
+    "Failed to load resource: the server responded with a status of 422 ()"
+  ],
+  "requestFailures": [
+    {
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+      "error": "net::ERR_ABORTED"
+    }
+  ],
+  "testProxyTLSException": true,
+  "limitations": "متصفح Chromium محاكى؛ لا إثبات iPhone أو ميكروفون فعلي. لم تُحاكَ بيانات الطقس والأخبار."
+}

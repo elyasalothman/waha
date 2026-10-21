@@ -23,6 +23,26 @@ export function usePersistent<T>(key: string, initial: T) {
     }
   }, [key, value, ready]);
 
+  useEffect(() => {
+    const external = (event: Event) => {
+      const changedKey =
+        event instanceof StorageEvent ? event.key : (event as CustomEvent<string>).detail;
+      if (changedKey !== key) return;
+      try {
+        const raw = localStorage.getItem(key);
+        if (raw) setValue(JSON.parse(raw) as T);
+      } catch {
+        /* malformed or unavailable storage keeps the current value */
+      }
+    };
+    window.addEventListener("storage", external);
+    window.addEventListener("waha:storage", external);
+    return () => {
+      window.removeEventListener("storage", external);
+      window.removeEventListener("waha:storage", external);
+    };
+  }, [key]);
+
   const update = useCallback((next: T | ((prev: T) => T)) => {
     setValue((prev) => (typeof next === "function" ? (next as (p: T) => T)(prev) : next));
   }, []);

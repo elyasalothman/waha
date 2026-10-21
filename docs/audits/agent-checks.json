@@ -1,0 +1,27 @@
+{
+  "base": "ff17d52e37c61491b2d9d0ad3e3e6430575ef82e",
+  "at": "2026-10-21T23:46:22.666Z",
+  "lint": {
+    "errors": 0,
+    "warnings": 24
+  },
+  "typecheck": "passed; 1000MiB after OOM at 512MiB",
+  "test": {
+    "scriptsPassed": 207,
+    "scriptsSkipped": 4,
+    "scriptsFailed": 0,
+    "appPassed": 367,
+    "appFailed": 0
+  },
+  "build": "passed; Vercel Nitro output",
+  "browser": {
+    "agentPassed": 17,
+    "readerRegressionPassed": 9,
+    "viewport": "390x844"
+  },
+  "limitations": [
+    "Open-Meteo HTTP429 through test proxy",
+    "real local agent fallback HTTP422; upstream internal inference unavailable",
+    "no physical iPhone, VoiceOver, microphone or iOS archive tested"
+  ]
+}

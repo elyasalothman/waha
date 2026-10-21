@@ -1,3 +1,4 @@
+import { useSettings } from "@/store/settings-store";
 import { useId } from "react";
 import { CITIES } from "@/lib/cities";
 import { t, type Lang } from "@/lib/i18n";
@@ -16,6 +17,11 @@ export function CitySelect({ compact = false }: { compact?: boolean }) {
     if (!navigator.geolocation) return;
     navigator.geolocation.getCurrentPosition(
       (pos) => {
+        try {
+          useSettings.getState().update({ location: "device" });
+        } catch {
+          /* optional */
+        }
         setCityCoords(
           pos.coords.latitude,
           pos.coords.longitude,
@@ -39,7 +45,14 @@ export function CitySelect({ compact = false }: { compact?: boolean }) {
         id={cityId}
         className="h-11 min-w-0 flex-1 rounded-md border border-border bg-surface px-3 text-sm text-fg"
         value={city.id === "geo" ? "" : city.id}
-        onChange={(e) => setCity(e.target.value)}
+        onChange={(e) => {
+          setCity(e.target.value);
+          try {
+            useSettings.getState().update({ city: e.target.value, location: "manual" });
+          } catch {
+            /* optional */
+          }
+        }}
       >
         {city.id === "geo" ? <option value="">{lang === "ar" ? city.ar : city.en}</option> : null}
         {CITIES.map((c) => (
@@ -58,7 +71,20 @@ export function CitySelect({ compact = false }: { compact?: boolean }) {
 export function LangToggle({ lang }: { lang: Lang }) {
   const toggleLang = useAppStore((s) => s.toggleLang);
   return (
-    <Button type="button" variant="ghost" size="sm" onClick={toggleLang} className="h-11 min-w-11">
+    <Button
+      type="button"
+      variant="ghost"
+      size="sm"
+      onClick={() => {
+        toggleLang();
+        try {
+          useSettings.getState().update({ language: useAppStore.getState().lang });
+        } catch {
+          /* local storage */
+        }
+      }}
+      className="h-11 min-w-11"
+    >
       {t(lang, "language")}
     </Button>
   );

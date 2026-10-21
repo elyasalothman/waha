@@ -1,3 +1,4 @@
+import { useSettings } from "@/store/settings-store";
 import { ReaderControls } from "./reader-controls";
 import { Link } from "@tanstack/react-router";
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
@@ -56,6 +57,8 @@ export function PrivateReader({ bookId }: { bookId: string }) {
           return;
         }
         const reading = safeReading(result.reading, bookId, result.book.pageCount);
+        if (!result.reading && useSettings.getState().settings.readingNight)
+          reading.theme = "night";
         setBook(result.book);
         setContent(result.content);
         setState(reading);

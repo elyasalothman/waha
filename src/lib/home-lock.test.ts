@@ -55,8 +55,14 @@ describe("serious home lock", () => {
 
   it("keeps a thin live shadow on SquarePage — not a DayShadow-only home", () => {
     const home = readFileSync(new URL("../routes/today.tsx", import.meta.url), "utf8");
-    const square = readFileSync(new URL("../components/square/square-page.tsx", import.meta.url), "utf8");
-    const shadow = readFileSync(new URL("../components/square/day-shadow.tsx", import.meta.url), "utf8");
+    const square = readFileSync(
+      new URL("../components/square/square-page.tsx", import.meta.url),
+      "utf8",
+    );
+    const shadow = readFileSync(
+      new URL("../components/square/day-shadow.tsx", import.meta.url),
+      "utf8",
+    );
     assert.match(home, /HomePage/);
     assert.doesNotMatch(home, /DayShadow/);
     assert.match(square, /DayShadow/);
@@ -70,7 +76,10 @@ describe("serious home lock", () => {
 
   it("keeps games heroines and doors off `/today` — they live on /games", () => {
     const home = readFileSync(new URL("../routes/today.tsx", import.meta.url), "utf8");
-    const square = readFileSync(new URL("../components/square/square-page.tsx", import.meta.url), "utf8");
+    const square = readFileSync(
+      new URL("../components/square/square-page.tsx", import.meta.url),
+      "utf8",
+    );
     assert.match(home, /HomePage/);
     assert.doesNotMatch(home, /\/games|GamesHub|gamesDoor|ألعاب واحة|abiar|majra|kutl|kalima/i);
     assert.doesNotMatch(square, /\/games|GamesHub|luma|kalima|abiar|majra|kutl/i);
@@ -102,12 +111,18 @@ describe("king lock — `/` after #8", () => {
     );
   });
 
-  it("keeps واحة من أجلك slices on account creation only — never `/` or settings", () => {
+  it("keeps audience onboarding separate while allowing requested settings access", () => {
     const home = readFileSync(new URL("../routes/today.tsx", import.meta.url), "utf8");
-    const square = readFileSync(new URL("../components/square/square-page.tsx", import.meta.url), "utf8");
+    const square = readFileSync(
+      new URL("../components/square/square-page.tsx", import.meta.url),
+      "utf8",
+    );
     const shell = readFileSync(new URL("../components/layout/shell.tsx", import.meta.url), "utf8");
     const onboarding = readFileSync(new URL("../routes/onboarding.tsx", import.meta.url), "utf8");
-    const switcher = readFileSync(new URL("../components/audience-switch.tsx", import.meta.url), "utf8");
+    const switcher = readFileSync(
+      new URL("../components/audience-switch.tsx", import.meta.url),
+      "utf8",
+    );
     assert.equal(homeChromeShowsAudienceSwitch(), false);
     assert.equal(slicesLiveOnSettings(), false);
     assert.equal(slicesLiveOnOnboarding(), true);
@@ -115,8 +130,9 @@ describe("king lock — `/` after #8", () => {
     assert.deepEqual([...WAHA_FOR_YOU_SLICES], ["personal", "child", "family", "work"]);
     assert.doesNotMatch(home, /AudienceSwitch|audience-switch|واحة من أجلك|أفراد|طفل|أسرة/);
     assert.doesNotMatch(square, /AudienceSwitch|audience-switch|واحة من أجلك/);
-    assert.doesNotMatch(shell, /AudienceSwitch|audience-switch|data-settings-icon|to="\/settings"/);
-    assert.doesNotMatch(shell, /Settings/);
+    assert.doesNotMatch(shell, /AudienceSwitch|audience-switch/);
+    assert.match(shell, /to="\/settings"/);
+    assert.match(shell, /SettingsEffects/);
     assert.match(onboarding, /AudienceSwitch/);
     assert.match(onboarding, /createAccount/);
     assert.match(onboarding, /wahaForYou/);
@@ -124,14 +140,20 @@ describe("king lock — `/` after #8", () => {
     assert.match(switcher, /id: "family"/);
     assert.match(switcher, /slice-\$\{slice\.id\}/);
     assert.match(switcher, /wahaForYou/);
-    assert.equal(existsSync(new URL("../routes/settings.tsx", import.meta.url)), false);
+    assert.equal(existsSync(new URL("../routes/settings.tsx", import.meta.url)), true);
   });
 
   it("keeps روح الواحة — guest reads with no account; identity only at onboarding", () => {
     const home = readFileSync(new URL("../routes/today.tsx", import.meta.url), "utf8");
-    const square = readFileSync(new URL("../components/square/square-page.tsx", import.meta.url), "utf8");
+    const square = readFileSync(
+      new URL("../components/square/square-page.tsx", import.meta.url),
+      "utf8",
+    );
     const shell = readFileSync(new URL("../components/layout/shell.tsx", import.meta.url), "utf8");
-    const profile = readFileSync(new URL("../components/square/profile-panel.tsx", import.meta.url), "utf8");
+    const profile = readFileSync(
+      new URL("../components/square/profile-panel.tsx", import.meta.url),
+      "utf8",
+    );
     const onboarding = readFileSync(new URL("../routes/onboarding.tsx", import.meta.url), "utf8");
     const logic = readFileSync(new URL("./square/logic.ts", import.meta.url), "utf8");
     assert.equal(guestReadsWithoutAccount(), true);
@@ -152,8 +174,14 @@ describe("king lock — `/` after #8", () => {
 
   it("keeps the Square crossing under Explore without slides or books", () => {
     const home = readFileSync(new URL("../routes/today.tsx", import.meta.url), "utf8");
-    const square = readFileSync(new URL("../components/square/square-page.tsx", import.meta.url), "utf8");
-    const shadow = readFileSync(new URL("../components/square/day-shadow.tsx", import.meta.url), "utf8");
+    const square = readFileSync(
+      new URL("../components/square/square-page.tsx", import.meta.url),
+      "utf8",
+    );
+    const shadow = readFileSync(
+      new URL("../components/square/day-shadow.tsx", import.meta.url),
+      "utf8",
+    );
     assert.equal(homeKeepsShadeWithField(), false);
     assert.equal(homeShowsDailySlides(), false);
     assert.equal(homeShowsBooksShelf(), false);

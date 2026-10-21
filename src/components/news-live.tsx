@@ -1,9 +1,11 @@
+import { useSettings } from "@/store/settings-store";
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ExternalLink } from "@/components/external-link";
 import { NEWS_TOPICS, type ArabicNews } from "@/lib/arabic-news";
 import { featureButton, shareCard } from "@/lib/share-card";
 export function NewsLive({ compact = false }: { compact?: boolean }) {
+  const settings = useSettings((s) => s.settings);
   const [data, setData] = useState<ArabicNews | null>(null);
   const [failed, setFailed] = useState(false);
   const [attempt, setAttempt] = useState(0);
@@ -75,9 +77,16 @@ export function NewsLive({ compact = false }: { compact?: boolean }) {
     setSpeaking(true);
     play(0);
   }
-  const items = data?.items.filter((i) => topic === "الكل" || i.topic === topic) ?? [];
+  const items =
+    data?.items.filter(
+      (i) =>
+        (topic === "الكل" || i.topic === topic) &&
+        (!settings.newsTopics.length || settings.newsTopics.some((topic) => topic === i.topic)) &&
+        (!settings.newsSources.length || settings.newsSources.includes(i.source as never)),
+    ) ?? [];
   return (
     <section
+      id="live-bulletin"
       className="rounded-2xl border border-border bg-surface p-4 sm:p-6"
       dir="rtl"
       aria-label="أخبار وبث واحة"

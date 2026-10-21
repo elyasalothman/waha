@@ -1,3 +1,4 @@
+import { useSettings } from "@/store/settings-store";
 import { ReaderControls } from "./reader-controls";
 import { Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState, type MouseEvent } from "react";
@@ -41,7 +42,12 @@ export default function AlhajdaReader() {
   useEffect(() => {
     try {
       const saved = localStorage.getItem(ALHAJDA_READING_KEY);
-      const restored = curatedReading(saved ? JSON.parse(saved) : null, book);
+      const restored = curatedReading(
+        saved
+          ? JSON.parse(saved)
+          : { theme: useSettings.getState().settings.readingNight ? "night" : "paper" },
+        book,
+      );
       setState(restored);
       pending.current = restored;
     } catch {

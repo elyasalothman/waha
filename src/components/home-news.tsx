@@ -1,39 +1,68 @@
 import { useEffect, useState } from "react";
-import { fetchHomeNews, type NewsItem } from "@/lib/news";
-import { t } from "@/lib/i18n";
-import { useAppStore } from "@/store/app-store";
-
-/** Isolated: failure or empty feed renders nothing. Never blanks «ظل اليوم». */
+import { Link } from "@tanstack/react-router";
+import { useSettings } from "@/store/settings-store";
+import type { ArabicNews } from "@/lib/arabic-news";
 export function HomeNews() {
-  const lang = useAppStore((s) => s.lang);
-  const [items, setItems] = useState<NewsItem[] | null>(null);
-
+  const s = useSettings((x) => x.settings);
+  const [data, setData] = useState<ArabicNews | null>(null),
+    [failed, setFailed] = useState(false);
   useEffect(() => {
-    let live = true;
-    fetchHomeNews()
-      .then((rows) => {
-        if (live) setItems(rows);
+    const ac = new AbortController();
+    fetch("/api/news", { signal: ac.signal })
+      .then(async (r) => {
+        if (!r.ok) throw new Error();
+        const d = await r.json();
+        if (!Array.isArray(d.items)) throw new Error();
+        setData(d);
+        setFailed(d.status === "unavailable");
       })
       .catch(() => {
-        if (live) setItems([]);
+        if (!ac.signal.aborted) setFailed(true);
       });
-    return () => {
-      live = false;
-    };
+    return () => ac.abort();
   }, []);
-
-  if (!items?.length) return null;
-
+  const items = (data?.items || [])
+    .filter(
+      (i) =>
+        (!s.newsTopics.length || s.newsTopics.some((topic) => topic === i.topic)) &&
+        (!s.newsSources.length || s.newsSources.includes(i.source as never)),
+    )
+    .slice(0, 3);
   return (
-    <section className="mt-8">
-      <h2 className="mb-3 text-sm font-medium text-muted">{t(lang, "news")}</h2>
-      <div className="grid gap-2">
-        {items.map((item) => (
-          <p key={item.id} className="rounded-xl border border-border bg-surface px-4 py-3 text-sm">
-            {item.title}
-          </p>
-        ))}
+    <section aria-label="آخر الأخبار" className="rounded-2xl border border-border bg-surface p-4">
+      <div className="flex items-center justify-between">
+        <h2 className="text-lg">آخر الأخبار</h2>
+        <Link to="/news" className="min-h-11 content-center text-primary">
+          كل الأخبار ←
+        </Link>
       </div>
+      {items.map((i) => (
+        <Link
+          to="/news"
+          key={i.id}
+          className="block min-h-11 border-t border-border py-3 text-sm leading-7"
+        >
+          {i.title}
+          <span className="block text-xs text-muted">
+            {i.source} ·{" "}
+            {new Intl.DateTimeFormat(s.language, {
+              calendar: s.calendar,
+              numberingSystem: s.digits,
+              dateStyle: "short",
+            }).format(new Date(i.publishedAt))}
+          </span>
+        </Link>
+      ))}
+      {!items.length && (
+        <p className="py-3 text-sm text-muted">
+          {failed
+            ? "تعذّر تحديث العناوين؛ افتح الأخبار لإعادة المحاولة"
+            : data
+              ? "لا توجد عناوين في أقسامك المفضلة الآن"
+              : "جارٍ تحميل العناوين…"}
+        </p>
+      )}
+      {data?.status === "cached" && <p className="text-xs text-muted">آخر عناوين محفوظة</p>}
     </section>
   );
 }

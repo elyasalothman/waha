@@ -26,6 +26,7 @@ import { Route as NewsRouteImport } from './routes/news'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as QuranRouteImport } from './routes/quran'
 import { Route as RegisterRouteImport } from './routes/register'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as StoreRouteImport } from './routes/store'
 import { Route as StudioRouteImport } from './routes/studio'
 import { Route as TeacherRouteImport } from './routes/teacher'
@@ -34,6 +35,7 @@ import { Route as ToolsRouteImport } from './routes/tools'
 import { Route as WelcomeRouteImport } from './routes/welcome'
 import { Route as WorkspaceRouteImport } from './routes/workspace'
 import { Route as WorshipRouteImport } from './routes/worship'
+import { Route as ApiAgentRouteImport } from './routes/api.agent'
 import { Route as ApiAuthStatusRouteImport } from './routes/api.auth-status'
 import { Route as ApiBooksRouteImport } from './routes/api.books'
 import { Route as ApiMarketRouteImport } from './routes/api.market'
@@ -136,6 +138,11 @@ const RegisterRoute = RegisterRouteImport.update({
   path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StoreRoute = StoreRouteImport.update({
   id: '/store',
   path: '/store',
@@ -174,6 +181,11 @@ const WorkspaceRoute = WorkspaceRouteImport.update({
 const WorshipRoute = WorshipRouteImport.update({
   id: '/worship',
   path: '/worship',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAgentRoute = ApiAgentRouteImport.update({
+  id: '/api/agent',
+  path: '/api/agent',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiAuthStatusRoute = ApiAuthStatusRouteImport.update({
@@ -275,6 +287,7 @@ export interface FileRoutesByFullPath {
   '/onboarding': typeof OnboardingRoute
   '/quran': typeof QuranRoute
   '/register': typeof RegisterRoute
+  '/settings': typeof SettingsRoute
   '/store': typeof StoreRoute
   '/studio': typeof StudioRoute
   '/teacher': typeof TeacherRoute
@@ -283,6 +296,7 @@ export interface FileRoutesByFullPath {
   '/welcome': typeof WelcomeRoute
   '/workspace': typeof WorkspaceRoute
   '/worship': typeof WorshipRoute
+  '/api/agent': typeof ApiAgentRoute
   '/api/auth-status': typeof ApiAuthStatusRoute
   '/api/books': typeof ApiBooksRoute
   '/api/market': typeof ApiMarketRoute
@@ -317,6 +331,7 @@ export interface FileRoutesByTo {
   '/onboarding': typeof OnboardingRoute
   '/quran': typeof QuranRoute
   '/register': typeof RegisterRoute
+  '/settings': typeof SettingsRoute
   '/store': typeof StoreRoute
   '/studio': typeof StudioRoute
   '/teacher': typeof TeacherRoute
@@ -325,6 +340,7 @@ export interface FileRoutesByTo {
   '/welcome': typeof WelcomeRoute
   '/workspace': typeof WorkspaceRoute
   '/worship': typeof WorshipRoute
+  '/api/agent': typeof ApiAgentRoute
   '/api/auth-status': typeof ApiAuthStatusRoute
   '/api/books': typeof ApiBooksRoute
   '/api/market': typeof ApiMarketRoute
@@ -360,6 +376,7 @@ export interface FileRoutesById {
   '/onboarding': typeof OnboardingRoute
   '/quran': typeof QuranRoute
   '/register': typeof RegisterRoute
+  '/settings': typeof SettingsRoute
   '/store': typeof StoreRoute
   '/studio': typeof StudioRoute
   '/teacher': typeof TeacherRoute
@@ -368,6 +385,7 @@ export interface FileRoutesById {
   '/welcome': typeof WelcomeRoute
   '/workspace': typeof WorkspaceRoute
   '/worship': typeof WorshipRoute
+  '/api/agent': typeof ApiAgentRoute
   '/api/auth-status': typeof ApiAuthStatusRoute
   '/api/books': typeof ApiBooksRoute
   '/api/market': typeof ApiMarketRoute
@@ -405,6 +423,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/quran'
     | '/register'
+    | '/settings'
     | '/store'
     | '/studio'
     | '/teacher'
@@ -413,6 +432,7 @@ export interface FileRouteTypes {
     | '/welcome'
     | '/workspace'
     | '/worship'
+    | '/api/agent'
     | '/api/auth-status'
     | '/api/books'
     | '/api/market'
@@ -447,6 +467,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/quran'
     | '/register'
+    | '/settings'
     | '/store'
     | '/studio'
     | '/teacher'
@@ -455,6 +476,7 @@ export interface FileRouteTypes {
     | '/welcome'
     | '/workspace'
     | '/worship'
+    | '/api/agent'
     | '/api/auth-status'
     | '/api/books'
     | '/api/market'
@@ -489,6 +511,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/quran'
     | '/register'
+    | '/settings'
     | '/store'
     | '/studio'
     | '/teacher'
@@ -497,6 +520,7 @@ export interface FileRouteTypes {
     | '/welcome'
     | '/workspace'
     | '/worship'
+    | '/api/agent'
     | '/api/auth-status'
     | '/api/books'
     | '/api/market'
@@ -533,6 +557,7 @@ export interface RootRouteChildren {
   OnboardingRoute: typeof OnboardingRoute
   QuranRoute: typeof QuranRoute
   RegisterRoute: typeof RegisterRoute
+  SettingsRoute: typeof SettingsRoute
   StoreRoute: typeof StoreRoute
   StudioRoute: typeof StudioRoute
   TeacherRoute: typeof TeacherRoute
@@ -541,6 +566,7 @@ export interface RootRouteChildren {
   WelcomeRoute: typeof WelcomeRoute
   WorkspaceRoute: typeof WorkspaceRoute
   WorshipRoute: typeof WorshipRoute
+  ApiAgentRoute: typeof ApiAgentRoute
   ApiAuthStatusRoute: typeof ApiAuthStatusRoute
   ApiBooksRoute: typeof ApiBooksRoute
   ApiMarketRoute: typeof ApiMarketRoute
@@ -676,6 +702,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/store': {
       id: '/store'
       path: '/store'
@@ -730,6 +763,13 @@ declare module '@tanstack/react-router' {
       path: '/worship'
       fullPath: '/worship'
       preLoaderRoute: typeof WorshipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/agent': {
+      id: '/api/agent'
+      path: '/api/agent'
+      fullPath: '/api/agent'
+      preLoaderRoute: typeof ApiAgentRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/auth-status': {
@@ -891,6 +931,7 @@ const rootRouteChildren: RootRouteChildren = {
   OnboardingRoute: OnboardingRoute,
   QuranRoute: QuranRoute,
   RegisterRoute: RegisterRoute,
+  SettingsRoute: SettingsRoute,
   StoreRoute: StoreRoute,
   StudioRoute: StudioRoute,
   TeacherRoute: TeacherRoute,
@@ -899,6 +940,7 @@ const rootRouteChildren: RootRouteChildren = {
   WelcomeRoute: WelcomeRoute,
   WorkspaceRoute: WorkspaceRoute,
   WorshipRoute: WorshipRoute,
+  ApiAgentRoute: ApiAgentRoute,
   ApiAuthStatusRoute: ApiAuthStatusRoute,
   ApiBooksRoute: ApiBooksRoute,
   ApiMarketRoute: ApiMarketRoute,

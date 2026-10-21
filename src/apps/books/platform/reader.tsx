@@ -1,3 +1,4 @@
+import { useSettings } from "@/store/settings-store";
 import { useReaderLayout } from "../reader-layout";
 import { ReaderControls } from "../reader-controls";
 import "../reader-layout.css";
@@ -21,7 +22,7 @@ export function PlatformReader({ id }: { id: string }) {
     const controller = new AbortController();
     setBook(undefined);
     setError("");
-    let next = { ...defaults };
+    let next = { ...defaults, night: useSettings.getState().settings.readingNight };
     try {
       const p = JSON.parse(localStorage.getItem(`waha:reading:${id}`) || "null");
       if (p && Number.isInteger(p.chapter) && Number.isInteger(p.paragraph))

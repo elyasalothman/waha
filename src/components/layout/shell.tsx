@@ -13,11 +13,14 @@ import {
   Home,
   Moon,
   Sun,
+  Settings,
 } from "lucide-react";
 import { ClipsMark, MadarMark, WahaWordmark } from "@/components/brand";
-const CommandPalette = lazy(() =>
-  import("@/components/command-palette").then((m) => ({ default: m.CommandPalette })),
+const WahaAgent = lazy(() =>
+  import("@/components/waha-agent").then((m) => ({ default: m.WahaAgent })),
 );
+import { useSettings } from "@/store/settings-store";
+import { SettingsEffects } from "@/components/settings-effects";
 import { LangToggle } from "@/components/city-select";
 import { NativeReminders } from "@/components/native-reminders";
 import { OfflineBanner } from "@/components/offline-banner";
@@ -61,37 +64,26 @@ export function Shell() {
       active = false;
     };
   }, [pathname, pushRecent]);
+  const settings = useSettings((s) => s.settings);
   const [cmd, setCmd] = useState(false);
-  const [dark, setDark] = useState(false);
+  const [systemDark, setSystemDark] = useState(false);
   useEffect(() => {
     const scheme = matchMedia("(prefers-color-scheme: dark)");
-    const apply = () => {
-      let preference = null;
-      try {
-        preference = localStorage.getItem("waha:theme");
-      } catch {
-        /* system default */
-      }
-      const next = preference ? preference === "dark" : scheme.matches;
-      setDark(next);
-      document.documentElement.classList.toggle("waha-dark", next);
-    };
+    const apply = () => setSystemDark(scheme.matches);
     apply();
     scheme.addEventListener("change", apply);
     return () => scheme.removeEventListener("change", apply);
   }, []);
+  const dark = settings.theme === "dark" || (settings.theme === "auto" && systemDark);
   const toggleTheme = () => {
-    const next = !dark;
-    setDark(next);
-    document.documentElement.classList.toggle("waha-dark", next);
     try {
-      localStorage.setItem("waha:theme", next ? "dark" : "light");
+      useSettings.getState().update({ theme: dark ? "light" : "dark" });
     } catch {
-      /* session only */
+      /* unavailable storage */
     }
   };
   useEffect(() => {
-    if (cmd) return;
+    if (cmd || !settings.agentEnabled) return;
     const openSearch = (event: KeyboardEvent) => {
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
         event.preventDefault();
@@ -100,9 +92,25 @@ export function Shell() {
     };
     window.addEventListener("keydown", openSearch);
     return () => window.removeEventListener("keydown", openSearch);
-  }, [cmd]);
+  }, [cmd, settings.agentEnabled]);
+  useEffect(() => {
+    const open = () => setCmd(true);
+    window.addEventListener("waha:agent:open", open);
+    return () => window.removeEventListener("waha:agent:open", open);
+  }, []);
+  useEffect(() => {
+    if (pathname.startsWith("/books/")) {
+      try {
+        localStorage.setItem("waha:last-book", pathname);
+      } catch {
+        /* optional */
+      }
+    }
+  }, [pathname]);
   const nav = chromeNav(audience, segment);
-  const mobileNav = mobileChromeNav(audience, segment);
+  const mobileNav = mobileChromeNav(audience, segment).filter((item) =>
+    settings.tabs.includes(item.to as never),
+  );
 
   useEffect(() => {
     hydrate();
@@ -114,6 +122,7 @@ export function Shell() {
 
   return (
     <div className="waha-shell min-h-dvh bg-bg text-fg">
+      <SettingsEffects />
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-3 focus:text-primary-fg focus:outline-2 focus:outline-offset-2"
@@ -179,6 +188,13 @@ export function Shell() {
           <Link to="/" className="inline-flex min-h-11 shrink-0 items-center lg:hidden">
             <WahaWordmark lang={lang} />
           </Link>
+          <Link
+            to="/settings"
+            aria-label="الإعدادات"
+            className="grid size-11 shrink-0 place-items-center rounded-xl border border-border"
+          >
+            <Settings className="size-5" />
+          </Link>
           <button
             type="button"
             onClick={toggleTheme}
@@ -188,15 +204,15 @@ export function Shell() {
           >
             {dark ? <Sun className="size-5" /> : <Moon className="size-5" />}
           </button>
-          {pathname !== "/" && (
+          {pathname !== "/" && settings.agentEnabled && (
             <button
               type="button"
               onClick={() => setCmd(true)}
-              aria-label={t(lang, "search")}
+              aria-label="اطلب من واحة"
               className="flex h-11 min-w-0 flex-1 items-center gap-2 rounded-md border border-border bg-surface px-3 text-start text-sm text-muted lg:max-w-md"
             >
               <Search className="size-4 shrink-0" />
-              <span className="truncate">{t(lang, "search")}</span>
+              <span className="truncate">✦ اطلب من واحة</span>
               <kbd className="ms-auto hidden rounded border border-border px-1.5 font-mono text-[10px] text-subtle sm:inline">
                 ⌘K
               </kbd>
@@ -276,8 +292,17 @@ export function Shell() {
         })}
       </nav>
 
+      {settings.agentEnabled && (
+        <button
+          aria-label="فتح وكيل واحة"
+          onClick={() => setCmd(true)}
+          className="agent-fab fixed end-4 bottom-20 z-40 grid min-h-12 min-w-12 place-items-center rounded-full bg-primary px-4 text-primary-fg shadow-lg lg:bottom-5"
+        >
+          ✦
+        </button>
+      )}
       <Suspense fallback={null}>
-        {cmd ? <CommandPalette open={cmd} onOpenChange={setCmd} lang={lang} /> : null}
+        {cmd && settings.agentEnabled ? <WahaAgent open={cmd} onOpenChange={setCmd} /> : null}
       </Suspense>
       <Toaster
         theme={dark ? "dark" : "light"}

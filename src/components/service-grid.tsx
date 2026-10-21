@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
+import { useSettings } from "@/store/settings-store";
 import { Search } from "lucide-react";
-import { findServices, HOME_SERVICE_IDS } from "@/lib/superapp";
+import { findServices } from "@/lib/superapp";
 import { appIcon } from "@/lib/icons";
 import { useAppStore } from "@/store/app-store";
 import { hideMoney, isMoneySurface } from "@/lib/child-mode";
@@ -18,6 +19,7 @@ const SHORTCUT_LABELS: Record<string, { ar: string; en: string }> = {
 };
 
 export function ServiceGrid({ compact = false }: { compact?: boolean }) {
+  const shortcuts = useSettings((s) => s.settings.shortcuts);
   const [query, setQuery] = useState("");
   const lang = useAppStore((s) => s.lang);
   const segment = useAppStore((s) => s.segment);
@@ -25,7 +27,7 @@ export function ServiceGrid({ compact = false }: { compact?: boolean }) {
   const items = findServices(query, "all").filter((s) => !hideMoney(segment) || !isMoneySurface(s));
   const shown =
     compact && !query.trim()
-      ? HOME_SERVICE_IDS.map((id) => items.find((s) => s.id === id)).filter((s) => s != null)
+      ? shortcuts.map((id) => items.find((s) => s.id === id)).filter((s) => s != null)
       : items;
   const groups =
     compact || query.trim()
