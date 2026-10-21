@@ -1,0 +1,75 @@
+/* Reuse Waha's self-hosted, licensed Arabic reading font; no external request. */
+.trading-guide-content {
+  font-family: AlhajdaNaskh, "Noto Naskh Arabic", serif;
+  text-align: start;
+  line-height: 2;
+}
+.trading-guide-content h2,
+.trading-guide-content h3,
+.trading-guide-content h4 {
+  font-family: AlhajdaKufi, "Noto Kufi Arabic", sans-serif;
+}
+.trading-guide-content {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.trading-guide-content h4 {
+  font-size: 1.05em;
+  font-weight: 700;
+  margin-block: 1.4em 0.6em;
+}
+.trading-guide-content [data-reader-anchor] {
+  display: block;
+  scroll-margin-block-start: 8rem;
+}
+.trading-guide-content p {
+  line-height: 1.95;
+}
+.trading-guide-content [dir="ltr"] {
+  text-align: left;
+  unicode-bidi: isolate;
+}
+.trading-guide-content .trading-table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  margin-block: 1.2em;
+  overscroll-behavior-inline: contain;
+}
+.trading-guide-content .trading-table-scroll:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+.trading-guide-content table {
+  width: 100%;
+  min-width: 34rem;
+  border-collapse: collapse;
+  font-size: 0.85em;
+}
+.trading-guide-content th,
+.trading-guide-content td {
+  border: 1px solid currentColor;
+  padding: 0.6em;
+  vertical-align: top;
+  text-align: start;
+}
+.trading-guide-content table p {
+  margin-block: 0.25em;
+}
+.trading-guide-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-block: 1em;
+}
+@media (max-width: 380px) {
+  .trading-guide-content table {
+    min-width: 30rem;
+  }
+}
+
+/* Do not let a wrapped toolbar obscure the text on landscape phones or zoom. */
+@media (max-height: 500px) {
+  [data-curated-book="trading-guide"] .reader-toolbar {
+    position: static;
+  }
+}
