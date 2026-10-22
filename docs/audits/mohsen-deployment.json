@@ -1,0 +1,39 @@
+{
+  "id": "dpl_G43utdFnRDTSu8hyrkiK6mgq2NAm",
+  "name": "waha",
+  "url": "waha-1vfprcei9-elyasalothman-3228.vercel.app",
+  "type": "LAMBDAS",
+  "state": "READY",
+  "createdAt": 1792627300690,
+  "creator": {
+    "uid": "qo5AKjSh5273knDRenT8wIlu",
+    "username": "elyasalothman-3228"
+  },
+  "project": {
+    "id": "prj_h1Gk05nYTifnTA3hoSyOEPxTK9n6",
+    "name": "waha",
+    "framework": "tanstack-start"
+  },
+  "meta": {
+    "githubCommitRef": "05a2c924cc33cea7adc5fd925bc1c2df3d6bc382",
+    "githubCommitSha": "05a2c924cc33cea7adc5fd925bc1c2df3d6bc382",
+    "githubCommitMessage": "إصلاح رجوع وكيل واحة إلى محسن وإضافة عشرين عبارة عامية واختبارات التعذر",
+    "githubRepo": "waha",
+    "githubOrg": "elyasalothman"
+  },
+  "alias": [
+    "waha.hajdah.com",
+    "waha.alhajda.com",
+    "waha-eta.vercel.app",
+    "waha-elyasalothman-3228.vercel.app",
+    "waha-git-05a2c924cc33cea7adc5fd925bc1-92f6a1-elyasalothman-3228.vercel.app"
+  ],
+  "target": "production",
+  "regions": [
+    "iad1"
+  ],
+  "buildingAt": 1792627301834,
+  "ready": 1792627331629,
+  "readyState": "READY",
+  "aliasError": null
+}
