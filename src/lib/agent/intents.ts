@@ -12,6 +12,32 @@ export function parseIntent(input: string): AgentCommand | null {
   if (!input.trim() || input.length > 1000) return null;
   const q = normalize(input),
     command = (tool: string, args: object = {}) => validateCommand({ tool, args });
+  const colloquial: Record<string, [string, object]> = {
+    "ابي احسب": ["open_app", { id: "calc" }],
+    "عطني الحاسبة": ["open_app", { id: "calc" }],
+    "ودي العب بلوت": ["play_game", { id: "baloot" }],
+    "خلنا نلعب بلوت": ["play_game", { id: "baloot" }],
+    "ابي اقرا قران": ["open_app", { id: "quran" }],
+    "ودني للمصحف": ["open_app", { id: "quran" }],
+    "وين كتبي": ["open_app", { id: "midad" }],
+    "ابي رف الكتب": ["open_app", { id: "midad" }],
+    "ورني ملاحظاتي": ["open_app", { id: "notes" }],
+    "وين الاعدادات": ["open_app", { id: "settings" }],
+    "خل الشاشة غامقة": ["set_theme", { theme: "dark" }],
+    "نور الشاشة": ["set_theme", { theme: "light" }],
+    "خل المظهر على الجهاز": ["set_theme", { theme: "auto" }],
+    "الخط صغير كبره": ["set_font_size", { size: "large" }],
+    "الخط كبير صغره": ["set_font_size", { size: "small" }],
+    "خلها بالعربي": ["set_language", { language: "ar" }],
+    "خلها بالانجليزي": ["set_language", { language: "en" }],
+    "وين وصلنا بالكتاب": ["continue_reading", {}],
+    "وش صاير بالدنيا": ["news", {}],
+    "سمعني الموجز": ["live", {}],
+  };
+  if (Object.hasOwn(colloquial, q)) {
+    const [tool, args] = colloquial[q];
+    return command(tool, args);
+  }
   if (/^(احسب|كم|حساب)\s/.test(q))
     return command("calculate", { expr: q.replace(/^(احسب|كم|حساب)\s+/, "").replace(/[؟?]$/, "") });
   if (/^https:\/\//.test(q)) return command("open_url", { url: input.trim() });

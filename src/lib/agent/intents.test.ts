@@ -95,3 +95,28 @@ test("معاملات الملاحظات والأسئلة دون بادئة ال�
     args: { q: "الفضاء" },
   });
 });
+
+const colloquialCases = [
+  ["ابي احسب", { tool: "open_app", args: { id: "calc" } }],
+  ["عطني الحاسبة", { tool: "open_app", args: { id: "calc" } }],
+  ["ودي ألعب بلوت", { tool: "play_game", args: { id: "baloot" } }],
+  ["خلنا نلعب بلوت", { tool: "play_game", args: { id: "baloot" } }],
+  ["أبي أقرا قرآن", { tool: "open_app", args: { id: "quran" } }],
+  ["ودني للمصحف", { tool: "open_app", args: { id: "quran" } }],
+  ["وين كتبي", { tool: "open_app", args: { id: "midad" } }],
+  ["أبي رف الكتب", { tool: "open_app", args: { id: "midad" } }],
+  ["ورني ملاحظاتي", { tool: "open_app", args: { id: "notes" } }],
+  ["وين الإعدادات", { tool: "open_app", args: { id: "settings" } }],
+  ["خل الشاشة غامقة", { tool: "set_theme", args: { theme: "dark" } }],
+  ["نور الشاشة", { tool: "set_theme", args: { theme: "light" } }],
+  ["خل المظهر على الجهاز", { tool: "set_theme", args: { theme: "auto" } }],
+  ["الخط صغير كبره", { tool: "set_font_size", args: { size: "large" } }],
+  ["الخط كبير صغره", { tool: "set_font_size", args: { size: "small" } }],
+  ["خلها بالعربي", { tool: "set_language", args: { language: "ar" } }],
+  ["خلها بالإنجليزي", { tool: "set_language", args: { language: "en" } }],
+  ["وين وصلنا بالكتاب", { tool: "continue_reading", args: {} }],
+  ["وش صاير بالدنيا", { tool: "news", args: {} }],
+  ["سمعني الموجز", { tool: "live", args: {} }],
+] as const;
+for (const [phrase, expected] of colloquialCases)
+  test(`عامية: ${phrase}`, () => assert.deepEqual(parseIntent(phrase), expected));

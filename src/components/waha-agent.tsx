@@ -82,7 +82,12 @@ export function WahaAgent({
           signal: AbortSignal.timeout(28000),
         });
         if (!r.ok) throw new Error("لم أفهم الطلب أو تعذّر الاتصال. جرّب أحد الأوامر أدناه");
-        command = validateCommand((await r.json()).command);
+        const response = await r.json();
+        if (typeof response.reply === "string") {
+          if (active.current) setResult({ text: response.reply });
+          return;
+        }
+        command = validateCommand(response.command);
       }
       if (!active.current) return;
       if (registry[command.tool].changing) {
@@ -92,7 +97,7 @@ export function WahaAgent({
     } catch {
       if (active.current)
         setResult({
-          text: "لم أفهم الطلب أو تعذّر الاتصال. جرّب: افتح الحاسبة، كم ٢٥×٤، شغل البث",
+          text: "محسن غير متاح الآن. ما زالت الأوامر المحلية تعمل؛ جرّب: افتح الحاسبة، كم ٢٥×٤، شغل البث",
         });
     } finally {
       if (active.current) setBusy(false);
