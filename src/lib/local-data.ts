@@ -9,7 +9,7 @@ export async function clearWahaLocalData() {
     });
   }
   if ("caches" in window)
-    for (const key of await caches.keys()) if (key.startsWith("waha")) await caches.delete(key);
+    for (const key of await caches.keys()) if (/^waha[:-]/.test(key)) await caches.delete(key);
   for (const storage of [localStorage, sessionStorage])
     for (const key of Object.keys(storage)) if (/^waha[:-]/.test(key)) storage.removeItem(key);
 }
