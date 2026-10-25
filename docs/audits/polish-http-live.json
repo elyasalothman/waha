@@ -270,5 +270,6 @@
   ],
   "workerHash": "a1c609f906be9e1c5c7f1d5c0b5e66acb40b00c8cb25c9263ef21f62ffc152b2",
   "workerMatchesSource": true,
-  "guestSession": null
+  "guestSession": null,
+  "sourceSHA": "f28b4c6d97b9737c73366ddeee762ea855ffd8fa"
 }

@@ -90,6 +90,14 @@ for (const width of [390, 1280])
                 e.checkVisibility() &&
                 !e.classList.contains("sr-only") &&
                 !e.closest(".sr-only") &&
+                !(
+                  e instanceof HTMLInputElement &&
+                  ["checkbox", "radio"].includes(e.type) &&
+                  [...(e.labels || [])].some((label) => {
+                    const rect = label.getBoundingClientRect();
+                    return rect.width >= 44 && rect.height >= 44;
+                  })
+                ) &&
                 e.getBoundingClientRect().width > 1,
             )
             .filter((e) => {

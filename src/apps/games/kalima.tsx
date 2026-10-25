@@ -8,19 +8,118 @@ import { useAppStore } from "@/store/app-store";
 import { cn } from "@/lib/cn";
 
 const AR = [
-  "مدرسة", "حديقة", "رسالة", "نافذة", "سيارة", "مكتبة", "طبيعة", "مدينة", "صداقة", "عائلة",
-  "حقيقة", "طريقة", "نتيجة", "سحابة", "طائرة", "خريطة", "جريدة", "بداية", "نهاية", "قائمة",
-  "ذاكرة", "عبارة", "قراءة", "كتابة", "صناعة", "زراعة", "تجارة", "مفتاح", "وسادة", "إشارة",
-  "حكاية", "رواية", "قصيدة", "مائدة", "عدالة", "معرفة", "مسألة", "جامعة", "وزارة", "حكومة",
-  "سفارة", "جزيرة", "مملكة", "خلافة", "عبادة", "سعادة", "كرامة", "شجاعة", "غسالة", "ثلاجة",
-  "عاصمة", "ولاية", "قرابة", "ضيافة", "نظافة", "طهارة", "حديقة", "مملكة", "إشارة", "مفتاح",
+  "مدرسة",
+  "حديقة",
+  "رسالة",
+  "نافذة",
+  "سيارة",
+  "مكتبة",
+  "طبيعة",
+  "مدينة",
+  "صداقة",
+  "عائلة",
+  "حقيقة",
+  "طريقة",
+  "نتيجة",
+  "سحابة",
+  "طائرة",
+  "خريطة",
+  "جريدة",
+  "بداية",
+  "نهاية",
+  "قائمة",
+  "ذاكرة",
+  "عبارة",
+  "قراءة",
+  "كتابة",
+  "صناعة",
+  "زراعة",
+  "تجارة",
+  "مفتاح",
+  "وسادة",
+  "إشارة",
+  "حكاية",
+  "رواية",
+  "قصيدة",
+  "مائدة",
+  "عدالة",
+  "معرفة",
+  "مسألة",
+  "جامعة",
+  "وزارة",
+  "حكومة",
+  "سفارة",
+  "جزيرة",
+  "مملكة",
+  "خلافة",
+  "عبادة",
+  "سعادة",
+  "كرامة",
+  "شجاعة",
+  "غسالة",
+  "ثلاجة",
+  "عاصمة",
+  "ولاية",
+  "قرابة",
+  "ضيافة",
+  "نظافة",
+  "طهارة",
+  "حديقة",
+  "مملكة",
+  "إشارة",
+  "مفتاح",
 ];
 const EN = [
-  "crane", "slate", "audio", "plant", "smile", "grape", "light", "night", "water", "earth",
-  "stone", "bread", "table", "chair", "house", "heart", "music", "dream", "cloud", "river",
-  "flame", "sugar", "lemon", "olive", "spice", "faith", "peace", "noble", "quiet", "oasis",
-  "dates", "amber", "cedar", "pearl", "coral", "maple", "wheat", "honey", "linen", "ivory",
-  "brave", "calm", "grace", "honor", "mercy", "truth", "verse", "story", "paper", "inked",
+  "crane",
+  "slate",
+  "audio",
+  "plant",
+  "smile",
+  "grape",
+  "light",
+  "night",
+  "water",
+  "earth",
+  "stone",
+  "bread",
+  "table",
+  "chair",
+  "house",
+  "heart",
+  "music",
+  "dream",
+  "cloud",
+  "river",
+  "flame",
+  "sugar",
+  "lemon",
+  "olive",
+  "spice",
+  "faith",
+  "peace",
+  "noble",
+  "quiet",
+  "oasis",
+  "dates",
+  "amber",
+  "cedar",
+  "pearl",
+  "coral",
+  "maple",
+  "wheat",
+  "honey",
+  "linen",
+  "ivory",
+  "brave",
+  "calm",
+  "grace",
+  "honor",
+  "mercy",
+  "truth",
+  "verse",
+  "story",
+  "paper",
+  "inked",
 ];
 const AR_OK = new Set(AR.filter((w) => w.length === 5));
 const EN_OK = new Set(EN.filter((w) => w.length === 5));
@@ -163,10 +262,18 @@ export function KalimaApp() {
         <Stat label={t(lang, "best")} value={best || "—"} />
       </div>
       <div className="flex gap-2">
-        <Button size="sm" variant={mode === "ar" ? "default" : "secondary"} onClick={() => deal("ar")}>
+        <Button
+          size="sm"
+          variant={mode === "ar" ? "default" : "secondary"}
+          onClick={() => deal("ar")}
+        >
           العربية
         </Button>
-        <Button size="sm" variant={mode === "en" ? "default" : "secondary"} onClick={() => deal("en")}>
+        <Button
+          size="sm"
+          variant={mode === "en" ? "default" : "secondary"}
+          onClick={() => deal("en")}
+        >
           English
         </Button>
         <Button size="sm" variant="outline" onClick={() => deal(mode)}>
@@ -174,45 +281,47 @@ export function KalimaApp() {
         </Button>
       </div>
       <div className="relative mx-auto max-w-xs">
-      <div className="grid gap-1.5">
-        {rows.map((word, r) => {
-          const tones = guesses[r] ? scoreGuess(guesses[r]!, answer) : null;
-          return (
-            <div key={r} className="grid grid-cols-5 gap-1.5">
-              {Array.from({ length: 5 }).map((_, c) => (
-                <div
-                  key={c}
-                  className={cn(
-                    "flex aspect-square items-center justify-center rounded-md border text-lg font-medium",
-                    tones
-                      ? tones[c] === "correct"
-                        ? "border-success bg-success/20 text-fg"
-                        : tones[c] === "present"
-                          ? "border-warn bg-warn/20 text-fg"
-                          : "border-border bg-surface-2 text-muted"
-                      : "border-border bg-surface",
-                    !tones && r === guesses.length && c === cur.length && "border-primary",
-                  )}
-                >
-                  {word[c] ?? ""}
-                </div>
-              ))}
-            </div>
-          );
-        })}
-      </div>
-      {done ? (
-        <RoundOverlay
-          title={won ? t(lang, "youWin") : t(lang, "gameOver")}
-          detail={answer}
-          actionLabel={t(lang, "newGame")}
-          onAction={() => deal(mode)}
-        />
-      ) : null}
+        <div className="grid gap-1.5">
+          {rows.map((word, r) => {
+            const tones = guesses[r] ? scoreGuess(guesses[r]!, answer) : null;
+            return (
+              <div key={r} className="grid grid-cols-5 gap-1.5">
+                {Array.from({ length: 5 }).map((_, c) => (
+                  <div
+                    key={c}
+                    className={cn(
+                      "flex aspect-square items-center justify-center rounded-md border text-lg font-medium",
+                      tones
+                        ? tones[c] === "correct"
+                          ? "border-success bg-success/20 text-fg"
+                          : tones[c] === "present"
+                            ? "border-warn bg-warn/20 text-fg"
+                            : "border-border bg-surface-2 text-muted"
+                        : "border-border bg-surface",
+                      !tones && r === guesses.length && c === cur.length && "border-primary",
+                    )}
+                  >
+                    {word[c] ?? ""}
+                  </div>
+                ))}
+              </div>
+            );
+          })}
+        </div>
+        {done ? (
+          <RoundOverlay
+            title={won ? t(lang, "youWin") : t(lang, "gameOver")}
+            detail={answer}
+            actionLabel={t(lang, "newGame")}
+            onAction={() => deal(mode)}
+          />
+        ) : null}
       </div>
       {msg ? <p className="text-center text-sm text-muted">{msg}</p> : null}
       {!done ? (
-        <p className="text-center text-xs text-subtle">{L("أدخل للكلمة — ⌫ للمسح", "Enter to submit — ⌫ to erase")}</p>
+        <p className="text-center text-xs text-subtle">
+          {L("أدخل للكلمة — ⌫ للمسح", "Enter to submit — ⌫ to erase")}
+        </p>
       ) : null}
       <div className="flex flex-wrap justify-center gap-1">
         {alphabet.map((ch) => {
@@ -223,7 +332,7 @@ export function KalimaApp() {
               type="button"
               onClick={() => key(ch)}
               className={cn(
-                "h-11 min-w-8 rounded-md border px-2 text-sm",
+                "h-11 min-w-11 rounded-md border px-2 text-sm",
                 tone === "correct"
                   ? "border-success bg-success/20"
                   : tone === "present"

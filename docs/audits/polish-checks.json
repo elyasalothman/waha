@@ -53,5 +53,26 @@
   "finalSwFlows": {
     "pass": 7,
     "includes": "offline letters, calculator, local agent and saved device book"
+  },
+  "touchRoutes": {
+    "pass": 84,
+    "pageerrors": 0,
+    "unexpectedSmallTargets": 0,
+    "exceptions": [
+      "dense game boards on390px"
+    ]
+  },
+  "deliveryBuild": {
+    "exit": 0,
+    "workerVersion": 7
+  },
+  "latestRootLighthouse": {
+    "performance": 95,
+    "accessibility": 100,
+    "best-practices": 96,
+    "seo": 100,
+    "lcp": 2162.009,
+    "cls": 0.0098255,
+    "note": "Single isolated local sample; earlier samples retained."
   }
 }

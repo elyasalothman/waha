@@ -1,0 +1,1792 @@
+{
+  "at": "2026-10-25T20:18:24.910Z",
+  "sourceSHA": "f28b4c6d97b9737c73366ddeee762ea855ffd8fa",
+  "method": "HEAD, redirects followed; 403/406/429 or TLS/timeout do not prove a removed page.",
+  "rows": [
+    {
+      "url": "https://waha.hajdah.com/worship",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/sites",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/tools",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/games",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/me",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/settings",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/salah",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/weather",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/news",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/books",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/quran",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/store",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/calc",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/play/dallah",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/hissati",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/onboarding",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/books/trading-guide",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/more",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/studio",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/books/library/midad-elevator-key",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/books/library/midad-map-in-my-head",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/books/library/midad-office-that-stays-on",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/books/library/midad-after-dinner",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/books/library/midad-robot-does-not-know-heat",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/books/library/midad-gum-riyal",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/books/library/midad-homework-in-the-family-group",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/books/library/midad-ask-the-machine-then-someone",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/books/library/midad-machine-on-riyadh-shift",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/books/library/midad-money-the-screen-cannot-see",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/books/library/midad-learning-after-we-thought-we-were-done",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/books/library/midad-salary-is-not-your-self",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/books/alhajda",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://nawawiyya.sunnaonline.org/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://islamhouse.com/read/ar/%D8%A7%D9%84%D8%A3%D8%B0%D9%83%D8%A7%D8%B1-%D8%A7%D9%84%D9%86%D9%88%D9%88%D9%8A%D8%A9-2431",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/compare",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/vat",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://islamhouse.com/ar/books/5271",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/app/tafqeet",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://islamhouse.com/ar/books/231837/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/app/bmi",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/camera",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/search",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/browser",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/shield",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://islamhouse.com/ar/books/255804/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/app/video",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/madar",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://islamhouse.com/ar/books/255802",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/clips",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/password",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/units",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://islamhouse.com/ar/books/469536/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/app/qr",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/dates",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/wheel",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/samar",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/hayat",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/luma",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/kalima",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/abiar",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/majra",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/memory",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/kutl",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/merge2048",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/tetris",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/snake",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/connect4",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/sudoku",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/baloot",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/xo",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/breakout",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/mines",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/trivia",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/type",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/reaction",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/register?mode=signup",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/today",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/welcome",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/register?mode=signin",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/money",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/pro/pdf",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/budget",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/zakat",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/salary",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/gold",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/savings",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/installment",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/eidiya",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/split",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/iban",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/fuel",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://dns.alhajda.com/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/app/currency",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/faraid",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://tools.alhajda.com/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://tools.alhajda.com/calc",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://asharq.com/politics/200791/%D8%A7%D8%AD%D8%AA%D8%AC%D8%A7%D8%AC%D8%A7%D8%AA-%D8%AC%D8%AF%D9%8A%D8%AF%D8%A9-%D9%81%D9%8A-%D8%A3%D9%84%D8%A8%D8%A7%D9%86%D9%8A%D8%A7-%D8%B1%D8%BA%D9%85-%D9%81%D8%B1%D8%B6-%D8%BA%D8%B1%D8%A7%D9%85%D8%A7%D8%AA-%D9%84%D9%84%D8%AD%D8%AF-%D9%85%D9%86-%D8%A3%D8%B9%D9%85%D8%A7%D9%84-%D8%A7%D9%84%D8%B9%D9%86%D9%81/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A7%D8%AD%D8%AA%D8%AC%D8%A7%D8%AC%D8%A7%D8%AA+%D8%AC%D8%AF%D9%8A%D8%AF%D8%A9+%D9%81%D9%8A+%D8%A3%D9%84%D8%A8%D8%A7%D9%86%D9%8A%D8%A7+%D8%B1%D8%BA%D9%85+%D9%81%D8%B1%D8%B6+%D8%BA%D8%B1%D8%A7%D9%85%D8%A7%D8%AA+%D9%84%D9%84%D8%AD%D8%AF+%D9%85%D9%86+%D8%A3%D8%B9%D9%85%D8%A7%D9%84+%D8%A7%D9%84%D8%B9%D9%86%D9%81+https%3A%2F%2Fasharq.com%2Fpolitics%2F200791%2F%25D8%25A7%25D8%25AD%25D8%25AA%25D8%25AC%25D8%25A7%25D8%25AC%25D8%25A7%25D8%25AA-%25D8%25AC%25D8%25AF%25D9%258A%25D8%25AF%25D8%25A9-%25D9%2581%25D9%258A-%25D8%25A3%25D9%2584%25D8%25A8%25D8%25A7%25D9%2586%25D9%258A%25D8%25A7-%25D8%25B1%25D8%25BA%25D9%2585-%25D9%2581%25D8%25B1%25D8%25B6-%25D8%25BA%25D8%25B1%25D8%25A7%25D9%2585%25D8%25A7%25D8%25AA-%25D9%2584%25D9%2584%25D8%25AD%25D8%25AF-%25D9%2585%25D9%2586-%25D8%25A3%25D8%25B9%25D9%2585%25D8%25A7%25D9%2584-%25D8%25A7%25D9%2584%25D8%25B9%25D9%2586%25D9%2581%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/play/hayat-world",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://asharq.com/politics/200793/%D8%AD%D8%A7%D8%AF%D8%AB-%D8%B3%D9%8A%D8%B1-%D9%8A%D8%A4%D8%AC%D9%84-%D8%AA%D8%AC%D9%85%D8%B9%D8%A7%D8%AA-%D8%A7%D9%86%D8%AA%D8%AE%D8%A7%D8%A8%D9%8A%D8%A9-%D9%84%D9%85%D8%B1%D8%B4%D8%AD%D8%A9-%D8%AF%D9%8A%D9%85%D9%82%D8%B1%D8%A7%D8%B7%D9%8A%D8%A9-%D9%81%D9%8A-%D8%A3%D9%84%D8%A7%D8%B3%D9%83%D8%A7/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84+%D8%AA%D8%B4%D8%AF%D8%AF+%D9%82%D8%A8%D8%B6%D8%AA%D9%87%D8%A7+%D8%B9%D9%84%D9%89+%D8%A7%D9%84%D8%B6%D9%81%D8%A9+%D8%A7%D9%84%D8%BA%D8%B1%D8%A8%D9%8A%D8%A9..+%D8%A5%D8%BA%D9%84%D8%A7%D9%82%D8%A7%D8%AA+%D9%88%D9%87%D8%AF%D9%85+%D9%88%D8%AA%D9%87%D8%AC%D9%8A%D8%B1+https%3A%2F%2Fasharq.com%2Fpolitics%2F200724%2F%25D8%25A5%25D8%25B3%25D8%25B1%25D8%25A7%25D8%25A6%25D9%258A%25D9%2584-%25D8%25AA%25D8%25B4%25D8%25AF%25D8%25AF-%25D9%2582%25D8%25A8%25D8%25B6%25D8%25AA%25D9%2587%25D8%25A7-%25D8%25B9%25D9%2584%25D9%2589-%25D8%25A7%25D9%2584%25D8%25B6%25D9%2581%25D8%25A9-%25D8%25A7%25D9%2584%25D8%25BA%25D8%25B1%25D8%25A8%25D9%258A%25D8%25A9-%25D8%25A5%25D8%25BA%25D9%2584%25D8%25A7%25D9%2582%25D8%25A7%25D8%25AA-%25D9%2588%25D9%2587%25D8%25AF%25D9%2585-%25D9%2588%25D8%25AA%25D9%2587%25D8%25AC%25D9%258A%25D8%25B1%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%AD%D8%A7%D8%AF%D8%AB+%D8%B3%D9%8A%D8%B1+%D9%8A%D8%A4%D8%AC%D9%84+%D8%AA%D8%AC%D9%85%D8%B9%D8%A7%D8%AA+%D8%A7%D9%86%D8%AA%D8%AE%D8%A7%D8%A8%D9%8A%D8%A9+%D9%84%D9%85%D8%B1%D8%B4%D8%AD%D8%A9+%D8%AF%D9%8A%D9%85%D9%82%D8%B1%D8%A7%D8%B7%D9%8A%D8%A9+%D9%81%D9%8A+%D8%A3%D9%84%D8%A7%D8%B3%D9%83%D8%A7+https%3A%2F%2Fasharq.com%2Fpolitics%2F200793%2F%25D8%25AD%25D8%25A7%25D8%25AF%25D8%25AB-%25D8%25B3%25D9%258A%25D8%25B1-%25D9%258A%25D8%25A4%25D8%25AC%25D9%2584-%25D8%25AA%25D8%25AC%25D9%2585%25D8%25B9%25D8%25A7%25D8%25AA-%25D8%25A7%25D9%2586%25D8%25AA%25D8%25AE%25D8%25A7%25D8%25A8%25D9%258A%25D8%25A9-%25D9%2584%25D9%2585%25D8%25B1%25D8%25B4%25D8%25AD%25D8%25A9-%25D8%25AF%25D9%258A%25D9%2585%25D9%2582%25D8%25B1%25D8%25A7%25D8%25B7%25D9%258A%25D8%25A9-%25D9%2581%25D9%258A-%25D8%25A3%25D9%2584%25D8%25A7%25D8%25B3%25D9%2583%25D8%25A7%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%22%D8%A8%D9%84%D9%88%D9%85%D8%A8%D8%B1%D8%BA%22%3A+%D9%88%D8%A7%D8%B4%D9%86%D8%B7%D9%86+%D8%AA%D8%AE%D8%B7%D8%B7+%D9%84%D9%85%D9%81%D8%A7%D9%88%D8%B6%D8%A7%D8%AA+%D8%AB%D9%84%D8%A7%D8%AB%D9%8A%D8%A9+%D9%84%D8%A5%D9%86%D9%87%D8%A7%D8%A1+%D8%AD%D8%B1%D8%A8+%D8%A3%D9%88%D9%83%D8%B1%D8%A7%D9%86%D9%8A%D8%A7+https%3A%2F%2Fasharq.com%2Fpolitics%2F200792%2F%25D8%25A8%25D9%2584%25D9%2588%25D9%2585%25D8%25A8%25D8%25B1%25D8%25BA-%25D9%2588%25D8%25A7%25D8%25B4%25D9%2586%25D8%25B7%25D9%2586-%25D8%25AA%25D8%25AE%25D8%25B7%25D8%25B7-%25D9%2584%25D9%2585%25D9%2581%25D8%25A7%25D9%2588%25D8%25B6%25D8%25A7%25D8%25AA-%25D8%25AB%25D9%2584%25D8%25A7%25D8%25AB%25D9%258A%25D8%25A9-%25D9%2584%25D8%25A5%25D9%2586%25D9%2587%25D8%25A7%25D8%25A1-%25D8%25AD%25D8%25B1%25D8%25A8-%25D8%25A3%25D9%2588%25D9%2583%25D8%25B1%25D8%25A7%25D9%2586%25D9%258A%25D8%25A7%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A7%D9%84%D8%B9%D9%85%D9%84%D9%8A%D8%A9+%D8%A7%D9%84%D8%B9%D8%B3%D9%83%D8%B1%D9%8A%D8%A9+%D9%81%D9%8A+%D8%A7%D9%84%D9%8A%D9%85%D9%86..+%D9%85%D8%A7%D8%B0%D8%A7+%D8%AD%D9%82%D9%82%D8%AA+%D8%AD%D8%AA%D9%89+%D8%A7%D9%84%D8%A2%D9%86%D8%9F+https%3A%2F%2Fasharq.com%2Fpolitics%2F200759%2F%25D8%25A7%25D9%2584%25D8%25B9%25D9%2585%25D9%2584%25D9%258A%25D8%25A9-%25D8%25A7%25D9%2584%25D8%25B9%25D8%25B3%25D9%2583%25D8%25B1%25D9%258A%25D8%25A9-%25D9%2581%25D9%258A-%25D8%25A7%25D9%2584%25D9%258A%25D9%2585%25D9%2586-%25D9%2585%25D8%25A7%25D8%25B0%25D8%25A7-%25D8%25AD%25D9%2582%25D9%2582%25D8%25AA-%25D8%25AD%25D8%25AA%25D9%2589-%25D8%25A7%25D9%2584%25D8%25A2%25D9%2586%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://asharq.com/politics/200792/%D8%A8%D9%84%D9%88%D9%85%D8%A8%D8%B1%D8%BA-%D9%88%D8%A7%D8%B4%D9%86%D8%B7%D9%86-%D8%AA%D8%AE%D8%B7%D8%B7-%D9%84%D9%85%D9%81%D8%A7%D9%88%D8%B6%D8%A7%D8%AA-%D8%AB%D9%84%D8%A7%D8%AB%D9%8A%D8%A9-%D9%84%D8%A5%D9%86%D9%87%D8%A7%D8%A1-%D8%AD%D8%B1%D8%A8-%D8%A3%D9%88%D9%83%D8%B1%D8%A7%D9%86%D9%8A%D8%A7/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://asharq.com/politics/200786/%D8%A3%D9%88%D9%83%D8%B1%D8%A7%D9%86%D9%8A%D8%A7-%D8%AA%D9%86%D9%81%D9%8A-%D8%A7%D8%AA%D9%87%D8%A7%D9%85%D8%A7%D8%AA-%D9%85%D8%A7%D8%B3%D9%83-%D8%A8%D8%A7%D9%86%D8%AA%D9%87%D8%A7%D9%83-%D8%B4%D8%B1%D9%88%D8%B7-%D8%A7%D8%B3%D8%AA%D8%AE%D8%AF%D8%A7%D9%85-%D8%B3%D8%AA%D8%A7%D8%B1%D9%84%D9%8A%D9%86%D9%83/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://www.bbc.com/arabic/articles/ckwyq1l4enp9o?at_medium=RSS&at_campaign=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+Tegoprubart..+%D8%AF%D9%88%D8%A7%D8%A1+%D8%AA%D8%AC%D8%B1%D9%8A%D8%A8%D9%8A+%D8%AC%D8%AF%D9%8A%D8%AF+%D9%8A%D9%88%D9%81%D8%B1+%D8%AD%D9%85%D8%A7%D9%8A%D8%A9+%D8%A3%D9%81%D8%B6%D9%84+%D9%84%D9%88%D8%B8%D8%A7%D8%A6%D9%81+%D8%A7%D9%84%D9%83%D9%84%D9%89+%D8%A7%D9%84%D9%85%D8%B2%D8%B1%D9%88%D8%B9%D8%A9+https%3A%2F%2Fasharq.com%2Fhealth%2F200684%2Ftegoprubart%25D8%25AF%25D9%2588%25D8%25A7%25D8%25A1-%25D8%25AA%25D8%25AC%25D8%25B1%25D9%258A%25D8%25A8%25D9%258A-%25D9%258A%25D9%2588%25D9%2581%25D8%25B1-%25D8%25AD%25D9%2585%25D8%25A7%25D9%258A%25D8%25A9-%25D8%25A3%25D9%2581%25D8%25B6%25D9%2584-%25D9%2584%25D9%2588%25D8%25B8%25D8%25A7%25D8%25A6%25D9%2581-%25D8%25A7%25D9%2584%25D9%2583%25D9%2584%25D9%2589-%25D8%25A7%25D9%2584%25D9%2585%25D8%25B2%25D8%25B1%25D9%2588%25D8%25B9%25D8%25A9%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A3%D9%88%D9%83%D8%B1%D8%A7%D9%86%D9%8A%D8%A7+%D8%AA%D9%86%D9%81%D9%8A+%D8%A7%D8%AA%D9%87%D8%A7%D9%85%D8%A7%D8%AA+%D9%85%D8%A7%D8%B3%D9%83+%D8%A8%D8%A7%D9%86%D8%AA%D9%87%D8%A7%D9%83+%D8%B4%D8%B1%D9%88%D8%B7+%D8%A7%D8%B3%D8%AA%D8%AE%D8%AF%D8%A7%D9%85+%22%D8%B3%D8%AA%D8%A7%D8%B1%D9%84%D9%8A%D9%86%D9%83%22+%D9%81%D9%8A+%D9%87%D8%AC%D9%88%D9%85+%D8%A8%D9%85%D8%B3%D9%8A%D9%91%D8%B1%D8%A7%D8%AA+https%3A%2F%2Fasharq.com%2Fpolitics%2F200786%2F%25D8%25A3%25D9%2588%25D9%2583%25D8%25B1%25D8%25A7%25D9%2586%25D9%258A%25D8%25A7-%25D8%25AA%25D9%2586%25D9%2581%25D9%258A-%25D8%25A7%25D8%25AA%25D9%2587%25D8%25A7%25D9%2585%25D8%25A7%25D8%25AA-%25D9%2585%25D8%25A7%25D8%25B3%25D9%2583-%25D8%25A8%25D8%25A7%25D9%2586%25D8%25AA%25D9%2587%25D8%25A7%25D9%2583-%25D8%25B4%25D8%25B1%25D9%2588%25D8%25B7-%25D8%25A7%25D8%25B3%25D8%25AA%25D8%25AE%25D8%25AF%25D8%25A7%25D9%2585-%25D8%25B3%25D8%25AA%25D8%25A7%25D8%25B1%25D9%2584%25D9%258A%25D9%2586%25D9%2583%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://asharq.com/politics/200724/%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84-%D8%AA%D8%B4%D8%AF%D8%AF-%D9%82%D8%A8%D8%B6%D8%AA%D9%87%D8%A7-%D8%B9%D9%84%D9%89-%D8%A7%D9%84%D8%B6%D9%81%D8%A9-%D8%A7%D9%84%D8%BA%D8%B1%D8%A8%D9%8A%D8%A9-%D8%A5%D8%BA%D9%84%D8%A7%D9%82%D8%A7%D8%AA-%D9%88%D9%87%D8%AF%D9%85-%D9%88%D8%AA%D9%87%D8%AC%D9%8A%D8%B1/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D9%85%D8%AC%D9%84%D8%B3+%D8%A7%D9%84%D8%A3%D9%85%D8%A9+%D8%A7%D9%84%D8%AC%D8%B2%D8%A7%D8%A6%D8%B1%D9%8A+%D9%8A%D9%88%D8%A7%D9%81%D9%82+%D8%A8%D8%A7%D9%84%D8%A5%D8%AC%D9%85%D8%A7%D8%B9+%D8%B9%D9%84%D9%89+%D8%A5%D8%B1%D8%B3%D8%A7%D9%84+%D9%82%D9%88%D8%A7%D8%AA+%D8%A5%D9%84%D9%89+%D8%A7%D9%84%D9%86%D9%8A%D8%AC%D8%B1+https%3A%2F%2Fwww.bbc.com%2Farabic%2Farticles%2Fckwyq1l4enp9o%3Fat_medium%3DRSS%26at_campaign%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://asharq.com/politics/200759/%D8%A7%D9%84%D8%B9%D9%85%D9%84%D9%8A%D8%A9-%D8%A7%D9%84%D8%B9%D8%B3%D9%83%D8%B1%D9%8A%D8%A9-%D9%81%D9%8A-%D8%A7%D9%84%D9%8A%D9%85%D9%86-%D9%85%D8%A7%D8%B0%D8%A7-%D8%AD%D9%82%D9%82%D8%AA-%D8%AD%D8%AA%D9%89-%D8%A7%D9%84%D8%A2%D9%86/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A7%D9%84%D9%83%D8%B1%D9%85%D9%84%D9%8A%D9%86%3A+%D8%B1%D9%88%D8%B3%D9%8A%D8%A7+%D9%85%D8%B3%D8%AA%D8%B9%D8%AF%D8%A9+%D9%84%D8%A7%D8%B3%D8%AA%D8%A6%D9%86%D8%A7%D9%81+%D9%85%D9%81%D8%A7%D9%88%D8%B6%D8%A7%D8%AA+%D8%A3%D9%88%D9%83%D8%B1%D8%A7%D9%86%D9%8A%D8%A7+%D8%A8%D8%B9%D8%AF+4+%D9%86%D9%88%D9%81%D9%85%D8%A8%D8%B1+https%3A%2F%2Fasharq.com%2Fpolitics%2F200751%2F%25D8%25A7%25D9%2584%25D9%2583%25D8%25B1%25D9%2585%25D9%2584%25D9%258A%25D9%2586-%25D8%25B1%25D9%2588%25D8%25B3%25D9%258A%25D8%25A7-%25D9%2585%25D8%25B3%25D8%25AA%25D8%25B9%25D8%25AF%25D8%25A9-%25D9%2584%25D8%25A7%25D8%25B3%25D8%25AA%25D8%25A6%25D9%2586%25D8%25A7%25D9%2581-%25D9%2585%25D9%2581%25D8%25A7%25D9%2588%25D8%25B6%25D8%25A7%25D8%25AA-%25D8%25A3%25D9%2588%25D9%2583%25D8%25B1%25D8%25A7%25D9%2586%25D9%258A%25D8%25A7-%25D8%25A8%25D8%25B9%25D8%25AF-4-%25D9%2586%25D9%2588%25D9%2581%25D9%2585%25D8%25A8%25D8%25B1%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.bbc.com/arabic/articles/crq8n4zx8l4zo?at_medium=RSS&at_campaign=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://asharq.com/politics/200790/%D8%AA%D8%B1%D9%85%D8%A8-%D9%85%D8%AC%D9%85%D9%88%D8%B9%D8%AA%D8%A7%D9%86-%D9%85%D8%AE%D8%AA%D9%84%D9%81%D8%AA%D8%A7%D9%86-%D9%85%D9%86-%D8%A7%D9%84%D8%AA%D9%82%D8%A7%D8%B1%D9%8A%D8%B1-%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D8%AE%D8%A8%D8%A7%D8%B1%D8%A7%D8%AA%D9%8A%D8%A9-%D8%A8%D8%B4%D8%A3%D9%86-%D8%A5%D9%8A%D8%B1%D8%A7%D9%86/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%22%D8%A3%D9%86%D8%B5%D8%A7%D8%B1+%D8%A7%D9%84%D9%84%D9%87%22+%D8%AA%D8%B9%D9%84%D9%86+%D8%A7%D8%B3%D8%AA%D9%87%D8%AF%D8%A7%D9%81+%D9%85%D8%B7%D8%A7%D8%B1+%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6+%D9%88%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9+%D8%AA%D8%A4%D9%83%D8%AF+%D8%A7%D8%B9%D8%AA%D8%B1%D8%A7%D8%B6+%D8%B5%D9%88%D8%A7%D8%B1%D9%8A%D8%AE+%D8%A8%D8%A7%D9%84%D8%B3%D8%AA%D9%8A%D8%A9+https%3A%2F%2Fwww.bbc.com%2Farabic%2Farticles%2Fcrq8n4zx8l4zo%3Fat_medium%3DRSS%26at_campaign%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%AA%D8%B1%D9%85%D8%A8+%D9%8A%D9%83%D8%B4%D9%81+%D8%B9%D9%86+%22%D9%85%D8%AC%D9%85%D9%88%D8%B9%D8%AA%D9%8A%D9%86+%D9%85%D8%AE%D8%AA%D9%84%D9%81%D8%AA%D9%8A%D9%86%22+%D9%85%D9%86+%D8%A7%D9%84%D8%AA%D9%82%D8%A7%D8%B1%D9%8A%D8%B1+%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D8%AE%D8%A8%D8%A7%D8%B1%D8%A7%D8%AA%D9%8A%D8%A9+%D8%A8%D8%B4%D8%A3%D9%86+%D8%A5%D9%8A%D8%B1%D8%A7%D9%86+https%3A%2F%2Fasharq.com%2Fpolitics%2F200790%2F%25D8%25AA%25D8%25B1%25D9%2585%25D8%25A8-%25D9%2585%25D8%25AC%25D9%2585%25D9%2588%25D8%25B9%25D8%25AA%25D8%25A7%25D9%2586-%25D9%2585%25D8%25AE%25D8%25AA%25D9%2584%25D9%2581%25D8%25AA%25D8%25A7%25D9%2586-%25D9%2585%25D9%2586-%25D8%25A7%25D9%2584%25D8%25AA%25D9%2582%25D8%25A7%25D8%25B1%25D9%258A%25D8%25B1-%25D8%25A7%25D9%2584%25D8%25A7%25D8%25B3%25D8%25AA%25D8%25AE%25D8%25A8%25D8%25A7%25D8%25B1%25D8%25A7%25D8%25AA%25D9%258A%25D8%25A9-%25D8%25A8%25D8%25B4%25D8%25A3%25D9%2586-%25D8%25A5%25D9%258A%25D8%25B1%25D8%25A7%25D9%2586%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A3%D9%85%D9%8A%D8%B1%D9%83%D8%A7+%D9%88%D8%A5%D9%8A%D8%B1%D8%A7%D9%86..+%D8%A8%D9%85%D8%A7%D8%B0%D8%A7+%D9%8A%D9%81%D9%83%D8%B1+%D8%AA%D8%B1%D9%85%D8%A8%D8%9F+https%3A%2F%2Fasharq.com%2Fpolitics%2F200762%2F%25D8%25A3%25D9%2585%25D9%258A%25D8%25B1%25D9%2583%25D8%25A7-%25D9%2588%25D8%25A5%25D9%258A%25D8%25B1%25D8%25A7%25D9%2586-%25D8%25A8%25D9%2585%25D8%25A7%25D8%25B0%25D8%25A7-%25D9%258A%25D9%2581%25D9%2583%25D8%25B1-%25D8%25AA%25D8%25B1%25D9%2585%25D8%25A8%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+753+%D8%B9%D9%85%D9%84%D9%8A%D8%A9..+%D8%A7%D9%84%D8%AC%D9%8A%D8%B4+%D8%A7%D9%84%D9%8A%D9%85%D9%86%D9%8A+%D9%8A%D8%B9%D9%84%D9%86+%D8%B6%D8%B1%D8%A8+%D9%85%D8%B1%D8%A7%D9%83%D8%B2+%D9%82%D9%8A%D8%A7%D8%AF%D8%A9+%D9%88%D8%AA%D8%AD%D8%B5%D9%8A%D9%86%D8%A7%D8%AA+%D9%84%D9%84%D8%AD%D9%88%D8%AB%D9%8A%D9%8A%D9%86+https%3A%2F%2Fasharq.com%2Fpolitics%2F200789%2F%25D8%25A7%25D9%2584%25D9%2582%25D9%2588%25D8%25A7%25D8%25AA-%25D8%25A7%25D9%2584%25D9%2585%25D8%25B3%25D9%2584%25D8%25AD%25D8%25A9-%25D8%25AA%25D8%25B6%25D8%25B1%25D8%25A8-%25D8%25AA%25D8%25AD%25D8%25B5%25D9%258A%25D9%2586%25D8%25A7%25D8%25AA-%25D8%25A7%25D9%2584%25D8%25AD%25D9%2588%25D8%25AB%25D9%258A%25D9%258A%25D9%2586-%25D9%2588%25D8%25AA%25D8%25AC%25D9%2585%25D8%25B9%25D8%25A7%25D8%25AA%25D9%2587%25D9%2585-%25D9%2581%25D9%258A-753-%25D8%25B9%25D9%2585%25D9%2584%25D9%258A%25D8%25A9%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://asharq.com/politics/200751/%D8%A7%D9%84%D9%83%D8%B1%D9%85%D9%84%D9%8A%D9%86-%D8%B1%D9%88%D8%B3%D9%8A%D8%A7-%D9%85%D8%B3%D8%AA%D8%B9%D8%AF%D8%A9-%D9%84%D8%A7%D8%B3%D8%AA%D8%A6%D9%86%D8%A7%D9%81-%D9%85%D9%81%D8%A7%D9%88%D8%B6%D8%A7%D8%AA-%D8%A3%D9%88%D9%83%D8%B1%D8%A7%D9%86%D9%8A%D8%A7-%D8%A8%D8%B9%D8%AF-4-%D9%86%D9%88%D9%81%D9%85%D8%A8%D8%B1/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://asharq.com/politics/200789/%D8%A7%D9%84%D9%82%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D9%85%D8%B3%D9%84%D8%AD%D8%A9-%D8%AA%D8%B6%D8%B1%D8%A8-%D8%AA%D8%AD%D8%B5%D9%8A%D9%86%D8%A7%D8%AA-%D8%A7%D9%84%D8%AD%D9%88%D8%AB%D9%8A%D9%8A%D9%86-%D9%88%D8%AA%D8%AC%D9%85%D8%B9%D8%A7%D8%AA%D9%87%D9%85-%D9%81%D9%8A-753-%D8%B9%D9%85%D9%84%D9%8A%D8%A9/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://asharq.com/health/200684/tegoprubart%D8%AF%D9%88%D8%A7%D8%A1-%D8%AA%D8%AC%D8%B1%D9%8A%D8%A8%D9%8A-%D9%8A%D9%88%D9%81%D8%B1-%D8%AD%D9%85%D8%A7%D9%8A%D8%A9-%D8%A3%D9%81%D8%B6%D9%84-%D9%84%D9%88%D8%B8%D8%A7%D8%A6%D9%81-%D8%A7%D9%84%D9%83%D9%84%D9%89-%D8%A7%D9%84%D9%85%D8%B2%D8%B1%D9%88%D8%B9%D8%A9/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://asharq.com/politics/200771/%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84-%D8%AA%D9%82%D8%AA%D9%84-7-%D9%81%D9%84%D8%B3%D8%B7%D9%8A%D9%86%D9%8A%D9%8A%D9%86-%D9%81%D9%8A-%D9%87%D8%AC%D9%85%D8%A7%D8%AA-%D8%AC%D8%AF%D9%8A%D8%AF%D8%A9-%D8%B9%D9%84%D9%89-%D9%82%D8%B7%D8%A7%D8%B9-%D8%BA%D8%B2%D8%A9/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://asharq.com/politics/200773/%D9%84%D9%8A%D8%A8%D9%8A%D8%A7-%D8%AA%D8%B3%D8%AA%D8%AF%D8%B9%D9%8A-%D8%A7%D9%84%D9%82%D8%A7%D8%A6%D9%85-%D8%A8%D8%A7%D9%84%D8%A3%D8%B9%D9%85%D8%A7%D9%84-%D8%A7%D9%84%D8%A3%D9%85%D9%8A%D8%B1%D9%83%D9%8A-%D8%A8%D8%B9%D8%AF-%D8%AA%D8%B5%D8%B1%D9%8A%D8%AD%D8%A7%D8%AA-%D8%AA%D8%B1%D9%85%D8%A8/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D9%84%D9%8A%D8%A8%D9%8A%D8%A7+%D8%AA%D8%B3%D8%AA%D8%AF%D8%B9%D9%8A+%D8%A7%D9%84%D9%82%D8%A7%D8%A6%D9%85+%D8%A8%D8%A7%D9%84%D8%A3%D8%B9%D9%85%D8%A7%D9%84+%D8%A7%D9%84%D8%A3%D9%85%D9%8A%D8%B1%D9%83%D9%8A+%D8%A7%D8%AD%D8%AA%D8%AC%D8%A7%D8%AC%D8%A7%D9%8B+%D8%B9%D9%84%D9%89+%D8%AA%D8%B5%D8%B1%D9%8A%D8%AD%D8%A7%D8%AA+%22%D9%85%D8%B3%D9%8A%D8%A6%D8%A9%22+%D9%85%D9%86+%D8%AA%D8%B1%D9%85%D8%A8+https%3A%2F%2Fasharq.com%2Fpolitics%2F200773%2F%25D9%2584%25D9%258A%25D8%25A8%25D9%258A%25D8%25A7-%25D8%25AA%25D8%25B3%25D8%25AA%25D8%25AF%25D8%25B9%25D9%258A-%25D8%25A7%25D9%2584%25D9%2582%25D8%25A7%25D8%25A6%25D9%2585-%25D8%25A8%25D8%25A7%25D9%2584%25D8%25A3%25D8%25B9%25D9%2585%25D8%25A7%25D9%2584-%25D8%25A7%25D9%2584%25D8%25A3%25D9%2585%25D9%258A%25D8%25B1%25D9%2583%25D9%258A-%25D8%25A8%25D8%25B9%25D8%25AF-%25D8%25AA%25D8%25B5%25D8%25B1%25D9%258A%25D8%25AD%25D8%25A7%25D8%25AA-%25D8%25AA%25D8%25B1%25D9%2585%25D8%25A8%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%B2%D8%B9%D9%8A%D9%85%D8%A9+%D8%A7%D9%84%D9%85%D8%B9%D8%A7%D8%B1%D8%B6%D8%A9+%D8%A7%D9%84%D9%81%D9%86%D8%B2%D9%88%D9%8A%D9%84%D9%8A%D8%A9+%D8%AA%D8%B9%D9%88%D8%AF+%D8%A5%D9%84%D9%89+%D8%A7%D9%84%D8%A8%D9%84%D8%A7%D8%AF+%D8%A8%D8%B9%D8%AF+%D9%86%D8%AD%D9%88+%D8%B9%D8%A7%D9%85+%D9%81%D9%8A+%D8%A7%D9%84%D8%AE%D8%A7%D8%B1%D8%AC+https%3A%2F%2Fasharq.com%2Fpolitics%2F200782%2F%25D8%25B2%25D8%25B9%25D9%258A%25D9%2585%25D8%25A9-%25D8%25A7%25D9%2584%25D9%2585%25D8%25B9%25D8%25A7%25D8%25B1%25D8%25B6%25D8%25A9-%25D8%25A7%25D9%2584%25D9%2581%25D9%2586%25D8%25B2%25D9%2588%25D9%258A%25D9%2584%25D9%258A%25D8%25A9-%25D8%25AA%25D8%25B9%25D9%2588%25D8%25AF-%25D9%2584%25D8%25A8%25D9%2584%25D8%25AF%25D9%2587%25D8%25A7-%25D8%25A8%25D8%25B9%25D8%25AF-%25D9%2586%25D8%25AD%25D9%2588-%25D8%25B9%25D8%25A7%25D9%2585-%25D9%2581%25D9%258A-%25D8%25A7%25D9%2584%25D8%25AE%25D8%25A7%25D8%25B1%25D8%25AC%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.bbc.com/arabic/articles/cw3djmn2exylo?at_medium=RSS&at_campaign=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84+%D8%AA%D9%82%D8%AA%D9%84+7+%D9%81%D9%84%D8%B3%D8%B7%D9%8A%D9%86%D9%8A%D9%8A%D9%86+%D9%81%D9%8A+%D9%87%D8%AC%D9%85%D8%A7%D8%AA+%D8%AC%D8%AF%D9%8A%D8%AF%D8%A9+%D8%B9%D9%84%D9%89+%D9%82%D8%B7%D8%A7%D8%B9+%D8%BA%D8%B2%D8%A9+https%3A%2F%2Fasharq.com%2Fpolitics%2F200771%2F%25D8%25A5%25D8%25B3%25D8%25B1%25D8%25A7%25D8%25A6%25D9%258A%25D9%2584-%25D8%25AA%25D9%2582%25D8%25AA%25D9%2584-7-%25D9%2581%25D9%2584%25D8%25B3%25D8%25B7%25D9%258A%25D9%2586%25D9%258A%25D9%258A%25D9%2586-%25D9%2581%25D9%258A-%25D9%2587%25D8%25AC%25D9%2585%25D8%25A7%25D8%25AA-%25D8%25AC%25D8%25AF%25D9%258A%25D8%25AF%25D8%25A9-%25D8%25B9%25D9%2584%25D9%2589-%25D9%2582%25D8%25B7%25D8%25A7%25D8%25B9-%25D8%25BA%25D8%25B2%25D8%25A9%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://asharq.com/politics/200783/%D9%82%D8%A7%D8%A6%D8%AF-%D8%A7%D9%84%D9%82%D9%8A%D8%A7%D8%AF%D8%A9-%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2%D9%8A%D8%A9-%D8%A7%D9%84%D8%A3%D9%85%D9%8A%D8%B1%D9%83%D9%8A%D8%A9-%D9%8A%D8%B2%D9%88%D8%B1-%D9%87%D8%B1%D9%85%D8%B2/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D9%82%D8%A7%D8%A6%D8%AF+%22%D8%B3%D9%86%D8%AA%D9%83%D9%88%D9%85%22+%D9%8A%D8%B2%D9%88%D8%B1+%D9%85%D8%B6%D9%8A%D9%82+%D9%87%D8%B1%D9%85%D8%B2%3A+%D8%B3%D8%A7%D8%B9%D8%AF%D9%86%D8%A7+%D9%81%D9%8A+%D8%AA%D8%B5%D8%AF%D9%8A%D8%B1+1.5+%D9%85%D9%84%D9%8A%D8%A7%D8%B1+%D8%A8%D8%B1%D9%85%D9%8A%D9%84+%D9%85%D9%86+%D8%A7%D9%84%D9%86%D9%81%D8%B7+https%3A%2F%2Fasharq.com%2Fpolitics%2F200783%2F%25D9%2582%25D8%25A7%25D8%25A6%25D8%25AF-%25D8%25A7%25D9%2584%25D9%2582%25D9%258A%25D8%25A7%25D8%25AF%25D8%25A9-%25D8%25A7%25D9%2584%25D9%2585%25D8%25B1%25D9%2583%25D8%25B2%25D9%258A%25D8%25A9-%25D8%25A7%25D9%2584%25D8%25A3%25D9%2585%25D9%258A%25D8%25B1%25D9%2583%25D9%258A%25D8%25A9-%25D9%258A%25D8%25B2%25D9%2588%25D8%25B1-%25D9%2587%25D8%25B1%25D9%2585%25D8%25B2%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84+%D8%AA%D8%B9%D9%84%D9%86+%D8%A5%D8%BA%D9%84%D8%A7%D9%82+%D9%85%D8%B9%D8%A7%D8%A8%D8%B1+%D8%A7%D9%84%D8%B6%D9%81%D8%A9+%D8%A7%D9%84%D8%BA%D8%B1%D8%A8%D9%8A%D8%A9+%D8%AE%D9%84%D8%A7%D9%84+%D8%A7%D9%84%D8%A7%D9%86%D8%AA%D8%AE%D8%A7%D8%A8%D8%A7%D8%AA+https%3A%2F%2Fwww.bbc.com%2Farabic%2Farticles%2Fcw3djmn2exylo%3Fat_medium%3DRSS%26at_campaign%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.aljazeera.net/ebusiness/2026/10/25/%d8%a7%d9%84%d8%a7%d8%b3%d8%aa%d8%ab%d9%85%d8%a7%d8%b1-%d9%81%d9%8a-%d8%a7%d9%84%d9%81%d8%b6%d8%a7%d8%a1-%d9%85%d9%86-%d8%a7%d8%b3%d8%aa%d9%83%d8%b4%d8%a7%d9%81-%d8%a7%d9%84%d9%86%d8%ac%d9%88%d9%85?traffic_source=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://asharq.com/politics/200762/%D8%A3%D9%85%D9%8A%D8%B1%D9%83%D8%A7-%D9%88%D8%A5%D9%8A%D8%B1%D8%A7%D9%86-%D8%A8%D9%85%D8%A7%D8%B0%D8%A7-%D9%8A%D9%81%D9%83%D8%B1-%D8%AA%D8%B1%D9%85%D8%A8/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D8%AB%D9%85%D8%A7%D8%B1+%D9%81%D9%8A+%D8%A7%D9%84%D9%81%D8%B6%D8%A7%D8%A1..+%D9%85%D9%86+%D8%A7%D8%B3%D8%AA%D9%83%D8%B4%D8%A7%D9%81+%D8%A7%D9%84%D9%86%D8%AC%D9%88%D9%85+%D8%A5%D9%84%D9%89+%D8%A8%D9%86%D9%8A%D8%A9+%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF%D9%8A%D8%A9+%D8%A8%D9%80680+%D9%85%D9%84%D9%8A%D8%A7%D8%B1+%D8%AF%D9%88%D9%84%D8%A7%D8%B1+https%3A%2F%2Fwww.aljazeera.net%2Febusiness%2F2026%2F10%2F25%2F%25d8%25a7%25d9%2584%25d8%25a7%25d8%25b3%25d8%25aa%25d8%25ab%25d9%2585%25d8%25a7%25d8%25b1-%25d9%2581%25d9%258a-%25d8%25a7%25d9%2584%25d9%2581%25d8%25b6%25d8%25a7%25d8%25a1-%25d9%2585%25d9%2586-%25d8%25a7%25d8%25b3%25d8%25aa%25d9%2583%25d8%25b4%25d8%25a7%25d9%2581-%25d8%25a7%25d9%2584%25d9%2586%25d8%25ac%25d9%2588%25d9%2585%3Ftraffic_source%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://asharq.com/politics/200782/%D8%B2%D8%B9%D9%8A%D9%85%D8%A9-%D8%A7%D9%84%D9%85%D8%B9%D8%A7%D8%B1%D8%B6%D8%A9-%D8%A7%D9%84%D9%81%D9%86%D8%B2%D9%88%D9%8A%D9%84%D9%8A%D8%A9-%D8%AA%D8%B9%D9%88%D8%AF-%D9%84%D8%A8%D9%84%D8%AF%D9%87%D8%A7-%D8%A8%D8%B9%D8%AF-%D9%86%D8%AD%D9%88-%D8%B9%D8%A7%D9%85-%D9%81%D9%8A-%D8%A7%D9%84%D8%AE%D8%A7%D8%B1%D8%AC/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://asharq.com/politics/200774/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6-%D9%88%D8%A3%D8%AB%D9%8A%D9%86%D8%A7-%D8%AA%D8%B9%D8%B2%D8%B2%D8%A7%D9%86-%D8%A7%D9%84%D8%AA%D8%B9%D8%A7%D9%88%D9%86-%D8%A7%D9%84%D8%AF%D9%81%D8%A7%D8%B9%D9%8A-%D9%88%D8%AA%D8%A8%D8%AD%D8%AB%D8%A7%D9%86-%D9%85%D9%84%D9%81%D8%A7%D8%AA-%D8%A7%D9%84%D9%85%D9%86%D8%B7%D9%82%D8%A9/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%B9%D8%A7%D8%AC%D9%84+%7C+%D8%AA%D8%B1%D9%85%D8%A8+%D9%85%D9%86+%D9%85%D9%8A%D8%B4%D9%8A%D8%BA%D8%A7%D9%86%3A+%D9%84%D9%86+%D9%86%D8%B3%D9%85%D8%AD+%D8%A8%D9%88%D8%B5%D9%88%D9%84+%D8%B9%D8%A8%D8%AF%D9%88%D9%84+%D8%A7%D9%84%D8%B3%D9%8A%D8%AF+%D8%A5%D9%84%D9%89+%D9%85%D8%AC%D9%84%D8%B3+%D8%A7%D9%84%D8%B4%D9%8A%D9%88%D8%AE+https%3A%2F%2Fwww.aljazeera.net%2Fnews%2F2026%2F10%2F25%2F%25d8%25b9%25d8%25a7%25d8%25ac%25d9%2584-%25d8%25aa%25d8%25b1%25d9%2585%25d8%25a8-%25d9%2585%25d9%2586-%25d9%2585%25d9%258a%25d8%25b4%25d9%258a%25d8%25ba%25d8%25a7%25d9%2586-%25d9%2584%25d9%2586-%25d9%2586%25d8%25b3%25d9%2585%25d8%25ad-%25d8%25a8%25d9%2588%25d8%25b5%25d9%2588%25d9%2584%3Ftraffic_source%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.aljazeera.net/ebusiness/2026/10/25/%d8%a7%d9%84%d8%af%d8%a8%d9%8a%d8%a8%d8%a9-%d8%a3%d8%b5%d9%88%d9%84-%d9%84%d9%8a%d8%a8%d9%8a%d8%a7-%d8%a7%d9%84%d9%85%d8%a7%d9%84%d9%8a%d8%a9-%d9%81%d9%8a-%d8%a7%d9%84%d8%ae%d8%a7%d8%b1%d8%ac?traffic_source=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A7%D9%84%D8%AF%D8%A8%D9%8A%D8%A8%D8%A9%3A+%D8%A3%D8%B5%D9%88%D9%84+%D9%84%D9%8A%D8%A8%D9%8A%D8%A7+%D8%A7%D9%84%D9%85%D8%A7%D9%84%D9%8A%D8%A9+%D9%81%D9%8A+%D8%A7%D9%84%D8%AE%D8%A7%D8%B1%D8%AC+%D8%AA%D8%A8%D9%84%D8%BA+150+%D9%85%D9%84%D9%8A%D8%A7%D8%B1+%D8%AF%D9%88%D9%84%D8%A7%D8%B1+https%3A%2F%2Fwww.aljazeera.net%2Febusiness%2F2026%2F10%2F25%2F%25d8%25a7%25d9%2584%25d8%25af%25d8%25a8%25d9%258a%25d8%25a8%25d8%25a9-%25d8%25a3%25d8%25b5%25d9%2588%25d9%2584-%25d9%2584%25d9%258a%25d8%25a8%25d9%258a%25d8%25a7-%25d8%25a7%25d9%2584%25d9%2585%25d8%25a7%25d9%2584%25d9%258a%25d8%25a9-%25d9%2581%25d9%258a-%25d8%25a7%25d9%2584%25d8%25ae%25d8%25a7%25d8%25b1%25d8%25ac%3Ftraffic_source%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.aljazeera.net/news/2026/10/25/%d8%b9%d8%a7%d8%ac%d9%84-%d8%aa%d8%b1%d9%85%d8%a8-%d9%85%d9%86-%d9%85%d9%8a%d8%b4%d9%8a%d8%ba%d8%a7%d9%86-%d9%84%d9%86-%d9%86%d8%b3%d9%85%d8%ad-%d8%a8%d9%88%d8%b5%d9%88%d9%84?traffic_source=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9+%D9%88%D8%A7%D9%84%D9%8A%D9%88%D9%86%D8%A7%D9%86+%D8%AA%D8%B9%D8%B2%D8%B2%D8%A7%D9%86+%D8%A7%D9%84%D8%AA%D8%B9%D8%A7%D9%88%D9%86+%D8%A7%D9%84%D8%AF%D9%81%D8%A7%D8%B9%D9%8A..+%D9%88%D8%AA%D8%A4%D9%83%D8%AF%D8%A7%D9%86+%D8%A3%D9%87%D9%85%D9%8A%D8%A9+%D8%AD%D9%85%D8%A7%D9%8A%D8%A9+%D8%A7%D9%84%D9%85%D9%85%D8%B1%D8%A7%D8%AA+%D8%A7%D9%84%D8%A8%D8%AD%D8%B1%D9%8A%D8%A9+https%3A%2F%2Fasharq.com%2Fpolitics%2F200774%2F%25D8%25A7%25D9%2584%25D8%25B1%25D9%258A%25D8%25A7%25D8%25B6-%25D9%2588%25D8%25A3%25D8%25AB%25D9%258A%25D9%2586%25D8%25A7-%25D8%25AA%25D8%25B9%25D8%25B2%25D8%25B2%25D8%25A7%25D9%2586-%25D8%25A7%25D9%2584%25D8%25AA%25D8%25B9%25D8%25A7%25D9%2588%25D9%2586-%25D8%25A7%25D9%2584%25D8%25AF%25D9%2581%25D8%25A7%25D8%25B9%25D9%258A-%25D9%2588%25D8%25AA%25D8%25A8%25D8%25AD%25D8%25AB%25D8%25A7%25D9%2586-%25D9%2585%25D9%2584%25D9%2581%25D8%25A7%25D8%25AA-%25D8%25A7%25D9%2584%25D9%2585%25D9%2586%25D8%25B7%25D9%2582%25D8%25A9%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A7%D9%84%D8%A7%D8%AA%D8%AD%D8%A7%D8%AF+%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A+%D9%8A%D8%B5%D8%AF%D8%B1+%D8%A8%D9%8A%D8%A7%D9%86%D8%A7+%D8%B1%D8%B3%D9%85%D9%8A%D8%A7+%D8%A8%D8%B9%D8%AF+%D8%AA%D8%A3%D8%AC%D9%8A%D9%84+%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9+%D8%A7%D9%84%D9%86%D8%B5%D8%B1+%D9%88%D8%A7%D9%84%D9%88%D8%B5%D9%84+https%3A%2F%2Fwww.aljazeera.net%2Fsport%2F2026%2F10%2F25%2F%25d8%25a7%25d9%2584%25d8%25a7%25d8%25aa%25d8%25ad%25d8%25a7%25d8%25af-%25d8%25a7%25d9%2584%25d8%25b3%25d8%25b9%25d9%2588%25d8%25af%25d9%258a-%25d8%25ac%25d8%25a7%25d9%2587%25d8%25b2%25d9%258a%25d8%25a9-%25d8%25a7%25d8%25b3%25d8%25aa%25d9%2582%25d8%25a8%25d8%25a7%25d9%2584-%25d8%25a7%25d9%2584%25d9%2588%25d8%25b5%25d9%2584%3Ftraffic_source%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.aljazeera.net/sport/2026/10/25/%d8%a7%d9%84%d8%a7%d8%aa%d8%ad%d8%a7%d8%af-%d8%a7%d9%84%d8%b3%d8%b9%d9%88%d8%af%d9%8a-%d8%ac%d8%a7%d9%87%d8%b2%d9%8a%d8%a9-%d8%a7%d8%b3%d8%aa%d9%82%d8%a8%d8%a7%d9%84-%d8%a7%d9%84%d9%88%d8%b5%d9%84?traffic_source=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%AA%D8%B1%D9%85%D8%A8%3A+%D8%A5%D9%85%D8%A7+%D8%A3%D9%86+%D9%86%D8%A8%D8%B1%D9%85+%D8%A7%D8%AA%D9%81%D8%A7%D9%82%D8%A7%D9%8B+%D9%85%D8%B9+%D8%A5%D9%8A%D8%B1%D8%A7%D9%86+%D8%A3%D9%88+%D9%86%D9%82%D8%B6%D9%8A+%D8%B9%D9%84%D9%8A%D9%87%D8%A7+%D9%86%D9%87%D8%A7%D8%A6%D9%8A%D8%A7%D9%8B+https%3A%2F%2Fasharq.com%2Fpolitics%2F200777%2F%25D8%25AA%25D8%25B1%25D9%2585%25D8%25A8-%25D8%25A5%25D9%2585%25D8%25A7-%25D8%25A3%25D9%2586-%25D9%2586%25D8%25A8%25D8%25B1%25D9%2585-%25D8%25A7%25D8%25AA%25D9%2581%25D8%25A7%25D9%2582%25D8%25A7-%25D9%2585%25D8%25B9-%25D8%25A5%25D9%258A%25D8%25B1%25D8%25A7%25D9%2586-%25D8%25A3%25D9%2588-%25D9%2586%25D9%2582%25D8%25B6%25D9%258A-%25D8%25B9%25D9%2584%25D9%258A%25D9%2587%25D8%25A7-%25D9%2586%25D9%2587%25D8%25A7%25D8%25A6%25D9%258A%25D8%25A7%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.aljazeera.net/video/behindthenews/2026/10/25/%d9%85%d8%a7-%d9%88%d8%b1%d8%a7%d8%a1-%d8%a7%d9%84%d8%ae%d8%a8%d8%b1-%d9%8a%d9%86%d8%a7%d9%82%d8%b4-%d8%aa%d8%b5%d9%88%d9%8a%d8%aa-%d8%a8%d8%b1%d9%84%d9%85%d8%a7%d9%86?traffic_source=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D9%85%D9%81%D8%A7%D8%AC%D8%A3%D8%A9+%D9%85%D9%86+%D9%8A%D9%88%D8%AA%D9%8A%D9%88%D8%A8..+%D8%B9%D8%B1%D8%B6+%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88%D9%87%D8%A7%D8%AA+%D8%A8%D8%AC%D9%88%D8%AF%D8%A9+%D8%A3%D8%B9%D9%84%D9%89+%D9%88%D8%A7%D8%B3%D8%AA%D9%87%D9%84%D8%A7%D9%83+%D8%A3%D9%82%D9%84+%D9%84%D9%84%D8%A5%D9%86%D8%AA%D8%B1%D9%86%D8%AA+https%3A%2F%2Fasharq.com%2Ftechnology%2F200769%2F%25D9%2585%25D9%2581%25D8%25A7%25D8%25AC%25D8%25A3%25D8%25A9-%25D9%258A%25D9%2588%25D8%25AA%25D9%258A%25D9%2588%25D8%25A8-%25D8%25B9%25D8%25B1%25D8%25B6-%25D8%25A7%25D9%2584%25D9%2581%25D9%258A%25D8%25AF%25D9%258A%25D9%2588%25D9%2587%25D8%25A7%25D8%25AA-%25D8%25A8%25D8%25AC%25D9%2588%25D8%25AF%25D8%25A9-%25D8%25A3%25D8%25B9%25D9%2584%25D9%2589-%25D8%25A7%25D8%25B3%25D8%25AA%25D9%2587%25D9%2584%25D8%25A7%25D9%2583-%25D8%25A3%25D9%2582%25D9%2584-%25D9%2584%25D9%2584%25D8%25A5%25D9%2586%25D8%25AA%25D8%25B1%25D9%2586%25D8%25AA%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://asharq.com/technology/200769/%D9%85%D9%81%D8%A7%D8%AC%D8%A3%D8%A9-%D9%8A%D9%88%D8%AA%D9%8A%D9%88%D8%A8-%D8%B9%D8%B1%D8%B6-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88%D9%87%D8%A7%D8%AA-%D8%A8%D8%AC%D9%88%D8%AF%D8%A9-%D8%A3%D8%B9%D9%84%D9%89-%D8%A7%D8%B3%D8%AA%D9%87%D9%84%D8%A7%D9%83-%D8%A3%D9%82%D9%84-%D9%84%D9%84%D8%A5%D9%86%D8%AA%D8%B1%D9%86%D8%AA/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%22%D9%85%D8%A7+%D9%88%D8%B1%D8%A7%D8%A1+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1%22+%D9%8A%D9%86%D8%A7%D9%82%D8%B4+%D8%AA%D8%B5%D9%88%D9%8A%D8%AA+%D8%A8%D8%B1%D9%84%D9%85%D8%A7%D9%86+%D8%A7%D9%84%D8%AC%D8%B2%D8%A7%D8%A6%D8%B1+%D8%B9%D9%84%D9%89+%D8%A5%D8%B1%D8%B3%D8%A7%D9%84+%D9%82%D9%88%D8%A7%D8%AA+%D8%A5%D9%84%D9%89+%D8%A7%D9%84%D9%86%D9%8A%D8%AC%D8%B1+https%3A%2F%2Fwww.aljazeera.net%2Fvideo%2Fbehindthenews%2F2026%2F10%2F25%2F%25d9%2585%25d8%25a7-%25d9%2588%25d8%25b1%25d8%25a7%25d8%25a1-%25d8%25a7%25d9%2584%25d8%25ae%25d8%25a8%25d8%25b1-%25d9%258a%25d9%2586%25d8%25a7%25d9%2582%25d8%25b4-%25d8%25aa%25d8%25b5%25d9%2588%25d9%258a%25d8%25aa-%25d8%25a8%25d8%25b1%25d9%2584%25d9%2585%25d8%25a7%25d9%2586%3Ftraffic_source%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D9%84%D8%A3%D9%88%D9%84+%D9%85%D8%B1%D8%A9+%D9%85%D9%86%D8%B0+%D8%A3%D9%83%D8%AA%D9%88%D8%A8%D8%B1+1973..+%D9%84%D9%85%D8%A7%D8%B0%D8%A7+%D9%82%D8%B1%D8%B1%D8%AA+%D8%A7%D9%84%D8%AC%D8%B2%D8%A7%D8%A6%D8%B1+%D8%A5%D8%B1%D8%B3%D8%A7%D9%84+%D9%82%D9%88%D8%A7%D8%AA+%D8%A5%D9%84%D9%89+%D8%A7%D9%84%D9%86%D9%8A%D8%AC%D8%B1%D8%9F+https%3A%2F%2Fwww.aljazeera.net%2Fnews%2F2026%2F10%2F25%2F%25d9%2584%25d8%25a3%25d9%2588%25d9%2584-%25d9%2585%25d8%25b1%25d8%25a9-%25d9%2585%25d9%2586%25d8%25b0-%25d8%25a3%25d9%2583%25d8%25aa%25d9%2588%25d8%25a8%25d8%25b1-1973-%25d9%2584%25d9%2585%25d8%25a7%25d8%25b0%25d8%25a7-%25d9%2582%25d8%25b1%25d8%25b1%25d8%25aa%3Ftraffic_source%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D9%86%D8%AA%D9%86%D9%8A%D8%A7%D9%87%D9%88+%D9%8A%D9%88%D8%B8%D9%81+%D9%85%D8%AE%D8%A7%D9%88%D9%81+%D8%A7%D9%84%D8%B9%D9%82%D9%88%D8%A8%D8%A7%D8%AA+%D9%88%D8%A7%D9%84%D8%AA%D8%B5%D8%B9%D9%8A%D8%AF+%D8%A7%D9%84%D8%A3%D9%85%D9%86%D9%8A+%D9%81%D9%8A+%D9%85%D8%B9%D8%B1%D9%83%D8%A9+%D8%A7%D9%86%D8%AA%D8%AE%D8%A7%D8%A8%D9%8A%D8%A9+%D9%85%D9%81%D8%AA%D9%88%D8%AD%D8%A9+https%3A%2F%2Fasharq.com%2Fpolitics%2F200757%2F%25D9%2586%25D8%25AA%25D9%2586%25D9%258A%25D8%25A7%25D9%2587%25D9%2588-%25D9%258A%25D9%2588%25D8%25B8%25D9%2581-%25D9%2585%25D8%25AE%25D8%25A7%25D9%2588%25D9%2581-%25D8%25A7%25D9%2584%25D8%25B9%25D9%2582%25D9%2588%25D8%25A8%25D8%25A7%25D8%25AA-%25D9%2588%25D8%25A7%25D9%2584%25D8%25AA%25D8%25B5%25D8%25B9%25D9%258A%25D8%25AF-%25D9%2581%25D9%258A-%25D9%2585%25D8%25B9%25D8%25B1%25D9%2583%25D8%25A9-%25D8%25A7%25D9%2586%25D8%25AA%25D8%25AE%25D8%25A7%25D8%25A8%25D9%258A%25D8%25A9%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://asharq.com/politics/200777/%D8%AA%D8%B1%D9%85%D8%A8-%D8%A5%D9%85%D8%A7-%D8%A3%D9%86-%D9%86%D8%A8%D8%B1%D9%85-%D8%A7%D8%AA%D9%81%D8%A7%D9%82%D8%A7-%D9%85%D8%B9-%D8%A5%D9%8A%D8%B1%D8%A7%D9%86-%D8%A3%D9%88-%D9%86%D9%82%D8%B6%D9%8A-%D8%B9%D9%84%D9%8A%D9%87%D8%A7-%D9%86%D9%87%D8%A7%D8%A6%D9%8A%D8%A7/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://asharq.com/politics/200757/%D9%86%D8%AA%D9%86%D9%8A%D8%A7%D9%87%D9%88-%D9%8A%D9%88%D8%B8%D9%81-%D9%85%D8%AE%D8%A7%D9%88%D9%81-%D8%A7%D9%84%D8%B9%D9%82%D9%88%D8%A8%D8%A7%D8%AA-%D9%88%D8%A7%D9%84%D8%AA%D8%B5%D8%B9%D9%8A%D8%AF-%D9%81%D9%8A-%D9%85%D8%B9%D8%B1%D9%83%D8%A9-%D8%A7%D9%86%D8%AA%D8%AE%D8%A7%D8%A8%D9%8A%D8%A9/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://asharq.com/defense/200763/%D8%A5%D9%8A%D8%B1%D8%A8%D8%A7%D8%B5-%D8%AA%D8%A8%D8%AD%D8%AB-%D8%A7%D9%84%D8%A7%D9%86%D8%B6%D9%85%D8%A7%D9%85-%D9%84%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%AA%D8%B7%D9%88%D9%8A%D8%B1-%D9%85%D9%82%D8%A7%D8%AA%D9%84%D8%A9-%D8%A3%D8%B3%D8%B1%D8%B9-%D9%85%D9%86-%D8%A7%D9%84%D8%B5%D9%88%D8%AA-2035/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://www.aljazeera.net/news/2026/10/25/%d9%84%d8%a3%d9%88%d9%84-%d9%85%d8%b1%d8%a9-%d9%85%d9%86%d8%b0-%d8%a3%d9%83%d8%aa%d9%88%d8%a8%d8%b1-1973-%d9%84%d9%85%d8%a7%d8%b0%d8%a7-%d9%82%d8%b1%d8%b1%d8%aa?traffic_source=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%22%D8%A5%D9%8A%D8%B1%D8%A8%D8%A7%D8%B5%22+%D8%AA%D8%A8%D8%AD%D8%AB+%D8%A7%D9%84%D8%A7%D9%86%D8%B6%D9%85%D8%A7%D9%85+%D9%84%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC+%D8%AA%D8%B7%D9%88%D9%8A%D8%B1+%D9%85%D9%82%D8%A7%D8%AA%D9%84%D8%A9+%D8%A3%D8%B3%D8%B1%D8%B9+%D9%85%D9%86+%D8%A7%D9%84%D8%B5%D9%88%D8%AA+%D9%81%D9%8A+2035+https%3A%2F%2Fasharq.com%2Fdefense%2F200763%2F%25D8%25A5%25D9%258A%25D8%25B1%25D8%25A8%25D8%25A7%25D8%25B5-%25D8%25AA%25D8%25A8%25D8%25AD%25D8%25AB-%25D8%25A7%25D9%2584%25D8%25A7%25D9%2586%25D8%25B6%25D9%2585%25D8%25A7%25D9%2585-%25D9%2584%25D8%25A8%25D8%25B1%25D9%2586%25D8%25A7%25D9%2585%25D8%25AC-%25D8%25AA%25D8%25B7%25D9%2588%25D9%258A%25D8%25B1-%25D9%2585%25D9%2582%25D8%25A7%25D8%25AA%25D9%2584%25D8%25A9-%25D8%25A3%25D8%25B3%25D8%25B1%25D8%25B9-%25D9%2585%25D9%2586-%25D8%25A7%25D9%2584%25D8%25B5%25D9%2588%25D8%25AA-2035%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A7%D9%84%D8%B7%D9%8A%D8%A8%D9%8A%3A+%D9%82%D8%A7%D8%A6%D9%85%D8%A9+%D9%85%D8%B4%D8%AA%D8%B1%D9%83%D8%A9+%D9%81%D9%8A+%D8%A7%D9%84%D8%A7%D9%86%D8%AA%D8%AE%D8%A7%D8%A8%D8%A7%D8%AA+%D8%A7%D9%84%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84%D9%8A%D8%A9+%D9%84%D9%84%D8%A5%D8%B7%D8%A7%D8%AD%D8%A9+%D8%A8%D9%86%D8%AA%D9%86%D9%8A%D8%A7%D9%87%D9%88+%D9%88%D8%A8%D9%86+%D8%BA%D9%81%D9%8A%D8%B1+%D9%88%D8%B3%D9%85%D9%88%D8%AA%D8%B1%D9%8A%D8%AA%D8%B4+%D9%85%D9%86+%D8%A7%D9%84%D8%AD%D9%83%D9%85+https%3A%2F%2Fwww.aljazeera.net%2Fvideo%2Fthe-interview%2F2026%2F10%2F25%2F%25d8%25a7%25d9%2584%25d8%25b7%25d9%258a%25d8%25a8%25d9%258a-%25d9%2582%25d8%25a7%25d8%25a6%25d9%2585%25d8%25a9-%25d9%2585%25d8%25b4%25d8%25aa%25d8%25b1%25d9%2583%25d8%25a9-%25d9%2581%25d9%258a-%25d8%25a7%25d9%2584%25d8%25a7%25d9%2586%25d8%25aa%25d8%25ae%25d8%25a7%25d8%25a8%25d8%25a7%25d8%25aa%3Ftraffic_source%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.aljazeera.net/video/the-interview/2026/10/25/%d8%a7%d9%84%d8%b7%d9%8a%d8%a8%d9%8a-%d9%82%d8%a7%d8%a6%d9%85%d8%a9-%d9%85%d8%b4%d8%aa%d8%b1%d9%83%d8%a9-%d9%81%d9%8a-%d8%a7%d9%84%d8%a7%d9%86%d8%aa%d8%ae%d8%a7%d8%a8%d8%a7%d8%aa?traffic_source=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A7%D9%84%D8%AA%D9%8A%D9%86+%D8%A7%D9%84%D8%B4%D9%88%D9%83%D9%8A+%D8%A7%D9%84%D8%AC%D8%B2%D8%A7%D8%A6%D8%B1%D9%8A..+%D9%85%D8%B1%D9%83%D8%A8%D8%A7%D8%AA+%D9%88%D8%A7%D8%B9%D8%AF%D8%A9+%D8%AA%D9%81%D8%A7%D8%AC%D8%A6+%D8%A7%D9%84%D8%B9%D9%84%D9%85%D8%A7%D8%A1+https%3A%2F%2Fwww.aljazeera.net%2Fscience%2F2026%2F10%2F25%2F%25d8%25a7%25d9%2584%25d8%25aa%25d9%258a%25d9%2586-%25d8%25a7%25d9%2584%25d8%25b4%25d9%2588%25d9%2583%25d9%258a-%25d8%25a7%25d9%2584%25d8%25ac%25d8%25b2%25d8%25a7%25d8%25a6%25d8%25b1%25d9%258a-%25d9%2585%25d8%25b1%25d9%2583%25d8%25a8%25d8%25a7%25d8%25aa-%25d9%2588%25d8%25a7%25d8%25b9%25d8%25af%25d8%25a9%3Ftraffic_source%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.aljazeera.net/culture/2026/10/25/%d9%81%d9%8a-%d8%a7%d9%84%d8%ad%d8%a7%d8%ac%d8%a9-%d8%a5%d9%84%d9%89-%d8%b5%d9%88%d8%aa-%d8%ac%d9%8a%d9%84-%d8%ac%d9%8a%d9%84%d8%a7%d9%84%d8%a9?traffic_source=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D9%86%D8%AA%D9%86%D9%8A%D8%A7%D9%87%D9%88+%D9%88%D8%A7%D9%84%D8%B9%D9%85%D9%84%D8%A7%D8%AA+%D8%A7%D9%84%D9%85%D8%B4%D9%81%D8%B1%D8%A9..+%D9%87%D9%84+%D8%AA%D8%B3%D8%AA%D8%B9%D8%AF+%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84+%D9%84%D9%84%D8%B9%D8%B2%D9%84%D8%A9+%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A%D8%A9%D8%9F+https%3A%2F%2Fwww.aljazeera.net%2Febusiness%2F2026%2F10%2F25%2F%25d9%2586%25d8%25aa%25d9%2586%25d9%258a%25d8%25a7%25d9%2587%25d9%2588-%25d9%2588%25d8%25a7%25d9%2584%25d8%25b9%25d9%2585%25d9%2584%25d8%25a7%25d8%25aa-%25d8%25a7%25d9%2584%25d9%2585%25d8%25b4%25d9%2581%25d8%25b1%25d8%25a9-%25d9%2587%25d9%2584-%25d8%25aa%25d8%25b3%25d8%25aa%25d8%25b9%25d8%25af%3Ftraffic_source%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.aljazeera.net/news/2026/10/25/%d8%a8%d8%b3%d8%a8%d8%a8-%d8%a7%d9%84%d8%aa%d8%ad%d8%af%d8%ab-%d8%a8%d8%a7%d9%84%d8%b9%d8%b1%d8%a8%d9%8a%d8%a9-%d8%b7%d8%b9%d9%86-%d8%b4%d8%a7%d8%a8-%d8%af%d8%b1%d8%b2%d9%8a?traffic_source=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D9%81%D9%8A+%D8%A7%D9%84%D8%AD%D8%A7%D8%AC%D8%A9+%D8%A5%D9%84%D9%89+%D8%B5%D9%88%D8%AA+%D8%AC%D9%8A%D9%84+%D8%AC%D9%8A%D9%84%D8%A7%D9%84%D8%A9+https%3A%2F%2Fwww.aljazeera.net%2Fculture%2F2026%2F10%2F25%2F%25d9%2581%25d9%258a-%25d8%25a7%25d9%2584%25d8%25ad%25d8%25a7%25d8%25ac%25d8%25a9-%25d8%25a5%25d9%2584%25d9%2589-%25d8%25b5%25d9%2588%25d8%25aa-%25d8%25ac%25d9%258a%25d9%2584-%25d8%25ac%25d9%258a%25d9%2584%25d8%25a7%25d9%2584%25d8%25a9%3Ftraffic_source%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A8%D8%B3%D8%A8%D8%A8+%D8%A7%D9%84%D8%AA%D8%AD%D8%AF%D8%AB+%D8%A8%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9..+%D8%B7%D8%B9%D9%86+%D8%B4%D8%A7%D8%A8+%D8%AF%D8%B1%D8%B2%D9%8A+%D9%88%D8%A7%D9%84%D8%A7%D8%B9%D8%AA%D8%AF%D8%A7%D8%A1+%D8%B9%D9%84%D9%89+%D8%B1%D9%81%D8%A7%D9%82%D9%87+%D9%81%D9%8A+%D8%AA%D9%84+%D8%A3%D8%A8%D9%8A%D8%A8+https%3A%2F%2Fwww.aljazeera.net%2Fnews%2F2026%2F10%2F25%2F%25d8%25a8%25d8%25b3%25d8%25a8%25d8%25a8-%25d8%25a7%25d9%2584%25d8%25aa%25d8%25ad%25d8%25af%25d8%25ab-%25d8%25a8%25d8%25a7%25d9%2584%25d8%25b9%25d8%25b1%25d8%25a8%25d9%258a%25d8%25a9-%25d8%25b7%25d8%25b9%25d9%2586-%25d8%25b4%25d8%25a7%25d8%25a8-%25d8%25af%25d8%25b1%25d8%25b2%25d9%258a%3Ftraffic_source%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D9%85%D9%86%D8%A7%D9%81%D8%B3%D8%A9+%D9%85%D8%AD%D8%AA%D8%AF%D9%85%D8%A9+%D8%A8%D9%8A%D9%86+%D9%84%D9%88%D9%84%D8%A7+%D9%88%D8%A8%D9%88%D9%84%D8%B3%D9%88%D9%86%D8%A7%D8%B1%D9%88+%D9%81%D9%8A+%D8%AC%D9%88%D9%84%D8%A9+%D8%A5%D8%B9%D8%A7%D8%AF%D8%A9+%D8%A8%D8%A7%D9%86%D8%AA%D8%AE%D8%A7%D8%A8%D8%A7%D8%AA+%D8%A7%D9%84%D8%A8%D8%B1%D8%A7%D8%B2%D9%8A%D9%84+https%3A%2F%2Fasharq.com%2Fpolitics%2F200770%2F%25D9%2585%25D9%2586%25D8%25A7%25D9%2581%25D8%25B3%25D8%25A9-%25D8%25A8%25D9%258A%25D9%2586-%25D9%2584%25D9%2588%25D9%2584%25D8%25A7-%25D9%2588%25D8%25A8%25D9%2588%25D9%2584%25D8%25B3%25D9%2588%25D9%2586%25D8%25A7%25D8%25B1%25D9%2588-%25D9%2581%25D9%258A-%25D8%25AC%25D9%2588%25D9%2584%25D8%25A9-%25D8%25A5%25D8%25B9%25D8%25A7%25D8%25AF%25D8%25A9-%25D8%25A8%25D8%25A7%25D9%2586%25D8%25AA%25D8%25AE%25D8%25A7%25D8%25A8%25D8%25A7%25D8%25AA-%25D8%25A7%25D9%2584%25D8%25A8%25D8%25B1%25D8%25A7%25D8%25B2%25D9%258A%25D9%2584%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://asharq.com/politics/200770/%D9%85%D9%86%D8%A7%D9%81%D8%B3%D8%A9-%D8%A8%D9%8A%D9%86-%D9%84%D9%88%D9%84%D8%A7-%D9%88%D8%A8%D9%88%D9%84%D8%B3%D9%88%D9%86%D8%A7%D8%B1%D9%88-%D9%81%D9%8A-%D8%AC%D9%88%D9%84%D8%A9-%D8%A5%D8%B9%D8%A7%D8%AF%D8%A9-%D8%A8%D8%A7%D9%86%D8%AA%D8%AE%D8%A7%D8%A8%D8%A7%D8%AA-%D8%A7%D9%84%D8%A8%D8%B1%D8%A7%D8%B2%D9%8A%D9%84/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://www.aljazeera.net/sport/2026/10/25/%d8%b7%d8%b1%d9%8a%d9%82%d8%a9-%d9%81%d9%8a%d9%84-%d8%ac%d9%88%d9%86%d8%b2-%d8%a3%d8%b1%d8%a7%d9%88%d8%ae%d9%88-%d9%84%d9%8a%d9%81%d8%b1%d8%a8%d9%88%d9%84-%d9%84%d9%82%d8%b7%d8%a9?traffic_source=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%22%D9%84%D9%86+%D8%AA%D9%83%D9%88%D9%86+%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9+%D8%B9%D8%A7%D8%AF%D9%8A%D8%A9%22..+%D9%82%D9%86%D8%A7%D8%A9+%D8%B1%D9%8A%D8%A7%D9%84+%D9%85%D8%AF%D8%B1%D9%8A%D8%AF+%D8%AA%D8%B4%D8%B9%D9%84+%D8%A7%D9%84%D8%A3%D8%AC%D9%88%D8%A7%D8%A1+%D9%82%D8%A8%D9%84+%D8%A7%D9%84%D9%83%D9%84%D8%A7%D8%B3%D9%8A%D9%83%D9%88+https%3A%2F%2Fwww.aljazeera.net%2Fsport%2F2026%2F10%2F25%2F%25d8%25b1%25d9%258a%25d8%25a7%25d9%2584-%25d9%2585%25d8%25af%25d8%25b1%25d9%258a%25d8%25af-%25d8%25a8%25d8%25b1%25d8%25b4%25d9%2584%25d9%2588%25d9%2586%25d8%25a9-%25d8%25a7%25d9%2584%25d9%2583%25d9%2584%25d8%25a7%25d8%25b3%25d9%258a%25d9%2583%25d9%2588%3Ftraffic_source%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.aljazeera.net/sport/2026/10/25/%d8%b1%d9%8a%d8%a7%d9%84-%d9%85%d8%af%d8%b1%d9%8a%d8%af-%d8%a8%d8%b1%d8%b4%d9%84%d9%88%d9%86%d8%a9-%d8%a7%d9%84%d9%83%d9%84%d8%a7%d8%b3%d9%8a%d9%83%d9%88?traffic_source=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://www.aljazeera.net/science/2026/10/25/%d8%a7%d9%84%d8%aa%d9%8a%d9%86-%d8%a7%d9%84%d8%b4%d9%88%d9%83%d9%8a-%d8%a7%d9%84%d8%ac%d8%b2%d8%a7%d8%a6%d8%b1%d9%8a-%d9%85%d8%b1%d9%83%d8%a8%d8%a7%d8%aa-%d9%88%d8%a7%d8%b9%d8%af%d8%a9?traffic_source=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%B9%D9%84%D9%89+%D8%B7%D8%B1%D9%8A%D9%82%D8%A9+%D9%81%D9%8A%D9%84+%D8%AC%D9%88%D9%86%D8%B2..+%D8%A3%D8%B1%D8%A7%D9%88%D8%AE%D9%88+%D9%8A%D8%B4%D8%B9%D9%84+%D8%AD%D9%85%D8%A7%D8%B3+%D8%AC%D9%85%D8%A7%D9%87%D9%8A%D8%B1+%D9%84%D9%8A%D9%81%D8%B1%D8%A8%D9%88%D9%84+%D8%A8%D9%84%D9%82%D8%B7%D8%A9+%D8%A7%D9%86%D8%AA%D8%AD%D8%A7%D8%B1%D9%8A%D8%A9+%28%D9%81%D9%8A%D8%AF%D9%8A%D9%88%29+https%3A%2F%2Fwww.aljazeera.net%2Fsport%2F2026%2F10%2F25%2F%25d8%25b7%25d8%25b1%25d9%258a%25d9%2582%25d8%25a9-%25d9%2581%25d9%258a%25d9%2584-%25d8%25ac%25d9%2588%25d9%2586%25d8%25b2-%25d8%25a3%25d8%25b1%25d8%25a7%25d9%2588%25d8%25ae%25d9%2588-%25d9%2584%25d9%258a%25d9%2581%25d8%25b1%25d8%25a8%25d9%2588%25d9%2584-%25d9%2584%25d9%2582%25d8%25b7%25d8%25a9%3Ftraffic_source%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D9%88%D9%84%D9%8A+%D8%A7%D9%84%D8%B9%D9%87%D8%AF+%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A+%D9%8A%D8%B3%D8%AA%D9%82%D8%A8%D9%84+%D8%B1%D8%A6%D9%8A%D8%B3+%D9%88%D8%B2%D8%B1%D8%A7%D8%A1+%D8%A7%D9%84%D9%8A%D9%88%D9%86%D8%A7%D9%86+%D9%88%D9%8A%D8%B9%D9%82%D8%AF%D8%A7%D9%86+%D8%AC%D9%84%D8%B3%D8%A9+%D9%85%D8%A8%D8%A7%D8%AD%D8%AB%D8%A7%D8%AA+%D8%B1%D8%B3%D9%85%D9%8A%D8%A9+https%3A%2F%2Fasharq.com%2Fpolitics%2F200767%2F%25D9%2588%25D9%2584%25D9%258A-%25D8%25A7%25D9%2584%25D8%25B9%25D9%2587%25D8%25AF-%25D8%25A7%25D9%2584%25D8%25B3%25D8%25B9%25D9%2588%25D8%25AF%25D9%258A-%25D9%258A%25D8%25B3%25D8%25AA%25D9%2582%25D8%25A8%25D9%2584-%25D8%25B1%25D8%25A6%25D9%258A%25D8%25B3-%25D9%2588%25D8%25B2%25D8%25B1%25D8%25A7%25D8%25A1-%25D8%25A7%25D9%2584%25D9%258A%25D9%2588%25D9%2586%25D8%25A7%25D9%2586-%25D9%2581%25D9%258A-%25D8%25A7%25D9%2584%25D8%25B1%25D9%258A%25D8%25A7%25D8%25B6%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://asharq.com/politics/200767/%D9%88%D9%84%D9%8A-%D8%A7%D9%84%D8%B9%D9%87%D8%AF-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%8A%D8%B3%D8%AA%D9%82%D8%A8%D9%84-%D8%B1%D8%A6%D9%8A%D8%B3-%D9%88%D8%B2%D8%B1%D8%A7%D8%A1-%D8%A7%D9%84%D9%8A%D9%88%D9%86%D8%A7%D9%86-%D9%81%D9%8A-%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%AD%D9%85%D8%B2%D8%A9+%D8%B9%D8%A8%D8%AF+%D8%A7%D9%84%D9%83%D8%B1%D9%8A%D9%85+%D8%A3%D9%85%D8%A7%D9%85+%D9%81%D8%B1%D8%B5%D8%A9+%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE%D9%8A%D8%A9..+%D9%87%D9%84+%D9%8A%D8%B5%D8%A8%D8%AD+%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A+%D8%A7%D9%84%D8%B1%D8%A7%D8%A8%D8%B9+%D9%81%D9%8A+%D8%A7%D9%84%D9%83%D9%84%D8%A7%D8%B3%D9%8A%D9%83%D9%88%D8%9F+https%3A%2F%2Fwww.aljazeera.net%2Fsport%2F2026%2F10%2F25%2F%25d8%25ad%25d9%2585%25d8%25b2%25d8%25a9-%25d8%25b9%25d8%25a8%25d8%25af-%25d8%25a7%25d9%2584%25d9%2583%25d8%25b1%25d9%258a%25d9%2585-%25d8%25a7%25d9%2584%25d8%25ad%25d8%25af%25d8%25a7%25d8%25af%25d9%258a-%25d8%25a7%25d9%2584%25d8%25b2%25d9%2584%25d8%25b2%25d9%2588%25d9%2584%25d9%258a%3Ftraffic_source%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.aljazeera.net/news/2026/10/25/%d9%82%d9%86%d8%a8%d9%84%d8%a9-%d9%86%d9%88%d9%88%d9%8a%d8%a9-%d9%81%d9%88%d9%82-%d8%aa%d9%84-%d8%a3%d8%a8%d9%8a%d8%a8-%d9%86%d8%aa%d9%86%d9%8a%d8%a7%d9%87%d9%88-%d9%8a%d8%ab%d9%8a%d8%b1?traffic_source=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D9%85%D8%B9%D8%B6%D9%84%D8%A9+%D8%A7%D9%84%D8%B9%D8%AF%D8%A7%D9%84%D8%A9+%D8%A7%D9%84%D8%B1%D9%82%D9%85%D9%8A%D8%A9..+%D9%83%D9%8A%D9%81+%D9%8A%D8%B9%D9%8A%D8%AF+%D8%A7%D9%84%D8%B0%D9%83%D8%A7%D8%A1+%D8%A7%D9%84%D8%A7%D8%B5%D8%B7%D9%86%D8%A7%D8%B9%D9%8A+%D8%B1%D8%B3%D9%85+%D8%AE%D8%B1%D9%8A%D8%B7%D8%A9+%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D8%AB%D9%85%D8%A7%D8%B1+%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85%D9%8A%D8%9F+https%3A%2F%2Fwww.aljazeera.net%2Ftech%2F2026%2F10%2F25%2F%25d9%2585%25d8%25b9%25d8%25b6%25d9%2584%25d8%25a9-%25d8%25a7%25d9%2584%25d8%25b9%25d8%25af%25d8%25a7%25d9%2584%25d8%25a9-%25d8%25a7%25d9%2584%25d8%25b1%25d9%2582%25d9%2585%25d9%258a%25d8%25a9-%25d9%2583%25d9%258a%25d9%2581-%25d9%258a%25d8%25b9%25d9%258a%25d8%25af-%25d8%25a7%25d9%2584%25d8%25b0%25d9%2583%25d8%25a7%25d8%25a1%3Ftraffic_source%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D9%82%D9%86%D8%A8%D9%84%D8%A9+%D9%86%D9%88%D9%88%D9%8A%D8%A9+%D9%81%D9%88%D9%82+%D8%AA%D9%84+%D8%A3%D8%A8%D9%8A%D8%A8..+%D9%86%D8%AA%D9%86%D9%8A%D8%A7%D9%87%D9%88+%D9%8A%D8%AB%D9%8A%D8%B1+%D8%A7%D9%84%D8%AC%D8%AF%D9%84+%D9%82%D8%A8%D9%84+%D8%A7%D9%84%D8%A7%D9%86%D8%AA%D8%AE%D8%A7%D8%A8%D8%A7%D8%AA+https%3A%2F%2Fwww.aljazeera.net%2Fnews%2F2026%2F10%2F25%2F%25d9%2582%25d9%2586%25d8%25a8%25d9%2584%25d8%25a9-%25d9%2586%25d9%2588%25d9%2588%25d9%258a%25d8%25a9-%25d9%2581%25d9%2588%25d9%2582-%25d8%25aa%25d9%2584-%25d8%25a3%25d8%25a8%25d9%258a%25d8%25a8-%25d9%2586%25d8%25aa%25d9%2586%25d9%258a%25d8%25a7%25d9%2587%25d9%2588-%25d9%258a%25d8%25ab%25d9%258a%25d8%25b1%3Ftraffic_source%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.aljazeera.net/tech/2026/10/25/%d9%85%d8%b9%d8%b6%d9%84%d8%a9-%d8%a7%d9%84%d8%b9%d8%af%d8%a7%d9%84%d8%a9-%d8%a7%d9%84%d8%b1%d9%82%d9%85%d9%8a%d8%a9-%d9%83%d9%8a%d9%81-%d9%8a%d8%b9%d9%8a%d8%af-%d8%a7%d9%84%d8%b0%d9%83%d8%a7%d8%a1?traffic_source=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://www.aljazeera.net/sport/2026/10/25/%d8%ad%d9%85%d8%b2%d8%a9-%d8%b9%d8%a8%d8%af-%d8%a7%d9%84%d9%83%d8%b1%d9%8a%d9%85-%d8%a7%d9%84%d8%ad%d8%af%d8%a7%d8%af%d9%8a-%d8%a7%d9%84%d8%b2%d9%84%d8%b2%d9%88%d9%84%d9%8a?traffic_source=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A3%D9%84%D9%85%D8%A7%D9%86%D9%8A%D8%A7+%D8%AA%D9%82%D9%88%D8%AF+%D8%AA%D8%AD%D8%B1%D9%83%D8%A7%D9%8B+%D8%A3%D9%88%D8%B1%D9%88%D8%A8%D9%8A%D8%A7%D9%8B+%D9%84%D9%85%D8%B9%D8%A7%D8%B1%D8%B6%D8%A9+%D9%88%D8%B5%D9%81+%D9%83%D9%86%D8%AF%D8%A7+%D8%A8%D9%80%22%D8%A7%D9%84%D8%B9%D8%B6%D9%88+%D8%A7%D9%84%D9%85%D9%86%D8%AA%D8%B3%D8%A8%22+%D9%84%D9%84%D8%AA%D9%83%D8%AA%D9%84+https%3A%2F%2Fasharq.com%2Fpolitics%2F200764%2F%25D8%25A3%25D9%2584%25D9%2585%25D8%25A7%25D9%2586%25D9%258A%25D8%25A7-%25D8%25AA%25D9%2582%25D9%2588%25D8%25AF-%25D8%25AA%25D8%25AD%25D8%25B1%25D9%2583%25D8%25A7-%25D8%25A3%25D9%2588%25D8%25B1%25D9%2588%25D8%25A8%25D9%258A%25D8%25A7-%25D9%2584%25D9%2585%25D8%25B9%25D8%25A7%25D8%25B1%25D8%25B6%25D8%25A9-%25D9%2588%25D8%25B5%25D9%2581-%25D9%2583%25D9%2586%25D8%25AF%25D8%25A7-%25D8%25A8-%25D8%25A7%25D9%2584%25D8%25B9%25D8%25B6%25D9%2588-%25D8%25A7%25D9%2584%25D9%2585%25D9%2586%25D8%25AA%25D8%25B3%25D8%25A8%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.aljazeera.net/misc/2026/10/25/%d8%b6%d8%ad%d8%aa-%d8%a8%d8%ad%d9%8a%d8%a7%d8%aa%d9%87%d8%a7-%d9%84%d8%a5%d9%86%d9%82%d8%a7%d8%b0-%d8%b7%d9%81%d9%84%d9%8a%d9%87%d8%a7-%d9%85%d8%a3%d8%b3%d8%a7%d8%a9-%d8%a3%d9%85?traffic_source=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://www.bbc.com/arabic/articles/c3gr8dqwgwr1o?at_medium=RSS&at_campaign=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%B6%D8%AD%D8%AA+%D8%A8%D8%AD%D9%8A%D8%A7%D8%AA%D9%87%D8%A7+%D9%84%D8%A5%D9%86%D9%82%D8%A7%D8%B0+%D8%B7%D9%81%D9%84%D9%8A%D9%87%D8%A7..+%D9%85%D8%A3%D8%B3%D8%A7%D8%A9+%D8%A3%D9%85+%D8%A8%D8%B1%D9%8A%D8%B7%D8%A7%D9%86%D9%8A%D8%A9+%D8%AE%D9%84%D8%A7%D9%84+%D8%B9%D8%B7%D9%84%D8%A9+%D9%81%D9%8A+%D8%AC%D8%B2%D8%B1+%D8%A7%D9%84%D8%A8%D9%87%D8%A7%D9%85%D8%A7+https%3A%2F%2Fwww.aljazeera.net%2Fmisc%2F2026%2F10%2F25%2F%25d8%25b6%25d8%25ad%25d8%25aa-%25d8%25a8%25d8%25ad%25d9%258a%25d8%25a7%25d8%25aa%25d9%2587%25d8%25a7-%25d9%2584%25d8%25a5%25d9%2586%25d9%2582%25d8%25a7%25d8%25b0-%25d8%25b7%25d9%2581%25d9%2584%25d9%258a%25d9%2587%25d8%25a7-%25d9%2585%25d8%25a3%25d8%25b3%25d8%25a7%25d8%25a9-%25d8%25a3%25d9%2585%3Ftraffic_source%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.aljazeera.net/ebusiness/2026/10/25/%d8%b1%d9%88%d8%b3%d9%8a%d8%a7-%d8%aa%d8%a8%d8%af%d9%8a-%d8%a7%d8%b3%d8%aa%d8%b9%d8%af%d8%a7%d8%af%d9%87%d8%a7-%d9%84%d8%aa%d8%b2%d9%88%d9%8a%d8%af-%d8%a3%d9%85%d8%b1%d9%8a%d9%83%d8%a7?traffic_source=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%B1%D9%88%D8%B3%D9%8A%D8%A7+%D8%AA%D8%A8%D8%AF%D9%8A+%D8%A7%D8%B3%D8%AA%D8%B9%D8%AF%D8%A7%D8%AF%D9%87%D8%A7+%D9%84%D8%AA%D8%B2%D9%88%D9%8A%D8%AF+%D8%A3%D9%85%D8%B1%D9%8A%D9%83%D8%A7+%D8%A8%D8%A3%D9%8A+%D9%83%D9%85%D9%8A%D8%A9+%D9%85%D9%86+%D8%A7%D9%84%D8%AF%D9%8A%D8%B2%D9%84+%D8%B6%D9%85%D9%86+%D8%B5%D8%A7%D8%AF%D8%B1%D8%A7%D8%AA%D9%87%D8%A7+https%3A%2F%2Fwww.aljazeera.net%2Febusiness%2F2026%2F10%2F25%2F%25d8%25b1%25d9%2588%25d8%25b3%25d9%258a%25d8%25a7-%25d8%25aa%25d8%25a8%25d8%25af%25d9%258a-%25d8%25a7%25d8%25b3%25d8%25aa%25d8%25b9%25d8%25af%25d8%25a7%25d8%25af%25d9%2587%25d8%25a7-%25d9%2584%25d8%25aa%25d8%25b2%25d9%2588%25d9%258a%25d8%25af-%25d8%25a3%25d9%2585%25d8%25b1%25d9%258a%25d9%2583%25d8%25a7%3Ftraffic_source%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.aljazeera.net/culture/2026/10/25/%d8%b4%d8%ae%d8%b5%d9%8a%d8%a9-%d8%a7%d9%84%d9%85%d9%8a%d8%b1%d8%b2%d8%a7-%d9%81%d9%8a-%d8%b1%d9%88%d8%a7%d9%8a%d8%a9-%d8%b3%d9%84%d8%b3%d9%84%d8%a9-%d8%a7%d9%84%d9%86%d8%a7%d8%b1-%d9%85%d9%86?traffic_source=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A2%D9%84%D8%A7%D9%81+%D8%A7%D9%84%D8%A3%D8%B1%D8%AF%D9%86%D9%8A%D9%8A%D9%86+%D9%8A%D9%88%D8%AF%D9%91%D8%B9%D9%88%D9%86+%D8%B6%D8%AD%D8%A7%D9%8A%D8%A7+%D9%87%D8%AC%D9%88%D9%85+%D9%83%D9%86%D9%8A%D8%B3%D8%A9+%D8%A7%D9%84%D9%83%D8%B1%D9%83+%D8%A8%D8%A7%D9%84%D8%AA%D8%B1%D8%A7%D9%86%D9%8A%D9%85+%D9%88%D8%A7%D9%84%D9%88%D8%B1%D9%88%D8%AF+https%3A%2F%2Fwww.bbc.com%2Farabic%2Farticles%2Fc3gr8dqwgwr1o%3Fat_medium%3DRSS%26at_campaign%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.bbc.com/arabic/articles/cq8rzm3leznvo?at_medium=RSS&at_campaign=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%B4%D8%AE%D8%B5%D9%8A%D8%A9+%D8%A7%D9%84%D9%85%D9%8A%D8%B1%D8%B2%D8%A7+%D9%81%D9%8A+%D8%B1%D9%88%D8%A7%D9%8A%D8%A9+%22%D8%B3%D9%84%D8%B3%D9%84%D8%A9+%D8%A7%D9%84%D9%86%D8%A7%D8%B1%22..+%D9%85%D9%86+%D8%A8%D9%84%D8%A7%D8%B7+%D8%A7%D9%84%D8%B5%D9%81%D9%88%D9%8A%D9%8A%D9%86+%D8%A5%D9%84%D9%89+%D8%A7%D9%84%D9%81%D8%B1%D8%A7%D8%B1+%D9%86%D8%AD%D9%88+%D8%A7%D9%84%D8%AF%D9%88%D9%84%D8%A9+%D8%A7%D9%84%D8%B9%D8%AB%D9%85%D8%A7%D9%86%D9%8A%D8%A9+https%3A%2F%2Fwww.aljazeera.net%2Fculture%2F2026%2F10%2F25%2F%25d8%25b4%25d8%25ae%25d8%25b5%25d9%258a%25d8%25a9-%25d8%25a7%25d9%2584%25d9%2585%25d9%258a%25d8%25b1%25d8%25b2%25d8%25a7-%25d9%2581%25d9%258a-%25d8%25b1%25d9%2588%25d8%25a7%25d9%258a%25d8%25a9-%25d8%25b3%25d9%2584%25d8%25b3%25d9%2584%25d8%25a9-%25d8%25a7%25d9%2584%25d9%2586%25d8%25a7%25d8%25b1-%25d9%2585%25d9%2586%3Ftraffic_source%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://asharq.com/politics/200764/%D8%A3%D9%84%D9%85%D8%A7%D9%86%D9%8A%D8%A7-%D8%AA%D9%82%D9%88%D8%AF-%D8%AA%D8%AD%D8%B1%D9%83%D8%A7-%D8%A3%D9%88%D8%B1%D9%88%D8%A8%D9%8A%D8%A7-%D9%84%D9%85%D8%B9%D8%A7%D8%B1%D8%B6%D8%A9-%D9%88%D8%B5%D9%81-%D9%83%D9%86%D8%AF%D8%A7-%D8%A8-%D8%A7%D9%84%D8%B9%D8%B6%D9%88-%D8%A7%D9%84%D9%85%D9%86%D8%AA%D8%B3%D8%A8/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D9%83%D8%A7%D8%B1%D9%8A%D9%83+%D9%8A%D9%81%D8%AA%D8%AD+%D8%A8%D8%A7%D8%A8+%D8%A7%D9%84%D8%BA%D9%85%D9%88%D8%B6+%D8%AD%D9%88%D9%84+%D9%85%D8%B3%D8%AA%D9%82%D8%A8%D9%84%D9%87+%D8%A8%D8%B9%D8%AF+%D8%AB%D9%84%D8%A7%D8%AB%D9%8A%D8%A9+%D8%A8%D9%88%D8%B1%D9%86%D9%85%D9%88%D8%AB+https%3A%2F%2Fwww.aljazeera.net%2Fsport%2F2026%2F10%2F25%2F%25d9%2583%25d8%25a7%25d8%25b1%25d9%258a%25d9%2583-%25d8%25b1%25d8%25ad%25d9%258a%25d9%2584-%25d9%258a%25d9%2588%25d9%2586%25d8%25a7%25d9%258a%25d8%25aa%25d8%25af-%25d8%25ab%25d9%2584%25d8%25a7%25d8%25ab%25d9%258a%25d8%25a9-%25d8%25a8%25d9%2588%25d8%25b1%25d9%2586%25d9%2585%25d9%2588%25d8%25ab%3Ftraffic_source%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.aljazeera.net/health/2026/10/25/%d8%ba%d8%b2%d8%a9-%d9%85%d8%b1%d8%b6-%d8%b7%d9%81%d9%84-%d8%a3%d8%b7%d9%81%d8%a7%d9%84-%d9%81%d9%84%d8%b3%d8%b7%d9%8a%d9%86-%d8%a7%d8%ad%d8%aa%d9%84%d8%a7%d9%84?traffic_source=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://www.aljazeera.net/ebusiness/2026/10/25/%d9%86%d8%aa%d9%86%d9%8a%d8%a7%d9%87%d9%88-%d9%88%d8%a7%d9%84%d8%b9%d9%85%d9%84%d8%a7%d8%aa-%d8%a7%d9%84%d9%85%d8%b4%d9%81%d8%b1%d8%a9-%d9%87%d9%84-%d8%aa%d8%b3%d8%aa%d8%b9%d8%af?traffic_source=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A7%D9%84%D8%B6%D9%81%D8%A9+%D8%A7%D9%84%D8%BA%D8%B1%D8%A8%D9%8A%D8%A9%3A+%D9%83%D9%8A%D9%81+%D9%8A%D8%A4%D8%AB%D8%B1+%D8%A7%D9%84%D8%AA%D8%B5%D8%B9%D9%8A%D8%AF+%D8%A7%D9%84%D8%AC%D8%A7%D8%B1%D9%8A+%D9%81%D9%8A+%D8%AD%D9%8A%D8%A7%D8%A9+%D8%A7%D9%84%D9%81%D9%84%D8%B3%D8%B7%D9%8A%D9%86%D9%8A%D9%8A%D9%86%D8%9F+https%3A%2F%2Fwww.bbc.com%2Farabic%2Farticles%2Fcq8rzm3leznvo%3Fat_medium%3DRSS%26at_campaign%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+4+%D9%88%D9%81%D9%8A%D8%A7%D8%AA+%D8%AE%D9%84%D8%A7%D9%84+%D8%B4%D9%87%D8%B1..+%D8%A7%D9%84%D8%AD%D9%85%D9%89+%D8%A7%D9%84%D8%B4%D9%88%D9%83%D9%8A%D8%A9+%D8%AA%D9%81%D8%AA%D9%83+%D8%A8%D8%A3%D8%B7%D9%81%D8%A7%D9%84+%D8%BA%D8%B2%D8%A9+https%3A%2F%2Fwww.aljazeera.net%2Fhealth%2F2026%2F10%2F25%2F%25d8%25ba%25d8%25b2%25d8%25a9-%25d9%2585%25d8%25b1%25d8%25b6-%25d8%25b7%25d9%2581%25d9%2584-%25d8%25a3%25d8%25b7%25d9%2581%25d8%25a7%25d9%2584-%25d9%2581%25d9%2584%25d8%25b3%25d8%25b7%25d9%258a%25d9%2586-%25d8%25a7%25d8%25ad%25d8%25aa%25d9%2584%25d8%25a7%25d9%2584%3Ftraffic_source%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D8%AC%D8%A7%D8%A8+%D9%88%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84+%D9%88%D8%A5%D9%8A%D8%B1%D8%A7%D9%86..+%D9%83%D9%8A%D9%81+%D8%AA%D8%B4%D9%83%D9%84%D8%AA+%D9%85%D8%B9%D8%A7%D8%AF%D9%84%D8%A9+%D8%A7%D9%84%D8%AF%D9%8A%D9%86+%D9%88%D8%A7%D9%84%D8%AF%D9%88%D9%84%D8%A9+%D8%A8%D8%A3%D8%B0%D8%B1%D8%A8%D9%8A%D8%AC%D8%A7%D9%86%D8%9F+https%3A%2F%2Fwww.aljazeera.net%2Fnews%2F2026%2F10%2F25%2F%25d8%25a8%25d9%258a%25d9%2586-%25d8%25a7%25d9%2584%25d8%25ad%25d8%25ac%25d8%25a7%25d8%25a8-%25d9%2588%25d8%25a5%25d8%25b3%25d8%25b1%25d8%25a7%25d8%25a6%25d9%258a%25d9%2584-%25d9%2588%25d8%25a5%25d9%258a%25d8%25b1%25d8%25a7%25d9%2586-%25d9%2583%25d9%258a%25d9%2581-%25d8%25aa%25d8%25b4%25d9%2583%25d9%2584%25d8%25aa%3Ftraffic_source%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%BA%D9%88%D8%BA%D9%84+%D8%AA%D8%B3%D8%AA%D8%AE%D8%AF%D9%85+%D8%B5%D9%88%D8%B1%D9%83+%D9%88%D8%B1%D8%B3%D8%A7%D8%A6%D9%84%D9%83+%D9%84%D8%AA%D8%AE%D8%B5%D9%8A%D8%B5+%D8%A7%D9%84%D8%A5%D8%B9%D9%84%D8%A7%D9%86%D8%A7%D8%AA..+%D9%83%D9%8A%D9%81+%D8%AA%D9%88%D9%82%D9%81%D9%87%D8%A7%D8%9F+https%3A%2F%2Fwww.aljazeera.net%2Ftech%2F2026%2F10%2F25%2F%25d8%25ba%25d9%2588%25d8%25ba%25d9%2584-%25d8%25aa%25d8%25b3%25d8%25aa%25d8%25ae%25d8%25af%25d9%2585-%25d8%25b5%25d9%2588%25d8%25b1%25d9%2583-%25d9%2588%25d8%25b1%25d8%25b3%25d8%25a7%25d8%25a6%25d9%2584%25d9%2583-%25d9%2584%25d8%25aa%25d8%25ae%25d8%25b5%25d9%258a%25d8%25b5%3Ftraffic_source%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.aljazeera.net/news/2026/10/25/%d8%a8%d9%8a%d9%86-%d8%a7%d9%84%d8%ad%d8%ac%d8%a7%d8%a8-%d9%88%d8%a5%d8%b3%d8%b1%d8%a7%d8%a6%d9%8a%d9%84-%d9%88%d8%a5%d9%8a%d8%b1%d8%a7%d9%86-%d9%83%d9%8a%d9%81-%d8%aa%d8%b4%d9%83%d9%84%d8%aa?traffic_source=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A5%D8%BA%D9%84%D8%A7%D9%82+%D8%A7%D9%84%D8%AD%D8%AF%D9%88%D8%AF+%D9%85%D8%B9+%D8%A5%D9%8A%D8%B1%D8%A7%D9%86+%D9%8A%D9%81%D8%A7%D9%82%D9%85+%D8%A3%D8%B2%D9%85%D8%A9+%D8%BA%D8%A7%D8%B2+%D8%A7%D9%84%D8%B7%D9%87%D9%8A+%D9%81%D9%8A+%D8%A8%D8%A7%D9%83%D8%B3%D8%AA%D8%A7%D9%86+https%3A%2F%2Fwww.aljazeera.net%2Febusiness%2F2026%2F10%2F25%2F%25d8%25a5%25d8%25ba%25d9%2584%25d8%25a7%25d9%2582-%25d8%25a7%25d9%2584%25d8%25ad%25d8%25af%25d9%2588%25d8%25af-%25d9%2585%25d8%25b9-%25d8%25a5%25d9%258a%25d8%25b1%25d8%25a7%25d9%2586-%25d9%258a%25d9%2581%25d8%25a7%25d9%2582%25d9%2585-%25d8%25a3%25d8%25b2%25d9%2585%25d8%25a9-%25d8%25ba%25d8%25a7%25d8%25b2%3Ftraffic_source%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.aljazeera.net/sport/2026/10/25/%d9%83%d8%a7%d8%b1%d9%8a%d9%83-%d8%b1%d8%ad%d9%8a%d9%84-%d9%8a%d9%88%d9%86%d8%a7%d9%8a%d8%aa%d8%af-%d8%ab%d9%84%d8%a7%d8%ab%d9%8a%d8%a9-%d8%a8%d9%88%d8%b1%d9%86%d9%85%d9%88%d8%ab?traffic_source=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D9%88%D8%B2%D9%8A%D8%B1+%D8%AE%D8%A7%D8%B1%D8%AC%D9%8A%D8%A9+%D8%A3%D9%88%D9%83%D8%B1%D8%A7%D9%86%D9%8A%D8%A7+%D8%A7%D9%84%D8%B3%D8%A7%D8%A8%D9%82+%D9%84%D9%80%22%D8%A7%D9%84%D9%85%D8%AC%D9%84%D8%A9%22%3A+%D8%A7%D9%84%D9%85%D8%B4%D9%83%D9%84%D8%A9+%D9%84%D9%8A%D8%B3%D8%AA+%D9%81%D9%8A+%D9%88%D8%B9%D9%88%D8%AF+%D8%AA%D8%B1%D9%85%D8%A8+%D8%A8%D9%84+%D9%81%D9%8A+%D8%B3%D9%8A%D8%A7%D8%B3%D8%A7%D8%AA%D9%87+https%3A%2F%2Fasharq.com%2Fpolitics%2F200765%2F%25D9%2588%25D8%25B2%25D9%258A%25D8%25B1-%25D8%25AE%25D8%25A7%25D8%25B1%25D8%25AC%25D9%258A%25D8%25A9-%25D8%25A3%25D9%2588%25D9%2583%25D8%25B1%25D8%25A7%25D9%2586%25D9%258A%25D8%25A7-%25D8%25A7%25D9%2584%25D8%25B3%25D8%25A7%25D8%25A8%25D9%2582-%25D8%25A7%25D9%2584%25D9%2585%25D8%25B4%25D9%2583%25D9%2584%25D8%25A9-%25D9%2581%25D9%258A-%25D8%25B3%25D9%258A%25D8%25A7%25D8%25B3%25D8%25A7%25D8%25AA-%25D8%25AA%25D8%25B1%25D9%2585%25D8%25A8%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.aljazeera.net/ebusiness/2026/10/25/%d8%a5%d8%ba%d9%84%d8%a7%d9%82-%d8%a7%d9%84%d8%ad%d8%af%d9%88%d8%af-%d9%85%d8%b9-%d8%a5%d9%8a%d8%b1%d8%a7%d9%86-%d9%8a%d9%81%d8%a7%d9%82%d9%85-%d8%a3%d8%b2%d9%85%d8%a9-%d8%ba%d8%a7%d8%b2?traffic_source=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://www.bbc.com/arabic/articles/cwp9gj7p8dx4o?at_medium=RSS&at_campaign=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://www.aljazeera.net/ebusiness/2026/10/25/%d8%a7%d9%84%d9%86%d9%81%d8%b7-%d9%81%d9%88%d9%82-100-%d8%af%d9%88%d9%84%d8%a7%d8%b1-%d8%a7%d9%84%d8%b1%d8%a7%d8%a8%d8%ad%d9%88%d9%86-%d9%88%d8%a7%d9%84%d8%ae%d8%a7%d8%b3%d8%b1%d9%88%d9%86?traffic_source=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://www.aljazeera.net/tech/2026/10/25/%d8%ba%d9%88%d8%ba%d9%84-%d8%aa%d8%b3%d8%aa%d8%ae%d8%af%d9%85-%d8%b5%d9%88%d8%b1%d9%83-%d9%88%d8%b1%d8%b3%d8%a7%d8%a6%d9%84%d9%83-%d9%84%d8%aa%d8%ae%d8%b5%d9%8a%d8%b5?traffic_source=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://asharq.com/politics/200765/%D9%88%D8%B2%D9%8A%D8%B1-%D8%AE%D8%A7%D8%B1%D8%AC%D9%8A%D8%A9-%D8%A3%D9%88%D9%83%D8%B1%D8%A7%D9%86%D9%8A%D8%A7-%D8%A7%D9%84%D8%B3%D8%A7%D8%A8%D9%82-%D8%A7%D9%84%D9%85%D8%B4%D9%83%D9%84%D8%A9-%D9%81%D9%8A-%D8%B3%D9%8A%D8%A7%D8%B3%D8%A7%D8%AA-%D8%AA%D8%B1%D9%85%D8%A8/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A7%D9%84%D9%86%D9%81%D8%B7+%D9%81%D9%88%D9%82+100+%D8%AF%D9%88%D9%84%D8%A7%D8%B1..+%D8%A7%D9%84%D8%B1%D8%A7%D8%A8%D8%AD%D9%88%D9%86+%D9%88%D8%A7%D9%84%D8%AE%D8%A7%D8%B3%D8%B1%D9%88%D9%86+%D8%A5%D8%B0%D8%A7+%D8%A7%D8%B3%D8%AA%D9%85%D8%B1+%D8%A7%D9%84%D8%A7%D8%B1%D8%AA%D9%81%D8%A7%D8%B9+https%3A%2F%2Fwww.aljazeera.net%2Febusiness%2F2026%2F10%2F25%2F%25d8%25a7%25d9%2584%25d9%2586%25d9%2581%25d8%25b7-%25d9%2581%25d9%2588%25d9%2582-100-%25d8%25af%25d9%2588%25d9%2584%25d8%25a7%25d8%25b1-%25d8%25a7%25d9%2584%25d8%25b1%25d8%25a7%25d8%25a8%25d8%25ad%25d9%2588%25d9%2586-%25d9%2588%25d8%25a7%25d9%2584%25d8%25ae%25d8%25a7%25d8%25b3%25d8%25b1%25d9%2588%25d9%2586%3Ftraffic_source%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D9%83%D9%8A%D9%81+%D9%88%D8%AF%D8%B9+%D8%A7%D9%84%D8%A3%D8%B1%D8%AF%D9%86%D9%8A%D9%88%D9%86+%D8%B6%D8%AD%D8%A7%D9%8A%D8%A7+%D9%87%D8%AC%D9%88%D9%85+%D8%A7%D9%84%D9%83%D9%86%D9%8A%D8%B3%D8%A9%D8%9F+https%3A%2F%2Fwww.bbc.com%2Farabic%2Farticles%2Fcwp9gj7p8dx4o%3Fat_medium%3DRSS%26at_campaign%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D9%85%D8%AE%D8%B1%D8%AC%22%D9%84%D8%A7+%D8%AC%D9%86%D8%A9+%D9%84%D9%85%D9%86+%D8%AA%D9%82%D8%AA%D9%84%D9%87+%D8%A7%D9%85%D8%B1%D8%A3%D8%A9%22+%D9%84%D9%80%22%D8%A7%D9%84%D8%B4%D8%B1%D9%82%22%3A+%D8%AF%D8%B1%D9%91%D8%A8%D8%AA+%D8%A8%D8%B7%D9%84%D8%A9+%D8%A7%D9%84%D9%81%D9%8A%D9%84%D9%85+%D8%B9%D9%84%D9%89+%D8%A8%D9%86%D8%AF%D9%82%D9%8A%D8%A9+%D9%82%D9%86%D8%B5+%D8%AD%D9%82%D9%8A%D9%82%D9%8A%D8%A9+https%3A%2F%2Fasharq.com%2Fart%2F200766%2F%25D9%2585%25D8%25AE%25D8%25B1%25D8%25AC-%25D9%2584%25D8%25A7-%25D8%25AC%25D9%2586%25D8%25A9-%25D9%2584%25D9%2585%25D9%2586-%25D8%25AA%25D9%2582%25D8%25AA%25D9%2584%25D9%2587-%25D8%25A7%25D9%2585%25D8%25B1%25D8%25A3%25D8%25A9-%25D8%25AF%25D8%25B1%25D8%25A8%25D8%25AA-%25D8%25A8%25D8%25B7%25D9%2584%25D8%25A9-%25D9%2581%25D9%258A%25D9%2584%25D9%2585%25D9%258A-%25D8%25B9%25D9%2584%25D9%2589-%25D8%25A8%25D9%2586%25D8%25AF%25D9%2582%25D9%258A%25D8%25A9-%25D9%2582%25D9%2586%25D8%25B5%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A7%D9%84%D9%83%D9%84%D8%A7%D8%B3%D9%8A%D9%83%D9%88%3A+%D8%A8%D8%B1%D8%B4%D9%84%D9%88%D9%86%D8%A9+%D9%84%D8%AA%D8%B9%D8%B2%D9%8A%D8%B2+%D8%A7%D9%84%D8%B5%D8%AF%D8%A7%D8%B1%D8%A9+%D9%88%22%D8%B6%D8%B1%D8%A8%D8%A9+%D9%85%D9%88%D8%AC%D8%B9%D8%A9%22+%D9%84%D8%B1%D9%8A%D8%A7%D9%84+%D9%85%D8%AF%D8%B1%D9%8A%D8%AF+https%3A%2F%2Fwww.bbc.com%2Farabic%2Farticles%2Fcmg47e3zpypqo%3Fat_medium%3DRSS%26at_campaign%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.bbc.com/arabic/articles/cmg47e3zpypqo?at_medium=RSS&at_campaign=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D9%85%D8%AD%D8%A7%D9%81%D8%B8+%D9%87%D9%8A%D8%A6%D8%A9+%D8%A7%D9%84%D8%B5%D9%86%D8%A7%D8%B9%D8%A7%D8%AA+%D8%A7%D9%84%D8%B9%D8%B3%D9%83%D8%B1%D9%8A%D8%A9%3A+%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9+%D9%85%D8%A4%D9%87%D9%84%D8%A9+%D9%84%D8%AA%D8%B7%D9%88%D9%8A%D8%B1+%D8%A7%D9%84%D8%AA%D9%82%D9%86%D9%8A%D8%A7%D8%AA+%D8%A7%D9%84%D8%AD%D8%AF%D9%8A%D8%AB%D8%A9+https%3A%2F%2Fasharq.com%2Fdefense%2F200755%2F%25D9%2587%25D9%258A%25D8%25A6%25D8%25A9-%25D8%25A7%25D9%2584%25D8%25B5%25D9%2586%25D8%25A7%25D8%25B9%25D8%25A7%25D8%25AA-%25D8%25A7%25D9%2584%25D8%25B9%25D8%25B3%25D9%2583%25D8%25B1%25D9%258A%25D8%25A9-%25D8%25A7%25D9%2584%25D8%25B3%25D8%25B9%25D9%2588%25D8%25AF%25D9%258A%25D8%25A9-%25D9%2585%25D8%25A4%25D9%2587%25D9%2584%25D8%25A9-%25D8%25AA%25D8%25B7%25D9%2588%25D9%258A%25D8%25B1-%25D8%25A7%25D9%2584%25D8%25AA%25D9%2582%25D9%2586%25D9%258A%25D8%25A7%25D8%25AA-%25D8%25A7%25D9%2584%25D8%25AD%25D8%25AF%25D9%258A%25D8%25AB%25D8%25A9%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A7%D9%84%D8%A5%D9%8A%D8%B1%D8%A7%D9%86%D9%8A%D9%88%D9%86+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D9%82%D9%84%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%B1%D9%82%D8%A8+%D9%85%D8%B9+%D8%AA%D8%B5%D8%A7%D8%B9%D8%AF+%D8%A7%D8%AD%D8%AA%D9%85%D8%A7%D9%84%D8%A7%D8%AA+%D8%AA%D8%AC%D8%AF%D8%AF+%D8%A7%D9%84%D8%AD%D8%B1%D8%A8+https%3A%2F%2Fasharq.com%2Fpolitics%2F200744%2F%25D8%25A7%25D9%2584%25D8%25A5%25D9%258A%25D8%25B1%25D8%25A7%25D9%2586%25D9%258A%25D9%2588%25D9%2586-%25D8%25A8%25D9%258A%25D9%2586-%25D8%25A7%25D9%2584%25D9%2582%25D9%2584%25D9%2582-%25D9%2588%25D8%25A7%25D9%2584%25D8%25AA%25D8%25B1%25D9%2582%25D8%25A8-%25D9%2585%25D8%25B9-%25D8%25AA%25D8%25B5%25D8%25A7%25D8%25B9%25D8%25AF-%25D8%25A7%25D8%25AD%25D8%25AA%25D9%2585%25D8%25A7%25D9%2584%25D8%25A7%25D8%25AA-%25D8%25AA%25D8%25AC%25D8%25AF%25D8%25AF-%25D8%25A7%25D9%2584%25D8%25AD%25D8%25B1%25D8%25A8%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%AE%D9%84%D8%A7%D9%84+24+%D8%B3%D8%A7%D8%B9%D8%A9+%D9%81%D9%82%D8%B7+%D8%B9%D9%84%D9%89+%D8%B7%D8%B1%D8%AD%D9%87..+%D8%B4%D9%83%D8%A7%D9%88%D9%89+%D9%85%D9%86+%D8%AA%D9%84%D9%81+%D8%B4%D8%A7%D8%B4%D8%A9+%D9%88%D9%85%D9%81%D8%B5%D9%84+iPhone+Duo+https%3A%2F%2Fasharq.com%2Ftechnology%2F200733%2F%25D8%25AE%25D9%2584%25D8%25A7%25D9%2584-24-%25D8%25B3%25D8%25A7%25D8%25B9%25D8%25A9-%25D9%2581%25D9%2582%25D8%25B7-%25D8%25B9%25D9%2584%25D9%2589-%25D8%25B7%25D8%25B1%25D8%25AD%25D9%2587-%25D8%25B4%25D9%2583%25D8%25A7%25D9%2588%25D9%2589-%25D9%2585%25D9%2586-%25D8%25AA%25D9%2584%25D9%2581-%25D8%25B4%25D8%25A7%25D8%25B4%25D8%25A9-%25D9%2588%25D9%2585%25D9%2581%25D8%25B5%25D9%2584-iphone-duo%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.bbc.com/arabic/articles/cqx29p7jnpylo?at_medium=RSS&at_campaign=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://asharq.com/technology/200733/%D8%AE%D9%84%D8%A7%D9%84-24-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%81%D9%82%D8%B7-%D8%B9%D9%84%D9%89-%D8%B7%D8%B1%D8%AD%D9%87-%D8%B4%D9%83%D8%A7%D9%88%D9%89-%D9%85%D9%86-%D8%AA%D9%84%D9%81-%D8%B4%D8%A7%D8%B4%D8%A9-%D9%88%D9%85%D9%81%D8%B5%D9%84-iphone-duo/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://asharq.com/defense/200755/%D9%87%D9%8A%D8%A6%D8%A9-%D8%A7%D9%84%D8%B5%D9%86%D8%A7%D8%B9%D8%A7%D8%AA-%D8%A7%D9%84%D8%B9%D8%B3%D9%83%D8%B1%D9%8A%D8%A9-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9-%D9%85%D8%A4%D9%87%D9%84%D8%A9-%D8%AA%D8%B7%D9%88%D9%8A%D8%B1-%D8%A7%D9%84%D8%AA%D9%82%D9%86%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D8%AD%D8%AF%D9%8A%D8%AB%D8%A9/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D9%87%D8%AC%D9%85%D8%A7%D8%AA+%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84%D9%8A%D8%A9+%D8%AA%D9%82%D8%AA%D9%84+%D8%AB%D9%85%D8%A7%D9%86%D9%8A%D8%A9+%D9%81%D9%8A+%D8%BA%D8%B2%D8%A9+%D8%B1%D8%BA%D9%85+%D9%88%D9%82%D9%81+%D8%A5%D8%B7%D9%84%D8%A7%D9%82+%D8%A7%D9%84%D9%86%D8%A7%D8%B1+https%3A%2F%2Fwww.bbc.com%2Farabic%2Farticles%2Fcqx29p7jnpylo%3Fat_medium%3DRSS%26at_campaign%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A8%D9%8A%D8%B1%D9%86%D8%A7%D9%85+%D9%8A%D8%AF%D8%B9%D9%88+%D9%84%D8%A5%D8%B9%D8%A7%D8%AF%D8%A9+%D8%A7%D9%84%D9%86%D8%B8%D8%B1+%D9%81%D9%8A+%D8%AD%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D8%AA%D9%86%D9%82%D9%84+%D9%85%D8%B9+%D8%A3%D9%88%D8%B1%D9%88%D8%A8%D8%A7..+%D9%88%D8%A7%D9%84%D9%85%D8%B9%D8%A7%D8%B1%D8%B6%D8%A9+%D8%AA%D8%B1%D9%81%D8%B6+https%3A%2F%2Fasharq.com%2Fpolitics%2F200722%2F%25D8%25A8%25D9%258A%25D8%25B1%25D9%2586%25D8%25A7%25D9%2585-%25D9%2585%25D9%2586%25D9%2581%25D8%25AA%25D8%25AD-%25D8%25B9%25D9%2584%25D9%2589-%25D8%25AD%25D8%25B1%25D9%258A%25D8%25A9-%25D8%25A7%25D9%2584%25D8%25AA%25D9%2586%25D9%2582%25D9%2584-%25D9%2585%25D8%25B9-%25D8%25A3%25D9%2588%25D8%25B1%25D9%2588%25D8%25A8%25D8%25A7-%25D9%2588%25D8%25A7%25D9%2584%25D9%2585%25D8%25B9%25D8%25A7%25D8%25B1%25D8%25B6%25D8%25A9-%25D8%25AA%25D8%25B1%25D9%2581%25D8%25B6%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://asharq.com/art/200766/%D9%85%D8%AE%D8%B1%D8%AC-%D9%84%D8%A7-%D8%AC%D9%86%D8%A9-%D9%84%D9%85%D9%86-%D8%AA%D9%82%D8%AA%D9%84%D9%87-%D8%A7%D9%85%D8%B1%D8%A3%D8%A9-%D8%AF%D8%B1%D8%A8%D8%AA-%D8%A8%D8%B7%D9%84%D8%A9-%D9%81%D9%8A%D9%84%D9%85%D9%8A-%D8%B9%D9%84%D9%89-%D8%A8%D9%86%D8%AF%D9%82%D9%8A%D8%A9-%D9%82%D9%86%D8%B5/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://asharq.com/politics/200744/%D8%A7%D9%84%D8%A5%D9%8A%D8%B1%D8%A7%D9%86%D9%8A%D9%88%D9%86-%D8%A8%D9%8A%D9%86-%D8%A7%D9%84%D9%82%D9%84%D9%82-%D9%88%D8%A7%D9%84%D8%AA%D8%B1%D9%82%D8%A8-%D9%85%D8%B9-%D8%AA%D8%B5%D8%A7%D8%B9%D8%AF-%D8%A7%D8%AD%D8%AA%D9%85%D8%A7%D9%84%D8%A7%D8%AA-%D8%AA%D8%AC%D8%AF%D8%AF-%D8%A7%D9%84%D8%AD%D8%B1%D8%A8/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://www.bbc.com/arabic/articles/cmg47exlwq7xo?at_medium=RSS&at_campaign=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9..+%D8%A7%D9%84%D9%85%D9%84%D9%83+%D8%B3%D9%84%D9%85%D8%A7%D9%86+%D9%8A%D9%88%D8%AC%D9%87+%D8%A8%D8%B9%D8%AF%D8%AF+%D9%85%D9%86+%D8%A7%D9%84%D8%A5%D8%AC%D8%B1%D8%A7%D8%A1%D8%A7%D8%AA+%D8%A7%D9%84%D8%AF%D8%A7%D8%B9%D9%85%D8%A9+%D9%84%D9%84%D9%85%D9%88%D8%A7%D8%B7%D9%86%D9%8A%D9%86+https%3A%2F%2Fasharq.com%2Fpolitics%2F200754%2F%25D8%25A7%25D9%2584%25D8%25B3%25D8%25B9%25D9%2588%25D8%25AF%25D9%258A%25D8%25A9-%25D8%25A7%25D9%2584%25D9%2585%25D9%2584%25D9%2583-%25D8%25B3%25D9%2584%25D9%2585%25D8%25A7%25D9%2586-%25D9%258A%25D9%2588%25D8%25AC%25D9%2587-%25D8%25A8%25D8%25B9%25D8%25AF%25D8%25AF-%25D9%2585%25D9%2586-%25D8%25A7%25D9%2584%25D8%25A5%25D8%25AC%25D8%25B1%25D8%25A7%25D8%25A1%25D8%25A7%25D8%25AA-%25D9%2584%25D8%25AF%25D8%25B9%25D9%2585-%25D8%25A7%25D9%2584%25D9%2585%25D9%2588%25D8%25A7%25D8%25B7%25D9%2586%25D9%258A%25D9%2586%2F",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://asharq.com/politics/200754/%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9-%D8%A7%D9%84%D9%85%D9%84%D9%83-%D8%B3%D9%84%D9%85%D8%A7%D9%86-%D9%8A%D9%88%D8%AC%D9%87-%D8%A8%D8%B9%D8%AF%D8%AF-%D9%85%D9%86-%D8%A7%D9%84%D8%A5%D8%AC%D8%B1%D8%A7%D8%A1%D8%A7%D8%AA-%D9%84%D8%AF%D8%B9%D9%85-%D8%A7%D9%84%D9%85%D9%88%D8%A7%D8%B7%D9%86%D9%8A%D9%86/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D9%84%D9%85%D8%A7%D8%B0%D8%A7+%D8%AA%D8%B9%D8%AA%D9%85%D8%AF+%D8%A3%D9%88%D9%83%D8%B1%D8%A7%D9%86%D9%8A%D8%A7+%D8%B9%D9%84%D9%89+%D8%B3%D8%AA%D8%A7%D8%B1%D9%84%D9%8A%D9%86%D9%83%D8%9F+%D9%88%D9%87%D9%84+%D8%AA%D8%B3%D8%AA%D8%B7%D9%8A%D8%B9+%D8%A3%D9%88%D8%B1%D9%88%D8%A8%D8%A7+%D8%B3%D8%AF+%D8%A7%D9%84%D9%81%D8%AC%D9%88%D8%A9%D8%9F+https%3A%2F%2Fwww.bbc.com%2Farabic%2Farticles%2Fcmg47exlwq7xo%3Fat_medium%3DRSS%26at_campaign%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.bbc.com/arabic/articles/ck1l38q5m815o?at_medium=RSS&at_campaign=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A7%D9%84%D8%BA%D8%A7%D8%B1%D8%AF%D9%8A%D8%A7%D9%86%3A+%D9%82%D8%AF+%D9%8A%D9%83%D9%88%D9%86+%D8%A5%D8%B1%D8%AB+%D8%AA%D8%B1%D8%A7%D9%85%D8%A8+%D8%A7%D9%84%D8%A3%D8%AE%D8%B7%D8%B1+%D8%B9%D8%A7%D9%84%D9%85%D8%A7%D9%8B+%D9%85%D9%86%D9%82%D8%B3%D9%85%D8%A7%D9%8B+%D8%A5%D9%84%D9%89+%D8%AB%D9%84%D8%A7%D8%AB%D8%A9+https%3A%2F%2Fwww.bbc.com%2Farabic%2Farticles%2Fcjy569p3nzk6o%3Fat_medium%3DRSS%26at_campaign%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A3%D9%88%D9%84+%D9%84%D9%82%D8%A7%D8%AD+%D8%B4%D8%AE%D8%B5%D9%8A+%D9%84%D9%84%D8%B3%D8%B1%D8%B7%D8%A7%D9%86+%D9%8A%D9%82%D9%84%D9%91%D9%84+%D8%AE%D8%B7%D8%B1+%D8%B9%D9%88%D8%AF%D8%A9+%D8%A7%D9%84%D9%85%D8%B1%D8%B6+https%3A%2F%2Fwww.bbc.com%2Farabic%2Farticles%2Fc9ly0d4g0gr1o%3Fat_medium%3DRSS%26at_campaign%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.bbc.com/arabic/articles/cjy569p3nzk6o?at_medium=RSS&at_campaign=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://asharq.com/politics/200722/%D8%A8%D9%8A%D8%B1%D9%86%D8%A7%D9%85-%D9%85%D9%86%D9%81%D8%AA%D8%AD-%D8%B9%D9%84%D9%89-%D8%AD%D8%B1%D9%8A%D8%A9-%D8%A7%D9%84%D8%AA%D9%86%D9%82%D9%84-%D9%85%D8%B9-%D8%A3%D9%88%D8%B1%D9%88%D8%A8%D8%A7-%D9%88%D8%A7%D9%84%D9%85%D8%B9%D8%A7%D8%B1%D8%B6%D8%A9-%D8%AA%D8%B1%D9%81%D8%B6/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%AD%D9%8A%D9%86+%D8%A3%D8%B1%D8%B3%D9%84+%D8%B9%D8%A8%D8%AF+%D8%A7%D9%84%D9%86%D8%A7%D8%B5%D8%B1+%D8%A7%D9%84%D8%AC%D9%8A%D8%B4+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A+%D8%A5%D9%84%D9%89+%D8%A7%D9%84%D9%8A%D9%85%D9%86+%D9%84%D9%85%D9%88%D8%A7%D8%AC%D9%87%D8%A9+%D9%82%D9%88%D8%A7%D8%AA+%D8%AA%D8%AF%D8%B9%D9%85%D9%87%D8%A7+%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9+https%3A%2F%2Fwww.bbc.com%2Farabic%2Farticles%2Fck1l38q5m815o%3Fat_medium%3DRSS%26at_campaign%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.bbc.com/arabic/articles/c6x2v3jgv88xo?at_medium=RSS&at_campaign=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://www.bbc.com/arabic/articles/c9ly0d4g0gr1o?at_medium=RSS&at_campaign=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D9%85%D9%86+%D9%87%D9%85+%D8%A7%D9%84%D9%85%D8%B3%D9%8A%D8%AD%D9%8A%D9%88%D9%86+%D8%A7%D9%84%D8%A3%D8%B1%D8%AF%D9%86%D9%8A%D9%88%D9%86%D8%9F+%D9%88%D9%85%D8%A7%D8%B0%D8%A7+%D9%86%D8%B9%D8%B1%D9%81+%D8%B9%D9%86+%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE%D9%87%D9%85%D8%9F+https%3A%2F%2Fwww.bbc.com%2Farabic%2Farticles%2Fcrd6dx7vqx62o%3Fat_medium%3DRSS%26at_campaign%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%B2%D9%87%D8%B1%D8%A7%D9%86+%D9%81%D9%8A+%D8%A8%D9%84%D8%A7+%D9%82%D9%8A%D9%88%D8%AF%3A+%D9%86%D9%81%D9%8A+%D8%A7%D9%84%D8%B3%D9%8A%D8%B3%D9%8A+%D8%AA%D8%BA%D9%8A%D9%8A%D8%B1+%D8%A7%D9%84%D8%AF%D8%B3%D8%AA%D9%88%D8%B1%D8%8C+%D9%8A%D9%86%D9%81%D9%8A+%D8%A3%D9%8A%D8%B6%D8%A7+%D9%86%D9%8A%D8%AA%D9%87+%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%85%D8%B1%D8%A7%D8%B1+%D9%81%D9%8A+%D8%A7%D9%84%D8%AD%D9%83%D9%85.+https%3A%2F%2Fwww.bbc.com%2Farabic%2Farticles%2Fc6x2v3jgv88xo%3Fat_medium%3DRSS%26at_campaign%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D9%85%D8%A7+%D8%A7%D9%84%D8%B0%D9%8A+%D8%AA%D8%B3%D8%B9%D9%89+%D8%A5%D9%84%D9%8A%D9%87+%D8%AA%D8%B1%D9%83%D9%8A%D8%A7+%D9%85%D9%86+%D8%AE%D9%84%D8%A7%D9%84+%D8%AA%D8%AD%D8%A7%D9%84%D9%81%D9%8A+%D9%85%D9%83%D8%A9+%D9%88%D8%A8%D8%AF%D8%B1%D8%9F+https%3A%2F%2Fwww.bbc.com%2Farabic%2Farticles%2Fcw80zx7880yeo%3Fat_medium%3DRSS%26at_campaign%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.bbc.com/arabic/articles/c699z3lp577mo?at_medium=RSS&at_campaign=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D8%A5%D8%B1%D9%8A%D8%AA%D8%B1%D9%8A%D8%A7..+%D8%A8%D9%84%D8%AF+%D8%A3%D9%81%D8%B1%D9%8A%D9%82%D9%8A+%D9%84%D9%85+%D9%8A%D8%B9%D8%B1%D9%81+%D8%BA%D9%8A%D8%B1+%D8%B1%D8%A6%D9%8A%D8%B3+%D9%88%D8%A7%D8%AD%D8%AF+https%3A%2F%2Fwww.bbc.com%2Farabic%2Farticles%2Fck8dzy911qd8o%3Fat_medium%3DRSS%26at_campaign%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.bbc.com/arabic/articles/cw80zx7880yeo?at_medium=RSS&at_campaign=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://www.bbc.com/arabic/articles/ck8dzy911qd8o?at_medium=RSS&at_campaign=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://www.bbc.com/arabic/articles/crd6dx7vqx62o?at_medium=RSS&at_campaign=rss",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/quran?surah=1&ayah=1",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A3%D8%B1%D9%8A%D8%AF+%D8%AA%D9%81%D8%B3%D9%8A%D8%B1%D9%8B%D8%A7+%D9%85%D8%A8%D8%B3%D8%B7%D9%8B%D8%A7+%D9%84%D9%84%D8%A2%D9%8A%D8%A9+1+%D9%85%D9%86+%D8%B3%D9%8F%D9%88%D8%B1%D9%8E%D8%A9%D9%8F+%D9%B1%D9%84%D9%92%D9%81%D9%8E%D8%A7%D8%AA%D9%90%D8%AD%D9%8E%D8%A9%D9%90+%D9%85%D8%B9+%D8%B0%D9%83%D8%B1+%D9%85%D8%B5%D8%AF%D8%B1+%D8%A7%D9%84%D8%AA%D9%81%D8%B3%D9%8A%D8%B1+%D9%88%D8%A7%D9%84%D8%AA%D9%86%D8%A8%D9%8A%D9%87+%D9%84%D9%84%D8%B1%D8%AC%D9%88%D8%B9+%D9%84%D8%A3%D9%87%D9%84+%D8%A7%D9%84%D8%B9%D9%84%D9%85.",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=%D8%A7%D8%B4%D8%B1%D8%AD+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1+%D9%85%D8%B9+%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%8A%D8%B2+%D8%A8%D9%8A%D9%86+%D8%A7%D9%84%D8%AD%D9%82%D8%A7%D8%A6%D9%82+%D9%88%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84%D8%8C+%D9%88%D8%B1%D8%A7%D8%AC%D8%B9+%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1%3A+%D9%84%D9%85%D8%A7%D8%B0%D8%A7+%D9%82%D8%AF+%D9%84%D8%A7+%D8%AA%D9%8F%D8%B3%D9%81%D8%B1+%D8%A7%D9%86%D8%AA%D8%AE%D8%A7%D8%A8%D8%A7%D8%AA+%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84+%D8%B9%D9%86+%D9%81%D8%A7%D8%A6%D8%B2+%D9%88%D8%A7%D8%B6%D8%AD%D8%9F+https%3A%2F%2Fwww.bbc.com%2Farabic%2Farticles%2Fc699z3lp577mo%3Fat_medium%3DRSS%26at_campaign%3Drss",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/forum",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/forum/general",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/forum/science",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/forum/deen",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/forum/life",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/forum/code",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/forum/ideas",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/hudoo",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/amlak",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/agent",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/himaya",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/home",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/manteq",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/manba",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/khazana",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/ask?q=",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://tube.alhajda.com/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/app/studio",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/teacher",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/life",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/salahlog",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/asma",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/dua",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/khatma",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/athkar",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/qibla",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/hijri",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/fasting",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/tasbih",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/papers",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/umrah",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/services",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.my.gov.sa/",
+      "status": 403,
+      "internal": false
+    },
+    {
+      "url": "https://www.tawakkalna.gov.sa/",
+      "error": "Error: apiRequestContext.head: Parse Error: Expected HTTP/, RTSP/ or ICE/",
+      "internal": false
+    },
+    {
+      "url": "https://www.muqeem.sa/",
+      "error": "Error: apiRequestContext.head: Parse Error: Expected HTTP/, RTSP/ or ICE/",
+      "internal": false
+    },
+    {
+      "url": "https://www.sehhaty.sa/",
+      "status": 403,
+      "internal": false
+    },
+    {
+      "url": "https://www.ehsan.sa/",
+      "error": "Error: apiRequestContext.head: Parse Error: Data after `Connection: close`",
+      "internal": false
+    },
+    {
+      "url": "https://www.nwc.com.sa/",
+      "status": 403,
+      "internal": false
+    },
+    {
+      "url": "https://www.se.com.sa/",
+      "status": 500,
+      "internal": false
+    },
+    {
+      "url": "https://www.absher.sa/",
+      "error": "Error: apiRequestContext.head: socket hang up",
+      "internal": false
+    },
+    {
+      "url": "https://www.splonline.com.sa/",
+      "error": "Error: apiRequestContext.head: Parse Error: Expected HTTP/, RTSP/ or ICE/",
+      "internal": false
+    },
+    {
+      "url": "https://www.moh.gov.sa/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://zatca.gov.sa/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://www.moe.gov.sa/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://www.hrsd.gov.sa/",
+      "status": 403,
+      "internal": false
+    },
+    {
+      "url": "https://www.iam.gov.sa/",
+      "error": "Error: apiRequestContext.head: Parse Error: Expected HTTP/, RTSP/ or ICE/",
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/app/holidays",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.najiz.sa/",
+      "error": "Error: apiRequestContext.head: Parse Error: Expected HTTP/, RTSP/ or ICE/",
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/app/nazari",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/emergency",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/shopping",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/bills",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/names",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/greet",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/car",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.qiwa.sa/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/app/family",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/countdown",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/letters",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/tables",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/clocks",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/proverbs",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/expenses",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/margin",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/payroll",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/cashbook",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/water",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/meds",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/sleep",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/calories",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/breathe",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/pregnancy",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/notes",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/workspace",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/tasks",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/habits",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/focus",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/markdown",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/meetings",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/letter",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/timesheet",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/leave",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/clients",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/pipeline",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/invoice",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/quote",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/zatca",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/licenses",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/portals",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.balady.gov.sa/",
+      "error": "Error: apiRequestContext.head: Parse Error: Expected HTTP/, RTSP/ or ICE/",
+      "internal": false
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=t0kACis_dJE",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://www.gosi.gov.sa/",
+      "error": "Error: apiRequestContext.head: Parse Error: Expected HTTP/, RTSP/ or ICE/",
+      "internal": false
+    },
+    {
+      "url": "https://www.saudibusiness.gov.sa/",
+      "error": "Error: apiRequestContext.head: Parse Error: Data after `Connection: close`",
+      "internal": false
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=j5Sl8LyI7k8",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=e-P5IFTqB98",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://mc.gov.sa/",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=zQGOcOUBi6s",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://www.stats.gov.sa/",
+      "error": "Error: apiRequestContext.head: Parse Error: Expected HTTP/, RTSP/ or ICE/",
+      "internal": false
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=-3QJke9_Z4o",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=j0j4Ews5SzM",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=UukRgqzk-KE",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=SKxm2HF_-k0",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/app/colors",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/textlab",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=fHztd6k5ZXY",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://waha.hajdah.com/app/json",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://waha.hajdah.com/app/encode",
+      "status": 200,
+      "internal": true
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=bF_1ZiFta-E",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=f2O6mQkFiiw",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=1X8p0vhsWRE",
+      "status": 200,
+      "internal": false
+    },
+    {
+      "url": "https://enjoy.sa/media/j1ofreng/baloot.pdf",
+      "status": 403,
+      "internal": false
+    },
+    {
+      "url": "https://www.taqat.sa/",
+      "error": "Error: apiRequestContext.head: Parse Error: Expected HTTP/, RTSP/ or ICE/",
+      "internal": false
+    }
+  ]
+}

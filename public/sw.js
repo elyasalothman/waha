@@ -1,5 +1,5 @@
 /* Public shell only. Authentication, APIs and private books never enter CacheStorage. */
-const VERSION = "waha-public-v6";
+const VERSION = "waha-public-v7";
 const OFFLINE = "/offline.html";
 const PUBLIC_PAGES = new Set([
   "/",
