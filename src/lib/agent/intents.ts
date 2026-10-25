@@ -29,7 +29,7 @@ export function parseIntent(input: string): AgentCommand | null {
   if (/^(ذكرني|ذكرني)\s/.test(q)) {
     const body = input.replace(/^ذكرني\s*/, "");
     const when = q.match(
-      /بعد ساعتين|بعد ساعة|بعد \d+ (?:دقيقة|دقائق|ساعات|ساعة)|(?:بكرة|غدا)(?: \d+(?:[:٫]\d+)?(?: (?:العصر|المساء|الصباح|الليل))?)?|الساعة \d+(?::\d+)?(?: (?:العصر|المساء|الصباح|الليل))?|يوم (?:الاحد|الاثنين|الثلاثاء|الاربعاء|الخميس|الجمعة|السبت)/,
+      /بعد ساعتين|بعد ساعة|بعد \d+ (?:دقيقة|دقائق|ساعات|ساعة)|(?:بكرة|غدا)(?: \d+(?:[:٫]\d+)?(?: (?:العصر|المساء|الصباح|الليل))?)?|الساعة \d+(?::\d+)?(?: (?:العصر|المساء|الصباح|الليل))?|يوم (?:الاحد|الاثنين|الثلاثاء|الاربعاء|الخميس|الجمعة|السبت)(?: \d+(?::\d+)?(?: (?:العصر|المساء|الصباح|الليل))?)?/,
     )?.[0];
     return command("add_reminder", { text: body, ...(when ? { when } : {}) });
   }
@@ -83,7 +83,9 @@ export function parseIntent(input: string): AgentCommand | null {
     const [tool, args] = colloquial[q];
     return command(tool, args);
   }
-  if (/^(احسب|كم|حساب)\s/.test(q))
+  if (/^[0-9xس(][0-9xس\s+−*/×÷.^()=-]*=[0-9xس\s+−*/×÷.^()=-]+$/.test(q))
+    return command("math", { expr: q });
+  if (/^(احسب|حساب)\s/.test(q) || /^كم\s+(?:[0-9(√]|جذر\s+[0-9])/.test(q))
     return command("calculate", { expr: q.replace(/^(احسب|كم|حساب)\s+/, "").replace(/[؟?]$/, "") });
   if (/^https:\/\//.test(q)) return command("open_url", { url: input.trim() });
   if (/^(افتح الرابط|افتح رابط)\s/.test(q)) {

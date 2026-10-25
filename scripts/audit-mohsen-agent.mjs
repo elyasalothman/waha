@@ -88,6 +88,7 @@ try {
     await send("خصم ٣٠٪ على ٤٥٠", "315");
     await send("حل ٢س+٣=٧", "2");
     await send("حل x^2-5x+6=0", "2");
+    await send("x^2-5x+6=0", "2");
     await send("حول ١ كم الى ميل", "0.621");
     await send("جذر ٨١", "9");
     await send("كم ٢^٣", "8");
@@ -99,6 +100,13 @@ try {
     await send("اعرض ملاحظاتي", "تجربة محسن");
     await send("ذكرني بعد ساعتين أشرب موية", "حُفظ التذكير", true);
     await send("اعرض تذكيراتي", "أشرب موية");
+    await send("ذكرني يوم الخميس ٥ العصر أشرب موية", "حُفظ التذكير", true);
+    assert.equal(
+      await page.evaluate(() =>
+        new Date(JSON.parse(localStorage.getItem("waha-agent-reminders")).at(-1).dueAt).getHours(),
+      ),
+      17,
+    );
     await send("الوضع الليلي", "تم تطبيق الإعداد", true);
     await dialog.getByRole("button", { name: "تراجع", exact: true }).click();
     await send("افتح الحاسبة", "تم فتح");

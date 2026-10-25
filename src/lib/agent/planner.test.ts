@@ -129,3 +129,28 @@ test("Saudi commands and vocalized verbs split without altering original text", 
   assert.deepEqual(splitCommands("افتح كتاب كيف نقرأ ونكتب"), ["افتح كتاب كيف نقرأ ونكتب"]);
   assert.deepEqual(splitCommands("افتح الحاسبة وشغل البث"), ["افتح الحاسبة", "شغل البث"]);
 });
+
+test("knowledge questions using كم are remote while bare equations stay local", () => {
+  assert.equal(plan("كم عدد سكان السعودية").steps[0].command.tool, "ask_mohsen");
+  assert.equal(plan("كم ٢٥×٤").steps[0].command.tool, "calculate");
+  assert.equal(plan("x^2-5x+6=0").steps[0].command.tool, "math");
+});
+test("deletion in a multi-step plan keeps its own confirmation gate", async () => {
+  const p = plan("افتح الحاسبة ثم احذف ملاحظة abc");
+  const calls: string[] = [];
+  const result = await executePlan(p, {
+    execute: async (c) => {
+      calls.push(c.tool);
+    },
+  });
+  assert.deepEqual(calls, ["open_app"]);
+  assert.equal(result.steps[1].status, "confirmation");
+});
+
+test("weekday reminder preserves the requested hour through intent parsing", async () => {
+  const { parseArabicTime } = await import("./local.ts");
+  const command = parseIntent("ذكرني يوم الخميس ٥ العصر أشرب موية");
+  assert.equal(command?.tool, "add_reminder");
+  if (command?.tool !== "add_reminder") throw new Error("wrong tool");
+  assert.equal(new Date(parseArabicTime(command.args.when!)!.dueAt).getHours(), 17);
+});

@@ -1,0 +1,145 @@
+{
+  "base": "http://127.0.0.1:8081",
+  "at": "2026-10-25T19:19:31.074Z",
+  "checks": [
+    {
+      "width": 390,
+      "text": "كم ٢٥×٤",
+      "ok": true,
+      "result": "الناتج: 100\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "http://127.0.0.1:8081/"
+    },
+    {
+      "width": 390,
+      "text": "كم ١٥٪ من ٢٤٠",
+      "ok": true,
+      "result": "الناتج: 36\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "http://127.0.0.1:8081/"
+    },
+    {
+      "width": 390,
+      "text": "خصم ٣٠٪ على ٤٥٠",
+      "ok": true,
+      "result": "315\n450 × 30 ÷ 100 = 135\n450 − 135\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "http://127.0.0.1:8081/"
+    },
+    {
+      "width": 390,
+      "text": "حل ٢س+٣=٧",
+      "ok": true,
+      "result": "س = 2\n2س = 4\nس = 2\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "http://127.0.0.1:8081/"
+    },
+    {
+      "width": 390,
+      "text": "حل x^2-5x+6=0",
+      "ok": true,
+      "result": "س = 2 أو 3\nالمميز = -5² − 4 × 1 × 6 = 1\nس = (−ب ± √المميز) ÷ (2أ)\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "http://127.0.0.1:8081/"
+    },
+    {
+      "width": 390,
+      "text": "x^2-5x+6=0",
+      "ok": true,
+      "result": "س = 2 أو 3\nالمميز = -5² − 4 × 1 × 6 = 1\nس = (−ب ± √المميز) ÷ (2أ)\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "http://127.0.0.1:8081/"
+    },
+    {
+      "width": 390,
+      "text": "حول ١ كم الى ميل",
+      "ok": true,
+      "result": "0.621371192237 ميل\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "http://127.0.0.1:8081/"
+    },
+    {
+      "width": 390,
+      "text": "جذر ٨١",
+      "ok": true,
+      "result": "9\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "http://127.0.0.1:8081/"
+    },
+    {
+      "width": 390,
+      "text": "كم ٢^٣",
+      "ok": true,
+      "result": "الناتج: 8\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "http://127.0.0.1:8081/"
+    },
+    {
+      "width": 390,
+      "text": "مدينتي جدة",
+      "ok": true,
+      "result": "تذكّرت ذلك على هذا الجهاز فقط\n\n👍\n👎\nقراءة الجواب بصوت\nتراجع",
+      "url": "http://127.0.0.1:8081/"
+    },
+    {
+      "width": 390,
+      "text": "وش تذكر عني",
+      "ok": true,
+      "result": "مدينتي جدة\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "http://127.0.0.1:8081/"
+    },
+    {
+      "width": 390,
+      "text": "تذكر أن اسمي مستخدم الفحص",
+      "ok": true,
+      "result": "تذكّرت ذلك على هذا الجهاز فقط\n\n👍\n👎\nقراءة الجواب بصوت\nتراجع",
+      "url": "http://127.0.0.1:8081/"
+    },
+    {
+      "width": 390,
+      "text": "انس مدينتي",
+      "ok": true,
+      "result": "تم نسيان الذاكرة المطابقة\n\n👍\n👎\nقراءة الجواب بصوت\nتراجع",
+      "url": "http://127.0.0.1:8081/"
+    },
+    {
+      "width": 390,
+      "text": "اضف ملاحظة تجربة محسن",
+      "ok": true,
+      "result": "حُفظت الملاحظة محليًا لدى محسن\n\n👍\n👎\nقراءة الجواب بصوت\nتراجع",
+      "url": "http://127.0.0.1:8081/"
+    },
+    {
+      "width": 390,
+      "text": "اعرض ملاحظاتي",
+      "ok": true,
+      "result": "mvo7p1gg-c60fwt3t · تجربة محسن\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "http://127.0.0.1:8081/"
+    },
+    {
+      "width": 390,
+      "text": "ذكرني بعد ساعتين أشرب موية",
+      "ok": true,
+      "result": "حُفظ التذكير: ٢٥‏/١٠‏/٢٠٢٦، ٩:١٩:٣٦ م؛ يظهر عند فتح واحة، وإشعار المتصفح إن كان مأذونًا\n\n👍\n👎\nقراءة الجواب بصوت\nتراجع",
+      "url": "http://127.0.0.1:8081/"
+    },
+    {
+      "width": 390,
+      "text": "اعرض تذكيراتي",
+      "ok": true,
+      "result": "mvo7p1oq-rywx7723 · بعد ساعتين أشرب موية · ٢٥‏/١٠‏/٢٠٢٦، ٩:١٩:٣٦ م\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "http://127.0.0.1:8081/"
+    },
+    {
+      "width": 390,
+      "text": "ذكرني يوم الخميس ٥ العصر أشرب موية",
+      "ok": true,
+      "result": "حُفظ التذكير: ٢٩‏/١٠‏/٢٠٢٦، ٩:٠٠:٠٠ ص؛ يظهر عند فتح واحة، وإشعار المتصفح إن كان مأذونًا\n\n👍\n👎\nقراءة الجواب بصوت\nتراجع",
+      "url": "http://127.0.0.1:8081/"
+    }
+  ],
+  "errors": [],
+  "network": [
+    {
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+      "status": 429
+    },
+    {
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+      "status": 429
+    }
+  ],
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n9 !== 17\n",
+  "failureText": "✦ محسن\n×\n\nاكتب طلبك وسأنفّذه داخل واحة. أستأذنك قبل تغيير إعداداتك أو إضافة بيانات.\n\nنفّذ\n✓ تذكير محلي بوقت الجهاز: يوم الخميس ٥ العصر أشرب موية، يوم الخميس\nتم\n\nحُفظ التذكير: ٢٩‏/١٠‏/٢٠٢٦، ٩:٠٠:٠٠ ص؛ يظهر عند فتح واحة، وإشعار المتصفح إن كان مأذونًا\n\n👍\n👎\nقراءة الجواب بصوت\nتراجع\nكمل الكتاب\nالوضع الليلي\nشغل البث\nسجل المحادثة المحلي\nآخر الأوامر\n\nيُرسل سؤالك فقط إلى محسن للإجابة؛ واحة لا تخزّن نصّك على الخادم. سجل المحادثة على جهازك فقط."
+}

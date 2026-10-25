@@ -52,7 +52,9 @@ export function parseArabicTime(
   const days = ["الاحد", "الاثنين", "الثلاثاء", "الاربعاء", "الخميس", "الجمعة", "السبت"];
   const day = days.findIndex((d) => s.includes(d));
   const tomorrow = /بكر[ةه]|غدا/.test(s);
-  const time = s.match(/(?:الساع[ةه]\s*|(?:بكر[ةه]|غدا)\s*)(\d{1,2})(?::(\d{2}))?/);
+  const time = s.match(
+    /(?:الساع[ةه]\s*|(?:بكر[ةه]|غدا)\s*|(?:الاحد|الاثنين|الثلاثاء|الاربعاء|الخميس|الجمعة|السبت)\s*)(\d{1,2})(?::(\d{2}))?/,
+  );
   if (!time && day < 0 && !tomorrow) return null;
   if (tomorrow) date.setDate(date.getDate() + 1);
   if (day >= 0) {
