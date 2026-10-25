@@ -165,3 +165,37 @@ workflows:
       app_store_connect:
         auth: integration
         submit_to_testflight: true
+
+# ---------------------------------------------------------------------------
+# android-aab — DISABLED. Comments only; Codemagic does not run this.
+# Do not uncomment unless an upload keystore already lives outside git
+# (Codemagic encrypted variable / android signing, never the repo) AND a
+# paid Android build was explicitly requested. Uncommenting can start a
+# paid instance. No push, pull_request, tag, or Play publishing triggers.
+#
+#   android-aab:
+#     name: واحة Android — AAB (disabled)
+#     max_build_duration: 60
+#     instance_type: linux_x2
+#     environment:
+#       node: 22
+#       java: 21
+#       vars:
+#         PACKAGE_NAME: com.alhajda.waha
+#     triggering:
+#       events: []
+#     scripts:
+#       - name: Install dependencies
+#         script: npm ci
+#       - name: Sync web assets
+#         script: npm run cap:sync:android
+#       - name: Build release AAB
+#         script: |
+#           set -euo pipefail
+#           cd android
+#           # android/keystore.properties is gitignored. Without it this
+#           # emits an unsigned AAB that Play Console rejects.
+#           ./gradlew bundleRelease
+#     artifacts:
+#       - android/app/build/outputs/bundle/release/*.aab
+# ---------------------------------------------------------------------------
