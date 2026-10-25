@@ -1,0 +1,473 @@
+{
+  "base": "https://waha.hajdah.com",
+  "at": "2026-10-25T19:58:27.404Z",
+  "checks": [
+    {
+      "width": 390,
+      "text": "كم ٢٥×٤",
+      "ok": true,
+      "result": "الناتج: 100\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 390,
+      "text": "كم ١٥٪ من ٢٤٠",
+      "ok": true,
+      "result": "الناتج: 36\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 390,
+      "text": "خصم ٣٠٪ على ٤٥٠",
+      "ok": true,
+      "result": "315\n450 × 30 ÷ 100 = 135\n450 − 135\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 390,
+      "text": "حل ٢س+٣=٧",
+      "ok": true,
+      "result": "س = 2\n2س = 4\nس = 2\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 390,
+      "text": "حل x^2-5x+6=0",
+      "ok": true,
+      "result": "س = 2 أو 3\nالمميز = -5² − 4 × 1 × 6 = 1\nس = (−ب ± √المميز) ÷ (2أ)\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 390,
+      "text": "x^2-5x+6=0",
+      "ok": true,
+      "result": "س = 2 أو 3\nالمميز = -5² − 4 × 1 × 6 = 1\nس = (−ب ± √المميز) ÷ (2أ)\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 390,
+      "text": "حول ١ كم الى ميل",
+      "ok": true,
+      "result": "0.621371192237 ميل\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 390,
+      "text": "جذر ٨١",
+      "ok": true,
+      "result": "9\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 390,
+      "text": "كم ٢^٣",
+      "ok": true,
+      "result": "الناتج: 8\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 390,
+      "text": "مدينتي جدة",
+      "ok": true,
+      "result": "تذكّرت ذلك على هذا الجهاز فقط\n\n👍\n👎\nقراءة الجواب بصوت\nتراجع",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 390,
+      "text": "وش تذكر عني",
+      "ok": true,
+      "result": "مدينتي جدة\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 390,
+      "text": "تذكر أن اسمي مستخدم الفحص",
+      "ok": true,
+      "result": "تذكّرت ذلك على هذا الجهاز فقط\n\n👍\n👎\nقراءة الجواب بصوت\nتراجع",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 390,
+      "text": "انس مدينتي",
+      "ok": true,
+      "result": "تم نسيان الذاكرة المطابقة\n\n👍\n👎\nقراءة الجواب بصوت\nتراجع",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 390,
+      "text": "اضف ملاحظة تجربة محسن",
+      "ok": true,
+      "result": "حُفظت الملاحظة محليًا لدى محسن\n\n👍\n👎\nقراءة الجواب بصوت\nتراجع",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 390,
+      "text": "اعرض ملاحظاتي",
+      "ok": true,
+      "result": "mvo933sk-tjxy36ck · تجربة محسن\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 390,
+      "text": "ذكرني بعد ساعتين أشرب موية",
+      "ok": true,
+      "result": "حُفظ التذكير: ٢٥‏/١٠‏/٢٠٢٦، ٩:٥٨:٣٢ م؛ يظهر عند فتح واحة، وإشعار المتصفح إن كان مأذونًا\n\n👍\n👎\nقراءة الجواب بصوت\nتراجع",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 390,
+      "text": "اعرض تذكيراتي",
+      "ok": true,
+      "result": "mvo933zr-di7g090l · بعد ساعتين أشرب موية · ٢٥‏/١٠‏/٢٠٢٦، ٩:٥٨:٣٢ م\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 390,
+      "text": "ذكرني يوم الخميس ٥ العصر أشرب موية",
+      "ok": true,
+      "result": "حُفظ التذكير: ٢٩‏/١٠‏/٢٠٢٦، ٥:٠٠:٠٠ م؛ يظهر عند فتح واحة، وإشعار المتصفح إن كان مأذونًا\n\n👍\n👎\nقراءة الجواب بصوت\nتراجع",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 390,
+      "text": "الوضع الليلي",
+      "ok": true,
+      "result": "تم تطبيق الإعداد وحفظه على هذا الجهاز\n\n👍\n👎\nقراءة الجواب بصوت\nتراجع",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 390,
+      "text": "افتح الحاسبة",
+      "ok": true,
+      "result": "تم فتح الحاسبة\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/app/calc"
+    },
+    {
+      "width": 390,
+      "text": "افتح الملاحظات",
+      "ok": true,
+      "result": "تم فتح الملاحظات\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/app/notes"
+    },
+    {
+      "width": 390,
+      "text": "افتح كتاب الهجدة",
+      "ok": true,
+      "result": "تم فتح الهجدة · الكتاب\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/books/alhajda"
+    },
+    {
+      "width": 390,
+      "text": "كمل الكتاب",
+      "ok": true,
+      "result": "عدت إلى آخر كتاب؛ يُستعاد موضعك المحفوظ\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/books/alhajda"
+    },
+    {
+      "width": 390,
+      "text": "دمج ملفات PDF",
+      "ok": true,
+      "result": "تم فتح استوديو PDF؛ اختر الأداة المطلوبة داخله\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/pro/pdf"
+    },
+    {
+      "width": 390,
+      "text": "افتح السيرة الذاتية",
+      "ok": true,
+      "result": "تم فتح منشئ السيرة الذاتية؛ اختر القالب داخله\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/pro/cv"
+    },
+    {
+      "width": 390,
+      "text": "شغل البث",
+      "ok": true,
+      "result": "تم فتح البث: موجز العناوين المسموع؛ اضغط زر التشغيل\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/news#live-bulletin"
+    },
+    {
+      "width": 390,
+      "text": "ودني الأخبار",
+      "ok": true,
+      "result": "عناوين محفوظة · راجع المصدر\n\n👍\n👎\nقراءة الجواب بصوت\nإسرائيل تشدد قبضتها على الضفة الغربية.. إغلاقات وهدم وتهجير ←\nاحتجاجات جديدة في ألبانيا رغم فرض غرامات للحد من أعمال العنف ←\nحادث سير يؤجل تجمعات انتخابية لمرشحة ديمقراطية في ألاسكا ←",
+      "url": "https://waha.hajdah.com/news#live-bulletin"
+    },
+    {
+      "width": 390,
+      "text": "وش الجو بجدة",
+      "ok": true,
+      "result": "تعذّر جلب الطقس الآن. افتح تطبيق الطقس وأعد المحاولة\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/news#live-bulletin"
+    },
+    {
+      "width": 390,
+      "text": "كم الساعة",
+      "ok": true,
+      "result": "٢٥‏/١٠‏/٢٠٢٦، ٧:٥٨:٣٦ م\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/news#live-bulletin"
+    },
+    {
+      "width": 390,
+      "text": "التاريخ الهجري",
+      "ok": true,
+      "result": "الأحد · 14 جمادى الأولى 1448\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/news#live-bulletin"
+    },
+    {
+      "width": 390,
+      "text": "افتح الحاسبة ثم ذكرني بعد ساعتين أشرب موية",
+      "ok": true,
+      "result": "حُفظ التذكير: ٢٥‏/١٠‏/٢٠٢٦، ٩:٥٨:٣٦ م؛ يظهر عند فتح واحة، وإشعار المتصفح إن كان مأذونًا\n\n👍\n👎\nقراءة الجواب بصوت\nتراجع",
+      "url": "https://waha.hajdah.com/app/calc"
+    },
+    {
+      "width": 390,
+      "text": "اسأل محسن ما هي عملية عاصفة الحزم؟",
+      "ok": true,
+      "result": "عملية عاصفة الحزم هي الاسم الذي استخدمته السعودية في الفترة الأولى من التدخل العسكري الذي قادته السعودية لدعم شرعية نظام هادي في اليمن [1]. بدأت العمليات في 26 مارس 2015، وكانت عبارة عن غارات جوية ضد جماعة «أنصار الله» (الحوثيون) الموالية لإيران وعلي عبد الله صالح المتحالف معهم والقوات الموالية له [1].\n\nالمصادر:\n[1] عملية عاصفة الحزم — https://ar.wikipedia.org/wiki/%D8%B9%D9%85%D9%84%D9%8A%D8%A9_%D8%B9%D8%A7%D8%B5%D9%81%D8%A9_%D8%A7%D9%84%D8%AD%D8%B2%D9%85\n\nالمصدر: https://ar.wikipedia.org/wiki/%D8%B9%D9%85%D9%84%D9%8A%D8%A9_%D8%B9%D8%A7%D8%B5%D9%81%D8%A9_%D8%A7%D9%84%D8%AD%D8%B2%D9%85\n\nدليل الإجابة: استرجاع خارجي لهذا الرد؛ وقت الجلب لا يثبت حداثة المعلومة.\n\nموثّق ✓\n\nعملية عاصفة الحزم ↗\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/app/calc"
+    },
+    {
+      "width": 1280,
+      "text": "كم ٢٥×٤",
+      "ok": true,
+      "result": "الناتج: 100\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 1280,
+      "text": "كم ١٥٪ من ٢٤٠",
+      "ok": true,
+      "result": "الناتج: 36\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 1280,
+      "text": "خصم ٣٠٪ على ٤٥٠",
+      "ok": true,
+      "result": "315\n450 × 30 ÷ 100 = 135\n450 − 135\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 1280,
+      "text": "حل ٢س+٣=٧",
+      "ok": true,
+      "result": "س = 2\n2س = 4\nس = 2\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 1280,
+      "text": "حل x^2-5x+6=0",
+      "ok": true,
+      "result": "س = 2 أو 3\nالمميز = -5² − 4 × 1 × 6 = 1\nس = (−ب ± √المميز) ÷ (2أ)\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 1280,
+      "text": "x^2-5x+6=0",
+      "ok": true,
+      "result": "س = 2 أو 3\nالمميز = -5² − 4 × 1 × 6 = 1\nس = (−ب ± √المميز) ÷ (2أ)\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 1280,
+      "text": "حول ١ كم الى ميل",
+      "ok": true,
+      "result": "0.621371192237 ميل\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 1280,
+      "text": "جذر ٨١",
+      "ok": true,
+      "result": "9\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 1280,
+      "text": "كم ٢^٣",
+      "ok": true,
+      "result": "الناتج: 8\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 1280,
+      "text": "مدينتي جدة",
+      "ok": true,
+      "result": "تذكّرت ذلك على هذا الجهاز فقط\n\n👍\n👎\nقراءة الجواب بصوت\nتراجع",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 1280,
+      "text": "وش تذكر عني",
+      "ok": true,
+      "result": "مدينتي جدة\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 1280,
+      "text": "تذكر أن اسمي مستخدم الفحص",
+      "ok": true,
+      "result": "تذكّرت ذلك على هذا الجهاز فقط\n\n👍\n👎\nقراءة الجواب بصوت\nتراجع",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 1280,
+      "text": "انس مدينتي",
+      "ok": true,
+      "result": "تم نسيان الذاكرة المطابقة\n\n👍\n👎\nقراءة الجواب بصوت\nتراجع",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 1280,
+      "text": "اضف ملاحظة تجربة محسن",
+      "ok": true,
+      "result": "حُفظت الملاحظة محليًا لدى محسن\n\n👍\n👎\nقراءة الجواب بصوت\nتراجع",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 1280,
+      "text": "اعرض ملاحظاتي",
+      "ok": true,
+      "result": "mvo93eff-xr2fyvxh · تجربة محسن\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 1280,
+      "text": "ذكرني بعد ساعتين أشرب موية",
+      "ok": true,
+      "result": "حُفظ التذكير: ٢٥‏/١٠‏/٢٠٢٦، ٩:٥٨:٤٦ م؛ يظهر عند فتح واحة، وإشعار المتصفح إن كان مأذونًا\n\n👍\n👎\nقراءة الجواب بصوت\nتراجع",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 1280,
+      "text": "اعرض تذكيراتي",
+      "ok": true,
+      "result": "mvo93enu-i3248v9e · بعد ساعتين أشرب موية · ٢٥‏/١٠‏/٢٠٢٦، ٩:٥٨:٤٦ م\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 1280,
+      "text": "ذكرني يوم الخميس ٥ العصر أشرب موية",
+      "ok": true,
+      "result": "حُفظ التذكير: ٢٩‏/١٠‏/٢٠٢٦، ٥:٠٠:٠٠ م؛ يظهر عند فتح واحة، وإشعار المتصفح إن كان مأذونًا\n\n👍\n👎\nقراءة الجواب بصوت\nتراجع",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 1280,
+      "text": "الوضع الليلي",
+      "ok": true,
+      "result": "تم تطبيق الإعداد وحفظه على هذا الجهاز\n\n👍\n👎\nقراءة الجواب بصوت\nتراجع",
+      "url": "https://waha.hajdah.com/"
+    },
+    {
+      "width": 1280,
+      "text": "افتح الحاسبة",
+      "ok": true,
+      "result": "تم فتح الحاسبة\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/app/calc"
+    },
+    {
+      "width": 1280,
+      "text": "افتح الملاحظات",
+      "ok": true,
+      "result": "تم فتح الملاحظات\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/app/notes"
+    },
+    {
+      "width": 1280,
+      "text": "افتح كتاب الهجدة",
+      "ok": true,
+      "result": "تم فتح الهجدة · الكتاب\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/books/alhajda"
+    },
+    {
+      "width": 1280,
+      "text": "كمل الكتاب",
+      "ok": true,
+      "result": "عدت إلى آخر كتاب؛ يُستعاد موضعك المحفوظ\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/books/alhajda"
+    },
+    {
+      "width": 1280,
+      "text": "دمج ملفات PDF",
+      "ok": true,
+      "result": "تم فتح استوديو PDF؛ اختر الأداة المطلوبة داخله\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/pro/pdf"
+    },
+    {
+      "width": 1280,
+      "text": "افتح السيرة الذاتية",
+      "ok": true,
+      "result": "تم فتح منشئ السيرة الذاتية؛ اختر القالب داخله\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/pro/cv"
+    },
+    {
+      "width": 1280,
+      "text": "شغل البث",
+      "ok": true,
+      "result": "تم فتح البث: موجز العناوين المسموع؛ اضغط زر التشغيل\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/news#live-bulletin"
+    },
+    {
+      "width": 1280,
+      "text": "ودني الأخبار",
+      "ok": true,
+      "result": "عناوين محفوظة · راجع المصدر\n\n👍\n👎\nقراءة الجواب بصوت\nإسرائيل تشدد قبضتها على الضفة الغربية.. إغلاقات وهدم وتهجير ←\nاحتجاجات جديدة في ألبانيا رغم فرض غرامات للحد من أعمال العنف ←\nحادث سير يؤجل تجمعات انتخابية لمرشحة ديمقراطية في ألاسكا ←",
+      "url": "https://waha.hajdah.com/news#live-bulletin"
+    },
+    {
+      "width": 1280,
+      "text": "وش الجو بجدة",
+      "ok": true,
+      "result": "تعذّر جلب الطقس الآن. افتح تطبيق الطقس وأعد المحاولة\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/news#live-bulletin"
+    },
+    {
+      "width": 1280,
+      "text": "كم الساعة",
+      "ok": true,
+      "result": "٢٥‏/١٠‏/٢٠٢٦، ٧:٥٨:٥٠ م\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/news#live-bulletin"
+    },
+    {
+      "width": 1280,
+      "text": "التاريخ الهجري",
+      "ok": true,
+      "result": "الأحد · 14 جمادى الأولى 1448\n\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/news#live-bulletin"
+    },
+    {
+      "width": 1280,
+      "text": "افتح الحاسبة ثم ذكرني بعد ساعتين أشرب موية",
+      "ok": true,
+      "result": "حُفظ التذكير: ٢٥‏/١٠‏/٢٠٢٦، ٩:٥٨:٥٠ م؛ يظهر عند فتح واحة، وإشعار المتصفح إن كان مأذونًا\n\n👍\n👎\nقراءة الجواب بصوت\nتراجع",
+      "url": "https://waha.hajdah.com/app/calc"
+    },
+    {
+      "width": 1280,
+      "text": "اسأل محسن ما هي عملية عاصفة الحزم؟",
+      "ok": true,
+      "result": "عملية عاصفة الحزم هي الاسم الذي استخدمته السعودية في الفترة الأولى من التدخل العسكري الذي قادته السعودية لدعم شرعية نظام هادي في اليمن [1]. بدأت العمليات في الساعة الثانية صباحاً بتوقيت السعودية من يوم الخميس 6 جمادى الثاني 1436 هـ - 26 مارس 2015، وذلك عندما قامت القوات الجوية الملكية السعودية بقصف جوي كثيف على المواقع التابعة لمسلحي جماعة أنصار الله والقوات التابعة [1].\n- شملت العملية غارات جوية ضد جماعة «أنصار الله» (الحوثيون) الموالية لإيران وعلي عبد الله صالح المتحالف معهم والقوات الموالية له [1].\n- قاد التحالف العربي لدعم الشرعية اليمنية رسميا إلى جانب السعودية مشاركات رئيسية من كل الإمارات العربية المتحدة والكويت وقطر والبحرين والسودان ومشاركات رمزية محدودة من كل من الأردن والمغرب ومصر [1].\n\nالمصادر:\n[1] عملية عاصفة الحزم — https://ar.wikipedia.org/wiki/%D8%B9%D9%85%D9%84%D9%8A%D8%A9_%D8%B9%D8%A7%D8%B5%D9%81%D8%A9_%D8%A7%D9%84%D8%AD%D8%B2%D9%85\n\nالمصدر: https://ar.wikipedia.org/wiki/%D8%B9%D9%85%D9%84%D9%8A%D8%A9_%D8%B9%D8%A7%D8%B5%D9%81%D8%A9_%D8%A7%D9%84%D8%AD%D8%B2%D9%85\n\nدليل الإجابة: استرجاع خارجي لهذا الرد؛ وقت الجلب لا يثبت حداثة المعلومة.\n\nموثّق ✓\n\nعملية عاصفة الحزم ↗\n👍\n👎\nقراءة الجواب بصوت",
+      "url": "https://waha.hajdah.com/app/calc"
+    }
+  ],
+  "errors": [],
+  "network": [
+    {
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+      "status": 429
+    },
+    {
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=21.5433&longitude=39.1728&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+      "status": 429
+    },
+    {
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+      "status": 429
+    },
+    {
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=21.5433&longitude=39.1728&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+      "status": 429
+    }
+  ]
+}

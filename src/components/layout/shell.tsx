@@ -70,6 +70,21 @@ export function Shell() {
   useEffect(() => {
     if (cmd) setAgentLoaded(true);
   }, [cmd]);
+  useEffect(() => {
+    if (!settings.agentEnabled) return;
+    // Saved reminders must keep polling even when the conversation has never opened.
+    const restoreReminderWatcher = () => {
+      try {
+        const saved = JSON.parse(localStorage.getItem("waha-agent-reminders") || "[]");
+        if (Array.isArray(saved) && saved.length) setAgentLoaded(true);
+      } catch {
+        /* The agent also tolerates unavailable or malformed local storage. */
+      }
+    };
+    restoreReminderWatcher();
+    window.addEventListener("storage", restoreReminderWatcher);
+    return () => window.removeEventListener("storage", restoreReminderWatcher);
+  }, [settings.agentEnabled]);
   const [systemDark, setSystemDark] = useState(false);
   useEffect(() => {
     const scheme = matchMedia("(prefers-color-scheme: dark)");
