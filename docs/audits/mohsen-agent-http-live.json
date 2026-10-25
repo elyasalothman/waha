@@ -1,0 +1,54 @@
+[
+  {
+    "url": "https://waha.hajdah.com/",
+    "status": 200
+  },
+  {
+    "url": "https://waha.hajdah.com/books",
+    "status": 200
+  },
+  {
+    "url": "https://waha.hajdah.com/books/alhajda",
+    "status": 200
+  },
+  {
+    "url": "https://waha.hajdah.com/games",
+    "status": 200
+  },
+  {
+    "url": "https://waha.hajdah.com/life",
+    "status": 200
+  },
+  {
+    "url": "https://waha.hajdah.com/money",
+    "status": 200
+  },
+  {
+    "url": "https://waha.hajdah.com/settings",
+    "status": 200
+  },
+  {
+    "url": "https://waha.hajdah.com/pro/pdf",
+    "status": 200
+  },
+  {
+    "url": "https://waha.hajdah.com/pro/cv",
+    "status": 200
+  },
+  {
+    "url": "https://waha.hajdah.com/api/auth/get-session",
+    "status": 200
+  },
+  {
+    "url": "https://waha.hajdah.com/sw.js",
+    "status": 200
+  },
+  {
+    "url": "https://waha.hajdah.com/manifest.webmanifest",
+    "status": 200
+  },
+  {
+    "url": "https://waha.alhajda.com/",
+    "status": 200
+  }
+]
