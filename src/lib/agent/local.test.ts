@@ -63,3 +63,9 @@ test("corrupted storage recovers", () => {
   const s = createLocalStore({ getItem: () => "{bad", setItem: () => {} });
   assert.deepEqual(s.list("memories"), []);
 });
+
+test("weekday with explicit afternoon time", () => {
+  const due = new Date(parseArabicTime("يوم الخميس ٥ العصر", now)!.dueAt);
+  assert.equal(due.getDay(), 4);
+  assert.equal(due.getHours(), 17);
+});

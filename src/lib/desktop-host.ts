@@ -13,6 +13,7 @@ export function allowedURL(url:string) {
   return (u.origin === 'https://waha.hajdah.com' || u.origin === 'https://lab.alhajda.com' && u.pathname === '/math' || u.origin === 'https://github.com' && u.pathname === '/elyasalothman/waha/issues/new');
 }
 export function risk(command:AgentCommand): 'safe'|'medium'|'change'|'blocked' {
+  if (command.tool === 'add_note') return 'safe';
   if (['delete_note','delete_reminder'].includes(command.tool)) return 'blocked';
   if (['open_url','open_app','play_game','open_book','search_books','continue_reading','live','search','prayer','exchange'].includes(command.tool)) return 'medium';
   return requiresConfirmation(command) ? 'change' : 'safe';
@@ -33,6 +34,9 @@ export function createHost(data:Data, ports:Ports, getModel:()=>Model|undefined)
       catch { if (data.mode === 'local') throw new Error('انقطع النموذج المحلي؛ الأدوات المحلية متاحة'); }
     }
     if (data.mode === 'local') return 'لا يوجد نموذج محلي متصل. شغّل Ollama ثم أعد الاكتشاف؛ الأدوات المحلية تعمل.';
+    return cloudAnswer(q);
+  }
+  async function cloudAnswer(q:string) {
     const result = await jsonFetch('https://si.alhajda.com/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:q,messages:[]})},fetcher);
     if (result.success === false || typeof result.reply !== 'string' || !result.reply.trim()) throw new Error('الخدمة السحابية غير متاحة');
     const sources = (Array.isArray(result.citations) ? result.citations : Array.isArray(result.sources) ? result.sources : []).map((s:unknown)=> typeof s === 'string' ? s : (s as {url?:string})?.url).filter(httpsSource);
@@ -95,7 +99,13 @@ export function createHost(data:Data, ports:Ports, getModel:()=>Model|undefined)
     if(p.confidence<0.5 || p.steps.length===0) {
       const model=getModel();
       if(model && data.mode!=='cloud') {
-        const content=await localChat(model,text,[],true,fetcher);
+        let content:string;
+        try { content=await localChat(model,text,[],true,fetcher); }
+        catch {
+          if(data.mode==='local') throw new Error('انقطع النموذج المحلي؛ الأدوات المحلية متاحة');
+          // Invalid tool plans below fail closed; only failed inference can fall back.
+          return [await cloudAnswer(text)];
+        }
         // Invalid/forbidden plans fail closed. No automatic cloud execution.
         const command=validateLocalTool(content);
         return [await execute(command)];

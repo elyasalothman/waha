@@ -23,10 +23,10 @@ export function Mohsen({navigate}:{navigate:(tool:'pdf'|'cv',action?:string)=>vo
   useEffect(()=>{const show=()=>setOpen(true);window.addEventListener('mohsen-open',show);return()=>window.removeEventListener('mohsen-open',show);},[]);
   useEffect(()=>{if(open)inputRef.current?.focus();else triggerRef.current?.focus();},[open]);
   useEffect(()=>{const listener=(e:KeyboardEvent)=>{
-    if(e.ctrlKey && e.key.toLowerCase()==='k'){e.preventDefault();setOpen(v=>!v);}
+    if(e.ctrlKey && e.key.toLowerCase()==='k'){e.preventDefault();if(!consent)setOpen(v=>!v);}
     if(e.key==='Escape' && !consent)setOpen(false);
     if(e.key==='Escape' && consent){e.preventDefault();consent.resolve(false);setConsent(null);}
-    if(e.key==='Tab' && open && panelRef.current){const root=consent ? panelRef.current.querySelector('[role=alertdialog]')! : panelRef.current;const els=Array.from(root.querySelectorAll<HTMLElement>('button:not(:disabled),input:not(:disabled),select,textarea,a[href]'));const first=els[0],last=els.at(-1);if(e.shiftKey && document.activeElement===first){e.preventDefault();last?.focus();}else if(!e.shiftKey && document.activeElement===last){e.preventDefault();first?.focus();}}
+    if(e.key==='Tab' && open && panelRef.current){const root=consent ? panelRef.current.querySelector('[role=alertdialog]')! : panelRef.current;const els=Array.from(root.querySelectorAll<HTMLElement>('button:not(:disabled),input:not(:disabled),select,textarea,a[href],summary')).filter(el=>el.getClientRects().length>0);const first=els[0],last=els.at(-1);if(e.shiftKey && (document.activeElement===first || !root.contains(document.activeElement))){e.preventDefault();last?.focus();}else if(!e.shiftKey && (document.activeElement===last || !root.contains(document.activeElement))){e.preventDefault();first?.focus();}}
   };window.addEventListener('keydown',listener);return()=>window.removeEventListener('keydown',listener);},[open,consent]);
   function confirmAction(text:string,key?:string):Promise<boolean> {
     if(key && dataRef.current.allowed.includes(key))return Promise.resolve(true);

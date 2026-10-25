@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-25T19:16:40.762Z",
+  "date": "2026-10-25T19:28:45.738Z",
   "viewport": {
     "width": 1280,
     "height": 800
@@ -37,7 +37,7 @@
     {
       "command": "أضف ملاحظة شراء خبز",
       "expected": "حُفظ محليًا",
-      "confirmation": true,
+      "confirmation": false,
       "passed": true,
       "result": "أضف ملاحظة شراء خبز\nحُفظ محليًا على جهازك\n👍👎 حفظ العبارة"
     },
@@ -46,7 +46,7 @@
       "expected": "شراء خبز",
       "confirmation": false,
       "passed": true,
-      "result": "اعرض ملاحظاتي\n[\n  {\n    \"id\": \"mvo7lbtr-oifqpgrm\",\n    \"text\": \"شراء خبز\",\n    \"createdAt\": \"2026-10-25T19:16:43.167Z\"\n  }\n]\n👍👎 حفظ العبارة"
+      "result": "اعرض ملاحظاتي\n[\n  {\n    \"id\": \"mvo80vrx-pjvm4wnq\",\n    \"text\": \"شراء خبز\",\n    \"createdAt\": \"2026-10-25T19:28:48.861Z\"\n  }\n]\n👍👎 حفظ العبارة"
     },
     {
       "command": "تذكر أن مدينتي الرياض",
@@ -60,7 +60,7 @@
       "expected": "مدينتي الرياض",
       "confirmation": false,
       "passed": true,
-      "result": "وش تذكر عني\n[\n  {\n    \"id\": \"mvo7lbzp-1fdi7qpi\",\n    \"text\": \"مدينتي الرياض\",\n    \"createdAt\": \"2026-10-25T19:16:43.381Z\"\n  }\n]\n👍👎 حفظ العبارة"
+      "result": "وش تذكر عني\n[\n  {\n    \"id\": \"mvo80vyd-92oyslmt\",\n    \"text\": \"مدينتي الرياض\",\n    \"createdAt\": \"2026-10-25T19:28:49.093Z\"\n  }\n]\n👍👎 حفظ العبارة"
     },
     {
       "command": "ذكرني بعد ٥ دقائق اشرب ماء",
@@ -78,6 +78,14 @@
     }
   ],
   "checks": [
+    {
+      "name": "keyboard reaches collapsed settings",
+      "passed": true
+    },
+    {
+      "name": "Ctrl+K preserves pending consent",
+      "passed": true
+    },
     {
       "name": "cancel mutation leaves storage untouched",
       "passed": true

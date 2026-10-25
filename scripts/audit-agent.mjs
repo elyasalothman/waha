@@ -18,7 +18,7 @@ try {
  ['حل ٢س + ٤ = ١٠','3',false],
  ['حول ١٠ كم إلى ميل','6.213',false],
  ['احسب ٢٠٪ من ٢٠٠','40',false],
- ['أضف ملاحظة شراء خبز','حُفظ محليًا',true],
+ ['أضف ملاحظة شراء خبز','حُفظ محليًا',false],
  ['اعرض ملاحظاتي','شراء خبز',false],
  ['تذكر أن مدينتي الرياض','حُفظ محليًا',true],
  ['وش تذكر عني','مدينتي الرياض',false],
@@ -33,9 +33,10 @@ try {
    const text=await article.innerText();assert.ok(text.includes(expected),`${command}: ${text}`);
    report.commands.push({command,expected,confirmation:consent,passed:true,result:text});
  }
+ await page.getByRole('button',{name:'إغلاق محسن'}).focus();await page.keyboard.press('Tab');assert.equal(await page.evaluate(()=>document.activeElement?.textContent),'إعدادات الذكاء والخصوصية');report.checks.push({name:'keyboard reaches collapsed settings',passed:true});
  await page.screenshot({path:'docs/audits/desktop-agent.png'});
  // Deny a mutation and prove there is no state change.
- await page.getByLabel('طلبك لمحسن',{exact:true}).fill('تذكر أن كلمة سرية مرفوضة');await page.getByRole('button',{name:'إرسال',exact:true}).click();await page.getByRole('button',{name:'إلغاء',exact:true}).click();await page.waitForFunction(()=>!document.querySelector('#mohsen-input')?.disabled);
+ await page.getByLabel('طلبك لمحسن',{exact:true}).fill('تذكر أن كلمة سرية مرفوضة');await page.getByRole('button',{name:'إرسال',exact:true}).click();await page.getByRole('alertdialog').waitFor();await page.keyboard.press('Control+k');assert.ok(await page.getByRole('alertdialog').isVisible());report.checks.push({name:'Ctrl+K preserves pending consent',passed:true});await page.getByRole('button',{name:'إلغاء',exact:true}).click();await page.waitForFunction(()=>!document.querySelector('#mohsen-input')?.disabled);
  const stored=await page.evaluate(()=>localStorage.getItem('desktop-agent'));assert.ok(!stored.includes('كلمة سرية مرفوضة'));report.checks.push({name:'cancel mutation leaves storage untouched',passed:true});
  // Reload proves actual persisted browser state.
  await page.reload();await page.locator('.mohsen-launch').waitFor();await page.keyboard.press('Control+k');await page.getByLabel('طلبك لمحسن',{exact:true}).fill('اعرض ملاحظاتي');await page.getByRole('button',{name:'إرسال',exact:true}).click();await page.locator('.mohsen-history article').last().getByText(/شراء خبز/).waitFor();report.checks.push({name:'notes survive reload',passed:true});

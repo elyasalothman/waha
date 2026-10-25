@@ -57,3 +57,35 @@ test('native storage bridge uses fixed app-data commands and exact JSON',async()
  const data=emptyData();data.values.test='private';await persist(data);assert.deepEqual(await loadData(),data);assert.deepEqual(calls,['agent_save','agent_load']);
  }finally{clearMocks();delete (globalThis as any).window;}
 });
+test('safe note needs no consent; memory still requires consent',async()=>{
+ const s=setup(false);await s.host.execute({tool:'add_note',args:{text:'ملاحظة آمنة'}});
+ assert.equal(s.host.store.list('notes').length,1);assert.equal(s.counts().prompts,0);
+ await assert.rejects(s.host.execute({tool:'remember',args:{text:'خاص'}}));
+ assert.equal(s.host.store.list('memories').length,0);
+});
+test('planner disconnect falls back only in fallback mode, without private context',async()=>{
+ for(const mode of ['fallback','local'] as const){
+  const data=emptyData();data.mode=mode;data.values.private='SECRET';const requests:string[]=[];
+  const host=createHost(data,{confirm:async()=>{throw Error('unexpected');},save:async()=>{},navigate:()=>{throw Error('unexpected');},external:async()=>{throw Error('unexpected');},notify:async()=>{},fetcher:async(u,i)=>{
+   requests.push(String(u));if(String(u).startsWith(model.base))throw Error('disconnected');
+   assert.deepEqual(JSON.parse(String(i?.body)),{message:'عبارة غامضة غير معروفة',messages:[]});
+   return response({reply:'جواب احتياطي'});
+  }},()=>model);
+  if(mode==='local'){await assert.rejects(host.run('عبارة غامضة غير معروفة'),/انقطع النموذج/);assert.equal(requests.length,1);}
+  else {const result:any=await host.run('عبارة غامضة غير معروفة');assert.equal(result[0].text,'جواب احتياطي');assert.equal(requests.length,2);}
+ }
+});
+test('invalid planner JSON never falls back to cloud or executes',async()=>{
+ const data=emptyData();let calls=0;
+ const host=createHost(data,{confirm:async()=>{throw Error('unexpected');},save:async()=>{},navigate:()=>{throw Error('unexpected');},external:async()=>{throw Error('unexpected');},notify:async()=>{},fetcher:async()=>{calls++;return response({message:{content:'{"tool":"calculate","args":{"expr":"2"},"unexpected":true}'}});}},()=>model);
+ await assert.rejects(host.run('عبارة غامضة غير معروفة'));assert.equal(calls,1);
+});
+test('valid model plan goes through the same memory consent gate',async()=>{
+ for(const consent of [true,false]){
+  const data=emptyData();let prompts=0;
+  const host=createHost(data,{confirm:async()=>{prompts++;return consent;},save:async()=>{},navigate:()=>{},external:async()=>{},notify:async()=>{},fetcher:async()=>response({message:{content:'{"tool":"remember","args":{"text":"اسمي أحمد"}}'}})},()=>model);
+  if(consent){await host.run('عبارة غامضة غير معروفة');assert.equal(host.store.list('memories').length,1);}
+  else {await assert.rejects(host.run('عبارة غامضة غير معروفة'));assert.equal(host.store.list('memories').length,0);}
+  assert.equal(prompts,1);
+ }
+});

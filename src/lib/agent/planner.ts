@@ -23,7 +23,7 @@ export function splitCommands(text: string): string[] {
   let start = 0;
   // Normalize only the look-ahead so names, note text and diacritics remain intact.
   const commandStart =
-    /^(?:افتح|احسب|حل|ذكرني|تذكر|اضف|اكتب|سجل|اسال|ابحث|دور|غير|اعرض|انس|انسى|كمل|تابع|شغل|ودني|وديني|خذني|وش|كيف|كم|حول|خصم|العب)\s/;
+    /^(?:احذف|امسح|افتح|احسب|حل|ذكرني|تذكر|اضف|اكتب|سجل|اسال|ابحث|دور|غير|اعرض|انس|انسى|كمل|تابع|شغل|ودني|وديني|خذني|وش|كيف|كم|حول|خصم|العب)\s/;
   for (const match of text.matchAll(/\s+(?:ثم|بعدين|وبعدين|وبعدها|وبعد كذا)\s+|\s+و/g)) {
     const next = match.index + match[0].length;
     if (!commandStart.test(normalize(text.slice(next)))) continue;
@@ -45,7 +45,7 @@ export function plan(text: string, ctx: PlanContext = {}): Plan {
       /* invalid local intent is clarification */
     }
     if (command) understood++;
-    else if (/^(ما|ماذا|من|لماذا|كيف|هل|اشرح|وش معنى|وش هو|وش هي)\s/.test(normalize(chunk)))
+    else if (/^(كم|ما|ماذا|من|لماذا|كيف|هل|اشرح|وش معنى|وش هو|وش هي)\s/.test(normalize(chunk)))
       command = { tool: "ask_mohsen", args: { q: chunk } };
     if (!command) continue;
     if (command.tool === "weather" && !command.args.city && ctx.city)
