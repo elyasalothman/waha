@@ -66,6 +66,10 @@ export function Shell() {
   }, [pathname, pushRecent]);
   const settings = useSettings((s) => s.settings);
   const [cmd, setCmd] = useState(false);
+  const [agentLoaded, setAgentLoaded] = useState(false);
+  useEffect(() => {
+    if (cmd) setAgentLoaded(true);
+  }, [cmd]);
   const [systemDark, setSystemDark] = useState(false);
   useEffect(() => {
     const scheme = matchMedia("(prefers-color-scheme: dark)");
@@ -94,6 +98,7 @@ export function Shell() {
     return () => window.removeEventListener("keydown", openSearch);
   }, [cmd, settings.agentEnabled]);
   useEffect(() => {
+    if (new URLSearchParams(window.location.search).get("agent") === "open") setCmd(true);
     const open = () => setCmd(true);
     window.addEventListener("waha:agent:open", open);
     return () => window.removeEventListener("waha:agent:open", open);
@@ -117,7 +122,12 @@ export function Shell() {
   }, [hydrate]);
 
   if (["/welcome", "/register"].includes(pathname)) {
-    return <Outlet />;
+    return (
+      <>
+        <SettingsEffects />
+        <Outlet />
+      </>
+    );
   }
 
   return (
@@ -184,7 +194,7 @@ export function Shell() {
       </aside>
 
       <div className="lg:ps-60">
-        <header className="native-safe-top sticky top-0 z-20 flex h-14 items-center gap-3 border-b border-border bg-bg/90 px-4 pt-[env(safe-area-inset-top,0px)] backdrop-blur-sm lg:pt-0">
+        <header className="native-safe-top sticky top-0 z-20 flex min-h-14 flex-wrap items-center py-1 gap-3 border-b border-border bg-bg/90 px-4 pt-[env(safe-area-inset-top,0px)] backdrop-blur-sm lg:pt-0">
           <Link to="/" className="inline-flex min-h-11 shrink-0 items-center lg:hidden">
             <WahaWordmark lang={lang} />
           </Link>
@@ -292,7 +302,7 @@ export function Shell() {
         })}
       </nav>
 
-      {settings.agentEnabled && (
+      {settings.agentEnabled && pathname !== "/onboarding" && (
         <button
           aria-label="فتح محسن"
           onClick={() => setCmd(true)}
@@ -302,7 +312,9 @@ export function Shell() {
         </button>
       )}
       <Suspense fallback={null}>
-        {settings.agentEnabled ? <WahaAgent open={cmd} onOpenChange={setCmd} /> : null}
+        {settings.agentEnabled && (cmd || agentLoaded) ? (
+          <WahaAgent open={cmd} onOpenChange={setCmd} />
+        ) : null}
       </Suspense>
       <Toaster
         theme={dark ? "dark" : "light"}

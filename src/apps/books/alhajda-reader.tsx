@@ -12,7 +12,7 @@ import {
   type CuratedPosition,
 } from "@/lib/books/curated";
 import { useAppStore } from "@/store/app-store";
-import bookSource from "@/lib/books/alhajda/book.json";
+import bookSource from "@/lib/books/alhajda/manifest.json";
 import { firstVisibleReadingAnchor, useReaderLayout } from "./reader-layout";
 import "./alhajda-reader.css";
 import "./reader-layout.css";
@@ -38,6 +38,55 @@ export default function AlhajdaReader() {
   const latest = useRef(state);
   latest.current = state;
   const chapter = book.chapters[state.chapter];
+  const [chapterHtml, setChapterHtml] = useState<Record<string, string>>({
+    front: book.chapters[0].html,
+  });
+  const [loadError, setLoadError] = useState(false);
+  const [revision, setRevision] = useState(0);
+  const [searchBook, setSearchBook] = useState<CuratedBook | null>(null);
+  const [searchFailed, setSearchFailed] = useState(false);
+  const html = chapterHtml[chapter.id];
+  const wantsSearch = query.trim().length >= 2;
+  useEffect(() => {
+    if (html !== undefined) return;
+    const controller = new AbortController();
+    setLoadError(false);
+    fetch(`/books/alhajda/chapters/${chapter.id}.json`, { signal: controller.signal })
+      .then(async (response) => {
+        if (!response.ok) throw new Error();
+        return response.json();
+      })
+      .then((data) => {
+        if (data.id !== chapter.id || typeof data.html !== "string") throw new Error();
+        setChapterHtml((old) => ({ ...old, [chapter.id]: data.html }));
+      })
+      .catch(() => {
+        if (!controller.signal.aborted) setLoadError(true);
+      });
+    return () => controller.abort();
+  }, [chapter.id, html, revision]);
+  useEffect(() => {
+    if (!wantsSearch || searchBook) return;
+    const controller = new AbortController();
+    setSearchFailed(false);
+    fetch("/books/alhajda/chapters/search.json", { signal: controller.signal })
+      .then(async (response) => {
+        if (!response.ok) throw new Error();
+        return response.json();
+      })
+      .then((data) => {
+        if (!Array.isArray(data.chapters) || data.chapters.length !== book.chapters.length)
+          throw new Error();
+        setSearchBook({
+          ...book,
+          chapters: book.chapters.map((c, i) => ({ ...c, ...data.chapters[i] })),
+        });
+      })
+      .catch(() => {
+        if (!controller.signal.aborted) setSearchFailed(true);
+      });
+    return () => controller.abort();
+  }, [wantsSearch, searchBook, revision]);
 
   useEffect(() => {
     try {
@@ -45,7 +94,13 @@ export default function AlhajdaReader() {
       const restored = curatedReading(
         saved
           ? JSON.parse(saved)
-          : { theme: useSettings.getState().settings.readingNight ? "night" : "paper" },
+          : {
+              theme:
+                useSettings.getState().settings.readingNight ||
+                document.documentElement.classList.contains("waha-dark")
+                  ? "night"
+                  : "paper",
+            },
         book,
       );
       setState(restored);
@@ -88,7 +143,7 @@ export default function AlhajdaReader() {
   }, [ready]);
 
   useEffect(() => {
-    if (!ready || !pending.current || !article.current) return;
+    if (!ready || !pending.current || !article.current || html === undefined) return;
     const position = pending.current;
     const frame = requestAnimationFrame(async () => {
       const anchor = position.anchor;
@@ -96,7 +151,7 @@ export default function AlhajdaReader() {
       if (pending.current === position) pending.current = null;
     });
     return () => cancelAnimationFrame(frame);
-  }, [ready, state.chapter, state.fontSize, scrollTo]);
+  }, [ready, state.chapter, state.fontSize, scrollTo, html]);
 
   useEffect(() => {
     if (!ready || !article.current) return;
@@ -120,7 +175,7 @@ export default function AlhajdaReader() {
       window.removeEventListener("scroll", observe);
       cancelAnimationFrame(frame);
     };
-  }, [ready, state.chapter, getViewport]);
+  }, [ready, state.chapter, getViewport, html]);
 
   function go(position: CuratedPosition) {
     pending.current = position;
@@ -157,7 +212,7 @@ export default function AlhajdaReader() {
       fontSize: Math.min(40, Math.max(18, current.fontSize + delta)),
     }));
   }
-  const hits = useMemo(() => searchCuratedBook(book, query), [query]);
+  const hits = useMemo(() => searchCuratedBook(searchBook || book, query), [query, searchBook]);
   const colors =
     state.theme === "night"
       ? { backgroundColor: "#28231e", color: "#f5ead6" }
@@ -389,8 +444,30 @@ export default function AlhajdaReader() {
           {L("القسم التالي", "Next section")}
         </button>
       </nav>
-      {!ready ? (
-        <p role="status">{L("استعادة موضع القراءة…", "Restoring reading position…")}</p>
+      {loadError && (
+        <p role="alert">
+          تعذّر تحميل الفصل.{" "}
+          <button className={control} onClick={() => setRevision((n) => n + 1)}>
+            إعادة المحاولة
+          </button>
+        </p>
+      )}
+      {wantsSearch && !searchBook && (
+        <p role="status">
+          {searchFailed
+            ? "تعذّر تحميل فهرس البحث. تحقق من الاتصال ثم أعد المحاولة."
+            : "جارٍ تحميل فهرس البحث…"}
+          {searchFailed && (
+            <button className={control} onClick={() => setRevision((n) => n + 1)}>
+              إعادة المحاولة
+            </button>
+          )}
+        </p>
+      )}
+      {!ready || html === undefined ? (
+        <p role="status" className="min-h-screen">
+          {L("استعادة موضع القراءة…", "Restoring reading position…")}
+        </p>
       ) : (
         <article
           ref={article}
@@ -399,7 +476,7 @@ export default function AlhajdaReader() {
           className="alhajda-content reader-content"
           style={{ fontSize: `${state.fontSize}px` }}
           onClick={internalLink}
-          dangerouslySetInnerHTML={{ __html: chapter.html }}
+          dangerouslySetInnerHTML={{ __html: html }}
         />
       )}
       <nav

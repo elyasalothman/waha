@@ -17,7 +17,7 @@ export const PWA_ICON_HREFS = [
   { src: "/favicon.svg", sizes: "any", type: "image/svg+xml", purpose: "any" },
   { src: "/icons/icon-180.png", sizes: "180x180", type: "image/png" },
   { src: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
-  { src: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
+  { src: "/icons/icon-512.png", sizes: "512x512", type: "image/png", purpose: "any maskable" },
 ];
 
 export function isWebManifestPath(pathname) {
@@ -131,9 +131,7 @@ export function publicAppHost(hostHeader) {
  * app — Envoy rewrites it to `*.vercel.app`.
  */
 export function resolvePublicHost(hostHeader) {
-  return (
-    publicAppHost(process.env?.VITE_PUBLIC_HOSTNAME) || publicAppHost(hostHeader)
-  );
+  return publicAppHost(process.env?.VITE_PUBLIC_HOSTNAME) || publicAppHost(hostHeader);
 }
 
 export function isInstallQuery(url) {
@@ -192,6 +190,13 @@ export function renderWebManifest(_hostHeader) {
       background_color: "#f6f5f0",
       theme_color: "#f6f5f0",
       icons: PWA_ICON_HREFS,
+      description: "مساحة عربية للقراءة والأدوات والألعاب ومحسن في يومك",
+      categories: ["productivity", "education", "utilities"],
+      shortcuts: [
+        { name: "اسأل محسن", url: "/?agent=open" },
+        { name: "الكتب", url: "/books" },
+        { name: "الأدوات", url: "/tools" },
+      ],
     },
     null,
     2,
@@ -204,10 +209,7 @@ export function grokPwaHeadTags(appName = DEFAULT_APP_NAME) {
     // the legacy *-web-app-capable metas it replaces are deliberately absent.
     ["manifest", `<link rel="manifest" href="${PWA_MANIFEST_HREF}">`],
     ["apple-touch-icon", `<link rel="apple-touch-icon" href="${PWA_APPLE_TOUCH_ICON}">`],
-    [
-      "application-name",
-      `<meta name="application-name" content="${escapeHtml(appName)}">`,
-    ],
+    ["application-name", `<meta name="application-name" content="${escapeHtml(appName)}">`],
     [
       "apple-mobile-web-app-title",
       `<meta name="apple-mobile-web-app-title" content="${escapeHtml(appName)}">`,
@@ -343,7 +345,10 @@ export function siteHasCustomCard(site = {}) {
  * Otherwise empty — caller emits the og.grok.me placeholder.
  */
 export function resolveOgCardAsset(site = {}, cwd = process.cwd()) {
-  return ogCardPublicPath(cwd) || (detectCustomOgCard(cwd, site) ? String(site.image ?? "").trim() || "/og.jpg" : "");
+  return (
+    ogCardPublicPath(cwd) ||
+    (detectCustomOgCard(cwd, site) ? String(site.image ?? "").trim() || "/og.jpg" : "")
+  );
 }
 
 /** Stamp `card=custom` when public/og.jpg or public/og.png is on disk. */
@@ -446,12 +451,7 @@ export function injectGrokPwaHead(html, ctx = {}) {
   if (typeof html !== "string") return html;
   const { site, projectId, creator, creatorId, host, cwd } = normalizeHeadContext(ctx);
   const documentTitle = titleFromDocument(html);
-  const appName = resolveOgTitle(
-    site,
-    ctx.appName ?? DEFAULT_APP_NAME,
-    host,
-    documentTitle,
-  );
+  const appName = resolveOgTitle(site, ctx.appName ?? DEFAULT_APP_NAME, host, documentTitle);
   let next = stripGrokAppBuilderScript(stripShareMetaTags(html));
 
   const missing = grokPwaHeadTags(DEFAULT_APP_NAME)

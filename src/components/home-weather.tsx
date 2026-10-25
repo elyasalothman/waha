@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { fetchWeather, readWeatherCache, writeWeatherCache } from "@/lib/weather";
 import { useAppStore } from "@/store/app-store";
 export function HomeWeather() {
-  const unit = useSettings((s) => s.settings.temperature);
+  const { temperature: unit, digits, language } = useSettings((s) => s.settings);
   const [payload, setPayload] = useState<WeatherPayload | null>(null);
   const city = useAppStore((s) => s.city);
   const [temperature, setTemperature] = useState<number | null>(null);
@@ -32,7 +32,8 @@ export function HomeWeather() {
       clearTimeout(timer);
     };
   }, [city.lat, city.lon]);
-  const format = (v: number) => `${Math.round(unit === "F" ? (v * 9) / 5 + 32 : v)}°${unit}`;
+  const format = (v: number) =>
+    `${new Intl.NumberFormat(language, { numberingSystem: digits, maximumFractionDigits: 0 }).format(unit === "F" ? (v * 9) / 5 + 32 : v)}°${unit}`;
   return (
     <>
       <span className="block">الطقس · {city.ar}</span>

@@ -52,7 +52,7 @@ export function AudienceSwitch({ compact = false }: { compact?: boolean }) {
             setSegment(slice.segment);
           }}
           className={cn(
-            "h-9 rounded-md text-sm font-medium transition-colors duration-150",
+            "min-h-11 rounded-md text-sm font-medium transition-colors duration-150",
             active === slice.id ? "bg-surface-2 text-fg" : "text-muted hover:text-fg",
           )}
         >

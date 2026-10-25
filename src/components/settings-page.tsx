@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { AgentSettings } from "./agent-settings";
 import { clearWahaLocalData } from "@/lib/local-data";
 import { useState } from "react";
@@ -198,6 +199,9 @@ export function SettingsPage() {
   return (
     <div className="mx-auto max-w-3xl space-y-4" dir="rtl">
       <h1 className="font-display text-3xl">الإعدادات والتخصيص</h1>
+      <Link to="/onboarding" className="inline-flex min-h-11 items-center text-primary">
+        إعادة جولة الترحيب والتخصيص ←
+      </Link>
       <p className="text-sm text-muted">
         تُطبّق فورًا على هذا الجهاز. لا تتوفر مزامنة إعدادات الحساب حاليًا.
       </p>

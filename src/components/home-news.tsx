@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useSettings } from "@/store/settings-store";
+import { Skeleton } from "./ui/page-state";
 import type { ArabicNews } from "@/lib/arabic-news";
 export function HomeNews() {
   const s = useSettings((x) => x.settings);
@@ -29,13 +30,26 @@ export function HomeNews() {
     )
     .slice(0, 3);
   return (
-    <section aria-label="آخر الأخبار" className="rounded-2xl border border-border bg-surface p-4">
+    <section
+      aria-label="آخر الأخبار"
+      className="min-h-80 rounded-2xl border border-border bg-surface p-4"
+    >
       <div className="flex items-center justify-between">
         <h2 className="text-lg">آخر الأخبار</h2>
         <Link to="/news" className="min-h-11 content-center text-primary">
           كل الأخبار ←
         </Link>
       </div>
+      {!data && !failed && (
+        <div role="status" aria-label="جارٍ تحميل العناوين" className="space-y-4 py-3">
+          {[0, 1, 2].map((i) => (
+            <div key={i} className="space-y-2">
+              <Skeleton className="h-5 w-full" />
+              <Skeleton className="h-4 w-1/3" />
+            </div>
+          ))}
+        </div>
+      )}
       {items.map((i) => (
         <Link
           to="/news"
@@ -53,8 +67,8 @@ export function HomeNews() {
           </span>
         </Link>
       ))}
-      {!items.length && (
-        <p className="py-3 text-sm text-muted">
+      {!items.length && (failed || data) && (
+        <p role="status" className="py-3 text-sm text-muted">
           {failed
             ? "تعذّر تحديث العناوين؛ افتح الأخبار لإعادة المحاولة"
             : data

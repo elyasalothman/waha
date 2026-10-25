@@ -1,0 +1,6382 @@
+{
+  "base": "https://waha.hajdah.com",
+  "at": "2026-10-25T19:33:05.575Z",
+  "rows": [
+    {
+      "route": "/",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 674,
+      "title": "واحة · كل عالمك في مكان واحد",
+      "dark": false,
+      "lcp": 1316,
+      "cls": 0.023645194229862145,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: the server responded with a status of 429 (Too Many Requests)",
+        "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+      ],
+      "http": [
+        {
+          "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+          "status": 429
+        },
+        {
+          "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+          "status": 429
+        }
+      ],
+      "pass": true
+    },
+    {
+      "route": "/books",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 5444,
+      "title": "رف الكتب · واحة",
+      "dark": false,
+      "lcp": 1056,
+      "cls": 0.0023115640040798956,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "اختر ملف PDF",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/tools",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 931,
+      "title": "الأدوات · واحة",
+      "dark": false,
+      "lcp": 536,
+      "cls": 0.0029837547132756134,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/games",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 1046,
+      "title": "الألعاب · واحة",
+      "dark": false,
+      "lcp": 628,
+      "cls": 0.018753646363369864,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/me",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 378,
+      "title": "أنا · واحة",
+      "dark": false,
+      "lcp": 572,
+      "cls": 0.0009359059308802127,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/settings",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 319,
+      "title": "الإعدادات والتخصيص · واحة",
+      "dark": false,
+      "lcp": 348,
+      "cls": 0.018399455975543665,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/onboarding",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 527,
+      "title": "مرحبًا في واحة · واحة",
+      "dark": false,
+      "lcp": 516,
+      "cls": 0.006025080932708793,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "أفراد",
+          "h": 36,
+          "w": 174
+        },
+        {
+          "text": "طفل",
+          "h": 36,
+          "w": 174
+        },
+        {
+          "text": "أسرة",
+          "h": 36,
+          "w": 174
+        },
+        {
+          "text": "عمل",
+          "h": 36,
+          "w": 174
+        },
+        {
+          "text": "",
+          "h": 20,
+          "w": 20
+        },
+        {
+          "text": "",
+          "h": 20,
+          "w": 20
+        },
+        {
+          "text": "",
+          "h": 20,
+          "w": 20
+        },
+        {
+          "text": "",
+          "h": 20,
+          "w": 20
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/welcome",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 1966,
+      "title": "واحة — يومك كله في مكان واحد",
+      "dark": false,
+      "lcp": 540,
+      "cls": 0.015251235268584,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/books/alhajda",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 3263,
+      "title": "كتاب الهجدة · قراءة داخل واحة",
+      "dark": false,
+      "lcp": 1044,
+      "cls": 0.11897911627720051,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/pro/pdf",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 359,
+      "title": "استوديو PDF · متجر واحة",
+      "dark": false,
+      "lcp": 524,
+      "cls": 0.007167731707134461,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "اختر ملفات PDF أو صور",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/money",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 1574,
+      "title": "المال · واحة",
+      "dark": false,
+      "lcp": 664,
+      "cls": 0.5855918782173847,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/store",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 7926,
+      "title": "المتجر · واحة",
+      "dark": false,
+      "lcp": 404,
+      "cls": 0.0030360129181691265,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/play/dallah",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 268,
+      "title": "قفز الدلّة · واحة",
+      "dark": false,
+      "lcp": 432,
+      "cls": 0.0006826786720750911,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/play/hayat-world",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 275,
+      "title": "حياة · عالم مفتوح · واحة",
+      "dark": false,
+      "lcp": 364,
+      "cls": 0.0006015779646482012,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/news",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 12059,
+      "title": "أخبار وبث واحة المباشر · واحة",
+      "dark": false,
+      "lcp": 684,
+      "cls": 0.06985656442055002,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/quran",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 4591,
+      "title": "القرآن الكريم والتلاوة والورد اليومي · واحة",
+      "dark": false,
+      "lcp": 484,
+      "cls": 0.04032989473708461,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/forum",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 350,
+      "title": "المجالس · واحة",
+      "dark": false,
+      "lcp": 520,
+      "cls": 0.0007499521977240357,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/worship",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 991,
+      "title": "تهجد · الصلاة والأذكار والقبلة داخل واحة",
+      "dark": false,
+      "lcp": 328,
+      "cls": 0.07894016018945826,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "",
+          "h": 28,
+          "w": 48
+        },
+        {
+          "text": "",
+          "h": 28,
+          "w": 48
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/sites",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 1212,
+      "title": "مواقعنا · واحة",
+      "dark": false,
+      "lcp": 400,
+      "cls": 0.0011672729510677474,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/ask",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 345,
+      "title": "اسأل محسن · واحة",
+      "dark": false,
+      "lcp": 544,
+      "cls": 0.0009027143053782168,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/luma",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 230,
+      "title": "لُمعة · واحة",
+      "dark": false,
+      "lcp": 340,
+      "cls": 0.0026924056005837634,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/agent",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 252,
+      "title": "وكيل · واحة",
+      "dark": false,
+      "lcp": 332,
+      "cls": 0.00039618295946770155,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/hissati",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 295,
+      "title": "حصتي · واحة",
+      "dark": false,
+      "lcp": 392,
+      "cls": 0.0052316593839287304,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/home",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 1215,
+      "title": "بيت الهجدة · واحة",
+      "dark": false,
+      "lcp": 444,
+      "cls": 0.006390272165749784,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/studio",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 1306,
+      "title": "هجدة · الاستوديو · واحة",
+      "dark": false,
+      "lcp": 256,
+      "cls": 0.00691894659765861,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/hayat",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 229,
+      "title": "حياة · واحة",
+      "dark": false,
+      "lcp": 244,
+      "cls": 0.002613647031449866,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/samar",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 238,
+      "title": "لُمعة · سَمَر · واحة",
+      "dark": false,
+      "lcp": 380,
+      "cls": 0.0029578378166684807,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/amlak",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 305,
+      "title": "أملاك · واحة",
+      "dark": false,
+      "lcp": 352,
+      "cls": 0.0004791170286105261,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/compare",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 591,
+      "title": "قرارك · مقارنة الخيارات داخل واحة",
+      "dark": false,
+      "lcp": 372,
+      "cls": 0.0014520157298284475,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/manba",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 286,
+      "title": "منبع · واحة",
+      "dark": false,
+      "lcp": 424,
+      "cls": 0.0020122634435262186,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "لون الخلفية",
+          "h": 27,
+          "w": 50
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/khazana",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 1279,
+      "title": "الخزانة · واحة",
+      "dark": false,
+      "lcp": 384,
+      "cls": 0.004230706035836445,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/hudoo",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 1088,
+      "title": "هدوء · واحة",
+      "dark": false,
+      "lcp": 312,
+      "cls": 0.0009904812458137013,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/manteq",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 1106,
+      "title": "منطق · واحة",
+      "dark": false,
+      "lcp": 528,
+      "cls": 0.0008327121377177812,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/himaya",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 373,
+      "title": "حماية · واحة",
+      "dark": false,
+      "lcp": 612,
+      "cls": 0.0003293605610489778,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/camera",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 305,
+      "title": "الكاميرا · واحة",
+      "dark": false,
+      "lcp": 884,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/search",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 1072,
+      "title": "بحث واحة · واحة",
+      "dark": false,
+      "lcp": 1036,
+      "cls": 0.001368239361545891,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/browser",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 307,
+      "title": "متصفح واحة · واحة",
+      "dark": false,
+      "lcp": 900,
+      "cls": 0.0002441047699184309,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/shield",
+      "viewport": 390,
+      "theme": "light",
+      "pass": false,
+      "error": "TimeoutError: page.goto: Timeout 45000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://waha.hajdah.com/app/shield\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "route": "/app/video",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 342,
+      "title": "متصفح واحة · واحة",
+      "dark": false,
+      "lcp": 1496,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED",
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED",
+        "Access to resource at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED",
+        "Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092' violates the following Content Security Policy directive: \"script-src 'self' https://www.youtube.com https://s.ytimg.com\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked."
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/salah",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 941,
+      "title": "مواقيت الصلاة · واحة",
+      "dark": false,
+      "lcp": 592,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "",
+          "h": 28,
+          "w": 48
+        },
+        {
+          "text": "",
+          "h": 28,
+          "w": 48
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/salahlog",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 265,
+      "title": "ورد الصلاة · واحة",
+      "dark": false,
+      "lcp": 348,
+      "cls": 0.0002441047699184309,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/athkar",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 745,
+      "title": "أذكار اليوم · واحة",
+      "dark": false,
+      "lcp": 904,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/asma",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 2748,
+      "title": "الأسماء الحسنى · واحة",
+      "dark": false,
+      "lcp": 276,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 56
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/dua",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 508,
+      "title": "أدعية · واحة",
+      "dark": false,
+      "lcp": 928,
+      "cls": 0.0002425209595702172,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "النوم",
+          "h": 36,
+          "w": 47
+        },
+        {
+          "text": "السفر",
+          "h": 36,
+          "w": 52
+        },
+        {
+          "text": "الطعام",
+          "h": 36,
+          "w": 56
+        },
+        {
+          "text": "بعد الصلاة",
+          "h": 36,
+          "w": 74
+        },
+        {
+          "text": "الرقية",
+          "h": 36,
+          "w": 52
+        },
+        {
+          "text": "البيت",
+          "h": 36,
+          "w": 51
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 54
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 54
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 54
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 54
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/tasbih",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 257,
+      "title": "التسبيح · واحة",
+      "dark": false,
+      "lcp": 1168,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "سبحان الله",
+          "h": 36,
+          "w": 75
+        },
+        {
+          "text": "الحمد لله",
+          "h": 36,
+          "w": 70
+        },
+        {
+          "text": "الله أكبر",
+          "h": 36,
+          "w": 61
+        },
+        {
+          "text": "لا إله إلا الله",
+          "h": 36,
+          "w": 78
+        },
+        {
+          "text": "اللهم صل على محمد",
+          "h": 36,
+          "w": 124
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/khatma",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 290,
+      "title": "ختمة القرآن · واحة",
+      "dark": false,
+      "lcp": 808,
+      "cls": 0.0008702893880675153,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/qibla",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 762,
+      "title": "اتجاه القبلة · واحة",
+      "dark": false,
+      "lcp": 880,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/hijri",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 370,
+      "title": "التقويم الهجري · واحة",
+      "dark": false,
+      "lcp": 840,
+      "cls": 0.0003246523248320153,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/fasting",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 272,
+      "title": "سجل الصيام · واحة",
+      "dark": false,
+      "lcp": 488,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/umrah",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 507,
+      "title": "عدّة العمرة · واحة",
+      "dark": false,
+      "lcp": 928,
+      "cls": 0.0002441047699184309,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "المناسك",
+          "h": 36,
+          "w": 64
+        },
+        {
+          "text": "العدة",
+          "h": 36,
+          "w": 50
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/papers",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 274,
+      "title": "وثائقي · واحة",
+      "dark": false,
+      "lcp": 628,
+      "cls": 0.0002441047699184309,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/services",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 823,
+      "title": "خدمات رقمية · واحة",
+      "dark": false,
+      "lcp": 716,
+      "cls": 0.0002425209595702172,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/holidays",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 326,
+      "title": "إجازات المملكة · واحة",
+      "dark": false,
+      "lcp": 1004,
+      "cls": 0.0002425209595702172,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/nazari",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 299,
+      "title": "نظري القيادة · واحة",
+      "dark": false,
+      "lcp": 748,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/emergency",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 394,
+      "title": "طوارئ · واحة",
+      "dark": false,
+      "lcp": 980,
+      "cls": 0.0002441047699184309,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/shopping",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 182,
+      "title": "قائمة التسوق · واحة",
+      "dark": false,
+      "lcp": 416,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "",
+          "h": 23,
+          "w": 358
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/bills",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 237,
+      "title": "التزاماتي · واحة",
+      "dark": false,
+      "lcp": 372,
+      "cls": 0.0002425209595702172,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "فواتير",
+          "h": 40,
+          "w": 172
+        },
+        {
+          "text": "اشتراكات",
+          "h": 40,
+          "w": 172
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/names",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 4208,
+      "title": "معاني الأسماء · واحة",
+      "dark": false,
+      "lcp": 360,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "الكل",
+          "h": 36,
+          "w": 45
+        },
+        {
+          "text": "أولاد",
+          "h": 36,
+          "w": 47
+        },
+        {
+          "text": "بنات",
+          "h": 36,
+          "w": 46
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 54
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 54
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 54
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 54
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 54
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 54
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 54
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 54
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 54
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 54
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 54
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 54
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 54
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 54
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 54
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 54
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 54
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 54
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 54
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 54
+        },
+        {
+          "text": "استمع",
+          "h": 36,
+          "w": 54
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/greet",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 343,
+      "title": "بطاقات التهنئة · واحة",
+      "dark": false,
+      "lcp": 716,
+      "cls": 0.0009222959605924948,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "جمعة مباركة",
+          "h": 36,
+          "w": 82
+        },
+        {
+          "text": "اليوم الوطني",
+          "h": 36,
+          "w": 81
+        },
+        {
+          "text": "يوم التأسيس",
+          "h": 36,
+          "w": 86
+        },
+        {
+          "text": "رمضان",
+          "h": 36,
+          "w": 57
+        },
+        {
+          "text": "عيد الفطر",
+          "h": 36,
+          "w": 70
+        },
+        {
+          "text": "عيد الأضحى",
+          "h": 36,
+          "w": 81
+        },
+        {
+          "text": "عيد ميلاد",
+          "h": 36,
+          "w": 69
+        },
+        {
+          "text": "مواليد",
+          "h": 36,
+          "w": 55
+        },
+        {
+          "text": "تخرج",
+          "h": 36,
+          "w": 48
+        },
+        {
+          "text": "شكر",
+          "h": 36,
+          "w": 45
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/car",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 273,
+      "title": "سيارتي · واحة",
+      "dark": false,
+      "lcp": 236,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/family",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 283,
+      "title": "مناسبات العائلة · واحة",
+      "dark": false,
+      "lcp": 436,
+      "cls": 0.0002441047699184309,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/countdown",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 170,
+      "title": "عدّاد مناسباتي · واحة",
+      "dark": false,
+      "lcp": 268,
+      "cls": 0.0002441047699184309,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "",
+          "h": 23,
+          "w": 358
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/letters",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 261,
+      "title": "الحروف للأطفال · واحة",
+      "dark": false,
+      "lcp": 384,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "ا",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "ب",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "ت",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "ث",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "ج",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "ح",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "خ",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "د",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "ذ",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "ر",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "ز",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "س",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "ش",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "ص",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "ض",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "ط",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "ظ",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "ع",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "غ",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "ف",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "ق",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "ك",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "ل",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "م",
+          "h": 40,
+          "w": 40
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/tables",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 341,
+      "title": "جدول الضرب · واحة",
+      "dark": false,
+      "lcp": 280,
+      "cls": 0.0005276180709017179,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "1",
+          "h": 36,
+          "w": 33
+        },
+        {
+          "text": "2",
+          "h": 36,
+          "w": 33
+        },
+        {
+          "text": "3",
+          "h": 36,
+          "w": 33
+        },
+        {
+          "text": "4",
+          "h": 36,
+          "w": 33
+        },
+        {
+          "text": "5",
+          "h": 36,
+          "w": 33
+        },
+        {
+          "text": "6",
+          "h": 36,
+          "w": 33
+        },
+        {
+          "text": "7",
+          "h": 36,
+          "w": 31
+        },
+        {
+          "text": "8",
+          "h": 36,
+          "w": 33
+        },
+        {
+          "text": "9",
+          "h": 36,
+          "w": 33
+        },
+        {
+          "text": "10",
+          "h": 36,
+          "w": 40
+        },
+        {
+          "text": "11",
+          "h": 36,
+          "w": 40
+        },
+        {
+          "text": "12",
+          "h": 36,
+          "w": 40
+        },
+        {
+          "text": "الجدول",
+          "h": 36,
+          "w": 59
+        },
+        {
+          "text": "اختبار",
+          "h": 36,
+          "w": 51
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/weather",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 763,
+      "title": "الطقس · واحة",
+      "dark": false,
+      "lcp": 1184,
+      "cls": 0.0002425209595702172,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+      ],
+      "http": [
+        {
+          "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+          "status": 429
+        }
+      ],
+      "pass": true
+    },
+    {
+      "route": "/app/clocks",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 1054,
+      "title": "الساعات العالمية · واحة",
+      "dark": false,
+      "lcp": 316,
+      "cls": 0.0004036016711214932,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/proverbs",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 2967,
+      "title": "أمثال عربية · واحة",
+      "dark": false,
+      "lcp": 876,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/budget",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 262,
+      "title": "مصروفات الشهر · واحة",
+      "dark": false,
+      "lcp": 756,
+      "cls": 0.000511988292473906,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/zakat",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 438,
+      "title": "حاسبة الزكاة · واحة",
+      "dark": false,
+      "lcp": 420,
+      "cls": 0.00039386292477793536,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/gold",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 412,
+      "title": "أسعار الذهب · واحة",
+      "dark": false,
+      "lcp": 1492,
+      "cls": 0.0009560398949588181,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/vat",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 267,
+      "title": "الضريبة والخصم · واحة",
+      "dark": false,
+      "lcp": 716,
+      "cls": 0.0009845672664772428,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "أضف ١٥٪",
+          "h": 36,
+          "w": 69
+        },
+        {
+          "text": "استخرج الضريبة",
+          "h": 36,
+          "w": 98
+        },
+        {
+          "text": "خصم",
+          "h": 36,
+          "w": 53
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/salary",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 416,
+      "title": "صافي الراتب · واحة",
+      "dark": false,
+      "lcp": 632,
+      "cls": 0.000630189251118314,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/savings",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 241,
+      "title": "هدف ادخار · واحة",
+      "dark": false,
+      "lcp": 748,
+      "cls": 0.0010454903650517272,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/installment",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 256,
+      "title": "حاسبة الأقساط · واحة",
+      "dark": false,
+      "lcp": 680,
+      "cls": 0.000511988292473906,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/eidiya",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 214,
+      "title": "العيدية · واحة",
+      "dark": false,
+      "lcp": 396,
+      "cls": 0.0002441047699184309,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/iban",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 268,
+      "title": "آيبان سعودي · واحة",
+      "dark": false,
+      "lcp": 928,
+      "cls": 0.0002441047699184309,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/split",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 220,
+      "title": "تقسيم الفاتورة · واحة",
+      "dark": false,
+      "lcp": 664,
+      "cls": 0.0002441047699184309,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "حذف",
+          "h": 36,
+          "w": 50
+        },
+        {
+          "text": "حذف",
+          "h": 36,
+          "w": 50
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/fuel",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 254,
+      "title": "حاسبة الوقود · واحة",
+      "dark": false,
+      "lcp": 240,
+      "cls": 0.0012845151870134461,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/currency",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 316,
+      "title": "العملات · واحة",
+      "dark": false,
+      "lcp": 996,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/faraid",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 187,
+      "title": "المواريث · واحة",
+      "dark": false,
+      "lcp": 452,
+      "cls": 0.0002425209595702172,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/expenses",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 243,
+      "title": "مصروفات العمل · واحة",
+      "dark": false,
+      "lcp": 384,
+      "cls": 0.0002425209595702172,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/margin",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 276,
+      "title": "هامش الربح · واحة",
+      "dark": false,
+      "lcp": 460,
+      "cls": 0.0002441047699184309,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/payroll",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 338,
+      "title": "رواتب الفريق · واحة",
+      "dark": false,
+      "lcp": 740,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/cashbook",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 199,
+      "title": "الصندوق · واحة",
+      "dark": false,
+      "lcp": 376,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/tafqeet",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 265,
+      "title": "التفقيط · واحة",
+      "dark": false,
+      "lcp": 928,
+      "cls": 0.003705839048009036,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/water",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 190,
+      "title": "شرب الماء · واحة",
+      "dark": false,
+      "lcp": 1016,
+      "cls": 0.00040489031681390343,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "1",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "2",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "3",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "4",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "5",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "6",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "7",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "8",
+          "h": 40,
+          "w": 40
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/meds",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 199,
+      "title": "أدويتي · واحة",
+      "dark": false,
+      "lcp": 920,
+      "cls": 0.0002441047699184309,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/bmi",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 198,
+      "title": "مؤشر الكتلة · واحة",
+      "dark": false,
+      "lcp": 628,
+      "cls": 0.0002425209595702172,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/sleep",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 364,
+      "title": "دورات النوم · واحة",
+      "dark": false,
+      "lcp": 812,
+      "cls": 0.0013684981930523713,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "أريد أن أستيقظ",
+          "h": 36,
+          "w": 94
+        },
+        {
+          "text": "سأنام الآن",
+          "h": 36,
+          "w": 71
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/calories",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 354,
+      "title": "السعرات · واحة",
+      "dark": false,
+      "lcp": 292,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "رجل",
+          "h": 36,
+          "w": 44
+        },
+        {
+          "text": "امرأة",
+          "h": 36,
+          "w": 47
+        },
+        {
+          "text": "جلوس",
+          "h": 36,
+          "w": 58
+        },
+        {
+          "text": "خفيف",
+          "h": 36,
+          "w": 54
+        },
+        {
+          "text": "متوسط",
+          "h": 36,
+          "w": 61
+        },
+        {
+          "text": "مرتفع",
+          "h": 36,
+          "w": 52
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/breathe",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 247,
+      "title": "التنفس · واحة",
+      "dark": false,
+      "lcp": 1044,
+      "cls": 0.00042585420651389526,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/pregnancy",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 282,
+      "title": "حاسبة الحمل · واحة",
+      "dark": false,
+      "lcp": 560,
+      "cls": 0.0002441047699184309,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/notes",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 188,
+      "title": "الملاحظات · واحة",
+      "dark": false,
+      "lcp": 320,
+      "cls": 0.0002441047699184309,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/tasks",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 173,
+      "title": "المهام · واحة",
+      "dark": false,
+      "lcp": 476,
+      "cls": 0.0002425209595702172,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "الكل",
+          "h": 36,
+          "w": 45
+        },
+        {
+          "text": "مفتوحة",
+          "h": 36,
+          "w": 62
+        },
+        {
+          "text": "منجزة",
+          "h": 36,
+          "w": 53
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/habits",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 176,
+      "title": "العادات · واحة",
+      "dark": false,
+      "lcp": 296,
+      "cls": 0.0002425209595702172,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/focus",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 219,
+      "title": "بؤرة التركيز · واحة",
+      "dark": false,
+      "lcp": 996,
+      "cls": 0.0017177395109999947,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/markdown",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 180,
+      "title": "محرر ماركداون · واحة",
+      "dark": false,
+      "lcp": 840,
+      "cls": 0.0003739808180409245,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/meetings",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 197,
+      "title": "الاجتماعات · واحة",
+      "dark": false,
+      "lcp": 1068,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/letter",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 395,
+      "title": "الخطاب الرسمي · واحة",
+      "dark": false,
+      "lcp": 1212,
+      "cls": 0.0002425209595702172,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "عرض",
+          "h": 36,
+          "w": 49
+        },
+        {
+          "text": "إشعار",
+          "h": 36,
+          "w": 50
+        },
+        {
+          "text": "شكر",
+          "h": 36,
+          "w": 45
+        },
+        {
+          "text": "مطالبة",
+          "h": 36,
+          "w": 56
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/timesheet",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 188,
+      "title": "سجل الساعات · واحة",
+      "dark": false,
+      "lcp": 524,
+      "cls": 0.0004676272044480306,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/leave",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 223,
+      "title": "إجازات الفريق · واحة",
+      "dark": false,
+      "lcp": 296,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/clients",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 192,
+      "title": "العملاء · واحة",
+      "dark": false,
+      "lcp": 820,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/pipeline",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 183,
+      "title": "الصفقات · واحة",
+      "dark": false,
+      "lcp": 536,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/quote",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 261,
+      "title": "عرض السعر · واحة",
+      "dark": false,
+      "lcp": 440,
+      "cls": 0.0013433727516732235,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "إضافة",
+          "h": 36,
+          "w": 54
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/invoice",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 252,
+      "title": "الفاتورة · واحة",
+      "dark": false,
+      "lcp": 1044,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "إضافة",
+          "h": 36,
+          "w": 54
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/zatca",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 274,
+      "title": "رمز الفاتورة · واحة",
+      "dark": false,
+      "lcp": 724,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/licenses",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 276,
+      "title": "رخص المنشأة · واحة",
+      "dark": false,
+      "lcp": 640,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/portals",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 487,
+      "title": "بوابات العمل · واحة",
+      "dark": false,
+      "lcp": 220,
+      "cls": 0.0002425209595702172,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/madar",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 1081,
+      "title": "مدار · واحة",
+      "dark": false,
+      "lcp": 248,
+      "cls": 0.014725159950446895,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "اذهب",
+          "h": 36,
+          "w": 54
+        },
+        {
+          "text": "حاسبة",
+          "h": 40,
+          "w": 60
+        },
+        {
+          "text": "ترجمة",
+          "h": 40,
+          "w": 56
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/clips",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 2456,
+      "title": "كليبس · واحة",
+      "dark": false,
+      "lcp": 232,
+      "cls": 0.0014478330306815744,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/calc",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 241,
+      "title": "الحاسبة · واحة",
+      "dark": false,
+      "lcp": 236,
+      "cls": 0.0002441047699184309,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/units",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 240,
+      "title": "تحويل الوحدات · واحة",
+      "dark": false,
+      "lcp": 268,
+      "cls": 0.0002425209595702172,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/password",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 223,
+      "title": "مولّد كلمات المرور · واحة",
+      "dark": false,
+      "lcp": 220,
+      "cls": 0.0002441047699184309,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "",
+          "h": 16,
+          "w": 358
+        },
+        {
+          "text": "",
+          "h": 13,
+          "w": 13
+        },
+        {
+          "text": "",
+          "h": 13,
+          "w": 13
+        },
+        {
+          "text": "",
+          "h": 13,
+          "w": 13
+        },
+        {
+          "text": "",
+          "h": 13,
+          "w": 13
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/qr",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 177,
+      "title": "رموز QR · واحة",
+      "dark": false,
+      "lcp": 296,
+      "cls": 0.0005022694562462313,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/dates",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 242,
+      "title": "حاسبة التواريخ · واحة",
+      "dark": false,
+      "lcp": 300,
+      "cls": 0.00037380173948450715,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/wheel",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 282,
+      "title": "عجلة القرار · واحة",
+      "dark": false,
+      "lcp": 348,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "نعم",
+          "h": 30,
+          "w": 46
+        },
+        {
+          "text": "لا",
+          "h": 30,
+          "w": 33
+        },
+        {
+          "text": "لاحقاً",
+          "h": 30,
+          "w": 52
+        },
+        {
+          "text": "ربما",
+          "h": 30,
+          "w": 46
+        },
+        {
+          "text": "اطلب رأياً",
+          "h": 30,
+          "w": 74
+        },
+        {
+          "text": "ابدأ الآن",
+          "h": 30,
+          "w": 65
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/colors",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 218,
+      "title": "مختبر الألوان · واحة",
+      "dark": false,
+      "lcp": 800,
+      "cls": 0.00033936387571206674,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/textlab",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 226,
+      "title": "مختبر النص · واحة",
+      "dark": false,
+      "lcp": 532,
+      "cls": 0.00042478490955579016,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "ABC",
+          "h": 36,
+          "w": 50
+        },
+        {
+          "text": "abc",
+          "h": 36,
+          "w": 46
+        },
+        {
+          "text": "Title",
+          "h": 36,
+          "w": 50
+        },
+        {
+          "text": "عكس",
+          "h": 36,
+          "w": 53
+        },
+        {
+          "text": "فريد",
+          "h": 36,
+          "w": 47
+        },
+        {
+          "text": "ترتيب",
+          "h": 36,
+          "w": 51
+        },
+        {
+          "text": "تنظيف",
+          "h": 36,
+          "w": 57
+        },
+        {
+          "text": "slug",
+          "h": 36,
+          "w": 48
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/json",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 168,
+      "title": "منسّق JSON · واحة",
+      "dark": false,
+      "lcp": 1240,
+      "cls": 0.00030361380031909463,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/encode",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 192,
+      "title": "الترميز · واحة",
+      "dark": false,
+      "lcp": 564,
+      "cls": 0.00037781075942842305,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "Base64 →",
+          "h": 36,
+          "w": 81
+        },
+        {
+          "text": "Base64 ←",
+          "h": 36,
+          "w": 81
+        },
+        {
+          "text": "URL →",
+          "h": 36,
+          "w": 61
+        },
+        {
+          "text": "URL ←",
+          "h": 36,
+          "w": 61
+        },
+        {
+          "text": "SHA-256",
+          "h": 36,
+          "w": 76
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/kalima",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 323,
+      "title": "كلمة · واحة",
+      "dark": false,
+      "lcp": 704,
+      "cls": 0.0018562869207789582,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "العربية",
+          "h": 36,
+          "w": 53
+        },
+        {
+          "text": "English",
+          "h": 36,
+          "w": 65
+        },
+        {
+          "text": "جولة جديدة",
+          "h": 36,
+          "w": 82
+        },
+        {
+          "text": "أ",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ب",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ت",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ث",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ج",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ح",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "خ",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "د",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ذ",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ر",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ز",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "س",
+          "h": 44,
+          "w": 34
+        },
+        {
+          "text": "ش",
+          "h": 44,
+          "w": 34
+        },
+        {
+          "text": "ص",
+          "h": 44,
+          "w": 35
+        },
+        {
+          "text": "ض",
+          "h": 44,
+          "w": 35
+        },
+        {
+          "text": "ط",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ظ",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ع",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "غ",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ف",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ق",
+          "h": 44,
+          "w": 32
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/abiar",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 259,
+      "title": "آبار · واحة",
+      "dark": false,
+      "lcp": 1908,
+      "cls": 0.0002425209595702172,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "تراجع",
+          "h": 36,
+          "w": 51
+        },
+        {
+          "text": "إعادة",
+          "h": 36,
+          "w": 49
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/majra",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 251,
+      "title": "مجرى · واحة",
+      "dark": false,
+      "lcp": 1000,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "إعادة",
+          "h": 36,
+          "w": 49
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/kutl",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 259,
+      "title": "كتل · واحة",
+      "dark": false,
+      "lcp": 1216,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "جولة جديدة",
+          "h": 36,
+          "w": 82
+        },
+        {
+          "text": "",
+          "h": 41,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 41,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 41,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 41,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 41,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 41,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 41,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 41,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 41,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 41,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 41,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 41,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 41,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 41,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 41,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 41,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 41,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 41,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 41,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 41,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 41,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 41,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 41,
+          "w": 41
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/memory",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 238,
+      "title": "ذاكرة · واحة",
+      "dark": false,
+      "lcp": 564,
+      "cls": 0.0003246523248320153,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/snake",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 237,
+      "title": "الثعبان · واحة",
+      "dark": false,
+      "lcp": 1204,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/merge2048",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 193,
+      "title": "٢٠٤٨ · واحة",
+      "dark": false,
+      "lcp": 556,
+      "cls": 0.0005077543557124296,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/tetris",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 274,
+      "title": "تتريس · واحة",
+      "dark": false,
+      "lcp": 1432,
+      "cls": 0.0002425209595702172,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/connect4",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 226,
+      "title": "أربعة في صف · واحة",
+      "dark": false,
+      "lcp": 556,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "ضد واحة",
+          "h": 36,
+          "w": 67
+        },
+        {
+          "text": "شخصان",
+          "h": 36,
+          "w": 65
+        },
+        {
+          "text": "جولة جديدة",
+          "h": 36,
+          "w": 82
+        },
+        {
+          "text": "عمود 1",
+          "h": 32,
+          "w": 48
+        },
+        {
+          "text": "عمود 2",
+          "h": 32,
+          "w": 48
+        },
+        {
+          "text": "عمود 3",
+          "h": 32,
+          "w": 48
+        },
+        {
+          "text": "عمود 4",
+          "h": 32,
+          "w": 48
+        },
+        {
+          "text": "عمود 5",
+          "h": 32,
+          "w": 48
+        },
+        {
+          "text": "عمود 6",
+          "h": 32,
+          "w": 48
+        },
+        {
+          "text": "عمود 7",
+          "h": 32,
+          "w": 48
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/baloot",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 706,
+      "title": "حاسبة البلوت · واحة",
+      "dark": false,
+      "lcp": 1544,
+      "cls": 0.0016836265645706519,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "",
+          "h": 20,
+          "w": 20
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/sudoku",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 320,
+      "title": "سودوكو · واحة",
+      "dark": false,
+      "lcp": 456,
+      "cls": 0.00010393755410152167,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "سهل",
+          "h": 36,
+          "w": 48
+        },
+        {
+          "text": "متوسط",
+          "h": 36,
+          "w": 61
+        },
+        {
+          "text": "صعب",
+          "h": 36,
+          "w": 53
+        },
+        {
+          "text": "جولة جديدة",
+          "h": 36,
+          "w": 82
+        },
+        {
+          "text": "تحقق",
+          "h": 36,
+          "w": 50
+        },
+        {
+          "text": "",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "2",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "7",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "6",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "9",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "4",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "5",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "3",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "2",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "7",
+          "h": 40,
+          "w": 40
+        },
+        {
+          "text": "",
+          "h": 40,
+          "w": 40
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/xo",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 211,
+      "title": "إكس أو · واحة",
+      "dark": false,
+      "lcp": 580,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "سهل",
+          "h": 36,
+          "w": 50
+        },
+        {
+          "text": "صعب",
+          "h": 36,
+          "w": 51
+        },
+        {
+          "text": "جولة جديدة",
+          "h": 36,
+          "w": 82
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/reaction",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 213,
+      "title": "سرعة الرد · واحة",
+      "dark": false,
+      "lcp": 1484,
+      "cls": 0.0002441047699184309,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/type",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 347,
+      "title": "سباق الكتابة · واحة",
+      "dark": false,
+      "lcp": 1356,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "العربية",
+          "h": 36,
+          "w": 53
+        },
+        {
+          "text": "English",
+          "h": 36,
+          "w": 65
+        },
+        {
+          "text": "إعادة",
+          "h": 36,
+          "w": 49
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/breakout",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 272,
+      "title": "محطّم الطوب · واحة",
+      "dark": false,
+      "lcp": 544,
+      "cls": 0.0003246523248320153,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/trivia",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 265,
+      "title": "تحدّي المعلومات · واحة",
+      "dark": false,
+      "lcp": 1040,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/mines",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 251,
+      "title": "الألغام · واحة",
+      "dark": false,
+      "lcp": 348,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "علم",
+          "h": 36,
+          "w": 44
+        },
+        {
+          "text": "جولة جديدة",
+          "h": 36,
+          "w": 82
+        },
+        {
+          "text": "",
+          "h": 38,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 38,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 38,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 38,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 38,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 38,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 38,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 38,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 38,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 38,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 38,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 38,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 38,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 38,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 38,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 38,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 38,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 38,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 38,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 38,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 38,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 38,
+          "w": 38
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 674,
+      "title": "واحة · كل عالمك في مكان واحد",
+      "dark": true,
+      "lcp": 664,
+      "cls": 0.023655316217814814,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: the server responded with a status of 429 (Too Many Requests)",
+        "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+      ],
+      "http": [
+        {
+          "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+          "status": 429
+        },
+        {
+          "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+          "status": 429
+        }
+      ],
+      "pass": true
+    },
+    {
+      "route": "/books",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 5444,
+      "title": "رف الكتب · واحة",
+      "dark": true,
+      "lcp": 420,
+      "cls": 0.002567126202040063,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "اختر ملف PDF",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/tools",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 931,
+      "title": "الأدوات · واحة",
+      "dark": true,
+      "lcp": 380,
+      "cls": 0.0014557808789744282,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/games",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 1046,
+      "title": "الألعاب · واحة",
+      "dark": true,
+      "lcp": 256,
+      "cls": 0.018753646363369864,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/me",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 378,
+      "title": "أنا · واحة",
+      "dark": true,
+      "lcp": 256,
+      "cls": 0.0009783052538156873,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/settings",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 319,
+      "title": "الإعدادات والتخصيص · واحة",
+      "dark": true,
+      "lcp": 240,
+      "cls": 0.018392487210011525,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/onboarding",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 527,
+      "title": "مرحبًا في واحة · واحة",
+      "dark": true,
+      "lcp": 260,
+      "cls": 0.00580157649602406,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "أفراد",
+          "h": 36,
+          "w": 174
+        },
+        {
+          "text": "طفل",
+          "h": 36,
+          "w": 174
+        },
+        {
+          "text": "أسرة",
+          "h": 36,
+          "w": 174
+        },
+        {
+          "text": "عمل",
+          "h": 36,
+          "w": 174
+        },
+        {
+          "text": "",
+          "h": 20,
+          "w": 20
+        },
+        {
+          "text": "",
+          "h": 20,
+          "w": 20
+        },
+        {
+          "text": "",
+          "h": 20,
+          "w": 20
+        },
+        {
+          "text": "",
+          "h": 20,
+          "w": 20
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/welcome",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 1966,
+      "title": "واحة — يومك كله في مكان واحد",
+      "dark": false,
+      "lcp": 280,
+      "cls": 0.014750006200257557,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/books/alhajda",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 3263,
+      "title": "كتاب الهجدة · قراءة داخل واحة",
+      "dark": true,
+      "lcp": 720,
+      "cls": 0.12044962344279048,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/pro/pdf",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 359,
+      "title": "استوديو PDF · متجر واحة",
+      "dark": true,
+      "lcp": 276,
+      "cls": 0.007581011550602885,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "اختر ملفات PDF أو صور",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/money",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 1574,
+      "title": "المال · واحة",
+      "dark": true,
+      "lcp": 276,
+      "cls": 0.5832850005708916,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/",
+      "viewport": 1280,
+      "theme": "light",
+      "status": 200,
+      "width": 1280,
+      "text": 748,
+      "title": "واحة · كل عالمك في مكان واحد",
+      "dark": false,
+      "lcp": 544,
+      "cls": 0.0005004603862762451,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: the server responded with a status of 429 (Too Many Requests)",
+        "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+      ],
+      "http": [
+        {
+          "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+          "status": 429
+        },
+        {
+          "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+          "status": 429
+        }
+      ],
+      "pass": true
+    },
+    {
+      "route": "/books",
+      "viewport": 1280,
+      "theme": "light",
+      "status": 200,
+      "width": 1280,
+      "text": 5521,
+      "title": "رف الكتب · واحة",
+      "dark": false,
+      "lcp": 440,
+      "cls": 0.014617390060424807,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "اختر ملف PDF",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/tools",
+      "viewport": 1280,
+      "theme": "light",
+      "status": 200,
+      "width": 1280,
+      "text": 1008,
+      "title": "الأدوات · واحة",
+      "dark": false,
+      "lcp": 332,
+      "cls": 0.0017175684928894043,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/games",
+      "viewport": 1280,
+      "theme": "light",
+      "status": 200,
+      "width": 1280,
+      "text": 1123,
+      "title": "الألعاب · واحة",
+      "dark": false,
+      "lcp": 328,
+      "cls": 0.00045374298095703124,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/me",
+      "viewport": 1280,
+      "theme": "light",
+      "status": 200,
+      "width": 1280,
+      "text": 455,
+      "title": "أنا · واحة",
+      "dark": false,
+      "lcp": 340,
+      "cls": 0.0006747573852539063,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/settings",
+      "viewport": 1280,
+      "theme": "light",
+      "status": 200,
+      "width": 1280,
+      "text": 396,
+      "title": "الإعدادات والتخصيص · واحة",
+      "dark": false,
+      "lcp": 344,
+      "cls": 0.0006914482355117798,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/onboarding",
+      "viewport": 1280,
+      "theme": "light",
+      "status": 200,
+      "width": 1280,
+      "text": 604,
+      "title": "مرحبًا في واحة · واحة",
+      "dark": false,
+      "lcp": 312,
+      "cls": 0.0025427780151367186,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "أفراد",
+          "h": 36,
+          "w": 142
+        },
+        {
+          "text": "طفل",
+          "h": 36,
+          "w": 142
+        },
+        {
+          "text": "أسرة",
+          "h": 36,
+          "w": 142
+        },
+        {
+          "text": "عمل",
+          "h": 36,
+          "w": 142
+        },
+        {
+          "text": "",
+          "h": 20,
+          "w": 20
+        },
+        {
+          "text": "",
+          "h": 20,
+          "w": 20
+        },
+        {
+          "text": "",
+          "h": 20,
+          "w": 20
+        },
+        {
+          "text": "",
+          "h": 20,
+          "w": 20
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/welcome",
+      "viewport": 1280,
+      "theme": "light",
+      "status": 200,
+      "width": 1280,
+      "text": 1977,
+      "title": "واحة — يومك كله في مكان واحد",
+      "dark": false,
+      "lcp": 364,
+      "cls": 0.008740490937232972,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/books/alhajda",
+      "viewport": 1280,
+      "theme": "light",
+      "status": 200,
+      "width": 1280,
+      "text": 3263,
+      "title": "كتاب الهجدة · قراءة داخل واحة",
+      "dark": false,
+      "lcp": 1124,
+      "cls": 0.7638299256324768,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/pro/pdf",
+      "viewport": 1280,
+      "theme": "light",
+      "status": 200,
+      "width": 1280,
+      "text": 436,
+      "title": "استوديو PDF · متجر واحة",
+      "dark": false,
+      "lcp": 596,
+      "cls": 0.0016253341078758237,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "اختر ملفات PDF أو صور",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/money",
+      "viewport": 1280,
+      "theme": "light",
+      "status": 200,
+      "width": 1280,
+      "text": 1651,
+      "title": "المال · واحة",
+      "dark": false,
+      "lcp": 556,
+      "cls": 0.18084460220336915,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/",
+      "viewport": 1280,
+      "theme": "dark",
+      "status": 200,
+      "width": 1280,
+      "text": 748,
+      "title": "واحة · كل عالمك في مكان واحد",
+      "dark": true,
+      "lcp": 1136,
+      "cls": 0.0005054171085357666,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: the server responded with a status of 429 (Too Many Requests)",
+        "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+      ],
+      "http": [
+        {
+          "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+          "status": 429
+        },
+        {
+          "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+          "status": 429
+        }
+      ],
+      "pass": true
+    },
+    {
+      "route": "/books",
+      "viewport": 1280,
+      "theme": "dark",
+      "status": 200,
+      "width": 1280,
+      "text": 5521,
+      "title": "رف الكتب · واحة",
+      "dark": true,
+      "lcp": 868,
+      "cls": 0.014617390060424807,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "اختر ملف PDF",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/tools",
+      "viewport": 1280,
+      "theme": "dark",
+      "status": 200,
+      "width": 1280,
+      "text": 1008,
+      "title": "الأدوات · واحة",
+      "dark": true,
+      "lcp": 352,
+      "cls": 0.0018926192522048949,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/games",
+      "viewport": 1280,
+      "theme": "dark",
+      "status": 200,
+      "width": 1280,
+      "text": 1123,
+      "title": "الألعاب · واحة",
+      "dark": true,
+      "lcp": 424,
+      "cls": 0.0004654536247253418,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/me",
+      "viewport": 1280,
+      "theme": "dark",
+      "status": 200,
+      "width": 1280,
+      "text": 455,
+      "title": "أنا · واحة",
+      "dark": true,
+      "lcp": 284,
+      "cls": 0.0007586610674858093,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/settings",
+      "viewport": 1280,
+      "theme": "dark",
+      "status": 200,
+      "width": 1280,
+      "text": 396,
+      "title": "الإعدادات والتخصيص · واحة",
+      "dark": true,
+      "lcp": 272,
+      "cls": 0.0001961578369140625,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/onboarding",
+      "viewport": 1280,
+      "theme": "dark",
+      "status": 200,
+      "width": 1280,
+      "text": 604,
+      "title": "مرحبًا في واحة · واحة",
+      "dark": true,
+      "lcp": 444,
+      "cls": 0.0026906070828437803,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "أفراد",
+          "h": 36,
+          "w": 142
+        },
+        {
+          "text": "طفل",
+          "h": 36,
+          "w": 142
+        },
+        {
+          "text": "أسرة",
+          "h": 36,
+          "w": 142
+        },
+        {
+          "text": "عمل",
+          "h": 36,
+          "w": 142
+        },
+        {
+          "text": "",
+          "h": 20,
+          "w": 20
+        },
+        {
+          "text": "",
+          "h": 20,
+          "w": 20
+        },
+        {
+          "text": "",
+          "h": 20,
+          "w": 20
+        },
+        {
+          "text": "",
+          "h": 20,
+          "w": 20
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/welcome",
+      "viewport": 1280,
+      "theme": "dark",
+      "status": 200,
+      "width": 1280,
+      "text": 1977,
+      "title": "واحة — يومك كله في مكان واحد",
+      "dark": false,
+      "lcp": 324,
+      "cls": 0.00998703100681305,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/books/alhajda",
+      "viewport": 1280,
+      "theme": "dark",
+      "status": 200,
+      "width": 1280,
+      "text": 3263,
+      "title": "كتاب الهجدة · قراءة داخل واحة",
+      "dark": true,
+      "lcp": 780,
+      "cls": 0.1030491639137268,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/pro/pdf",
+      "viewport": 1280,
+      "theme": "dark",
+      "status": 200,
+      "width": 1280,
+      "text": 436,
+      "title": "استوديو PDF · متجر واحة",
+      "dark": true,
+      "lcp": 388,
+      "cls": 0.0017333152532577516,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "اختر ملفات PDF أو صور",
+          "h": 1,
+          "w": 1
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/money",
+      "viewport": 1280,
+      "theme": "dark",
+      "status": 200,
+      "width": 1280,
+      "text": 1651,
+      "title": "المال · واحة",
+      "dark": true,
+      "lcp": 544,
+      "cls": 0.1821951375603676,
+      "small": [
+        {
+          "text": "تجاوز إلى المحتوى",
+          "h": 1,
+          "w": 1
+        },
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'https://waha.hajdah.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "http": [],
+      "pass": true
+    }
+  ]
+}

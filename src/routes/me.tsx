@@ -1,7 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { HomePage } from "@/components/home-page";
 export const Route = createFileRoute("/me")({
-  head: () => ({ meta: [{ title: "أنا · واحة" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({
+    meta: [
+      { title: "أنا · واحة" },
+      { name: "robots", content: "noindex" },
+      { name: "description", content: "حسابك وتفضيلاتك ومتابعتك في واحة." },
+    ],
+  }),
   component: () => (
     <>
       <Link

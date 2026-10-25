@@ -78,7 +78,13 @@ export function WheelApp() {
           {L("أدر", "Spin")}
         </button>
       </div>
-      {landed ? <p className="text-center font-display text-3xl">{landed}</p> : <p className="text-center text-sm text-muted">{L("أدر العجلة لتقرر.", "Spin the wheel to decide.")}</p>}
+      {landed ? (
+        <p className="text-center font-display text-3xl">{landed}</p>
+      ) : (
+        <p className="text-center text-sm text-muted">
+          {L("أدر العجلة لتقرر.", "Spin the wheel to decide.")}
+        </p>
+      )}
       <form
         className="flex gap-2"
         onSubmit={(e) => {
@@ -88,7 +94,11 @@ export function WheelApp() {
           setText("");
         }}
       >
-        <Input value={text} onChange={(e) => setText(e.target.value)} placeholder={L("خيار جديد", "New option")} />
+        <Input
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          placeholder={L("خيار جديد", "New option")}
+        />
         <Button type="submit">{t(lang, "add")}</Button>
       </form>
       <ul className="flex flex-wrap gap-2">
@@ -97,7 +107,7 @@ export function WheelApp() {
             <button
               type="button"
               onClick={() => setOpts(opts.filter((_, j) => j !== i))}
-              className="rounded-full border border-border bg-surface px-3 py-1 text-sm hover:bg-surface-2"
+              className="min-h-11 min-w-11 rounded-full border border-border bg-surface px-3 py-2 text-sm hover:bg-surface-2"
             >
               {o}
             </button>

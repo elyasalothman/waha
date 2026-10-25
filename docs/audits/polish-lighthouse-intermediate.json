@@ -1,0 +1,962 @@
+{
+  "base": "http://localhost:8081",
+  "rows": [
+    {
+      "mode": "mobile",
+      "route": "/",
+      "scores": {
+        "performance": 82,
+        "accessibility": 100,
+        "best-practices": 96,
+        "seo": 100
+      },
+      "lcp": 3169.0385,
+      "cls": 0.11177445647948331,
+      "errors": null,
+      "failures": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "display": "3.2 s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "display": "3.2 s"
+        },
+        {
+          "id": "speed-index",
+          "title": "Speed Index",
+          "display": "3.2 s"
+        },
+        {
+          "id": "total-blocking-time",
+          "title": "Total Blocking Time",
+          "display": "140 ms"
+        },
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "display": "160 ms"
+        },
+        {
+          "id": "cumulative-layout-shift",
+          "title": "Cumulative Layout Shift",
+          "display": "0.112"
+        },
+        {
+          "id": "errors-in-console",
+          "title": "Browser errors were logged to the console"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "display": "4.6 s"
+        },
+        {
+          "id": "mainthread-work-breakdown",
+          "title": "Minimize main-thread work",
+          "display": "2.3 s"
+        },
+        {
+          "id": "layout-shifts",
+          "title": "Avoid large layout shifts",
+          "display": "3 layout shifts found"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "display": "Est savings of 33 KiB"
+        },
+        {
+          "id": "cache-insight",
+          "title": "Use efficient cache lifetimes",
+          "display": "Est savings of 569 KiB"
+        },
+        {
+          "id": "cls-culprits-insight",
+          "title": "Layout shift culprits"
+        },
+        {
+          "id": "document-latency-insight",
+          "title": "Document request latency",
+          "display": "Est savings of 20 KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "display": "Est savings of 990 ms"
+        }
+      ]
+    },
+    {
+      "mode": "mobile",
+      "route": "/books",
+      "scores": {
+        "performance": 94,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 2497.2912,
+      "cls": 0.001467022332877772,
+      "errors": null,
+      "failures": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "display": "2.5 s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "display": "2.5 s"
+        },
+        {
+          "id": "speed-index",
+          "title": "Speed Index",
+          "display": "2.5 s"
+        },
+        {
+          "id": "total-blocking-time",
+          "title": "Total Blocking Time",
+          "display": "90 ms"
+        },
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "display": "130 ms"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "display": "4.5 s"
+        },
+        {
+          "id": "mainthread-work-breakdown",
+          "title": "Minimize main-thread work",
+          "display": "2.4 s"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "display": "Est savings of 33 KiB"
+        },
+        {
+          "id": "cache-insight",
+          "title": "Use efficient cache lifetimes",
+          "display": "Est savings of 594 KiB"
+        },
+        {
+          "id": "document-latency-insight",
+          "title": "Document request latency",
+          "display": "Est savings of 39 KiB"
+        },
+        {
+          "id": "forced-reflow-insight",
+          "title": "Forced reflow"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ]
+    },
+    {
+      "mode": "mobile",
+      "route": "/tools",
+      "scores": {
+        "performance": 87,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 3171.2199,
+      "cls": 0.0007515360080722494,
+      "errors": null,
+      "failures": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "display": "3.2 s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "display": "3.2 s"
+        },
+        {
+          "id": "speed-index",
+          "title": "Speed Index",
+          "display": "3.2 s"
+        },
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "display": "90 ms"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "display": "4.3 s"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "display": "Est savings of 34 KiB"
+        },
+        {
+          "id": "cache-insight",
+          "title": "Use efficient cache lifetimes",
+          "display": "Est savings of 535 KiB"
+        },
+        {
+          "id": "document-latency-insight",
+          "title": "Document request latency",
+          "display": "Est savings of 26 KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "display": "Est savings of 1,000 ms"
+        }
+      ]
+    },
+    {
+      "mode": "mobile",
+      "route": "/games",
+      "scores": {
+        "performance": 86,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 3230.27715,
+      "cls": 0.0008360178918735555,
+      "errors": null,
+      "failures": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "display": "3.2 s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "display": "3.2 s"
+        },
+        {
+          "id": "speed-index",
+          "title": "Speed Index",
+          "display": "3.2 s"
+        },
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "display": "100 ms"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "display": "4.3 s"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "display": "Est savings of 34 KiB"
+        },
+        {
+          "id": "cache-insight",
+          "title": "Use efficient cache lifetimes",
+          "display": "Est savings of 576 KiB"
+        },
+        {
+          "id": "document-latency-insight",
+          "title": "Document request latency",
+          "display": "Est savings of 28 KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "display": "Est savings of 1,000 ms"
+        }
+      ]
+    },
+    {
+      "mode": "mobile",
+      "route": "/me",
+      "scores": {
+        "performance": 96,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 63
+      },
+      "lcp": 2221.4953499999997,
+      "cls": 0.0004464761371614317,
+      "errors": null,
+      "failures": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "display": "2.2 s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "display": "2.2 s"
+        },
+        {
+          "id": "speed-index",
+          "title": "Speed Index",
+          "display": "2.2 s"
+        },
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "display": "90 ms"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "display": "4.3 s"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "display": "Est savings of 34 KiB"
+        },
+        {
+          "id": "is-crawlable",
+          "title": "Page is blocked from indexing"
+        },
+        {
+          "id": "cache-insight",
+          "title": "Use efficient cache lifetimes",
+          "display": "Est savings of 545 KiB"
+        },
+        {
+          "id": "document-latency-insight",
+          "title": "Document request latency",
+          "display": "Est savings of 15 KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ]
+    },
+    {
+      "mode": "mobile",
+      "route": "/settings",
+      "scores": {
+        "performance": 91,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 63
+      },
+      "lcp": 2754.6051,
+      "cls": 0.000432394623338223,
+      "errors": null,
+      "failures": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "display": "2.8 s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "display": "2.8 s"
+        },
+        {
+          "id": "speed-index",
+          "title": "Speed Index",
+          "display": "2.8 s"
+        },
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "display": "110 ms"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "display": "4.5 s"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "display": "Est savings of 33 KiB"
+        },
+        {
+          "id": "is-crawlable",
+          "title": "Page is blocked from indexing"
+        },
+        {
+          "id": "cache-insight",
+          "title": "Use efficient cache lifetimes",
+          "display": "Est savings of 473 KiB"
+        },
+        {
+          "id": "document-latency-insight",
+          "title": "Document request latency",
+          "display": "Est savings of 29 KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ]
+    },
+    {
+      "mode": "mobile",
+      "route": "/books/alhajda",
+      "scores": {
+        "performance": 71,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 5858.563000000004,
+      "cls": 0.11616989735181152,
+      "errors": null,
+      "failures": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "display": "2.1 s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "display": "5.9 s"
+        },
+        {
+          "id": "speed-index",
+          "title": "Speed Index",
+          "display": "2.7 s"
+        },
+        {
+          "id": "total-blocking-time",
+          "title": "Total Blocking Time",
+          "display": "140 ms"
+        },
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "display": "110 ms"
+        },
+        {
+          "id": "cumulative-layout-shift",
+          "title": "Cumulative Layout Shift",
+          "display": "0.116"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "display": "5.9 s"
+        },
+        {
+          "id": "layout-shifts",
+          "title": "Avoid large layout shifts",
+          "display": "3 layout shifts found"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "display": "Est savings of 32 KiB"
+        },
+        {
+          "id": "cache-insight",
+          "title": "Use efficient cache lifetimes",
+          "display": "Est savings of 583 KiB"
+        },
+        {
+          "id": "cls-culprits-insight",
+          "title": "Layout shift culprits"
+        },
+        {
+          "id": "document-latency-insight",
+          "title": "Document request latency",
+          "display": "Est savings of 19 KiB"
+        },
+        {
+          "id": "forced-reflow-insight",
+          "title": "Forced reflow"
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "display": "Est savings of 11 KiB"
+        },
+        {
+          "id": "lcp-discovery-insight",
+          "title": "LCP request discovery"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ]
+    },
+    {
+      "mode": "desktop",
+      "route": "/",
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 96,
+        "seo": 100
+      },
+      "lcp": 823.365,
+      "cls": 0.03377827410697937,
+      "errors": null,
+      "failures": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "display": "0.8 s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "display": "0.8 s"
+        },
+        {
+          "id": "speed-index",
+          "title": "Speed Index",
+          "display": "0.8 s"
+        },
+        {
+          "id": "errors-in-console",
+          "title": "Browser errors were logged to the console"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "display": "Est savings of 33 KiB"
+        },
+        {
+          "id": "cache-insight",
+          "title": "Use efficient cache lifetimes",
+          "display": "Est savings of 569 KiB"
+        },
+        {
+          "id": "document-latency-insight",
+          "title": "Document request latency",
+          "display": "Est savings of 20 KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ]
+    },
+    {
+      "mode": "desktop",
+      "route": "/books",
+      "scores": {
+        "performance": 98,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 845.3616499999998,
+      "cls": 0.01322833743095398,
+      "errors": null,
+      "failures": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "display": "0.8 s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "display": "0.8 s"
+        },
+        {
+          "id": "speed-index",
+          "title": "Speed Index",
+          "display": "0.8 s"
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "title": "Elements with visible text labels do not have matching accessible names."
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "display": "Est savings of 33 KiB"
+        },
+        {
+          "id": "cache-insight",
+          "title": "Use efficient cache lifetimes",
+          "display": "Est savings of 594 KiB"
+        },
+        {
+          "id": "document-latency-insight",
+          "title": "Document request latency",
+          "display": "Est savings of 39 KiB"
+        },
+        {
+          "id": "forced-reflow-insight",
+          "title": "Forced reflow"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ]
+    },
+    {
+      "mode": "desktop",
+      "route": "/tools",
+      "scores": {
+        "performance": 98,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 892.5645000000004,
+      "cls": 0.0005858821868896484,
+      "errors": null,
+      "failures": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "display": "0.9 s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "display": "0.9 s"
+        },
+        {
+          "id": "speed-index",
+          "title": "Speed Index",
+          "display": "0.9 s"
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "title": "Elements with visible text labels do not have matching accessible names."
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "display": "Est savings of 34 KiB"
+        },
+        {
+          "id": "cache-insight",
+          "title": "Use efficient cache lifetimes",
+          "display": "Est savings of 572 KiB"
+        },
+        {
+          "id": "document-latency-insight",
+          "title": "Document request latency",
+          "display": "Est savings of 26 KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "display": "Est savings of 160 ms"
+        }
+      ]
+    },
+    {
+      "mode": "desktop",
+      "route": "/games",
+      "scores": {
+        "performance": 97,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 966.5418000000001,
+      "cls": 0.00046545362472534183,
+      "errors": null,
+      "failures": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "display": "1.0 s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "display": "1.0 s"
+        },
+        {
+          "id": "speed-index",
+          "title": "Speed Index",
+          "display": "1.0 s"
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "title": "Elements with visible text labels do not have matching accessible names."
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "display": "Est savings of 34 KiB"
+        },
+        {
+          "id": "cache-insight",
+          "title": "Use efficient cache lifetimes",
+          "display": "Est savings of 576 KiB"
+        },
+        {
+          "id": "document-latency-insight",
+          "title": "Document request latency",
+          "display": "Est savings of 28 KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "display": "Est savings of 170 ms"
+        }
+      ]
+    },
+    {
+      "mode": "desktop",
+      "route": "/me",
+      "scores": {
+        "performance": 98,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 63
+      },
+      "lcp": 921.3425500000001,
+      "cls": 0.000784577703475952,
+      "errors": null,
+      "failures": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "display": "0.9 s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "display": "0.9 s"
+        },
+        {
+          "id": "speed-index",
+          "title": "Speed Index",
+          "display": "0.9 s"
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "title": "Elements with visible text labels do not have matching accessible names."
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "display": "Est savings of 34 KiB"
+        },
+        {
+          "id": "is-crawlable",
+          "title": "Page is blocked from indexing"
+        },
+        {
+          "id": "cache-insight",
+          "title": "Use efficient cache lifetimes",
+          "display": "Est savings of 582 KiB"
+        },
+        {
+          "id": "document-latency-insight",
+          "title": "Document request latency",
+          "display": "Est savings of 15 KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "display": "Est savings of 190 ms"
+        }
+      ]
+    },
+    {
+      "mode": "desktop",
+      "route": "/settings",
+      "scores": {
+        "performance": 95,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 63
+      },
+      "lcp": 1150.8262,
+      "cls": 0.0002081088066101074,
+      "errors": null,
+      "failures": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "display": "1.2 s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "display": "1.2 s"
+        },
+        {
+          "id": "speed-index",
+          "title": "Speed Index",
+          "display": "1.2 s"
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "title": "Elements with visible text labels do not have matching accessible names."
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "display": "Est savings of 33 KiB"
+        },
+        {
+          "id": "is-crawlable",
+          "title": "Page is blocked from indexing"
+        },
+        {
+          "id": "cache-insight",
+          "title": "Use efficient cache lifetimes",
+          "display": "Est savings of 510 KiB"
+        },
+        {
+          "id": "document-latency-insight",
+          "title": "Document request latency",
+          "display": "Est savings of 29 KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "display": "Est savings of 80 ms"
+        }
+      ]
+    },
+    {
+      "mode": "desktop",
+      "route": "/books/alhajda",
+      "scores": {
+        "performance": 92,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 1045.5325500000004,
+      "cls": 0.10522575900554657,
+      "errors": null,
+      "failures": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "display": "1.0 s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "display": "1.0 s"
+        },
+        {
+          "id": "speed-index",
+          "title": "Speed Index",
+          "display": "1.5 s"
+        },
+        {
+          "id": "cumulative-layout-shift",
+          "title": "Cumulative Layout Shift",
+          "display": "0.105"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "display": "2.0 s"
+        },
+        {
+          "id": "layout-shifts",
+          "title": "Avoid large layout shifts",
+          "display": "5 layout shifts found"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "display": "Est savings of 32 KiB"
+        },
+        {
+          "id": "cache-insight",
+          "title": "Use efficient cache lifetimes",
+          "display": "Est savings of 479 KiB"
+        },
+        {
+          "id": "cls-culprits-insight",
+          "title": "Layout shift culprits"
+        },
+        {
+          "id": "document-latency-insight",
+          "title": "Document request latency",
+          "display": "Est savings of 18 KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "display": "Est savings of 0 ms"
+        }
+      ]
+    }
+  ]
+}

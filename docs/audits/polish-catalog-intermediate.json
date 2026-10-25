@@ -1,0 +1,6784 @@
+{
+  "base": "http://localhost:8081",
+  "at": "2026-10-25T19:47:52.669Z",
+  "rows": [
+    {
+      "route": "/",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 800,
+      "title": "واحة · كل عالمك في مكان واحد",
+      "dark": false,
+      "lcp": 900,
+      "cls": 0.012447624471655266,
+      "small": [],
+      "errors": [],
+      "console": [
+        "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+      ],
+      "http": [
+        {
+          "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+          "status": 429
+        }
+      ],
+      "pass": true
+    },
+    {
+      "route": "/books",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 5444,
+      "title": "رف الكتب · واحة",
+      "dark": false,
+      "lcp": 408,
+      "cls": 0.0003736615812676126,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/tools",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 931,
+      "title": "الأدوات · واحة",
+      "dark": false,
+      "lcp": 456,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/games",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 1046,
+      "title": "الألعاب · واحة",
+      "dark": false,
+      "lcp": 428,
+      "cls": 0.0008360178918735555,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/me",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 378,
+      "title": "أنا · واحة",
+      "dark": false,
+      "lcp": 280,
+      "cls": 0.00045108358544714423,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/settings",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 349,
+      "title": "الإعدادات والتخصيص · واحة",
+      "dark": false,
+      "lcp": 248,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/onboarding",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 468,
+      "title": "مرحبًا في واحة · واحة",
+      "dark": false,
+      "lcp": 348,
+      "cls": 0.0009796874883014008,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/welcome",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 1970,
+      "title": "واحة — يومك كله في مكان واحد",
+      "dark": false,
+      "lcp": 1408,
+      "cls": 0.002799517299600477,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/books/alhajda",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 3263,
+      "title": "كتاب الهجدة · قراءة داخل واحة",
+      "dark": false,
+      "lcp": 580,
+      "cls": 0.0005161349959310472,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/pro/pdf",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 359,
+      "title": "استوديو PDF · متجر واحة",
+      "dark": false,
+      "lcp": 244,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/money",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 1574,
+      "title": "المال · واحة",
+      "dark": false,
+      "lcp": 504,
+      "cls": 0.27519843208894795,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/store",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 7926,
+      "title": "المتجر · واحة",
+      "dark": false,
+      "lcp": 288,
+      "cls": 0.00008918494563786954,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/play/dallah",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 268,
+      "title": "قفز الدلّة · واحة",
+      "dark": false,
+      "lcp": 264,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/play/hayat-world",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 275,
+      "title": "حياة · عالم مفتوح · واحة",
+      "dark": false,
+      "lcp": 128,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/news",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 11961,
+      "title": "أخبار وبث واحة المباشر · واحة",
+      "dark": false,
+      "lcp": 488,
+      "cls": 0.06813292949049109,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/quran",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 4591,
+      "title": "القرآن الكريم والتلاوة والورد اليومي · واحة",
+      "dark": false,
+      "lcp": 276,
+      "cls": 0.03416852692391202,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/forum",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 350,
+      "title": "المجالس · واحة",
+      "dark": false,
+      "lcp": 332,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/worship",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 991,
+      "title": "تهجد · الصلاة والأذكار والقبلة داخل واحة",
+      "dark": false,
+      "lcp": 208,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/sites",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 1212,
+      "title": "مواقعنا · واحة",
+      "dark": false,
+      "lcp": 224,
+      "cls": 0.005999726018807604,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/ask",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 345,
+      "title": "اسأل محسن · واحة",
+      "dark": false,
+      "lcp": 240,
+      "cls": 0.0009052484019353587,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/luma",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 230,
+      "title": "لُمعة · واحة",
+      "dark": false,
+      "lcp": 204,
+      "cls": 0.00009451883193698854,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/agent",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 252,
+      "title": "وكيل · واحة",
+      "dark": false,
+      "lcp": 244,
+      "cls": 0.00039618295946770155,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/hissati",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 295,
+      "title": "حصتي · واحة",
+      "dark": false,
+      "lcp": 224,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/home",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 1215,
+      "title": "بيت الهجدة · واحة",
+      "dark": false,
+      "lcp": 364,
+      "cls": 0.000037255538872753225,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/studio",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 1306,
+      "title": "هجدة · الاستوديو · واحة",
+      "dark": false,
+      "lcp": 412,
+      "cls": 0.000037255538872753225,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/hayat",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 229,
+      "title": "حياة · واحة",
+      "dark": false,
+      "lcp": 360,
+      "cls": 0.00009451883193698854,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/samar",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 238,
+      "title": "لُمعة · سَمَر · واحة",
+      "dark": false,
+      "lcp": 384,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/amlak",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 305,
+      "title": "أملاك · واحة",
+      "dark": false,
+      "lcp": 232,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/compare",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 591,
+      "title": "قرارك · مقارنة الخيارات داخل واحة",
+      "dark": false,
+      "lcp": 400,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/manba",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 286,
+      "title": "منبع · واحة",
+      "dark": false,
+      "lcp": 368,
+      "cls": 0.0023507840077197795,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/khazana",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 1279,
+      "title": "الخزانة · واحة",
+      "dark": false,
+      "lcp": 520,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/hudoo",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 1088,
+      "title": "هدوء · واحة",
+      "dark": false,
+      "lcp": 332,
+      "cls": 0.0006909035184490869,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/manteq",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 1106,
+      "title": "منطق · واحة",
+      "dark": false,
+      "lcp": 420,
+      "cls": 0.0011428941952774808,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/himaya",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 373,
+      "title": "حماية · واحة",
+      "dark": false,
+      "lcp": 568,
+      "cls": 0.0003280935127704068,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/camera",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 305,
+      "title": "الكاميرا · واحة",
+      "dark": false,
+      "lcp": 1112,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/search",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 1072,
+      "title": "بحث واحة · واحة",
+      "dark": false,
+      "lcp": 1264,
+      "cls": 0.001368239361545891,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/browser",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 307,
+      "title": "متصفح واحة · واحة",
+      "dark": false,
+      "lcp": 1700,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/shield",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 405,
+      "text": 762,
+      "title": "درع الإعلانات · واحة",
+      "dark": false,
+      "lcp": 1272,
+      "cls": 0.005151861495497083,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": false
+    },
+    {
+      "route": "/app/video",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 172,
+      "title": "متصفح واحة · واحة",
+      "dark": false,
+      "lcp": 544,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/salah",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 942,
+      "title": "مواقيت الصلاة · واحة",
+      "dark": false,
+      "lcp": 1104,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [
+        "Framing 'https://tube.alhajda.com/' violates the following Content Security Policy directive: \"frame-ancestors 'self' https://waha.hajdah.com https://*.hajdah.com https://*.alhajda.com capacitor://localhost http://localhost https://localhost\". The request has been blocked.\n"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/salahlog",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 265,
+      "title": "ورد الصلاة · واحة",
+      "dark": false,
+      "lcp": 568,
+      "cls": 0.00010393755410152167,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/athkar",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 745,
+      "title": "أذكار اليوم · واحة",
+      "dark": false,
+      "lcp": 1152,
+      "cls": 0.00029447353856059864,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/asma",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 2748,
+      "title": "الأسماء الحسنى · واحة",
+      "dark": false,
+      "lcp": 412,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/dua",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 508,
+      "title": "أدعية · واحة",
+      "dark": false,
+      "lcp": 1228,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/tasbih",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 257,
+      "title": "التسبيح · واحة",
+      "dark": false,
+      "lcp": 1704,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/khatma",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 290,
+      "title": "ختمة القرآن · واحة",
+      "dark": false,
+      "lcp": 1244,
+      "cls": 0.00029447353856059864,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/qibla",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 762,
+      "title": "اتجاه القبلة · واحة",
+      "dark": false,
+      "lcp": 1232,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/hijri",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 370,
+      "title": "التقويم الهجري · واحة",
+      "dark": false,
+      "lcp": 760,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/fasting",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 272,
+      "title": "سجل الصيام · واحة",
+      "dark": false,
+      "lcp": 496,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/umrah",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 507,
+      "title": "عدّة العمرة · واحة",
+      "dark": false,
+      "lcp": 1064,
+      "cls": 0.00010393755410152167,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/papers",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 274,
+      "title": "وثائقي · واحة",
+      "dark": false,
+      "lcp": 848,
+      "cls": 0.00029447353856059864,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/services",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 823,
+      "title": "خدمات رقمية · واحة",
+      "dark": false,
+      "lcp": 1020,
+      "cls": 0.00029447353856059864,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/holidays",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 326,
+      "title": "إجازات المملكة · واحة",
+      "dark": false,
+      "lcp": 836,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/nazari",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 322,
+      "title": "نظري القيادة · واحة",
+      "dark": false,
+      "lcp": 504,
+      "cls": 0.00010393755410152167,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/emergency",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 394,
+      "title": "طوارئ · واحة",
+      "dark": false,
+      "lcp": 712,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/shopping",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 182,
+      "title": "قائمة التسوق · واحة",
+      "dark": false,
+      "lcp": 128,
+      "cls": 0,
+      "small": [
+        {
+          "text": "",
+          "h": 23,
+          "w": 358
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/bills",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 237,
+      "title": "التزاماتي · واحة",
+      "dark": false,
+      "lcp": 884,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/names",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 4208,
+      "title": "معاني الأسماء · واحة",
+      "dark": false,
+      "lcp": 192,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/greet",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 343,
+      "title": "بطاقات التهنئة · واحة",
+      "dark": false,
+      "lcp": 816,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/car",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 273,
+      "title": "سيارتي · واحة",
+      "dark": false,
+      "lcp": 156,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/family",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 283,
+      "title": "مناسبات العائلة · واحة",
+      "dark": false,
+      "lcp": 156,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/countdown",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 170,
+      "title": "عدّاد مناسباتي · واحة",
+      "dark": false,
+      "lcp": 124,
+      "cls": 0,
+      "small": [
+        {
+          "text": "",
+          "h": 23,
+          "w": 358
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/letters",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 261,
+      "title": "الحروف للأطفال · واحة",
+      "dark": false,
+      "lcp": 160,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/tables",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 341,
+      "title": "جدول الضرب · واحة",
+      "dark": false,
+      "lcp": 212,
+      "cls": 0.0001240163997802247,
+      "small": [
+        {
+          "text": "1",
+          "h": 44,
+          "w": 33
+        },
+        {
+          "text": "2",
+          "h": 44,
+          "w": 33
+        },
+        {
+          "text": "3",
+          "h": 44,
+          "w": 33
+        },
+        {
+          "text": "4",
+          "h": 44,
+          "w": 33
+        },
+        {
+          "text": "5",
+          "h": 44,
+          "w": 33
+        },
+        {
+          "text": "6",
+          "h": 44,
+          "w": 33
+        },
+        {
+          "text": "7",
+          "h": 44,
+          "w": 31
+        },
+        {
+          "text": "8",
+          "h": 44,
+          "w": 33
+        },
+        {
+          "text": "9",
+          "h": 44,
+          "w": 33
+        },
+        {
+          "text": "10",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "11",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "12",
+          "h": 44,
+          "w": 40
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/weather",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 763,
+      "title": "الطقس · واحة",
+      "dark": false,
+      "lcp": 1552,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [
+        "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+      ],
+      "http": [
+        {
+          "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+          "status": 429
+        }
+      ],
+      "pass": true
+    },
+    {
+      "route": "/app/clocks",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 1054,
+      "title": "الساعات العالمية · واحة",
+      "dark": false,
+      "lcp": 128,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/proverbs",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 2967,
+      "title": "أمثال عربية · واحة",
+      "dark": false,
+      "lcp": 492,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/budget",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 262,
+      "title": "مصروفات الشهر · واحة",
+      "dark": false,
+      "lcp": 464,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/zakat",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 438,
+      "title": "حاسبة الزكاة · واحة",
+      "dark": false,
+      "lcp": 124,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/gold",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 412,
+      "title": "أسعار الذهب · واحة",
+      "dark": false,
+      "lcp": 604,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/vat",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 267,
+      "title": "الضريبة والخصم · واحة",
+      "dark": false,
+      "lcp": 148,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/salary",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 416,
+      "title": "صافي الراتب · واحة",
+      "dark": false,
+      "lcp": 460,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/savings",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 241,
+      "title": "هدف ادخار · واحة",
+      "dark": false,
+      "lcp": 168,
+      "cls": 0.00008478340394607789,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/installment",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 256,
+      "title": "حاسبة الأقساط · واحة",
+      "dark": false,
+      "lcp": 612,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/eidiya",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 214,
+      "title": "العيدية · واحة",
+      "dark": false,
+      "lcp": 140,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/iban",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 268,
+      "title": "آيبان سعودي · واحة",
+      "dark": false,
+      "lcp": 480,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/split",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 220,
+      "title": "تقسيم الفاتورة · واحة",
+      "dark": false,
+      "lcp": 480,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/fuel",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 254,
+      "title": "حاسبة الوقود · واحة",
+      "dark": false,
+      "lcp": 132,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/currency",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 316,
+      "title": "العملات · واحة",
+      "dark": false,
+      "lcp": 496,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/faraid",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 438,
+      "title": "المواريث · واحة",
+      "dark": false,
+      "lcp": 500,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/expenses",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 243,
+      "title": "مصروفات العمل · واحة",
+      "dark": false,
+      "lcp": 180,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/margin",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 276,
+      "title": "هامش الربح · واحة",
+      "dark": false,
+      "lcp": 168,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/payroll",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 338,
+      "title": "رواتب الفريق · واحة",
+      "dark": false,
+      "lcp": 496,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/cashbook",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 199,
+      "title": "الصندوق · واحة",
+      "dark": false,
+      "lcp": 156,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/tafqeet",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 265,
+      "title": "التفقيط · واحة",
+      "dark": false,
+      "lcp": 472,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/water",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 190,
+      "title": "شرب الماء · واحة",
+      "dark": false,
+      "lcp": 492,
+      "cls": 0,
+      "small": [
+        {
+          "text": "1",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "2",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "3",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "4",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "5",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "6",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "7",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "8",
+          "h": 44,
+          "w": 40
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/meds",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 199,
+      "title": "أدويتي · واحة",
+      "dark": false,
+      "lcp": 476,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/bmi",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 198,
+      "title": "مؤشر الكتلة · واحة",
+      "dark": false,
+      "lcp": 544,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/sleep",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 364,
+      "title": "دورات النوم · واحة",
+      "dark": false,
+      "lcp": 488,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/calories",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 354,
+      "title": "السعرات · واحة",
+      "dark": false,
+      "lcp": 148,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/breathe",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 247,
+      "title": "التنفس · واحة",
+      "dark": false,
+      "lcp": 472,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/pregnancy",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 282,
+      "title": "حاسبة الحمل · واحة",
+      "dark": false,
+      "lcp": 140,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/notes",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 188,
+      "title": "الملاحظات · واحة",
+      "dark": false,
+      "lcp": 200,
+      "cls": 0.00010393755410152167,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/tasks",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 173,
+      "title": "المهام · واحة",
+      "dark": false,
+      "lcp": 340,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/habits",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 176,
+      "title": "العادات · واحة",
+      "dark": false,
+      "lcp": 128,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/focus",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 219,
+      "title": "بؤرة التركيز · واحة",
+      "dark": false,
+      "lcp": 476,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/markdown",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 180,
+      "title": "محرر ماركداون · واحة",
+      "dark": false,
+      "lcp": 484,
+      "cls": 0.00007697318292318404,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/meetings",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 197,
+      "title": "الاجتماعات · واحة",
+      "dark": false,
+      "lcp": 612,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/letter",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 395,
+      "title": "الخطاب الرسمي · واحة",
+      "dark": false,
+      "lcp": 836,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/timesheet",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 188,
+      "title": "سجل الساعات · واحة",
+      "dark": false,
+      "lcp": 552,
+      "cls": 0.0004676272044480306,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/leave",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 223,
+      "title": "إجازات الفريق · واحة",
+      "dark": false,
+      "lcp": 316,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/clients",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 192,
+      "title": "العملاء · واحة",
+      "dark": false,
+      "lcp": 948,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/pipeline",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 183,
+      "title": "الصفقات · واحة",
+      "dark": false,
+      "lcp": 404,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/quote",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 261,
+      "title": "عرض السعر · واحة",
+      "dark": false,
+      "lcp": 492,
+      "cls": 0.0013433727516732235,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/invoice",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 252,
+      "title": "الفاتورة · واحة",
+      "dark": false,
+      "lcp": 356,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/zatca",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 274,
+      "title": "رمز الفاتورة · واحة",
+      "dark": false,
+      "lcp": 624,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/licenses",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 276,
+      "title": "رخص المنشأة · واحة",
+      "dark": false,
+      "lcp": 532,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/portals",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 487,
+      "title": "بوابات العمل · واحة",
+      "dark": false,
+      "lcp": 240,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/madar",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 1081,
+      "title": "مدار · واحة",
+      "dark": false,
+      "lcp": 292,
+      "cls": 0,
+      "small": [
+        {
+          "text": "حاسبة",
+          "h": 40,
+          "w": 60
+        },
+        {
+          "text": "ترجمة",
+          "h": 40,
+          "w": 56
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/clips",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 2456,
+      "title": "كليبس · واحة",
+      "dark": false,
+      "lcp": 208,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/calc",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 241,
+      "title": "الحاسبة · واحة",
+      "dark": false,
+      "lcp": 200,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/units",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 240,
+      "title": "تحويل الوحدات · واحة",
+      "dark": false,
+      "lcp": 172,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/password",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 223,
+      "title": "مولّد كلمات المرور · واحة",
+      "dark": false,
+      "lcp": 148,
+      "cls": 0,
+      "small": [
+        {
+          "text": "",
+          "h": 16,
+          "w": 358
+        },
+        {
+          "text": "",
+          "h": 13,
+          "w": 13
+        },
+        {
+          "text": "",
+          "h": 13,
+          "w": 13
+        },
+        {
+          "text": "",
+          "h": 13,
+          "w": 13
+        },
+        {
+          "text": "",
+          "h": 13,
+          "w": 13
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/qr",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 177,
+      "title": "رموز QR · واحة",
+      "dark": false,
+      "lcp": 292,
+      "cls": 0.0007072138966291621,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/dates",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 242,
+      "title": "حاسبة التواريخ · واحة",
+      "dark": false,
+      "lcp": 140,
+      "cls": 0.00013128077991428995,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/wheel",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 282,
+      "title": "عجلة القرار · واحة",
+      "dark": false,
+      "lcp": 304,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/colors",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 218,
+      "title": "مختبر الألوان · واحة",
+      "dark": false,
+      "lcp": 616,
+      "cls": 0.00009525910579363586,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/textlab",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 239,
+      "title": "مختبر النص · واحة",
+      "dark": false,
+      "lcp": 244,
+      "cls": 0.00012777727443804968,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/json",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 168,
+      "title": "منسّق JSON · واحة",
+      "dark": false,
+      "lcp": 608,
+      "cls": 0.00010393755410152167,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/encode",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 192,
+      "title": "الترميز · واحة",
+      "dark": false,
+      "lcp": 140,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/kalima",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 323,
+      "title": "كلمة · واحة",
+      "dark": false,
+      "lcp": 220,
+      "cls": 0,
+      "small": [
+        {
+          "text": "أ",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ب",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ت",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ث",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ج",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ح",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "خ",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "د",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ذ",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ر",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ز",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "س",
+          "h": 44,
+          "w": 34
+        },
+        {
+          "text": "ش",
+          "h": 44,
+          "w": 34
+        },
+        {
+          "text": "ص",
+          "h": 44,
+          "w": 35
+        },
+        {
+          "text": "ض",
+          "h": 44,
+          "w": 35
+        },
+        {
+          "text": "ط",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ظ",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ع",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "غ",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ف",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ق",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ك",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ل",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "م",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ن",
+          "h": 44,
+          "w": 32
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/abiar",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 259,
+      "title": "آبار · واحة",
+      "dark": false,
+      "lcp": 484,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/majra",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 251,
+      "title": "مجرى · واحة",
+      "dark": false,
+      "lcp": 692,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/kutl",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 259,
+      "title": "كتل · واحة",
+      "dark": false,
+      "lcp": 504,
+      "cls": 0,
+      "small": [
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/memory",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 238,
+      "title": "ذاكرة · واحة",
+      "dark": false,
+      "lcp": 200,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/snake",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 237,
+      "title": "الثعبان · واحة",
+      "dark": false,
+      "lcp": 564,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/merge2048",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 193,
+      "title": "٢٠٤٨ · واحة",
+      "dark": false,
+      "lcp": 124,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/tetris",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 274,
+      "title": "تتريس · واحة",
+      "dark": false,
+      "lcp": 772,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/connect4",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 226,
+      "title": "أربعة في صف · واحة",
+      "dark": false,
+      "lcp": 332,
+      "cls": 0.00029447353856059864,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/baloot",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 706,
+      "title": "حاسبة البلوت · واحة",
+      "dark": false,
+      "lcp": 1096,
+      "cls": 0.0016074308885456819,
+      "small": [
+        {
+          "text": "",
+          "h": 20,
+          "w": 20
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/sudoku",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 320,
+      "title": "سودوكو · واحة",
+      "dark": false,
+      "lcp": 276,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "الصف 1، العمود 1، فارغ",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 1، العمود 2، 7، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 1، العمود 3، 6، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 1، العمود 4، فارغ",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 1، العمود 5، 8، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 1، العمود 6، 3، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 1، العمود 7، فارغ",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 1، العمود 8، 5، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 1، العمود 9، فارغ",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 2، العمود 1، 2، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 2، العمود 2، 8، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 2، العمود 3، فارغ",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 2، العمود 4، فارغ",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 2، العمود 5، فارغ",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 2، العمود 6، 5، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 2، العمود 7، 1، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 2، العمود 8، 3، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 2، العمود 9، 7، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 3، العمود 1، فارغ",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 3، العمود 2، فارغ",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 3، العمود 3، فارغ",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 3، العمود 4، 9، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 3، العمود 5، 1، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 3، العمود 6، فارغ",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 3، العمود 7، فارغ",
+          "h": 44,
+          "w": 40
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/xo",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 211,
+      "title": "إكس أو · واحة",
+      "dark": false,
+      "lcp": 532,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/reaction",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 213,
+      "title": "سرعة الرد · واحة",
+      "dark": false,
+      "lcp": 1296,
+      "cls": 0.0002425209595702172,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/type",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 347,
+      "title": "سباق الكتابة · واحة",
+      "dark": false,
+      "lcp": 720,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/breakout",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 272,
+      "title": "محطّم الطوب · واحة",
+      "dark": false,
+      "lcp": 404,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/trivia",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 254,
+      "title": "تحدّي المعلومات · واحة",
+      "dark": false,
+      "lcp": 616,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/mines",
+      "viewport": 390,
+      "theme": "light",
+      "status": 200,
+      "width": 390,
+      "text": 251,
+      "title": "الألغام · واحة",
+      "dark": false,
+      "lcp": 396,
+      "cls": 0.0002441047699184309,
+      "small": [
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 800,
+      "title": "واحة · كل عالمك في مكان واحد",
+      "dark": true,
+      "lcp": 644,
+      "cls": 0.009825549049454622,
+      "small": [],
+      "errors": [],
+      "console": [
+        "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+      ],
+      "http": [
+        {
+          "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+          "status": 429
+        }
+      ],
+      "pass": true
+    },
+    {
+      "route": "/books",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 5444,
+      "title": "رف الكتب · واحة",
+      "dark": true,
+      "lcp": 648,
+      "cls": 0.0003736615812676126,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/tools",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 931,
+      "title": "الأدوات · واحة",
+      "dark": true,
+      "lcp": 260,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/games",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 1046,
+      "title": "الألعاب · واحة",
+      "dark": true,
+      "lcp": 464,
+      "cls": 0.022916756655890998,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/me",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 378,
+      "title": "أنا · واحة",
+      "dark": true,
+      "lcp": 272,
+      "cls": 0.000004607448285712476,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/settings",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 349,
+      "title": "الإعدادات والتخصيص · واحة",
+      "dark": true,
+      "lcp": 224,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/onboarding",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 468,
+      "title": "مرحبًا في واحة · واحة",
+      "dark": true,
+      "lcp": 436,
+      "cls": 0.0009796874883014008,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/welcome",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 1970,
+      "title": "واحة — يومك كله في مكان واحد",
+      "dark": true,
+      "lcp": 696,
+      "cls": 0.013900560903735143,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/books/alhajda",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 3263,
+      "title": "كتاب الهجدة · قراءة داخل واحة",
+      "dark": true,
+      "lcp": 1488,
+      "cls": 0.0030452179159258753,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/pro/pdf",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 359,
+      "title": "استوديو PDF · متجر واحة",
+      "dark": true,
+      "lcp": 208,
+      "cls": 0.0004721678357346778,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/money",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 1574,
+      "title": "المال · واحة",
+      "dark": true,
+      "lcp": 204,
+      "cls": 0.2743246547185454,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/store",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 7926,
+      "title": "المتجر · واحة",
+      "dark": true,
+      "lcp": 220,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/play/dallah",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 268,
+      "title": "قفز الدلّة · واحة",
+      "dark": true,
+      "lcp": 168,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/play/hayat-world",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 275,
+      "title": "حياة · عالم مفتوح · واحة",
+      "dark": true,
+      "lcp": 144,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/news",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 11961,
+      "title": "أخبار وبث واحة المباشر · واحة",
+      "dark": true,
+      "lcp": 240,
+      "cls": 0.06813292949049109,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/quran",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 4591,
+      "title": "القرآن الكريم والتلاوة والورد اليومي · واحة",
+      "dark": true,
+      "lcp": 208,
+      "cls": 0.03416852692391202,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/forum",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 350,
+      "title": "المجالس · واحة",
+      "dark": true,
+      "lcp": 200,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/worship",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 991,
+      "title": "تهجد · الصلاة والأذكار والقبلة داخل واحة",
+      "dark": true,
+      "lcp": 204,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/sites",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 1212,
+      "title": "مواقعنا · واحة",
+      "dark": true,
+      "lcp": 188,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/ask",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 345,
+      "title": "اسأل محسن · واحة",
+      "dark": true,
+      "lcp": 180,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/luma",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 230,
+      "title": "لُمعة · واحة",
+      "dark": true,
+      "lcp": 148,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/agent",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 252,
+      "title": "وكيل · واحة",
+      "dark": true,
+      "lcp": 168,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/hissati",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 295,
+      "title": "حصتي · واحة",
+      "dark": true,
+      "lcp": 156,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/home",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 1215,
+      "title": "بيت الهجدة · واحة",
+      "dark": true,
+      "lcp": 172,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/studio",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 1306,
+      "title": "هجدة · الاستوديو · واحة",
+      "dark": true,
+      "lcp": 164,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/hayat",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 229,
+      "title": "حياة · واحة",
+      "dark": true,
+      "lcp": 148,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/samar",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 238,
+      "title": "لُمعة · سَمَر · واحة",
+      "dark": true,
+      "lcp": 128,
+      "cls": 0.00009451883193698854,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/amlak",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 305,
+      "title": "أملاك · واحة",
+      "dark": true,
+      "lcp": 136,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/compare",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 591,
+      "title": "قرارك · مقارنة الخيارات داخل واحة",
+      "dark": true,
+      "lcp": 188,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/manba",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 286,
+      "title": "منبع · واحة",
+      "dark": true,
+      "lcp": 152,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/khazana",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 1279,
+      "title": "الخزانة · واحة",
+      "dark": true,
+      "lcp": 152,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/hudoo",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 1088,
+      "title": "هدوء · واحة",
+      "dark": true,
+      "lcp": 140,
+      "cls": 0.00029290637621888607,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/manteq",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 1106,
+      "title": "منطق · واحة",
+      "dark": true,
+      "lcp": 140,
+      "cls": 0.00029290637621888607,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/himaya",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 373,
+      "title": "حماية · واحة",
+      "dark": true,
+      "lcp": 144,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/camera",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 305,
+      "title": "الكاميرا · واحة",
+      "dark": true,
+      "lcp": 588,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/search",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 1072,
+      "title": "بحث واحة · واحة",
+      "dark": true,
+      "lcp": 484,
+      "cls": 0.0010712317264281505,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/browser",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 307,
+      "title": "متصفح واحة · واحة",
+      "dark": true,
+      "lcp": 504,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/shield",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 405,
+      "text": 762,
+      "title": "درع الإعلانات · واحة",
+      "dark": true,
+      "lcp": 544,
+      "cls": 0.0048548538603793425,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": false
+    },
+    {
+      "route": "/app/video",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 342,
+      "title": "متصفح واحة · واحة",
+      "dark": true,
+      "lcp": 824,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [
+        "Framing 'https://tube.alhajda.com/' violates the following Content Security Policy directive: \"frame-ancestors 'self' https://waha.hajdah.com https://*.hajdah.com https://*.alhajda.com capacitor://localhost http://localhost https://localhost\". The request has been blocked.\n"
+      ],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/salah",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 942,
+      "title": "مواقيت الصلاة · واحة",
+      "dark": true,
+      "lcp": 140,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/salahlog",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 265,
+      "title": "ورد الصلاة · واحة",
+      "dark": true,
+      "lcp": 140,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/athkar",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 745,
+      "title": "أذكار اليوم · واحة",
+      "dark": true,
+      "lcp": 636,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/asma",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 2748,
+      "title": "الأسماء الحسنى · واحة",
+      "dark": true,
+      "lcp": 136,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/dua",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 508,
+      "title": "أدعية · واحة",
+      "dark": true,
+      "lcp": 532,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/tasbih",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 257,
+      "title": "التسبيح · واحة",
+      "dark": true,
+      "lcp": 768,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/khatma",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 290,
+      "title": "ختمة القرآن · واحة",
+      "dark": true,
+      "lcp": 788,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/qibla",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 762,
+      "title": "اتجاه القبلة · واحة",
+      "dark": true,
+      "lcp": 1000,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/hijri",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 370,
+      "title": "التقويم الهجري · واحة",
+      "dark": true,
+      "lcp": 1044,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/fasting",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 272,
+      "title": "سجل الصيام · واحة",
+      "dark": true,
+      "lcp": 396,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/umrah",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 507,
+      "title": "عدّة العمرة · واحة",
+      "dark": true,
+      "lcp": 1056,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/papers",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 274,
+      "title": "وثائقي · واحة",
+      "dark": true,
+      "lcp": 784,
+      "cls": 0.00029447353856059864,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/services",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 823,
+      "title": "خدمات رقمية · واحة",
+      "dark": true,
+      "lcp": 496,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/holidays",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 326,
+      "title": "إجازات المملكة · واحة",
+      "dark": true,
+      "lcp": 680,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/nazari",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 307,
+      "title": "نظري القيادة · واحة",
+      "dark": true,
+      "lcp": 940,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/emergency",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 394,
+      "title": "طوارئ · واحة",
+      "dark": true,
+      "lcp": 1084,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/shopping",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 182,
+      "title": "قائمة التسوق · واحة",
+      "dark": true,
+      "lcp": 444,
+      "cls": 0,
+      "small": [
+        {
+          "text": "",
+          "h": 23,
+          "w": 358
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/bills",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 237,
+      "title": "التزاماتي · واحة",
+      "dark": true,
+      "lcp": 116,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/names",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 4208,
+      "title": "معاني الأسماء · واحة",
+      "dark": true,
+      "lcp": 124,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/greet",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 343,
+      "title": "بطاقات التهنئة · واحة",
+      "dark": true,
+      "lcp": 1084,
+      "cls": 0.00029447353856059864,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/car",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 176,
+      "title": "سيارتي · واحة",
+      "dark": true,
+      "lcp": 284,
+      "cls": 0.00029447353856059864,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/family",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 283,
+      "title": "مناسبات العائلة · واحة",
+      "dark": true,
+      "lcp": 936,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/countdown",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 170,
+      "title": "عدّاد مناسباتي · واحة",
+      "dark": true,
+      "lcp": 392,
+      "cls": 0.0002970076351177405,
+      "small": [
+        {
+          "text": "",
+          "h": 23,
+          "w": 358
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/letters",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 261,
+      "title": "الحروف للأطفال · واحة",
+      "dark": true,
+      "lcp": 240,
+      "cls": 0.00010393755410152167,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/tables",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 341,
+      "title": "جدول الضرب · واحة",
+      "dark": true,
+      "lcp": 316,
+      "cls": 0.0001240163997802247,
+      "small": [
+        {
+          "text": "1",
+          "h": 44,
+          "w": 33
+        },
+        {
+          "text": "2",
+          "h": 44,
+          "w": 33
+        },
+        {
+          "text": "3",
+          "h": 44,
+          "w": 33
+        },
+        {
+          "text": "4",
+          "h": 44,
+          "w": 33
+        },
+        {
+          "text": "5",
+          "h": 44,
+          "w": 33
+        },
+        {
+          "text": "6",
+          "h": 44,
+          "w": 33
+        },
+        {
+          "text": "7",
+          "h": 44,
+          "w": 31
+        },
+        {
+          "text": "8",
+          "h": 44,
+          "w": 33
+        },
+        {
+          "text": "9",
+          "h": 44,
+          "w": 33
+        },
+        {
+          "text": "10",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "11",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "12",
+          "h": 44,
+          "w": 40
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/weather",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 763,
+      "title": "الطقس · واحة",
+      "dark": true,
+      "lcp": 1552,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [
+        "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+      ],
+      "http": [
+        {
+          "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+          "status": 429
+        }
+      ],
+      "pass": true
+    },
+    {
+      "route": "/app/clocks",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 1054,
+      "title": "الساعات العالمية · واحة",
+      "dark": true,
+      "lcp": 436,
+      "cls": 0.00010393755410152167,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/proverbs",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 2967,
+      "title": "أمثال عربية · واحة",
+      "dark": true,
+      "lcp": 936,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/budget",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 262,
+      "title": "مصروفات الشهر · واحة",
+      "dark": true,
+      "lcp": 672,
+      "cls": 0.0002425209595702172,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/zakat",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 438,
+      "title": "حاسبة الزكاة · واحة",
+      "dark": true,
+      "lcp": 264,
+      "cls": 0.00044199827335875494,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/gold",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 412,
+      "title": "أسعار الذهب · واحة",
+      "dark": true,
+      "lcp": 836,
+      "cls": 0.0009560398949588181,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/vat",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 267,
+      "title": "الضريبة والخصم · واحة",
+      "dark": true,
+      "lcp": 392,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/salary",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 416,
+      "title": "صافي الراتب · واحة",
+      "dark": true,
+      "lcp": 1028,
+      "cls": 0.00044122560338134874,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/savings",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 241,
+      "title": "هدف ادخار · واحة",
+      "dark": true,
+      "lcp": 788,
+      "cls": 0.00018872095804759955,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/installment",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 256,
+      "title": "حاسبة الأقساط · واحة",
+      "dark": true,
+      "lcp": 856,
+      "cls": 0.00029447353856059864,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/eidiya",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 214,
+      "title": "العيدية · واحة",
+      "dark": true,
+      "lcp": 376,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/iban",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 268,
+      "title": "آيبان سعودي · واحة",
+      "dark": true,
+      "lcp": 1232,
+      "cls": 0.0002425209595702172,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/split",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 220,
+      "title": "تقسيم الفاتورة · واحة",
+      "dark": true,
+      "lcp": 824,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/fuel",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 254,
+      "title": "حاسبة الوقود · واحة",
+      "dark": true,
+      "lcp": 272,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/currency",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 316,
+      "title": "العملات · واحة",
+      "dark": true,
+      "lcp": 628,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/faraid",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 438,
+      "title": "المواريث · واحة",
+      "dark": true,
+      "lcp": 488,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/expenses",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 243,
+      "title": "مصروفات العمل · واحة",
+      "dark": true,
+      "lcp": 300,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/margin",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 276,
+      "title": "هامش الربح · واحة",
+      "dark": true,
+      "lcp": 344,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/payroll",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 338,
+      "title": "رواتب الفريق · واحة",
+      "dark": true,
+      "lcp": 620,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/cashbook",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 199,
+      "title": "الصندوق · واحة",
+      "dark": true,
+      "lcp": 316,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/tafqeet",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 265,
+      "title": "التفقيط · واحة",
+      "dark": true,
+      "lcp": 484,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/water",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 190,
+      "title": "شرب الماء · واحة",
+      "dark": true,
+      "lcp": 640,
+      "cls": 0,
+      "small": [
+        {
+          "text": "1",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "2",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "3",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "4",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "5",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "6",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "7",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "8",
+          "h": 44,
+          "w": 40
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/meds",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 199,
+      "title": "أدويتي · واحة",
+      "dark": true,
+      "lcp": 492,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/bmi",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 198,
+      "title": "مؤشر الكتلة · واحة",
+      "dark": true,
+      "lcp": 536,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/sleep",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 364,
+      "title": "دورات النوم · واحة",
+      "dark": true,
+      "lcp": 700,
+      "cls": 0.00010393755410152167,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/calories",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 354,
+      "title": "السعرات · واحة",
+      "dark": true,
+      "lcp": 392,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/breathe",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 247,
+      "title": "التنفس · واحة",
+      "dark": true,
+      "lcp": 784,
+      "cls": 0.0003971908387802011,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/pregnancy",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 282,
+      "title": "حاسبة الحمل · واحة",
+      "dark": true,
+      "lcp": 392,
+      "cls": 0.0002425209595702172,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/notes",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 188,
+      "title": "الملاحظات · واحة",
+      "dark": true,
+      "lcp": 444,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/tasks",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 173,
+      "title": "المهام · واحة",
+      "dark": true,
+      "lcp": 412,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/habits",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 176,
+      "title": "العادات · واحة",
+      "dark": true,
+      "lcp": 240,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/focus",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 219,
+      "title": "بؤرة التركيز · واحة",
+      "dark": true,
+      "lcp": 700,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/markdown",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 180,
+      "title": "محرر ماركداون · واحة",
+      "dark": true,
+      "lcp": 492,
+      "cls": 0.00007697318292318404,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/meetings",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 197,
+      "title": "الاجتماعات · واحة",
+      "dark": true,
+      "lcp": 520,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/letter",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 395,
+      "title": "الخطاب الرسمي · واحة",
+      "dark": true,
+      "lcp": 928,
+      "cls": 0.0002425209595702172,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/timesheet",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 188,
+      "title": "سجل الساعات · واحة",
+      "dark": true,
+      "lcp": 288,
+      "cls": 0.0001706195693302901,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/leave",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 223,
+      "title": "إجازات الفريق · واحة",
+      "dark": true,
+      "lcp": 556,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/clients",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 192,
+      "title": "العملاء · واحة",
+      "dark": true,
+      "lcp": 884,
+      "cls": 0.0002970076351177405,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/pipeline",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 183,
+      "title": "الصفقات · واحة",
+      "dark": true,
+      "lcp": 316,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/quote",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 261,
+      "title": "عرض السعر · واحة",
+      "dark": true,
+      "lcp": 128,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/invoice",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 252,
+      "title": "الفاتورة · واحة",
+      "dark": true,
+      "lcp": 620,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/zatca",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 274,
+      "title": "رمز الفاتورة · واحة",
+      "dark": true,
+      "lcp": 560,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/licenses",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 276,
+      "title": "رخص المنشأة · واحة",
+      "dark": true,
+      "lcp": 516,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/portals",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 487,
+      "title": "بوابات العمل · واحة",
+      "dark": true,
+      "lcp": 136,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/madar",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 1081,
+      "title": "مدار · واحة",
+      "dark": true,
+      "lcp": 192,
+      "cls": 0,
+      "small": [
+        {
+          "text": "حاسبة",
+          "h": 40,
+          "w": 60
+        },
+        {
+          "text": "ترجمة",
+          "h": 40,
+          "w": 56
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/clips",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 2456,
+      "title": "كليبس · واحة",
+      "dark": true,
+      "lcp": 144,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/calc",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 241,
+      "title": "الحاسبة · واحة",
+      "dark": true,
+      "lcp": 248,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/units",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 240,
+      "title": "تحويل الوحدات · واحة",
+      "dark": true,
+      "lcp": 156,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/password",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 223,
+      "title": "مولّد كلمات المرور · واحة",
+      "dark": true,
+      "lcp": 148,
+      "cls": 0,
+      "small": [
+        {
+          "text": "",
+          "h": 16,
+          "w": 358
+        },
+        {
+          "text": "",
+          "h": 13,
+          "w": 13
+        },
+        {
+          "text": "",
+          "h": 13,
+          "w": 13
+        },
+        {
+          "text": "",
+          "h": 13,
+          "w": 13
+        },
+        {
+          "text": "",
+          "h": 13,
+          "w": 13
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/qr",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 177,
+      "title": "رموز QR · واحة",
+      "dark": true,
+      "lcp": 300,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/dates",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 242,
+      "title": "حاسبة التواريخ · واحة",
+      "dark": true,
+      "lcp": 304,
+      "cls": 0.00013128077991428995,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/wheel",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 282,
+      "title": "عجلة القرار · واحة",
+      "dark": true,
+      "lcp": 168,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/colors",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 218,
+      "title": "مختبر الألوان · واحة",
+      "dark": true,
+      "lcp": 484,
+      "cls": 0.00009525910579363586,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/textlab",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 239,
+      "title": "مختبر النص · واحة",
+      "dark": true,
+      "lcp": 128,
+      "cls": 0.00012777727443804968,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/json",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 168,
+      "title": "منسّق JSON · واحة",
+      "dark": true,
+      "lcp": 536,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/encode",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 192,
+      "title": "الترميز · واحة",
+      "dark": true,
+      "lcp": 136,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/kalima",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 323,
+      "title": "كلمة · واحة",
+      "dark": true,
+      "lcp": 140,
+      "cls": 0,
+      "small": [
+        {
+          "text": "أ",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ب",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ت",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ث",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ج",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ح",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "خ",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "د",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ذ",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ر",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ز",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "س",
+          "h": 44,
+          "w": 34
+        },
+        {
+          "text": "ش",
+          "h": 44,
+          "w": 34
+        },
+        {
+          "text": "ص",
+          "h": 44,
+          "w": 35
+        },
+        {
+          "text": "ض",
+          "h": 44,
+          "w": 35
+        },
+        {
+          "text": "ط",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ظ",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ع",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "غ",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ف",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ق",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ك",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ل",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "م",
+          "h": 44,
+          "w": 32
+        },
+        {
+          "text": "ن",
+          "h": 44,
+          "w": 32
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/abiar",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 259,
+      "title": "آبار · واحة",
+      "dark": true,
+      "lcp": 488,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/majra",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 251,
+      "title": "مجرى · واحة",
+      "dark": true,
+      "lcp": 480,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/kutl",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 259,
+      "title": "كتل · واحة",
+      "dark": true,
+      "lcp": 480,
+      "cls": 0,
+      "small": [
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 41
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/memory",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 238,
+      "title": "ذاكرة · واحة",
+      "dark": true,
+      "lcp": 156,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/snake",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 237,
+      "title": "الثعبان · واحة",
+      "dark": true,
+      "lcp": 464,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/merge2048",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 193,
+      "title": "٢٠٤٨ · واحة",
+      "dark": true,
+      "lcp": 136,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/tetris",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 274,
+      "title": "تتريس · واحة",
+      "dark": true,
+      "lcp": 500,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/connect4",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 226,
+      "title": "أربعة في صف · واحة",
+      "dark": true,
+      "lcp": 144,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/baloot",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 706,
+      "title": "حاسبة البلوت · واحة",
+      "dark": true,
+      "lcp": 492,
+      "cls": 0,
+      "small": [
+        {
+          "text": "",
+          "h": 20,
+          "w": 20
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/sudoku",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 320,
+      "title": "سودوكو · واحة",
+      "dark": true,
+      "lcp": 156,
+      "cls": 0,
+      "small": [
+        {
+          "text": "الصف 1، العمود 1، فارغ",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 1، العمود 2، فارغ",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 1، العمود 3، 1، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 1، العمود 4، 3، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 1، العمود 5، فارغ",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 1، العمود 6، فارغ",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 1، العمود 7، فارغ",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 1، العمود 8، فارغ",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 1، العمود 9، فارغ",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 2، العمود 1، 6، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 2، العمود 2، 4، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 2، العمود 3، 8، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 2، العمود 4، 1، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 2، العمود 5، 9، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 2، العمود 6، 7، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 2، العمود 7، فارغ",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 2، العمود 8، 2، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 2، العمود 9، فارغ",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 3، العمود 1، 7، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 3، العمود 2، 5، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 3، العمود 3، 3، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 3، العمود 4، فارغ",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 3، العمود 5، 6، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 3، العمود 6، 8، ثابت",
+          "h": 44,
+          "w": 40
+        },
+        {
+          "text": "الصف 3، العمود 7، 1، ثابت",
+          "h": 44,
+          "w": 40
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/xo",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 211,
+      "title": "إكس أو · واحة",
+      "dark": true,
+      "lcp": 164,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/reaction",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 213,
+      "title": "سرعة الرد · واحة",
+      "dark": true,
+      "lcp": 536,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/type",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 347,
+      "title": "سباق الكتابة · واحة",
+      "dark": true,
+      "lcp": 476,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/breakout",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 272,
+      "title": "محطّم الطوب · واحة",
+      "dark": true,
+      "lcp": 144,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/trivia",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 250,
+      "title": "تحدّي المعلومات · واحة",
+      "dark": true,
+      "lcp": 120,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/app/mines",
+      "viewport": 390,
+      "theme": "dark",
+      "status": 200,
+      "width": 390,
+      "text": 251,
+      "title": "الألغام · واحة",
+      "dark": true,
+      "lcp": 140,
+      "cls": 0,
+      "small": [
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        },
+        {
+          "text": "",
+          "h": 44,
+          "w": 38
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/",
+      "viewport": 1280,
+      "theme": "light",
+      "status": 200,
+      "width": 1280,
+      "text": 874,
+      "title": "واحة · كل عالمك في مكان واحد",
+      "dark": false,
+      "lcp": 552,
+      "cls": 0.000938063383102417,
+      "small": [
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+      ],
+      "http": [
+        {
+          "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+          "status": 429
+        }
+      ],
+      "pass": true
+    },
+    {
+      "route": "/books",
+      "viewport": 1280,
+      "theme": "light",
+      "status": 200,
+      "width": 1280,
+      "text": 5521,
+      "title": "رف الكتب · واحة",
+      "dark": false,
+      "lcp": 360,
+      "cls": 0.013280035400390626,
+      "small": [
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/tools",
+      "viewport": 1280,
+      "theme": "light",
+      "status": 200,
+      "width": 1280,
+      "text": 1008,
+      "title": "الأدوات · واحة",
+      "dark": false,
+      "lcp": 192,
+      "cls": 0,
+      "small": [
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/games",
+      "viewport": 1280,
+      "theme": "light",
+      "status": 200,
+      "width": 1280,
+      "text": 1123,
+      "title": "الألعاب · واحة",
+      "dark": false,
+      "lcp": 184,
+      "cls": 0,
+      "small": [
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/me",
+      "viewport": 1280,
+      "theme": "light",
+      "status": 200,
+      "width": 1280,
+      "text": 455,
+      "title": "أنا · واحة",
+      "dark": false,
+      "lcp": 336,
+      "cls": 0,
+      "small": [
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/settings",
+      "viewport": 1280,
+      "theme": "light",
+      "status": 200,
+      "width": 1280,
+      "text": 426,
+      "title": "الإعدادات والتخصيص · واحة",
+      "dark": false,
+      "lcp": 316,
+      "cls": 0,
+      "small": [
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/onboarding",
+      "viewport": 1280,
+      "theme": "light",
+      "status": 200,
+      "width": 1280,
+      "text": 545,
+      "title": "مرحبًا في واحة · واحة",
+      "dark": false,
+      "lcp": 456,
+      "cls": 0.0005766968607902527,
+      "small": [
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/welcome",
+      "viewport": 1280,
+      "theme": "light",
+      "status": 200,
+      "width": 1280,
+      "text": 1981,
+      "title": "واحة — يومك كله في مكان واحد",
+      "dark": false,
+      "lcp": 408,
+      "cls": 0.000014543390274047852,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/books/alhajda",
+      "viewport": 1280,
+      "theme": "light",
+      "status": 200,
+      "width": 1280,
+      "text": 3263,
+      "title": "كتاب الهجدة · قراءة داخل واحة",
+      "dark": false,
+      "lcp": 888,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/pro/pdf",
+      "viewport": 1280,
+      "theme": "light",
+      "status": 200,
+      "width": 1280,
+      "text": 436,
+      "title": "استوديو PDF · متجر واحة",
+      "dark": false,
+      "lcp": 264,
+      "cls": 0,
+      "small": [
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/money",
+      "viewport": 1280,
+      "theme": "light",
+      "status": 200,
+      "width": 1280,
+      "text": 1651,
+      "title": "المال · واحة",
+      "dark": false,
+      "lcp": 320,
+      "cls": 0.1016984375,
+      "small": [
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/",
+      "viewport": 1280,
+      "theme": "dark",
+      "status": 200,
+      "width": 1280,
+      "text": 874,
+      "title": "واحة · كل عالمك في مكان واحد",
+      "dark": true,
+      "lcp": 788,
+      "cls": 0.000938063383102417,
+      "small": [
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [
+        "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+      ],
+      "http": [
+        {
+          "url": "https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+          "status": 429
+        }
+      ],
+      "pass": true
+    },
+    {
+      "route": "/books",
+      "viewport": 1280,
+      "theme": "dark",
+      "status": 200,
+      "width": 1280,
+      "text": 5521,
+      "title": "رف الكتب · واحة",
+      "dark": true,
+      "lcp": 548,
+      "cls": 0.01322833743095398,
+      "small": [
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/tools",
+      "viewport": 1280,
+      "theme": "dark",
+      "status": 200,
+      "width": 1280,
+      "text": 1008,
+      "title": "الأدوات · واحة",
+      "dark": true,
+      "lcp": 332,
+      "cls": 0.0018926192522048949,
+      "small": [
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/games",
+      "viewport": 1280,
+      "theme": "dark",
+      "status": 200,
+      "width": 1280,
+      "text": 1123,
+      "title": "الألعاب · واحة",
+      "dark": true,
+      "lcp": 352,
+      "cls": 0,
+      "small": [
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/me",
+      "viewport": 1280,
+      "theme": "dark",
+      "status": 200,
+      "width": 1280,
+      "text": 455,
+      "title": "أنا · واحة",
+      "dark": true,
+      "lcp": 340,
+      "cls": 0,
+      "small": [
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/settings",
+      "viewport": 1280,
+      "theme": "dark",
+      "status": 200,
+      "width": 1280,
+      "text": 426,
+      "title": "الإعدادات والتخصيص · واحة",
+      "dark": true,
+      "lcp": 324,
+      "cls": 0,
+      "small": [
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/onboarding",
+      "viewport": 1280,
+      "theme": "dark",
+      "status": 200,
+      "width": 1280,
+      "text": 545,
+      "title": "مرحبًا في واحة · واحة",
+      "dark": true,
+      "lcp": 364,
+      "cls": 0,
+      "small": [
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/welcome",
+      "viewport": 1280,
+      "theme": "dark",
+      "status": 200,
+      "width": 1280,
+      "text": 1981,
+      "title": "واحة — يومك كله في مكان واحد",
+      "dark": true,
+      "lcp": 432,
+      "cls": 0.0019969940185546875,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/books/alhajda",
+      "viewport": 1280,
+      "theme": "dark",
+      "status": 200,
+      "width": 1280,
+      "text": 3263,
+      "title": "كتاب الهجدة · قراءة داخل واحة",
+      "dark": true,
+      "lcp": 484,
+      "cls": 0,
+      "small": [],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/pro/pdf",
+      "viewport": 1280,
+      "theme": "dark",
+      "status": 200,
+      "width": 1280,
+      "text": 436,
+      "title": "استوديو PDF · متجر واحة",
+      "dark": true,
+      "lcp": 208,
+      "cls": 0,
+      "small": [
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    },
+    {
+      "route": "/money",
+      "viewport": 1280,
+      "theme": "dark",
+      "status": 200,
+      "width": 1280,
+      "text": 1651,
+      "title": "المال · واحة",
+      "dark": true,
+      "lcp": 224,
+      "cls": 0.1016984375,
+      "small": [
+        {
+          "text": "واحة",
+          "h": 28,
+          "w": 77
+        },
+        {
+          "text": "تهجد · عبادة",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مداد · رف كتب",
+          "h": 40,
+          "w": 199
+        },
+        {
+          "text": "مواقعنا",
+          "h": 40,
+          "w": 199
+        }
+      ],
+      "errors": [],
+      "console": [],
+      "http": [],
+      "pass": true
+    }
+  ]
+}

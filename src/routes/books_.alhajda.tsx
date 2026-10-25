@@ -5,6 +5,21 @@ const AlhajdaReader = lazy(() => import("@/apps/books/alhajda-reader"));
 export const Route = createFileRoute("/books_/alhajda")({
   component: BookRoute,
   head: () => ({
+    links: [
+      {
+        rel: "preload",
+        as: "image",
+        href: "/books/alhajda/assets/front-earth.webp",
+        fetchPriority: "high",
+      },
+      {
+        rel: "preload",
+        href: "/books/alhajda/assets/fonts/NotoNaskhArabic-Regular.woff2",
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "anonymous",
+      },
+    ],
     meta: [
       { title: "كتاب الهجدة · قراءة داخل واحة" },
       {
@@ -17,7 +32,13 @@ export const Route = createFileRoute("/books_/alhajda")({
 });
 function BookRoute() {
   return (
-    <Suspense fallback={<p role="status">تحميل كتاب الهجدة…</p>}>
+    <Suspense
+      fallback={
+        <div className="reader-layout min-h-screen" role="status">
+          تحميل كتاب الهجدة…
+        </div>
+      }
+    >
       <AlhajdaReader />
     </Suspense>
   );

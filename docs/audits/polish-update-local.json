@@ -1,0 +1,8 @@
+{
+  "test": "isolated real Service Worker update, synthetic revision comment",
+  "checks": [
+    "initial worker controls page",
+    "waiting worker offers explicit update",
+    "accepting update activates worker and reloads"
+  ]
+}

@@ -322,7 +322,7 @@ function StartPage({
               href={tool.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-10 items-center rounded-md border border-border bg-surface px-3 text-sm hover:bg-surface-2"
+              className="inline-flex min-h-11 items-center rounded-md border border-border bg-surface px-3 text-sm hover:bg-surface-2"
             >
               {lang === "ar" ? tool.ar : tool.en}
             </a>
@@ -408,7 +408,7 @@ function ResultsPage({
                 href={tool.id === "translate" ? translateUrl(query, lang) : tool.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-10 items-center rounded-md border border-border bg-surface px-3 text-sm hover:bg-surface-2"
+                className="inline-flex min-h-11 items-center rounded-md border border-border bg-surface px-3 text-sm hover:bg-surface-2"
               >
                 {lang === "ar" ? tool.ar : tool.en}
               </a>

@@ -1,0 +1,38 @@
+{
+  "base": "http://localhost:8081",
+  "checks": [
+    {
+      "name": "onboarding-city-interests-once-system-theme",
+      "width": 390,
+      "theme": "light"
+    },
+    {
+      "name": "onboarding-replay-skip",
+      "width": 390,
+      "theme": "light"
+    },
+    {
+      "name": "agent-five-commands-focus-escape-shortcut",
+      "width": 390,
+      "theme": "light"
+    }
+  ],
+  "errors": [],
+  "network": [
+    {
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=21.5433&longitude=39.1728&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+      "status": 429
+    },
+    {
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=21.5433&longitude=39.1728&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+      "status": 429
+    }
+  ],
+  "limits": [
+    "Browser emulation only; microphone, notifications and iPhone/VoiceOver not tested.",
+    "Saved device book is reopened through the cached home in-app; private HTML is never cached."
+  ],
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n0 !== 1\n",
+  "failureUrl": "http://localhost:8081/pro/pdf",
+  "failureText": "تجاوز إلى المحتوى\nواحة\n✦ اسأل محسن أو اطلب منه\nEnglish\nالعودة للرئيسية\nكل الخدمات\nالمتجر\nاستوديو PDF\n\nادمج ملفات PDF والصور في ملف واحد، رتّب الصفحات واحذفها ودوّرها، استخرج صفحات محددة، وأضف توقيعك وختمًا نصيًا وأرقام الصفحات.\n\nيعمل على جهازك بالكامل: لا رفع لملفاتك، ويعمل دون اتصال بعد أول فتح.\n\nأضف ملفات أخرى\n\n1 صفحة من 1 ملف · اضغط على صفحة لتحديدها\n\n1\nالتوقيع والختم\n\nتُضاف إلى الصفحة 1 (أول صفحة محددة، أو الأولى إن لم تحدد).\n\nوقّع بإصبعك أو بالفأرة داخل المربع\nمسح\nضع التوقيع\nختم نصي (مثل: «مُعتمد» أو اسمك وتاريخ اليوم)\nضع الختم\nأسفل يسار\nأسفل الوسط\nأسفل يمين\nأعلى يسار\nأعلى يمين\nالوسط\nالعرض من الصفحة\n28%\nالتصدير\nأضف أرقام الصفحات أسفل كل صفحة\nنزّل الملف المدموج (1 صفحة)استخرج الصفحات المحددة فقط (0)ابدأ من جديد\nالرئيسية\nالكتب\nالأدوات\nالألعاب\nحسابي\n✦"
+}

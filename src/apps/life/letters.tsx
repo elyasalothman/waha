@@ -54,10 +54,15 @@ export function LettersApp() {
         <span className="mt-4 text-2xl text-primary">{cur.word}</span>
       </button>
       <div className="flex justify-center gap-2">
-        <Button variant="secondary" onClick={() => setI((v) => (v + LETTERS.length - 1) % LETTERS.length)}>
+        <Button
+          variant="secondary"
+          onClick={() => setI((v) => (v + LETTERS.length - 1) % LETTERS.length)}
+        >
           {L("السابق", "Prev")}
         </Button>
-        <Button onClick={() => speak(`${cur.name}. ${cur.word}`, "ar")}>{L("استمع", "Listen")}</Button>
+        <Button onClick={() => speak(`${cur.name}. ${cur.word}`, "ar")}>
+          {L("استمع", "Listen")}
+        </Button>
         <Button variant="secondary" onClick={() => setI((v) => (v + 1) % LETTERS.length)}>
           {L("التالي", "Next")}
         </Button>
@@ -69,7 +74,7 @@ export function LettersApp() {
             type="button"
             onClick={() => setI(idx)}
             className={cn(
-              "flex size-10 items-center justify-center rounded-md text-lg",
+              "flex size-11 items-center justify-center rounded-md text-lg",
               idx === i ? "bg-primary text-primary-fg" : "bg-surface text-fg hover:bg-surface-2",
             )}
           >
