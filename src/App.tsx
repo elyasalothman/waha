@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { FileStack, FileUser, ShieldCheck, WifiOff } from "lucide-react";
+import { Mohsen } from "./Mohsen";
 import { NavContext, type ToolId } from "./nav";
 
 const PdfStudioApp = lazy(() => import("./tools/pdf-studio").then((m) => ({ default: m.PdfStudioApp })));
@@ -36,6 +37,7 @@ export function App() {
   return (
     <NavContext.Provider value={setTool}>
       <main dir="rtl" className="min-h-dvh px-4 py-6 sm:px-8">
+        <Mohsen navigate={(t, action) => { setTool(t); if(action) sessionStorage.setItem("pdf-requested-action", action); }} />
         {tool === "home" ? (
           <Home open={setTool} />
         ) : (
@@ -75,6 +77,10 @@ function Home({ open }: { open: (t: ToolId) => void }) {
           </button>
         ))}
       </div>
+      <button className="w-full rounded-2xl border border-border bg-surface p-5 text-start" onClick={() => window.dispatchEvent(new Event('mohsen-open'))}>
+        <h2 className="text-xl font-semibold">الحاسبة والملاحظات والتذكيرات</h2>
+        <p className="text-sm text-muted">حساب وتحويلات وذاكرة محلية، مع أدوات الجهاز عبر محسن ←</p>
+      </button>
       <ul className="flex flex-wrap gap-4 text-xs text-muted">
         <li className="flex items-center gap-1.5">
           <ShieldCheck className="size-4 text-primary" aria-hidden="true" /> ملفاتك لا تغادر جهازك

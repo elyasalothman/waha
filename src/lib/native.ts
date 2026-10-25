@@ -33,7 +33,7 @@ export async function openFiles(filters: Filter[], multiple = true): Promise<Fil
 }
 
 /** Native "Save as" dialog. Returns the saved path, or null if cancelled. */
-export async function saveNative(blob: Blob, suggested: string): Promise<string | null> {
+export async function saveNative(blob: Blob, suggested: string, exclusive = false): Promise<string | null> {
   const { save } = await import("@tauri-apps/plugin-dialog");
   const { writeFile } = await import("@tauri-apps/plugin-fs");
   const ext = suggested.split(".").pop() ?? "";
@@ -42,7 +42,11 @@ export async function saveNative(blob: Blob, suggested: string): Promise<string 
     filters: ext ? [{ name: ext.toUpperCase(), extensions: [ext] }] : undefined,
   });
   if (!path) return null;
-  await writeFile(path, new Uint8Array(await blob.arrayBuffer()));
+  if (exclusive) {
+    const { open } = await import("@tauri-apps/plugin-fs");
+    const file = await open(path, { write: true, createNew: true });
+    try { await file.write(new Uint8Array(await blob.arrayBuffer())); } finally { await file.close(); }
+  } else await writeFile(path, new Uint8Array(await blob.arrayBuffer()));
   return path;
 }
 

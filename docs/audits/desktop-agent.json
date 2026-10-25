@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-25T19:16:40.762Z",
+  "viewport": {
+    "width": 1280,
+    "height": 800
+  },
+  "host": "browser fallback, localStorage; network blocked",
+  "commands": [
+    {
+      "command": "احسب ٢٥ × ٤",
+      "expected": "100",
+      "confirmation": false,
+      "passed": true,
+      "result": "احسب ٢٥ × ٤\n\n100\n\n👍👎 حفظ العبارة"
+    },
+    {
+      "command": "حل ٢س + ٤ = ١٠",
+      "expected": "3",
+      "confirmation": false,
+      "passed": true,
+      "result": "حل ٢س + ٤ = ١٠\n\nس = 3\n\n👍👎 حفظ العبارة"
+    },
+    {
+      "command": "حول ١٠ كم إلى ميل",
+      "expected": "6.213",
+      "confirmation": false,
+      "passed": true,
+      "result": "حول ١٠ كم إلى ميل\n\n6.21371192237 ميل\n\n👍👎 حفظ العبارة"
+    },
+    {
+      "command": "احسب ٢٠٪ من ٢٠٠",
+      "expected": "40",
+      "confirmation": false,
+      "passed": true,
+      "result": "احسب ٢٠٪ من ٢٠٠\n\n40\n\n👍👎 حفظ العبارة"
+    },
+    {
+      "command": "أضف ملاحظة شراء خبز",
+      "expected": "حُفظ محليًا",
+      "confirmation": true,
+      "passed": true,
+      "result": "أضف ملاحظة شراء خبز\nحُفظ محليًا على جهازك\n👍👎 حفظ العبارة"
+    },
+    {
+      "command": "اعرض ملاحظاتي",
+      "expected": "شراء خبز",
+      "confirmation": false,
+      "passed": true,
+      "result": "اعرض ملاحظاتي\n[\n  {\n    \"id\": \"mvo7lbtr-oifqpgrm\",\n    \"text\": \"شراء خبز\",\n    \"createdAt\": \"2026-10-25T19:16:43.167Z\"\n  }\n]\n👍👎 حفظ العبارة"
+    },
+    {
+      "command": "تذكر أن مدينتي الرياض",
+      "expected": "حُفظ محليًا",
+      "confirmation": true,
+      "passed": true,
+      "result": "تذكر أن مدينتي الرياض\nحُفظ محليًا على جهازك\n👍👎 حفظ العبارة"
+    },
+    {
+      "command": "وش تذكر عني",
+      "expected": "مدينتي الرياض",
+      "confirmation": false,
+      "passed": true,
+      "result": "وش تذكر عني\n[\n  {\n    \"id\": \"mvo7lbzp-1fdi7qpi\",\n    \"text\": \"مدينتي الرياض\",\n    \"createdAt\": \"2026-10-25T19:16:43.381Z\"\n  }\n]\n👍👎 حفظ العبارة"
+    },
+    {
+      "command": "ذكرني بعد ٥ دقائق اشرب ماء",
+      "expected": "حُفظ محليًا",
+      "confirmation": true,
+      "passed": true,
+      "result": "ذكرني بعد ٥ دقائق اشرب ماء\nحُفظ محليًا على جهازك\n👍👎 حفظ العبارة"
+    },
+    {
+      "command": "قيّم محسن",
+      "expected": "دقة النواة",
+      "confirmation": false,
+      "passed": true,
+      "result": "قيّم محسن\nدقة النواة: 100.0% (175/175)\n👍👎 حفظ العبارة"
+    }
+  ],
+  "checks": [
+    {
+      "name": "cancel mutation leaves storage untouched",
+      "passed": true
+    },
+    {
+      "name": "notes survive reload",
+      "passed": true
+    },
+    {
+      "name": "Ctrl+K, Escape, focus restoration",
+      "passed": true
+    },
+    {
+      "name": "system dark appearance",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

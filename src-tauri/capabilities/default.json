@@ -2,7 +2,9 @@
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
   "description": "Native open/save dialogs and reading/writing only the files the user picks.",
-  "windows": ["main"],
+  "windows": [
+    "main"
+  ],
   "permissions": [
     "core:default",
     "dialog:allow-open",
@@ -12,13 +14,23 @@
     "fs:allow-read-file",
     "fs:allow-write-file",
     {
-      "identifier": "fs:scope",
+      "identifier": "opener:allow-open-url",
       "allow": [
-        { "path": "$HOME/**" },
-        { "path": "$DESKTOP/**" },
-        { "path": "$DOCUMENT/**" },
-        { "path": "$DOWNLOAD/**" }
+        {
+          "url": "https://waha.hajdah.com/*"
+        },
+        {
+          "url": "https://lab.alhajda.com/math"
+        },
+        {
+          "url": "https://github.com/elyasalothman/waha/issues/new*"
+        }
       ]
-    }
+    },
+    "fs:allow-open",
+    "fs:allow-write",
+    "notification:allow-is-permission-granted",
+    "notification:allow-request-permission",
+    "notification:allow-notify"
   ]
 }
