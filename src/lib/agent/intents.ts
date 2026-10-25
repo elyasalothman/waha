@@ -12,6 +12,51 @@ export function parseIntent(input: string): AgentCommand | null {
   if (!input.trim() || input.length > 1000) return null;
   const q = normalize(input),
     command = (tool: string, args: object = {}) => validateCommand({ tool, args });
+  if (/^(تذكر ان|تذكر|احفظ عني)\s/.test(q))
+    return command("remember", {
+      text: input.replace(/^(تذكّر أن|تذكر أن|تذكر ان|تذكر|احفظ عني)\s*/, ""),
+    });
+  if (/^(مدينتي|اسمي)\s/.test(q)) return command("remember", { text: input });
+  if (/وش تذكر عني|ماذا تتذكر عني|اعرض الذاكرة/.test(q)) return command("list_memory");
+  if (/^(امسح الذاكرة|احذف الذاكرة)$/.test(q)) return command("clear_memory");
+  if (/^(انس|انسى)\s/.test(q)) return command("forget", { text: input.replace(/^\S+\s+/, "") });
+  if (/^(احذف ملاحظة|احذف تذكير)\s/.test(q))
+    return command(q.includes("ملاحظة") ? "delete_note" : "delete_reminder", {
+      id: q.split(/\s+/).slice(2).join(" "),
+    });
+  if (/^(اعرض ملاحظاتي|قائمة الملاحظات|وش ملاحظاتي)$/.test(q)) return command("list_notes");
+  if (/^(اعرض تذكيراتي|قائمة التذكيرات|وش تذكيراتي)$/.test(q)) return command("list_reminders");
+  if (/^(ذكرني|ذكرني)\s/.test(q)) {
+    const body = input.replace(/^ذكرني\s*/, "");
+    const when = q.match(
+      /بعد ساعتين|بعد ساعة|بعد \d+ (?:دقيقة|دقائق|ساعات|ساعة)|(?:بكرة|غدا)(?: \d+(?:[:٫]\d+)?(?: (?:العصر|المساء|الصباح|الليل))?)?|الساعة \d+(?::\d+)?(?: (?:العصر|المساء|الصباح|الليل))?|يوم (?:الاحد|الاثنين|الثلاثاء|الاربعاء|الخميس|الجمعة|السبت)/,
+    )?.[0];
+    return command("add_reminder", { text: body, ...(when ? { when } : {}) });
+  }
+  if (/ابحث.*(?:الكتب|كتاب)|دور.*(?:الكتب|كتاب)/.test(q))
+    return command("search_books", {
+      q: input.replace(/^(ابحث|دور)\s*(في|عن)?\s*(الكتب|كتاب)?\s*(عن)?\s*/, "") || "الهجدة",
+    });
+  if (/pdf|بي دي اف|دمج ملفات|ضغط ملفات|تقسيم ملفات|تحويل صور/i.test(q))
+    return command(
+      "pdf",
+      /دمج/.test(q)
+        ? { action: "merge" }
+        : /تقسيم/.test(q)
+          ? { action: "split" }
+          : /ضغط/.test(q)
+            ? { action: "compress" }
+            : /صور/.test(q)
+              ? { action: "images" }
+              : {},
+    );
+  if (/السيرة الذاتية|سيرتي|سيره ذاتيه/.test(q)) return command("cv");
+  if (/سعر الصرف|اسعار الصرف|تحويل عملات/.test(q)) return command("exchange", { q: input });
+  if (/^(كم الساعة|وش الوقت|الوقت الان)$/.test(q)) return command("time");
+  if (/التاريخ الهجري|كم التاريخ/.test(q)) return command("hijri");
+  if (/مواقيت الصلاة|وقت الصلاة/.test(q)) return command("prayer");
+  if (/^(حل|حول|حوّل|خصم|جذر|عمري|فرق التاريخين)\s/.test(q) && !/لغة|عربي|انجليزي/.test(q))
+    return command("math", { expr: q });
   const colloquial: Record<string, [string, object]> = {
     "ابي احسب": ["open_app", { id: "calc" }],
     "عطني الحاسبة": ["open_app", { id: "calc" }],

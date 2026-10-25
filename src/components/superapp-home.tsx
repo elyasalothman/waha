@@ -61,7 +61,7 @@ export function SuperAppHome() {
           onClick={() => window.dispatchEvent(new Event("waha:agent:open"))}
           className="flex min-h-14 w-full items-center gap-3 rounded-2xl border border-primary/30 bg-surface px-5 text-start text-lg text-primary"
         >
-          ✦ اطلب من واحة <span className="ms-auto text-xs">⌘K</span>
+          ✦ اسأل محسن أو اطلب منه <span className="ms-auto text-xs">⌘K</span>
         </button>
       )}
       <div className="grid grid-cols-2 gap-3" aria-label="الطقس والأخبار والبث">

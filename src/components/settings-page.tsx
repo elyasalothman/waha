@@ -1,3 +1,4 @@
+import { AgentSettings } from "./agent-settings";
 import { clearWahaLocalData } from "@/lib/local-data";
 import { useState } from "react";
 import { useSettings } from "@/store/settings-store";
@@ -74,9 +75,9 @@ const groups: { title: string; fields: Field[] }[] = [
     ],
   },
   {
-    title: "وكيل واحة",
+    title: "محسن",
     fields: [
-      { key: "agentEnabled", label: "تشغيل وكيل واحة" },
+      { key: "agentEnabled", label: "تشغيل محسن" },
       { key: "agentVoice", label: "الإملاء الصوتي (بإذن الميكروفون)" },
       { key: "agentSuggestions", label: "اقتراحات حسب الوقت" },
     ],
@@ -178,7 +179,10 @@ export function SettingsPage() {
   }
   async function destructive() {
     try {
-      if (confirm === "history") localStorage.removeItem("waha:agent:history");
+      if (confirm === "history") {
+        localStorage.removeItem("waha:agent:history");
+        localStorage.removeItem("waha:agent:messages");
+      }
       if (confirm === "reset") update(defaultSettings);
       if (confirm === "clear") {
         await clearWahaLocalData();
@@ -348,10 +352,13 @@ export function SettingsPage() {
                   ))}
                 </>
               )}
-              {g.title === "وكيل واحة" && (
-                <button className="min-h-11 text-primary" onClick={() => setConfirm("history")}>
-                  مسح سجل الأوامر
-                </button>
+              {g.title === "محسن" && (
+                <>
+                  <AgentSettings />
+                  <button className="min-h-11 text-primary" onClick={() => setConfirm("history")}>
+                    مسح سجل الأوامر
+                  </button>
+                </>
               )}
               {g.title === "الطقس والأخبار" && (
                 <>
@@ -425,7 +432,7 @@ export function SettingsPage() {
                   </button>
                   {s.developer && (
                     <div className="space-y-2 text-sm">
-                      <p>واحة 1.2.1 · جولة وكيل واحة · {import.meta.env.MODE}</p>
+                      <p>واحة 1.2.1 · جولة محسن · {import.meta.env.MODE}</p>
                       <p>حالة الاتصال: {navigator.onLine ? "متصل" : "دون اتصال"}</p>
                       <button
                         className="min-h-11 text-primary"

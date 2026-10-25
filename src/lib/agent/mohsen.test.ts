@@ -51,3 +51,22 @@ for (const [label, fetcher] of [
     const response = await requestMohsen("طلب", fetcher);
     assert.deepEqual(await response.json(), { reply: unavailableReply, unavailable: true });
   });
+
+test("المصادر الصالحة وحدها تمنح شارة التوثيق", async () => {
+  const { parseMohsenReply } = await import("./mohsen.ts");
+  assert.equal(parseMohsenReply({ reply: "جواب", citations: [] }).verified, false);
+  const result = parseMohsenReply({
+    reply: "<b>نص فقط</b>",
+    citations: [
+      { url: "javascript:alert(1)" },
+      { url: "http://example.org" },
+      { url: "https://www.spa.gov.sa", title: "واس" },
+    ],
+    source: "web",
+    evidence: "retrieved",
+  });
+  assert.equal(result.verified, true);
+  assert.equal(result.citations.length, 1);
+  assert.equal(result.reply, "<b>نص فقط</b>");
+  assert.equal(result.source, "web");
+});

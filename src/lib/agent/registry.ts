@@ -85,7 +85,32 @@ export const registry = {
         }),
       })
       .strict(),
+    true,
   ),
+  math: tool("حل رياضي محلي", z.object({ expr: text }).strict()),
+  search_books: tool("ابحث في الكتب", z.object({ q: text }).strict()),
+  pdf: tool(
+    "استوديو PDF",
+    z.object({ action: z.enum(["merge", "split", "compress", "images"]).optional() }).strict(),
+  ),
+  cv: tool("منشئ السيرة الذاتية", z.object({ template: text.optional() }).strict()),
+  list_notes: tool("اعرض الملاحظات المحلية", empty),
+  delete_note: tool("احذف ملاحظة", z.object({ id: text }).strict(), true),
+  add_reminder: tool(
+    "تذكير محلي بوقت الجهاز",
+    z.object({ text, when: text.optional() }).strict(),
+    true,
+  ),
+  list_reminders: tool("اعرض التذكيرات", empty),
+  delete_reminder: tool("احذف تذكيرا", z.object({ id: text }).strict(), true),
+  remember: tool("احفظ ذاكرة محلية", z.object({ text }).strict(), true),
+  list_memory: tool("اعرض الذاكرة المحلية", empty),
+  forget: tool("انس ذاكرة محلية", z.object({ text }).strict(), true),
+  clear_memory: tool("امسح الذاكرة المحلية", empty, true),
+  time: tool("وقت الجهاز", empty),
+  hijri: tool("التاريخ الهجري", empty),
+  prayer: tool("مواقيت الصلاة", empty),
+  exchange: tool("تحويل العملات", z.object({ q: text }).strict()),
   set_setting: tool(
     "غيّر إعدادًا محليًا باسم الحقل وقيمته",
     z
@@ -123,3 +148,18 @@ export const toolDescriptions = Object.entries(registry).map(([name, entry]) => 
   description: entry.description,
   parameters: z.toJSONSchema(entry.schema, { unrepresentable: "any" }),
 }));
+
+export type ToolRegistry = typeof registry;
+
+/** External catalog destinations require the same explicit consent as open_url. */
+export function requiresConfirmation(raw: AgentCommand): boolean {
+  const command = validateCommand(raw);
+  if (registry[command.tool].changing) return true;
+  if (command.tool === "open_app" || command.tool === "play_game") {
+    const href =
+      SERVICES.find((item) => item.id === command.args.id)?.href ||
+      CATALOG.find((item) => item.id === command.args.id)?.href;
+    return Boolean(href && /^https:\/\//i.test(href));
+  }
+  return false;
+}

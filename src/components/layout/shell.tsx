@@ -208,11 +208,11 @@ export function Shell() {
             <button
               type="button"
               onClick={() => setCmd(true)}
-              aria-label="اطلب من واحة"
+              aria-label="اسأل محسن أو اطلب منه"
               className="flex h-11 min-w-0 flex-1 items-center gap-2 rounded-md border border-border bg-surface px-3 text-start text-sm text-muted lg:max-w-md"
             >
               <Search className="size-4 shrink-0" />
-              <span className="truncate">✦ اطلب من واحة</span>
+              <span className="truncate">✦ اسأل محسن أو اطلب منه</span>
               <kbd className="ms-auto hidden rounded border border-border px-1.5 font-mono text-[10px] text-subtle sm:inline">
                 ⌘K
               </kbd>
@@ -294,7 +294,7 @@ export function Shell() {
 
       {settings.agentEnabled && (
         <button
-          aria-label="فتح وكيل واحة"
+          aria-label="فتح محسن"
           onClick={() => setCmd(true)}
           className="agent-fab fixed end-4 bottom-20 z-40 grid min-h-12 min-w-12 place-items-center rounded-full bg-primary px-4 text-primary-fg shadow-lg lg:bottom-5"
         >
@@ -302,7 +302,7 @@ export function Shell() {
         </button>
       )}
       <Suspense fallback={null}>
-        {cmd && settings.agentEnabled ? <WahaAgent open={cmd} onOpenChange={setCmd} /> : null}
+        {settings.agentEnabled ? <WahaAgent open={cmd} onOpenChange={setCmd} /> : null}
       </Suspense>
       <Toaster
         theme={dark ? "dark" : "light"}

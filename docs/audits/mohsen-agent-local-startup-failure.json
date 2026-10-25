@@ -1,0 +1,9 @@
+{
+  "base": "http://127.0.0.1:8081",
+  "at": "2026-10-25T19:00:44.096Z",
+  "checks": [],
+  "errors": [],
+  "network": [],
+  "failure": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:8081/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:8081/\", waiting until \"load\"\u001b[22m\n",
+  "failureText": "no dialog"
+}

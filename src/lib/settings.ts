@@ -64,7 +64,10 @@ export function settingChange(key: string, value: unknown): Settings {
   if (!(key in settingsSchema.shape)) throw new Error("إعداد غير معروف");
   return parseSettings({ ...defaultSettings, [key]: value });
 }
-export type SettingsStorage = Pick<Storage, "getItem" | "setItem">;
+export type SettingsStorage = {
+  getItem(key: string): string | null;
+  setItem(key: string, value: string): void;
+};
 export function loadSettings(storage: SettingsStorage): Settings {
   try {
     const raw = storage.getItem(SETTINGS_KEY);
