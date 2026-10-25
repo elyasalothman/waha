@@ -1,0 +1,39 @@
+{
+  "id": "dpl_6WftnWixDwVCudDf2ox47rNT9N3h",
+  "name": "waha",
+  "url": "waha-i75y97lv5-elyasalothman-3228.vercel.app",
+  "type": "LAMBDAS",
+  "state": "READY",
+  "createdAt": 1792958654404,
+  "creator": {
+    "uid": "qo5AKjSh5273knDRenT8wIlu",
+    "username": "elyasalothman-3228"
+  },
+  "project": {
+    "id": "prj_h1Gk05nYTifnTA3hoSyOEPxTK9n6",
+    "name": "waha",
+    "framework": "tanstack-start"
+  },
+  "meta": {
+    "githubCommitRef": "f28b4c6d97b9737c73366ddeee762ea855ffd8fa",
+    "githubCommitSha": "f28b4c6d97b9737c73366ddeee762ea855ffd8fa",
+    "githubCommitMessage": "حفظ تنبيهات محسن عند تأجيل تحميل المحادثة وتوثيق التحقق",
+    "githubRepo": "waha",
+    "githubOrg": "elyasalothman"
+  },
+  "alias": [
+    "waha.hajdah.com",
+    "waha.alhajda.com",
+    "waha-eta.vercel.app",
+    "waha-elyasalothman-3228.vercel.app",
+    "waha-git-f28b4c6d97b9737c73366ddeee76-e3fea9-elyasalothman-3228.vercel.app"
+  ],
+  "target": "production",
+  "regions": [
+    "iad1"
+  ],
+  "buildingAt": 1792958655599,
+  "ready": 1792958684317,
+  "readyState": "READY",
+  "aliasError": null
+}

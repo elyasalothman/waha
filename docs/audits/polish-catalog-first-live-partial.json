@@ -1,0 +1,6 @@
+{
+  "partial": true,
+  "sourceSHA": "6b2b8b6e63c109e626477cd2cf270c23be835ac9",
+  "reason": "Stopped before corrected deployment replaced the production alias; superseded by final full live audit.",
+  "log": "polish-catalog-first-live-partial.txt"
+}
