@@ -1,0 +1,39 @@
+{
+  "id": "dpl_EQ2GBoARGdKt13VvDyhV8tBpho91",
+  "name": "waha",
+  "url": "waha-o4j38t4e0-elyasalothman-3228.vercel.app",
+  "type": "LAMBDAS",
+  "state": "READY",
+  "createdAt": 1792956162648,
+  "creator": {
+    "uid": "qo5AKjSh5273knDRenT8wIlu",
+    "username": "elyasalothman-3228"
+  },
+  "project": {
+    "id": "prj_h1Gk05nYTifnTA3hoSyOEPxTK9n6",
+    "name": "waha",
+    "framework": "tanstack-start"
+  },
+  "meta": {
+    "githubCommitRef": "aab4ff3c278bfd31846228dd76a44a31e7db6ce6",
+    "githubCommitSha": "aab4ff3c278bfd31846228dd76a44a31e7db6ce6",
+    "githubCommitMessage": "استكمال مراجعة محسن وإصلاح الأسئلة والمعادلات وأوقات التذكير",
+    "githubRepo": "waha",
+    "githubOrg": "elyasalothman"
+  },
+  "alias": [
+    "waha.hajdah.com",
+    "waha.alhajda.com",
+    "waha-eta.vercel.app",
+    "waha-elyasalothman-3228.vercel.app",
+    "waha-git-aab4ff3c278bfd31846228dd76a4-e1d23b-elyasalothman-3228.vercel.app"
+  ],
+  "target": "production",
+  "regions": [
+    "iad1"
+  ],
+  "buildingAt": 1792956163786,
+  "ready": 1792956191998,
+  "readyState": "READY",
+  "aliasError": null
+}
