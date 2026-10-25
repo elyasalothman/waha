@@ -51,6 +51,13 @@ export const Route = createRootRoute({
         crossOrigin: "anonymous",
       },
     ],
+    scripts: [
+      { src: "https://www.googletagmanager.com/gtag/js?id=G-C5G87WHJNZ", async: true },
+      {
+        children:
+          "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-C5G87WHJNZ');",
+      },
+    ],
   }),
   component: RootDocument,
 });
