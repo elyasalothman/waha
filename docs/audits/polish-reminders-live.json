@@ -1,0 +1,11 @@
+{
+  "base": "https://waha.hajdah.com",
+  "checks": [
+    "saved due reminder appears without opening conversation",
+    "conversation remains lazy when no reminders exist",
+    "storage event restores reminder watcher from another tab"
+  ],
+  "errors": [],
+  "fixture": "Synthetic reminders in isolated browser storage only; no system notification permission.",
+  "sourceSHA": "f28b4c6d97b9737c73366ddeee762ea855ffd8fa"
+}

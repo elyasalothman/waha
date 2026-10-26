@@ -32,7 +32,10 @@ export function WaterApp() {
             key={i}
             type="button"
             onClick={() => set(i + 1 === n ? i : i + 1)}
-            className={cn("h-10 w-10 rounded-full border", i < n ? "border-primary bg-primary" : "border-border bg-surface")}
+            className={cn(
+              "h-11 w-11 rounded-full border",
+              i < n ? "border-primary bg-primary" : "border-border bg-surface",
+            )}
             aria-label={`${i + 1}`}
           />
         ))}

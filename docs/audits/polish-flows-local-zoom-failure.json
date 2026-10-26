@@ -1,0 +1,52 @@
+{
+  "base": "http://localhost:8081",
+  "checks": [
+    {
+      "name": "onboarding-city-interests-once-system-theme",
+      "width": 390,
+      "theme": "light"
+    },
+    {
+      "name": "onboarding-replay-skip",
+      "width": 390,
+      "theme": "light"
+    },
+    {
+      "name": "agent-five-commands-focus-escape-shortcut",
+      "width": 390,
+      "theme": "light"
+    },
+    {
+      "name": "pdf-real-import-preview",
+      "width": 390,
+      "theme": "light"
+    },
+    {
+      "name": "reader-lazy-search-chapter-restore",
+      "width": 390,
+      "theme": "light"
+    }
+  ],
+  "errors": [],
+  "network": [
+    {
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=21.5433&longitude=39.1728&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+      "status": 429
+    },
+    {
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=21.5433&longitude=39.1728&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+      "status": 429
+    },
+    {
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=21.5433&longitude=39.1728&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,apparent_temperature&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=7",
+      "status": 429
+    }
+  ],
+  "limits": [
+    "Browser emulation only; microphone, notifications and iPhone/VoiceOver not tested.",
+    "Saved device book is reopened through the cached home in-app; private HTML is never cached."
+  ],
+  "failure": "AssertionError [ERR_ASSERTION]: 200% overflow / 390",
+  "failureUrl": "http://localhost:8081/",
+  "failureText": "تجاوز إلى المحتوى\nواحة\nEnglish\n\nواحة · عالمك بين يديك\n\nمساء الخير، في واحتك\n\n١٤ جمادى الأولى ١٤٤٨ هـ\n٢٥ أكتوبر ٢٠٢٦\n\nمساحة هادئة، على ذوقك ولكل يوم.\n\nتخصيص يومك\nالصلاة القادمة · جدة · أم القرى\nالفجر · ٠٥:٠٦ ص\nكمل القراءة ←\nعد إلى كتابك وموضعك المحفوظ على هذا الجهاز\n✦ اسأل محسن أو اطلب منه\n⌘K\nالطقس · جدة\nعرض التوقعات ←\nيحتاج اتصالًا أول مرة\n● مباشر\nالبث المباشر ←\nموجز عناوين مسموع\nماذا تحتاج اليوم؟\nكل الخدمات\nابحث عن خدمة أو محتوى\nالكتب\nالقرآن\nالصلاة\nحصتي\nالمتجر\nالحاسبة\nاسأل محسن\nلعبة الدلّة\nآخر الأخبار\nكل الأخبار ←\nالعملية العسكرية في اليمن.. ماذا حققت حتى الآن؟\nالشرق · ٢٥‏/١٠‏/٢٠٢٦\nأوكرانيا تنفي اتهامات ماسك بانتهاك شروط استخدام \"ستارلينك\" في هجوم بمسيّرات\nالشرق · ٢٥‏/١٠‏/٢٠٢٦\nTegoprubart.. دواء تجريبي جديد يوفر حماية أفضل لوظائف الكلى المزروعة\nالشرق · ٢٥‏/١٠‏/٢٠٢٦\n\nآخر عناوين محفوظة\n\nيومك ومتابعتك\nالرئيسية\nالكتب\nالأدوات\nالألعاب\nحسابي\n✦"
+}

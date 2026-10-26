@@ -20,7 +20,8 @@ interface DnsShieldPlugin {
   disable(): Promise<{ enabled: boolean }>;
 }
 const DnsShield = registerPlugin<DnsShieldPlugin>("DnsShield");
-const hasNativeToggle = () => Capacitor.isNativePlatform() && Capacitor.isPluginAvailable("DnsShield");
+const hasNativeToggle = () =>
+  Capacitor.isNativePlatform() && Capacitor.isPluginAvailable("DnsShield");
 
 function usePlatform(): ShieldPlatform {
   return useMemo(() => {
@@ -81,9 +82,14 @@ export function ShieldApp() {
     if (native && !family) {
       setBusy(true);
       try {
-        const r = nativeOn ? await DnsShield.disable() : await DnsShield.enable({ serverURL: SHIELD_DOH_URL });
+        const r = nativeOn
+          ? await DnsShield.disable()
+          : await DnsShield.enable({ serverURL: SHIELD_DOH_URL });
         setNativeOn(r.enabled);
-        if (r.enabled) setMsg("بقيت خطوة: الإعدادات › عام › الشبكة الخاصة الافتراضية وإدارة الجهاز › DNS › اختر «واحة».");
+        if (r.enabled)
+          setMsg(
+            "بقيت خطوة: الإعدادات › عام › الشبكة الخاصة الافتراضية وإدارة الجهاز › DNS › اختر «واحة».",
+          );
       } catch (e) {
         setMsg(e instanceof Error ? e.message : "تعذّر التفعيل");
       } finally {
@@ -127,7 +133,7 @@ export function ShieldApp() {
               type="button"
               disabled={busy}
               onClick={() => void activate()}
-              className="block w-full rounded-2xl bg-primary px-5 py-4 text-center text-lg font-bold text-primary-foreground disabled:opacity-60"
+              className="block w-full rounded-2xl bg-primary px-5 py-4 text-center text-lg font-bold text-primary-fg disabled:opacity-60"
               data-shield-activate
             >
               {native && nativeOn ? "أوقف الحماية" : "فعّل الحماية"}
@@ -138,7 +144,9 @@ export function ShieldApp() {
                   <li>سيفتح Safari ويطلب تنزيل ملف التعريف — اضغط «سماح».</li>
                 )}
                 {platform === "mac-safari" ? (
-                  <li>افتح الملف المنزّل ثم إعدادات النظام › الخصوصية والأمن › ملفات التعريف › تثبيت.</li>
+                  <li>
+                    افتح الملف المنزّل ثم إعدادات النظام › الخصوصية والأمن › ملفات التعريف › تثبيت.
+                  </li>
                 ) : (
                   <>
                     <li>
@@ -187,7 +195,12 @@ export function ShieldApp() {
           <button type="button" className={featureButton} onClick={() => void refresh()}>
             أعد الفحص
           </button>
-          <a className={featureButton} href={SHIELD_PAGE_URL} target="_blank" rel="noopener noreferrer">
+          <a
+            className={featureButton}
+            href={SHIELD_PAGE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             كل الأجهزة والتفاصيل
           </a>
         </div>
@@ -203,7 +216,7 @@ export function ShieldApp() {
             autoCapitalize="off"
             spellCheck={false}
             inputMode="url"
-            className="min-h-11 flex-1 rounded-xl border border-border bg-surface px-3"
+            className="min-h-11 min-w-0 flex-1 rounded-xl border border-border bg-surface px-3"
             aria-label="النطاق"
           />
           <button type="button" className={featureButton} onClick={() => void runCheck()}>
@@ -212,8 +225,8 @@ export function ShieldApp() {
         </div>
         {verdict && <p className="font-semibold">{verdict}</p>}
         <p className="text-xs text-muted">
-          القائمة: HaGeZi Multi PRO (أكثر من 200 ألف نطاق) مع استثناء أبشر وتوكلنا ونفاذ والبنوك وواتساب
-          وخدمات أبل.
+          القائمة: HaGeZi Multi PRO (أكثر من 200 ألف نطاق) مع استثناء أبشر وتوكلنا ونفاذ والبنوك
+          وواتساب وخدمات أبل.
         </p>
       </section>
     </div>

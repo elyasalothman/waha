@@ -1,0 +1,78 @@
+{
+  "at": "2026-10-25",
+  "base": "7da2470",
+  "node_options": "--max-old-space-size=1024",
+  "lint": {
+    "exit": 0,
+    "errors": 0,
+    "warnings": 24
+  },
+  "typecheck": {
+    "exit": 0
+  },
+  "test": {
+    "exit": 0,
+    "scripts": {
+      "pass": 207,
+      "skip": 4,
+      "fail": 0
+    },
+    "app": {
+      "pass": 485,
+      "fail": 0
+    }
+  },
+  "build": {
+    "exit": 0,
+    "target": "Nitro/Vercel"
+  },
+  "pwaUpdate": {
+    "pass": 3
+  },
+  "agentBrowser": {
+    "pass": 64,
+    "pageerrors": 0
+  },
+  "flows": {
+    "pass": 28,
+    "pageerrors": 0
+  },
+  "routes": {
+    "pass": 52,
+    "pageerrors": 0
+  },
+  "limits": [
+    "Lighthouse simulation with variable CPU/network; no field performance guarantee.",
+    "Weather upstream HTTP429 remains explicit.",
+    "Private book direct offline reload is not cached; device book is opened through cached home in-app.",
+    "No iPhone, VoiceOver, microphone, notification permission or store archive tested."
+  ],
+  "finalSwBuild": {
+    "exit": 0
+  },
+  "finalSwFlows": {
+    "pass": 7,
+    "includes": "offline letters, calculator, local agent and saved device book"
+  },
+  "touchRoutes": {
+    "pass": 84,
+    "pageerrors": 0,
+    "unexpectedSmallTargets": 0,
+    "exceptions": [
+      "dense game boards on390px"
+    ]
+  },
+  "deliveryBuild": {
+    "exit": 0,
+    "workerVersion": 7
+  },
+  "latestRootLighthouse": {
+    "performance": 95,
+    "accessibility": 100,
+    "best-practices": 96,
+    "seo": 100,
+    "lcp": 2162.009,
+    "cls": 0.0098255,
+    "note": "Single isolated local sample; earlier samples retained."
+  }
+}

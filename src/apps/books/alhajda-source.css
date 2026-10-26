@@ -1,8 +1,8 @@
 /* Mobile reader styles: scoped to authored Alhajda fragments only. */
-@font-face{font-family:AlhajdaNaskh;src:url('/books/alhajda/assets/fonts/NotoNaskhArabic-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
-@font-face{font-family:AlhajdaNaskh;src:url('/books/alhajda/assets/fonts/NotoNaskhArabic-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
-@font-face{font-family:AlhajdaKufi;src:url('/books/alhajda/assets/fonts/NotoKufiArabic-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
-@font-face{font-family:AlhajdaKufi;src:url('/books/alhajda/assets/fonts/NotoKufiArabic-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
+@font-face{font-family:AlhajdaNaskh;src:url('/books/alhajda/assets/fonts/NotoNaskhArabic-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:AlhajdaNaskh;src:url('/books/alhajda/assets/fonts/NotoNaskhArabic-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:AlhajdaKufi;src:url('/books/alhajda/assets/fonts/NotoKufiArabic-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:AlhajdaKufi;src:url('/books/alhajda/assets/fonts/NotoKufiArabic-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
 .alhajda-book{--accent:#194bbc;--tint:#dce7f1;--ink:var(--alhajda-ink,#172528);--paper:var(--alhajda-paper,#fffaf1);direction:rtl;text-align:right;color:var(--ink);font-family:AlhajdaNaskh,serif;font-size:var(--alhajda-font-size,inherit);line-height:1.95;overflow-wrap:anywhere;width:100%;max-width:100%;min-width:0}
 .alhajda-book *{box-sizing:border-box}.alhajda-book [id]{scroll-margin-top:6rem}.alhajda-book .page{width:auto;height:auto;min-height:0;max-width:100%;margin:0;padding:0;position:static;overflow:visible;break-inside:auto;page-break-after:auto}.alhajda-book .page+.page{margin-block-start:2em}.alhajda-book .page.continued{margin-block-start:0}.alhajda-book .page-content,.alhajda-book .prose{max-width:100%;min-width:0}
 .alhajda-book .C1{--accent:#194bbc;--tint:#dce7f1}.alhajda-book .C2{--accent:#6a3c82;--tint:#e8dfea}.alhajda-book .C3{--accent:#087481;--tint:#d5e9e9}.alhajda-book .C4{--accent:#356348;--tint:#dde6d5}.alhajda-book .C5{--accent:#9b4a25;--tint:#f0ddc5}.alhajda-book .C6{--accent:#993f48;--tint:#eddbda}

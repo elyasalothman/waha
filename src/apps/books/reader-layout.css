@@ -16,11 +16,11 @@
 }
 
 /* Keep book text in normal document flow; controls return without a modal layer. */
-html[data-reader-controls] #main-content {
+html:has(.reader-layout) #main-content {
   padding: max(1rem, env(safe-area-inset-top, 0px)) max(1rem, env(safe-area-inset-right, 0px))
     max(5rem, env(safe-area-inset-bottom, 0px)) max(1rem, env(safe-area-inset-left, 0px));
 }
-html[data-reader-controls] #main-content > nav {
+html:has(.reader-layout) #main-content > nav {
   display: none;
 }
 html:has(.reader-layout):not([data-reader-controls="visible"]) .waha-shell .native-safe-top,
@@ -29,7 +29,7 @@ html:has(.reader-layout):not([data-reader-controls="visible"]) .waha-shell > asi
 html:has(.reader-layout):not([data-reader-controls="visible"]) .reader-toolbar {
   display: none;
 }
-html[data-reader-controls="hidden"] .waha-shell > div {
+html:has(.reader-layout):not([data-reader-controls="visible"]) .waha-shell > div {
   padding-inline-start: 0;
 }
 .reader-controls-toggle {
@@ -56,6 +56,6 @@ html[data-reader-controls]:has(.reader-layout[data-reader-theme="night"]) .waha-
   background-color: #28231e;
   background-image: none;
 }
-html[data-reader-controls="hidden"] .reader-secondary-controls {
+html:has(.reader-layout):not([data-reader-controls="visible"]) .reader-secondary-controls {
   display: none;
 }

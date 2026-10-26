@@ -1,0 +1,39 @@
+{
+  "id": "dpl_ENK5vqbyZbYvgYFH9FnrPyoJq4x8",
+  "name": "waha",
+  "url": "waha-reruhl2fs-elyasalothman-3228.vercel.app",
+  "type": "LAMBDAS",
+  "state": "READY",
+  "createdAt": 1792958205817,
+  "creator": {
+    "uid": "qo5AKjSh5273knDRenT8wIlu",
+    "username": "elyasalothman-3228"
+  },
+  "project": {
+    "id": "prj_h1Gk05nYTifnTA3hoSyOEPxTK9n6",
+    "name": "waha",
+    "framework": "tanstack-start"
+  },
+  "meta": {
+    "githubCommitRef": "6b2b8b6e63c109e626477cd2cf270c23be835ac9",
+    "githubCommitSha": "6b2b8b6e63c109e626477cd2cf270c23be835ac9",
+    "githubCommitMessage": "صقل واحة وتوحيد الترحيب وتحسين القراءة والأداء والعمل دون اتصال",
+    "githubRepo": "waha",
+    "githubOrg": "elyasalothman"
+  },
+  "alias": [
+    "waha.hajdah.com",
+    "waha.alhajda.com",
+    "waha-eta.vercel.app",
+    "waha-elyasalothman-3228.vercel.app",
+    "waha-git-6b2b8b6e63c109e626477cd2cf27-79b72e-elyasalothman-3228.vercel.app"
+  ],
+  "target": "production",
+  "regions": [
+    "iad1"
+  ],
+  "buildingAt": 1792958207356,
+  "ready": 1792958250992,
+  "readyState": "READY",
+  "aliasError": null
+}

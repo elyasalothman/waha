@@ -1,8 +1,11 @@
 /** Quiet shade↔field crossing on `/`. Thin shadow stays; the hero is the shade. */
 
-export const SHADE_FIELD_CROSSING = "quiet" as const;
-export const SHADE_FIELD_LANES = ["shade", "field"] as const;
-export type ShadeFieldLane = (typeof SHADE_FIELD_LANES)[number];
+import { SHADE_FIELD_CROSSING, type ShadeFieldLane } from "./shade-field-data.ts";
+export {
+  SHADE_FIELD_CROSSING,
+  SHADE_FIELD_LANES,
+  type ShadeFieldLane,
+} from "./shade-field-data.ts";
 
 /** Offset matches the chrome header (`h-14` = 56px). Observer only accepts px/% . */
 export const SHADE_FIELD_HEADER_MARGIN = "-56px 0px 0px 0px";
@@ -30,7 +33,9 @@ export function shadeKeepsThinBarInField(): boolean {
 }
 
 export function prefersReducedMotion(): boolean {
-  return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  return (
+    typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
 }
 
 export function scrollToShade(hero: HTMLElement | null): void {

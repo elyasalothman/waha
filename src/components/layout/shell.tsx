@@ -66,6 +66,25 @@ export function Shell() {
   }, [pathname, pushRecent]);
   const settings = useSettings((s) => s.settings);
   const [cmd, setCmd] = useState(false);
+  const [agentLoaded, setAgentLoaded] = useState(false);
+  useEffect(() => {
+    if (cmd) setAgentLoaded(true);
+  }, [cmd]);
+  useEffect(() => {
+    if (!settings.agentEnabled) return;
+    // Saved reminders must keep polling even when the conversation has never opened.
+    const restoreReminderWatcher = () => {
+      try {
+        const saved = JSON.parse(localStorage.getItem("waha-agent-reminders") || "[]");
+        if (Array.isArray(saved) && saved.length) setAgentLoaded(true);
+      } catch {
+        /* The agent also tolerates unavailable or malformed local storage. */
+      }
+    };
+    restoreReminderWatcher();
+    window.addEventListener("storage", restoreReminderWatcher);
+    return () => window.removeEventListener("storage", restoreReminderWatcher);
+  }, [settings.agentEnabled]);
   const [systemDark, setSystemDark] = useState(false);
   useEffect(() => {
     const scheme = matchMedia("(prefers-color-scheme: dark)");
@@ -94,6 +113,7 @@ export function Shell() {
     return () => window.removeEventListener("keydown", openSearch);
   }, [cmd, settings.agentEnabled]);
   useEffect(() => {
+    if (new URLSearchParams(window.location.search).get("agent") === "open") setCmd(true);
     const open = () => setCmd(true);
     window.addEventListener("waha:agent:open", open);
     return () => window.removeEventListener("waha:agent:open", open);
@@ -117,7 +137,12 @@ export function Shell() {
   }, [hydrate]);
 
   if (["/welcome", "/register"].includes(pathname)) {
-    return <Outlet />;
+    return (
+      <>
+        <SettingsEffects />
+        <Outlet />
+      </>
+    );
   }
 
   return (
@@ -184,7 +209,7 @@ export function Shell() {
       </aside>
 
       <div className="lg:ps-60">
-        <header className="native-safe-top sticky top-0 z-20 flex h-14 items-center gap-3 border-b border-border bg-bg/90 px-4 pt-[env(safe-area-inset-top,0px)] backdrop-blur-sm lg:pt-0">
+        <header className="native-safe-top sticky top-0 z-20 flex min-h-14 flex-wrap items-center py-1 gap-3 border-b border-border bg-bg/90 px-4 pt-[env(safe-area-inset-top,0px)] backdrop-blur-sm lg:pt-0">
           <Link to="/" className="inline-flex min-h-11 shrink-0 items-center lg:hidden">
             <WahaWordmark lang={lang} />
           </Link>
@@ -208,11 +233,11 @@ export function Shell() {
             <button
               type="button"
               onClick={() => setCmd(true)}
-              aria-label="اطلب من واحة"
+              aria-label="اسأل محسن أو اطلب منه"
               className="flex h-11 min-w-0 flex-1 items-center gap-2 rounded-md border border-border bg-surface px-3 text-start text-sm text-muted lg:max-w-md"
             >
               <Search className="size-4 shrink-0" />
-              <span className="truncate">✦ اطلب من واحة</span>
+              <span className="truncate">✦ اسأل محسن أو اطلب منه</span>
               <kbd className="ms-auto hidden rounded border border-border px-1.5 font-mono text-[10px] text-subtle sm:inline">
                 ⌘K
               </kbd>
@@ -292,9 +317,9 @@ export function Shell() {
         })}
       </nav>
 
-      {settings.agentEnabled && (
+      {settings.agentEnabled && pathname !== "/onboarding" && (
         <button
-          aria-label="فتح وكيل واحة"
+          aria-label="فتح محسن"
           onClick={() => setCmd(true)}
           className="agent-fab fixed end-4 bottom-20 z-40 grid min-h-12 min-w-12 place-items-center rounded-full bg-primary px-4 text-primary-fg shadow-lg lg:bottom-5"
         >
@@ -302,7 +327,9 @@ export function Shell() {
         </button>
       )}
       <Suspense fallback={null}>
-        {cmd && settings.agentEnabled ? <WahaAgent open={cmd} onOpenChange={setCmd} /> : null}
+        {settings.agentEnabled && (cmd || agentLoaded) ? (
+          <WahaAgent open={cmd} onOpenChange={setCmd} />
+        ) : null}
       </Suspense>
       <Toaster
         theme={dark ? "dark" : "light"}

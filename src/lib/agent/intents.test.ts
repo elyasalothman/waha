@@ -43,7 +43,7 @@ const phrases: [string, string][] = [
   ["ابحث عن القرآن", "search"],
   ["دور عن الحاسبة", "search"],
   ["أضف ملاحظة ماء", "add_note"],
-  ["ذكرني شرب الماء", "reminder"],
+  ["ذكرني شرب الماء", "add_reminder"],
   ["اسأل محسن عن الفضاء", "ask_mohsen"],
   ["https://example.com", "open_url"],
   ["افتح الإعدادات", "open_app"],

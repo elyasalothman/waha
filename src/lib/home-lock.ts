@@ -1,6 +1,6 @@
-import { SHADE_FIELD_CROSSING } from "./shade-field.ts";
+import { SHADE_FIELD_CROSSING } from "./shade-field-data.ts";
 
-export { SHADE_FIELD_CROSSING, SHADE_FIELD_LANES } from "./shade-field.ts";
+export { SHADE_FIELD_CROSSING, SHADE_FIELD_LANES } from "./shade-field-data.ts";
 
 /** Reviewer lock: the first screen stays solemn. Games are never the hero. */
 export type HomeItem = { id: string; category: string; lane: string };

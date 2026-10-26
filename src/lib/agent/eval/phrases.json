@@ -1,0 +1,1174 @@
+[
+  {
+    "text": "افتح الحاسبة",
+    "tool": "open_app",
+    "args": {
+      "id": "calc"
+    }
+  },
+  {
+    "text": "افتح حاسبة",
+    "tool": "open_app",
+    "args": {
+      "id": "calc"
+    }
+  },
+  {
+    "text": "افتح القران",
+    "tool": "open_app",
+    "args": {
+      "id": "quran"
+    }
+  },
+  {
+    "text": "افتح الكتب",
+    "tool": "open_app",
+    "args": {
+      "id": "midad"
+    }
+  },
+  {
+    "text": "افتح الملاحظات",
+    "tool": "open_app",
+    "args": {
+      "id": "notes"
+    }
+  },
+  {
+    "text": "افتح الدلة",
+    "tool": "open_app",
+    "args": {
+      "id": "dallah"
+    }
+  },
+  {
+    "text": "افتح الاعدادات",
+    "tool": "open_app",
+    "args": {
+      "id": "settings"
+    }
+  },
+  {
+    "text": "افتح المتجر",
+    "tool": "open_app",
+    "args": {
+      "id": "store"
+    }
+  },
+  {
+    "text": "افتح بلوت",
+    "tool": "open_app",
+    "args": {
+      "id": "baloot"
+    }
+  },
+  {
+    "text": "شغل الحاسبة",
+    "tool": "open_app",
+    "args": {
+      "id": "calc"
+    }
+  },
+  {
+    "text": "شغل حاسبة",
+    "tool": "open_app",
+    "args": {
+      "id": "calc"
+    }
+  },
+  {
+    "text": "شغل القران",
+    "tool": "open_app",
+    "args": {
+      "id": "quran"
+    }
+  },
+  {
+    "text": "شغل الكتب",
+    "tool": "open_app",
+    "args": {
+      "id": "midad"
+    }
+  },
+  {
+    "text": "شغل الملاحظات",
+    "tool": "open_app",
+    "args": {
+      "id": "notes"
+    }
+  },
+  {
+    "text": "شغل الدلة",
+    "tool": "open_app",
+    "args": {
+      "id": "dallah"
+    }
+  },
+  {
+    "text": "شغل الاعدادات",
+    "tool": "open_app",
+    "args": {
+      "id": "settings"
+    }
+  },
+  {
+    "text": "شغل المتجر",
+    "tool": "open_app",
+    "args": {
+      "id": "store"
+    }
+  },
+  {
+    "text": "شغل بلوت",
+    "tool": "open_app",
+    "args": {
+      "id": "baloot"
+    }
+  },
+  {
+    "text": "ودني الحاسبة",
+    "tool": "open_app",
+    "args": {
+      "id": "calc"
+    }
+  },
+  {
+    "text": "ودني حاسبة",
+    "tool": "open_app",
+    "args": {
+      "id": "calc"
+    }
+  },
+  {
+    "text": "ودني القران",
+    "tool": "open_app",
+    "args": {
+      "id": "quran"
+    }
+  },
+  {
+    "text": "ودني الكتب",
+    "tool": "open_app",
+    "args": {
+      "id": "midad"
+    }
+  },
+  {
+    "text": "ودني الملاحظات",
+    "tool": "open_app",
+    "args": {
+      "id": "notes"
+    }
+  },
+  {
+    "text": "ودني الدلة",
+    "tool": "open_app",
+    "args": {
+      "id": "dallah"
+    }
+  },
+  {
+    "text": "ودني الاعدادات",
+    "tool": "open_app",
+    "args": {
+      "id": "settings"
+    }
+  },
+  {
+    "text": "ودني المتجر",
+    "tool": "open_app",
+    "args": {
+      "id": "store"
+    }
+  },
+  {
+    "text": "ودني بلوت",
+    "tool": "open_app",
+    "args": {
+      "id": "baloot"
+    }
+  },
+  {
+    "text": "خذني الحاسبة",
+    "tool": "open_app",
+    "args": {
+      "id": "calc"
+    }
+  },
+  {
+    "text": "خذني حاسبة",
+    "tool": "open_app",
+    "args": {
+      "id": "calc"
+    }
+  },
+  {
+    "text": "خذني القران",
+    "tool": "open_app",
+    "args": {
+      "id": "quran"
+    }
+  },
+  {
+    "text": "خذني الكتب",
+    "tool": "open_app",
+    "args": {
+      "id": "midad"
+    }
+  },
+  {
+    "text": "خذني الملاحظات",
+    "tool": "open_app",
+    "args": {
+      "id": "notes"
+    }
+  },
+  {
+    "text": "خذني الدلة",
+    "tool": "open_app",
+    "args": {
+      "id": "dallah"
+    }
+  },
+  {
+    "text": "خذني الاعدادات",
+    "tool": "open_app",
+    "args": {
+      "id": "settings"
+    }
+  },
+  {
+    "text": "خذني المتجر",
+    "tool": "open_app",
+    "args": {
+      "id": "store"
+    }
+  },
+  {
+    "text": "خذني بلوت",
+    "tool": "open_app",
+    "args": {
+      "id": "baloot"
+    }
+  },
+  {
+    "text": "احسب 2+3",
+    "tool": "calculate",
+    "args": {
+      "expr": "2+3"
+    }
+  },
+  {
+    "text": "احسب ٢٥×٤",
+    "tool": "calculate",
+    "args": {
+      "expr": "25×4"
+    }
+  },
+  {
+    "text": "احسب ١٥٪ من ٢٤٠",
+    "tool": "calculate",
+    "args": {
+      "expr": "15٪ من 240"
+    }
+  },
+  {
+    "text": "احسب 10/2",
+    "tool": "calculate",
+    "args": {
+      "expr": "10/2"
+    }
+  },
+  {
+    "text": "احسب 2^3",
+    "tool": "calculate",
+    "args": {
+      "expr": "2^3"
+    }
+  },
+  {
+    "text": "احسب جذر ٩",
+    "tool": "calculate",
+    "args": {
+      "expr": "جذر 9"
+    }
+  },
+  {
+    "text": "احسب ٣+٧",
+    "tool": "calculate",
+    "args": {
+      "expr": "3+7"
+    }
+  },
+  {
+    "text": "احسب ٥٠-٢٠",
+    "tool": "calculate",
+    "args": {
+      "expr": "50-20"
+    }
+  },
+  {
+    "text": "كم 2+3",
+    "tool": "calculate",
+    "args": {
+      "expr": "2+3"
+    }
+  },
+  {
+    "text": "كم ٢٥×٤",
+    "tool": "calculate",
+    "args": {
+      "expr": "25×4"
+    }
+  },
+  {
+    "text": "كم ١٥٪ من ٢٤٠",
+    "tool": "calculate",
+    "args": {
+      "expr": "15٪ من 240"
+    }
+  },
+  {
+    "text": "كم 10/2",
+    "tool": "calculate",
+    "args": {
+      "expr": "10/2"
+    }
+  },
+  {
+    "text": "كم 2^3",
+    "tool": "calculate",
+    "args": {
+      "expr": "2^3"
+    }
+  },
+  {
+    "text": "كم جذر ٩",
+    "tool": "calculate",
+    "args": {
+      "expr": "جذر 9"
+    }
+  },
+  {
+    "text": "كم ٣+٧",
+    "tool": "calculate",
+    "args": {
+      "expr": "3+7"
+    }
+  },
+  {
+    "text": "كم ٥٠-٢٠",
+    "tool": "calculate",
+    "args": {
+      "expr": "50-20"
+    }
+  },
+  {
+    "text": "حساب 2+3",
+    "tool": "calculate",
+    "args": {
+      "expr": "2+3"
+    }
+  },
+  {
+    "text": "حساب ٢٥×٤",
+    "tool": "calculate",
+    "args": {
+      "expr": "25×4"
+    }
+  },
+  {
+    "text": "حساب ١٥٪ من ٢٤٠",
+    "tool": "calculate",
+    "args": {
+      "expr": "15٪ من 240"
+    }
+  },
+  {
+    "text": "حساب 10/2",
+    "tool": "calculate",
+    "args": {
+      "expr": "10/2"
+    }
+  },
+  {
+    "text": "حساب 2^3",
+    "tool": "calculate",
+    "args": {
+      "expr": "2^3"
+    }
+  },
+  {
+    "text": "حساب جذر ٩",
+    "tool": "calculate",
+    "args": {
+      "expr": "جذر 9"
+    }
+  },
+  {
+    "text": "حساب ٣+٧",
+    "tool": "calculate",
+    "args": {
+      "expr": "3+7"
+    }
+  },
+  {
+    "text": "حساب ٥٠-٢٠",
+    "tool": "calculate",
+    "args": {
+      "expr": "50-20"
+    }
+  },
+  {
+    "text": "ابحث عن الصلاة",
+    "tool": "search",
+    "args": {
+      "q": "الصلاة"
+    }
+  },
+  {
+    "text": "ابحث عن تعليم",
+    "tool": "search",
+    "args": {
+      "q": "تعليم"
+    }
+  },
+  {
+    "text": "ابحث عن خدمة",
+    "tool": "search",
+    "args": {
+      "q": "خدمة"
+    }
+  },
+  {
+    "text": "ابحث عن الهجدة",
+    "tool": "search",
+    "args": {
+      "q": "الهجدة"
+    }
+  },
+  {
+    "text": "ابحث عن طقس",
+    "tool": "search",
+    "args": {
+      "q": "طقس"
+    }
+  },
+  {
+    "text": "دور عن الصلاة",
+    "tool": "search",
+    "args": {
+      "q": "الصلاة"
+    }
+  },
+  {
+    "text": "دور عن تعليم",
+    "tool": "search",
+    "args": {
+      "q": "تعليم"
+    }
+  },
+  {
+    "text": "دور عن خدمة",
+    "tool": "search",
+    "args": {
+      "q": "خدمة"
+    }
+  },
+  {
+    "text": "دور عن الهجدة",
+    "tool": "search",
+    "args": {
+      "q": "الهجدة"
+    }
+  },
+  {
+    "text": "دور عن طقس",
+    "tool": "search",
+    "args": {
+      "q": "طقس"
+    }
+  },
+  {
+    "text": "بحث عن الصلاة",
+    "tool": "search",
+    "args": {
+      "q": "الصلاة"
+    }
+  },
+  {
+    "text": "بحث عن تعليم",
+    "tool": "search",
+    "args": {
+      "q": "تعليم"
+    }
+  },
+  {
+    "text": "بحث عن خدمة",
+    "tool": "search",
+    "args": {
+      "q": "خدمة"
+    }
+  },
+  {
+    "text": "بحث عن الهجدة",
+    "tool": "search",
+    "args": {
+      "q": "الهجدة"
+    }
+  },
+  {
+    "text": "بحث عن طقس",
+    "tool": "search",
+    "args": {
+      "q": "طقس"
+    }
+  },
+  {
+    "text": "طقس جدة",
+    "tool": "weather",
+    "args": {
+      "city": "جدة"
+    }
+  },
+  {
+    "text": "وش الجو في جدة",
+    "tool": "weather",
+    "args": {
+      "city": "جدة"
+    }
+  },
+  {
+    "text": "كيف الجو في جدة",
+    "tool": "weather",
+    "args": {
+      "city": "جدة"
+    }
+  },
+  {
+    "text": "طقس الرياض",
+    "tool": "weather",
+    "args": {
+      "city": "الرياض"
+    }
+  },
+  {
+    "text": "وش الجو في الرياض",
+    "tool": "weather",
+    "args": {
+      "city": "الرياض"
+    }
+  },
+  {
+    "text": "كيف الجو في الرياض",
+    "tool": "weather",
+    "args": {
+      "city": "الرياض"
+    }
+  },
+  {
+    "text": "طقس مكة",
+    "tool": "weather",
+    "args": {
+      "city": "مكة"
+    }
+  },
+  {
+    "text": "وش الجو في مكة",
+    "tool": "weather",
+    "args": {
+      "city": "مكة"
+    }
+  },
+  {
+    "text": "كيف الجو في مكة",
+    "tool": "weather",
+    "args": {
+      "city": "مكة"
+    }
+  },
+  {
+    "text": "طقس الدمام",
+    "tool": "weather",
+    "args": {
+      "city": "الدمام"
+    }
+  },
+  {
+    "text": "وش الجو في الدمام",
+    "tool": "weather",
+    "args": {
+      "city": "الدمام"
+    }
+  },
+  {
+    "text": "كيف الجو في الدمام",
+    "tool": "weather",
+    "args": {
+      "city": "الدمام"
+    }
+  },
+  {
+    "text": "طقس ابها",
+    "tool": "weather",
+    "args": {
+      "city": "ابها"
+    }
+  },
+  {
+    "text": "وش الجو في ابها",
+    "tool": "weather",
+    "args": {
+      "city": "ابها"
+    }
+  },
+  {
+    "text": "كيف الجو في ابها",
+    "tool": "weather",
+    "args": {
+      "city": "ابها"
+    }
+  },
+  {
+    "text": "وش تذكر عني",
+    "tool": "list_memory",
+    "args": {}
+  },
+  {
+    "text": "ماذا تتذكر عني",
+    "tool": "list_memory",
+    "args": {}
+  },
+  {
+    "text": "اعرض الذاكرة",
+    "tool": "list_memory",
+    "args": {}
+  },
+  {
+    "text": "امسح الذاكرة",
+    "tool": "clear_memory",
+    "args": {}
+  },
+  {
+    "text": "احذف الذاكرة",
+    "tool": "clear_memory",
+    "args": {}
+  },
+  {
+    "text": "اعرض ملاحظاتي",
+    "tool": "list_notes",
+    "args": {}
+  },
+  {
+    "text": "قائمة الملاحظات",
+    "tool": "list_notes",
+    "args": {}
+  },
+  {
+    "text": "وش ملاحظاتي",
+    "tool": "list_notes",
+    "args": {}
+  },
+  {
+    "text": "اعرض تذكيراتي",
+    "tool": "list_reminders",
+    "args": {}
+  },
+  {
+    "text": "قائمة التذكيرات",
+    "tool": "list_reminders",
+    "args": {}
+  },
+  {
+    "text": "وش تذكيراتي",
+    "tool": "list_reminders",
+    "args": {}
+  },
+  {
+    "text": "افتح السيرة الذاتية",
+    "tool": "cv",
+    "args": {}
+  },
+  {
+    "text": "افتح سيرتي",
+    "tool": "cv",
+    "args": {}
+  },
+  {
+    "text": "افتح PDF",
+    "tool": "pdf",
+    "args": {}
+  },
+  {
+    "text": "دمج ملفات",
+    "tool": "pdf",
+    "args": {
+      "action": "merge"
+    }
+  },
+  {
+    "text": "تقسيم ملفات",
+    "tool": "pdf",
+    "args": {
+      "action": "split"
+    }
+  },
+  {
+    "text": "ضغط ملفات",
+    "tool": "pdf",
+    "args": {
+      "action": "compress"
+    }
+  },
+  {
+    "text": "تحويل صور",
+    "tool": "pdf",
+    "args": {
+      "action": "images"
+    }
+  },
+  {
+    "text": "كم الساعة",
+    "tool": "time",
+    "args": {}
+  },
+  {
+    "text": "وش الوقت",
+    "tool": "time",
+    "args": {}
+  },
+  {
+    "text": "الوقت الان",
+    "tool": "time",
+    "args": {}
+  },
+  {
+    "text": "التاريخ الهجري",
+    "tool": "hijri",
+    "args": {}
+  },
+  {
+    "text": "كم التاريخ",
+    "tool": "hijri",
+    "args": {}
+  },
+  {
+    "text": "مواقيت الصلاة",
+    "tool": "prayer",
+    "args": {}
+  },
+  {
+    "text": "وقت الصلاة",
+    "tool": "prayer",
+    "args": {}
+  },
+  {
+    "text": "اضف ملاحظة اشتري خبز",
+    "tool": "add_note",
+    "args": {
+      "text": "اشتري خبز"
+    }
+  },
+  {
+    "text": "تذكر ان اشتري خبز",
+    "tool": "remember",
+    "args": {
+      "text": "اشتري خبز"
+    }
+  },
+  {
+    "text": "ذكرني اشتري خبز",
+    "tool": "add_reminder",
+    "args": {
+      "text": "اشتري خبز"
+    }
+  },
+  {
+    "text": "اضف ملاحظة اشرب موية",
+    "tool": "add_note",
+    "args": {
+      "text": "اشرب موية"
+    }
+  },
+  {
+    "text": "تذكر ان اشرب موية",
+    "tool": "remember",
+    "args": {
+      "text": "اشرب موية"
+    }
+  },
+  {
+    "text": "ذكرني اشرب موية",
+    "tool": "add_reminder",
+    "args": {
+      "text": "اشرب موية"
+    }
+  },
+  {
+    "text": "اضف ملاحظة اتصل باهلي",
+    "tool": "add_note",
+    "args": {
+      "text": "اتصل باهلي"
+    }
+  },
+  {
+    "text": "تذكر ان اتصل باهلي",
+    "tool": "remember",
+    "args": {
+      "text": "اتصل باهلي"
+    }
+  },
+  {
+    "text": "ذكرني اتصل باهلي",
+    "tool": "add_reminder",
+    "args": {
+      "text": "اتصل باهلي"
+    }
+  },
+  {
+    "text": "اضف ملاحظة موعد الطبيب",
+    "tool": "add_note",
+    "args": {
+      "text": "موعد الطبيب"
+    }
+  },
+  {
+    "text": "تذكر ان موعد الطبيب",
+    "tool": "remember",
+    "args": {
+      "text": "موعد الطبيب"
+    }
+  },
+  {
+    "text": "ذكرني موعد الطبيب",
+    "tool": "add_reminder",
+    "args": {
+      "text": "موعد الطبيب"
+    }
+  },
+  {
+    "text": "اضف ملاحظة قراءة الكتاب",
+    "tool": "add_note",
+    "args": {
+      "text": "قراءة الكتاب"
+    }
+  },
+  {
+    "text": "تذكر ان قراءة الكتاب",
+    "tool": "remember",
+    "args": {
+      "text": "قراءة الكتاب"
+    }
+  },
+  {
+    "text": "ذكرني قراءة الكتاب",
+    "tool": "add_reminder",
+    "args": {
+      "text": "قراءة الكتاب"
+    }
+  },
+  {
+    "text": "حل ٢س+٣=٧",
+    "tool": "math",
+    "args": {
+      "expr": "حل 2س+3=7"
+    }
+  },
+  {
+    "text": "حل x^2-5x+6=0",
+    "tool": "math",
+    "args": {
+      "expr": "حل x^2-5x+6=0"
+    }
+  },
+  {
+    "text": "حل ٢ كم الى ميل",
+    "tool": "math",
+    "args": {
+      "expr": "حل 2 كم الى ميل"
+    }
+  },
+  {
+    "text": "حل ٣ كجم الى رطل",
+    "tool": "math",
+    "args": {
+      "expr": "حل 3 كجم الى رطل"
+    }
+  },
+  {
+    "text": "حل ٣٠٪ على ٤٥٠",
+    "tool": "math",
+    "args": {
+      "expr": "حل 30٪ على 450"
+    }
+  },
+  {
+    "text": "اخبار الاقتصاد",
+    "tool": "news",
+    "args": {
+      "topic": "الاقتصاد"
+    }
+  },
+  {
+    "text": "اخبار السعودية",
+    "tool": "news",
+    "args": {
+      "topic": "السعودية"
+    }
+  },
+  {
+    "text": "اخبار الرياضة",
+    "tool": "news",
+    "args": {
+      "topic": "الرياضة"
+    }
+  },
+  {
+    "text": "اخبار التقنية",
+    "tool": "news",
+    "args": {
+      "topic": "التقنية"
+    }
+  },
+  {
+    "text": "اخبار العالم",
+    "tool": "news",
+    "args": {
+      "topic": "العالم"
+    }
+  },
+  {
+    "text": "افتح البث",
+    "tool": "live",
+    "args": {}
+  },
+  {
+    "text": "شغل البث",
+    "tool": "live",
+    "args": {}
+  },
+  {
+    "text": "سمعني الموجز",
+    "tool": "live",
+    "args": {}
+  },
+  {
+    "text": "افتح المباشر",
+    "tool": "live",
+    "args": {}
+  },
+  {
+    "text": "البث المباشر",
+    "tool": "live",
+    "args": {}
+  },
+  {
+    "text": "مدينتي جدة",
+    "tool": "remember",
+    "args": {
+      "text": "مدينتي جدة"
+    }
+  },
+  {
+    "text": "اسمي خالد",
+    "tool": "remember",
+    "args": {
+      "text": "اسمي خالد"
+    }
+  },
+  {
+    "text": "انس اسمي",
+    "tool": "forget",
+    "args": {
+      "text": "اسمي"
+    }
+  },
+  {
+    "text": "انس مدينتي",
+    "tool": "forget",
+    "args": {
+      "text": "مدينتي"
+    }
+  },
+  {
+    "text": "ابي احسب",
+    "tool": "open_app",
+    "args": {
+      "id": "calc"
+    }
+  },
+  {
+    "text": "عطني الحاسبة",
+    "tool": "open_app",
+    "args": {
+      "id": "calc"
+    }
+  },
+  {
+    "text": "ودي العب بلوت",
+    "tool": "play_game",
+    "args": {
+      "id": "baloot"
+    }
+  },
+  {
+    "text": "ابي اقرا قران",
+    "tool": "open_app",
+    "args": {
+      "id": "quran"
+    }
+  },
+  {
+    "text": "ودني للمصحف",
+    "tool": "open_app",
+    "args": {
+      "id": "quran"
+    }
+  },
+  {
+    "text": "وين كتبي",
+    "tool": "open_app",
+    "args": {
+      "id": "midad"
+    }
+  },
+  {
+    "text": "ابي رف الكتب",
+    "tool": "open_app",
+    "args": {
+      "id": "midad"
+    }
+  },
+  {
+    "text": "وين الاعدادات",
+    "tool": "open_app",
+    "args": {
+      "id": "settings"
+    }
+  },
+  {
+    "text": "خل الشاشة غامقة",
+    "tool": "set_theme",
+    "args": {
+      "theme": "dark"
+    }
+  },
+  {
+    "text": "نور الشاشة",
+    "tool": "set_theme",
+    "args": {
+      "theme": "light"
+    }
+  },
+  {
+    "text": "خل المظهر على الجهاز",
+    "tool": "set_theme",
+    "args": {
+      "theme": "auto"
+    }
+  },
+  {
+    "text": "خلها بالعربي",
+    "tool": "set_language",
+    "args": {
+      "language": "ar"
+    }
+  },
+  {
+    "text": "خلها بالانجليزي",
+    "tool": "set_language",
+    "args": {
+      "language": "en"
+    }
+  },
+  {
+    "text": "الخط صغير كبره",
+    "tool": "set_font_size",
+    "args": {
+      "size": "large"
+    }
+  },
+  {
+    "text": "الخط كبير صغره",
+    "tool": "set_font_size",
+    "args": {
+      "size": "small"
+    }
+  },
+  {
+    "text": "وين وصلنا بالكتاب",
+    "tool": "continue_reading",
+    "args": {}
+  },
+  {
+    "text": "وش صاير بالدنيا",
+    "tool": "news",
+    "args": {}
+  },
+  {
+    "text": "افتح سورة البقرة",
+    "tool": "quran",
+    "args": {
+      "surah": 2,
+      "ayah": 1
+    }
+  },
+  {
+    "text": "افتح سورة ١٨ اية ١٠",
+    "tool": "quran",
+    "args": {
+      "surah": 18,
+      "ayah": 10
+    }
+  },
+  {
+    "text": "افتح كتاب الهجدة",
+    "tool": "open_book",
+    "args": {
+      "title": "الهجدة"
+    }
+  },
+  {
+    "text": "اسأل محسن عن الرياض",
+    "tool": "ask_mohsen",
+    "args": {
+      "q": "الرياض"
+    }
+  },
+  {
+    "text": "https://alhajda.com",
+    "tool": "open_url",
+    "args": {
+      "url": "https://alhajda.com"
+    }
+  },
+  {
+    "text": "احذف ملاحظة ١",
+    "tool": "delete_note",
+    "args": {
+      "id": "1"
+    }
+  },
+  {
+    "text": "احذف تذكير ٢",
+    "tool": "delete_reminder",
+    "args": {
+      "id": "2"
+    }
+  },
+  {
+    "text": "ذكرني بعد ساعتين اشرب موية",
+    "tool": "add_reminder",
+    "args": {
+      "text": "بعد ساعتين اشرب موية",
+      "when": "بعد ساعتين"
+    }
+  },
+  {
+    "text": "ابحث في الكتب عن الهجدة",
+    "tool": "search_books",
+    "args": {
+      "q": "الهجدة"
+    }
+  }
+]

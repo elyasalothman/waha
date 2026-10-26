@@ -1,33 +1,40 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { INTERESTS, interestKey, normalizeInterests } from "@/lib/interests";
 import { AudienceSwitch } from "@/components/audience-switch";
+import { t } from "@/lib/i18n";
+import { CITIES } from "@/lib/cities";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { authEnabled } from "@/lib/auth/client";
 import { useCurrentUserState } from "@/lib/auth/use-current-user";
-import { t } from "@/lib/i18n";
 import { useSquare } from "@/lib/square/store";
-import { useAppStore } from "@/store/app-store";
+import { useSettings } from "@/store/settings-store";
 
 export const Route = createFileRoute("/onboarding")({
   head: () => ({
     meta: [
       { title: "مرحبًا في واحة · واحة" },
-      { name: "description", content: "خصص واحتك واختر الأدوات المناسبة ليومك." },
+      { name: "description", content: "ثلاث خطوات لتخصيص واحتك، ويمكنك التخطي." },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
   component: OnboardingPage,
 });
-
 function OnboardingPage() {
-  const lang = useAppStore((s) => s.lang);
   const navigate = useNavigate();
   const { local, saveProfile } = useSquare();
-  const { user, isPending } = useCurrentUserState();
+  const { user } = useCurrentUserState();
+  const settings = useSettings((s) => s.settings);
+  const update = useSettings((s) => s.update);
+  const [step, setStep] = useState(0);
+  const [city, setCity] = useState(settings.city);
+  const [name, setName] = useState(local.profile.name);
   const [interests, setInterests] = useState<string[]>([]);
-  const [storageError, setStorageError] = useState(false);
+  const [error, setError] = useState("");
+  const heading = useRef<HTMLHeadingElement>(null);
+  useEffect(() => {
+    setCity(settings.city);
+  }, [settings.city]);
   useEffect(() => {
     try {
       setInterests(
@@ -37,97 +44,155 @@ function OnboardingPage() {
       /* Optional device preferences. */
     }
   }, [user?.id]);
-  const [name, setName] = useState(local.profile.name);
-  const L = (ar: string, en: string) => (lang === "ar" ? ar : en);
-  const showSignIn = authEnabled && !isPending && !user;
-
+  useEffect(() => {
+    heading.current?.focus();
+  }, [step]);
+  const finish = (skip = false) => {
+    try {
+      if (!skip) {
+        update({ city, location: "manual" });
+        localStorage.setItem(interestKey(user?.id), JSON.stringify(normalizeInterests(interests)));
+        saveProfile({ name, bio: local.profile.bio });
+      }
+      localStorage.setItem("waha:onboarding:v1", "done");
+    } catch {
+      setError("تعذّر حفظ التفضيلات. يمكنك المتابعة للرئيسية دون حفظ.");
+      return;
+    }
+    void navigate({ to: "/" });
+  };
   return (
-    <div className="mx-auto max-w-xl" data-onboarding="waha-for-you" data-identity="onboarding">
-      <header className="mb-8">
-        <h1 className="font-display text-4xl tracking-tight">{t(lang, "createAccount")}</h1>
-        <p className="mt-2 max-w-xl text-muted">{t(lang, "wahaForYouBlurb")}</p>
-        <p className="mt-2 text-sm text-subtle">{t(lang, "guestReadsFree")}</p>
-      </header>
-      <section aria-labelledby="waha-for-you-heading">
-        <h2 id="waha-for-you-heading" className="mb-3 text-sm font-medium text-muted">
-          {t(lang, "wahaForYou")}
-        </h2>
-        <AudienceSwitch />
-      </section>
-      <fieldset className="mt-8">
-        <legend className="text-lg font-medium">ما الذي يهمك؟</legend>
-        <p className="mt-2 text-sm text-muted">
-          اختر اهتماماتك لتظهر اختصاراتها في «يومي». تُحفظ على هذا المتصفح، ويمكنك تغييرها هنا.
+    <div
+      className="mx-auto max-w-xl space-y-6"
+      data-onboarding="waha-for-you"
+      data-identity="onboarding"
+    >
+      <div className="flex items-center justify-between gap-3">
+        <p role="status" className="text-sm text-muted">
+          {new Intl.NumberFormat("ar", { numberingSystem: settings.digits }).format(step + 1)} من ٣
+          · بداية هادئة
         </p>
-        <div className="mt-4 grid grid-cols-2 gap-3">
-          {INTERESTS.map((item) => (
-            <label
-              key={item.id}
-              className="flex min-h-14 cursor-pointer items-center gap-3 rounded-xl border border-border bg-surface px-4 text-sm"
-            >
-              <input
-                type="checkbox"
-                checked={interests.includes(item.id)}
-                onChange={(e) =>
-                  setInterests((old) =>
-                    e.target.checked ? [...old, item.id] : old.filter((id) => id !== item.id),
-                  )
-                }
-                className="size-5 accent-primary"
-              />
-              {item.label}
-            </label>
-          ))}
-        </div>
-      </fieldset>
-      <label htmlFor="onboarding-name" className="mt-8 block text-xs text-muted">
-        {L("اسم العرض", "Display name")}
-      </label>
-      <Input
-        id="onboarding-name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        maxLength={40}
-        placeholder={L("ضيف الواحة", "Oasis guest")}
-        className="mt-1"
-      />
-      {showSignIn ? (
-        <div className="mt-6" data-identity="sign-in">
-          <p className="mb-2 text-xs text-muted">
-            {L("تسجيل اختياري إن أحببت", "Optional sign-in")}
+        <Button variant="ghost" onClick={() => finish(true)}>
+          تخطي
+        </Button>
+      </div>
+      <div className="flex gap-2" aria-hidden="true">
+        {[0, 1, 2].map((i) => (
+          <span
+            key={i}
+            className={`h-1 flex-1 rounded-full ${i <= step ? "bg-primary" : "bg-border"}`}
+          />
+        ))}
+      </div>
+      <h1 ref={heading} tabIndex={-1} className="font-display text-3xl">
+        {["يومك له واحة", "واحة على ذوقك", "تعرّف على محسن"][step]}
+      </h1>
+      {step === 0 && (
+        <section className="space-y-5 rounded-2xl border border-border bg-surface p-6">
+          <p className="text-lg leading-8">
+            اقرأ، تعلّم، العب، وأنجز أدوات يومك في مساحة عربية واحدة.
           </p>
-          <Link
-            to="/register"
-            search={{ mode: "signup" }}
-            className="inline-flex min-h-11 items-center rounded-full border border-border px-5 text-sm"
+          <p className="leading-8 text-muted">
+            ابدأ كضيف. كتبك الخاصة وتفضيلاتك على هذا الجهاز، والحساب اختياري. يمكنك تغيير اختياراتك
+            من الإعدادات في أي وقت.
+          </p>
+          <label htmlFor="onboarding-name" className="block text-sm">
+            اسم العرض (اختياري)
+          </label>
+          <Input
+            id="onboarding-name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            maxLength={40}
+            placeholder="ضيف الواحة"
+          />
+          <p className="text-sm text-muted">{t(settings.language, "guestReadsFree")}</p>
+          {!user && (
+            <Link
+              to="/register"
+              search={{ mode: "signup" }}
+              className="inline-flex min-h-11 items-center text-primary"
+            >
+              {t(settings.language, "createAccount")} (اختياري)
+            </Link>
+          )}
+        </section>
+      )}
+      {step === 1 && (
+        <section className="space-y-5">
+          <h2 className="text-lg">{t(settings.language, "wahaForYou")}</h2>
+          <AudienceSwitch />
+          <label htmlFor="onboarding-city" className="block">
+            مدينتك للطقس والصلاة
+          </label>
+          <select
+            id="onboarding-city"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            className="min-h-12 w-full rounded-xl border border-border bg-surface px-3"
           >
-            تسجيل حساب في واحة
+            {CITIES.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.ar}
+              </option>
+            ))}
+          </select>
+          <p className="text-sm text-muted">
+            اختيار يدوي بلا إذن موقع. يمكنك تفعيل موقع الجهاز من الإعدادات.
+          </p>
+          <fieldset>
+            <legend className="mb-3 text-lg">ما الذي يهمك؟</legend>
+            <div className="grid grid-cols-2 gap-3">
+              {INTERESTS.map((item) => (
+                <label
+                  key={item.id}
+                  className="flex min-h-14 cursor-pointer items-center gap-3 rounded-xl border border-border bg-surface px-4 text-sm"
+                >
+                  <input
+                    type="checkbox"
+                    className="size-5 accent-primary"
+                    checked={interests.includes(item.id)}
+                    onChange={(e) =>
+                      setInterests((old) =>
+                        e.target.checked ? [...old, item.id] : old.filter((id) => id !== item.id),
+                      )
+                    }
+                  />
+                  {item.label}
+                </label>
+              ))}
+            </div>
+          </fieldset>
+        </section>
+      )}
+      {step === 2 && (
+        <section className="space-y-5 rounded-2xl border border-border bg-surface p-6">
+          <p className="text-lg leading-8">
+            قل لمحسن: «احسب ١٥٪ من ٢٠٠» أو «كمل الكتاب» أو «افتح القرآن».
+          </p>
+          <p className="leading-8 text-muted">
+            الحساب والأوامر المحلية تعمل على جهازك. الأسئلة المعرفية تحتاج اتصالًا؛ يُرسل السؤال
+            وحده. يطلب محسن تأكيدك قبل حفظ البيانات أو تغيير الإعدادات.
+          </p>
+          <p className="text-sm text-muted">
+            افتحه بزر ✦ أو Ctrl / ⌘ + K. راجع المصادر فيما يحتاج تدقيقًا.
+          </p>
+        </section>
+      )}
+      {error && (
+        <p role="alert" className="text-danger">
+          {error}{" "}
+          <Link to="/" className="inline-flex min-h-11 items-center underline">
+            إلى الرئيسية
           </Link>
-        </div>
-      ) : null}
-      {storageError && (
-        <p role="alert" className="mt-4 text-sm text-danger">
-          تعذّر حفظ التفضيلات. تحقق من إتاحة التخزين في المتصفح.
         </p>
       )}
-      <div className="mt-6 flex justify-end">
-        <Button
-          type="button"
-          onClick={() => {
-            saveProfile({ name, bio: local.profile.bio });
-            try {
-              localStorage.setItem(
-                interestKey(user?.id),
-                JSON.stringify(normalizeInterests(interests)),
-              );
-            } catch {
-              setStorageError(true);
-              return;
-            }
-            void navigate({ to: "/today" });
-          }}
-        >
-          {L("إلى يومي", "Go to my day")}
+      <div className="flex flex-wrap justify-between gap-3">
+        <Button variant="secondary" disabled={step === 0} onClick={() => setStep((s) => s - 1)}>
+          السابق
+        </Button>
+        <Button onClick={() => (step < 2 ? setStep((s) => s + 1) : finish())}>
+          {step === 2 ? "ابدأ يومك" : "التالي"}
         </Button>
       </div>
     </div>

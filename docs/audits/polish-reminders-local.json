@@ -1,0 +1,10 @@
+{
+  "base": "http://localhost:8081",
+  "checks": [
+    "saved due reminder appears without opening conversation",
+    "conversation remains lazy when no reminders exist",
+    "storage event restores reminder watcher from another tab"
+  ],
+  "errors": [],
+  "fixture": "Synthetic reminders in isolated browser storage only; no system notification permission."
+}

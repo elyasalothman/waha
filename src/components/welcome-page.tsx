@@ -120,8 +120,8 @@ export function WelcomePage() {
               <Link className="landing-button" to="/register" search={{ mode: "signup" }}>
                 سجّل مجانًا <ArrowUpLeft size={20} />
               </Link>
-              <Link className="landing-secondary" to="/today">
-                جرّب بدون حساب <ArrowUpLeft size={18} />
+              <Link className="landing-secondary" to="/onboarding">
+                ابدأ وخصّص واحتك <ArrowUpLeft size={18} />
               </Link>
             </div>
             <p className="landing-note">
@@ -260,8 +260,8 @@ export function WelcomePage() {
             <Link className="landing-button" to="/register" search={{ mode: "signup" }}>
               سجّل مجانًا <ArrowUpLeft size={20} />
             </Link>
-            <Link className="landing-secondary" to="/today">
-              جرّب بدون حساب
+            <Link className="landing-secondary" to="/onboarding">
+              ابدأ وخصّص واحتك
             </Link>
           </div>
         </section>
@@ -269,7 +269,7 @@ export function WelcomePage() {
       <footer className="landing-footer">
         <WahaWordmark lang="ar" />
         <p>من بيت الهجدة · صُنعت لتكون قريبة منك.</p>
-        <Link to="/today">
+        <Link to="/onboarding">
           إلى يومي <ArrowUpLeft size={16} />
         </Link>
       </footer>

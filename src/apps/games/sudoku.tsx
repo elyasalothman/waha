@@ -22,7 +22,8 @@ function ok(g: Grid, r: number, c: number, n: number) {
   for (let i = 0; i < 9; i++) if (g[r]![i] === n || g[i]![c] === n) return false;
   const br = Math.floor(r / 3) * 3;
   const bc = Math.floor(c / 3) * 3;
-  for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) if (g[br + i]![bc + j] === n) return false;
+  for (let i = 0; i < 3; i++)
+    for (let j = 0; j < 3; j++) if (g[br + i]![bc + j] === n) return false;
   return true;
 }
 
@@ -131,7 +132,12 @@ export function SudokuApp() {
     <div className="space-y-4">
       <div className="flex flex-wrap gap-2">
         {(["easy", "medium", "hard"] as const).map((d) => (
-          <Button key={d} size="sm" variant={diff === d ? "default" : "secondary"} onClick={() => deal(d)}>
+          <Button
+            key={d}
+            size="sm"
+            variant={diff === d ? "default" : "secondary"}
+            onClick={() => deal(d)}
+          >
             {t(lang, d)}
           </Button>
         ))}
@@ -142,8 +148,20 @@ export function SudokuApp() {
           size="sm"
           variant="ghost"
           onClick={() => {
-            const good = grid.every((row, r) => row.every((n, c) => n === 0 || n === solved[r]![c]));
-            setMsg(good ? (filled ? t(lang, "youWin") : lang === "ar" ? "صحيح حتى الآن" : "Correct so far") : lang === "ar" ? "هناك أخطاء" : "There are mistakes");
+            const good = grid.every((row, r) =>
+              row.every((n, c) => n === 0 || n === solved[r]![c]),
+            );
+            setMsg(
+              good
+                ? filled
+                  ? t(lang, "youWin")
+                  : lang === "ar"
+                    ? "صحيح حتى الآن"
+                    : "Correct so far"
+                : lang === "ar"
+                  ? "هناك أخطاء"
+                  : "There are mistakes",
+            );
           }}
         >
           {lang === "ar" ? "تحقق" : "Check"}
@@ -152,41 +170,43 @@ export function SudokuApp() {
         <Stat label={t(lang, "best")} value={best || "—"} />
       </div>
       <div className="relative mx-auto max-w-md">
-      <div className="grid grid-cols-9 overflow-hidden rounded-lg border border-border">
-        {grid.map((row, r) =>
-          row.map((n, c) => {
-            const locked = given[r]![c] !== 0;
-            const same = sel && grid[sel.r]![sel.c] !== 0 && n === grid[sel.r]![sel.c];
-            const wrong = !locked && n !== 0 && n !== solved[r]![c];
-            return (
-              <button
-                key={`${r}-${c}`}
-                type="button"
-                onClick={() => setSel({ r, c })}
-                className={cn(
-                  "aspect-square border-e border-b border-border text-sm tabular-nums",
-                  c % 3 === 2 && c !== 8 && "border-e-2 border-e-muted",
-                  r % 3 === 2 && r !== 8 && "border-b-2 border-b-muted",
-                  locked ? "font-medium text-fg" : "text-primary",
-                  sel?.r === r && sel?.c === c && "bg-surface-2",
-                  same && "bg-surface-2",
-                  wrong && "text-danger",
-                )}
-              >
-                {n || ""}
-              </button>
-            );
-          }),
-        )}
-      </div>
-      {won ? (
-        <RoundOverlay
-          title={t(lang, "youWin")}
-          detail={lang === "ar" ? `في ${secs} ثانية` : `In ${secs}s`}
-          actionLabel={t(lang, "newGame")}
-          onAction={() => deal(diff)}
-        />
-      ) : null}
+        <div className="grid grid-cols-9 overflow-hidden rounded-lg border border-border">
+          {grid.map((row, r) =>
+            row.map((n, c) => {
+              const locked = given[r]![c] !== 0;
+              const same = sel && grid[sel.r]![sel.c] !== 0 && n === grid[sel.r]![sel.c];
+              const wrong = !locked && n !== 0 && n !== solved[r]![c];
+              return (
+                <button
+                  key={`${r}-${c}`}
+                  type="button"
+                  aria-label={`الصف ${r + 1}، العمود ${c + 1}، ${n || "فارغ"}${locked ? "، ثابت" : ""}`}
+                  aria-pressed={sel?.r === r && sel?.c === c}
+                  onClick={() => setSel({ r, c })}
+                  className={cn(
+                    "aspect-square border-e border-b border-border text-sm tabular-nums",
+                    c % 3 === 2 && c !== 8 && "border-e-2 border-e-muted",
+                    r % 3 === 2 && r !== 8 && "border-b-2 border-b-muted",
+                    locked ? "font-medium text-fg" : "text-primary",
+                    sel?.r === r && sel?.c === c && "bg-surface-2",
+                    same && "bg-surface-2",
+                    wrong && "text-danger",
+                  )}
+                >
+                  {n || ""}
+                </button>
+              );
+            }),
+          )}
+        </div>
+        {won ? (
+          <RoundOverlay
+            title={t(lang, "youWin")}
+            detail={lang === "ar" ? `في ${secs} ثانية` : `In ${secs}s`}
+            actionLabel={t(lang, "newGame")}
+            onAction={() => deal(diff)}
+          />
+        ) : null}
       </div>
       <div className="flex flex-wrap gap-2">
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((n) => (

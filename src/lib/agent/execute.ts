@@ -1,7 +1,11 @@
+import { solveMath } from "./math";
+import { createLocalStore, parseArabicTime, LOCAL_KEYS } from "./local";
+import { parseMohsenReply } from "./mohsen";
+import { formatHijri } from "../hijri";
+import { getTimes, PRAYER_LABELS, PRAYER_KEYS } from "../prayer";
 import { validateCommand, type AgentCommand } from "./registry";
 import { SERVICES, findServices } from "../superapp";
 import { CATALOG } from "../catalog";
-import { calculate } from "../calculator";
 import { CITIES } from "../cities";
 import { fetchWeather, readWeatherCache, writeWeatherCache } from "../weather";
 import { useAppStore } from "@/store/app-store";
@@ -13,6 +17,10 @@ export type AgentResult = {
   text: string;
   links?: { label: string; href: string }[];
   undo?: () => void;
+  citations?: { url: string; title: string }[];
+  verified?: boolean;
+  source?: string;
+  evidence?: string;
 };
 export async function executeCommand(
   raw: AgentCommand,
@@ -44,10 +52,132 @@ export async function executeCommand(
       undo: () => useSettings.getState().update(before),
     };
   };
+  const local = createLocalStore(localStorage);
   switch (command.tool) {
+    case "math": {
+      try {
+        const answer = solveMath(command.args.expr);
+        return { text: [answer.text, ...answer.steps].join("\n") };
+      } catch {
+        return {
+          text: "هذا السؤال يحتاج حلّالًا متخصصًا",
+          links: [{ label: "افتح حلّال الهجدة", href: "https://lab.alhajda.com/math" }],
+        };
+      }
+    }
+    case "pdf":
+      return go("/pro/pdf", "تم فتح استوديو PDF؛ اختر الأداة المطلوبة داخله");
+    case "cv":
+      return go("/pro/cv", "تم فتح منشئ السيرة الذاتية؛ اختر القالب داخله");
+    case "search_books":
+      return { text: "ابحث في رف الكتب", links: [{ label: command.args.q, href: "/books" }] };
+    case "time":
+      return { text: new Date().toLocaleString("ar-SA") };
+    case "hijri":
+      return { text: formatHijri(new Date(), "ar", true) };
+    case "prayer": {
+      const city = useAppStore.getState().city;
+      const times = getTimes(city.lat, city.lon);
+      return {
+        text:
+          city.ar +
+          "\n" +
+          PRAYER_KEYS.map(
+            (k) =>
+              PRAYER_LABELS[k].ar +
+              ": " +
+              times[k].toLocaleTimeString("ar-SA", { hour: "2-digit", minute: "2-digit" }),
+          ).join("\n"),
+      };
+    }
+    case "exchange":
+      return go("/app/currency", "تم فتح أسعار الصرف بمصدرها وتاريخ تحديثها");
+    case "list_notes":
+      return {
+        text:
+          local
+            .list("notes")
+            .map((x) => x.id + " · " + x.text)
+            .join("\n") || "لا توجد ملاحظات لمحسن",
+      };
+    case "list_reminders":
+      return {
+        text:
+          local
+            .list("reminders")
+            .map(
+              (x) =>
+                x.id +
+                " · " +
+                x.text +
+                " · " +
+                (x.dueAt ? new Date(x.dueAt).toLocaleString("ar-SA") : "دون وقت"),
+            )
+            .join("\n") || "لا توجد تذكيرات",
+      };
+    case "list_memory":
+      return {
+        text:
+          local
+            .list("memories")
+            .map((x) => x.text)
+            .join("\n") || "لم تحفظ ذاكرة بعد",
+      };
+    case "remember": {
+      const row = local.add("memories", command.args.text);
+      return {
+        text: "تذكّرت ذلك على هذا الجهاز فقط",
+        undo: () => {
+          local.remove("memories", row.id);
+        },
+      };
+    }
+    case "forget": {
+      const previous = localStorage.getItem(LOCAL_KEYS.memories) || "[]";
+      for (const row of local.list("memories"))
+        if (normalize(row.text).includes(normalize(command.args.text)))
+          local.remove("memories", row.id);
+      return {
+        text: "تم نسيان الذاكرة المطابقة",
+        undo: () => localStorage.setItem(LOCAL_KEYS.memories, previous),
+      };
+    }
+    case "clear_memory": {
+      const previous = localStorage.getItem(LOCAL_KEYS.memories) || "[]";
+      local.clear("memories");
+      return {
+        text: "مُسحت ذاكرة محسن",
+        undo: () => localStorage.setItem(LOCAL_KEYS.memories, previous),
+      };
+    }
+    case "delete_note":
+    case "delete_reminder": {
+      const kind = command.tool === "delete_note" ? "notes" : "reminders";
+      const previous = localStorage.getItem(LOCAL_KEYS[kind]) || "[]";
+      local.remove(kind, command.args.id);
+      return {
+        text: "تم الحذف محليًا",
+        undo: () => localStorage.setItem(LOCAL_KEYS[kind], previous),
+      };
+    }
+    case "add_reminder": {
+      const due = parseArabicTime(command.args.when || command.args.text);
+      if (!due) throw new Error("حدّد وقتًا مثل: بكرة ٥ العصر أو بعد ساعتين");
+      const row = local.add("reminders", command.args.text, due.dueAt);
+      window.dispatchEvent(new Event("waha:agent-reminders"));
+      return {
+        text:
+          "حُفظ التذكير: " +
+          new Date(due.dueAt).toLocaleString("ar-SA") +
+          "؛ يظهر عند فتح واحة، وإشعار المتصفح إن كان مأذونًا",
+        undo: () => {
+          local.remove("reminders", row.id);
+        },
+      };
+    }
     case "calculate":
       try {
-        return { text: `الناتج: ${calculate(command.args.expr)}` };
+        return { text: `الناتج: ${solveMath(command.args.expr).text}` };
       } catch {
         throw new Error("تعذّر الحساب. جرّب تعبيرًا مثل ٢٥×٤");
       }
@@ -122,7 +252,7 @@ export async function executeCommand(
         "تم فتح السورة والآية",
       );
     case "ask_mohsen": {
-      const response = await fetch("/api/mohsen", {
+      const response = await fetch("/api/agent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: command.args.q, messages: [] }),
@@ -131,19 +261,18 @@ export async function executeCommand(
       if (!response.ok) throw new Error("تعذّر الاتصال بمحسن. أعد المحاولة لاحقًا");
       const result = await response.json();
       if (typeof result.reply !== "string") throw new Error("تعذّر قراءة رد محسن");
+      const parsed = parseMohsenReply(result);
       return {
-        text: result.reply,
-        links: [
-          {
-            label: "متابعة المحادثة مع محسن",
-            href: `/ask?q=${encodeURIComponent(command.args.q)}`,
-          },
-        ],
+        text: parsed.reply,
+        citations: parsed.citations,
+        verified: parsed.verified,
+        source: parsed.source,
+        evidence: parsed.evidence,
       };
     }
     case "open_url":
-      sessionStorage.setItem("waha:browser:pending", command.args.url);
-      return go("/app/browser", "تم فتح الرابط داخل متصفح واحة");
+      window.open(command.args.url, "_blank", "noopener,noreferrer");
+      return { text: "تم طلب فتح الرابط الخارجي" };
     case "open_book": {
       const title = normalize(command.args.title);
       if (/مضاربة|تداول/.test(title)) return go("/books/trading-guide", "تم فتح دليل المضاربة");
@@ -169,9 +298,17 @@ export async function executeCommand(
         href ? "عدت إلى آخر كتاب؛ يُستعاد موضعك المحفوظ" : "اختر كتابًا من رفك لبدء القراءة",
       );
     }
-    case "add_note":
+    case "add_note": {
+      const row = local.add("notes", command.args.text);
+      return {
+        text: "حُفظت الملاحظة محليًا لدى محسن",
+        undo: () => {
+          local.remove("notes", row.id);
+        },
+      };
+    }
     case "reminder": {
-      const note = command.tool === "add_note",
+      const note = false,
         key = note ? "waha:notes" : "waha:tasks";
       const previous = localStorage.getItem(key);
       const rows = JSON.parse(previous || "[]");

@@ -1,0 +1,72 @@
+{
+  "at": "2026-10-25T19:23:46.442502+00:00",
+  "sha": "aab4ff3c278bfd31846228dd76a44a31e7db6ce6",
+  "tlsTestException": "environment HTTPS proxy only; curl -k",
+  "checks": [
+    {
+      "url": "https://waha.hajdah.com/",
+      "status": 200,
+      "error": null
+    },
+    {
+      "url": "https://waha.hajdah.com/settings",
+      "status": 200,
+      "error": null
+    },
+    {
+      "url": "https://waha.hajdah.com/books",
+      "status": 200,
+      "error": null
+    },
+    {
+      "url": "https://waha.hajdah.com/books/alhajda",
+      "status": 200,
+      "error": null
+    },
+    {
+      "url": "https://waha.hajdah.com/games",
+      "status": 200,
+      "error": null
+    },
+    {
+      "url": "https://waha.hajdah.com/app/calc",
+      "status": 200,
+      "error": null
+    },
+    {
+      "url": "https://waha.hajdah.com/pro/pdf",
+      "status": 200,
+      "error": null
+    },
+    {
+      "url": "https://waha.hajdah.com/pro/cv",
+      "status": 200,
+      "error": null
+    },
+    {
+      "url": "https://waha.hajdah.com/news",
+      "status": 200,
+      "error": null
+    },
+    {
+      "url": "https://waha.hajdah.com/api/auth/get-session",
+      "status": 200,
+      "error": null
+    },
+    {
+      "url": "https://waha.hajdah.com/sw.js",
+      "status": 200,
+      "error": null
+    },
+    {
+      "url": "https://waha.hajdah.com/manifest.webmanifest",
+      "status": 200,
+      "error": null
+    },
+    {
+      "url": "https://waha.alhajda.com/",
+      "status": 200,
+      "error": null
+    }
+  ]
+}

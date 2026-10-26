@@ -1,3 +1,4 @@
+@import "./fonts.css";
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "./apps/books/reader-layout.css";
@@ -1074,3 +1075,36 @@ html[data-reading-font="sans"] [data-reader-theme] article {
 html:has(.reader-layout):not([data-reader-controls="visible"]) .agent-fab {
   display: none;
 }
+
+/* Shared component rhythm and layouts that remain stable while data arrives. */
+@theme {
+  --spacing-page: 1.5rem;
+  --spacing-section: 2rem;
+}
+.market-brief { min-height: 25rem; }
+@media (min-width: 640px) { .market-brief { min-height: 16rem; } }
+:where(button, a, summary) { overflow-wrap: anywhere; }
+:where(button, input, select, textarea) { max-width: 100%; }
+html.waha-dark :is(.waha-prayer-card, .waha-action-mint, .waha-action-peach, .waha-action-lilac) {
+  background: var(--color-surface-2);
+  border-color: var(--color-border);
+}
+html.waha-dark .landing { background: var(--color-bg); color: var(--color-fg); }
+html.waha-dark .landing :is(.landing-scene, .landing-features, .landing-final, .landing-float, .landing-baloot, .landing-pillar) {
+  background: var(--color-surface); color: var(--color-fg); border-color: var(--color-border);
+}
+html.waha-dark .landing :is(p, .landing-eyebrow, .landing-note, .landing-ribbon, .landing-scene-word) { color: var(--color-muted); }
+html.waha-dark .landing h1 span { color: var(--color-primary); }
+html.waha-dark :is(.text-red-700, .text-green-700, .text-emerald-700) { color: var(--color-primary); }
+html.waha-dark :is(.bg-white, .bg-white\/95) { background-color: var(--color-surface); }
+.waha-shell button { min-height: 44px; }
+.waha-shell input[type="color"] { min-height: 44px; }
+
+.market-brief-content { height: 22rem; overflow: auto; scrollbar-gutter: stable; }
+@media (min-width: 640px) { .market-brief-content { height: 18rem; } }
+
+.waha-shell input:not([type="checkbox"]):not([type="radio"]) { min-height: 44px; }
+.waha-shell label:has(input[type="checkbox"]),
+.waha-shell label:has(input[type="radio"]) { min-height: 44px; }
+
+.waha-shell > aside a { min-height: 44px; }

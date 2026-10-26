@@ -29,7 +29,24 @@
     {
       "src": "/icons/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "description": "مساحة عربية للقراءة والأدوات والألعاب ومحسن في يومك",
+  "categories": ["productivity", "education", "utilities"],
+  "shortcuts": [
+    {
+      "name": "اسأل محسن",
+      "url": "/?agent=open"
+    },
+    {
+      "name": "الكتب",
+      "url": "/books"
+    },
+    {
+      "name": "الأدوات",
+      "url": "/tools"
     }
   ]
 }
