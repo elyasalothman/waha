@@ -56,7 +56,10 @@ const config: CapacitorConfig = {
     },
     Keyboard: {
       resize: "native",
-      resizeOnFullScreen: true,
+      // Android-only option (iOS ignores it). Android MainActivity handles the
+      // keyboard through IME window insets; this workaround would shrink the
+      // WebView a second time.
+      resizeOnFullScreen: false,
     },
     LocalNotifications: {
       iconColor: "#c5d0c4",
