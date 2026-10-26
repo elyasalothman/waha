@@ -120,6 +120,9 @@ test("Android shell targets current Play API, keeps permissions minimal, and han
   assert.match(activity, /registerPlugin\(HouseDoorBrowserPlugin\.class\);\s*super\.onCreate/);
   // Edge-to-edge (targetSdk 35+): keep the WebView clear of bars, cutout and keyboard.
   assert.match(activity, /WindowInsetsCompat\.Type\.ime\(\)/);
+  // One keyboard mechanism only: the plugin workaround would shrink the WebView twice.
+  assert.match(read("capacitor.config.ts"), /resizeOnFullScreen: false/);
+  assert.match(manifest, /windowSoftInputMode="adjustResize"/);
   assert.match(icon, /<monochrome /);
 });
 
