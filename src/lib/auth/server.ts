@@ -230,7 +230,6 @@ const socialProviders = {
         google: {
           clientId: googleClientId as string,
           clientSecret: googleClientSecret as string,
-          scope: ["openid", "email", "profile"],
           prompt: "select_account" as const,
         },
       }
