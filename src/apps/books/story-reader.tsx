@@ -24,7 +24,8 @@ export default function StoryReader({ slug }: { slug: string }) {
       book={book}
       storageKey={`waha:curated:story:${slug}`}
       bookId={`story-${slug}`}
-      notice="من سلسلة «قصص غموض» · فريق الهجدة. قصة خيالية؛ الأسماء والأحداث من الخيال."
+      intro="حجم الخط وموضع القراءة محفوظان على هذا المتصفح فقط."
+      notice="من سلسلة «قصص غموض» · فريق الهجدة، بمساعدة الذكاء الاصطناعي. قصة خيالية؛ الأسماء والأحداث من الخيال."
     />
   );
 }

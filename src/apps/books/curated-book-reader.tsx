@@ -24,11 +24,14 @@ export default function CuratedBookReader({
   storageKey,
   bookId,
   notice,
+  intro,
 }: {
   book: CuratedBook;
   storageKey: string;
   bookId: string;
   notice?: string;
+  /** Replaces the default intro line (books with images and references). */
+  intro?: string;
 }) {
   const ar = useAppStore((s) => s.lang) === "ar";
   const L = (a: string, e: string) => (ar ? a : e);
@@ -207,10 +210,11 @@ export default function CuratedBookReader({
         {book.subtitle}
       </p>
       <p className="mt-3 text-xs leading-relaxed opacity-70">
-        {L(
-          "قراءة عربية متصلة مع الصور والمراجع وحقوقها. حجم الخط وموضع القراءة محفوظان على هذا المتصفح فقط.",
-          "Read the Arabic text with its illustrations, references and credits. Text size and reading position are saved only in this browser.",
-        )}
+        {intro ??
+          L(
+            "قراءة عربية متصلة مع الصور والمراجع وحقوقها. حجم الخط وموضع القراءة محفوظان على هذا المتصفح فقط.",
+            "Read the Arabic text with its illustrations, references and credits. Text size and reading position are saved only in this browser.",
+          )}
       </p>
       {notice && (
         <p className="mt-3 rounded-lg border border-current/20 p-3 text-sm" dir="rtl">

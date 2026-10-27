@@ -15,6 +15,9 @@ export function StoriesCard() {
         ألغاز سعودية تناسب العائلة، وكل الأدلة أمامك قبل الحل. رواية قصيرة جديدة كل أسبوع، ومعها قصص
         قصيرة جداً.
       </p>
+      <p className="mt-1 text-xs text-muted">
+        يكتبها فريق الهجدة بمساعدة الذكاء الاصطناعي، ويراجع كل نص زميلٌ غير كاتبه قبل النشر.
+      </p>
       {ORDER.map((shelf) => {
         const list = STORIES.filter((s) => s.shelf === shelf);
         if (!list.length) return null;
@@ -34,7 +37,9 @@ export function StoriesCard() {
                       {story.subtitle} · {story.chapters}{" "}
                       {story.shelf === "mystery-flash" ? "قصص" : "فصول"} · {story.minutes} دقيقة
                     </span>
-                    <span className="mt-1 block text-sm leading-relaxed text-muted">{story.hook}</span>
+                    <span className="mt-1 block text-sm leading-relaxed text-muted">
+                      {story.hook}
+                    </span>
                   </Link>
                 </li>
               ))}
