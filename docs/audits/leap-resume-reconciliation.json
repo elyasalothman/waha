@@ -1,0 +1,30 @@
+{
+  "codeSha": "5a01ec6fc637664964eabd5d2296b216f8ffdbe4",
+  "earlierEvidenceCommit": "a254628",
+  "resumedEvidenceBranch": "waha-2-resume-evidence",
+  "resolution": "Original published reports preserved; resumed reports added separately. No app source changed.",
+  "imageGeneration": {
+    "priorRunSuccessful": 1,
+    "resumedRunSuccessful": 1,
+    "totalKnown": 2,
+    "required": 1,
+    "deviation": "A second successful request occurred before the prior live report was discovered in a concurrent remote documentation update. No further image request will be made."
+  },
+  "lighthouse": {
+    "first": 81,
+    "second": 92,
+    "thirdRun": false
+  },
+  "rechecksAfterRestore": {
+    "typecheck": 0,
+    "build": 0
+  },
+  "liveResumed": {
+    "browserPassed": 38,
+    "httpPassed": 30,
+    "onlineConsoleErrors": 0,
+    "pageerrors": 0,
+    "expectedOfflineNetworkErrors": 1
+  },
+  "priorHaqqiqLivePassed": 3
+}

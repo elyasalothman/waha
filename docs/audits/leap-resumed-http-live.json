@@ -1,0 +1,191 @@
+{
+  "date": "2026-10-27T09:44:37.512Z",
+  "rows": [
+    {
+      "host": "waha.hajdah.com",
+      "route": "/",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "host": "waha.hajdah.com",
+      "route": "/mohsen",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "host": "waha.hajdah.com",
+      "route": "/ask?q=test",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "host": "waha.hajdah.com",
+      "route": "/services",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "host": "waha.hajdah.com",
+      "route": "/analysts",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "host": "waha.hajdah.com",
+      "route": "/service/hissati-explore",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "host": "waha.hajdah.com",
+      "route": "/privacy",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "host": "waha.hajdah.com",
+      "route": "/delete-account",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "host": "waha.hajdah.com",
+      "route": "/settings",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "host": "waha.hajdah.com",
+      "route": "/books",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "host": "waha.hajdah.com",
+      "route": "/games",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "host": "waha.hajdah.com",
+      "route": "/api/auth/get-session",
+      "status": 200,
+      "ok": true,
+      "guestIsNull": true
+    },
+    {
+      "host": "waha.hajdah.com",
+      "route": "/sw.js",
+      "status": 200,
+      "ok": true,
+      "sha256": "57f29cb7825371721204745073110ede088cbebd9e49aa489a807feaa449c8f5",
+      "matchesSource": true
+    },
+    {
+      "host": "waha.hajdah.com",
+      "route": "/manifest.webmanifest",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "host": "waha.hajdah.com",
+      "route": "/sitemap.xml",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "host": "waha.alhajda.com",
+      "route": "/",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "host": "waha.alhajda.com",
+      "route": "/mohsen",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "host": "waha.alhajda.com",
+      "route": "/ask?q=test",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "host": "waha.alhajda.com",
+      "route": "/services",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "host": "waha.alhajda.com",
+      "route": "/analysts",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "host": "waha.alhajda.com",
+      "route": "/service/hissati-explore",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "host": "waha.alhajda.com",
+      "route": "/privacy",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "host": "waha.alhajda.com",
+      "route": "/delete-account",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "host": "waha.alhajda.com",
+      "route": "/settings",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "host": "waha.alhajda.com",
+      "route": "/books",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "host": "waha.alhajda.com",
+      "route": "/games",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "host": "waha.alhajda.com",
+      "route": "/api/auth/get-session",
+      "status": 200,
+      "ok": true,
+      "guestIsNull": true
+    },
+    {
+      "host": "waha.alhajda.com",
+      "route": "/sw.js",
+      "status": 200,
+      "ok": true,
+      "sha256": "57f29cb7825371721204745073110ede088cbebd9e49aa489a807feaa449c8f5",
+      "matchesSource": true
+    },
+    {
+      "host": "waha.alhajda.com",
+      "route": "/manifest.webmanifest",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "host": "waha.alhajda.com",
+      "route": "/sitemap.xml",
+      "status": 200,
+      "ok": true
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-10-27T09:44:03.807Z",
+  "deployment": {
+    "id": "dpl_4ASeR6jAKVHhBq7gAE6WvUEcoirb",
+    "name": "waha",
+    "url": "waha-9oyi8ttut-elyasalothman-3228.vercel.app",
+    "type": "LAMBDAS",
+    "state": "READY",
+    "createdAt": 1793093570381,
+    "creator": {
+      "uid": "qo5AKjSh5273knDRenT8wIlu",
+      "username": "elyasalothman-3228"
+    },
+    "project": {
+      "id": "prj_h1Gk05nYTifnTA3hoSyOEPxTK9n6",
+      "name": "waha",
+      "framework": "tanstack-start"
+    },
+    "meta": {
+      "githubCommitRef": "5a01ec6fc637664964eabd5d2296b216f8ffdbe4",
+      "githubCommitSha": "5a01ec6fc637664964eabd5d2296b216f8ffdbe4",
+      "githubCommitMessage": "واحة ٢: محسن في القلب وكل خدمات الهجدة والخصوصية [skip ci]",
+      "githubRepo": "waha",
+      "githubOrg": "elyasalothman"
+    },
+    "alias": [
+      "waha.hajdah.com",
+      "waha.alhajda.com",
+      "waha-eta.vercel.app",
+      "waha-elyasalothman-3228.vercel.app",
+      "waha-git-5a01ec6fc637664964eabd5d2296-3d52df-elyasalothman-3228.vercel.app"
+    ],
+    "target": "production",
+    "regions": [
+      "iad1"
+    ],
+    "buildingAt": 1793093571677,
+    "ready": 1793093607562,
+    "readyState": "READY",
+    "aliasError": null
+  },
+  "rollback": {
+    "deploymentId": "dpl_2nZBN3e1ntesUt6c1UTwKNDRfqrv",
+    "sha": "5db01feab6e99ccad3226489fee97ae9f723a7f4",
+    "revert": "git revert 5a01ec6fc637664964eabd5d2296b216f8ffdbe4; commit with [skip ci], push main, deploy the resulting SHA"
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "codeSha": "5a01ec6fc637664964eabd5d2296b216f8ffdbe4",
+  "deploymentId": "dpl_4ASeR6jAKVHhBq7gAE6WvUEcoirb",
+  "directory": "/workspace/work/waha-leap-shots",
+  "viewportShots": [
+    {
+      "route": "/",
+      "theme": "light",
+      "file": "production-home-light-390x844.png",
+      "status": 200,
+      "errors": [],
+      "consoleErrors": [],
+      "scrollY": 0,
+      "scrollWidth": 390,
+      "viewport": 390,
+      "dark": false,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 56,
+        "top": 0,
+        "right": 390,
+        "bottom": 56,
+        "left": 0
+      }
+    },
+    {
+      "route": "/mohsen",
+      "theme": "light",
+      "file": "production-mohsen-light-390x844.png",
+      "status": 200,
+      "errors": [],
+      "consoleErrors": [],
+      "scrollY": 0,
+      "scrollWidth": 390,
+      "viewport": 390,
+      "dark": false,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 56,
+        "top": 0,
+        "right": 390,
+        "bottom": 56,
+        "left": 0
+      }
+    },
+    {
+      "route": "/",
+      "theme": "dark",
+      "file": "production-home-dark-390x844.png",
+      "status": 200,
+      "errors": [],
+      "consoleErrors": [],
+      "scrollY": 0,
+      "scrollWidth": 390,
+      "viewport": 390,
+      "dark": true,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 56,
+        "top": 0,
+        "right": 390,
+        "bottom": 56,
+        "left": 0
+      }
+    },
+    {
+      "route": "/mohsen",
+      "theme": "dark",
+      "file": "production-mohsen-dark-390x844.png",
+      "status": 200,
+      "errors": [],
+      "consoleErrors": [],
+      "scrollY": 0,
+      "scrollWidth": 390,
+      "viewport": 390,
+      "dark": true,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 56,
+        "top": 0,
+        "right": 390,
+        "bottom": 56,
+        "left": 0
+      }
+    }
+  ],
+  "imageGeneration": {
+    "at": "2026-10-27T09:45:37.271Z",
+    "base": "https://waha.hajdah.com",
+    "attempts": 1,
+    "scope": "resumed run only; the earlier run was discovered during reconciliation"
+  },
+  "files": [
+    {
+      "file": "production-home-light-390x844.png",
+      "bytes": 113528,
+      "sha256": "0cf1075952f1700f0fa71773c601c8584ab2650ce3a629b87235efca4905a73f"
+    },
+    {
+      "file": "production-mohsen-light-390x844.png",
+      "bytes": 105659,
+      "sha256": "4801de39fce765079372af20c971ba0915ec31fbda5c620d5dd22873e2c9e6c5"
+    },
+    {
+      "file": "production-home-dark-390x844.png",
+      "bytes": 50266,
+      "sha256": "5596323f91b53eede8462aed6ab2a6d094b9c823d4f16afda47a4f86a7003252"
+    },
+    {
+      "file": "production-mohsen-dark-390x844.png",
+      "bytes": 52610,
+      "sha256": "eb440b1f2feacbeaa2ba6ab259ee90c5f9b874769a5522531f2078431df466d2"
+    },
+    {
+      "file": "live-mohsen-generated-image-390.png",
+      "bytes": 207692,
+      "sha256": "87357c3314c42a51f3504522ce37b30a9913d13ed520d3196d8bdb6015dedec2"
+    },
+    {
+      "file": "live-mohsen-answer-390.png",
+      "bytes": 70556,
+      "sha256": "8b0dc9d3fdfbcf62c009937f4c822da187365e9eef506dc31d108e2c1848ae87"
+    },
+    {
+      "file": "live-hissati-390.png",
+      "bytes": 42493,
+      "sha256": "286b79f273cc50ed0d43207dce522bb5cb732366cf6ce1c2d11a6dd23234190f"
+    }
+  ],
+  "totalKnownImageGenerationAttempts": 2,
+  "priorGenerationEvidence": "a254628:docs/audits/leap-live.json records one successful generation before this resumed run"
+}

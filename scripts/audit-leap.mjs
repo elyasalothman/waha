@@ -58,6 +58,11 @@ async function check(name, fn) {
     report.checks.push({ name, ok: false, error: e.message });
     report.failures.push(name);
     console.log("FAIL", name, e.message);
+  } finally {
+    await writeFile(
+      `docs/audits/leap-${stage}.json`,
+      JSON.stringify({ ...report, status: "in-progress" }, null, 2),
+    );
   }
 }
 async function visit(path) {
