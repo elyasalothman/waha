@@ -1,4 +1,5 @@
 import { TradingGuideCard } from "./trading-guide-card";
+import { StoriesCard } from "./stories-card";
 import { ReadingShelf } from "./platform/shelf";
 import { BooksMark } from "@/components/brand";
 import { ExternalLink } from "@/components/external-link";
@@ -34,6 +35,8 @@ export function BooksPage() {
         <h1 className="mt-2 font-display text-4xl tracking-tight">{t(lang, "booksTitle")}</h1>
         <p className="mt-2 max-w-xl text-muted">{t(lang, "booksBlurb")}</p>
       </header>
+
+      <StoriesCard />
 
       <TradingGuideCard />
 

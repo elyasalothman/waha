@@ -60,6 +60,7 @@ import { Route as ApiAuthSplatRouteImport } from './routes/api.auth.$'
 import { Route as ApiNativeAuthSplatRouteImport } from './routes/api.native-auth.$'
 import { Route as BooksLibraryIdRouteImport } from './routes/books_.library.$id'
 import { Route as BooksReadBookIdRouteImport } from './routes/books_.read.$bookId'
+import { Route as BooksStoriesSlugRouteImport } from './routes/books_.stories.$slug'
 import { Route as ForumBoardIndexRouteImport } from './routes/forum.$board.index'
 import { Route as ForumBoardTopicIdRouteImport } from './routes/forum.$board.$topicId'
 
@@ -318,6 +319,11 @@ const BooksReadBookIdRoute = BooksReadBookIdRouteImport.update({
   path: '/books/read/$bookId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BooksStoriesSlugRoute = BooksStoriesSlugRouteImport.update({
+  id: '/books_/stories/$slug',
+  path: '/books/stories/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ForumBoardIndexRoute = ForumBoardIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -381,6 +387,7 @@ export interface FileRoutesByFullPath {
   '/api/native-auth/$': typeof ApiNativeAuthSplatRoute
   '/books/library/$id': typeof BooksLibraryIdRoute
   '/books/read/$bookId': typeof BooksReadBookIdRoute
+  '/books/stories/$slug': typeof BooksStoriesSlugRoute
   '/forum/$board/$topicId': typeof ForumBoardTopicIdRoute
   '/forum/$board/': typeof ForumBoardIndexRoute
 }
@@ -434,6 +441,7 @@ export interface FileRoutesByTo {
   '/api/native-auth/$': typeof ApiNativeAuthSplatRoute
   '/books/library/$id': typeof BooksLibraryIdRoute
   '/books/read/$bookId': typeof BooksReadBookIdRoute
+  '/books/stories/$slug': typeof BooksStoriesSlugRoute
   '/forum/$board/$topicId': typeof ForumBoardTopicIdRoute
   '/forum/$board': typeof ForumBoardIndexRoute
 }
@@ -490,6 +498,7 @@ export interface FileRoutesById {
   '/api/native-auth/$': typeof ApiNativeAuthSplatRoute
   '/books_/library/$id': typeof BooksLibraryIdRoute
   '/books_/read/$bookId': typeof BooksReadBookIdRoute
+  '/books_/stories/$slug': typeof BooksStoriesSlugRoute
   '/forum/$board/$topicId': typeof ForumBoardTopicIdRoute
   '/forum/$board/': typeof ForumBoardIndexRoute
 }
@@ -547,6 +556,7 @@ export interface FileRouteTypes {
     | '/api/native-auth/$'
     | '/books/library/$id'
     | '/books/read/$bookId'
+    | '/books/stories/$slug'
     | '/forum/$board/$topicId'
     | '/forum/$board/'
   fileRoutesByTo: FileRoutesByTo
@@ -600,6 +610,7 @@ export interface FileRouteTypes {
     | '/api/native-auth/$'
     | '/books/library/$id'
     | '/books/read/$bookId'
+    | '/books/stories/$slug'
     | '/forum/$board/$topicId'
     | '/forum/$board'
   id:
@@ -655,6 +666,7 @@ export interface FileRouteTypes {
     | '/api/native-auth/$'
     | '/books_/library/$id'
     | '/books_/read/$bookId'
+    | '/books_/stories/$slug'
     | '/forum/$board/$topicId'
     | '/forum/$board/'
   fileRoutesById: FileRoutesById
@@ -709,6 +721,7 @@ export interface RootRouteChildren {
   ApiNativeAuthSplatRoute: typeof ApiNativeAuthSplatRoute
   BooksLibraryIdRoute: typeof BooksLibraryIdRoute
   BooksReadBookIdRoute: typeof BooksReadBookIdRoute
+  BooksStoriesSlugRoute: typeof BooksStoriesSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -1070,6 +1083,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BooksReadBookIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/books_/stories/$slug': {
+      id: '/books_/stories/$slug'
+      path: '/books/stories/$slug'
+      fullPath: '/books/stories/$slug'
+      preLoaderRoute: typeof BooksStoriesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/forum/$board/': {
       id: '/forum/$board/'
       path: '/'
@@ -1163,6 +1183,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiNativeAuthSplatRoute: ApiNativeAuthSplatRoute,
   BooksLibraryIdRoute: BooksLibraryIdRoute,
   BooksReadBookIdRoute: BooksReadBookIdRoute,
+  BooksStoriesSlugRoute: BooksStoriesSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
