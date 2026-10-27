@@ -12,7 +12,8 @@ const PWA_NAME = "واحة";
 
 // Cloudflare Web Analytics (free, cookie-less). Loads only on the production host.
 const cfWebAnalytics =
-  '(function(){if(location.hostname!=="waha.hajdah.com")return;var s=document.createElement("script");s.defer=true;s.src="https://static.cloudflareinsights.com/beacon.min.js";s.setAttribute("data-cf-beacon",\'{"token":"225785b6d91548eba8ce3b39fd3d14af","spa":true}\');document.head.appendChild(s);})();';
+  // Reports go via alhajda.com's /cdn-cgi/rum (CORS allows waha.hajdah.com); direct cloudflareinsights.com was blocked by CORS.
+  '(function(){if(location.hostname!=="waha.hajdah.com")return;var s=document.createElement("script");s.defer=true;s.src="https://static.cloudflareinsights.com/beacon.min.js";s.setAttribute("data-cf-beacon",\'{"token":"225785b6d91548eba8ce3b39fd3d14af","spa":true,"send":{"to":"https://alhajda.com/cdn-cgi/rum"}}\');document.head.appendChild(s);})();';
 
 export const Route = createRootRoute({
   head: () => ({
