@@ -14,8 +14,20 @@ import {
 } from "@/lib/mohsen-v4";
 import { ExternalLink } from "./external-link";
 import { featureButton as btn } from "@/lib/share-card";
-import { mohsenHistory } from "@/lib/mohsen-request";
+import { MOHSEN_STARTERS, mohsenHistory } from "@/lib/mohsen-request";
+import { LOCAL_KEYS } from "@/lib/agent/local";
 type Mode = "chat" | "image" | "clip" | "cv" | "interview" | "plan";
+/** «تذكّر» memories saved by وكيل محسن on this device only; sent with the question, not stored by Mohsen. */
+function deviceMemories(): string[] {
+  try {
+    const rows = JSON.parse(localStorage.getItem(LOCAL_KEYS.memories) || "[]");
+    return Array.isArray(rows)
+      ? rows.map((r: { text?: unknown }) => (typeof r?.text === "string" ? r.text : "")).filter(Boolean).slice(-20)
+      : [];
+  } catch {
+    return [];
+  }
+}
 export function MohsenChat({
   q = "",
   mode: initial = "chat",
@@ -216,7 +228,11 @@ export function MohsenChat({
         const r = await fetch("/api/mohsen", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: text, messages: mohsenHistory(messages).slice(-2) }),
+          body: JSON.stringify({
+            message: text,
+            messages: mohsenHistory(messages).slice(-2),
+            memory: deviceMemories(),
+          }),
           signal: controller.signal,
         });
         if (!r.ok) throw new Error(serviceError(r.status));
@@ -328,6 +344,19 @@ export function MohsenChat({
         {!messages.length && (
           <div className="rounded-2xl bg-primary/10 p-5 leading-8">
             أهلًا بك. فكرة، ملف، صورة أو خطوة لمستقبلك… من أين نبدأ؟
+            <div className="mt-3 flex flex-wrap gap-2" aria-label="جرّب">
+              {MOHSEN_STARTERS.map((s) => (
+                <button
+                  key={s.label}
+                  type="button"
+                  className={btn}
+                  disabled={busy}
+                  onClick={() => void sendRef.current(s.q)}
+                >
+                  {s.label}
+                </button>
+              ))}
+            </div>
           </div>
         )}
         {messages.map((m, i) => (

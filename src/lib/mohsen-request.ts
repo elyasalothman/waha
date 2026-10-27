@@ -15,3 +15,26 @@ export function mohsenHistory(value: unknown): { role: "user" | "assistant"; con
   }
   return result;
 }
+
+/** Device-local memories (وكيل محسن «تذكّر») sent with the question; never stored server-side. */
+export function mohsenMemory(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
+  const out: string[] = [];
+  let total = 0;
+  for (const v of value.slice(-20)) {
+    const t = String(typeof v === "string" ? v : "").replace(/[\u0000-\u001f<>`]/g, " ").replace(/\s+/g, " ").trim().slice(0, 160);
+    if (!t || total + t.length > 1200) continue;
+    total += t.length;
+    out.push(t);
+  }
+  return out;
+}
+
+/** Starter prompts that showcase Mohsen's sourced specialist modes. */
+export const MOHSEN_STARTERS = [
+  { label: "🛒 أفضل شاحن جداري", q: "وش أفضل شاحن جداري سريع للآيفون والسامسونج؟ أبي رابط شراء" },
+  { label: "📱 أفضل جوال بحدود 2000", q: "أفضل جوال بحدود 2000 ريال" },
+  { label: "🚗 سيارة عائلية بحدود 150 ألف", q: "أفضل سيارة عائلية SUV في السعودية بحدود 150 ألف ريال" },
+  { label: "📖 تفسير آية الكرسي", q: "ما تفسير آية الكرسي؟" },
+  { label: "🏛️ تجديد رخصة القيادة", q: "كيف أجدد رخصة القيادة وكم الرسوم؟" },
+] as const;

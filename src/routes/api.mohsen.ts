@@ -1,6 +1,6 @@
 import { parseMohsenReply } from "@/lib/agent/mohsen";
 import { createFileRoute } from "@tanstack/react-router";
-import { MOHSEN_BODY_LIMIT, MOHSEN_MESSAGE_LIMIT, mohsenHistory } from "@/lib/mohsen-request";
+import { MOHSEN_BODY_LIMIT, MOHSEN_MESSAGE_LIMIT, mohsenHistory, mohsenMemory } from "@/lib/mohsen-request";
 export const Route = createFileRoute("/api/mohsen")({
   server: {
     handlers: {
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/api/mohsen")({
           const r = await fetch("https://si.alhajda.com/api/chat", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message: body.message, messages: history }),
+            body: JSON.stringify({ message: body.message, messages: history, memory: mohsenMemory(body.memory) }),
             signal: AbortSignal.timeout(25000),
           });
           if (!r.ok) throw new Error("upstream");
