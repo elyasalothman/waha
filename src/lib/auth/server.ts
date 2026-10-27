@@ -266,6 +266,21 @@ export const auth = betterAuth({
   secret: env("BETTER_AUTH_SECRET") ?? previewAuthSecret(),
   database,
   socialProviders,
+  // Name is optional at sign-up (Apple sends it only on the very first
+  // authorization, and hide-my-email addresses carry none), so never store an
+  // empty name: fall back to the email's local part or a friendly default.
+  databaseHooks: {
+    user: {
+      create: {
+        before: async (user) => {
+          if (typeof user.name === "string" && user.name.trim()) return { data: user };
+          const email = typeof user.email === "string" ? user.email : "";
+          const local = email.endsWith("privaterelay.appleid.com") ? "" : email.split("@")[0];
+          return { data: { ...user, name: local || "صديق واحة" } };
+        },
+      },
+    },
+  },
   user: {
     deleteUser: {
       enabled: true,
