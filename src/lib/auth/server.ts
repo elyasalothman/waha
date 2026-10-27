@@ -37,7 +37,7 @@ import { getCookie } from "@tanstack/react-start/server";
 import { createPrivateKey, randomBytes, sign as cryptoSign } from "node:crypto";
 import { Pool } from "pg";
 import { emailAndPasswordEnabled } from "./email-password";
-import { sendAuthEmail, authEmailConfigured, otpEmail } from "./auth-email.server";
+import { sendAuthEmail, authEmailConfigured, otpEmail, resetPasswordEmail } from "./auth-email.server";
 import { GATE_PROVIDER_ID, gateIdentitySessions } from "./gate-session.server";
 import { GROK_PROVIDERS } from "./providers";
 import { pgliteDialect } from "./pglite-dialect";
@@ -318,9 +318,13 @@ export const auth = betterAuth({
         "google",
         "apple",
       ],
-      // X's synthetic email is never "verified", so don't gate linking on the
-      // local user's email-verified state.
-      requireLocalEmailVerified: false,
+      // Linking a new sign-in method to an EXISTING account by email requires
+      // that account's email to be verified (Better Auth default). Since email
+      // codes are on, an unverified email+password account proves its email by
+      // signing in once with a code; otherwise someone could pre-register a
+      // victim's email with a password and later ride their Google/Apple login.
+      // X's synthetic emails are unique per user, so they never collide.
+      requireLocalEmailVerified: true,
     },
   },
 
@@ -346,21 +350,7 @@ export const auth = betterAuth({
                   user: { email: string };
                   url: string;
                 }) => {
-                  const result = await fetch("https://api.resend.com/emails", {
-                    method: "POST",
-                    headers: {
-                      Authorization: `Bearer ${env("RESEND_API_KEY")}`,
-                      "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                      from: env("AUTH_EMAIL_FROM"),
-                      to: user.email,
-                      subject: "استعادة كلمة مرور واحة",
-                      text: `لاستعادة كلمة مرورك في واحة، افتح الرابط التالي:\n${url}\nإن لم تطلب ذلك، تجاهل هذه الرسالة.`,
-                    }),
-                    signal: AbortSignal.timeout(10000),
-                  });
-                  if (!result.ok) throw new Error("Password reset delivery failed");
+                  await sendAuthEmail({ to: user.email, ...resetPasswordEmail(url) });
                 },
               }
             : {}),
