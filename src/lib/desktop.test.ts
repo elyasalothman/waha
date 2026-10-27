@@ -89,3 +89,9 @@ test('valid model plan goes through the same memory consent gate',async()=>{
   assert.equal(prompts,1);
  }
 });
+test('default mode is cloud when no local model, until the user picks one',async()=>{
+ const {autoMode}=await import('./desktop-store.ts');
+ const d=emptyData();assert.equal(d.modeAuto,true);
+ assert.equal(autoMode(d,false),'cloud');assert.equal(autoMode(d,true),'fallback');
+ d.mode='local';d.modeAuto=false;assert.equal(autoMode(d,false),'local');
+});

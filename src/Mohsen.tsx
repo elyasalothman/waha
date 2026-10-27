@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { createHost, LINKS } from './lib/desktop-host';
 import { discover, type Model } from './lib/desktop-model';
-import { loadData, persist, emptyData, type Data } from './lib/desktop-store';
+import { loadData, persist, emptyData, autoMode, type Data } from './lib/desktop-store';
 import { isTauri, openFiles, saveNative } from './lib/native';
 import { localChat } from './lib/desktop-model';
 import { LOCAL_KEYS, type LocalItem } from './lib/agent/local';
@@ -18,8 +18,8 @@ export function Mohsen({navigate}:{navigate:(tool:'pdf'|'cv',action?:string)=>vo
   const inputRef=useRef<HTMLInputElement>(null), panelRef=useRef<HTMLElement>(null), triggerRef=useRef<HTMLButtonElement>(null);
   const selected=models.find(m=>m.base+'|'+m.name===data.model) || models[0];
   async function save() { await persist(dataRef.current); setData({...dataRef.current}); }
-  async function scan() {setStatus('جارٍ اكتشاف النموذج المحلي…');const found=await discover();setModels(found);setStatus(found.length ? `اكتُشف ${found.length} نموذج محلي` : 'لا يوجد خادم محلي متصل — الأدوات المحلية جاهزة');}
-  useEffect(()=>{loadData().then(d=>{setData(d);setReady(true);}).catch(e=>setStatus(String(e)));void scan();},[]);
+  async function scan() {setStatus('جارٍ اكتشاف النموذج المحلي…');const found=await discover();setModels(found);const mode=autoMode(dataRef.current,found.length>0);if(mode!==dataRef.current.mode){dataRef.current.mode=mode;setData({...dataRef.current});}setStatus(found.length ? `اكتُشف ${found.length} نموذج محلي` : dataRef.current.mode==='cloud' ? 'محسن يعمل عبر السحابة — لا يحتاج نموذجًا على جهازك' : 'لا يوجد خادم محلي متصل — الأدوات المحلية جاهزة');}
+  useEffect(()=>{loadData().then(d=>{dataRef.current=d;setData(d);setReady(true);}).catch(e=>setStatus(String(e))).finally(()=>void scan());},[]);
   useEffect(()=>{const show=()=>setOpen(true);window.addEventListener('mohsen-open',show);return()=>window.removeEventListener('mohsen-open',show);},[]);
   useEffect(()=>{if(open)inputRef.current?.focus();else triggerRef.current?.focus();},[open]);
   useEffect(()=>{const listener=(e:KeyboardEvent)=>{
@@ -50,13 +50,13 @@ export function Mohsen({navigate}:{navigate:(tool:'pdf'|'cv',action?:string)=>vo
       <header><div><h2>✦ محسن على جهازك</h2><p>{data.mode==='local'?'محلي فقط':data.mode==='cloud'?'سحابة':selected?'محلي ثم سحابة — المحلي متصل':'محلي ثم سحابة'}</p></div><button aria-label="إغلاق محسن" disabled={!!consent} onClick={()=>setOpen(false)}>✕</button></header>
       <p role="status">{status}</p>
       <details><summary>إعدادات الذكاء والخصوصية</summary>
-        <label>وضع الذكاء <select value={data.mode} onChange={e=>{dataRef.current.mode=e.target.value as Data['mode'];void save();}}><option value="local">محلي فقط</option><option value="fallback">محلي ثم سحابة</option><option value="cloud">سحابة</option></select></label>
+        <label>وضع الذكاء <select value={data.mode} onChange={e=>{dataRef.current.mode=e.target.value as Data['mode'];dataRef.current.modeAuto=false;void save();}}><option value="local">محلي فقط</option><option value="fallback">محلي ثم سحابة</option><option value="cloud">سحابة</option></select></label>
         <label>النموذج <select value={selected ? selected.base+'|'+selected.name : ''} onChange={e=>{dataRef.current.model=e.target.value;void save();}}><option value="">اختر نموذجًا</option>{models.map(m=><option key={m.base+'|'+m.name} value={m.base+'|'+m.name}>{m.name} — {m.base}</option>)}</select></label>
         <button onClick={()=>void scan()}>إعادة الاكتشاف</button><button onClick={()=>void navigator.clipboard.writeText('ollama pull qwen2.5:3b').then(()=>setStatus('نُسخ أمر التثبيت'))}>نسخ أمر التثبيت</button>
         <p>نوصي بـ qwen2.5:3b لدعم العربية. لا تنزيل تلقائي. الذاكرة تُمرَّر للنموذج المحلي فقط. السحابة تستقبل السؤال وحده.</p>
         <button disabled={busy} onClick={()=>void act(async()=>{if(!await confirmAction('السماح بإشعارات التذكيرات من النظام؟'))return 'أُلغي';if(!isTauri())return 'الإشعارات النظامية تتطلب تطبيق سطح المكتب';return(await import('@tauri-apps/plugin-notification')).requestPermission();},'الإشعارات')}>تفعيل إشعارات النظام</button>
         <button disabled={busy} onClick={()=>void act(()=>saveText(JSON.stringify(data,null,2),'mohsen-export.json'),'تصدير البيانات')}>تصدير بيانات محسن</button>
-        <button disabled={busy} onClick={()=>void act(async()=>{if(!await confirmAction('مسح الذاكرة والملاحظات والتذكيرات والتقييمات والأذونات؟'))return 'أُلغي';dataRef.current=emptyData();await save();return 'مُسحت بيانات محسن';},'مسح البيانات')}>مسح بيانات محسن</button>
+        <button disabled={busy} onClick={()=>void act(async()=>{if(!await confirmAction('مسح الذاكرة والملاحظات والتذكيرات والتقييمات والأذونات؟'))return 'أُلغي';dataRef.current=emptyData();dataRef.current.mode=autoMode(dataRef.current,models.length>0);await save();return 'مُسحت بيانات محسن';},'مسح البيانات')}>مسح بيانات محسن</button>
         <button onClick={()=>{dataRef.current.allowed=[];void save();}}>إلغاء جميع أذونات «اسمح دائمًا» ({data.allowed.length})</button>
       </details>
       <details><summary>أدوات الجهاز والروابط</summary><div className="mohsen-actions">{Object.entries({calculator:'حاسبة النظام',notepad:'المفكرة / TextEdit',downloads:'التنزيلات',documents:'المستندات'}).map(([k,v])=><button disabled={busy} key={k} onClick={()=>void act(()=>system(k),v)}>{v}</button>)}
