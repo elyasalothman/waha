@@ -209,7 +209,7 @@ function Register() {
         <h1 className="!my-4 !font-display !text-4xl !tracking-normal">{title}</h1>
         <p className="mb-7 text-sm leading-7 text-muted">
           {mode === "signup" || mode === "signin"
-            ? "بنقرة واحدة، بلا كلمة مرور ولا بيانات إضافية. الحساب جديد أو موجود، نفس الخطوة."
+            ? "بنقرة واحدة عبر Apple أو Google، بلا بيانات إضافية. الحساب جديد أو موجود، نفس الخطوة."
             : "حسابك في واحة، قريب منك."}
         </p>
         {cap && !cap.email && (

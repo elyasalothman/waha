@@ -368,6 +368,11 @@ export const auth = betterAuth({
       session_data: { name: "__Host-grok-auth.session_data" },
       account_data: { name: "__Host-grok-auth.account_data" },
       dont_remember: { name: "__Host-grok-auth.dont_remember" },
+      // Sign in with Apple returns via a cross-site form POST (response_mode
+      // form_post), so a SameSite=Lax state cookie never comes back and the
+      // callback fails with "State not persisted correctly". The state value is
+      // single-use, signed and PKCE-bound, so SameSite=None is safe here.
+      state: { attributes: { sameSite: "none", secure: true } },
     },
   },
 
