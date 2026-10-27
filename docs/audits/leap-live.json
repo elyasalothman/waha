@@ -1,0 +1,496 @@
+{
+  "base": "https://waha.hajdah.com",
+  "stage": "live",
+  "date": "2026-10-27T09:34:03.610Z",
+  "checks": [
+    {
+      "name": "light /",
+      "ok": true
+    },
+    {
+      "name": "light /mohsen",
+      "ok": true
+    },
+    {
+      "name": "light /services",
+      "ok": true
+    },
+    {
+      "name": "light /service/phones",
+      "ok": true
+    },
+    {
+      "name": "light /service/bench",
+      "ok": true
+    },
+    {
+      "name": "light /service/wiki",
+      "ok": true
+    },
+    {
+      "name": "light /analysts",
+      "ok": true
+    },
+    {
+      "name": "light /service/hissati-explore",
+      "ok": true
+    },
+    {
+      "name": "light /privacy",
+      "ok": true
+    },
+    {
+      "name": "light /delete-account",
+      "ok": true
+    },
+    {
+      "name": "light /settings",
+      "ok": true
+    },
+    {
+      "name": "light /books",
+      "ok": true
+    },
+    {
+      "name": "light /games",
+      "ok": true
+    },
+    {
+      "name": "dark /",
+      "ok": true
+    },
+    {
+      "name": "dark /mohsen",
+      "ok": true
+    },
+    {
+      "name": "dark /services",
+      "ok": true
+    },
+    {
+      "name": "dark /service/phones",
+      "ok": true
+    },
+    {
+      "name": "dark /service/bench",
+      "ok": true
+    },
+    {
+      "name": "dark /service/wiki",
+      "ok": true
+    },
+    {
+      "name": "dark /analysts",
+      "ok": true
+    },
+    {
+      "name": "dark /service/hissati-explore",
+      "ok": true
+    },
+    {
+      "name": "dark /privacy",
+      "ok": true
+    },
+    {
+      "name": "dark /delete-account",
+      "ok": true
+    },
+    {
+      "name": "dark /settings",
+      "ok": true
+    },
+    {
+      "name": "dark /books",
+      "ok": true
+    },
+    {
+      "name": "dark /games",
+      "ok": true
+    },
+    {
+      "name": "خمسة تبويبات سفلية",
+      "ok": true
+    },
+    {
+      "name": "بحث الخدمات والمفضلة وحفظها",
+      "ok": true
+    },
+    {
+      "name": "بحث الموسوعة من API الحي",
+      "ok": true
+    },
+    {
+      "name": "مقارنة جوالين من API الحي",
+      "ok": true
+    },
+    {
+      "name": "حصتي تفتح مسار الاستكشاف الحقيقي",
+      "ok": true
+    },
+    {
+      "name": "المحللون من المصدر الحي",
+      "ok": true
+    },
+    {
+      "name": "الخصوصية والحذف عامة وقابلة للفهرسة",
+      "ok": true
+    },
+    {
+      "name": "سؤال حقيقي من الرئيسية وإرسال تلقائي",
+      "ok": true
+    },
+    {
+      "name": "تحليل ملف نصي حقيقي مباشر من المتصفح",
+      "ok": true
+    },
+    {
+      "name": "صورة واحدة حقيقية فقط",
+      "ok": true
+    },
+    {
+      "name": "السجل يستعاد بعد إعادة التحميل",
+      "ok": true
+    },
+    {
+      "name": "أوفلاين الرئيسية واستبعاد APIs",
+      "ok": true
+    }
+  ],
+  "pages": [
+    {
+      "route": "/",
+      "theme": "light",
+      "width": 390,
+      "viewport": 390,
+      "height": 1528,
+      "dark": false,
+      "small": []
+    },
+    {
+      "route": "/mohsen",
+      "theme": "light",
+      "width": 390,
+      "viewport": 390,
+      "height": 1082,
+      "dark": false,
+      "small": []
+    },
+    {
+      "route": "/services",
+      "theme": "light",
+      "width": 390,
+      "viewport": 390,
+      "height": 1873,
+      "dark": false,
+      "small": []
+    },
+    {
+      "route": "/service/phones",
+      "theme": "light",
+      "width": 390,
+      "viewport": 390,
+      "height": 948,
+      "dark": false,
+      "small": []
+    },
+    {
+      "route": "/service/bench",
+      "theme": "light",
+      "width": 390,
+      "viewport": 390,
+      "height": 2757,
+      "dark": false,
+      "small": []
+    },
+    {
+      "route": "/service/wiki",
+      "theme": "light",
+      "width": 390,
+      "viewport": 390,
+      "height": 2166,
+      "dark": false,
+      "small": []
+    },
+    {
+      "route": "/analysts",
+      "theme": "light",
+      "width": 390,
+      "viewport": 390,
+      "height": 2405,
+      "dark": false,
+      "small": []
+    },
+    {
+      "route": "/service/hissati-explore",
+      "theme": "light",
+      "width": 390,
+      "viewport": 390,
+      "height": 844,
+      "dark": false,
+      "small": []
+    },
+    {
+      "route": "/privacy",
+      "theme": "light",
+      "width": 390,
+      "viewport": 390,
+      "height": 2725,
+      "dark": false,
+      "small": []
+    },
+    {
+      "route": "/delete-account",
+      "theme": "light",
+      "width": 390,
+      "viewport": 390,
+      "height": 1747,
+      "dark": false,
+      "small": []
+    },
+    {
+      "route": "/settings",
+      "theme": "light",
+      "width": 390,
+      "viewport": 390,
+      "height": 1385,
+      "dark": false,
+      "small": []
+    },
+    {
+      "route": "/books",
+      "theme": "light",
+      "width": 390,
+      "viewport": 390,
+      "height": 9615,
+      "dark": false,
+      "small": []
+    },
+    {
+      "route": "/games",
+      "theme": "light",
+      "width": 390,
+      "viewport": 390,
+      "height": 3929,
+      "dark": false,
+      "small": []
+    },
+    {
+      "route": "/",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 1528,
+      "dark": true,
+      "small": []
+    },
+    {
+      "route": "/mohsen",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 1082,
+      "dark": true,
+      "small": []
+    },
+    {
+      "route": "/services",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 1873,
+      "dark": true,
+      "small": []
+    },
+    {
+      "route": "/service/phones",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 948,
+      "dark": true,
+      "small": []
+    },
+    {
+      "route": "/service/bench",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 2757,
+      "dark": true,
+      "small": []
+    },
+    {
+      "route": "/service/wiki",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 2166,
+      "dark": true,
+      "small": []
+    },
+    {
+      "route": "/analysts",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 2405,
+      "dark": true,
+      "small": []
+    },
+    {
+      "route": "/service/hissati-explore",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 844,
+      "dark": true,
+      "small": []
+    },
+    {
+      "route": "/privacy",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 2725,
+      "dark": true,
+      "small": []
+    },
+    {
+      "route": "/delete-account",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 1747,
+      "dark": true,
+      "small": []
+    },
+    {
+      "route": "/settings",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 1385,
+      "dark": true,
+      "small": []
+    },
+    {
+      "route": "/books",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 9615,
+      "dark": true,
+      "small": []
+    },
+    {
+      "route": "/games",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 3929,
+      "dark": true,
+      "small": []
+    }
+  ],
+  "errors": [],
+  "console": [
+    "Failed to load resource: net::ERR_INTERNET_DISCONNECTED"
+  ],
+  "failures": [],
+  "requests": [
+    {
+      "url": "https://static.cloudflareinsights.com/beacon.min.js",
+      "error": "net::ERR_INTERNET_DISCONNECTED"
+    }
+  ],
+  "chat": "محسن\n\nمن المحتوى المحفوظ؛ لا يتوفر رابط مصدر لهذا الرد.\n\nالرياض.\n\n• واس تسمي منطقة الرياض عاصمة الدولة.\n• من خبر واس رسمي في المتن — بلا اختراع سيرة زائدة.\n\nنسخ\n👍\n👎",
+  "analysis": "محسن\n\nمن ملفك\n\nعدد الكتب في هذا التقرير هو سبعة كتب.\n\nمن الملف: «عدد الكتب في هذا التقرير سبعة كتب فقط.»\n\nنسخ\n👍\n👎",
+  "cache": [
+    "/offline.html",
+    "/assets/styles-B9H6dF87.css",
+    "/assets/index-C6BXMdbg.js",
+    "/assets/rolldown-runtime-hePW80VL.js",
+    "/assets/react-dom-CBIAH_7q.js",
+    "/assets/qss-3de60aZa.js",
+    "/assets/jsx-runtime-DE3RlOCf.js",
+    "/assets/useRouter-CMpeKBWO.js",
+    "/assets/link-CPqpVsO-.js",
+    "/assets/lazyRouteComponent-DcIFPR1P.js",
+    "/assets/matchContext-BT3r4GqG.js",
+    "/assets/useNavigate-DV8eVU6k.js",
+    "/assets/createLucideIcon-Cq_ns2g_.js",
+    "/assets/useSelector-Cb7k-zb3.js",
+    "/assets/icons-B54LbeXO.js",
+    "/assets/book-open-CAc5GZhO.js",
+    "/assets/compass-BzFoHCFW.js",
+    "/assets/gamepad-2-CmI5nRdW.js",
+    "/assets/moon-Bs10rWVN.js",
+    "/assets/image-plus-BVmx6ZGX.js",
+    "/assets/shield-check-Ba3lFF5X.js",
+    "/assets/sparkles-Cq4gDgIY.js",
+    "/assets/star-DJvMsu1L.js",
+    "/assets/cities-RCs3vGRe.js",
+    "/assets/app-store-BiKw1ZnW.js",
+    "/assets/x-BfezfmLk.js",
+    "/assets/settings-store-DtIHxlnM.js",
+    "/assets/superapp-C31wXlLx.js",
+    "/assets/house-integrations-CDSWebyI.js",
+    "/assets/house-sites-DQzgtuiL.js",
+    "/assets/catalog-HcqWEUje.js",
+    "/assets/doors-CqUyu8Tl.js",
+    "/assets/i18n-CwhrLEOU.js",
+    "/assets/cn-DojpP95n.js",
+    "/assets/native-browser-DtVL9B64.js",
+    "/assets/preload-helper-Czpn1I53.js",
+    "/assets/dist-COxC0gSI.js",
+    "/assets/button-wX7mXOa1.js",
+    "/assets/external-link-3Q0D6tV6.js",
+    "/assets/pro-CghFMYoR.js",
+    "/assets/mohsen-voice-Bge0gi9T.js",
+    "/assets/routes-DVTw1yHG.js",
+    "/assets/analysts-qvM2dto4.js",
+    "/assets/home-news-BFoETVbo.js",
+    "/assets/leap-directory-1Ia1pFlH.js",
+    "/assets/weather-BXLzcKL6.js",
+    "/assets/page-state-ClZKtCJe.js",
+    "/fonts/amiri-400.woff2",
+    "/fonts/ibm-plex-sans-arabic-400.woff2",
+    "/fonts/ibm-plex-sans-arabic-500.woff2",
+    "/fonts/ibm-plex-sans-arabic-700.woff2",
+    "/assets/share-card-BbRznUL-.js",
+    "/assets/mohsen-Ceti12w5.js",
+    "/assets/services-BS6jj5Uc.js",
+    "/assets/market-brief-DZ3Y8ZZP.js",
+    "/assets/service._id-BJjNPXsJ.js",
+    "/assets/analysts-GYa008d4.js",
+    "/assets/privacy-BkLsa8GU.js",
+    "/assets/privacy-links-C02Y1TBi.js",
+    "/assets/delete-account-CVFpSO6l.js",
+    "/assets/client-BVJ1tnKO.js",
+    "/assets/delete-account-CvcpIJKl.js",
+    "/assets/local-data-DipTswox.js",
+    "/assets/local-Cpi8xuvT.js",
+    "/assets/settings-DFU6uRvz.js",
+    "/assets/hijri-DjsZWHis.js",
+    "/assets/use-current-user-BowH95HZ.js",
+    "/assets/books-rrgp7slR.js",
+    "/assets/midad-pJVrg0ag.js",
+    "/assets/local-BLXkmbBG.js",
+    "/assets/file-plus-2-C7KdFORD.js",
+    "/assets/storage-DgD5csRH.js",
+    "/assets/model-BwLGHsxh.js",
+    "/assets/storage-CLHAK-VZ.js",
+    "/fonts/ibm-plex-mono-400.woff2",
+    "/assets/games-DcpzDM94.js",
+    "/assets/app-stage-D8P7zcgz.js",
+    "/assets/app-card-BrELoVC9.js",
+    "/assets/arrow-up-left-5icx5s6l.js",
+    "/assets/game-hud-CKsLysQN.js",
+    "/assets/hayat-card-JPvsyQgA.js",
+    "/settings",
+    "/games",
+    "/"
+  ],
+  "gitSha": "5a01ec6fc637664964eabd5d2296b216f8ffdbe4",
+  "deploymentId": "dpl_4ASeR6jAKVHhBq7gAE6WvUEcoirb"
+}

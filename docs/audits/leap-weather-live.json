@@ -1,0 +1,12 @@
+{
+  "status": "live",
+  "source": "Open-Meteo",
+  "updatedAt": "2026-10-27T09:38:36.508Z",
+  "current": {
+    "temperature": 34.5,
+    "apparent": 33.2,
+    "humidity": 15,
+    "wind": 8,
+    "code": 0
+  }
+}

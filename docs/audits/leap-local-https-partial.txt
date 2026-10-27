@@ -1,0 +1,36 @@
+FAIL light / HTTP 502
+FAIL light /mohsen HTTP 502
+FAIL light /services HTTP 502
+FAIL light /service/phones HTTP 502
+PASS light /service/bench
+PASS light /service/wiki
+PASS light /analysts
+PASS light /service/hissati-explore
+PASS light /privacy
+PASS light /delete-account
+PASS light /settings
+PASS light /books
+PASS light /games
+PASS dark /
+PASS dark /mohsen
+PASS dark /services
+PASS dark /service/phones
+PASS dark /service/bench
+PASS dark /service/wiki
+PASS dark /analysts
+PASS dark /service/hissati-explore
+PASS dark /privacy
+PASS dark /delete-account
+PASS dark /settings
+PASS dark /books
+PASS dark /games
+PASS خمسة تبويبات سفلية
+PASS بحث الخدمات والمفضلة وحفظها
+PASS بحث الموسوعة من API الحي
+PASS مقارنة جوالين من API الحي
+PASS حصتي تفتح مسار الاستكشاف الحقيقي
+PASS المحللون من المصدر الحي
+PASS الخصوصية والحذف عامة وقابلة للفهرسة
+PASS سؤال حقيقي من الرئيسية وإرسال تلقائي
+PASS تحليل ملف نصي حقيقي مباشر من المتصفح
+PASS السجل يستعاد بعد إعادة التحميل

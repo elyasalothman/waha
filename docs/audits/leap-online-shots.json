@@ -1,0 +1,37 @@
+{
+  "base": "https://waha.hajdah.com",
+  "pages": [
+    {
+      "theme": "light",
+      "route": "/",
+      "scrollY": 0,
+      "headerTop": 0,
+      "width": 390
+    },
+    {
+      "theme": "light",
+      "route": "/mohsen",
+      "scrollY": 0,
+      "headerTop": 0,
+      "width": 390
+    },
+    {
+      "theme": "dark",
+      "route": "/",
+      "scrollY": 0,
+      "headerTop": 0,
+      "width": 390
+    },
+    {
+      "theme": "dark",
+      "route": "/mohsen",
+      "scrollY": 0,
+      "headerTop": 0,
+      "width": 390
+    }
+  ],
+  "errors": [],
+  "console": [],
+  "gitSha": "5a01ec6fc637664964eabd5d2296b216f8ffdbe4",
+  "deploymentId": "dpl_4ASeR6jAKVHhBq7gAE6WvUEcoirb"
+}

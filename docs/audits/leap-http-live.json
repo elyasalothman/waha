@@ -1,0 +1,232 @@
+[
+  {
+    "url": "https://waha.hajdah.com/",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/mohsen",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/ask?q=test",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/services",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/analysts",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/service/hissati-explore",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/service/wiki",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/service/phones",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/service/bench",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/privacy",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/delete-account",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/settings",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/books",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/games",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/api/analysts",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/api/service-data?id=wiki&q=saudi",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/api/service-data?id=phones",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/api/service-data?id=bench",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/api/auth/get-session",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/sw.js",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/manifest.webmanifest",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/offline.html",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.hajdah.com/sitemap.xml",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.alhajda.com/",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.alhajda.com/mohsen",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.alhajda.com/ask?q=test",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.alhajda.com/services",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.alhajda.com/analysts",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.alhajda.com/service/hissati-explore",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.alhajda.com/service/wiki",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.alhajda.com/service/phones",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.alhajda.com/service/bench",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.alhajda.com/privacy",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.alhajda.com/delete-account",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.alhajda.com/settings",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.alhajda.com/books",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.alhajda.com/games",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.alhajda.com/api/analysts",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.alhajda.com/api/service-data?id=wiki&q=saudi",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.alhajda.com/api/service-data?id=phones",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.alhajda.com/api/service-data?id=bench",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.alhajda.com/api/auth/get-session",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.alhajda.com/sw.js",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.alhajda.com/manifest.webmanifest",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.alhajda.com/offline.html",
+    "status": "200",
+    "exit": 0
+  },
+  {
+    "url": "https://waha.alhajda.com/sitemap.xml",
+    "status": "200",
+    "exit": 0
+  }
+]
