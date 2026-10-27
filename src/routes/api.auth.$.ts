@@ -9,7 +9,14 @@ async function handle({ request }: { request: Request }) {
     request.headers.has("authorization") ||
     /(?:^|;\s*)(?:__Host-|__Secure-)?grok-auth\./.test(request.headers.get("cookie") ?? "");
   const availability = authAvailability();
-  const configured = /\/oauth2(?:\/|$)/.test(path) ? availability.google : availability.email;
+  const brokerConfigured =
+    availability.email &&
+    Boolean(process.env.GROK_AUTH_CLIENT_ID?.trim() && process.env.GROK_AUTH_CLIENT_SECRET?.trim());
+  const configured = /\/oauth2(?:\/|$)/.test(path)
+    ? brokerConfigured
+    : /\/(?:email-otp|sign-in\/email-otp)(?:\/|$)/.test(path)
+      ? availability.emailOtp
+      : availability.email;
   if (path === "/api/auth/request-password-reset" && !availability.passwordReset) {
     return Response.json(
       {

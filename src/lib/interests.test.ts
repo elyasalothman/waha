@@ -13,6 +13,9 @@ test("authentication capabilities require persistent storage and independent pro
     email: false,
     deleteAccount: false,
     google: false,
+    apple: false,
+    passkey: false,
+    emailOtp: false,
     passwordReset: false,
   });
   const core = {
@@ -24,17 +27,32 @@ test("authentication capabilities require persistent storage and independent pro
     email: true,
     deleteAccount: true,
     google: false,
+    apple: false,
+    passkey: true,
+    emailOtp: false,
     passwordReset: false,
   });
   assert.deepEqual(
     authAvailability({
       ...core,
-      GROK_AUTH_CLIENT_ID: "id",
-      GROK_AUTH_CLIENT_SECRET: "secret",
+      GOOGLE_CLIENT_ID: "id",
+      GOOGLE_CLIENT_SECRET: "secret",
+      APPLE_CLIENT_ID: "com.example.web",
+      APPLE_TEAM_ID: "TEAM",
+      APPLE_KEY_ID: "KEY",
+      APPLE_PRIVATE_KEY: "pem",
       RESEND_API_KEY: "key",
       AUTH_EMAIL_FROM: "Waha <auth@example.com>",
     }),
-    { email: true, deleteAccount: true, google: true, passwordReset: true },
+    {
+      email: true,
+      deleteAccount: true,
+      google: true,
+      apple: true,
+      passkey: true,
+      emailOtp: true,
+      passwordReset: true,
+    },
   );
   assert.equal(authAvailability({ ...core, VITE_AUTH_ENABLED: "false" }).email, false);
   assert.equal(authAvailability({ ...core, DATABASE_URL: " " }).email, false);

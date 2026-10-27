@@ -30,12 +30,14 @@
  * a verified id via `@/lib/auth/middleware`.
  */
 import { betterAuth } from "better-auth";
-import { bearer, genericOAuth } from "better-auth/plugins";
+import { bearer, emailOTP, genericOAuth, oneTimeToken } from "better-auth/plugins";
+import { passkey } from "@better-auth/passkey";
 import { tanstackStartCookies } from "better-auth/tanstack-start";
 import { getCookie } from "@tanstack/react-start/server";
-import { randomBytes } from "node:crypto";
+import { createPrivateKey, randomBytes, sign as cryptoSign } from "node:crypto";
 import { Pool } from "pg";
 import { emailAndPasswordEnabled } from "./email-password";
+import { sendAuthEmail, authEmailConfigured, otpEmail } from "./auth-email.server";
 import { GATE_PROVIDER_ID, gateIdentitySessions } from "./gate-session.server";
 import { GROK_PROVIDERS } from "./providers";
 import { pgliteDialect } from "./pglite-dialect";
@@ -113,7 +115,7 @@ const baseURL = explicitBaseURL ?? {
 // Origins Better Auth accepts on credentialed POSTs (sign-up/sign-in, etc.).
 // Missing entries here surface as FORBIDDEN "Invalid origin".
 const trustedOrigins: string[] = explicitBaseURL
-  ? [explicitBaseURL, ...LOCAL_DEV_ORIGINS]
+  ? [explicitBaseURL, "https://appleid.apple.com", ...LOCAL_DEV_ORIGINS]
   : [
       // Host wildcards (matched against Origin's host)
       ...previewAllowedHosts,
@@ -175,12 +177,96 @@ const grokOAuthPlugin = authConfigured
     })
   : null;
 
+// ── First-party social sign-in (Google, Apple) ──────────────────────────────
+// Direct Better Auth social providers with this app's OWN OAuth clients
+// (created Oct 2026 in Google Cloud project waha-auth and Apple team HQRPK78BRV).
+// Each is enabled only when its env vars are present, so preview/local builds
+// without the secrets simply hide the button (see availability.server.ts).
+const googleClientId = env("GOOGLE_CLIENT_ID");
+const googleClientSecret = env("GOOGLE_CLIENT_SECRET");
+export const googleConfigured = Boolean(googleClientId && googleClientSecret);
+
+const appleClientId = env("APPLE_CLIENT_ID"); // Services ID, e.g. com.alhajda.waha.web
+const appleTeamId = env("APPLE_TEAM_ID");
+const appleKeyId = env("APPLE_KEY_ID");
+const applePrivateKey = env("APPLE_PRIVATE_KEY")?.replace(/\\n/g, "\n");
+export const appleConfigured = Boolean(appleClientId && appleTeamId && appleKeyId && applePrivateKey);
+
+/**
+ * Apple's "client secret" is an ES256 JWT signed with the Sign in with Apple
+ * key, valid for at most 6 months. Minting it at cold start (150-day expiry)
+ * means it never needs manual rotation.
+ */
+function appleClientSecret(): string | undefined {
+  if (!appleConfigured) return undefined;
+  try {
+    const b64 = (v: object | Buffer) =>
+      (Buffer.isBuffer(v) ? v : Buffer.from(JSON.stringify(v))).toString("base64url");
+    const now = Math.floor(Date.now() / 1000);
+    const header = { alg: "ES256", kid: appleKeyId, typ: "JWT" };
+    const payload = {
+      iss: appleTeamId,
+      iat: now,
+      exp: now + 150 * 24 * 3600,
+      aud: "https://appleid.apple.com",
+      sub: appleClientId,
+    };
+    const input = `${b64(header)}.${b64(payload)}`;
+    const signature = cryptoSign("sha256", Buffer.from(input), {
+      key: createPrivateKey(applePrivateKey as string),
+      dsaEncoding: "ieee-p1363",
+    });
+    return `${input}.${b64(signature)}`;
+  } catch (error) {
+    console.error("[auth] Apple client secret could not be minted", (error as Error).name);
+    return undefined;
+  }
+}
+const appleSecret = appleClientSecret();
+
+const socialProviders = {
+  ...(googleConfigured
+    ? {
+        google: {
+          clientId: googleClientId as string,
+          clientSecret: googleClientSecret as string,
+          scope: ["openid", "email", "profile"],
+          prompt: "select_account" as const,
+        },
+      }
+    : {}),
+  ...(appleConfigured && appleSecret
+    ? {
+        apple: {
+          clientId: appleClientId as string,
+          clientSecret: appleSecret,
+          // Lets a future native Sign in with Apple (id token for the iOS
+          // bundle) verify against the same provider.
+          appBundleIdentifier: env("APPLE_APP_BUNDLE_ID"),
+        },
+      }
+    : {}),
+};
+
+// Passkeys: the relying party is this app's public host. Without an explicit
+// public URL (preview/local) the plugin derives it from the request.
+const passkeyRp = (() => {
+  if (!explicitBaseURL) return {};
+  try {
+    const url = new URL(explicitBaseURL);
+    return { rpID: url.hostname, origin: url.origin };
+  } catch {
+    return {};
+  }
+})();
+
 export const auth = betterAuth({
   baseURL,
   // Deployed apps inject BETTER_AUTH_SECRET. Preview: process-stable secret on
   // globalThis so HMR doesn't invalidate PGLite-backed sessions (see above).
   secret: env("BETTER_AUTH_SECRET") ?? previewAuthSecret(),
   database,
+  socialProviders,
   user: {
     deleteUser: {
       enabled: true,
@@ -210,7 +296,14 @@ export const auth = betterAuth({
     encryptOAuthTokens: true,
     accountLinking: {
       enabled: true,
-      trustedProviders: [...GROK_PROVIDERS.map((p) => p.providerId), GATE_PROVIDER_ID],
+      trustedProviders: [
+        ...GROK_PROVIDERS.map((p) => p.providerId),
+        GATE_PROVIDER_ID,
+        // Google and Apple only return emails they have verified, so an
+        // existing Waha account with the same email is linked, not duplicated.
+        "google",
+        "apple",
+      ],
       // X's synthetic email is never "verified", so don't gate linking on the
       // local user's email-verified state.
       requireLocalEmailVerified: false,
@@ -293,6 +386,29 @@ export const auth = betterAuth({
     // fires when an Authorization header is present, so the cookie path
     // (deployed apps) is unaffected.
     bearer(),
+
+    // Passkeys (WebAuthn): sign in with Face ID / fingerprint / device PIN.
+    passkey({ rpName: "واحة", ...passkeyRp }),
+
+    // One-time tokens carry a session from the system browser (where Google /
+    // Apple sign-in runs for the native app) back into the app's WebView.
+    // Server-side only (see routes/api.native-auth.$.ts); hashed at rest.
+    oneTimeToken({ storeToken: "hashed", disableClientRequest: true, expiresIn: 3 }),
+
+    // Passwordless email: a 6-digit code. Enabled only when an email sender
+    // (RESEND_API_KEY + AUTH_EMAIL_FROM) is configured.
+    ...(authEmailConfigured()
+      ? [
+          emailOTP({
+            otpLength: 6,
+            expiresIn: 600,
+            allowedAttempts: 5,
+            sendVerificationOTP: async ({ email, otp, type }) => {
+              await sendAuthEmail({ to: email, ...otpEmail(otp, type) });
+            },
+          }),
+        ]
+      : []),
 
     // Bridges Better Auth's Set-Cookie into TanStack Start responses. MUST be
     // last so it runs after every other plugin's hooks.

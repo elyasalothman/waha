@@ -4,10 +4,14 @@ export function authAvailability(env: Record<string, string | undefined> = proce
   const email =
     env.VITE_AUTH_ENABLED !== "false" &&
     has(["DATABASE_URL", "BETTER_AUTH_SECRET", "BETTER_AUTH_URL"]);
+  const mailer = has(["RESEND_API_KEY", "AUTH_EMAIL_FROM"]);
   return {
     email,
     deleteAccount: email,
-    google: email && has(["GROK_AUTH_CLIENT_ID", "GROK_AUTH_CLIENT_SECRET"]),
-    passwordReset: email && has(["RESEND_API_KEY", "AUTH_EMAIL_FROM"]),
+    google: email && has(["GOOGLE_CLIENT_ID", "GOOGLE_CLIENT_SECRET"]),
+    apple: email && has(["APPLE_CLIENT_ID", "APPLE_TEAM_ID", "APPLE_KEY_ID", "APPLE_PRIVATE_KEY"]),
+    passkey: email,
+    emailOtp: email && mailer,
+    passwordReset: email && mailer,
   };
 }

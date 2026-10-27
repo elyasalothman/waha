@@ -1,6 +1,8 @@
 import { PrivacyLinks } from "@/components/privacy-links";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { HomePage } from "@/components/home-page";
+import { PasskeyCard } from "@/components/passkey-card";
+import { DesktopDownloadLink } from "@/components/desktop-download";
 export const Route = createFileRoute("/me")({
   head: () => ({
     meta: [
@@ -17,6 +19,10 @@ export const Route = createFileRoute("/me")({
       >
         ⚙ الإعدادات والتخصيص ←
       </Link>
+      <PasskeyCard />
+      <div className="mx-auto mb-5 flex max-w-3xl">
+        <DesktopDownloadLink className="flex min-h-12 w-full items-center gap-2 rounded-xl border border-border p-4 text-primary" />
+      </div>
       <PrivacyLinks />
       <HomePage />
     </>

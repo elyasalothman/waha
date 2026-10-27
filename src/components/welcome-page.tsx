@@ -13,6 +13,7 @@ import {
   GraduationCap,
 } from "lucide-react";
 import { WahaWordmark } from "@/components/brand";
+import { DesktopDownloadLink } from "@/components/desktop-download";
 
 const pillars = [
   {
@@ -124,6 +125,7 @@ export function WelcomePage() {
               <Link className="landing-secondary" to="/onboarding">
                 ابدأ وخصّص واحتك <ArrowUpLeft size={18} />
               </Link>
+              <DesktopDownloadLink />
             </div>
             <p className="landing-note">
               <ShieldCheck size={16} /> ابدأ كضيف، وخصّص واحتك متى أحببت.
@@ -264,6 +266,7 @@ export function WelcomePage() {
             <Link className="landing-secondary" to="/onboarding">
               ابدأ وخصّص واحتك
             </Link>
+            <DesktopDownloadLink />
           </div>
         </section>
       </main>

@@ -57,6 +57,7 @@ import { Route as PlayGameRouteImport } from './routes/play.$game'
 import { Route as ProIdRouteImport } from './routes/pro.$id'
 import { Route as ServiceIdRouteImport } from './routes/service.$id'
 import { Route as ApiAuthSplatRouteImport } from './routes/api.auth.$'
+import { Route as ApiNativeAuthSplatRouteImport } from './routes/api.native-auth.$'
 import { Route as BooksLibraryIdRouteImport } from './routes/books_.library.$id'
 import { Route as BooksReadBookIdRouteImport } from './routes/books_.read.$bookId'
 import { Route as ForumBoardIndexRouteImport } from './routes/forum.$board.index'
@@ -302,6 +303,11 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiNativeAuthSplatRoute = ApiNativeAuthSplatRouteImport.update({
+  id: '/api/native-auth/$',
+  path: '/api/native-auth/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BooksLibraryIdRoute = BooksLibraryIdRouteImport.update({
   id: '/books_/library/$id',
   path: '/books/library/$id',
@@ -372,6 +378,7 @@ export interface FileRoutesByFullPath {
   '/service/$id': typeof ServiceIdRoute
   '/forum/': typeof ForumIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/api/native-auth/$': typeof ApiNativeAuthSplatRoute
   '/books/library/$id': typeof BooksLibraryIdRoute
   '/books/read/$bookId': typeof BooksReadBookIdRoute
   '/forum/$board/$topicId': typeof ForumBoardTopicIdRoute
@@ -424,6 +431,7 @@ export interface FileRoutesByTo {
   '/service/$id': typeof ServiceIdRoute
   '/forum': typeof ForumIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/api/native-auth/$': typeof ApiNativeAuthSplatRoute
   '/books/library/$id': typeof BooksLibraryIdRoute
   '/books/read/$bookId': typeof BooksReadBookIdRoute
   '/forum/$board/$topicId': typeof ForumBoardTopicIdRoute
@@ -479,6 +487,7 @@ export interface FileRoutesById {
   '/service/$id': typeof ServiceIdRoute
   '/forum/': typeof ForumIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/api/native-auth/$': typeof ApiNativeAuthSplatRoute
   '/books_/library/$id': typeof BooksLibraryIdRoute
   '/books_/read/$bookId': typeof BooksReadBookIdRoute
   '/forum/$board/$topicId': typeof ForumBoardTopicIdRoute
@@ -535,6 +544,7 @@ export interface FileRouteTypes {
     | '/service/$id'
     | '/forum/'
     | '/api/auth/$'
+    | '/api/native-auth/$'
     | '/books/library/$id'
     | '/books/read/$bookId'
     | '/forum/$board/$topicId'
@@ -587,6 +597,7 @@ export interface FileRouteTypes {
     | '/service/$id'
     | '/forum'
     | '/api/auth/$'
+    | '/api/native-auth/$'
     | '/books/library/$id'
     | '/books/read/$bookId'
     | '/forum/$board/$topicId'
@@ -641,6 +652,7 @@ export interface FileRouteTypes {
     | '/service/$id'
     | '/forum/'
     | '/api/auth/$'
+    | '/api/native-auth/$'
     | '/books_/library/$id'
     | '/books_/read/$bookId'
     | '/forum/$board/$topicId'
@@ -694,6 +706,7 @@ export interface RootRouteChildren {
   ProIdRoute: typeof ProIdRoute
   ServiceIdRoute: typeof ServiceIdRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
+  ApiNativeAuthSplatRoute: typeof ApiNativeAuthSplatRoute
   BooksLibraryIdRoute: typeof BooksLibraryIdRoute
   BooksReadBookIdRoute: typeof BooksReadBookIdRoute
 }
@@ -1036,6 +1049,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/native-auth/$': {
+      id: '/api/native-auth/$'
+      path: '/api/native-auth/$'
+      fullPath: '/api/native-auth/$'
+      preLoaderRoute: typeof ApiNativeAuthSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/books_/library/$id': {
       id: '/books_/library/$id'
       path: '/books/library/$id'
@@ -1140,6 +1160,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProIdRoute: ProIdRoute,
   ServiceIdRoute: ServiceIdRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
+  ApiNativeAuthSplatRoute: ApiNativeAuthSplatRoute,
   BooksLibraryIdRoute: BooksLibraryIdRoute,
   BooksReadBookIdRoute: BooksReadBookIdRoute,
 }

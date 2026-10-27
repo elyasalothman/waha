@@ -31,6 +31,7 @@
     "test:app": "node --experimental-strip-types --test 'src/lib/**/*.test.ts'"
   },
   "dependencies": {
+    "@better-auth/passkey": "1.6.30",
     "@capacitor/android": "^7.6.9",
     "@capacitor/app": "^7.1.2",
     "@capacitor/browser": "^7.0.5",
