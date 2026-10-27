@@ -1,0 +1,197 @@
+{
+  "date": "2026-10-27T09:10:39.955Z",
+  "rows": [
+    {
+      "url": "https://hissati.alhajda.com/explore",
+      "result": "200 https://hissati.alhajda.com/explore"
+    },
+    {
+      "url": "https://wiki.alhajda.com",
+      "result": "200 https://wiki.alhajda.com/"
+    },
+    {
+      "url": "https://lab.alhajda.com/research/",
+      "result": "200 https://lab.alhajda.com/research/"
+    },
+    {
+      "url": "https://lab.alhajda.com/skills/",
+      "result": "200 https://lab.alhajda.com/skills/"
+    },
+    {
+      "url": "https://news.alhajda.com/articles",
+      "result": "200 https://news.alhajda.com/articles"
+    },
+    {
+      "url": "https://market.alhajda.com",
+      "result": "200 https://market.alhajda.com/"
+    },
+    {
+      "url": "https://market.alhajda.com/us",
+      "result": "200 https://market.alhajda.com/us"
+    },
+    {
+      "url": "https://market.alhajda.com/bot",
+      "result": "200 https://market.alhajda.com/bot"
+    },
+    {
+      "url": "https://lab.alhajda.com/math/",
+      "result": "200 https://lab.alhajda.com/math/"
+    },
+    {
+      "url": "https://lab.alhajda.com/wadhifati/",
+      "result": "200 https://lab.alhajda.com/wadhifati/"
+    },
+    {
+      "url": "https://phones.alhajda.com",
+      "result": "200 https://phones.alhajda.com/"
+    },
+    {
+      "url": "https://bench.alhajda.com",
+      "result": "200 https://bench.alhajda.com/"
+    },
+    {
+      "url": "https://hayat.alhajda.com",
+      "result": "200 https://hayat.alhajda.com/"
+    },
+    {
+      "url": "https://games.alhajda.com/mamalik",
+      "result": "200 https://games.alhajda.com/mamalik/"
+    },
+    {
+      "url": "https://store.alhajda.com",
+      "result": "200 https://store.alhajda.com/"
+    },
+    {
+      "url": "https://news.alhajda.com/api/analysts",
+      "result": "200 https://news.alhajda.com/api/analysts"
+    },
+    {
+      "url": "https://news.alhajda.com/api/analysts/roster",
+      "result": "200 https://news.alhajda.com/api/analysts/roster"
+    },
+    {
+      "url": "https://wiki.alhajda.com/api/search?q=saudi",
+      "result": "200 https://wiki.alhajda.com/api/search?q=saudi"
+    },
+    {
+      "url": "https://si.alhajda.com/api/mm/quota",
+      "result": "200 https://si.alhajda.com/api/mm/quota"
+    },
+    {
+      "origin": "https://waha.hajdah.com",
+      "path": "/api/mm/analyze",
+      "headers": [
+        "HTTP/1.1 200 Connection Established",
+        "HTTP/2 204 ",
+        "access-control-allow-origin: https://waha.hajdah.com",
+        "vary: Origin",
+        "access-control-allow-headers: content-type",
+        "access-control-allow-methods: GET, POST, OPTIONS"
+      ]
+    },
+    {
+      "origin": "https://waha.hajdah.com",
+      "path": "/api/haqqiq/cv",
+      "headers": [
+        "HTTP/1.1 200 Connection Established",
+        "HTTP/2 204 ",
+        "access-control-allow-origin: https://waha.hajdah.com",
+        "vary: Origin",
+        "access-control-allow-headers: content-type",
+        "access-control-allow-methods: POST, OPTIONS"
+      ]
+    },
+    {
+      "origin": "https://waha.alhajda.com",
+      "path": "/api/mm/analyze",
+      "headers": [
+        "HTTP/1.1 200 Connection Established",
+        "HTTP/2 204 ",
+        "access-control-allow-origin: https://waha.alhajda.com",
+        "vary: Origin",
+        "access-control-allow-headers: content-type",
+        "access-control-allow-methods: GET, POST, OPTIONS"
+      ]
+    },
+    {
+      "origin": "https://waha.alhajda.com",
+      "path": "/api/haqqiq/cv",
+      "headers": [
+        "HTTP/1.1 200 Connection Established",
+        "HTTP/2 204 ",
+        "access-control-allow-origin: https://waha.alhajda.com",
+        "vary: Origin",
+        "access-control-allow-headers: content-type",
+        "access-control-allow-methods: POST, OPTIONS"
+      ]
+    },
+    {
+      "origin": "capacitor://localhost",
+      "path": "/api/mm/analyze",
+      "headers": [
+        "HTTP/1.1 200 Connection Established",
+        "HTTP/2 204 ",
+        "access-control-allow-origin: capacitor://localhost",
+        "vary: Origin",
+        "access-control-allow-headers: content-type",
+        "access-control-allow-methods: GET, POST, OPTIONS"
+      ]
+    },
+    {
+      "origin": "capacitor://localhost",
+      "path": "/api/haqqiq/cv",
+      "headers": [
+        "HTTP/1.1 200 Connection Established",
+        "HTTP/2 204 ",
+        "access-control-allow-origin: capacitor://localhost",
+        "vary: Origin",
+        "access-control-allow-headers: content-type",
+        "access-control-allow-methods: POST, OPTIONS"
+      ]
+    },
+    {
+      "origin": "https://localhost",
+      "path": "/api/mm/analyze",
+      "headers": [
+        "HTTP/1.1 200 Connection Established",
+        "HTTP/2 204 ",
+        "access-control-allow-origin: https://localhost",
+        "vary: Origin",
+        "access-control-allow-headers: content-type",
+        "access-control-allow-methods: GET, POST, OPTIONS"
+      ]
+    },
+    {
+      "origin": "https://localhost",
+      "path": "/api/haqqiq/cv",
+      "headers": [
+        "HTTP/1.1 200 Connection Established",
+        "HTTP/2 204 ",
+        "access-control-allow-origin: https://localhost",
+        "vary: Origin",
+        "access-control-allow-headers: content-type",
+        "access-control-allow-methods: POST, OPTIONS"
+      ]
+    },
+    {
+      "origin": "http://localhost:8082",
+      "path": "/api/mm/analyze",
+      "headers": [
+        "HTTP/1.1 200 Connection Established",
+        "HTTP/2 204 ",
+        "access-control-allow-origin: https://si.alhajda.com",
+        "vary: Origin",
+        "access-control-allow-headers: content-type",
+        "access-control-allow-methods: GET, POST, OPTIONS"
+      ]
+    },
+    {
+      "origin": "http://localhost:8082",
+      "path": "/api/haqqiq/cv",
+      "headers": [
+        "HTTP/1.1 200 Connection Established",
+        "HTTP/2 204 "
+      ]
+    }
+  ]
+}

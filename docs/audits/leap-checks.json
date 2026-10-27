@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-27",
+  "base": "5db01feab6e99ccad3226489fee97ae9f723a7f4",
+  "commands": [
+    {
+      "command": "npm test",
+      "exit": 0,
+      "scripts": {
+        "pass": 212,
+        "skipped": 4,
+        "fail": 0
+      },
+      "app": {
+        "pass": 545,
+        "fail": 0
+      }
+    },
+    {
+      "command": "NODE_OPTIONS=--max-old-space-size=512 npm run lint",
+      "exit": 0,
+      "errors": 0,
+      "existingWarnings": 24
+    },
+    {
+      "command": "NODE_OPTIONS=--max-old-space-size=1024 npm run typecheck",
+      "exit": 0
+    },
+    {
+      "command": "NODE_OPTIONS=--max-old-space-size=1024 npm run build",
+      "exit": 0
+    },
+    {
+      "command": "node --test scripts/android-shell.test.mjs",
+      "exit": 0
+    }
+  ],
+  "browser": {
+    "local": "leap-local-final.json",
+    "checks": 37,
+    "fail": 0,
+    "pageerror": 0,
+    "consoleErrors": 0,
+    "touchFailures": 0
+  },
+  "supplement": "leap-supplement.json",
+  "sources": "leap-sources.json",
+  "limitations": [
+    "No iOS/Android device, VoiceOver, microphone or notification delivery test.",
+    "No AAB, store upload, account creation, real account deletion, new key or paid service.",
+    "Clip compositing tested with three synthetic images; no remote three-image generation quota consumed.",
+    "Initial failed/partial local passes preserved separately."
+  ],
+  "lighthouse": {
+    "performance": 92,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 100,
+    "lcpMs": 2053.8075,
+    "cls": 0.009744864823406585
+  }
+}

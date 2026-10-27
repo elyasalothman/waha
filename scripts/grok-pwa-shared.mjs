@@ -193,9 +193,9 @@ export function renderWebManifest(_hostHeader) {
       description: "مساحة عربية للقراءة والأدوات والألعاب ومحسن في يومك",
       categories: ["productivity", "education", "utilities"],
       shortcuts: [
-        { name: "اسأل محسن", url: "/?agent=open" },
+        { name: "اسأل محسن", url: "/mohsen" },
         { name: "الكتب", url: "/books" },
-        { name: "الأدوات", url: "/tools" },
+        { name: "الخدمات", url: "/services" },
       ],
     },
     null,

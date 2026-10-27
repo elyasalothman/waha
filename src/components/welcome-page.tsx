@@ -1,3 +1,4 @@
+import { PrivacyLinks } from "@/components/privacy-links";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowUpLeft,
@@ -267,6 +268,7 @@ export function WelcomePage() {
         </section>
       </main>
       <footer className="landing-footer">
+        <PrivacyLinks />
         <WahaWordmark lang="ar" />
         <p>من بيت الهجدة · صُنعت لتكون قريبة منك.</p>
         <Link to="/onboarding">

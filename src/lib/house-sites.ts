@@ -1,7 +1,9 @@
+import { LEAP_SERVICES, type SectionId } from "./leap-services.ts";
 /** Official Alhajda house index and full-site source URLs. */
 export const ALHAJDA_SITES_INDEX = "https://alhajda.com/sites";
 
 export type HouseSiteId =
+  | SectionId
   | "tahajjud"
   | "midad"
   | "sites"
@@ -51,6 +53,21 @@ type HouseSiteDraft = Omit<HouseSite, "host">;
  * Waha provides internal features where supported.
  */
 const HOUSE_SITE_DRAFTS: readonly HouseSiteDraft[] = [
+  ...LEAP_SERVICES.filter(
+    (s) => s.href.startsWith("https://") && !["market-sa", "hayat-live"].includes(s.id),
+  ).map((s) => ({
+    id: s.id,
+    href: s.href,
+    icon: s.icon,
+    title: { ar: s.title, en: s.title },
+    blurb: { ar: s.words, en: s.words },
+    keywords: s.words.split(" "),
+    category: "life" as const,
+    lane: "house" as const,
+    audience: BOTH,
+    launcher: false,
+    directory: true,
+  })),
   {
     id: "tahajjud",
     href: "https://tahajjud.alhajda.com",

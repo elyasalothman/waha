@@ -1,3 +1,4 @@
+import { sectionIds } from "../leap-services.ts";
 import surahs from "../quran-index.json" with { type: "json" };
 import { z } from "zod";
 import { CATALOG } from "../catalog.ts";
@@ -11,6 +12,16 @@ const tool = <T extends z.ZodType>(description: string, schema: T, changing = fa
   changing,
 });
 export const registry = {
+  market_quote: tool("سعر مرجعي مع المصدر والتاريخ", z.object({ symbol: text }).strict()),
+  open_section: tool("افتح قسمًا من خدمات الهجدة", z.object({ id: z.enum(sectionIds) }).strict()),
+  analyze_file: tool("حلّل ملفًا مرفقًا عبر محسن", empty),
+  generate_image: tool("أنشئ صورة بمحسن", z.object({ prompt: text }).strict()),
+  make_clip: tool("ركّب مقطعًا قصيرًا بمحسن", z.object({ prompt: text }).strict()),
+  haqqiq_cv: tool("حسّن سيرتك مع حقّق", empty),
+  haqqiq_interview: tool("تدرّب على المقابلة", empty),
+  haqqiq_plan: tool("ضع خطة لهدفك", empty),
+  ask_wiki: tool("اسأل موسوعة الهجدة", z.object({ q: text }).strict()),
+  math_solve: tool("حل الرياضيات محليًا أولًا", z.object({ expr: text }).strict()),
   open_app: tool(
     "افتح تطبيقًا من كتالوج واحة",
     z

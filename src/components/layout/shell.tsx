@@ -38,6 +38,8 @@ const NAV_ICON = {
   "/games": Gamepad2,
   "/tools": LayoutGrid,
   "/ask": MessageCircle,
+  "/mohsen": MessageCircle,
+  "/services": LayoutGrid,
   "/me": UserRound,
   "/more": LayoutGrid,
 } as const;
@@ -128,9 +130,7 @@ export function Shell() {
     }
   }, [pathname]);
   const nav = chromeNav(audience, segment);
-  const mobileNav = mobileChromeNav(audience, segment).filter((item) =>
-    settings.tabs.includes(item.to as never),
-  );
+  const mobileNav = mobileChromeNav(audience, segment);
 
   useEffect(() => {
     hydrate();
@@ -273,6 +273,14 @@ export function Shell() {
           )}
           {pathname === "/today" ? <NativeReminders /> : null}
           <Outlet />
+          <footer className="mt-8 flex flex-wrap gap-4 border-t border-border py-4 text-xs text-muted">
+            <Link to="/privacy" className="min-h-11 content-center">
+              الخصوصية
+            </Link>
+            <Link to="/delete-account" className="min-h-11 content-center">
+              حذف الحساب والبيانات
+            </Link>
+          </footer>
         </main>
       </div>
 
@@ -317,7 +325,7 @@ export function Shell() {
         })}
       </nav>
 
-      {settings.agentEnabled && pathname !== "/onboarding" && (
+      {settings.agentEnabled && pathname !== "/onboarding" && pathname !== "/mohsen" && (
         <button
           aria-label="فتح محسن"
           onClick={() => setCmd(true)}

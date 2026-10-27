@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { useSettings } from "@/store/settings-store";
 import { Skeleton } from "./ui/page-state";
 import type { ArabicNews } from "@/lib/arabic-news";
-export function HomeNews() {
+export function HomeNews({ compact = false }: { compact?: boolean }) {
   const s = useSettings((x) => x.settings);
   const [data, setData] = useState<ArabicNews | null>(null),
     [failed, setFailed] = useState(false);
@@ -28,11 +28,11 @@ export function HomeNews() {
         (!s.newsTopics.length || s.newsTopics.some((topic) => topic === i.topic)) &&
         (!s.newsSources.length || s.newsSources.includes(i.source as never)),
     )
-    .slice(0, 3);
+    .slice(0, compact ? 1 : 3);
   return (
     <section
       aria-label="آخر الأخبار"
-      className="min-h-80 rounded-2xl border border-border bg-surface p-4"
+      className={`${compact ? "min-h-36" : "min-h-80"} rounded-2xl border border-border bg-surface p-4`}
     >
       <div className="flex items-center justify-between">
         <h2 className="text-lg">آخر الأخبار</h2>
@@ -42,7 +42,7 @@ export function HomeNews() {
       </div>
       {!data && !failed && (
         <div role="status" aria-label="جارٍ تحميل العناوين" className="space-y-4 py-3">
-          {[0, 1, 2].map((i) => (
+          {(compact ? [0] : [0, 1, 2]).map((i) => (
             <div key={i} className="space-y-2">
               <Skeleton className="h-5 w-full" />
               <Skeleton className="h-4 w-1/3" />

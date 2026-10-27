@@ -1,3 +1,4 @@
+import { parseMohsenReply } from "@/lib/agent/mohsen";
 import { createFileRoute } from "@tanstack/react-router";
 import { MOHSEN_BODY_LIMIT, MOHSEN_MESSAGE_LIMIT, mohsenHistory } from "@/lib/mohsen-request";
 export const Route = createFileRoute("/api/mohsen")({
@@ -22,7 +23,7 @@ export const Route = createFileRoute("/api/mohsen")({
               { error: "اكتب سؤالًا بين حرف واحد و٨٠٠٠ حرف" },
               { status: 400, headers },
             );
-          const history = mohsenHistory(body.messages);
+          const history = mohsenHistory(body.messages).slice(-2);
           const r = await fetch("https://si.alhajda.com/api/chat", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -34,11 +35,7 @@ export const Route = createFileRoute("/api/mohsen")({
           if (typeof result.reply !== "string" || !result.reply.trim()) throw new Error("response");
           return Response.json(
             {
-              reply: result.reply.slice(0, 16000),
-              source:
-                typeof result.source === "string" && result.source.startsWith("https://")
-                  ? result.source
-                  : null,
+              ...parseMohsenReply(result),
             },
             { headers },
           );

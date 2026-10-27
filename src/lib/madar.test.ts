@@ -1,3 +1,4 @@
+import { LEAP_SERVICES } from "./leap-services.ts";
 import { readFileSync } from "node:fs";
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
@@ -66,6 +67,9 @@ describe("matchHouseSites", () => {
     assert.deepEqual(
       matchHouseSites("").map((s) => s.id),
       [
+        ...LEAP_SERVICES.filter(
+          (s) => s.href.startsWith("https://") && !["market-sa", "hayat-live"].includes(s.id),
+        ).map((s) => s.id),
         "tahajjud",
         "midad",
         "sites",

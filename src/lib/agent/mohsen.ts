@@ -33,7 +33,13 @@ export function parseMohsenReply(raw: unknown) {
   return {
     reply: result.reply.trim(),
     citations,
-    verified: citations.length > 0,
+    verified:
+      citations.length > 0 &&
+      (result.verified === true ||
+        (result.evidence !== null &&
+          typeof result.evidence === "object" &&
+          "origin" in result.evidence &&
+          ["web_retrieval", "owned_content"].includes(String(result.evidence.origin)))),
     source: typeof result.source === "string" ? result.source.slice(0, 500) : undefined,
     evidence:
       typeof result.evidence === "string"

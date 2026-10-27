@@ -11,21 +11,26 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AnalystsRouteImport } from './routes/analysts'
 import { Route as AskRouteImport } from './routes/ask'
 import { Route as BooksRouteImport } from './routes/books'
 import { Route as ClipsRouteImport } from './routes/clips'
 import { Route as CompareRouteImport } from './routes/compare'
+import { Route as DeleteAccountRouteImport } from './routes/delete-account'
 import { Route as ForumRouteImport } from './routes/forum'
 import { Route as GamesRouteImport } from './routes/games'
 import { Route as LifeRouteImport } from './routes/life'
 import { Route as MadarRouteImport } from './routes/madar'
 import { Route as MeRouteImport } from './routes/me'
+import { Route as MohsenRouteImport } from './routes/mohsen'
 import { Route as MoneyRouteImport } from './routes/money'
 import { Route as MoreRouteImport } from './routes/more'
 import { Route as NewsRouteImport } from './routes/news'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as QuranRouteImport } from './routes/quran'
 import { Route as RegisterRouteImport } from './routes/register'
+import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as StoreRouteImport } from './routes/store'
 import { Route as StudioRouteImport } from './routes/studio'
@@ -36,10 +41,13 @@ import { Route as WelcomeRouteImport } from './routes/welcome'
 import { Route as WorkspaceRouteImport } from './routes/workspace'
 import { Route as WorshipRouteImport } from './routes/worship'
 import { Route as ApiAgentRouteImport } from './routes/api.agent'
+import { Route as ApiAnalystsRouteImport } from './routes/api.analysts'
 import { Route as ApiAuthStatusRouteImport } from './routes/api.auth-status'
 import { Route as ApiBooksRouteImport } from './routes/api.books'
+import { Route as ApiHomeWeatherRouteImport } from './routes/api.home-weather'
 import { Route as ApiMarketRouteImport } from './routes/api.market'
 import { Route as ApiMohsenRouteImport } from './routes/api.mohsen'
+import { Route as ApiServiceDataRouteImport } from './routes/api.service-data'
 import { Route as AppIdRouteImport } from './routes/app.$id'
 import { Route as BooksAlhajdaRouteImport } from './routes/books_.alhajda'
 import { Route as BooksTradingGuideRouteImport } from './routes/books_.trading-guide'
@@ -47,6 +55,7 @@ import { Route as ForumIndexRouteImport } from './routes/forum.index'
 import { Route as ForumBoardRouteImport } from './routes/forum.$board'
 import { Route as PlayGameRouteImport } from './routes/play.$game'
 import { Route as ProIdRouteImport } from './routes/pro.$id'
+import { Route as ServiceIdRouteImport } from './routes/service.$id'
 import { Route as ApiAuthSplatRouteImport } from './routes/api.auth.$'
 import { Route as BooksLibraryIdRouteImport } from './routes/books_.library.$id'
 import { Route as BooksReadBookIdRouteImport } from './routes/books_.read.$bookId'
@@ -61,6 +70,11 @@ const IndexRoute = IndexRouteImport.update({
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnalystsRoute = AnalystsRouteImport.update({
+  id: '/analysts',
+  path: '/analysts',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AskRoute = AskRouteImport.update({
@@ -81,6 +95,11 @@ const ClipsRoute = ClipsRouteImport.update({
 const CompareRoute = CompareRouteImport.update({
   id: '/compare',
   path: '/compare',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeleteAccountRoute = DeleteAccountRouteImport.update({
+  id: '/delete-account',
+  path: '/delete-account',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ForumRoute = ForumRouteImport.update({
@@ -108,6 +127,11 @@ const MeRoute = MeRouteImport.update({
   path: '/me',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MohsenRoute = MohsenRouteImport.update({
+  id: '/mohsen',
+  path: '/mohsen',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MoneyRoute = MoneyRouteImport.update({
   id: '/money',
   path: '/money',
@@ -128,6 +152,11 @@ const OnboardingRoute = OnboardingRouteImport.update({
   path: '/onboarding',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const QuranRoute = QuranRouteImport.update({
   id: '/quran',
   path: '/quran',
@@ -136,6 +165,11 @@ const QuranRoute = QuranRouteImport.update({
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
   path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SettingsRoute = SettingsRouteImport.update({
@@ -188,6 +222,11 @@ const ApiAgentRoute = ApiAgentRouteImport.update({
   path: '/api/agent',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiAnalystsRoute = ApiAnalystsRouteImport.update({
+  id: '/api/analysts',
+  path: '/api/analysts',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiAuthStatusRoute = ApiAuthStatusRouteImport.update({
   id: '/api/auth-status',
   path: '/api/auth-status',
@@ -198,6 +237,11 @@ const ApiBooksRoute = ApiBooksRouteImport.update({
   path: '/api/books',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiHomeWeatherRoute = ApiHomeWeatherRouteImport.update({
+  id: '/api/home-weather',
+  path: '/api/home-weather',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiMarketRoute = ApiMarketRouteImport.update({
   id: '/api/market',
   path: '/api/market',
@@ -206,6 +250,11 @@ const ApiMarketRoute = ApiMarketRouteImport.update({
 const ApiMohsenRoute = ApiMohsenRouteImport.update({
   id: '/api/mohsen',
   path: '/api/mohsen',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiServiceDataRoute = ApiServiceDataRouteImport.update({
+  id: '/api/service-data',
+  path: '/api/service-data',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppIdRoute = AppIdRouteImport.update({
@@ -243,6 +292,11 @@ const ProIdRoute = ProIdRouteImport.update({
   path: '/pro/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServiceIdRoute = ServiceIdRouteImport.update({
+  id: '/service/$id',
+  path: '/service/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
@@ -272,21 +326,26 @@ const ForumBoardTopicIdRoute = ForumBoardTopicIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/analysts': typeof AnalystsRoute
   '/ask': typeof AskRoute
   '/books': typeof BooksRoute
   '/clips': typeof ClipsRoute
   '/compare': typeof CompareRoute
+  '/delete-account': typeof DeleteAccountRoute
   '/forum': typeof ForumRouteWithChildren
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
   '/madar': typeof MadarRoute
   '/me': typeof MeRoute
+  '/mohsen': typeof MohsenRoute
   '/money': typeof MoneyRoute
   '/more': typeof MoreRoute
   '/news': typeof NewsRoute
   '/onboarding': typeof OnboardingRoute
+  '/privacy': typeof PrivacyRoute
   '/quran': typeof QuranRoute
   '/register': typeof RegisterRoute
+  '/services': typeof ServicesRoute
   '/settings': typeof SettingsRoute
   '/store': typeof StoreRoute
   '/studio': typeof StudioRoute
@@ -297,16 +356,20 @@ export interface FileRoutesByFullPath {
   '/workspace': typeof WorkspaceRoute
   '/worship': typeof WorshipRoute
   '/api/agent': typeof ApiAgentRoute
+  '/api/analysts': typeof ApiAnalystsRoute
   '/api/auth-status': typeof ApiAuthStatusRoute
   '/api/books': typeof ApiBooksRoute
+  '/api/home-weather': typeof ApiHomeWeatherRoute
   '/api/market': typeof ApiMarketRoute
   '/api/mohsen': typeof ApiMohsenRoute
+  '/api/service-data': typeof ApiServiceDataRoute
   '/app/$id': typeof AppIdRoute
   '/books/alhajda': typeof BooksAlhajdaRoute
   '/books/trading-guide': typeof BooksTradingGuideRoute
   '/forum/$board': typeof ForumBoardRouteWithChildren
   '/play/$game': typeof PlayGameRoute
   '/pro/$id': typeof ProIdRoute
+  '/service/$id': typeof ServiceIdRoute
   '/forum/': typeof ForumIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/books/library/$id': typeof BooksLibraryIdRoute
@@ -317,20 +380,25 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/analysts': typeof AnalystsRoute
   '/ask': typeof AskRoute
   '/books': typeof BooksRoute
   '/clips': typeof ClipsRoute
   '/compare': typeof CompareRoute
+  '/delete-account': typeof DeleteAccountRoute
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
   '/madar': typeof MadarRoute
   '/me': typeof MeRoute
+  '/mohsen': typeof MohsenRoute
   '/money': typeof MoneyRoute
   '/more': typeof MoreRoute
   '/news': typeof NewsRoute
   '/onboarding': typeof OnboardingRoute
+  '/privacy': typeof PrivacyRoute
   '/quran': typeof QuranRoute
   '/register': typeof RegisterRoute
+  '/services': typeof ServicesRoute
   '/settings': typeof SettingsRoute
   '/store': typeof StoreRoute
   '/studio': typeof StudioRoute
@@ -341,15 +409,19 @@ export interface FileRoutesByTo {
   '/workspace': typeof WorkspaceRoute
   '/worship': typeof WorshipRoute
   '/api/agent': typeof ApiAgentRoute
+  '/api/analysts': typeof ApiAnalystsRoute
   '/api/auth-status': typeof ApiAuthStatusRoute
   '/api/books': typeof ApiBooksRoute
+  '/api/home-weather': typeof ApiHomeWeatherRoute
   '/api/market': typeof ApiMarketRoute
   '/api/mohsen': typeof ApiMohsenRoute
+  '/api/service-data': typeof ApiServiceDataRoute
   '/app/$id': typeof AppIdRoute
   '/books/alhajda': typeof BooksAlhajdaRoute
   '/books/trading-guide': typeof BooksTradingGuideRoute
   '/play/$game': typeof PlayGameRoute
   '/pro/$id': typeof ProIdRoute
+  '/service/$id': typeof ServiceIdRoute
   '/forum': typeof ForumIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/books/library/$id': typeof BooksLibraryIdRoute
@@ -361,21 +433,26 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/analysts': typeof AnalystsRoute
   '/ask': typeof AskRoute
   '/books': typeof BooksRoute
   '/clips': typeof ClipsRoute
   '/compare': typeof CompareRoute
+  '/delete-account': typeof DeleteAccountRoute
   '/forum': typeof ForumRouteWithChildren
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
   '/madar': typeof MadarRoute
   '/me': typeof MeRoute
+  '/mohsen': typeof MohsenRoute
   '/money': typeof MoneyRoute
   '/more': typeof MoreRoute
   '/news': typeof NewsRoute
   '/onboarding': typeof OnboardingRoute
+  '/privacy': typeof PrivacyRoute
   '/quran': typeof QuranRoute
   '/register': typeof RegisterRoute
+  '/services': typeof ServicesRoute
   '/settings': typeof SettingsRoute
   '/store': typeof StoreRoute
   '/studio': typeof StudioRoute
@@ -386,16 +463,20 @@ export interface FileRoutesById {
   '/workspace': typeof WorkspaceRoute
   '/worship': typeof WorshipRoute
   '/api/agent': typeof ApiAgentRoute
+  '/api/analysts': typeof ApiAnalystsRoute
   '/api/auth-status': typeof ApiAuthStatusRoute
   '/api/books': typeof ApiBooksRoute
+  '/api/home-weather': typeof ApiHomeWeatherRoute
   '/api/market': typeof ApiMarketRoute
   '/api/mohsen': typeof ApiMohsenRoute
+  '/api/service-data': typeof ApiServiceDataRoute
   '/app/$id': typeof AppIdRoute
   '/books_/alhajda': typeof BooksAlhajdaRoute
   '/books_/trading-guide': typeof BooksTradingGuideRoute
   '/forum/$board': typeof ForumBoardRouteWithChildren
   '/play/$game': typeof PlayGameRoute
   '/pro/$id': typeof ProIdRoute
+  '/service/$id': typeof ServiceIdRoute
   '/forum/': typeof ForumIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/books_/library/$id': typeof BooksLibraryIdRoute
@@ -408,21 +489,26 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/admin'
+    | '/analysts'
     | '/ask'
     | '/books'
     | '/clips'
     | '/compare'
+    | '/delete-account'
     | '/forum'
     | '/games'
     | '/life'
     | '/madar'
     | '/me'
+    | '/mohsen'
     | '/money'
     | '/more'
     | '/news'
     | '/onboarding'
+    | '/privacy'
     | '/quran'
     | '/register'
+    | '/services'
     | '/settings'
     | '/store'
     | '/studio'
@@ -433,16 +519,20 @@ export interface FileRouteTypes {
     | '/workspace'
     | '/worship'
     | '/api/agent'
+    | '/api/analysts'
     | '/api/auth-status'
     | '/api/books'
+    | '/api/home-weather'
     | '/api/market'
     | '/api/mohsen'
+    | '/api/service-data'
     | '/app/$id'
     | '/books/alhajda'
     | '/books/trading-guide'
     | '/forum/$board'
     | '/play/$game'
     | '/pro/$id'
+    | '/service/$id'
     | '/forum/'
     | '/api/auth/$'
     | '/books/library/$id'
@@ -453,20 +543,25 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/admin'
+    | '/analysts'
     | '/ask'
     | '/books'
     | '/clips'
     | '/compare'
+    | '/delete-account'
     | '/games'
     | '/life'
     | '/madar'
     | '/me'
+    | '/mohsen'
     | '/money'
     | '/more'
     | '/news'
     | '/onboarding'
+    | '/privacy'
     | '/quran'
     | '/register'
+    | '/services'
     | '/settings'
     | '/store'
     | '/studio'
@@ -477,15 +572,19 @@ export interface FileRouteTypes {
     | '/workspace'
     | '/worship'
     | '/api/agent'
+    | '/api/analysts'
     | '/api/auth-status'
     | '/api/books'
+    | '/api/home-weather'
     | '/api/market'
     | '/api/mohsen'
+    | '/api/service-data'
     | '/app/$id'
     | '/books/alhajda'
     | '/books/trading-guide'
     | '/play/$game'
     | '/pro/$id'
+    | '/service/$id'
     | '/forum'
     | '/api/auth/$'
     | '/books/library/$id'
@@ -496,21 +595,26 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/admin'
+    | '/analysts'
     | '/ask'
     | '/books'
     | '/clips'
     | '/compare'
+    | '/delete-account'
     | '/forum'
     | '/games'
     | '/life'
     | '/madar'
     | '/me'
+    | '/mohsen'
     | '/money'
     | '/more'
     | '/news'
     | '/onboarding'
+    | '/privacy'
     | '/quran'
     | '/register'
+    | '/services'
     | '/settings'
     | '/store'
     | '/studio'
@@ -521,16 +625,20 @@ export interface FileRouteTypes {
     | '/workspace'
     | '/worship'
     | '/api/agent'
+    | '/api/analysts'
     | '/api/auth-status'
     | '/api/books'
+    | '/api/home-weather'
     | '/api/market'
     | '/api/mohsen'
+    | '/api/service-data'
     | '/app/$id'
     | '/books_/alhajda'
     | '/books_/trading-guide'
     | '/forum/$board'
     | '/play/$game'
     | '/pro/$id'
+    | '/service/$id'
     | '/forum/'
     | '/api/auth/$'
     | '/books_/library/$id'
@@ -542,21 +650,26 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
+  AnalystsRoute: typeof AnalystsRoute
   AskRoute: typeof AskRoute
   BooksRoute: typeof BooksRoute
   ClipsRoute: typeof ClipsRoute
   CompareRoute: typeof CompareRoute
+  DeleteAccountRoute: typeof DeleteAccountRoute
   ForumRoute: typeof ForumRouteWithChildren
   GamesRoute: typeof GamesRoute
   LifeRoute: typeof LifeRoute
   MadarRoute: typeof MadarRoute
   MeRoute: typeof MeRoute
+  MohsenRoute: typeof MohsenRoute
   MoneyRoute: typeof MoneyRoute
   MoreRoute: typeof MoreRoute
   NewsRoute: typeof NewsRoute
   OnboardingRoute: typeof OnboardingRoute
+  PrivacyRoute: typeof PrivacyRoute
   QuranRoute: typeof QuranRoute
   RegisterRoute: typeof RegisterRoute
+  ServicesRoute: typeof ServicesRoute
   SettingsRoute: typeof SettingsRoute
   StoreRoute: typeof StoreRoute
   StudioRoute: typeof StudioRoute
@@ -567,15 +680,19 @@ export interface RootRouteChildren {
   WorkspaceRoute: typeof WorkspaceRoute
   WorshipRoute: typeof WorshipRoute
   ApiAgentRoute: typeof ApiAgentRoute
+  ApiAnalystsRoute: typeof ApiAnalystsRoute
   ApiAuthStatusRoute: typeof ApiAuthStatusRoute
   ApiBooksRoute: typeof ApiBooksRoute
+  ApiHomeWeatherRoute: typeof ApiHomeWeatherRoute
   ApiMarketRoute: typeof ApiMarketRoute
   ApiMohsenRoute: typeof ApiMohsenRoute
+  ApiServiceDataRoute: typeof ApiServiceDataRoute
   AppIdRoute: typeof AppIdRoute
   BooksAlhajdaRoute: typeof BooksAlhajdaRoute
   BooksTradingGuideRoute: typeof BooksTradingGuideRoute
   PlayGameRoute: typeof PlayGameRoute
   ProIdRoute: typeof ProIdRoute
+  ServiceIdRoute: typeof ServiceIdRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   BooksLibraryIdRoute: typeof BooksLibraryIdRoute
   BooksReadBookIdRoute: typeof BooksReadBookIdRoute
@@ -595,6 +712,13 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin'
       preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/analysts': {
+      id: '/analysts'
+      path: '/analysts'
+      fullPath: '/analysts'
+      preLoaderRoute: typeof AnalystsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ask': {
@@ -623,6 +747,13 @@ declare module '@tanstack/react-router' {
       path: '/compare'
       fullPath: '/compare'
       preLoaderRoute: typeof CompareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/delete-account': {
+      id: '/delete-account'
+      path: '/delete-account'
+      fullPath: '/delete-account'
+      preLoaderRoute: typeof DeleteAccountRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/forum': {
@@ -660,6 +791,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mohsen': {
+      id: '/mohsen'
+      path: '/mohsen'
+      fullPath: '/mohsen'
+      preLoaderRoute: typeof MohsenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/money': {
       id: '/money'
       path: '/money'
@@ -688,6 +826,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/quran': {
       id: '/quran'
       path: '/quran'
@@ -700,6 +845,13 @@ declare module '@tanstack/react-router' {
       path: '/register'
       fullPath: '/register'
       preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/settings': {
@@ -772,6 +924,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAgentRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/analysts': {
+      id: '/api/analysts'
+      path: '/api/analysts'
+      fullPath: '/api/analysts'
+      preLoaderRoute: typeof ApiAnalystsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/auth-status': {
       id: '/api/auth-status'
       path: '/api/auth-status'
@@ -786,6 +945,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiBooksRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/home-weather': {
+      id: '/api/home-weather'
+      path: '/api/home-weather'
+      fullPath: '/api/home-weather'
+      preLoaderRoute: typeof ApiHomeWeatherRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/market': {
       id: '/api/market'
       path: '/api/market'
@@ -798,6 +964,13 @@ declare module '@tanstack/react-router' {
       path: '/api/mohsen'
       fullPath: '/api/mohsen'
       preLoaderRoute: typeof ApiMohsenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/service-data': {
+      id: '/api/service-data'
+      path: '/api/service-data'
+      fullPath: '/api/service-data'
+      preLoaderRoute: typeof ApiServiceDataRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/app/$id': {
@@ -847,6 +1020,13 @@ declare module '@tanstack/react-router' {
       path: '/pro/$id'
       fullPath: '/pro/$id'
       preLoaderRoute: typeof ProIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/service/$id': {
+      id: '/service/$id'
+      path: '/service/$id'
+      fullPath: '/service/$id'
+      preLoaderRoute: typeof ServiceIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/auth/$': {
@@ -916,21 +1096,26 @@ const ForumRouteWithChildren = ForumRoute._addFileChildren(ForumRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
+  AnalystsRoute: AnalystsRoute,
   AskRoute: AskRoute,
   BooksRoute: BooksRoute,
   ClipsRoute: ClipsRoute,
   CompareRoute: CompareRoute,
+  DeleteAccountRoute: DeleteAccountRoute,
   ForumRoute: ForumRouteWithChildren,
   GamesRoute: GamesRoute,
   LifeRoute: LifeRoute,
   MadarRoute: MadarRoute,
   MeRoute: MeRoute,
+  MohsenRoute: MohsenRoute,
   MoneyRoute: MoneyRoute,
   MoreRoute: MoreRoute,
   NewsRoute: NewsRoute,
   OnboardingRoute: OnboardingRoute,
+  PrivacyRoute: PrivacyRoute,
   QuranRoute: QuranRoute,
   RegisterRoute: RegisterRoute,
+  ServicesRoute: ServicesRoute,
   SettingsRoute: SettingsRoute,
   StoreRoute: StoreRoute,
   StudioRoute: StudioRoute,
@@ -941,15 +1126,19 @@ const rootRouteChildren: RootRouteChildren = {
   WorkspaceRoute: WorkspaceRoute,
   WorshipRoute: WorshipRoute,
   ApiAgentRoute: ApiAgentRoute,
+  ApiAnalystsRoute: ApiAnalystsRoute,
   ApiAuthStatusRoute: ApiAuthStatusRoute,
   ApiBooksRoute: ApiBooksRoute,
+  ApiHomeWeatherRoute: ApiHomeWeatherRoute,
   ApiMarketRoute: ApiMarketRoute,
   ApiMohsenRoute: ApiMohsenRoute,
+  ApiServiceDataRoute: ApiServiceDataRoute,
   AppIdRoute: AppIdRoute,
   BooksAlhajdaRoute: BooksAlhajdaRoute,
   BooksTradingGuideRoute: BooksTradingGuideRoute,
   PlayGameRoute: PlayGameRoute,
   ProIdRoute: ProIdRoute,
+  ServiceIdRoute: ServiceIdRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
   BooksLibraryIdRoute: BooksLibraryIdRoute,
   BooksReadBookIdRoute: BooksReadBookIdRoute,

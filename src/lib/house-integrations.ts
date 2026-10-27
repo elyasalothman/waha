@@ -1,5 +1,11 @@
+import { LEAP_SERVICES } from "./leap-services.ts";
 /** Every house card stays in Waha. Source URLs are metadata only. */
 export const HOUSE_INTEGRATIONS: Readonly<Record<string, string>> = {
+  ...Object.fromEntries(
+    LEAP_SERVICES.filter(
+      (s) => s.href.startsWith("https://") && !["market-sa", "hayat-live"].includes(s.id),
+    ).map((s) => [s.id, `/service/${s.id}`]),
+  ),
   tahajjud: "/worship",
   midad: "/books",
   mohsin: "/ask",
@@ -24,7 +30,18 @@ export const HOUSE_INTEGRATIONS: Readonly<Record<string, string>> = {
 
 export function internalHouseHref(href: string): string | undefined {
   try {
-    const host = new URL(href).hostname.replace(/^www\./, "");
+    const incoming = new URL(href);
+    const match = LEAP_SERVICES.find((s) => {
+      if (!s.href.startsWith("https://") || ["market-sa", "hayat-live"].includes(s.id))
+        return false;
+      const u = new URL(s.href);
+      return (
+        incoming.origin === u.origin &&
+        incoming.pathname.replace(/\/$/, "") === u.pathname.replace(/\/$/, "")
+      );
+    });
+    if (match) return HOUSE_INTEGRATIONS[match.id];
+    const host = incoming.hostname.replace(/^www\./, "");
     const ids: Record<string, string> = {
       "alhajda.com": "home",
       "hajdah.com": "studio",

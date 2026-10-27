@@ -1,3 +1,4 @@
+import { LEAP_SERVICES } from "./leap-services.ts";
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -7,7 +8,12 @@ import { DOORS } from "./doors.ts";
 import { HOUSE_SITES, type HouseSiteId } from "./house-sites.ts";
 import { HOUSE_SITES as MADAR_SITES } from "./madar.ts";
 
-const CANONICAL_HREFS: Record<HouseSiteId, string> = {
+const CANONICAL_HREFS: Partial<Record<HouseSiteId, string>> = {
+  ...Object.fromEntries(
+    LEAP_SERVICES.filter(
+      (s) => s.href.startsWith("https://") && !["market-sa", "hayat-live"].includes(s.id),
+    ).map((s) => [s.id, s.href]),
+  ),
   tahajjud: "https://tahajjud.alhajda.com",
   midad: "https://midad.alhajda.com/library",
   sites: "https://alhajda.com/sites",

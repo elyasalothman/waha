@@ -1,3 +1,4 @@
+import { LEAP_SERVICES } from "../leap-services.ts";
 import { SERVICES } from "../superapp.ts";
 import { CATALOG } from "../catalog.ts";
 import { validateCommand, type AgentCommand } from "./registry.ts";
@@ -12,6 +13,45 @@ export function parseIntent(input: string): AgentCommand | null {
   if (!input.trim() || input.length > 1000) return null;
   const q = normalize(input),
     command = (tool: string, args: object = {}) => validateCommand({ tool, args });
+  if (/^(سعر سهم|كم سعر سهم)\s/.test(q))
+    return command("market_quote", { symbol: q.replace(/^(سعر سهم|كم سعر سهم)\s*/, "") });
+  if (/^حل المسالة\s/.test(q))
+    return command("math_solve", { expr: q.replace(/^حل المسالة\s*/, "") });
+  if (/^(ارسم|صمم صورة|ولد صورة|سو لي صورة)\s/.test(q))
+    return command("generate_image", { prompt: input.slice(0, 500) });
+  if (/مقطع قصير|سو لي مقطع|سوي لي فيديو/.test(q))
+    return command("make_clip", { prompt: input.slice(0, 500) });
+  if (/حلل الملف|حلل ملف|حلل الصورة|اقرا الملف|ارفق ملف|حلل المرفق/.test(q))
+    return command("analyze_file");
+  if (/سو.? لي سيرة|سوي لي سيرة|حسن سيرتي|ساعدني بسيرتي|جهز سيرتي/.test(q))
+    return command("haqqiq_cv");
+  if (/دربني.*مقابلة|جهزني.*مقابلة|تدريب مقابلة|حقّق مقابلة/.test(q))
+    return command("haqqiq_interview");
+  if (/خطط لهدفي|ساعدني اخطط|خطة لهدفي|حقق خطتي/.test(q)) return command("haqqiq_plan");
+  if (/^(اسال الموسوعة|ابحث في الموسوعة|وش تقول الموسوعة)\s/.test(q))
+    return command("ask_wiki", {
+      q: input.replace(/^\S+\s+(?:في\s+)?الموسوعة\s*/, "").slice(0, 500),
+    });
+  const sections: [RegExp, string][] = [
+    [/محللين|محللون|المحللين/, "analysts"],
+    [/السوق الامريكي|سوق امريكا|اسهم امريكا/, "market-us"],
+    [/روبوت التداول|تداول وهمي|تداول افتراضي|بوت التداول/, "market-bot"],
+    [/قارن جوالات|مقارنة الجوالات|قارن هواتف/, "phones"],
+    [/مقياس الهجدة|افتح المقياس/, "bench"],
+    [/مقتنيات|حجز مسبق/, "store-collect"],
+    [/افتح ممالك|ودني ممالك|العب ممالك/, "mamalik"],
+    [/افتح حياة|ودني حياة|العب حياة/, "hayat-live"],
+    [/ودني حصتي|افتح حصتي|مسارات قدرات|دروس حصتي/, "hissati-explore"],
+    [/افتح الموسوعة|ودني الموسوعة|ابي الموسوعة/, "wiki"],
+    [/افتح وظيفتي|ودني وظيفتي/, "wadhifati"],
+    [/افتح المهارات|مهارة في اسبوع/, "skills"],
+    [/مركز الابحاث|افتح الابحاث/, "research"],
+    [/افتح المقالات|مقالات هدوء/, "articles"],
+    [/السوق السعودي/, "market-sa"],
+  ];
+  for (const [pattern, id] of sections) if (pattern.test(q)) return command("open_section", { id });
+  for (const s of LEAP_SERVICES)
+    if (q === normalize("افتح " + s.title)) return command("open_section", { id: s.id });
   if (/^(تذكر ان|تذكر|احفظ عني)\s/.test(q))
     return command("remember", {
       text: input.replace(/^(تذكّر أن|تذكر أن|تذكر ان|تذكر|احفظ عني)\s*/, ""),

@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SuperAppHome } from "@/components/superapp-home";
+import { LeapHome } from "@/components/leap-home";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -10,5 +10,5 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
-  component: SuperAppHome,
+  component: LeapHome,
 });

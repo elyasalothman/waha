@@ -1,3 +1,4 @@
+import { LEAP_SERVICES } from "../leap-services";
 import { solveMath } from "./math";
 import { createLocalStore, parseArabicTime, LOCAL_KEYS } from "./local";
 import { parseMohsenReply } from "./mohsen";
@@ -54,6 +55,56 @@ export async function executeCommand(
   };
   const local = createLocalStore(localStorage);
   switch (command.tool) {
+    case "market_quote": {
+      if (hideMoney(useAppStore.getState().segment)) throw new Error("السوق غير متاح في وضع الطفل");
+      const response = await fetch("/api/market", { signal: AbortSignal.timeout(12000) });
+      if (!response.ok) throw new Error("تعذّر جلب السعر؛ افتح منضدة السوق وأعد المحاولة");
+      const data = await response.json();
+      const quote = data.quotes?.find(
+        (q: { symbol: string; name: string }) =>
+          normalize(q.symbol).toLowerCase() === normalize(command.args.symbol).toLowerCase() ||
+          normalize(q.name).includes(normalize(command.args.symbol)),
+      );
+      if (!quote)
+        return {
+          text: "هذا الرمز غير موجود في الموجز المتاح؛ افتح السوق للبحث عنه. لا نعرض سعرًا تخمينيًا.",
+          links: [{ label: "السوق", href: "/service/market-sa" }],
+        };
+      return {
+        text: `${quote.name} (${quote.symbol}): ${quote.price} ${quote.currency}\nالمصدر: ${quote.source} · ${quote.at}\nسعر مرجعي قد يكون متأخرًا، بلا توصيات.`,
+        links: [{ label: "منضدة السوق", href: "/service/market-sa" }],
+      };
+    }
+    case "open_section": {
+      const section = LEAP_SERVICES.find((s) => s.id === command.args.id)!;
+      if (hideMoney(useAppStore.getState().segment) && section.group === "أخبار ومال")
+        throw new Error("هذه الخدمة غير متاحة في وضع الطفل");
+      return go(
+        section.href.startsWith("https://") ? `/service/${section.id}` : section.href,
+        `تم فتح ${section.title}`,
+      );
+    }
+    case "analyze_file":
+      return go("/mohsen?attach=true", "أرفق ملفك لتحليله");
+    case "generate_image":
+      return go(
+        `/mohsen?mode=image&q=${encodeURIComponent(command.args.prompt)}`,
+        "تم فتح توليد الصورة",
+      );
+    case "make_clip":
+      return go(
+        `/mohsen?mode=clip&q=${encodeURIComponent(command.args.prompt)}`,
+        "تم فتح المقطع القصير",
+      );
+    case "haqqiq_cv":
+      return go("/mohsen?mode=cv", "اكتب خبرتك لتحسين سيرتك");
+    case "haqqiq_interview":
+      return go("/mohsen?mode=interview", "اكتب الوظيفة للتدرب");
+    case "haqqiq_plan":
+      return go("/mohsen?mode=plan", "اكتب هدفك لوضع الخطة");
+    case "ask_wiki":
+      return go(`/service/wiki?q=${encodeURIComponent(command.args.q)}`, "تم فتح بحث الموسوعة");
+    case "math_solve":
     case "math": {
       try {
         const answer = solveMath(command.args.expr);

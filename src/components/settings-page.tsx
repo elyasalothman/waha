@@ -1,3 +1,4 @@
+import { PrivacyLinks } from "@/components/privacy-links";
 import { Link } from "@tanstack/react-router";
 import { AgentSettings } from "./agent-settings";
 import { clearWahaLocalData } from "@/lib/local-data";
@@ -198,6 +199,7 @@ export function SettingsPage() {
   }
   return (
     <div className="mx-auto max-w-3xl space-y-4" dir="rtl">
+      <PrivacyLinks />
       <h1 className="font-display text-3xl">الإعدادات والتخصيص</h1>
       <Link to="/onboarding" className="inline-flex min-h-11 items-center text-primary">
         إعادة جولة الترحيب والتخصيص ←
@@ -329,31 +331,10 @@ export function SettingsPage() {
                       </option>
                     ))}
                   </select>
-                  <h2>تبويبات الشريط (الرئيسية ثابتة، حتى ٥)</h2>
-                  {[
-                    ["/", "الرئيسية"],
-                    ["/books", "الكتب"],
-                    ["/tools", "الأدوات"],
-                    ["/games", "الألعاب"],
-                    ["/me", "حسابي"],
-                  ].map(([value, label]) => (
-                    <label key={value} className="flex min-h-11 items-center gap-3">
-                      <input
-                        className="size-6"
-                        type="checkbox"
-                        disabled={value === "/"}
-                        checked={s.tabs.includes(value as never)}
-                        onChange={(e) =>
-                          patch({
-                            tabs: (e.target.checked
-                              ? [...s.tabs, value]
-                              : s.tabs.filter((t) => t !== value)) as Settings["tabs"],
-                          })
-                        }
-                      />
-                      {label}
-                    </label>
-                  ))}
+                  <h2>تبويبات واحة 2.0</h2>
+                  <p className="text-sm leading-7 text-muted">
+                    الرئيسية، محسن، الخدمات، الألعاب، حسابي. الكتب وجميع أدواتك متاحة من الخدمات.
+                  </p>
                 </>
               )}
               {g.title === "محسن" && (
@@ -436,7 +417,7 @@ export function SettingsPage() {
                   </button>
                   {s.developer && (
                     <div className="space-y-2 text-sm">
-                      <p>واحة 1.2.1 · جولة محسن · {import.meta.env.MODE}</p>
+                      <p>واحة 2.0.0 · محسن وكل خدمات الهجدة · {import.meta.env.MODE}</p>
                       <p>حالة الاتصال: {navigator.onLine ? "متصل" : "دون اتصال"}</p>
                       <button
                         className="min-h-11 text-primary"

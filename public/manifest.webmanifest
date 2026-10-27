@@ -38,15 +38,15 @@
   "shortcuts": [
     {
       "name": "اسأل محسن",
-      "url": "/?agent=open"
+      "url": "/mohsen"
     },
     {
       "name": "الكتب",
       "url": "/books"
     },
     {
-      "name": "الأدوات",
-      "url": "/tools"
+      "name": "الخدمات",
+      "url": "/services"
     }
   ]
 }

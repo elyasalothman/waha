@@ -14,10 +14,10 @@ android {
         applicationId "com.alhajda.waha"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        // versionName tracks iOS MARKETING_VERSION (currently 1.2.1).
-        // versionCode is Play-only and starts at 1: no AAB has been uploaded yet.
-        versionCode 1
-        versionName "1.2.1"
+        // Waha 2.0 Android code preparation; iOS version stays independent.
+        // No AAB or Play Console release is performed by this change.
+        versionCode 2
+        versionName "2.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.

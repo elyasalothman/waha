@@ -1,3 +1,4 @@
+import { LEAP_SERVICES } from "./leap-services.ts";
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import {
@@ -55,6 +56,9 @@ describe("Alhajda doors", () => {
     assert.deepEqual(
       directoryDoors().map((d) => d.id),
       [
+        ...LEAP_SERVICES.filter(
+          (s) => s.href.startsWith("https://") && !["market-sa", "hayat-live"].includes(s.id),
+        ).map((s) => s.id),
         "tahajjud",
         "midad",
         "mohsin",

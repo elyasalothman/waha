@@ -193,3 +193,19 @@ describe("native open path", () => {
     assert.equal(source.slice(houseFn).includes("await Browser.open"), false);
   });
 });
+
+it("preserves a requested deep path in the native house browser", async () => {
+  let opened = "";
+  const result = await openExternalUrl(
+    "https://games.alhajda.com/mamalik",
+    {
+      isNativeIos: () => true,
+      openInAppWebView: async (options) => {
+        opened = options.url;
+      },
+    },
+    true,
+  );
+  assert.equal(opened, "https://games.alhajda.com/mamalik");
+  assert.equal(result.path, "inapp-webview");
+});

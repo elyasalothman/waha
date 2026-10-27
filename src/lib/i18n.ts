@@ -245,6 +245,7 @@ const strings = {
     en: "Twelve marked clips — no algorithm, no search. Not the Square feed.",
   },
   clipsOriginal: { ar: "المصدر الأصلي", en: "Original source" },
+  mohsen: { ar: "محسن", en: "Mohsen" },
   books: { ar: "الكتب", en: "Books" },
   booksTitle: { ar: "رف الكتب", en: "Book shelf" },
   booksBlurb: {

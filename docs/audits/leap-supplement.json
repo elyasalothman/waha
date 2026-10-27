@@ -1,0 +1,25 @@
+{
+  "base": "http://localhost:8082",
+  "rows": [
+    {
+      "name": "الرئيسية المخصصة في شاشتين",
+      "height": 1668,
+      "ok": true
+    },
+    {
+      "name": "نموذج سيرتي داخل واحة",
+      "ok": true
+    },
+    {
+      "name": "نموذج المقابلة",
+      "ok": true
+    },
+    {
+      "name": "تركيب WebM من 3 صور اصطناعية دون استهلاك الحصة + fallback",
+      "size": 39248,
+      "fallback": null,
+      "canRecord": true,
+      "ok": true
+    }
+  ]
+}

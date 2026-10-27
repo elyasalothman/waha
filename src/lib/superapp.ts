@@ -1,3 +1,4 @@
+import { LEAP_SERVICES } from "./leap-services.ts";
 import { CATALOG } from "./catalog.ts";
 import { HOUSE_SITES } from "./house-sites.ts";
 import { HOUSE_INTEGRATIONS } from "./house-integrations.ts";
@@ -102,8 +103,18 @@ const house = HOUSE_SITES.filter((s) => s.directory || s.id === "sites").map((s)
   keywords: s.keywords.join(" "),
 }));
 export const SERVICES: readonly Service[] = [
+  ...LEAP_SERVICES.map((s) => ({
+    category: s.group === "أخبار ومال" ? "money" : "life",
+    id: s.id,
+    href: s.href.startsWith("https://") ? `/service/${s.id}` : s.href,
+    title: { ar: s.title, en: s.title },
+    blurb: { ar: s.words, en: s.words },
+    icon: s.icon,
+    pillar: s.group === "ألعاب" ? "fun" : s.group === "أخبار ومال" ? "news" : "learn",
+    keywords: s.words,
+  })),
   ...essentials,
-  ...house,
+  ...house.filter((h) => !LEAP_SERVICES.some((s) => s.id === h.id)),
   ...CATALOG.filter((s) => !house.some((h) => h.id === s.id)).map((s) => ({
     category: s.category,
     lane: s.lane,

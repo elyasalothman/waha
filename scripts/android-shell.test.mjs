@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (rel) => readFileSync(join(root, rel), "utf8");
 
-test("Android applicationId is com.alhajda.waha at the iOS marketing version", () => {
+test("Android applicationId is com.alhajda.waha at version 2.0.0", () => {
   const gradle = read("android/app/build.gradle");
   const activity = read("android/app/src/main/java/com/alhajda/waha/MainActivity.java");
   const strings = read("android/app/src/main/res/values/strings.xml");
@@ -19,8 +19,8 @@ test("Android applicationId is com.alhajda.waha at the iOS marketing version", (
 
   assert.match(gradle, /namespace "com\.alhajda\.waha"/);
   assert.match(gradle, /applicationId "com\.alhajda\.waha"/);
-  assert.match(gradle, /versionCode 1\b/);
-  assert.match(gradle, /versionName "1\.2\.1"/);
+  assert.match(gradle, /versionCode 2\b/);
+  assert.match(gradle, /versionName "2\.0\.0"/);
   assert.match(activity, /package com\.alhajda\.waha;/);
   assert.match(strings, /<string name="package_name">com\.alhajda\.waha<\/string>/);
   assert.match(strings, /<string name="app_name">واحة<\/string>/);
@@ -36,7 +36,7 @@ test("Codemagic android-aab skeleton stays commented so it cannot start a build"
   const yaml = read("codemagic.yaml");
   const lines = yaml.split("\n");
   const active = lines.filter((line) => !/^\s*#/.test(line)).join("\n");
-  const workflowKeys = lines.filter((line) => /^  [A-Za-z0-9_-]+:/.test(line));
+  const workflowKeys = lines.filter((line) => /^ {2}[A-Za-z0-9_-]+:/.test(line));
 
   assert.deepEqual(workflowKeys, ["  ios-release:"]);
   assert.match(active, /ios-release:/);
@@ -113,7 +113,10 @@ test("Android shell targets current Play API, keeps permissions minimal, and han
     "android.permission.ACCESS_COARSE_LOCATION",
     "android.permission.INTERNET",
   ]);
-  assert.doesNotMatch(manifest, /ACCESS_FINE_LOCATION|CAMERA|RECORD_AUDIO|READ_CONTACTS|SCHEDULE_EXACT_ALARM|USE_EXACT_ALARM/);
+  assert.doesNotMatch(
+    manifest,
+    /ACCESS_FINE_LOCATION|CAMERA|RECORD_AUDIO|READ_CONTACTS|SCHEDULE_EXACT_ALARM|USE_EXACT_ALARM/,
+  );
   // House doors: the web app calls HouseDoorBrowser.open on every native platform.
   assert.match(door, /@CapacitorPlugin\(name = "HouseDoorBrowser"\)/);
   assert.match(door, /"https"\.equalsIgnoreCase/);

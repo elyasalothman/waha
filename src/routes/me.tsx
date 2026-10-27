@@ -1,3 +1,4 @@
+import { PrivacyLinks } from "@/components/privacy-links";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { HomePage } from "@/components/home-page";
 export const Route = createFileRoute("/me")({
@@ -16,6 +17,7 @@ export const Route = createFileRoute("/me")({
       >
         ⚙ الإعدادات والتخصيص ←
       </Link>
+      <PrivacyLinks />
       <HomePage />
     </>
   ),

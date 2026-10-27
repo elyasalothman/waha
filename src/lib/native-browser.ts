@@ -246,8 +246,9 @@ export async function openHouseDoor(
 export async function openExternalUrl(
   href: string,
   deps: NativeOpenDeps = {},
+  preservePath = false,
 ): Promise<NativeOpenResult> {
-  const internal = internalHouseHref(href);
+  const internal = preservePath ? undefined : internalHouseHref(href);
   if (internal && typeof window !== "undefined") {
     window.location.assign(internal);
     return { ok: true, path: "inapp-webview" };

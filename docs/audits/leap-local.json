@@ -1,0 +1,425 @@
+{
+  "base": "https://localhost",
+  "stage": "local",
+  "date": "2026-10-27T09:15:59.489Z",
+  "checks": [
+    {
+      "name": "light /",
+      "ok": false,
+      "error": "HTTP 502"
+    },
+    {
+      "name": "light /mohsen",
+      "ok": false,
+      "error": "HTTP 502"
+    },
+    {
+      "name": "light /services",
+      "ok": false,
+      "error": "HTTP 502"
+    },
+    {
+      "name": "light /service/phones",
+      "ok": false,
+      "error": "HTTP 502"
+    },
+    {
+      "name": "light /service/bench",
+      "ok": true
+    },
+    {
+      "name": "light /service/wiki",
+      "ok": true
+    },
+    {
+      "name": "light /analysts",
+      "ok": true
+    },
+    {
+      "name": "light /service/hissati-explore",
+      "ok": true
+    },
+    {
+      "name": "light /privacy",
+      "ok": true
+    },
+    {
+      "name": "light /delete-account",
+      "ok": true
+    },
+    {
+      "name": "light /settings",
+      "ok": true
+    },
+    {
+      "name": "light /books",
+      "ok": true
+    },
+    {
+      "name": "light /games",
+      "ok": true
+    },
+    {
+      "name": "dark /",
+      "ok": true
+    },
+    {
+      "name": "dark /mohsen",
+      "ok": true
+    },
+    {
+      "name": "dark /services",
+      "ok": true
+    },
+    {
+      "name": "dark /service/phones",
+      "ok": true
+    },
+    {
+      "name": "dark /service/bench",
+      "ok": true
+    },
+    {
+      "name": "dark /service/wiki",
+      "ok": true
+    },
+    {
+      "name": "dark /analysts",
+      "ok": true
+    },
+    {
+      "name": "dark /service/hissati-explore",
+      "ok": true
+    },
+    {
+      "name": "dark /privacy",
+      "ok": true
+    },
+    {
+      "name": "dark /delete-account",
+      "ok": true
+    },
+    {
+      "name": "dark /settings",
+      "ok": true
+    },
+    {
+      "name": "dark /books",
+      "ok": true
+    },
+    {
+      "name": "dark /games",
+      "ok": true
+    },
+    {
+      "name": "خمسة تبويبات سفلية",
+      "ok": true
+    },
+    {
+      "name": "بحث الخدمات والمفضلة وحفظها",
+      "ok": true
+    },
+    {
+      "name": "بحث الموسوعة من API الحي",
+      "ok": true
+    },
+    {
+      "name": "مقارنة جوالين من API الحي",
+      "ok": true
+    },
+    {
+      "name": "حصتي تفتح مسار الاستكشاف الحقيقي",
+      "ok": true
+    },
+    {
+      "name": "المحللون من المصدر الحي",
+      "ok": true
+    },
+    {
+      "name": "الخصوصية والحذف عامة وقابلة للفهرسة",
+      "ok": true
+    },
+    {
+      "name": "سؤال حقيقي من الرئيسية وإرسال تلقائي",
+      "ok": true
+    },
+    {
+      "name": "تحليل ملف نصي حقيقي مباشر من المتصفح",
+      "ok": true
+    },
+    {
+      "name": "السجل يستعاد بعد إعادة التحميل",
+      "ok": true
+    },
+    {
+      "name": "أوفلاين الرئيسية واستبعاد APIs",
+      "ok": false,
+      "error": "page.evaluate: Target page, context or browser has been closed"
+    }
+  ],
+  "pages": [
+    {
+      "route": "/service/bench",
+      "theme": "light",
+      "width": 390,
+      "viewport": 390,
+      "height": 872,
+      "dark": false,
+      "small": []
+    },
+    {
+      "route": "/service/wiki",
+      "theme": "light",
+      "width": 390,
+      "viewport": 390,
+      "height": 956,
+      "dark": false,
+      "small": []
+    },
+    {
+      "route": "/analysts",
+      "theme": "light",
+      "width": 390,
+      "viewport": 390,
+      "height": 844,
+      "dark": false,
+      "small": []
+    },
+    {
+      "route": "/service/hissati-explore",
+      "theme": "light",
+      "width": 390,
+      "viewport": 390,
+      "height": 844,
+      "dark": false,
+      "small": []
+    },
+    {
+      "route": "/privacy",
+      "theme": "light",
+      "width": 390,
+      "viewport": 390,
+      "height": 2725,
+      "dark": false,
+      "small": []
+    },
+    {
+      "route": "/delete-account",
+      "theme": "light",
+      "width": 390,
+      "viewport": 390,
+      "height": 1747,
+      "dark": false,
+      "small": []
+    },
+    {
+      "route": "/settings",
+      "theme": "light",
+      "width": 390,
+      "viewport": 390,
+      "height": 1385,
+      "dark": false,
+      "small": []
+    },
+    {
+      "route": "/books",
+      "theme": "light",
+      "width": 390,
+      "viewport": 390,
+      "height": 9615,
+      "dark": false,
+      "small": [
+        {
+          "text": "اختر ملف PDF",
+          "width": 1,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/games",
+      "theme": "light",
+      "width": 390,
+      "viewport": 390,
+      "height": 3929,
+      "dark": false,
+      "small": []
+    },
+    {
+      "route": "/",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 1510,
+      "dark": true,
+      "small": []
+    },
+    {
+      "route": "/mohsen",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 1082,
+      "dark": true,
+      "small": [
+        {
+          "text": "إرفاق ملف",
+          "width": 1,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/services",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 1873,
+      "dark": true,
+      "small": []
+    },
+    {
+      "route": "/service/phones",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 948,
+      "dark": true,
+      "small": []
+    },
+    {
+      "route": "/service/bench",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 2757,
+      "dark": true,
+      "small": []
+    },
+    {
+      "route": "/service/wiki",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 2166,
+      "dark": true,
+      "small": []
+    },
+    {
+      "route": "/analysts",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 2405,
+      "dark": true,
+      "small": []
+    },
+    {
+      "route": "/service/hissati-explore",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 844,
+      "dark": true,
+      "small": []
+    },
+    {
+      "route": "/privacy",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 2725,
+      "dark": true,
+      "small": []
+    },
+    {
+      "route": "/delete-account",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 1747,
+      "dark": true,
+      "small": []
+    },
+    {
+      "route": "/settings",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 1385,
+      "dark": true,
+      "small": []
+    },
+    {
+      "route": "/books",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 9615,
+      "dark": true,
+      "small": [
+        {
+          "text": "اختر ملف PDF",
+          "width": 1,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/games",
+      "theme": "dark",
+      "width": 390,
+      "viewport": 390,
+      "height": 3929,
+      "dark": true,
+      "small": []
+    }
+  ],
+  "errors": [],
+  "console": [
+    "Failed to load resource: the server responded with a status of 502 (Bad Gateway)",
+    "Failed to load resource: the server responded with a status of 502 (Bad Gateway)",
+    "Failed to load resource: the server responded with a status of 502 (Bad Gateway)",
+    "Failed to load resource: the server responded with a status of 502 (Bad Gateway)",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script.",
+    "An SSL certificate error occurred when fetching the script."
+  ],
+  "failures": [
+    "light /",
+    "light /mohsen",
+    "light /services",
+    "light /service/phones",
+    "أوفلاين الرئيسية واستبعاد APIs"
+  ],
+  "requests": [],
+  "chat": "محسن\n\nمن المحتوى المحفوظ؛ لا يتوفر رابط مصدر لهذا الرد.\n\nالرياض.\n\n• واس تسمي منطقة الرياض عاصمة الدولة.\n• من خبر واس رسمي في المتن — بلا اختراع سيرة زائدة.\n\nنسخ\n👍\n👎",
+  "analysis": "محسن\n\nمن ملفك\n\nعدد الكتب في هذا التقرير هو سبعة كتب.\n\nمن الملف: «عدد الكتب في هذا التقرير سبعة كتب فقط.»\n\nنسخ\n👍\n👎"
+}

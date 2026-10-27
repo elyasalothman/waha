@@ -5,7 +5,13 @@ import { SEED_POSTS } from "../square/seed.ts";
 import { SQUARE_STORAGE_KEY, mergeFeed, emptyLocal } from "../square/logic.ts";
 import { CLIPS_STORAGE_KEY } from "../clips/types.ts";
 import { BOOK_CARDS, BOOK_IDS, BOOKS_SEED, BOOKS_SEED_COUNT, isAllowedBookHost } from "./seed.ts";
-import { booksByUiSection, hydrateBooksState, listBooks, markOpened, uiSectionOf } from "./logic.ts";
+import {
+  booksByUiSection,
+  hydrateBooksState,
+  listBooks,
+  markOpened,
+  uiSectionOf,
+} from "./logic.ts";
 import { BOOK_SEED_SECTIONS, BOOK_SOURCE_KINDS, BOOK_STAMP, BOOKS_STORAGE_KEY } from "./types.ts";
 import {
   EMPTY_KUTUBI,
@@ -24,7 +30,19 @@ import {
 import cards from "./waha-kutub-shelf-cards-v1.json" with { type: "json" };
 import lock from "./waha-kutub-shelf-seed-v1.json" with { type: "json" };
 
-const FORBIDDEN = ["قرصنة", "pirate", "torrent", "mega.nz", "mediafire", "شراء ورقي", "amazon", "jarir", "إسلام ويب", "shamela", "sh.rewaya"];
+const FORBIDDEN = [
+  "قرصنة",
+  "pirate",
+  "torrent",
+  "mega.nz",
+  "mediafire",
+  "شراء ورقي",
+  "amazon",
+  "jarir",
+  "إسلام ويب",
+  "shamela",
+  "sh.rewaya",
+];
 
 describe("books seed lock", () => {
   it("ships the king-approved twelve shelf cards after pruning رياض الصالحين", () => {
@@ -58,7 +76,11 @@ describe("books seed lock", () => {
     for (const book of BOOK_CARDS) {
       assert.equal(isAllowedBookHost(book.url), true, book.id);
       assert.equal(book.stamp, BOOK_STAMP);
-      assert.equal((BOOK_SOURCE_KINDS as readonly string[]).includes(book.sourceKind), true, book.id);
+      assert.equal(
+        (BOOK_SOURCE_KINDS as readonly string[]).includes(book.sourceKind),
+        true,
+        book.id,
+      );
       assert.equal((BOOK_SEED_SECTIONS as readonly string[]).includes(book.section), true, book.id);
     }
     assert.equal(
@@ -157,11 +179,17 @@ describe("books stay off the Maydan line", () => {
   });
 
   it("keeps SquarePage and the books page from importing each other", () => {
-    const square = readFileSync(new URL("../../components/square/square-page.tsx", import.meta.url), "utf8");
+    const square = readFileSync(
+      new URL("../../components/square/square-page.tsx", import.meta.url),
+      "utf8",
+    );
     const page = readFileSync(new URL("../../apps/books/page.tsx", import.meta.url), "utf8");
     const route = readFileSync(new URL("../../routes/books.tsx", import.meta.url), "utf8");
     const doors = readFileSync(new URL("../doors.ts", import.meta.url), "utf8");
-    const strip = readFileSync(new URL("../../components/doors-strip.tsx", import.meta.url), "utf8");
+    const strip = readFileSync(
+      new URL("../../components/doors-strip.tsx", import.meta.url),
+      "utf8",
+    );
     assert.doesNotMatch(square, /lib\/books|waha:books|kutub-shelf|waha:kutubi|كتبي/);
     assert.doesNotMatch(page, /square\/|maydan-seed|waha:square|من العالم|waha:clips/);
     assert.match(route, /createFileRoute\("\/books"\)/);
@@ -192,15 +220,31 @@ describe("books stay off the Maydan line", () => {
     assert.match(catalog, /door\.id === "midad"/);
     assert.match(catalog, /portal: true/);
     assert.doesNotMatch(catalog, /id: "books"/);
-    assert.match(nav, /to: "\/books"/);
+    assert.match(nav, /to: "\/services"/);
+    assert.match(
+      readFileSync(new URL("../../components/leap-home.tsx", import.meta.url), "utf8"),
+      /to="\/books"/,
+    );
     assert.match(card, /to="\/books"/);
     assert.match(home, /HomePage/);
     assert.doesNotMatch(home, /BooksPage|lib\/books|waha:kutubi|كتبي|WebView/);
   });
 
   it("refuses forbidden lanes and pirate hosts in the shelf blob", () => {
-    const blob = BOOK_CARDS.map((b) => `${b.titleAr} ${b.benefitAr} ${b.url} ${b.sourceLabel}`).join("\n");
-    for (const banned of ["pirate", "torrent", "mega.nz", "mediafire", "شراء ورقي", "amazon", "jarir", "إسلام ويب", "shamela"]) {
+    const blob = BOOK_CARDS.map(
+      (b) => `${b.titleAr} ${b.benefitAr} ${b.url} ${b.sourceLabel}`,
+    ).join("\n");
+    for (const banned of [
+      "pirate",
+      "torrent",
+      "mega.nz",
+      "mediafire",
+      "شراء ورقي",
+      "amazon",
+      "jarir",
+      "إسلام ويب",
+      "shamela",
+    ]) {
       assert.equal(blob.toLowerCase().includes(banned.toLowerCase()), false, banned);
     }
     assert.ok(BOOK_CARDS.every((b) => isAllowedBookHost(b.url)));
@@ -260,7 +304,10 @@ describe("كتبي stays a private local slot", () => {
     assert.equal(KUTUBI_PUBLIC_DRAFT_STATUS, "legal-review");
     assert.equal(publicDraftOf(drafted, "bk-akhlaq-01")?.status, "legal-review");
     assert.deepEqual(requestPublicDraft(drafted, "pirate-001").items, drafted.items);
-    assert.deepEqual(listBooks().map((book) => book.id), before);
+    assert.deepEqual(
+      listBooks().map((book) => book.id),
+      before,
+    );
     assert.equal(kutubiPublishesToPublic(), false);
     const stripped = hydrateKutubi({
       version: 1,

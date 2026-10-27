@@ -23,11 +23,11 @@ export const settingsSchema = z
       .refine((a) => new Set(a).size === a.length)
       .default(["midad", "quran", "tahajjud", "hissati", "store", "calc", "mohsin", "dallah"]),
     tabs: z
-      .array(z.enum(["/", "/books", "/tools", "/games", "/me"]))
+      .array(z.enum(["/", "/mohsen", "/services", "/books", "/tools", "/games", "/me"]))
       .min(1)
       .max(5)
       .refine((a) => new Set(a).size === a.length && a.includes("/"))
-      .default(["/", "/books", "/tools", "/games", "/me"]),
+      .default(["/", "/mohsen", "/services", "/games", "/me"]),
     weatherWidget: z.boolean().default(true),
     newsWidget: z.boolean().default(true),
     liveWidget: z.boolean().default(true),

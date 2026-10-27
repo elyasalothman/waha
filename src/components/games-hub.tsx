@@ -59,6 +59,20 @@ export function GamesHub() {
         <SfxToggle />
       </header>
 
+      <div className="mb-5 flex flex-wrap gap-3">
+        <ExternalLink
+          href="https://games.alhajda.com/mamalik"
+          className="min-h-12 rounded-xl border border-border p-4"
+        >
+          ممالك · لعبة الاستراتيجية ←
+        </ExternalLink>
+        <ExternalLink
+          href="https://hayat.alhajda.com"
+          className="min-h-12 rounded-xl border border-border p-4"
+        >
+          حياة · العالم المفتوح ←
+        </ExternalLink>
+      </div>
       <div className="mb-6">
         <HayatCard />
       </div>

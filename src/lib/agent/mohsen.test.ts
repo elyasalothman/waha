@@ -52,7 +52,7 @@ for (const [label, fetcher] of [
     assert.deepEqual(await response.json(), { reply: unavailableReply, unavailable: true });
   });
 
-test("المصادر الصالحة وحدها تمنح شارة التوثيق", async () => {
+test("شارة التوثيق تتطلب مصادر صالحة وإسنادًا صريحًا من العامل", async () => {
   const { parseMohsenReply } = await import("./mohsen.ts");
   assert.equal(parseMohsenReply({ reply: "جواب", citations: [] }).verified, false);
   const result = parseMohsenReply({
@@ -63,8 +63,12 @@ test("المصادر الصالحة وحدها تمنح شارة التوثيق"
       { url: "https://www.spa.gov.sa", title: "واس" },
     ],
     source: "web",
-    evidence: "retrieved",
+    evidence: { origin: "web_retrieval", label: "retrieved" },
   });
+  assert.equal(
+    parseMohsenReply({ reply: "جواب", citations: [{ url: "https://example.org" }] }).verified,
+    false,
+  );
   assert.equal(result.verified, true);
   assert.equal(result.citations.length, 1);
   assert.equal(result.reply, "<b>نص فقط</b>");
