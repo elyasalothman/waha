@@ -10,6 +10,11 @@ import appCss from "../styles.css?url";
 const APP_NAME = "واحة · Waha";
 const PWA_NAME = "واحة";
 
+// Microsoft Clarity (free heatmaps/recordings, project z59o3elusw, Strict masking in Clarity settings).
+// Web only: skipped inside the Capacitor iOS/Android app so the store privacy labels stay unchanged.
+const msClarity =
+  '(function(c,l,a,r,s,t,y){var k=c.Capacitor;if(c.__alhajdaClarity||location.hostname!=="waha.hajdah.com"||(k&&((k.isNativePlatform&&k.isNativePlatform())||k.isNative===true))||/Capacitor/i.test(navigator.userAgent))return;c.__alhajdaClarity=true;c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src=s;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","https://www.clarity.ms/tag/z59o3elusw");';
+
 // Cloudflare Web Analytics (free, cookie-less). Loads only on the production host.
 const cfWebAnalytics =
   // Reports go via alhajda.com's /cdn-cgi/rum (CORS allows waha.hajdah.com); direct cloudflareinsights.com was blocked by CORS.
@@ -70,6 +75,7 @@ function RootDocument() {
       <head>
         <HeadContent />
         <script dangerouslySetInnerHTML={{ __html: cfWebAnalytics }} />
+        <script dangerouslySetInnerHTML={{ __html: msClarity }} />
       </head>
       <body className="bg-bg text-fg">
         <PwaRegistration />

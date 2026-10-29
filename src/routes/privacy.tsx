@@ -46,7 +46,8 @@ export const Route = createFileRoute("/privacy")({
       </p>
       <h2 className="text-xl">القياس والأطفال</h2>
       <p>
-        نستخدم Cloudflare Web Analytics بلا كوكيز لقياس الاستخدام والأداء. لا نبيع البيانات ولا نعرض
+        نستخدم Cloudflare Web Analytics بلا كوكيز لقياس الاستخدام والأداء. وعلى موقع الويب فقط (لا داخل
+        التطبيق) نستخدم Microsoft Clarity لخرائط حرارية وتسجيلات جلسات مجهولة مع إخفاء كل النصوص. لا نبيع البيانات ولا نعرض
         إعلانات. يمكن استخدام واحة دون حساب؛ لا نطلب بيانات طفل عمدًا. على ولي الأمر الإشراف على
         استخدام الذكاء الاصطناعي والخدمات الخارجية وطلب إزالة أي بيانات أُرسلت دون قصد.
       </p>
@@ -72,7 +73,8 @@ export const Route = createFileRoute("/privacy")({
           anonymously to improve Mohsen; no fixed retention period is promised. Quota hashes expire
           after two days. Location and notifications require permission. Optional accounts use
           Better Auth. External services have separate policies. Cloudflare Web Analytics uses no
-          cookies. No advertising or data sales. Children should use AI with parental guidance. For
+          cookies. On the website only (not in the app), Microsoft Clarity records anonymous heatmaps and
+          sessions with all text masked. No advertising or data sales. Children should use AI with parental guidance. For
           deletion or privacy requests: elyasalothman@gmail.com.
         </p>
       </section>
