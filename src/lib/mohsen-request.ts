@@ -22,6 +22,7 @@ export function mohsenMemory(value: unknown): string[] {
   const out: string[] = [];
   let total = 0;
   for (const v of value.slice(-20)) {
+    // eslint-disable-next-line no-control-regex
     const t = String(typeof v === "string" ? v : "").replace(/[\u0000-\u001f<>`]/g, " ").replace(/\s+/g, " ").trim().slice(0, 160);
     if (!t || total + t.length > 1200) continue;
     total += t.length;
