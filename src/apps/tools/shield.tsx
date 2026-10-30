@@ -2,12 +2,17 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Capacitor, registerPlugin } from "@capacitor/core";
 import { featureButton } from "@/lib/share-card";
 import {
+  NATIVE_SHIELD_STEPS,
   SHIELD_DOH_URL,
+  SHIELD_FAMILY_DOH_URL,
   SHIELD_PAGE_URL,
   checkDomain,
   detectShieldPlatform,
+  nativeShieldIsFamily,
+  nativeShieldState,
   probeShield,
   profileOpenHref,
+  type NativeShieldInfo,
   type ShieldPlatform,
   type ShieldStatus,
 } from "@/lib/dns-shield";
@@ -15,9 +20,9 @@ import {
 /** Optional native toggle (NEDNSSettingsManager) — present only in builds that ship the
  *  DnsShield plugin + DNS-settings entitlement. Without it we install the profile via Safari. */
 interface DnsShieldPlugin {
-  status(): Promise<{ enabled: boolean }>;
-  enable(opts: { serverURL: string }): Promise<{ enabled: boolean }>;
-  disable(): Promise<{ enabled: boolean }>;
+  status(): Promise<NativeShieldInfo>;
+  enable(opts: { serverURL: string }): Promise<NativeShieldInfo>;
+  disable(): Promise<NativeShieldInfo>;
 }
 const DnsShield = registerPlugin<DnsShieldPlugin>("DnsShield");
 const hasNativeToggle = () =>
@@ -48,7 +53,8 @@ export function ShieldApp() {
   const platform = usePlatform();
   const native = hasNativeToggle();
   const [status, setStatus] = useState<ShieldStatus | "checking">("checking");
-  const [nativeOn, setNativeOn] = useState<boolean | null>(null);
+  const [nativeInfo, setNativeInfo] = useState<NativeShieldInfo | null>(null);
+  const nativeState = nativeShieldState(nativeInfo);
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState("");
   const [domain, setDomain] = useState("googleads.g.doubleclick.net");
@@ -59,7 +65,7 @@ export function ShieldApp() {
     setStatus("checking");
     if (native) {
       try {
-        setNativeOn((await DnsShield.status()).enabled);
+        setNativeInfo(await DnsShield.status());
       } catch {
         /* keep previous */
       }
@@ -79,19 +85,18 @@ export function ShieldApp() {
 
   const activate = async (family = false) => {
     setMsg("");
-    if (native && !family) {
+    if (native) {
       setBusy(true);
       try {
-        const r = nativeOn
-          ? await DnsShield.disable()
-          : await DnsShield.enable({ serverURL: SHIELD_DOH_URL });
-        setNativeOn(r.enabled);
-        if (r.enabled)
-          setMsg(
-            "بقيت خطوة: الإعدادات › عام › الشبكة الخاصة الافتراضية وإدارة الجهاز › DNS › اختر «واحة».",
-          );
+        const r = await DnsShield.enable({
+          serverURL: family ? SHIELD_FAMILY_DOH_URL : SHIELD_DOH_URL,
+        });
+        setNativeInfo(r);
+        if (!r.enabled) setMsg("حُفظ الدرع في الآيفون. بقيت خطوة واحدة في الإعدادات — اتبع الخطوات أدناه.");
       } catch (e) {
-        setMsg(e instanceof Error ? e.message : "تعذّر التفعيل");
+        setMsg(
+          "تعذّر حفظ الدرع" + (e instanceof Error && e.message ? ` (${e.message})` : "") + ". حاول مرة أخرى.",
+        );
       } finally {
         setBusy(false);
         setTimeout(() => void refresh(), 1500);
@@ -100,6 +105,20 @@ export function ShieldApp() {
     }
     setOpened(true);
     window.location.href = profileOpenHref(platform, family);
+  };
+
+  const deactivate = async () => {
+    setMsg("");
+    setBusy(true);
+    try {
+      setNativeInfo(await DnsShield.disable());
+      setMsg("أُوقف الدرع وحُذف من إعدادات DNS في الآيفون.");
+    } catch (e) {
+      setMsg("تعذّر الإيقاف" + (e instanceof Error && e.message ? ` (${e.message})` : ""));
+    } finally {
+      setBusy(false);
+      setTimeout(() => void refresh(), 1500);
+    }
   };
 
   const runCheck = async () => {
@@ -129,15 +148,49 @@ export function ShieldApp() {
 
         {applePlatform || native ? (
           <>
-            <button
-              type="button"
-              disabled={busy}
-              onClick={() => void activate()}
-              className="block w-full rounded-2xl bg-primary px-5 py-4 text-center text-lg font-bold text-primary-fg disabled:opacity-60"
-              data-shield-activate
-            >
-              {native && nativeOn ? "أوقف الحماية" : "فعّل الحماية"}
-            </button>
+            {native && nativeState !== "off" ? (
+              <button
+                type="button"
+                disabled={busy}
+                onClick={() => void deactivate()}
+                className="block w-full rounded-2xl border border-border px-5 py-4 text-center text-lg font-bold disabled:opacity-60"
+                data-shield-deactivate
+              >
+                أوقف الحماية
+              </button>
+            ) : (
+              <button
+                type="button"
+                disabled={busy}
+                onClick={() => void activate()}
+                className="block w-full rounded-2xl bg-primary px-5 py-4 text-center text-lg font-bold text-primary-fg disabled:opacity-60"
+                data-shield-activate
+              >
+                فعّل الحماية
+              </button>
+            )}
+            {native && nativeState === "on" && (
+              <p className="text-sm text-muted" data-shield-native-on>
+                {nativeShieldIsFamily(nativeInfo)
+                  ? "النسخة العائلية مفعّلة من داخل واحة."
+                  : "الدرع مفعّل من داخل واحة على الواي فاي وبيانات الجوال."}
+              </p>
+            )}
+            {native && nativeState === "pending" && (
+              <div className="space-y-2 rounded-xl bg-surface p-3" data-shield-native-steps>
+                <p className="font-semibold">بقيت خطوة واحدة — iOS يطلب تأكيدك من الإعدادات:</p>
+                <ol className="list-decimal space-y-1 ps-6 text-sm">
+                  {NATIVE_SHIELD_STEPS.map((step) => (
+                    <li key={step}>{step}</li>
+                  ))}
+                </ol>
+              </div>
+            )}
+            {native && nativeState === "off" && (
+              <p className="text-sm text-muted">
+                بعد الضغط سيطلب منك iOS خطوة تأكيد واحدة من الإعدادات، وسنعرضها لك هنا.
+              </p>
+            )}
             {!native && (
               <ol className="list-decimal space-y-1 ps-6 text-sm" data-shield-steps>
                 {platform !== "ios-safari" && platform !== "mac-safari" && (
@@ -168,13 +221,27 @@ export function ShieldApp() {
               </p>
             )}
             {msg && <p className="text-sm">{msg}</p>}
-            <p className="text-xs text-muted">
-              سيظهر الملف «غير موثّق» لأنه غير موقّع رقميًا، وهذا متوقع. للإيقاف: الإعدادات › عام ›
-              الشبكة الخاصة الافتراضية وإدارة الجهاز › احذف «درع الهجدة».
-            </p>
-            <button type="button" className={featureButton} onClick={() => void activate(true)}>
-              نسخة عائلية (تحجب المحتوى الإباحي أيضًا)
-            </button>
+            {native ? (
+              <p className="text-xs text-muted">
+                إن كنت ثبّتّ سابقًا ملف التعريف «درع الهجدة» من Safari فاحذفه (الإعدادات › عام › الشبكة
+                الخاصة الافتراضية وإدارة الجهاز) حتى لا يتعارض مع درع واحة. لا نسجّل ما تتصفحه.
+              </p>
+            ) : (
+              <p className="text-xs text-muted">
+                سيظهر الملف «غير موثّق» لأنه غير موقّع رقميًا، وهذا متوقع. للإيقاف: الإعدادات › عام ›
+                الشبكة الخاصة الافتراضية وإدارة الجهاز › احذف «درع الهجدة».
+              </p>
+            )}
+            {!(native && nativeShieldIsFamily(nativeInfo)) && (
+              <button
+                type="button"
+                disabled={busy}
+                className={featureButton}
+                onClick={() => void activate(true)}
+              >
+                نسخة عائلية (تحجب المحتوى الإباحي أيضًا)
+              </button>
+            )}
           </>
         ) : (
           <div className="space-y-2 text-sm">

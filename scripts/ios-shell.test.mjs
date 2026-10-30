@@ -281,3 +281,27 @@ test("ios-next-build never decreases the project version", () => {
   assert.equal(run("18", "20"), "21");
   assert.equal(run("1"), "1");
 });
+
+test("درع الإعلانات: native DoH toggle via NEDNSSettingsManager with the dns-settings entitlement", () => {
+  const plugin = read("ios/App/App/DnsShieldPlugin.swift");
+  const controller = read("ios/App/App/WahaViewController.swift");
+  const project = read("ios/App/App.xcodeproj/project.pbxproj");
+  const entitlements = read("ios/App/App/App.entitlements");
+  const ui = read("src/apps/tools/shield.tsx");
+
+  assert.match(plugin, /NEDNSSettingsManager/);
+  assert.match(plugin, /NEDNSOverHTTPSSettings/);
+  assert.match(plugin, /https:\/\/dns\.alhajda\.com\/dns-query/);
+  assert.match(plugin, /url\.host == "dns\.alhajda\.com"/);
+  assert.match(plugin, /\/family\/dns-query/);
+  assert.match(plugin, /jsName = "DnsShield"/);
+  assert.match(controller, /registerPluginInstance\(DnsShieldPlugin\(\)\)/);
+  assert.match(project, /DnsShieldPlugin\.swift in Sources/);
+  assert.equal((project.match(/CODE_SIGN_ENTITLEMENTS = App\/App\.entitlements;/g) ?? []).length, 2);
+  assert.match(entitlements, /com\.apple\.developer\.networking\.networkextension/);
+  assert.match(entitlements, /<string>dns-settings<\/string>/);
+
+  assert.match(ui, /isPluginAvailable\("DnsShield"\)/);
+  assert.match(ui, /NATIVE_SHIELD_STEPS/);
+  assert.match(ui, /nativeState === "pending"/);
+});

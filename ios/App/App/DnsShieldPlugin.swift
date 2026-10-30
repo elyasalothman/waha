@@ -5,7 +5,7 @@ import NetworkExtension
 /// درع الإعلانات — native DNS-over-HTTPS toggle via NEDNSSettingsManager (iOS 14+).
 /// Requires the Network Extensions capability with the `dns-settings` value
 /// (see App.entitlements). iOS never lets an app switch DNS on silently: after `enable`,
-/// the user selects «واحة» once in Settings › General › VPN & Device Management › DNS.
+/// the user selects «درع واحة» once in Settings › General › VPN & Device Management › DNS.
 @objc(DnsShieldPlugin)
 public class DnsShieldPlugin: CAPPlugin, CAPBridgedPlugin {
     public let identifier = "DnsShieldPlugin"
@@ -17,6 +17,7 @@ public class DnsShieldPlugin: CAPPlugin, CAPBridgedPlugin {
     ]
 
     static let defaultServer = "https://dns.alhajda.com/dns-query"
+    static let allowedPaths: Set<String> = ["/dns-query", "/family/dns-query"]
 
     private func result(_ manager: NEDNSSettingsManager) -> [String: Any] {
         [
@@ -36,8 +37,10 @@ public class DnsShieldPlugin: CAPPlugin, CAPBridgedPlugin {
 
     @objc func enable(_ call: CAPPluginCall) {
         let raw = call.getString("serverURL") ?? Self.defaultServer
+        // Only the two shield endpoints on dns.alhajda.com are accepted.
         guard let url = URL(string: raw), url.scheme == "https",
-              url.host?.hasSuffix("alhajda.com") == true else {
+              url.host == "dns.alhajda.com",
+              Self.allowedPaths.contains(url.path) else {
             call.reject("https-alhajda-only")
             return
         }

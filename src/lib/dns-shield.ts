@@ -1,6 +1,7 @@
 /** درع الإعلانات — DNS الهجدة المشفّر (DoH) على dns.alhajda.com. */
 export const SHIELD_HOST = "dns.alhajda.com";
 export const SHIELD_DOH_URL = `https://${SHIELD_HOST}/dns-query`;
+export const SHIELD_FAMILY_DOH_URL = `https://${SHIELD_HOST}/family/dns-query`;
 export const SHIELD_PAGE_URL = `https://${SHIELD_HOST}/`;
 export const SHIELD_PROFILE_URL = `https://${SHIELD_HOST}/alhajda-dns.mobileconfig`;
 export const SHIELD_FAMILY_PROFILE_URL = `https://${SHIELD_HOST}/alhajda-dns-family.mobileconfig`;
@@ -78,3 +79,31 @@ export async function checkDomain(
   const json = (await res.json()) as { verdict?: string };
   return json.verdict === "block" ? "block" : "allow";
 }
+
+/** What the native iOS toggle (NEDNSSettingsManager) reports. */
+export interface NativeShieldInfo {
+  enabled: boolean;
+  configured?: boolean;
+  serverURL?: string;
+}
+
+/** off = nothing saved · pending = saved but the user hasn't picked it in Settings yet · on = active. */
+export type NativeShieldState = "off" | "pending" | "on";
+
+export function nativeShieldState(info: NativeShieldInfo | null | undefined): NativeShieldState {
+  if (!info) return "off";
+  if (info.enabled) return "on";
+  return info.configured ? "pending" : "off";
+}
+
+export function nativeShieldIsFamily(info: NativeShieldInfo | null | undefined): boolean {
+  return !!info?.serverURL && info.serverURL === SHIELD_FAMILY_DOH_URL;
+}
+
+/** iOS never lets an app switch DNS on silently: the user confirms once in Settings. */
+export const NATIVE_SHIELD_STEPS = [
+  "افتح تطبيق «الإعدادات» في الآيفون.",
+  "اذهب إلى: عام › الشبكة الخاصة الافتراضية وإدارة الجهاز › DNS.",
+  "اختر «درع واحة» (تحت اسم تطبيق واحة) لتظهر بجانبه علامة ✓.",
+  "ارجع إلى واحة؛ ستتحدّث الحالة إلى «✅ مفعّل» تلقائيًا.",
+] as const;

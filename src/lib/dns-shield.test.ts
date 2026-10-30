@@ -1,6 +1,17 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { detectShieldPlatform, profileOpenHref, probeShield, checkDomain, SHIELD_PROFILE_URL } from "./dns-shield.ts";
+import {
+  detectShieldPlatform,
+  profileOpenHref,
+  probeShield,
+  checkDomain,
+  nativeShieldState,
+  nativeShieldIsFamily,
+  NATIVE_SHIELD_STEPS,
+  SHIELD_DOH_URL,
+  SHIELD_FAMILY_DOH_URL,
+  SHIELD_PROFILE_URL,
+} from "./dns-shield.ts";
 
 const IPHONE_SAFARI = "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1";
 const IPHONE_CHROME = "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/130.0 Mobile/15E148 Safari/604.1";
@@ -41,4 +52,20 @@ test("domain check cleans input and rejects junk", async () => {
   assert.equal(await checkDomain(" https://Ads.Example.com/x?y ", f), "block");
   assert.match(seen, /name=ads\.example\.com$/);
   await assert.rejects(checkDomain("not a domain", f));
+});
+
+test("native toggle state: saved-but-not-selected is pending, not on", () => {
+  assert.equal(nativeShieldState(null), "off");
+  assert.equal(nativeShieldState({ enabled: false, configured: false }), "off");
+  assert.equal(nativeShieldState({ enabled: false, configured: true }), "pending");
+  assert.equal(nativeShieldState({ enabled: true, configured: true }), "on");
+  assert.equal(nativeShieldIsFamily({ enabled: true, serverURL: SHIELD_FAMILY_DOH_URL }), true);
+  assert.equal(nativeShieldIsFamily({ enabled: true, serverURL: SHIELD_DOH_URL }), false);
+  assert.equal(SHIELD_FAMILY_DOH_URL, "https://dns.alhajda.com/family/dns-query");
+});
+
+test("native steps name the exact iOS Settings path and the entry to pick", () => {
+  const all = NATIVE_SHIELD_STEPS.join(" ");
+  assert.match(all, /عام › الشبكة الخاصة الافتراضية وإدارة الجهاز › DNS/);
+  assert.match(all, /درع واحة/);
 });
