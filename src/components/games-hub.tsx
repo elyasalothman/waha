@@ -1,5 +1,6 @@
 import { ExternalLink as ExternalLinkIcon } from "lucide-react";
 import { HayatCard } from "@/components/hayat-card";
+import { ArmyCard } from "@/components/army-card";
 import { AppCard } from "@/components/app-card";
 import { ExternalLink } from "@/components/external-link";
 import { SfxToggle } from "@/components/game-hud";
@@ -58,6 +59,10 @@ export function GamesHub() {
         </div>
         <SfxToggle />
       </header>
+
+      <div className="mb-5">
+        <ArmyCard />
+      </div>
 
       <div className="mb-5 flex flex-wrap gap-3">
         <ExternalLink

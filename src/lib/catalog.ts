@@ -193,6 +193,7 @@ export const CATALOG: CatalogItem[] = [
   { id: "encode", category: "tools", lane: "desk", audience: W, icon: "Binary", title: { ar: "الترميز", en: "Encode" }, blurb: { ar: "Base64 وURL وتجزئة", en: "Base64, URL, and hashing" } },
 
   ...(LUMA_GAMES ? [LUMA_GAMES] : []),
+  { id: "army", category: "games", lane: "play", audience: P, fresh: true, icon: "Swords", title: { ar: "جيش الواحة", en: "Oasis Army" }, blurb: { ar: "قُد رماتك عبر البوابات واهزم قطّاع الطرق — لعبة ثلاثية الأبعاد", en: "Lead your archers through the gates and beat the raiders — in 3D" } },
   { id: "kalima", category: "games", lane: "play", audience: P, icon: "WholeWord", title: { ar: "كلمة", en: "Kalima" }, blurb: { ar: "خمسة أحرف، ست محاولات — عربي وإنجليزي، وكلمة اليوم", en: "Five letters, six tries — Arabic and English, and a word of the day" } },
   { id: "abiar", category: "games", lane: "play", audience: P, icon: "Droplets", title: { ar: "آبار", en: "Wells" }, blurb: { ar: "اسكب الألوان حتى يستقر كل بئر", en: "Pour the colours until every well is still" } },
   { id: "majra", category: "games", lane: "play", audience: P, icon: "Waves", title: { ar: "مجرى", en: "Stream" }, blurb: { ar: "أدر القنوات حتى يجري الماء من العين", en: "Turn the channels until water leaves the spring" } },

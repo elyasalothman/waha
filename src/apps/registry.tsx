@@ -253,6 +253,7 @@ export const APPS: Record<string, ComponentType> = {
   breakout: BreakoutApp,
   trivia: TriviaApp,
   mines: MinesApp,
+  army: lazy(() => import("@/apps/games/army").then((m) => ({ default: m.ArmyApp }))),
   search: lazy(() => import("@/apps/tools/search").then((m) => ({ default: m.SearchApp }))),
   browser: lazy(() => import("@/apps/tools/browser").then((m) => ({ default: m.BrowserApp }))),
   shield: lazy(() => import("@/apps/tools/shield").then((m) => ({ default: m.ShieldApp }))),

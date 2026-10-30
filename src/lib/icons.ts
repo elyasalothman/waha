@@ -6,6 +6,7 @@ import {
   BedDouble,
   Binary,
   Blocks,
+  Swords,
   Bomb,
   BookA,
   BookMarked,
@@ -209,6 +210,7 @@ export const ICONS: Record<string, LucideIcon> = {
   Briefcase,
   Clapperboard,
   ShieldCheck,
+  Swords,
 };
 
 export function appIcon(name: string): LucideIcon {

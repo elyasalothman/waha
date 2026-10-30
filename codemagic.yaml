@@ -165,6 +165,9 @@ workflows:
       app_store_connect:
         auth: integration
         submit_to_testflight: true
+        beta_groups:
+          - App Store Connect Users
+        submit_to_app_store: false
 
 # ---------------------------------------------------------------------------
 # android-aab — DISABLED. Comments only; Codemagic does not run this.
