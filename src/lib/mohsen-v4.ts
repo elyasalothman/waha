@@ -73,7 +73,7 @@ export function serviceError(status: number) {
             : "تعذّر إكمال الطلب؛ راجع المدخلات وأعد المحاولة.";
 }
 export function validateUpload(file: Pick<File, "size" | "name">) {
-  if (!file.size) throw new Error("الملف فارغ.");
+  if (!Number.isFinite(file.size) || file.size <= 0) throw new Error("الملف فارغ.");
   if (file.size > 10 * 1024 * 1024) throw new Error(serviceError(413));
   if (!/\.(png|jpe?g|webp|pdf|docx|xlsx|txt|csv|md|json)$/i.test(file.name))
     throw new Error(serviceError(415));

@@ -35,6 +35,7 @@ export function parseMohsenReply(raw: unknown) {
     citations,
     verified:
       citations.length > 0 &&
+      result.verified !== false &&
       (result.verified === true ||
         (result.evidence !== null &&
           typeof result.evidence === "object" &&
