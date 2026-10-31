@@ -1,4 +1,4 @@
-import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { createRootRoute, HeadContent, Scripts, useRouterState } from "@tanstack/react-router";
 import { AuthProvider } from "@/lib/auth/provider";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
 import { NativeIosChrome } from "@/components/native-ios-chrome";
@@ -19,6 +19,15 @@ const msClarity =
 const cfWebAnalytics =
   // Reports go via alhajda.com's /cdn-cgi/rum (CORS allows waha.hajdah.com); direct cloudflareinsights.com was blocked by CORS.
   '(function(){if(location.hostname!=="waha.hajdah.com")return;var s=document.createElement("script");s.defer=true;s.src="https://static.cloudflareinsights.com/beacon.min.js";s.setAttribute("data-cf-beacon",\'{"token":"225785b6d91548eba8ce3b39fd3d14af","spa":true,"send":{"to":"https://alhajda.com/cdn-cgi/rum"}}\');document.head.appendChild(s);})();';
+
+const CANONICAL_ORIGIN = "https://waha.hajdah.com";
+
+/** Self-referencing canonical (path only, no query/hash) so Google indexes each sitemap URL as itself. */
+function SelfCanonical() {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const path = !pathname || pathname === "/" ? "/" : pathname.replace(/\/+$/, "");
+  return <link rel="canonical" href={`${CANONICAL_ORIGIN}${path}`} />;
+}
 
 export const Route = createRootRoute({
   head: () => ({
@@ -74,6 +83,7 @@ function RootDocument() {
     >
       <head>
         <HeadContent />
+        <SelfCanonical />
         <script dangerouslySetInnerHTML={{ __html: cfWebAnalytics }} />
         <script dangerouslySetInnerHTML={{ __html: msClarity }} />
       </head>
