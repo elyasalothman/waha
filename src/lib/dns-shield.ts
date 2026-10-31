@@ -24,7 +24,8 @@ export function detectShieldPlatform(
   const ios = /iPhone|iPad|iPod/.test(ua) || iPadOS;
   if (ios) {
     if (opts.native) return "ios-native";
-    const otherBrowser = /CriOS|FxiOS|EdgiOS|OPiOS|GSA\/|FBAN|FBAV|Instagram|Snapchat|Line\/|Twitter/.test(ua);
+    const otherBrowser =
+      /CriOS|FxiOS|EdgiOS|OPiOS|GSA\/|FBAN|FBAV|Instagram|Snapchat|Line\/|Twitter/.test(ua);
     if (opts.standalone || otherBrowser || !/Safari\//.test(ua)) return "ios-other";
     return "ios-safari";
   }
@@ -45,7 +46,7 @@ export function profileOpenHref(platform: ShieldPlatform, family = false): strin
 
 export type ShieldStatus = "active" | "inactive" | "unknown";
 
-/** Probe the canary. Network error (DNS answered 0.0.0.0) ⇒ active. Offline ⇒ unknown. */
+/** Probe the canary. Network error (DNS answered 0.0.0.0) ⇒ active. Offline or timeout ⇒ unknown. */
 export async function probeShield(
   fetchImpl: typeof fetch = fetch,
   online = typeof navigator === "undefined" ? true : navigator.onLine !== false,
@@ -61,7 +62,7 @@ export async function probeShield(
     });
     return res.ok ? "inactive" : "unknown";
   } catch {
-    return "active";
+    return ctl.signal.aborted ? "unknown" : "active";
   } finally {
     clearTimeout(timer);
   }
@@ -71,13 +72,30 @@ export async function probeShield(
 export async function checkDomain(
   name: string,
   fetchImpl: typeof fetch = fetch,
+  timeoutMs = 5000,
 ): Promise<"block" | "allow"> {
-  const clean = name.trim().toLowerCase().replace(/^https?:\/\//, "").split(/[/?#]/)[0];
+  const clean = name
+    .trim()
+    .toLowerCase()
+    .replace(/^https?:\/\//, "")
+    .split(/[/?#]/)[0];
   if (!/^[a-z0-9.-]{1,253}$/.test(clean) || !clean.includes(".")) throw new Error("bad-domain");
-  const res = await fetchImpl(`https://${SHIELD_HOST}/check?name=${encodeURIComponent(clean)}`);
-  if (!res.ok) throw new Error("check-failed");
-  const json = (await res.json()) as { verdict?: string };
-  return json.verdict === "block" ? "block" : "allow";
+  const ctl = new AbortController();
+  const timer = setTimeout(() => ctl.abort(), timeoutMs);
+  try {
+    const res = await fetchImpl(`https://${SHIELD_HOST}/check?name=${encodeURIComponent(clean)}`, {
+      signal: ctl.signal,
+    });
+    if (!res.ok) throw new Error("check-failed");
+    const json = (await res.json()) as { verdict?: string } | null;
+    if (json?.verdict !== "block" && json?.verdict !== "allow") throw new Error("check-failed");
+    return json.verdict;
+  } catch (error) {
+    if (ctl.signal.aborted) throw new Error("check-timeout");
+    throw error;
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 /** What the native iOS toggle (NEDNSSettingsManager) reports. */

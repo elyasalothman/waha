@@ -157,3 +157,21 @@ export function directoryState(raw: string | null): { recent: string[]; favorite
     return { recent: [], favorites: [] };
   }
 }
+
+/** Match Arabic service names and keywords, ignoring typing marks and spacing. */
+export function searchDirectoryServices(query: string) {
+  const normalize = (value: string) =>
+    value
+      .normalize("NFKD")
+      .replace(/[\u064b-\u065f\u0670\u0640]/g, "")
+      .replace(/[أإآ]/g, "ا")
+      .replace(/ى/g, "ي")
+      .replace(/ة/g, "ه")
+      .toLowerCase()
+      .trim();
+  const terms = normalize(query).split(/\s+/).filter(Boolean);
+  return LEAP_SERVICES.filter((service) => {
+    const text = normalize(`${service.title} ${service.words}`);
+    return terms.every((term) => text.includes(term));
+  });
+}

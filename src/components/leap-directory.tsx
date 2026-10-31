@@ -3,7 +3,12 @@ import { Link } from "@tanstack/react-router";
 import { useAppStore } from "@/store/app-store";
 import { hideMoney } from "@/lib/child-mode";
 import { Star } from "lucide-react";
-import { DIRECTORY_KEY, directoryState, LEAP_SERVICES } from "@/lib/leap-services";
+import {
+  DIRECTORY_KEY,
+  directoryState,
+  LEAP_SERVICES,
+  searchDirectoryServices,
+} from "@/lib/leap-services";
 import { ExternalLink } from "./external-link";
 import { appIcon } from "@/lib/icons";
 export function LeapDirectory({ home = false }: { home?: boolean }) {
@@ -32,10 +37,9 @@ export function LeapDirectory({ home = false }: { home?: boolean }) {
       setNotice("تعذّر الحفظ على الجهاز.");
     }
   }
-  const norm = (s: string) => s.replace(/[أإآ]/g, "ا").toLowerCase();
-  const visible = LEAP_SERVICES.filter(
+  const visible = searchDirectoryServices(query).filter(
     (s) => !(hideMoney(segment) && s.group === "أخبار ومال"),
-  ).filter((s) => norm(s.title + " " + s.words).includes(norm(query)));
+  );
   const card = (id: string) => {
     const s = LEAP_SERVICES.find((s) => s.id === id);
     if (!s || (hideMoney(segment) && s.group === "أخبار ومال")) return null;
@@ -141,14 +145,16 @@ export function LeapDirectory({ home = false }: { home?: boolean }) {
           كل أدوات واحة
         </Link>
       </nav>
-      {["تعلّم", "أخبار ومال", "أدوات وذكاء", "ألعاب", "تسوّق"].map((group) => (
-        <section key={group}>
-          <h2 className="mb-3 font-display text-xl">{group}</h2>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-            {visible.filter((s) => s.group === group).map((s) => card(s.id))}
-          </div>
-        </section>
-      ))}
+      {["تعلّم", "أخبار ومال", "أدوات وذكاء", "ألعاب", "تسوّق"]
+        .filter((group) => visible.some((service) => service.group === group))
+        .map((group) => (
+          <section key={group}>
+            <h2 className="mb-3 font-display text-xl">{group}</h2>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {visible.filter((s) => s.group === group).map((s) => card(s.id))}
+            </div>
+          </section>
+        ))}
       {!visible.length && <p role="status">ما وجدنا خدمة بهذا الاسم؛ جرّب كلمة أخرى.</p>}
       <p role="status">{notice}</p>
     </div>

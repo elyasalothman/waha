@@ -59,6 +59,7 @@ export function ShieldApp() {
   const [msg, setMsg] = useState("");
   const [domain, setDomain] = useState("googleads.g.doubleclick.net");
   const [verdict, setVerdict] = useState("");
+  const [checkingDomain, setCheckingDomain] = useState(false);
   const [opened, setOpened] = useState(false);
 
   const refresh = useCallback(async () => {
@@ -92,10 +93,13 @@ export function ShieldApp() {
           serverURL: family ? SHIELD_FAMILY_DOH_URL : SHIELD_DOH_URL,
         });
         setNativeInfo(r);
-        if (!r.enabled) setMsg("حُفظ الدرع في الآيفون. بقيت خطوة واحدة في الإعدادات — اتبع الخطوات أدناه.");
+        if (!r.enabled)
+          setMsg("حُفظ الدرع في الآيفون. بقيت خطوة واحدة في الإعدادات — اتبع الخطوات أدناه.");
       } catch (e) {
         setMsg(
-          "تعذّر حفظ الدرع" + (e instanceof Error && e.message ? ` (${e.message})` : "") + ". حاول مرة أخرى.",
+          "تعذّر حفظ الدرع" +
+            (e instanceof Error && e.message ? ` (${e.message})` : "") +
+            ". حاول مرة أخرى.",
         );
       } finally {
         setBusy(false);
@@ -122,12 +126,20 @@ export function ShieldApp() {
   };
 
   const runCheck = async () => {
-    setVerdict("…");
+    if (checkingDomain) return;
+    setCheckingDomain(true);
+    setVerdict("جارٍ فحص النطاق…");
     try {
       const v = await checkDomain(domain);
       setVerdict(v === "block" ? `⛔ محجوب: ${domain}` : `✅ مسموح: ${domain}`);
-    } catch {
-      setVerdict("اكتب نطاقًا صحيحًا مثل ads.example.com");
+    } catch (error) {
+      setVerdict(
+        error instanceof Error && error.message === "bad-domain"
+          ? "اكتب نطاقًا صحيحًا مثل ads.example.com"
+          : "تعذّر فحص النطاق. تحقق من اتصالك وحاول مرة أخرى.",
+      );
+    } finally {
+      setCheckingDomain(false);
     }
   };
 
@@ -223,13 +235,14 @@ export function ShieldApp() {
             {msg && <p className="text-sm">{msg}</p>}
             {native ? (
               <p className="text-xs text-muted">
-                إن كنت ثبّتّ سابقًا ملف التعريف «درع الهجدة» من Safari فاحذفه (الإعدادات › عام › الشبكة
-                الخاصة الافتراضية وإدارة الجهاز) حتى لا يتعارض مع درع واحة. لا نسجّل ما تتصفحه.
+                إن كنت ثبّتّ سابقًا ملف التعريف «درع الهجدة» من Safari فاحذفه (الإعدادات › عام ›
+                الشبكة الخاصة الافتراضية وإدارة الجهاز) حتى لا يتعارض مع درع واحة. لا نسجّل ما
+                تتصفحه.
               </p>
             ) : (
               <p className="text-xs text-muted">
-                سيظهر الملف «غير موثّق» لأنه غير موقّع رقميًا، وهذا متوقع. للإيقاف: الإعدادات › عام ›
-                الشبكة الخاصة الافتراضية وإدارة الجهاز › احذف «درع الهجدة».
+                سيظهر الملف «غير موثّق» لأنه غير موقّع رقميًا، وهذا متوقع. للإيقاف: الإعدادات › عام
+                › الشبكة الخاصة الافتراضية وإدارة الجهاز › احذف «درع الهجدة».
               </p>
             )}
             {!(native && nativeShieldIsFamily(nativeInfo)) && (
@@ -286,11 +299,20 @@ export function ShieldApp() {
             className="min-h-11 min-w-0 flex-1 rounded-xl border border-border bg-surface px-3"
             aria-label="النطاق"
           />
-          <button type="button" className={featureButton} onClick={() => void runCheck()}>
-            افحص
+          <button
+            type="button"
+            className={featureButton}
+            disabled={checkingDomain}
+            onClick={() => void runCheck()}
+          >
+            {checkingDomain ? "جارٍ الفحص…" : "افحص"}
           </button>
         </div>
-        {verdict && <p className="font-semibold">{verdict}</p>}
+        {verdict && (
+          <p role="status" className="break-words font-semibold">
+            {verdict}
+          </p>
+        )}
         <p className="text-xs text-muted">
           القائمة: HaGeZi Multi PRO (أكثر من 200 ألف نطاق) مع استثناء أبشر وتوكلنا ونفاذ والبنوك
           وواتساب وخدمات أبل.
