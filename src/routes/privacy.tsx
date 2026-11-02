@@ -37,6 +37,12 @@ export const Route = createFileRoute("/privacy")({
         الإحداثيات إلى مصدر الطقس Open-Meteo. تستطيع رفض الإذن واختيار مدينة. التذكيرات والإشعارات
         المحلية اختيارية وتحتاج إذن الجهاز؛ لا ضمان لوصولها بعد إغلاق التطبيق على جميع المنصات.
       </p>
+      <h2 className="text-xl">درع الحماية (DNS)</h2>
+      <p>
+        «درع الحماية» اختياري. عند تشغيله تُرسل استعلامات DNS من جهازك مشفّرة عبر DoH إلى
+        dns.alhajda.com لحجب نطاقات الإعلانات والتتبّع. لا نسجّل هذه الاستعلامات ولا نخزّنها ولا
+        نبيعها، وتستطيع إيقاف الدرع في أي وقت من التطبيق.
+      </p>
       <h2 className="text-xl">الحساب والخدمات الأخرى</h2>
       <p>
         الحساب اختياري عبر Better Auth عند تفعيله. تُخزّن بيانات الهوية والجلسات والكتب التي تختار
@@ -74,7 +80,7 @@ export const Route = createFileRoute("/privacy")({
           after two days. Location and notifications require permission. Optional accounts use
           Better Auth. External services have separate policies. Cloudflare Web Analytics uses no
           cookies. On the website only (not in the app), Microsoft Clarity records anonymous heatmaps and
-          sessions with all text masked. No advertising or data sales. Children should use AI with parental guidance. For
+          sessions with all text masked. No advertising or data sales. The optional DNS Shield (درع الحماية), when turned on, sends your device's DNS lookups over encrypted DoH to dns.alhajda.com; they are not logged, stored or sold, and you can turn it off anytime in the app. Children should use AI with parental guidance. For
           deletion or privacy requests: elyasalothman@gmail.com.
         </p>
       </section>
