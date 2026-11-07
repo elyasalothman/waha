@@ -1,4 +1,5 @@
 import { PrivacyLinks } from "@/components/privacy-links";
+import { AccountPanel } from "@/components/account-panel";
 import { Link } from "@tanstack/react-router";
 import { AgentSettings } from "./agent-settings";
 import { clearWahaLocalData } from "@/lib/local-data";
@@ -166,8 +167,9 @@ export function SettingsPage() {
     [confirm, setConfirm] = useState<"reset" | "clear" | "history" | null>(null),
     [cacheInfo, setCacheInfo] = useState("");
   useEffect(() => {
-    if (window.location.hash !== "#home-display") return;
-    const panel = document.getElementById("home-display");
+    const id = window.location.hash.replace("#", "");
+    if (id !== "home-display" && id !== "account") return;
+    const panel = document.getElementById(id);
     if (panel instanceof HTMLDetailsElement) panel.open = true;
     panel?.scrollIntoView({ block: "start" });
   }, []);
@@ -212,8 +214,8 @@ export function SettingsPage() {
   }
   return (
     <div className="mx-auto max-w-3xl space-y-4" dir="rtl">
-      <PrivacyLinks />
-      <h1 className="font-display text-3xl">الإعدادات والتخصيص</h1>
+      <h1 className="font-display text-3xl">الحساب والإعدادات</h1>
+      <AccountPanel />
       <Link to="/onboarding" className="inline-flex min-h-11 items-center text-primary">
         إعادة جولة الترحيب والتخصيص ←
       </Link>
@@ -422,7 +424,7 @@ export function SettingsPage() {
                   </select>
                   <h2>تبويبات واحة 2.0</h2>
                   <p className="text-sm leading-7 text-muted">
-                    الرئيسية، محسن، المكتبة، الأبحاث، المزيد. الحساب من رأس الجوال أو أسفل القائمة على الشاشة الواسعة. بقية الخدمات من المزيد.
+                    الرئيسية، محسن، المكتبة، الأبحاث، المزيد. الحساب والإعدادات من هذه الصفحة. بقية الخدمات من المزيد.
                   </p>
                 </>
               )}
@@ -464,6 +466,7 @@ export function SettingsPage() {
               )}
               {g.title === "الخصوصية والبيانات" && (
                 <>
+                  <PrivacyLinks />
                   <button
                     className="min-h-11 w-full text-start text-primary"
                     onClick={exportSettings}

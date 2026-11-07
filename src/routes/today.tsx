@@ -1,11 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { SuperAppHome as HomePage } from "@/components/superapp-home";
+import { createFileRoute, redirect } from "@tanstack/react-router";
+
+/** The reading-first home is `/`. This address stays for older links and sign-in returns. */
 export const Route = createFileRoute("/today")({
-  head: () => ({
-    meta: [
-      { title: "يومي · واحة" },
-      { name: "description", content: "أخبارك ووردك وكتبك وألعابك في واحة يومك." },
-    ],
-  }),
-  component: HomePage,
+  beforeLoad: () => {
+    throw redirect({ to: "/", replace: true });
+  },
 });

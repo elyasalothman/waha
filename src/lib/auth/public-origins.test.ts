@@ -7,20 +7,41 @@ import {
   IOS_BUNDLE_ID,
   NATIVE_AUTH_PATHS,
   oauthCallbackUrls,
+  oauthHandoffProvider,
+  oauthHandoffUrl,
   productionAuthBase,
   productionTrustedOrigins,
 } from "./public-origins.ts";
 
-test("both public Waha domains have Google and Apple callback URLs", () => {
+test("OAuth uses the configured base, and alhajda hands off without a custom redirect", () => {
   assert.deepEqual(oauthCallbackUrls(), [
     "https://waha.hajdah.com/api/auth/callback/google",
     "https://waha.hajdah.com/api/auth/callback/apple",
     "https://waha.alhajda.com/api/auth/callback/google",
     "https://waha.alhajda.com/api/auth/callback/apple",
   ]);
-  const base = productionAuthBase("https://waha.hajdah.com");
-  assert.deepEqual(base.allowedHosts, ["waha.hajdah.com", "waha.alhajda.com"]);
-  assert.equal(base.protocol, "https");
+  assert.equal(productionAuthBase("https://waha.hajdah.com/"), "https://waha.hajdah.com");
+  assert.equal(oauthHandoffUrl("https://waha.hajdah.com", "google"), null);
+  assert.equal(
+    oauthHandoffUrl("https://waha.alhajda.com", "apple"),
+    "https://waha.hajdah.com/me?start=apple",
+  );
+  assert.equal(
+    oauthHandoffProvider(
+      "https://waha.hajdah.com",
+      "?start=google",
+      "https://waha.alhajda.com/me",
+    ),
+    "google",
+  );
+  assert.equal(
+    oauthHandoffProvider("https://waha.hajdah.com", "?start=google", "https://evil.example/"),
+    null,
+  );
+  assert.equal(
+    oauthHandoffProvider("https://waha.alhajda.com", "?start=google", "https://waha.alhajda.com/"),
+    null,
+  );
   assert.ok(
     productionTrustedOrigins("https://waha.hajdah.com", ["http://localhost:8080"]).includes(
       "https://waha.alhajda.com",

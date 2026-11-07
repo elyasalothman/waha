@@ -706,11 +706,8 @@ export function MohsenChat({
               <Link to="/research" className="min-h-11 content-center" onClick={() => setDrawer(false)}>
                 الأبحاث
               </Link>
-              <Link to="/settings" className="min-h-11 content-center" onClick={() => setDrawer(false)}>
-                الإعدادات
-              </Link>
-              <Link to="/me" className="min-h-11 content-center" onClick={() => setDrawer(false)}>
-                الحساب
+              <Link to="/settings" hash="account" className="min-h-11 content-center" onClick={() => setDrawer(false)}>
+                الحساب والإعدادات
               </Link>
               <Link to="/privacy" className="min-h-11 content-center" onClick={() => setDrawer(false)}>
                 الخصوصية

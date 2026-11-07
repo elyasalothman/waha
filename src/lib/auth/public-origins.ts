@@ -21,15 +21,30 @@ export function oauthCallbackUrls(origins: readonly string[] = WAHA_PUBLIC_ORIGI
   ]);
 }
 
-/** Request host decides the OAuth redirect, so each public domain can finish sign-in. */
+/** The provider apps already accept this origin. The other public host must not mint its own redirect_uri. */
+export const CANONICAL_OAUTH_ORIGIN = "https://waha.hajdah.com";
+
+/**
+ * OAuth redirect_uri follows the configured base URL, not the browser host.
+ * A dynamic host list made waha.alhajda.com send a callback the providers reject.
+ */
 export function productionAuthBase(explicitBaseURL: string) {
-  const fallback = explicitBaseURL.replace(/\/$/, "");
-  const host = new URL(fallback).host;
-  return {
-    allowedHosts: [...new Set([host, "waha.hajdah.com", "waha.alhajda.com"])],
-    protocol: fallback.startsWith("https://") ? ("https" as const) : ("auto" as const),
-    fallback,
-  };
+  return explicitBaseURL.replace(/\/$/, "");
+}
+
+/** Leave the other public host before OAuth so state, PKCE, and the callback share one origin. */
+export function oauthHandoffUrl(currentOrigin: string, provider: "google" | "apple"): string | null {
+  if (currentOrigin !== "https://waha.alhajda.com") return null;
+  return `${CANONICAL_OAUTH_ORIGIN}/me?start=${provider}`;
+}
+
+/** Continue a handoff only when this page is the canonical origin and the previous page was the other Waha host. */
+export function oauthHandoffProvider(origin: string, search: string, referrer: string): "google" | "apple" | null {
+  if (origin !== CANONICAL_OAUTH_ORIGIN) return null;
+  if (!referrer.startsWith("https://waha.alhajda.com/")) return null;
+  const start = new URLSearchParams(search).get("start");
+  if (start === "google" || start === "apple") return start;
+  return null;
 }
 
 export function productionTrustedOrigins(explicitBaseURL: string, localOrigins: readonly string[]): string[] {

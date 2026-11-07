@@ -21,7 +21,6 @@ const WahaAgent = lazy(() =>
 );
 import { useSettings } from "@/store/settings-store";
 import { SettingsEffects } from "@/components/settings-effects";
-import { LangToggle } from "@/components/city-select";
 import { NativeReminders } from "@/components/native-reminders";
 import { OfflineBanner } from "@/components/offline-banner";
 import { t } from "@/lib/i18n";
@@ -251,13 +250,9 @@ export function Shell() {
           })}
         </nav>
         <div className="flex flex-wrap items-center gap-2 px-4 py-4">
-          <Link to="/me" className="inline-flex min-h-11 items-center gap-2 text-sm">
-            <UserRound className="size-4" />
-            {t(lang, "me")}
-          </Link>
-          <Link to="/settings" className="inline-flex min-h-11 items-center gap-2 text-sm">
+          <Link to="/settings" hash="account" className="inline-flex min-h-11 items-center gap-2 text-sm">
             <Settings className="size-4" />
-            {lang === "ar" ? "الإعدادات" : "Settings"}
+            {lang === "ar" ? "الحساب والإعدادات" : "Account and settings"}
           </Link>
           <button
             type="button"
@@ -268,7 +263,6 @@ export function Shell() {
           >
             {dark ? <Sun className="size-5" /> : <Moon className="size-5" />}
           </button>
-          <LangToggle lang={lang} />
         </div>
       </aside>
 

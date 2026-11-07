@@ -77,7 +77,7 @@ describe("waha well-night palette", () => {
   });
 
   it("applies the shared tokens to shadow, square, madar, clips, and games — no product-scope change", () => {
-    assert.match(home, /HomePage/);
+    assert.match(home, /redirect\(\{ to: "\/", replace: true \}\)/);
     assert.doesNotMatch(home, /ClipsPage|\/clips/);
     assert.match(shadow, /text-muted|text-subtle|text-fg|text-primary/);
     assert.match(square, /PALETTE\.primary/);

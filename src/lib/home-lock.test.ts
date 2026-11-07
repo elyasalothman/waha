@@ -47,7 +47,7 @@ describe("serious home lock", () => {
 
   it("binds /today to daily essentials — Square stays available in Explore", () => {
     const home = readFileSync(new URL("../routes/today.tsx", import.meta.url), "utf8");
-    assert.match(home, /HomePage/);
+    assert.match(home, /redirect\(\{ to: "\/", replace: true \}\)/);
     assert.equal(/Hub/.test(home), false);
     assert.equal(/byCategory|featuredFor/.test(home), false);
     assert.equal(/maydan/.test(home), false);
@@ -63,7 +63,7 @@ describe("serious home lock", () => {
       new URL("../components/square/day-shadow.tsx", import.meta.url),
       "utf8",
     );
-    assert.match(home, /HomePage/);
+    assert.match(home, /redirect\(\{ to: "\/", replace: true \}\)/);
     assert.doesNotMatch(home, /DayShadow/);
     assert.match(square, /DayShadow/);
     assert.match(square, /data-home-sections="day-shadow house-doors square"/);
@@ -80,7 +80,7 @@ describe("serious home lock", () => {
       new URL("../components/square/square-page.tsx", import.meta.url),
       "utf8",
     );
-    assert.match(home, /HomePage/);
+    assert.match(home, /redirect\(\{ to: "\/", replace: true \}\)/);
     assert.doesNotMatch(home, /\/games|GamesHub|gamesDoor|ألعاب واحة|abiar|majra|kutl|kalima/i);
     assert.doesNotMatch(square, /\/games|GamesHub|luma|kalima|abiar|majra|kutl/i);
   });
@@ -186,7 +186,7 @@ describe("king lock — `/` after #8", () => {
     assert.equal(homeShowsDailySlides(), false);
     assert.equal(homeShowsBooksShelf(), false);
     assert.equal(homeShadeFieldCrossing(), "quiet");
-    assert.match(home, /HomePage/);
+    assert.match(home, /redirect\(\{ to: "\/", replace: true \}\)/);
     assert.doesNotMatch(home, /DailySlides|BooksPage|lib\/books|kutub-shelf/);
     assert.doesNotMatch(square, /DailySlides|BooksPage|kutub-shelf|lib\/books/);
     assert.match(square, /DayShadow/);

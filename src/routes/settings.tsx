@@ -3,7 +3,7 @@ import { SettingsPage } from "@/components/settings-page";
 export const Route = createFileRoute("/settings")({
   head: () => ({
     meta: [
-      { title: "الإعدادات والتخصيص · واحة" },
+      { title: "الحساب والإعدادات · واحة" },
       { name: "robots", content: "noindex" },
       {
         name: "description",
