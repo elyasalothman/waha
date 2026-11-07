@@ -61,7 +61,10 @@ export const SERVICE_DIRECTORY: readonly DirectorySection[] = [
         id: "live",
         href: "/live",
         title: { ar: "البث المباشر", en: "Live broadcast" },
-        blurb: { ar: "محاولة صامتة واحدة. إن لم تظهر الصورة تُفتح صفحة السوق.", en: "One silent try. Otherwise the market page opens." },
+        blurb: {
+          ar: "تلفزيون هدوء السوق داخل واحة. النجاح صورة مستمرة، لا مجرد فتح الصفحة.",
+          en: "Hudoo TV inside Waha. Success is a picture that keeps moving.",
+        },
       },
     ],
   },

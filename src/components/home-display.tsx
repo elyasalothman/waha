@@ -153,6 +153,24 @@ export function DisplayReading({ book }: { book: MidadCard | null | undefined })
   );
 }
 
+/** Hudoo TV lives with the news widgets. The card opens the player; it does not claim the picture is already moving. */
+export function DisplayBroadcast() {
+  return (
+    <Link
+      to="/live"
+      aria-label="البث المباشر"
+      data-home-widget="broadcast"
+      className={`${cardLink} tint-rose`}
+    >
+      <h2 className="text-lg">📺 البث المباشر</h2>
+      <p className="mt-2 font-medium">تلفزيون هدوء السوق</p>
+      <p className="mt-2 text-sm leading-7 text-muted">
+        ضمن الأخبار. الصفحة تفتح المشغّل، ولا تُعلِن أن الصورة تعمل قبل أن تستمر.
+      </p>
+    </Link>
+  );
+}
+
 /** Titles observed on the research index. Text only. */
 export function DisplayResearch() {
   return (

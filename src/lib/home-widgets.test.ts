@@ -24,7 +24,11 @@ test("a fresh visitor sees the reading sections, and a saved list is not extende
   ]);
   assert.equal(defaultSettings.homeSize, "comfortable");
   assert.ok(DEFAULT_HOME_WIDGETS.length < HOME_WIDGET_CATALOG.length);
-  assert.equal(HOME_WIDGET_CATALOG.length, 10);
+  assert.equal(HOME_WIDGET_CATALOG.length, 11);
+  assert.equal(
+    ([...DEFAULT_HOME_WIDGETS] as string[]).includes("broadcast"),
+    false,
+  );
   assert.equal(
     parseSettings({ homeWidgets: ["reading", "research", "headlines", "weather"] }).homeWidgets.includes(
       "analysts",

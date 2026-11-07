@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useSettings } from "@/store/settings-store";
 import { HomeNews } from "./home-news";
 import { HomeWeather } from "./home-weather";
-import { DisplayDate, DisplayPrayer, DisplayReading, DisplayResearch } from "./home-display";
+import { DisplayBroadcast, DisplayDate, DisplayPrayer, DisplayReading, DisplayResearch } from "./home-display";
 import { Analysts } from "./analysts";
 import type { HomeWidgetId } from "@/lib/home-widgets";
 import { homeShelfPlan, type MidadCard } from "@/lib/home-steady";
@@ -30,6 +30,7 @@ function readPlan(widgets: readonly HomeWidgetId[]): Plan | null {
 function HomeSlot({ id, plan }: { id: HomeWidgetId; plan: Plan | null }) {
   if (id === "weather") return <HomeWeather plain />;
   if (id === "headlines") return <HomeNews plain />;
+  if (id === "broadcast") return <DisplayBroadcast />;
   if (id === "reading") return <DisplayReading book={plan ? plan.daily : undefined} />;
   if (id === "continue") return <HomeContinue items={plan?.resume ?? []} />;
   if (id === "saved") return <HomeSaved items={plan?.saved ?? []} />;
