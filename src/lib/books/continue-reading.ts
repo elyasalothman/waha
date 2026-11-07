@@ -37,7 +37,44 @@ function progressed(row: Record<string, unknown>, chapter: number): boolean {
   return Array.isArray(row.bookmarks) && row.bookmarks.length > 0;
 }
 
-/** Latest in-progress books already stored by the readers. No new home widget. */
+const SHELF_KEY = "waha:reading-shelf";
+
+function bookmarkCount(row: Record<string, unknown>): number {
+  return Array.isArray(row.bookmarks) ? row.bookmarks.length : 0;
+}
+
+/** Books the reader marked, from the same keys the readers already write. */
+export function savedReading(storage: Store): ContinueHit[] {
+  const hits: ContinueHit[] = [];
+  const push = (href: string, title: string, detail: string) => {
+    if (!hits.some((item) => item.href === href)) hits.push({ href, title, detail, savedAt: 0 });
+  };
+  const shelf = record(storage.getItem(SHELF_KEY));
+  const ids = Array.isArray(shelf) ? shelf : [];
+  for (const id of ids) {
+    if (typeof id !== "string") continue;
+    const book = midad.find((item) => item.id === id);
+    if (!book) continue;
+    push(`/books/library/${book.id}`, book.title, "في رف القراءة على هذا الجهاز");
+  }
+  const marked: [string, string, string][] = [
+    ["waha:curated:alhajda:edition1", "/books/alhajda", "الهجدة"],
+    ["waha:curated:trading-guide:20261007", "/books/trading-guide", "دليل المضاربة والتداول في الأسهم الأمريكية"],
+  ];
+  for (const [key, href, title] of marked) {
+    const row = record(storage.getItem(key));
+    if (row && bookmarkCount(row) > 0) push(href, title, "موضع محفوظ في الكتاب");
+  }
+  for (const story of STORIES) {
+    const row = record(storage.getItem(`waha:curated:story:${story.slug}`));
+    if (row && bookmarkCount(row) > 0)
+      push(`/books/stories/${story.slug}`, story.title, "موضع محفوظ في القصة");
+  }
+  return hits.slice(0, 4);
+}
+
+/** Latest in-progress books already stored by the readers. */
+
 export function continueReading(storage: Store): ContinueHit[] {
   const hits: ContinueHit[] = [];
   const push = (href: string, title: string, detail: string, at: number) => {

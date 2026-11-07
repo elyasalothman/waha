@@ -1,7 +1,7 @@
 import { NEWS_TOPICS } from "./arabic-news.ts";
 import { CITIES } from "./cities.ts";
 import { SERVICES } from "./superapp.ts";
-import { DEFAULT_HOME_WIDGETS } from "./home-widgets.ts";
+import { DEFAULT_HOME_WIDGETS, HOME_WIDGET_IDS } from "./home-widgets.ts";
 import { z } from "zod";
 export const SETTINGS_KEY = "waha:settings:v1";
 export const settingsSchema = z
@@ -33,8 +33,8 @@ export const settingsSchema = z
     newsWidget: z.boolean().default(true),
     liveWidget: z.boolean().default(true),
     homeWidgets: z
-      .array(z.enum(["weather", "headlines", "reading", "research", "prayer", "hijri"]))
-      .max(6)
+      .array(z.enum(HOME_WIDGET_IDS))
+      .max(HOME_WIDGET_IDS.length)
       .refine((items) => new Set(items).size === items.length)
       .default([...DEFAULT_HOME_WIDGETS]),
     homeSize: z.enum(["comfortable", "compact"]).default("comfortable"),

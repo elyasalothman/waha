@@ -9,20 +9,39 @@ import {
 } from "./home-widgets.ts";
 import { defaultSettings, loadSettings, parseSettings, saveSettings } from "./settings.ts";
 
-test("a fresh visitor sees reading and research before news and weather", () => {
-  assert.deepEqual([...DEFAULT_HOME_WIDGETS], ["reading", "research", "headlines", "weather"]);
-  assert.deepEqual(defaultSettings.homeWidgets, ["reading", "research", "headlines", "weather"]);
-  assert.deepEqual(parseSettings({}).homeWidgets, ["reading", "research", "headlines", "weather"]);
+test("a fresh visitor sees the reading sections, and a saved list is not extended", () => {
+  assert.deepEqual(
+    [...DEFAULT_HOME_WIDGETS],
+    ["reading", "continue", "saved", "picks", "research", "headlines", "weather", "analysts"],
+  );
+  assert.deepEqual(defaultSettings.homeWidgets, [...DEFAULT_HOME_WIDGETS]);
+  assert.deepEqual(parseSettings({}).homeWidgets, [...DEFAULT_HOME_WIDGETS]);
+  assert.deepEqual(parseSettings({ homeWidgets: ["reading", "research", "headlines", "weather"] }).homeWidgets, [
+    "reading",
+    "research",
+    "headlines",
+    "weather",
+  ]);
   assert.equal(defaultSettings.homeSize, "comfortable");
   assert.ok(DEFAULT_HOME_WIDGETS.length < HOME_WIDGET_CATALOG.length);
-  assert.equal(HOME_WIDGET_CATALOG.length, 6);
+  assert.equal(HOME_WIDGET_CATALOG.length, 11);
+  assert.equal(
+    ([...DEFAULT_HOME_WIDGETS] as string[]).includes("broadcast"),
+    false,
+  );
+  assert.equal(
+    parseSettings({ homeWidgets: ["reading", "research", "headlines", "weather"] }).homeWidgets.includes(
+      "analysts",
+    ),
+    false,
+  );
   assert.equal(defaultSettings.location, "manual");
 });
 
-test("settings saved before widgets existed still open on the basic set", () => {
+test("settings saved before widgets existed still open on the first-visit list", () => {
   const legacy = { ...defaultSettings } as Partial<typeof defaultSettings>;
   delete legacy.homeWidgets;
-  assert.deepEqual(parseSettings(legacy).homeWidgets, ["reading", "research", "headlines", "weather"]);
+  assert.deepEqual(parseSettings(legacy).homeWidgets, [...DEFAULT_HOME_WIDGETS]);
   assert.deepEqual(parseSettings({ ...legacy, theme: "dark" }).theme, "dark");
 });
 

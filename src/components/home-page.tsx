@@ -1,4 +1,3 @@
-import { DeleteAccount } from "@/components/delete-account";
 import { useEffect, useState } from "react";
 import { INTERESTS, interestKey, normalizeInterests } from "@/lib/interests";
 import { signOut } from "@/lib/auth/client";
@@ -71,7 +70,6 @@ export function HomePage() {
           </Link>
         )}
       </div>
-      {user && !user.isDevFallback ? <DeleteAccount /> : null}
       {signOutError && (
         <p role="alert" className="mb-4 text-sm text-danger">
           تعذّر تسجيل الخروج. أعد المحاولة.
@@ -108,16 +106,6 @@ export function HomePage() {
           )}
         </section>
       )}
-      <div className="space-y-4 rounded-xl border border-border bg-surface p-5">
-        <h2 className="font-display text-2xl">واحة 1.2.1</h2>
-        <p className="text-sm leading-7 text-muted">
-          حساب واحة يتيح هويتك واهتماماتك. تقدمك ونقاطك وسلسلتك وتفضيلاتك محفوظة محليًا على هذا
-          الجهاز، وحسابات حصتي والألعاب مستقلة. حذف بيانات المتصفح يمسح الحفظ المحلي.
-        </p>
-        <Link to="/today" className="inline-flex min-h-11 items-center text-primary underline">
-          ارجع إلى يومك وخدماتك
-        </Link>
-      </div>
     </div>
   );
 }
