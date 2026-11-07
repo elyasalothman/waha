@@ -35,6 +35,7 @@ function HomeSlot({ id, plan }: { id: HomeWidgetId; plan: Plan | null }) {
   if (id === "saved") return <HomeSaved items={plan?.saved ?? []} />;
   if (id === "picks") return <HomePicks books={plan?.picks ?? []} />;
   if (id === "research") return <DisplayResearch />;
+  if (id === "analysts") return <Analysts compact />;
   if (id === "prayer") return <DisplayPrayer />;
   return <DisplayDate />;
 }
@@ -77,7 +78,6 @@ export function LeapHome() {
       ) : (
         widgets.map((id) => <HomeSlot key={id} id={id} plan={plan} />)
       )}
-      <Analysts compact />
     </div>
   );
 }

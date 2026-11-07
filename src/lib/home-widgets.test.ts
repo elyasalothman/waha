@@ -12,7 +12,7 @@ import { defaultSettings, loadSettings, parseSettings, saveSettings } from "./se
 test("a fresh visitor sees the reading sections, and a saved list is not extended", () => {
   assert.deepEqual(
     [...DEFAULT_HOME_WIDGETS],
-    ["reading", "continue", "saved", "picks", "research", "headlines", "weather"],
+    ["reading", "continue", "saved", "picks", "research", "headlines", "weather", "analysts"],
   );
   assert.deepEqual(defaultSettings.homeWidgets, [...DEFAULT_HOME_WIDGETS]);
   assert.deepEqual(parseSettings({}).homeWidgets, [...DEFAULT_HOME_WIDGETS]);
@@ -24,7 +24,13 @@ test("a fresh visitor sees the reading sections, and a saved list is not extende
   ]);
   assert.equal(defaultSettings.homeSize, "comfortable");
   assert.ok(DEFAULT_HOME_WIDGETS.length < HOME_WIDGET_CATALOG.length);
-  assert.equal(HOME_WIDGET_CATALOG.length, 9);
+  assert.equal(HOME_WIDGET_CATALOG.length, 10);
+  assert.equal(
+    parseSettings({ homeWidgets: ["reading", "research", "headlines", "weather"] }).homeWidgets.includes(
+      "analysts",
+    ),
+    false,
+  );
   assert.equal(defaultSettings.location, "manual");
 });
 

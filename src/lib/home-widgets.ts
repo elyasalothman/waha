@@ -7,6 +7,7 @@ export const HOME_WIDGET_IDS = [
   "research",
   "headlines",
   "weather",
+  "analysts",
   "prayer",
   "hijri",
 ] as const;
@@ -19,6 +20,7 @@ export const HOME_WIDGET_CATALOG = [
   { id: "research", ar: "مركز الأبحاث", en: "Research" },
   { id: "headlines", ar: "أهم الأخبار", en: "Top news" },
   { id: "weather", ar: "الطقس", en: "Weather" },
+  { id: "analysts", ar: "آراء المحللين", en: "Analyst opinions" },
   { id: "prayer", ar: "الصلاة القادمة", en: "Next prayer" },
   { id: "hijri", ar: "تاريخ اليوم", en: "Today’s date" },
 ] as const satisfies readonly { id: (typeof HOME_WIDGET_IDS)[number]; ar: string; en: string }[];
@@ -37,6 +39,7 @@ export const DEFAULT_HOME_WIDGETS = [
   "research",
   "headlines",
   "weather",
+  "analysts",
 ] as const satisfies readonly HomeWidgetId[];
 
 export type HomeSize = "comfortable" | "compact";
