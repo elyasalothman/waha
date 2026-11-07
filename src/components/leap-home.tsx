@@ -4,6 +4,7 @@ import { useSettings } from "@/store/settings-store";
 import { HomeNews } from "./home-news";
 import { HomeWeather } from "./home-weather";
 import { DisplayDate, DisplayPrayer, DisplayReading, DisplayResearch } from "./home-display";
+import { Analysts } from "./analysts";
 import type { HomeWidgetId } from "@/lib/home-widgets";
 import { homeShelfPlan, type MidadCard } from "@/lib/home-steady";
 import type { ContinueHit } from "@/lib/books/continue-reading";
@@ -76,6 +77,7 @@ export function LeapHome() {
       ) : (
         widgets.map((id) => <HomeSlot key={id} id={id} plan={plan} />)
       )}
+      <Analysts compact />
     </div>
   );
 }
