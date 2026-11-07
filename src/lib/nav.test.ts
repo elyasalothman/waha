@@ -5,6 +5,7 @@ import {
   chromeNav,
   mobileChromeNav,
   moreOverflowNav,
+  navItemActive,
   PERSONAL_NAV,
   TOOLS_OVERFLOW_NAV,
   WORK_NAV,
@@ -12,7 +13,7 @@ import {
 
 describe("simple Waha navigation", () => {
   it("keeps the same five core destinations on mobile and desktop for both audiences", () => {
-    const expected = ["/", "/mohsen", "/books", "/research", "/more"];
+    const expected = ["/", "/mohsen", "/books", "/games", "/more"];
     for (const audience of ["personal", "work"] as const) {
       assert.deepEqual(
         chromeNav(audience).map((item) => item.to),
@@ -55,5 +56,13 @@ describe("simple Waha navigation", () => {
       chromeNav("personal", "child").some((item) => item.to === "/money"),
       false,
     );
+  });
+
+  it("marks the games tab on the hub and on a game in play", () => {
+    assert.equal(navItemActive("/games", "/games"), true);
+    assert.equal(navItemActive("/games", "/play/kalima"), true);
+    assert.equal(navItemActive("/games", "/research"), false);
+    assert.equal(navItemActive("/books", "/books/library/midad-elevator-key"), true);
+    assert.equal(chromeNav("personal").some((item) => item.to === "/research"), false);
   });
 });

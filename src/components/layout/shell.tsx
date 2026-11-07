@@ -25,7 +25,7 @@ import { NativeReminders } from "@/components/native-reminders";
 import { OfflineBanner } from "@/components/offline-banner";
 import { t } from "@/lib/i18n";
 import { nextHeaderHidden } from "@/lib/header-scroll";
-import { chromeNav, mobileChromeNav } from "@/lib/nav";
+import { chromeNav, mobileChromeNav, navItemActive } from "@/lib/nav";
 import { cn } from "@/lib/cn";
 import { useAppStore } from "@/store/app-store";
 import { Toaster } from "sonner";
@@ -48,6 +48,7 @@ const NAV_MOOD: Record<string, string> = {
   "/": "🌿",
   "/mohsen": "💬",
   "/books": "📚",
+  "/games": "🎮",
   "/research": "🔬",
   "/more": "🎨",
 };
@@ -219,10 +220,7 @@ export function Shell() {
         <nav className="flex flex-1 flex-col gap-0.5 px-3">
           {nav.map((item) => {
             const Icon = NAV_ICON[item.to as keyof typeof NAV_ICON] ?? GalleryVertical;
-            const active =
-              item.to === "/"
-                ? pathname === "/" || pathname === "/today"
-                : pathname === item.to || pathname.startsWith(`${item.to}/`);
+            const active = navItemActive(item.to, pathname);
             return (
               <Link
                 key={item.to}
@@ -271,13 +269,13 @@ export function Shell() {
           data-app-header="name"
           data-hidden={headerHidden ? "true" : "false"}
           className={cn(
-            "waha-chrome native-safe-top sticky top-0 z-20 flex min-h-14 items-center justify-center border-b border-border px-4 pt-[env(safe-area-inset-top,0px)] transition-transform duration-200 motion-reduce:transition-none lg:pt-0",
+            "waha-chrome native-safe-top sticky top-0 z-20 flex min-h-[4.5rem] items-center justify-center border-b border-border px-4 py-2 pt-[max(0.5rem,env(safe-area-inset-top,0px))] transition-transform duration-200 motion-reduce:transition-none lg:pt-2",
             headerHidden && "pointer-events-none -translate-y-full",
           )}
         >
           <Link
             to="/"
-            className="font-display text-2xl tracking-tight text-primary focus-visible:outline-2 focus-visible:outline-offset-4"
+            className="waha-wordmark text-primary focus-visible:outline-2 focus-visible:outline-offset-4"
           >
             واحة
           </Link>
@@ -313,7 +311,7 @@ export function Shell() {
 
       <nav
         className={cn(
-          "waha-chrome native-safe-bottom fixed inset-x-0 bottom-0 z-30 grid border-t border-border pb-[env(safe-area-inset-bottom,0px)] lg:hidden",
+          "waha-tabbar native-safe-bottom fixed inset-x-0 bottom-0 z-30 grid overflow-x-hidden border-t border-border pb-[env(safe-area-inset-bottom,0px)] lg:hidden",
           mobileNav.length <= 2
             ? "grid-cols-2"
             : mobileNav.length === 3
@@ -325,17 +323,14 @@ export function Shell() {
       >
         {mobileNav.map((item) => {
           const Icon = NAV_ICON[item.to as keyof typeof NAV_ICON] ?? GalleryVertical;
-          const active =
-            item.to === "/"
-              ? pathname === "/" || pathname === "/today"
-              : pathname === item.to || pathname.startsWith(`${item.to}/`);
+          const active = navItemActive(item.to, pathname);
           return (
             <Link
               key={item.to}
               aria-current={active ? "page" : undefined}
               to={item.to}
               className={cn(
-                "flex min-h-14 flex-col items-center justify-center gap-1 text-sm",
+                "flex min-h-14 min-w-0 max-w-full flex-col items-center justify-center gap-0.5 overflow-hidden px-0.5 text-center text-[11px] leading-tight",
                 active ? "text-fg" : "text-muted",
               )}
             >

@@ -27,7 +27,7 @@ test("account and settings share one entry and the language control stays on tha
   assert.match(account, /تسجيل الخروج/);
   assert.deepEqual(
     PERSONAL_NAV.map((item) => item.to),
-    ["/", "/mohsen", "/books", "/research", "/more"],
+    ["/", "/mohsen", "/books", "/games", "/more"],
   );
   assert.equal(PERSONAL_NAV.some((item) => item.to === "/today"), false);
 });

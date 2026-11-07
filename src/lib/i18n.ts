@@ -35,7 +35,7 @@ const strings = {
   life: { ar: "حياتك", en: "Life" },
   money: { ar: "مالك", en: "Money" },
   tools: { ar: "الأدوات", en: "Tools" },
-  games: { ar: "الألعاب", en: "Play" },
+  games: { ar: "الألعاب", en: "Games" },
   studio: { ar: "الاستوديو", en: "Studio" },
   workspace: { ar: "المكتب", en: "Desk" },
   finance: { ar: "المالية", en: "Finance" },

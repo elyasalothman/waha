@@ -17,7 +17,7 @@ export const PERSONAL_NAV: readonly ChromeNavItem[] = [
   { to: "/", key: "home" },
   { to: "/mohsen", key: "mohsen" },
   { to: "/books", key: "library" },
-  { to: "/research", key: "research" },
+  { to: "/games", key: "games" },
   { to: "/more", key: "more" },
 ];
 
@@ -38,8 +38,15 @@ export const WORK_MORE_OVERFLOW_NAV: readonly ChromeNavItem[] = [
   { to: "/studio", key: "studio" },
 ];
 
-/** Play lives under المزيد — not a first-row tab. */
+/** Extra play doors that stay off the five-item bar. */
 export const TOOLS_OVERFLOW_NAV: readonly ChromeNavItem[] = [{ to: "/games", key: "games" }];
+
+export function navItemActive(to: string, pathname: string): boolean {
+  if (to === "/") return pathname === "/" || pathname === "/today";
+  if (to === "/games")
+    return pathname === "/games" || pathname.startsWith("/games/") || pathname.startsWith("/play/");
+  return pathname === to || pathname.startsWith(`${to}/`);
+}
 
 export function chromeNav(
   audience: "personal" | "work",
