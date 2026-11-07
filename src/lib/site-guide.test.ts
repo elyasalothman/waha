@@ -1,6 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { guideSite, isAllowlistedHref, planGuideTurn, SITE_GUIDE_NONE } from "./site-guide.ts";
+import {
+  guideSite,
+  isAllowlistedHref,
+  NO_TEXT_SUMMARY,
+  planGuideTurn,
+  SITE_GUIDE_NONE,
+  UNKNOWN_TEXT_SUMMARY,
+} from "./site-guide.ts";
 
 const hrefs = (query: string, hideMoney = false) => {
   const guide = guideSite(query, { hideMoney });
@@ -108,16 +115,39 @@ test("a place plus a real question keeps the visitor's question for the remote a
   assert.equal(math.action, "mixed");
   if (math.action === "mixed") assert.equal(math.remoteMessage, "كم 7 × 8");
 
-  const reading = planGuideTurn("وين كتاب الهجدة؟ واشرح لي فكرته");
-  assert.equal(reading.action, "mixed");
-  if (reading.action === "mixed") {
-    assert.match(reading.remoteMessage, /اشرح لي فكرته/);
-    assert.match(reading.remoteMessage, /السياق: كتاب الهجدة/);
-  }
-
   assert.equal(planGuideTurn("كم 7 × 8").action, "remote");
+  assert.equal(planGuideTurn("ما تفسير آية الكرسي؟").action, "remote");
   assert.equal(planGuideTurn("وين المكتبة ومركز الأبحاث؟").action, "local");
   assert.equal(planGuideTurn("وين صاروخ المريخ في الواحة؟").action, "local");
+  assert.equal(planGuideTurn("وين كتاب الهجدة؟").action, "local");
+});
+
+test("a book or paper is not summarized from its title", () => {
+  const book = planGuideTurn("وين كتاب الهجدة؟ واشرح لي فكرته");
+  assert.equal(book.action, "local");
+  if (book.action !== "local") return;
+  assert.match(book.text, /كتاب الهجدة/);
+  assert.match(book.text, new RegExp(NO_TEXT_SUMMARY.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  assert.equal(/مساعد ذكي|ملخص الفكرة|السياق:/.test(book.text), false);
+  assert.equal(book.guide.mode, "navigate");
+  if (book.guide.mode === "navigate") {
+    assert.ok(book.guide.matches.some((item) => item.href === "/books/alhajda"));
+  }
+
+  const paper = planGuideTurn("لخص روبوت الهجدة");
+  assert.equal(paper.action, "local");
+  if (paper.action === "local" && paper.guide.mode === "navigate") {
+    assert.ok(paper.guide.matches.some((item) => item.href.includes("/research/humanoid")));
+    assert.match(paper.text, /ما أقدر ألخص/);
+  }
+
+  const missing = planGuideTurn("اشرح كتاب صاروخ المريخ");
+  assert.equal(missing.action, "local");
+  if (missing.action === "local") assert.equal(missing.text, UNKNOWN_TEXT_SUMMARY);
+
+  const named = planGuideTurn("اشرح كتاب الهجدة");
+  assert.equal(named.action, "local");
+  if (named.action === "local") assert.match(named.text, /ما أقدر ألخص/);
 });
 
 test("child mode does not offer money pages", () => {
