@@ -33,10 +33,12 @@ export function HomeNews({ compact = false, plain = false }: { compact?: boolean
     <section
       aria-label={plain ? "أهم الأخبار" : "آخر الأخبار"}
       data-home-widget={plain ? "headlines" : undefined}
-      className={`${plain ? "" : compact ? "min-h-36" : "min-h-80"} rounded-2xl border border-border bg-surface p-4`}
+      className={`${plain ? "tint-rose rounded-3xl border p-5" : `${compact ? "min-h-36" : "min-h-80"} rounded-2xl border border-border bg-surface p-4`}`}
     >
       <div className="flex items-center justify-between">
-        <h2 className="text-lg">{plain ? "أهم الأخبار" : "آخر الأخبار"}</h2>
+        <h2 className={`text-lg ${plain ? "kicker-rose" : ""}`}>
+          {plain ? "🗞️ أهم الأخبار" : "آخر الأخبار"}
+        </h2>
         {plain ? null : (
           <Link to="/news" className="min-h-11 content-center text-primary">
             كل الأخبار ←

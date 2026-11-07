@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useSettings } from "@/store/settings-store";
 import { useAppStore } from "@/store/app-store";
 import { getTimesInZone, PRAYER_KEYS, PRAYER_LABELS } from "@/lib/prayer";
+import midad from "@/lib/books/platform/midad.json";
+import { RESEARCH_LINKS } from "@/lib/research-catalog";
 
 /** Next prayer as text. Uses the saved city; it does not ask for device location. */
 export function DisplayPrayer() {
@@ -37,9 +39,9 @@ export function DisplayPrayer() {
     <section
       aria-label="الصلاة القادمة"
       data-home-widget="prayer"
-      className="rounded-2xl border border-border bg-surface p-4"
+      className="tint-rose rounded-3xl border p-5"
     >
-      <h2 className="text-lg">الصلاة القادمة</h2>
+      <h2 className="text-lg">🕌 الصلاة القادمة</h2>
       <p className="mt-2 text-sm text-muted">{city[settings.language]} · أم القرى</p>
       <p className="mt-2 text-xl">{line}</p>
     </section>
@@ -68,11 +70,75 @@ export function DisplayDate() {
     <section
       aria-label="تاريخ اليوم"
       data-home-widget="hijri"
-      className="rounded-2xl border border-border bg-surface p-4"
+      className="tint-violet rounded-3xl border p-5"
     >
-      <h2 className="text-lg">تاريخ اليوم</h2>
+      <h2 className="text-lg">🌙 تاريخ اليوم</h2>
       <p className="mt-2 leading-7">{format("islamic-umalqura")}</p>
       <p className="text-sm leading-7 text-muted">{format("gregory")}</p>
+    </section>
+  );
+}
+
+/** First paragraph of a real Midad text. No link; the library stays in the app bar. */
+export function DisplayReading() {
+  const [piece, setPiece] = useState<{ title: string; author: string; text: string } | null>();
+  useEffect(() => {
+    const meta = midad[Math.floor(Date.now() / 86400000) % midad.length];
+    if (!meta) return;
+    let live = true;
+    fetch(`/books/midad/${meta.id}.json`)
+      .then(async (response) => {
+        if (!response.ok) throw new Error("missing");
+        return response.json();
+      })
+      .then((data) => {
+        const text = data?.chapters?.[0]?.paragraphs?.[0];
+        if (!live) return;
+        if (typeof text !== "string" || !text.trim()) throw new Error("empty");
+        setPiece({ title: meta.title, author: meta.author, text: text.trim() });
+      })
+      .catch(() => {
+        if (live) setPiece(null);
+      });
+    return () => {
+      live = false;
+    };
+  }, []);
+  return (
+    <section aria-label="قراءة اليوم" data-home-widget="reading" className="tint-sand rounded-3xl border p-5">
+      <h2 className="kicker-sand text-lg">📚 قراءة اليوم</h2>
+      {piece === undefined ? (
+        <p role="status" className="mt-3 text-sm text-muted">
+          جارٍ فتح نص من مداد…
+        </p>
+      ) : piece === null ? (
+        <p role="status" className="mt-3 text-sm text-muted">
+          تعذّر فتح نص اليوم.
+        </p>
+      ) : (
+        <>
+          <p className="mt-2 font-display text-2xl">{piece.title}</p>
+          <p className="text-sm text-muted">{piece.author}</p>
+          <p className="mt-3 leading-8">{piece.text}</p>
+        </>
+      )}
+    </section>
+  );
+}
+
+/** Titles observed on the research index. Text only. */
+export function DisplayResearch() {
+  return (
+    <section aria-label="مركز الأبحاث" data-home-widget="research" className="tint-sky rounded-3xl border p-5">
+      <h2 className="kicker-sky text-lg">🔬 مركز الأبحاث</h2>
+      <ul className="mt-3 space-y-3">
+        {RESEARCH_LINKS.map((item) => (
+          <li key={item.id}>
+            <p className="font-medium">{item.title}</p>
+            <p className="text-sm leading-7 text-muted">{item.note}</p>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

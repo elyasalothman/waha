@@ -19,7 +19,7 @@ function ResearchPage() {
   return (
     <div className="mx-auto max-w-3xl" dir="rtl">
       <header className="mb-6">
-        <h1 className="font-display text-4xl">مركز الأبحاث</h1>
+        <h1 className="font-display text-4xl">🔬 مركز الأبحاث</h1>
         <p className="mt-3 max-w-xl leading-8 text-muted">
           أوراق مكتبية على مركز أبحاث الهجدة. واحة تعرض الفهرس فقط؛ القراءة تبقى على موقع المركز،
           بلا إطار وبدون محرك بحث تفاعلي هنا.

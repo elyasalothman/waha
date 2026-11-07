@@ -48,7 +48,7 @@ export function HomeWeather({ plain = false }: { plain?: boolean }) {
     `${new Intl.NumberFormat(language, { numberingSystem: digits, maximumFractionDigits: 0 }).format(unit === "F" ? (v * 9) / 5 + 32 : v)}°${unit}`;
   const body = (
     <>
-      <span className="block">الطقس · {city.ar}</span>
+      <span className="kicker-oasis block">🌤️ الطقس · {city.ar}</span>
       <span className="mt-2 block text-xl">
         {temperature === null ? (plain ? "…" : "عرض التوقعات ←") : format(temperature)}
       </span>
@@ -77,7 +77,7 @@ export function HomeWeather({ plain = false }: { plain?: boolean }) {
     <section
       aria-label="الطقس"
       data-home-widget="weather"
-      className="rounded-2xl border border-border bg-surface p-4"
+      className="tint-oasis rounded-3xl border p-5"
     >
       {body}
     </section>

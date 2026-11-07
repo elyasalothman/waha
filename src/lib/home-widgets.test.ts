@@ -10,18 +10,19 @@ import {
 import { defaultSettings, loadSettings, parseSettings, saveSettings } from "./settings.ts";
 
 test("a fresh visitor gets weather and headlines, not the whole catalog", () => {
-  assert.deepEqual([...DEFAULT_HOME_WIDGETS], ["weather", "headlines"]);
-  assert.deepEqual(defaultSettings.homeWidgets, ["weather", "headlines"]);
-  assert.deepEqual(parseSettings({}).homeWidgets, ["weather", "headlines"]);
+  assert.deepEqual([...DEFAULT_HOME_WIDGETS], ["weather", "headlines", "reading", "research"]);
+  assert.deepEqual(defaultSettings.homeWidgets, ["weather", "headlines", "reading", "research"]);
+  assert.deepEqual(parseSettings({}).homeWidgets, ["weather", "headlines", "reading", "research"]);
+  assert.equal(defaultSettings.homeSize, "comfortable");
   assert.ok(DEFAULT_HOME_WIDGETS.length < HOME_WIDGET_CATALOG.length);
-  assert.equal(HOME_WIDGET_CATALOG.length, 4);
+  assert.equal(HOME_WIDGET_CATALOG.length, 6);
   assert.equal(defaultSettings.location, "manual");
 });
 
 test("settings saved before widgets existed still open on the basic pair", () => {
   const legacy = { ...defaultSettings } as Partial<typeof defaultSettings>;
   delete legacy.homeWidgets;
-  assert.deepEqual(parseSettings(legacy).homeWidgets, ["weather", "headlines"]);
+  assert.deepEqual(parseSettings(legacy).homeWidgets, ["weather", "headlines", "reading", "research"]);
   assert.deepEqual(parseSettings({ ...legacy, theme: "dark" }).theme, "dark");
 });
 
@@ -57,5 +58,9 @@ test("order is the user's, and unknown or duplicate widgets are refused", () => 
   ]);
   assert.throws(() => parseSettings({ homeWidgets: ["weather", "weather"] }));
   assert.throws(() => parseSettings({ homeWidgets: ["spend"] }));
-  assert.throws(() => parseSettings({ homeWidgets: ["weather", "headlines", "prayer", "hijri", "weather"] }));
+  assert.throws(() =>
+    parseSettings({
+      homeWidgets: ["weather", "headlines", "reading", "research", "prayer", "hijri", "weather"],
+    }),
+  );
 });

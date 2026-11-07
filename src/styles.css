@@ -161,8 +161,37 @@
 
 /* Daylight: a clear reading canvas, emerald anchors, small botanical accents. */
 .waha-shell {
-  background-image: radial-gradient(ellipse at 20% 0%, #e4ece2 0, transparent 48%);
+  background-image:
+    radial-gradient(ellipse at 100% 0%, #d9f3ea 0, transparent 42%),
+    radial-gradient(ellipse at 0% 8%, #ffe7c4 0, transparent 36%),
+    radial-gradient(ellipse at 70% 100%, #e4edff 0, transparent 40%),
+    radial-gradient(ellipse at 20% 0%, #e4ece2 0, transparent 48%);
 }
+.tint-oasis {
+  background: linear-gradient(165deg, #e5f7ef 0%, #fff 68%);
+  border-color: #b7dfd0;
+}
+.tint-sky {
+  background: linear-gradient(165deg, #e7f1ff 0%, #fff 70%);
+  border-color: #c5d7f4;
+}
+.tint-sand {
+  background: linear-gradient(165deg, #fff3dc 0%, #fff 70%);
+  border-color: #ead4a8;
+}
+.tint-rose {
+  background: linear-gradient(165deg, #fdecee 0%, #fff 70%);
+  border-color: #f0cfd4;
+}
+.tint-violet {
+  background: linear-gradient(165deg, #f3eefe 0%, #fff 70%);
+  border-color: #ddd0f3;
+}
+.kicker-oasis { color: #0f5c4c; }
+.kicker-sky { color: #1d4f91; }
+.kicker-sand { color: #7a4e0d; }
+.kicker-rose { color: #8d3040; }
+.kicker-violet { color: #5b2d91; }
 .waha-prayer-card {
   border: 1px solid #ccdbcf;
   border-radius: 24px;
@@ -1046,6 +1075,16 @@ html.waha-dark {
 html.waha-dark .waha-shell {
   background-image: none;
 }
+html.waha-dark .tint-oasis { background: linear-gradient(165deg, #17352c, #202822); border-color: #3d6b5c; }
+html.waha-dark .tint-sky { background: linear-gradient(165deg, #1a2c44, #202822); border-color: #3d5878; }
+html.waha-dark .tint-sand { background: linear-gradient(165deg, #3a301c, #202822); border-color: #6d5a32; }
+html.waha-dark .tint-rose { background: linear-gradient(165deg, #3a2428, #202822); border-color: #6d4450; }
+html.waha-dark .tint-violet { background: linear-gradient(165deg, #2c2440, #202822); border-color: #564878; }
+html.waha-dark .kicker-oasis { color: #9ee0c8; }
+html.waha-dark .kicker-sky { color: #b7d4ff; }
+html.waha-dark .kicker-sand { color: #f0d7a4; }
+html.waha-dark .kicker-rose { color: #ffc4cc; }
+html.waha-dark .kicker-violet { color: #e0d0ff; }
 html.waha-dark body {
   color-scheme: dark;
 }

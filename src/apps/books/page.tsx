@@ -33,7 +33,7 @@ export function BooksPage() {
           <BooksMark className="size-5" />
           {t(lang, "books")}
         </p>
-        <h1 className="mt-2 font-display text-4xl tracking-tight">{t(lang, "booksTitle")}</h1>
+        <h1 className="mt-2 font-display text-4xl tracking-tight">📚 {t(lang, "booksTitle")}</h1>
         <p className="mt-2 max-w-xl text-muted">{booksBlurb(lang)}</p>
       </header>
 

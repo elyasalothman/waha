@@ -5,9 +5,9 @@ import midad from "./books/platform/midad.json" with { type: "json" };
 import { RESEARCH_LINKS } from "./research-catalog.ts";
 
 export const SITE_GUIDE_NOTE = "من دليل واحة. الانتقال يتم عندما تضغط.";
-export const SITE_GUIDE_NONE = "ما لقيت في واحة صفحة تطابق هذا الطلب.";
+export const SITE_GUIDE_NONE = "ما لقيت صفحة في واحة تناسب هذا الطلب.";
 
-export type SiteMatch = { id: string; title: string; href: string };
+export type SiteMatch = { id: string; title: string; href: string; detail?: string };
 export type SiteGuide =
   | { mode: "general" }
   | { mode: "none"; note: string }
@@ -18,6 +18,7 @@ type Entry = {
   title: string;
   href: string;
   aliases: string[];
+  detail?: string;
   money?: boolean;
 };
 
@@ -58,7 +59,7 @@ function entry(row: Entry): Entry | null {
   if (!(internal(row.href) || trustedExternal(row.href))) return null;
   const aliases = [...new Set(row.aliases.map(foldArabic).filter((alias) => alias.length >= 4))];
   if (!aliases.length) return null;
-  return { ...row, aliases };
+  return { ...row, aliases, detail: row.detail?.slice(0, 140) };
 }
 
 const PLACES: Entry[] = [
@@ -67,6 +68,7 @@ const PLACES: Entry[] = [
     title: "المكتبة",
     href: "/books",
     aliases: ["المكتبه", "رف الكتب", "رف كتبك", "اقرا كتاب", "اقر كتاب", "كتب الواحه"],
+    detail: "القصص والكتب والرف داخل واحة",
   },
   {
     id: "alhajda-book",
@@ -106,7 +108,15 @@ function buildRegistry(): Entry[] {
   };
   for (const place of PLACES) push(entry(place));
   for (const paper of RESEARCH_LINKS) {
-    push(entry({ id: paper.id, title: paper.title, href: paper.href, aliases: [...paper.aliases] }));
+    push(
+      entry({
+        id: paper.id,
+        title: paper.title,
+        href: paper.href,
+        aliases: [...paper.aliases],
+        detail: paper.note,
+      }),
+    );
   }
   for (const service of LEAP_SERVICES) {
     push(
@@ -120,7 +130,15 @@ function buildRegistry(): Entry[] {
     );
   }
   for (const book of BOOK_CARDS) {
-    push(entry({ id: book.id, title: book.titleAr, href: book.url, aliases: [book.titleAr] }));
+    push(
+      entry({
+        id: book.id,
+        title: book.titleAr,
+        href: book.url,
+        aliases: [book.titleAr],
+        detail: book.benefitAr,
+      }),
+    );
   }
   for (const story of STORIES) {
     push(
@@ -129,6 +147,7 @@ function buildRegistry(): Entry[] {
         title: story.title,
         href: `/books/stories/${story.slug}`,
         aliases: [story.title],
+        detail: story.subtitle,
       }),
     );
   }
@@ -139,6 +158,7 @@ function buildRegistry(): Entry[] {
         title: book.title,
         href: `/books/library/${book.id}`,
         aliases: [book.title],
+        detail: `${book.author} · ${book.category}`,
       }),
     );
   }
@@ -196,11 +216,16 @@ export function generalRemainder(query: string, matches: readonly SiteMatch[]): 
 }
 
 export function localNavigationText(matches: readonly SiteMatch[]): string {
-  const names = matches.map((match) => match.title).filter(Boolean);
-  const list = names.join("، ");
-  return names.length === 1
-    ? `${list} في واحة. اضغط للانتقال. الوجهة من دليل الصفحات في التطبيق.`
-    : `${list} في واحة. اضغط للانتقال. الوجهات من دليل الصفحات في التطبيق.`;
+  const library = matches.some((match) => match.href === "/books");
+  const research = matches.some((match) => match.id === "research");
+  if (library && research) return "تبغى المكتبة ومركز الأبحاث؟ هذي وجهاتهم.";
+  if (matches.length === 1) {
+    const one = matches[0]!;
+    if (one.href.startsWith("/books/") || one.href.includes("/research/"))
+      return `«${one.title}» تلقاه من هنا.`;
+    return `هذا مكان ${one.title}.`;
+  }
+  return "لقيت لك هالوجهات.";
 }
 
 export type GuideTurn =
@@ -234,7 +259,12 @@ export function guideSite(query: string, options?: { hideMoney?: boolean }): Sit
   for (const row of ranked) {
     if (!isAllowlistedHref(row.item.href) || matches.some((item) => item.href === row.item.href))
       continue;
-    matches.push({ id: row.item.id, title: row.item.title, href: row.item.href });
+    matches.push({
+      id: row.item.id,
+      title: row.item.title,
+      href: row.item.href,
+      detail: row.item.detail,
+    });
     if (matches.length === 4) break;
   }
   if (matches.length) return { mode: "navigate", note: SITE_GUIDE_NOTE, matches };

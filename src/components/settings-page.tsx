@@ -2,7 +2,7 @@ import { PrivacyLinks } from "@/components/privacy-links";
 import { Link } from "@tanstack/react-router";
 import { AgentSettings } from "./agent-settings";
 import { clearWahaLocalData } from "@/lib/local-data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSettings } from "@/store/settings-store";
 import { defaultSettings, parseSettings, type Settings } from "@/lib/settings";
 import { SERVICES } from "@/lib/superapp";
@@ -165,6 +165,12 @@ export function SettingsPage() {
     [notice, setNotice] = useState(""),
     [confirm, setConfirm] = useState<"reset" | "clear" | "history" | null>(null),
     [cacheInfo, setCacheInfo] = useState("");
+  useEffect(() => {
+    if (window.location.hash !== "#home-display") return;
+    const panel = document.getElementById("home-display");
+    if (panel instanceof HTMLDetailsElement) panel.open = true;
+    panel?.scrollIntoView({ block: "start" });
+  }, []);
   function patch(p: Partial<Settings>) {
     try {
       update(p);
@@ -246,6 +252,7 @@ export function SettingsPage() {
         .map((g) => (
           <details
             key={g.title}
+            id={g.title === "تخصيص الرئيسية" ? "home-display" : undefined}
             open={query ? true : undefined}
             className="rounded-2xl border border-border bg-surface p-4"
           >
@@ -286,7 +293,7 @@ export function SettingsPage() {
                 <>
                   <h2 className="pt-2 font-medium">ودجات العرض</h2>
                   <p className="text-sm leading-7 text-muted">
-                    أول زيارة تعرض الطقس وأهم الأخبار. أضف أو أزل أو رتّب. الصفحة نفسها للعرض فقط.
+                    أول زيارة تعرض الطقس والأخبار وقراءة ومركز الأبحاث. أضف أو أزل أو رتّب، واختر الحجم.
                   </p>
                   {s.homeWidgets.length === 0 ? (
                     <p className="text-sm text-muted">العرض فارغ، ويبقى فارغًا حتى تضيف ودجت.</p>
@@ -345,6 +352,20 @@ export function SettingsPage() {
                       ),
                     )}
                   </select>
+                  <label className="flex min-h-12 items-center justify-between gap-3">
+                    <span>حجم العرض</span>
+                    <select
+                      aria-label="حجم عرض الرئيسية"
+                      value={s.homeSize}
+                      onChange={(e) =>
+                        patch({ homeSize: e.target.value === "compact" ? "compact" : "comfortable" })
+                      }
+                      className="min-h-11 rounded-lg border border-border bg-bg px-3"
+                    >
+                      <option value="comfortable">مريح</option>
+                      <option value="compact">مضغوط</option>
+                    </select>
+                  </label>
                   <h2 className="pt-2 font-medium">الاختصارات (حتى ٨) وترتيبها</h2>
                   {s.shortcuts.map((id, i) => (
                     <div key={id} className="flex items-center gap-2">

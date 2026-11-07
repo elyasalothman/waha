@@ -399,12 +399,8 @@ export function MohsenChat({
         {messages.map((m, i) => {
           const prior = messages[i - 1];
           const asked =
-            m.role === "user"
-              ? guideSite(m.content, { hideMoney: hideMoney(segment) })
-              : prior?.role === "user"
-                ? guideSite(prior.content, { hideMoney: hideMoney(segment) })
-                : null;
-          const guide = m.role === "user" ? asked : null;
+            prior?.role === "user" ? guideSite(prior.content, { hideMoney: hideMoney(segment) }) : null;
+          const guide = m.role === "assistant" ? asked : null;
           const verified =
             Boolean(m.verified && m.citations?.length) && (!asked || asked.mode === "general");
           return (
@@ -417,7 +413,9 @@ export function MohsenChat({
                 {m.role === "user" ? "أنت" : "محسن"}
                 {verified ? " · موثّق ✓" : ""}
               </p>
-              {m.label && <p className="text-xs leading-6 text-muted">{m.label}</p>}
+              {m.label && !m.label.includes("دليل الصفحات") ? (
+                <p className="text-xs leading-6 text-muted">{m.label}</p>
+              ) : null}
               <p className="whitespace-pre-wrap break-words leading-8">{m.content}</p>
               {m.image && (
                 <>
@@ -443,29 +441,41 @@ export function MohsenChat({
                   {c.title || new URL(c.url).hostname} ↗
                 </ExternalLink>
               ))}
-              {guide && guide.mode !== "general" && (
-                <div className="mt-3" data-site-guide={guide.mode}>
-                  <p className="text-sm leading-7 text-muted">{guide.note}</p>
-                  {guide.mode === "navigate" && (
-                    <div className="mt-2 flex flex-wrap gap-2">
-                      {guide.matches.map((match) =>
-                        match.href.startsWith("/") ? (
-                          <button
-                            key={match.href}
-                            type="button"
-                            className={btn}
-                            onClick={() => void navigate({ href: match.href })}
-                          >
-                            {match.title}
-                          </button>
-                        ) : (
-                          <ExternalLink key={match.href} direct href={match.href} className={btn}>
-                            {match.title}
-                          </ExternalLink>
-                        ),
-                      )}
-                    </div>
-                  )}
+              {guide?.mode === "navigate" && (
+                <div className="mt-3 grid gap-2" data-site-guide="navigate">
+                  {guide.matches.map((match) => {
+                    const emoji = match.href.includes("research")
+                      ? "🔬"
+                      : match.href.startsWith("/books")
+                        ? "📚"
+                        : "🌿";
+                    const body = (
+                      <>
+                        <span className="block font-medium">
+                          {emoji} {match.title}
+                        </span>
+                        {match.detail ? (
+                          <span className="mt-1 block text-sm leading-6 text-muted">{match.detail}</span>
+                        ) : null}
+                      </>
+                    );
+                    const card =
+                      "block min-h-11 rounded-2xl border border-border bg-bg/80 px-3 py-2 text-start focus-visible:outline-2 focus-visible:outline-offset-2";
+                    return match.href.startsWith("/") ? (
+                      <button
+                        key={match.href}
+                        type="button"
+                        className={card}
+                        onClick={() => void navigate({ href: match.href })}
+                      >
+                        {body}
+                      </button>
+                    ) : (
+                      <ExternalLink key={match.href} direct href={match.href} className={card}>
+                        {body}
+                      </ExternalLink>
+                    );
+                  })}
                 </div>
               )}
               {m.role === "assistant" && (

@@ -33,10 +33,11 @@ export const settingsSchema = z
     newsWidget: z.boolean().default(true),
     liveWidget: z.boolean().default(true),
     homeWidgets: z
-      .array(z.enum(["weather", "headlines", "prayer", "hijri"]))
-      .max(4)
+      .array(z.enum(["weather", "headlines", "reading", "research", "prayer", "hijri"]))
+      .max(6)
       .refine((items) => new Set(items).size === items.length)
       .default([...DEFAULT_HOME_WIDGETS]),
+    homeSize: z.enum(["comfortable", "compact"]).default("comfortable"),
     agentEnabled: z.boolean().default(true),
     agentVoice: z.boolean().default(false),
     agentSuggestions: z.boolean().default(true),

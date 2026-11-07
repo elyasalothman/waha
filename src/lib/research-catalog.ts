@@ -5,7 +5,7 @@
 export const RESEARCH_LINKS = [
   {
     id: "research",
-    title: "فهرس مركز الأبحاث",
+    title: "مركز الأبحاث",
     href: "https://lab.alhajda.com/research/",
     note: "صفحة الفهرس على مركز أبحاث الهجدة.",
     aliases: ["مركز الابحاث", "الابحاث", "ابحاث", "فهرس الابحاث"],

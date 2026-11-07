@@ -63,7 +63,8 @@ test("explicit place questions stay on the local registry", () => {
   assert.match(library.text, /المكتبة/);
   assert.match(library.text, /الأبحاث/);
   assert.equal(library.text.includes("بوسطن"), false);
-  assert.equal(/https?:|javascript:/i.test(library.text), false);
+  assert.equal(/https?:|javascript:|دليل الصفحات/i.test(library.text), false);
+  assert.match(library.text, /هذي وجهاتهم/);
   assert.ok(library.guide.mode === "navigate" && library.guide.matches.some((item) => item.href === "/books"));
   assert.ok(
     library.guide.mode === "navigate" &&
