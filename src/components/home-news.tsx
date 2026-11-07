@@ -33,7 +33,7 @@ export function HomeNews({ compact = false, plain = false }: { compact?: boolean
     <section
       aria-label={plain ? "أهم الأخبار" : "آخر الأخبار"}
       data-home-widget={plain ? "headlines" : undefined}
-      className={`${plain ? "tint-rose rounded-3xl border p-5" : `${compact ? "min-h-36" : "min-h-80"} rounded-2xl border border-border bg-surface p-4`}`}
+      className={plain ? "waha-card tint-rose" : `${compact ? "min-h-36" : "min-h-80"} rounded-2xl border border-border bg-surface p-4`}
     >
       <div className="flex items-center justify-between">
         <h2 className={`text-lg ${plain ? "kicker-rose" : ""}`}>

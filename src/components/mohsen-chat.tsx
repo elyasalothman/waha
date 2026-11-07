@@ -407,9 +407,13 @@ export function MohsenChat({
             <article
               key={i}
               data-role={m.role}
-              className={`mb-3 min-w-0 rounded-2xl px-4 py-3 ${m.role === "user" ? "ms-8 bg-primary/10" : "me-4 bg-surface"}`}
+              className={
+                m.role === "user"
+                  ? "mb-5 me-auto max-w-[85%] rounded-[1.25rem] bg-primary px-4 py-2.5 text-primary-fg"
+                  : "mb-8 max-w-2xl"
+              }
             >
-              <p className="mb-1 text-xs text-muted">
+              <p className={`mb-1 text-xs ${m.role === "user" ? "text-primary-fg/80" : "text-muted"}`}>
                 {m.role === "user" ? "أنت" : "محسن"}
                 {verified ? " · موثّق ✓" : ""}
               </p>
@@ -460,7 +464,7 @@ export function MohsenChat({
                       </>
                     );
                     const card =
-                      "block min-h-11 rounded-2xl border border-border bg-bg/80 px-3 py-2 text-start focus-visible:outline-2 focus-visible:outline-offset-2";
+                      "block min-h-11 rounded-2xl border border-border bg-surface px-3 py-2.5 text-start focus-visible:outline-2 focus-visible:outline-offset-2";
                     return match.href.startsWith("/") ? (
                       <button
                         key={match.href}
@@ -479,10 +483,10 @@ export function MohsenChat({
                 </div>
               )}
               {m.role === "assistant" && (
-                <div className="mt-2 flex gap-2">
+                <div className="mt-2 flex gap-1">
                   <button
                     type="button"
-                    className={btn}
+                    className="grid size-11 place-items-center rounded-full text-sm text-muted focus-visible:outline-2"
                     onClick={() => {
                       void navigator.clipboard.writeText(m.content).then(
                         () => setNotice("نُسخ الجواب"),
@@ -496,7 +500,7 @@ export function MohsenChat({
                     <button
                       key={v}
                       type="button"
-                      className={btn}
+                      className="grid size-11 place-items-center rounded-full text-muted focus-visible:outline-2"
                       aria-label={v === "👍" ? "جواب مفيد" : "جواب غير مفيد"}
                       aria-pressed={m.vote === v}
                       onClick={() =>

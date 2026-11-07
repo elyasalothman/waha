@@ -77,7 +77,7 @@ export function HomeWeather({ plain = false }: { plain?: boolean }) {
     <section
       aria-label="الطقس"
       data-home-widget="weather"
-      className="tint-oasis rounded-3xl border p-5"
+      className="waha-card tint-oasis"
     >
       {body}
     </section>

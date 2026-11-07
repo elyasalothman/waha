@@ -39,7 +39,7 @@ export function DisplayPrayer() {
     <section
       aria-label="الصلاة القادمة"
       data-home-widget="prayer"
-      className="tint-rose rounded-3xl border p-5"
+      className="waha-card tint-rose"
     >
       <h2 className="text-lg">🕌 الصلاة القادمة</h2>
       <p className="mt-2 text-sm text-muted">{city[settings.language]} · أم القرى</p>
@@ -70,7 +70,7 @@ export function DisplayDate() {
     <section
       aria-label="تاريخ اليوم"
       data-home-widget="hijri"
-      className="tint-violet rounded-3xl border p-5"
+      className="waha-card tint-violet"
     >
       <h2 className="text-lg">🌙 تاريخ اليوم</h2>
       <p className="mt-2 leading-7">{format("islamic-umalqura")}</p>
@@ -105,7 +105,7 @@ export function DisplayReading() {
     };
   }, []);
   return (
-    <section aria-label="قراءة اليوم" data-home-widget="reading" className="tint-sand rounded-3xl border p-5">
+    <section aria-label="قراءة اليوم" data-home-widget="reading" className="waha-card tint-sand">
       <h2 className="kicker-sand text-lg">📚 قراءة اليوم</h2>
       {piece === undefined ? (
         <p role="status" className="mt-3 text-sm text-muted">
@@ -129,7 +129,7 @@ export function DisplayReading() {
 /** Titles observed on the research index. Text only. */
 export function DisplayResearch() {
   return (
-    <section aria-label="مركز الأبحاث" data-home-widget="research" className="tint-sky rounded-3xl border p-5">
+    <section aria-label="مركز الأبحاث" data-home-widget="research" className="waha-card tint-sky">
       <h2 className="kicker-sky text-lg">🔬 مركز الأبحاث</h2>
       <ul className="mt-3 space-y-3">
         {RESEARCH_LINKS.map((item) => (

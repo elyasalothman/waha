@@ -26,10 +26,10 @@ export function LeapHome() {
       data-home-display="only"
       data-home-size={size}
     >
-      <header className="flex items-end justify-between gap-3 pt-1">
+      <header className="flex items-end justify-between gap-3 pt-2">
         <div>
-          <p className="kicker-oasis text-sm">🌿 اليوم</p>
-          <h1 className="font-display text-4xl tracking-tight sm:text-5xl">واحة</h1>
+          <p className="text-sm text-muted">🌿</p>
+          <h1 className="font-display text-4xl tracking-tight text-fg">اليوم</h1>
         </div>
         <Link
           to="/settings"
