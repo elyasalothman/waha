@@ -1,4 +1,5 @@
 import { Capacitor } from "@capacitor/core";
+import { oauthHandoffUrl } from "./public-origins";
 import { authClient } from "./client";
 
 /**
@@ -46,6 +47,11 @@ export async function signInSocial(
   opts: { callbackURL: string; errorCallbackURL: string; newUserCallbackURL?: string },
 ): Promise<void> {
   if (!isNativeApp()) {
+    const handoff = oauthHandoffUrl(window.location.origin, provider);
+    if (handoff) {
+      window.location.assign(handoff);
+      return;
+    }
     const { data, error } = await authClient.signIn.social({
       provider,
       callbackURL: opts.callbackURL,

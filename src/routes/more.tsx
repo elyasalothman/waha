@@ -1,9 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ServiceGrid } from "@/components/service-grid";
 import { SquarePage } from "@/components/square/square-page";
-import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
-import { LangToggle } from "@/components/city-select";
 
 export const Route = createFileRoute("/more")({
   head: () => ({
@@ -52,14 +50,10 @@ function MorePage() {
             ? "القراءة والبحث أولاً، ثم قليل من الأخبار، واللعب الذي جُرّب، وأدوات تعمل هنا."
             : "Reading and research first, then a little news, games that were tried, and tools that run here."}
         </p>
-        <nav className="mt-4 flex flex-wrap items-center gap-4" aria-label={lang === "ar" ? "الحساب والإعدادات" : "Account and settings"}>
-          <Link to="/me" className="inline-flex min-h-11 items-center text-primary">
-            👤 {t(lang, "me")}
+        <nav className="mt-4" aria-label={lang === "ar" ? "الحساب والإعدادات" : "Account and settings"}>
+          <Link to="/settings" hash="account" className="inline-flex min-h-11 items-center text-primary">
+            {lang === "ar" ? "الحساب والإعدادات" : "Account and settings"}
           </Link>
-          <Link to="/settings" className="inline-flex min-h-11 items-center text-primary">
-            ⚙️ {lang === "ar" ? "الإعدادات" : "Settings"}
-          </Link>
-          <LangToggle lang={lang} />
         </nav>
       </header>
       <ServiceGrid />

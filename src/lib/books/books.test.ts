@@ -232,7 +232,7 @@ describe("books stay off the Maydan line", () => {
     assert.equal(leapHome.match(/<Link\b/g)?.length, 1);
     assert.doesNotMatch(leapHome, /<button\b|onClick|<a\b/);
     assert.match(card, /to="\/books"/);
-    assert.match(home, /HomePage/);
+    assert.match(home, /redirect\(\{ to: "\/", replace: true \}\)/);
     assert.doesNotMatch(home, /BooksPage|lib\/books|waha:kutubi|كتبي|WebView/);
   });
 
