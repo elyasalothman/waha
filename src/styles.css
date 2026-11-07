@@ -163,6 +163,20 @@
 .waha-shell {
   background-image: radial-gradient(ellipse at 80% -10%, #e5f4ec 0, transparent 46%);
 }
+/* Translucent chrome for the name bar and the mobile tab bar.
+   This is CSS backdrop-filter, not Apple's Liquid Glass material. */
+.waha-chrome {
+  background: color-mix(in srgb, var(--color-bg) 82%, transparent);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+}
+@media (prefers-reduced-transparency: reduce) {
+  .waha-chrome {
+    background: var(--color-bg);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
 .waha-card {
   border-radius: 20px;
   border: 1px solid var(--card-line, #d7e0d9);

@@ -277,7 +277,7 @@ export function Shell() {
           data-app-header="name"
           data-hidden={headerHidden ? "true" : "false"}
           className={cn(
-            "native-safe-top sticky top-0 z-20 flex min-h-14 items-center justify-center border-b border-border bg-bg/95 px-4 pt-[env(safe-area-inset-top,0px)] backdrop-blur-sm transition-transform duration-200 motion-reduce:transition-none lg:pt-0",
+            "waha-chrome native-safe-top sticky top-0 z-20 flex min-h-14 items-center justify-center border-b border-border px-4 pt-[env(safe-area-inset-top,0px)] transition-transform duration-200 motion-reduce:transition-none lg:pt-0",
             headerHidden && "pointer-events-none -translate-y-full",
           )}
         >
@@ -285,7 +285,7 @@ export function Shell() {
             to="/"
             className="font-display text-2xl tracking-tight text-primary focus-visible:outline-2 focus-visible:outline-offset-4"
           >
-            {lang === "ar" ? "واحة" : "Waha"}
+            واحة
           </Link>
         </header>
 
@@ -319,7 +319,7 @@ export function Shell() {
 
       <nav
         className={cn(
-          "native-safe-bottom fixed inset-x-0 bottom-0 z-30 grid border-t border-border bg-bg/95 pb-[env(safe-area-inset-bottom,0px)] lg:hidden",
+          "waha-chrome native-safe-bottom fixed inset-x-0 bottom-0 z-30 grid border-t border-border pb-[env(safe-area-inset-bottom,0px)] lg:hidden",
           mobileNav.length <= 2
             ? "grid-cols-2"
             : mobileNav.length === 3
