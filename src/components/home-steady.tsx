@@ -1,8 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { ExternalLink } from "./external-link";
-import { continueReading, savedReading, type ContinueHit } from "@/lib/books/continue-reading";
-import { steadyBooks, steadyResearch } from "@/lib/home-steady";
+import type { ContinueHit } from "@/lib/books/continue-reading";
+import type { MidadCard } from "@/lib/home-steady";
 
 const row =
   "block min-h-11 rounded-xl py-2 focus-visible:outline-2 focus-visible:outline-offset-2";
@@ -39,76 +37,57 @@ function Open({ item }: { item: ContinueHit }) {
   );
 }
 
-/** Fixed home sections. They are not entries in the saved widget list. */
-export function HomeSteady({ showResearch }: { showResearch: boolean }) {
-  const [resume, setResume] = useState<ContinueHit[]>([]);
-  const [saved, setSaved] = useState<ContinueHit[]>([]);
-  useEffect(() => {
-    const next = continueReading(localStorage);
-    const open = new Set(next.map((item) => item.href));
-    setResume(next);
-    setSaved(savedReading(localStorage).filter((item) => !open.has(item.href)));
-  }, []);
-  const books = steadyBooks();
-  const papers = steadyResearch();
+export function HomeContinue({ items }: { items: ContinueHit[] }) {
+  if (items.length === 0) return null;
   return (
-    <div className="space-y-5" data-home-steady="true">
-      {resume.length > 0 ? (
-        <section aria-label="أكمل القراءة" className="waha-card">
-          <h2 className="text-lg">أكمل القراءة</h2>
-          <ul className="mt-2">
-            {resume.map((item) => (
-              <li key={item.href}>
-                <Open item={item} />
-              </li>
-            ))}
-          </ul>
-        </section>
-      ) : null}
-      {saved.length > 0 ? (
-        <section aria-label="محفوظاتك" className="waha-card">
-          <h2 className="text-lg">محفوظاتك</h2>
-          <ul className="mt-2">
-            {saved.map((item) => (
-              <li key={item.href}>
-                <Open item={item} />
-              </li>
-            ))}
-          </ul>
-        </section>
-      ) : null}
-      <section aria-label="كتب من مداد" className="waha-card tint-sand">
-        <h2 className="text-lg">كتب من مداد</h2>
-        <p className="text-sm text-muted">اختيار ثابت من نصوص البيت، غير فقرة اليوم.</p>
-        <ul className="mt-2">
-          {books.map((book) => (
-            <li key={book.id}>
-              <Link to="/books/library/$id" params={{ id: book.id }} className={row}>
-                <span className="block font-medium">{book.title}</span>
-                <span className="block text-sm text-muted">
-                  {book.author} · {book.category} · {book.audience}
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
-      {showResearch ? (
-        <section aria-label="أوراق الأبحاث" className="waha-card tint-sky">
-          <h2 className="text-lg">أوراق الأبحاث</h2>
-          <p className="text-sm text-muted">الصفحات المنشورة، لا ملخص من عندنا.</p>
-          <ul className="mt-2">
-            {papers.map((paper) => (
-              <li key={paper.id}>
-                <ExternalLink direct href={paper.href} className={row}>
-                  <span className="block font-medium">{paper.title}</span>
-                  <span className="block text-sm text-muted">{paper.note}</span>
-                </ExternalLink>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ) : null}
-    </div>
+    <section aria-label="أكمل القراءة" data-home-widget="continue" className="waha-card">
+      <h2 className="text-lg">أكمل القراءة</h2>
+      <ul className="mt-2">
+        {items.map((item) => (
+          <li key={item.href}>
+            <Open item={item} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+export function HomeSaved({ items }: { items: ContinueHit[] }) {
+  if (items.length === 0) return null;
+  return (
+    <section aria-label="محفوظاتك" data-home-widget="saved" className="waha-card">
+      <h2 className="text-lg">محفوظاتك</h2>
+      <ul className="mt-2">
+        {items.map((item) => (
+          <li key={item.href}>
+            <Open item={item} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+export function HomePicks({ books }: { books: MidadCard[] }) {
+  if (books.length === 0) return null;
+  return (
+    <section aria-label="كتب من مداد" data-home-widget="picks" className="waha-card tint-sand">
+      <h2 className="text-lg">كتب من مداد</h2>
+      <p className="text-sm text-muted">ترتيب الفهرس ثابت. كل بطاقة كتاب غير المعروض أعلاه.</p>
+      <ul className="mt-2">
+        {books.map((book) => (
+          <li key={book.id}>
+            <Link to="/books/library/$id" params={{ id: book.id }} className={row}>
+              <span className="block font-medium">{book.title}</span>
+              <span className="block text-sm text-muted">
+                {book.author} · {book.category} · {book.audience}
+              </span>
+              <span className="block text-sm text-muted">{book.source}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }

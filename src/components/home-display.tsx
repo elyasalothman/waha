@@ -5,7 +5,7 @@ import { useSettings } from "@/store/settings-store";
 import { useAppStore } from "@/store/app-store";
 import { getTimesInZone, PRAYER_KEYS, PRAYER_LABELS } from "@/lib/prayer";
 import { readingExcerpt } from "@/lib/books/reading-excerpt";
-import { dailyMidad } from "@/lib/home-steady";
+import type { MidadCard } from "@/lib/home-steady";
 import { RESEARCH_LINKS } from "@/lib/research-catalog";
 
 const cardLink =
@@ -90,15 +90,13 @@ export function DisplayDate() {
 }
 
 /** Opens the same Midad book the excerpt came from. The card quotes only an unmarked paragraph. */
-export function DisplayReading() {
-  const [piece, setPiece] = useState<
-    { id: string; title: string; author: string; text: string | null } | null | undefined
-  >();
+export function DisplayReading({ book }: { book: MidadCard | null | undefined }) {
+  const [text, setText] = useState<string | null | undefined>();
   useEffect(() => {
-    const meta = dailyMidad();
-    if (!meta) return;
+    if (!book) return;
     let live = true;
-    fetch(`/books/midad/${meta.id}.json`)
+    setText(undefined);
+    fetch(`/books/midad/${book.id}.json`)
       .then(async (response) => {
         if (!response.ok) throw new Error("missing");
         return response.json();
@@ -108,21 +106,16 @@ export function DisplayReading() {
         if (!live) return;
         if (!Array.isArray(paragraphs)) throw new Error("empty");
         const excerpt = readingExcerpt(paragraphs.filter((item): item is string => typeof item === "string"));
-        setPiece({
-          id: meta.id,
-          title: meta.title,
-          author: meta.author,
-          text: excerpt?.text ?? null,
-        });
+        setText(excerpt?.text ?? null);
       })
       .catch(() => {
-        if (live) setPiece(null);
+        if (live) setText(null);
       });
     return () => {
       live = false;
     };
-  }, []);
-  if (piece === undefined) {
+  }, [book]);
+  if (book === undefined) {
     return (
       <section aria-label="قراءة اليوم" data-home-widget="reading" className="waha-card tint-sand">
         <h2 className="kicker-sand text-lg">📚 قراءة اليوم</h2>
@@ -132,32 +125,28 @@ export function DisplayReading() {
       </section>
     );
   }
-  if (piece === null) {
-    return (
-      <section aria-label="قراءة اليوم" data-home-widget="reading" className="waha-card tint-sand">
-        <h2 className="kicker-sand text-lg">📚 قراءة اليوم</h2>
-        <p role="status" className="mt-3 text-sm text-muted">
-          تعذّر فتح نص اليوم.
-        </p>
-      </section>
-    );
-  }
+  if (book === null) return null;
   return (
     <Link
       to="/books/library/$id"
-      params={{ id: piece.id }}
-      aria-label={`قراءة اليوم: ${piece.title}`}
+      params={{ id: book.id }}
+      aria-label={`قراءة اليوم: ${book.title}`}
       data-home-widget="reading"
       className={`${cardLink} tint-sand`}
     >
       <h2 className="kicker-sand text-lg">📚 قراءة اليوم</h2>
-      <p className="mt-2 font-display text-2xl">{piece.title}</p>
-      <p className="text-sm text-muted">{piece.author}</p>
-      {piece.text ? (
-        <p className="mt-3 leading-8">{piece.text}</p>
+      <p className="mt-2 font-display text-2xl">{book.title}</p>
+      <p className="text-sm text-muted">{book.author}</p>
+      <p className="text-sm text-muted">فقرة من نص المؤلف في هذا الكتاب، بلا إعادة صياغة.</p>
+      {text === undefined ? (
+        <p role="status" className="mt-3 text-sm text-muted">
+          جارٍ فتح النص…
+        </p>
+      ) : text ? (
+        <p className="mt-3 leading-8">{text}</p>
       ) : (
         <p className="mt-3 text-sm leading-7 text-muted">
-          فقرات هذا النص تعلّم بأرقام موسومة (مثال). افتح الكتاب لقراءة كلام المؤلف كما كتبه.
+          تعذّر اقتباس فقرة غير معلّمة بـ (مثال). افتح الكتاب لقراءة كلام المؤلف كما كتبه.
         </p>
       )}
     </Link>

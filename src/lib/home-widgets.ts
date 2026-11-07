@@ -1,21 +1,47 @@
 /** Display widgets for `/`. Choice and size live in settings; home has one تخصيص entry. */
-export const HOME_WIDGET_CATALOG = [
-  { id: "weather", ar: "الطقس", en: "Weather" },
-  { id: "headlines", ar: "أهم الأخبار", en: "Top news" },
-  { id: "reading", ar: "قراءة اليوم", en: "Today’s reading" },
-  { id: "research", ar: "مركز الأبحاث", en: "Research" },
-  { id: "prayer", ar: "الصلاة القادمة", en: "Next prayer" },
-  { id: "hijri", ar: "تاريخ اليوم", en: "Today’s date" },
+export const HOME_WIDGET_IDS = [
+  "reading",
+  "continue",
+  "saved",
+  "picks",
+  "research",
+  "headlines",
+  "weather",
+  "prayer",
+  "hijri",
 ] as const;
 
-export type HomeWidgetId = (typeof HOME_WIDGET_CATALOG)[number]["id"];
+export const HOME_WIDGET_CATALOG = [
+  { id: "reading", ar: "قراءة اليوم", en: "Today’s reading" },
+  { id: "continue", ar: "أكمل القراءة", en: "Continue reading" },
+  { id: "saved", ar: "محفوظاتك", en: "Saved reading" },
+  { id: "picks", ar: "كتب من مداد", en: "Medad books" },
+  { id: "research", ar: "مركز الأبحاث", en: "Research" },
+  { id: "headlines", ar: "أهم الأخبار", en: "Top news" },
+  { id: "weather", ar: "الطقس", en: "Weather" },
+  { id: "prayer", ar: "الصلاة القادمة", en: "Next prayer" },
+  { id: "hijri", ar: "تاريخ اليوم", en: "Today’s date" },
+] as const satisfies readonly { id: (typeof HOME_WIDGET_IDS)[number]; ar: string; en: string }[];
 
-/** First visit only. A saved empty list, or any saved order, stays as saved. */
-export const DEFAULT_HOME_WIDGETS = ["reading", "research", "headlines", "weather"] as const satisfies readonly HomeWidgetId[];
+export type HomeWidgetId = (typeof HOME_WIDGET_IDS)[number];
+
+/**
+ * First visit only. A saved list, including a saved empty list, is not rewritten
+ * and does not gain these ids by itself.
+ */
+export const DEFAULT_HOME_WIDGETS = [
+  "reading",
+  "continue",
+  "saved",
+  "picks",
+  "research",
+  "headlines",
+  "weather",
+] as const satisfies readonly HomeWidgetId[];
 
 export type HomeSize = "comfortable" | "compact";
 
-const IDS = new Set<string>(HOME_WIDGET_CATALOG.map((item) => item.id));
+const IDS = new Set<string>(HOME_WIDGET_IDS);
 
 export function isHomeWidgetId(value: string): value is HomeWidgetId {
   return IDS.has(value);

@@ -1,15 +1,38 @@
 import { Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { useSettings } from "@/store/settings-store";
 import { HomeNews } from "./home-news";
 import { HomeWeather } from "./home-weather";
 import { DisplayDate, DisplayPrayer, DisplayReading, DisplayResearch } from "./home-display";
 import type { HomeWidgetId } from "@/lib/home-widgets";
-import { HomeSteady } from "./home-steady";
+import { homeShelfPlan, type MidadCard } from "@/lib/home-steady";
+import type { ContinueHit } from "@/lib/books/continue-reading";
+import { HomeContinue, HomePicks, HomeSaved } from "./home-steady";
 
-function HomeSlot({ id }: { id: HomeWidgetId }) {
+type Plan = {
+  resume: ContinueHit[];
+  saved: ContinueHit[];
+  daily: MidadCard | null;
+  picks: MidadCard[];
+};
+
+function readPlan(widgets: readonly HomeWidgetId[]): Plan | null {
+  if (typeof localStorage === "undefined") return null;
+  return homeShelfPlan(localStorage, {
+    continue: widgets.includes("continue"),
+    saved: widgets.includes("saved"),
+    reading: widgets.includes("reading"),
+    picks: widgets.includes("picks"),
+  });
+}
+
+function HomeSlot({ id, plan }: { id: HomeWidgetId; plan: Plan | null }) {
   if (id === "weather") return <HomeWeather plain />;
   if (id === "headlines") return <HomeNews plain />;
-  if (id === "reading") return <DisplayReading />;
+  if (id === "reading") return <DisplayReading book={plan ? plan.daily : undefined} />;
+  if (id === "continue") return <HomeContinue items={plan?.resume ?? []} />;
+  if (id === "saved") return <HomeSaved items={plan?.saved ?? []} />;
+  if (id === "picks") return <HomePicks books={plan?.picks ?? []} />;
   if (id === "research") return <DisplayResearch />;
   if (id === "prayer") return <DisplayPrayer />;
   return <DisplayDate />;
@@ -20,6 +43,10 @@ export function LeapHome() {
   const widgets = useSettings((s) => s.settings.homeWidgets);
   const size = useSettings((s) => s.settings.homeSize);
   const ready = useSettings((s) => s.ready);
+  const [plan, setPlan] = useState<Plan | null>(null);
+  useEffect(() => {
+    setPlan(readPlan(widgets));
+  }, [widgets]);
   return (
     <div
       className={size === "compact" ? "mx-auto max-w-3xl space-y-3" : "mx-auto max-w-3xl space-y-5"}
@@ -47,9 +74,8 @@ export function LeapHome() {
       ) : widgets.length === 0 ? (
         <p className="leading-8 text-muted">لا ودجات في هذا العرض.</p>
       ) : (
-        widgets.map((id) => <HomeSlot key={id} id={id} />)
+        widgets.map((id) => <HomeSlot key={id} id={id} plan={plan} />)
       )}
-      {ready ? <HomeSteady showResearch={!widgets.includes("research")} /> : null}
     </div>
   );
 }

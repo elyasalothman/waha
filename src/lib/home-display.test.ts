@@ -13,7 +13,11 @@ test("the homepage body keeps a single customization entry and no privacy footer
   assert.equal(home.match(/<Link\b/g)?.length, 1);
   assert.doesNotMatch(home, /<button\b|geolocation|الخصوصية|حذف الحساب/);
   assert.match(display, /to="\/books\/library\/\$id"/);
+  assert.match(display, /فقرة من نص المؤلف في هذا الكتاب/);
   assert.match(display, /to="\/app\/\$id"/);
+  assert.doesNotMatch(read("../components/leap-home.tsx"), /HomeSteady|أوراق الأبحاث/);
+  assert.match(read("../components/home-steady.tsx"), /data-home-widget="continue"/);
+  assert.match(read("../components/home-steady.tsx"), /data-home-widget="picks"/);
   assert.doesNotMatch(display, /<button\b|onClick|geolocation|الخصوصية|حذف الحساب/);
   assert.doesNotMatch(shell, /حذف الحساب والبيانات/);
   assert.match(shell, /data-app-header="name"/);
