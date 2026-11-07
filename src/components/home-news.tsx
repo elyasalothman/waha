@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { ExternalLink } from "./external-link";
 import { useSettings } from "@/store/settings-store";
 import { useArabicNews } from "@/lib/use-arabic-news";
 import { Skeleton } from "./ui/page-state";
@@ -52,7 +53,16 @@ export function HomeNews({ compact = false, plain = false }: { compact?: boolean
             </span>
           </>
         );
-        return plain ? (
+        return plain && i.href.startsWith("https://") ? (
+          <ExternalLink
+            key={i.id}
+            direct
+            href={i.href}
+            className="block min-h-11 border-t border-border py-3 text-sm leading-7 focus-visible:outline-2"
+          >
+            {body}
+          </ExternalLink>
+        ) : plain ? (
           <p key={i.id} className="border-t border-border py-3 text-sm leading-7">
             {body}
           </p>

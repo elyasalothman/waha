@@ -4,6 +4,7 @@ import { HomeNews } from "./home-news";
 import { HomeWeather } from "./home-weather";
 import { DisplayDate, DisplayPrayer, DisplayReading, DisplayResearch } from "./home-display";
 import type { HomeWidgetId } from "@/lib/home-widgets";
+import { HomeSteady } from "./home-steady";
 
 function HomeSlot({ id }: { id: HomeWidgetId }) {
   if (id === "weather") return <HomeWeather plain />;
@@ -48,6 +49,7 @@ export function LeapHome() {
       ) : (
         widgets.map((id) => <HomeSlot key={id} id={id} />)
       )}
+      {ready ? <HomeSteady showResearch={!widgets.includes("research")} /> : null}
     </div>
   );
 }

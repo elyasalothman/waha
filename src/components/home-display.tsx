@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
+import { ExternalLink } from "./external-link";
 import { useSettings } from "@/store/settings-store";
 import { useAppStore } from "@/store/app-store";
 import { getTimesInZone, PRAYER_KEYS, PRAYER_LABELS } from "@/lib/prayer";
-import midad from "@/lib/books/platform/midad.json";
+import { readingExcerpt } from "@/lib/books/reading-excerpt";
+import { dailyMidad } from "@/lib/home-steady";
 import { RESEARCH_LINKS } from "@/lib/research-catalog";
+
+const cardLink =
+  "waha-card block focus-visible:outline-2 focus-visible:outline-offset-2";
 
 /** Next prayer as text. Uses the saved city; it does not ask for device location. */
 export function DisplayPrayer() {
@@ -36,15 +42,17 @@ export function DisplayPrayer() {
     }
   }
   return (
-    <section
+    <Link
+      to="/app/$id"
+      params={{ id: "salah" }}
       aria-label="الصلاة القادمة"
       data-home-widget="prayer"
-      className="waha-card tint-rose"
+      className={`${cardLink} tint-rose`}
     >
       <h2 className="text-lg">🕌 الصلاة القادمة</h2>
       <p className="mt-2 text-sm text-muted">{city[settings.language]} · أم القرى</p>
       <p className="mt-2 text-xl">{line}</p>
-    </section>
+    </Link>
   );
 }
 
@@ -67,23 +75,27 @@ export function DisplayDate() {
         }).format(now)
       : "…";
   return (
-    <section
+    <Link
+      to="/app/$id"
+      params={{ id: "hijri" }}
       aria-label="تاريخ اليوم"
       data-home-widget="hijri"
-      className="waha-card tint-violet"
+      className={`${cardLink} tint-violet`}
     >
       <h2 className="text-lg">🌙 تاريخ اليوم</h2>
       <p className="mt-2 leading-7">{format("islamic-umalqura")}</p>
       <p className="text-sm leading-7 text-muted">{format("gregory")}</p>
-    </section>
+    </Link>
   );
 }
 
-/** First paragraph of a real Midad text. No link; the library stays in the app bar. */
+/** Opens the same Midad book the excerpt came from. The card quotes only an unmarked paragraph. */
 export function DisplayReading() {
-  const [piece, setPiece] = useState<{ title: string; author: string; text: string } | null>();
+  const [piece, setPiece] = useState<
+    { id: string; title: string; author: string; text: string | null } | null | undefined
+  >();
   useEffect(() => {
-    const meta = midad[Math.floor(Date.now() / 86400000) % midad.length];
+    const meta = dailyMidad();
     if (!meta) return;
     let live = true;
     fetch(`/books/midad/${meta.id}.json`)
@@ -92,10 +104,16 @@ export function DisplayReading() {
         return response.json();
       })
       .then((data) => {
-        const text = data?.chapters?.[0]?.paragraphs?.[0];
+        const paragraphs = data?.chapters?.[0]?.paragraphs;
         if (!live) return;
-        if (typeof text !== "string" || !text.trim()) throw new Error("empty");
-        setPiece({ title: meta.title, author: meta.author, text: text.trim() });
+        if (!Array.isArray(paragraphs)) throw new Error("empty");
+        const excerpt = readingExcerpt(paragraphs.filter((item): item is string => typeof item === "string"));
+        setPiece({
+          id: meta.id,
+          title: meta.title,
+          author: meta.author,
+          text: excerpt?.text ?? null,
+        });
       })
       .catch(() => {
         if (live) setPiece(null);
@@ -104,25 +122,45 @@ export function DisplayReading() {
       live = false;
     };
   }, []);
-  return (
-    <section aria-label="قراءة اليوم" data-home-widget="reading" className="waha-card tint-sand">
-      <h2 className="kicker-sand text-lg">📚 قراءة اليوم</h2>
-      {piece === undefined ? (
+  if (piece === undefined) {
+    return (
+      <section aria-label="قراءة اليوم" data-home-widget="reading" className="waha-card tint-sand">
+        <h2 className="kicker-sand text-lg">📚 قراءة اليوم</h2>
         <p role="status" className="mt-3 text-sm text-muted">
           جارٍ فتح نص من مداد…
         </p>
-      ) : piece === null ? (
+      </section>
+    );
+  }
+  if (piece === null) {
+    return (
+      <section aria-label="قراءة اليوم" data-home-widget="reading" className="waha-card tint-sand">
+        <h2 className="kicker-sand text-lg">📚 قراءة اليوم</h2>
         <p role="status" className="mt-3 text-sm text-muted">
           تعذّر فتح نص اليوم.
         </p>
+      </section>
+    );
+  }
+  return (
+    <Link
+      to="/books/library/$id"
+      params={{ id: piece.id }}
+      aria-label={`قراءة اليوم: ${piece.title}`}
+      data-home-widget="reading"
+      className={`${cardLink} tint-sand`}
+    >
+      <h2 className="kicker-sand text-lg">📚 قراءة اليوم</h2>
+      <p className="mt-2 font-display text-2xl">{piece.title}</p>
+      <p className="text-sm text-muted">{piece.author}</p>
+      {piece.text ? (
+        <p className="mt-3 leading-8">{piece.text}</p>
       ) : (
-        <>
-          <p className="mt-2 font-display text-2xl">{piece.title}</p>
-          <p className="text-sm text-muted">{piece.author}</p>
-          <p className="mt-3 leading-8">{piece.text}</p>
-        </>
+        <p className="mt-3 text-sm leading-7 text-muted">
+          فقرات هذا النص تعلّم بأرقام موسومة (مثال). افتح الكتاب لقراءة كلام المؤلف كما كتبه.
+        </p>
       )}
-    </section>
+    </Link>
   );
 }
 
@@ -134,11 +172,17 @@ export function DisplayResearch() {
       <ul className="mt-3 space-y-3">
         {RESEARCH_LINKS.map((item) => (
           <li key={item.id}>
-            <p className="font-medium">{item.title}</p>
-            <p className="text-sm leading-7 text-muted">{item.note}</p>
-            <p className="text-xs text-muted">
-              {[item.status, item.updated, item.stated].filter(Boolean).join(" · ")}
-            </p>
+            <ExternalLink
+              direct
+              href={item.href}
+              className="block min-h-11 rounded-xl py-1 focus-visible:outline-2 focus-visible:outline-offset-2"
+            >
+              <span className="block font-medium">{item.title}</span>
+              <span className="mt-1 block text-sm leading-7 text-muted">{item.note}</span>
+              <span className="block text-xs text-muted">
+                {[item.status, item.updated, item.stated].filter(Boolean).join(" · ")}
+              </span>
+            </ExternalLink>
           </li>
         ))}
       </ul>

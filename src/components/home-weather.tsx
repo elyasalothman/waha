@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { useSettings } from "@/store/settings-store";
 import { weatherLabel, type WeatherPayload } from "@/lib/weather";
 import { useEffect, useState } from "react";
@@ -74,12 +75,14 @@ export function HomeWeather({ plain = false }: { plain?: boolean }) {
   );
   if (!plain) return body;
   return (
-    <section
+    <Link
+      to="/app/$id"
+      params={{ id: "weather" }}
       aria-label="الطقس"
       data-home-widget="weather"
-      className="waha-card tint-oasis"
+      className="waha-card tint-oasis block focus-visible:outline-2 focus-visible:outline-offset-2"
     >
       {body}
-    </section>
+    </Link>
   );
 }

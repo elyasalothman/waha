@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { continueReading } from "./continue-reading.ts";
+import { continueReading, savedReading } from "./continue-reading.ts";
 
 test("continue reading uses a saved chapter and ignores a book still on the first page", () => {
   const values = new Map<string, string>([
@@ -16,6 +16,19 @@ test("continue reading uses a saved chapter and ignores a book still on the firs
   );
   assert.equal(hits[0]?.detail, "الفصل 3 من 6");
   assert.equal(hits[1]?.title, "الهجدة");
+});
+
+test("saved reading uses the shelf and bookmarks, not an unread book", () => {
+  const values = new Map<string, string>([
+    ["waha:reading-shelf", JSON.stringify(["midad-elevator-key", "missing"])],
+    ["waha:curated:alhajda:edition1", JSON.stringify({ chapter: 0, bookmarks: [{ chapter: 2, anchor: null }] })],
+    ["waha:curated:story:al-dalla", JSON.stringify({ chapter: 0, bookmarks: [] })],
+  ]);
+  const hits = savedReading({ getItem: (key) => values.get(key) ?? null });
+  assert.deepEqual(
+    hits.map((item) => item.href),
+    ["/books/library/midad-elevator-key", "/books/alhajda"],
+  );
 });
 
 test("opening the first chapter does not count as continue-reading", () => {
