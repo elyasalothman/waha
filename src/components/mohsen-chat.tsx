@@ -303,7 +303,7 @@ export function MohsenChat({
                 ...result,
                 content: `${plan.localText}\n\n${result.content}`,
                 verified: false,
-                label: "الوجهة من دليل واحة. ما بعدها سؤال عام إلى خدمة محسن.",
+                label: "السؤال العام أجابته خدمة محسن كما هي.",
               };
             }
           } catch (err) {
@@ -313,7 +313,7 @@ export function MohsenChat({
               content: plan.localText,
               label: "دليل الصفحات في واحة",
             };
-            setError("تعذّر جواب السؤال العام. الوجهة أعلاه من دليل واحة.");
+            setError("تعذّر جواب السؤال العام. الوجهة أعلاه تبقى في واحة.");
           }
         }
       }
@@ -717,7 +717,7 @@ export function MohsenChat({
               </Link>
             </nav>
             <p className="text-xs leading-6 text-muted">
-              جواب المحادثة يأتي من خدمة محسن. وجهات الصفحات من دليل واحة في هذا التطبيق، وتُفتح عندما تضغطها.
+              جواب المحادثة يأتي من خدمة محسن كما هي. وجهات الصفحات من واحة، وتُفتح عندما تضغطها.
             </p>
             <h2 className="text-sm font-medium">المحادثات</h2>
             {threads.map((t) => (

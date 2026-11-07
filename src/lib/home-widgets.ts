@@ -10,8 +10,8 @@ export const HOME_WIDGET_CATALOG = [
 
 export type HomeWidgetId = (typeof HOME_WIDGET_CATALOG)[number]["id"];
 
-/** First visit only. A saved empty list stays empty. */
-export const DEFAULT_HOME_WIDGETS = ["weather", "headlines", "reading", "research"] as const satisfies readonly HomeWidgetId[];
+/** First visit only. A saved empty list, or any saved order, stays as saved. */
+export const DEFAULT_HOME_WIDGETS = ["reading", "research", "headlines", "weather"] as const satisfies readonly HomeWidgetId[];
 
 export type HomeSize = "comfortable" | "compact";
 

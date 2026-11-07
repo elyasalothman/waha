@@ -9,20 +9,20 @@ import {
 } from "./home-widgets.ts";
 import { defaultSettings, loadSettings, parseSettings, saveSettings } from "./settings.ts";
 
-test("a fresh visitor gets weather and headlines, not the whole catalog", () => {
-  assert.deepEqual([...DEFAULT_HOME_WIDGETS], ["weather", "headlines", "reading", "research"]);
-  assert.deepEqual(defaultSettings.homeWidgets, ["weather", "headlines", "reading", "research"]);
-  assert.deepEqual(parseSettings({}).homeWidgets, ["weather", "headlines", "reading", "research"]);
+test("a fresh visitor sees reading and research before news and weather", () => {
+  assert.deepEqual([...DEFAULT_HOME_WIDGETS], ["reading", "research", "headlines", "weather"]);
+  assert.deepEqual(defaultSettings.homeWidgets, ["reading", "research", "headlines", "weather"]);
+  assert.deepEqual(parseSettings({}).homeWidgets, ["reading", "research", "headlines", "weather"]);
   assert.equal(defaultSettings.homeSize, "comfortable");
   assert.ok(DEFAULT_HOME_WIDGETS.length < HOME_WIDGET_CATALOG.length);
   assert.equal(HOME_WIDGET_CATALOG.length, 6);
   assert.equal(defaultSettings.location, "manual");
 });
 
-test("settings saved before widgets existed still open on the basic pair", () => {
+test("settings saved before widgets existed still open on the basic set", () => {
   const legacy = { ...defaultSettings } as Partial<typeof defaultSettings>;
   delete legacy.homeWidgets;
-  assert.deepEqual(parseSettings(legacy).homeWidgets, ["weather", "headlines", "reading", "research"]);
+  assert.deepEqual(parseSettings(legacy).homeWidgets, ["reading", "research", "headlines", "weather"]);
   assert.deepEqual(parseSettings({ ...legacy, theme: "dark" }).theme, "dark");
 });
 
@@ -43,6 +43,10 @@ test("an explicit empty selection survives reload and later edits", () => {
 });
 
 test("order is the user's, and unknown or duplicate widgets are refused", () => {
+  assert.deepEqual(
+    parseSettings({ homeWidgets: ["weather", "headlines", "reading", "research"] }).homeWidgets,
+    ["weather", "headlines", "reading", "research"],
+  );
   assert.deepEqual(parseSettings({ homeWidgets: ["hijri", "prayer"] }).homeWidgets, [
     "hijri",
     "prayer",

@@ -20,6 +20,7 @@ import { Route as DeleteAccountRouteImport } from './routes/delete-account'
 import { Route as ForumRouteImport } from './routes/forum'
 import { Route as GamesRouteImport } from './routes/games'
 import { Route as LifeRouteImport } from './routes/life'
+import { Route as LiveRouteImport } from './routes/live'
 import { Route as MadarRouteImport } from './routes/madar'
 import { Route as MeRouteImport } from './routes/me'
 import { Route as MohsenRouteImport } from './routes/mohsen'
@@ -118,6 +119,11 @@ const GamesRoute = GamesRouteImport.update({
 const LifeRoute = LifeRouteImport.update({
   id: '/life',
   path: '/life',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LiveRoute = LiveRouteImport.update({
+  id: '/live',
+  path: '/live',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MadarRoute = MadarRouteImport.update({
@@ -353,6 +359,7 @@ export interface FileRoutesByFullPath {
   '/forum': typeof ForumRouteWithChildren
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
+  '/live': typeof LiveRoute
   '/madar': typeof MadarRoute
   '/me': typeof MeRoute
   '/mohsen': typeof MohsenRoute
@@ -409,6 +416,7 @@ export interface FileRoutesByTo {
   '/delete-account': typeof DeleteAccountRoute
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
+  '/live': typeof LiveRoute
   '/madar': typeof MadarRoute
   '/me': typeof MeRoute
   '/mohsen': typeof MohsenRoute
@@ -466,6 +474,7 @@ export interface FileRoutesById {
   '/forum': typeof ForumRouteWithChildren
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
+  '/live': typeof LiveRoute
   '/madar': typeof MadarRoute
   '/me': typeof MeRoute
   '/mohsen': typeof MohsenRoute
@@ -525,6 +534,7 @@ export interface FileRouteTypes {
     | '/forum'
     | '/games'
     | '/life'
+    | '/live'
     | '/madar'
     | '/me'
     | '/mohsen'
@@ -581,6 +591,7 @@ export interface FileRouteTypes {
     | '/delete-account'
     | '/games'
     | '/life'
+    | '/live'
     | '/madar'
     | '/me'
     | '/mohsen'
@@ -637,6 +648,7 @@ export interface FileRouteTypes {
     | '/forum'
     | '/games'
     | '/life'
+    | '/live'
     | '/madar'
     | '/me'
     | '/mohsen'
@@ -695,6 +707,7 @@ export interface RootRouteChildren {
   ForumRoute: typeof ForumRouteWithChildren
   GamesRoute: typeof GamesRoute
   LifeRoute: typeof LifeRoute
+  LiveRoute: typeof LiveRoute
   MadarRoute: typeof MadarRoute
   MeRoute: typeof MeRoute
   MohsenRoute: typeof MohsenRoute
@@ -814,6 +827,13 @@ declare module '@tanstack/react-router' {
       path: '/life'
       fullPath: '/life'
       preLoaderRoute: typeof LifeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/live': {
+      id: '/live'
+      path: '/live'
+      fullPath: '/live'
+      preLoaderRoute: typeof LiveRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/madar': {
@@ -1165,6 +1185,7 @@ const rootRouteChildren: RootRouteChildren = {
   ForumRoute: ForumRouteWithChildren,
   GamesRoute: GamesRoute,
   LifeRoute: LifeRoute,
+  LiveRoute: LiveRoute,
   MadarRoute: MadarRoute,
   MeRoute: MeRoute,
   MohsenRoute: MohsenRoute,

@@ -136,6 +136,9 @@ export function DisplayResearch() {
           <li key={item.id}>
             <p className="font-medium">{item.title}</p>
             <p className="text-sm leading-7 text-muted">{item.note}</p>
+            <p className="text-xs text-muted">
+              {[item.status, item.updated, item.stated].filter(Boolean).join(" · ")}
+            </p>
           </li>
         ))}
       </ul>

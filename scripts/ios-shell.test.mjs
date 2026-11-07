@@ -226,7 +226,8 @@ test("Arabic RTL fields are wired and ASC Submit stays blocked", () => {
   assert.match(palette, /dir=\{lang === "ar" \? "rtl" : "ltr"\}/);
   assert.match(salah, /إشعار الصلاة القادمة/);
   assert.match(salah, /LocalNotifications|syncSalahNotification/);
-  assert.match(read("src/components/layout/shell.tsx"), /DoorsStrip/);
+  assert.match(read("src/components/layout/shell.tsx"), /data-app-header="name"/);
+  assert.doesNotMatch(read("src/components/layout/shell.tsx"), /DoorsStrip/);
   assert.match(read("src/components/doors-strip.tsx"), /ExternalLink/);
   assert.match(read("src/lib/native-browser.ts"), /@capacitor\/browser/);
   assert.match(read("src/lib/native-browser.ts"), /tahajjud\.alhajda\.com/);
@@ -263,7 +264,8 @@ test("house doors open in first-party WKWebView, not Safari / Capacitor Browser"
   assert.match(read("src/components/doors-strip.tsx"), /to="\/books"/);
   assert.match(read("src/components/app-card.tsx"), /ExternalLink/);
   assert.match(read("src/components/house-doors.tsx"), /ExternalLink/);
-  assert.match(read("src/components/games-hub.tsx"), /from "@\/components\/external-link"/);
+  assert.match(read("src/components/games-hub.tsx"), /isPublicGame/);
+  assert.doesNotMatch(read("src/components/games-hub.tsx"), /hayat\.alhajda\.com|games\.alhajda\.com/);
   assert.match(read("src/apps/books/page.tsx"), /ExternalLink/);
   assert.match(read("src/apps/madar/portal.tsx"), /openExternalUrl/);
 

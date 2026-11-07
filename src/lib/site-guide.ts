@@ -90,6 +90,13 @@ const PLACES: Entry[] = [
   },
   { id: "quran", title: "القرآن", href: "/quran", aliases: ["القران", "المصحف", "الورد"] },
   { id: "news", title: "الأخبار", href: "/news", aliases: ["الاخبار", "اخر الاخبار"] },
+  {
+    id: "market-live",
+    title: "البث المباشر",
+    href: "/live",
+    aliases: ["البث المباشر", "تلفزيون هدوء السوق"],
+    detail: "تلفزيون هدوء السوق. الصوت لا يبدأ وحده، وصفحة السوق لا تُضمَّن",
+  },
   { id: "games", title: "الألعاب", href: "/games", aliases: ["الالعاب"] },
   { id: "worship", title: "العبادة", href: "/worship", aliases: ["العباده", "تهجد", "مواقيت الصلاه"] },
   { id: "me", title: "الحساب", href: "/me", aliases: ["حسابي", "الحساب"] },

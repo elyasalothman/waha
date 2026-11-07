@@ -12,6 +12,7 @@ test("library and research questions resolve to real pages", () => {
   assert.ok(both.includes("/books"));
   assert.ok(both.includes("https://lab.alhajda.com/research/"));
   assert.deepEqual(hrefs("وين المكتبه"), ["/books"]);
+  assert.deepEqual(hrefs("وين البث المباشر"), ["/live"]);
   assert.deepEqual(hrefs("مركز الابحاث"), ["https://lab.alhajda.com/research/"]);
   assert.deepEqual(hrefs("وين مفتاح المصعد؟"), ["/books/library/midad-elevator-key"]);
   assert.deepEqual(hrefs("ابي قصة الدلّة الغائبة"), ["/books/stories/al-dalla"]);

@@ -8,8 +8,13 @@ import midad from "@/lib/books/platform/midad.json";
 import { getDraft } from "@/lib/books/platform/local";
 import { validateBook, type ReadingBook } from "@/lib/books/platform/model";
 const control = "min-h-11 min-w-11 rounded-lg border border-current/20 px-3 text-sm";
-type Position = { chapter: number; paragraph: number; size: number; night: boolean };
-const defaults: Position = { chapter: 0, paragraph: 0, size: 22, night: false };
+type ReadingTheme = "paper" | "warm" | "night";
+type Position = { chapter: number; paragraph: number; size: number; theme: ReadingTheme };
+const defaults: Position = { chapter: 0, paragraph: 0, size: 22, theme: "paper" };
+function readingTheme(value: unknown, night: unknown): ReadingTheme {
+  if (value === "paper" || value === "warm" || value === "night") return value;
+  return night === true ? "night" : "paper";
+}
 export function PlatformReader({ id }: { id: string }) {
   const [book, setBook] = useState<ReadingBook>();
   const [error, setError] = useState("");
@@ -22,7 +27,10 @@ export function PlatformReader({ id }: { id: string }) {
     const controller = new AbortController();
     setBook(undefined);
     setError("");
-    let next = { ...defaults, night: useSettings.getState().settings.readingNight };
+    let next = {
+      ...defaults,
+      theme: useSettings.getState().settings.readingNight ? "night" : "paper",
+    } as Position;
     try {
       const p = JSON.parse(localStorage.getItem(`waha:reading:${id}`) || "null");
       if (p && Number.isInteger(p.chapter) && Number.isInteger(p.paragraph))
@@ -30,7 +38,7 @@ export function PlatformReader({ id }: { id: string }) {
           chapter: Math.max(0, p.chapter),
           paragraph: Math.max(0, p.paragraph),
           size: Math.max(16, Math.min(34, Number(p.size) || 22)),
-          night: p.night === true,
+          theme: readingTheme(p.theme, p.night),
         };
     } catch {
       /* optional storage */
@@ -106,7 +114,10 @@ export function PlatformReader({ id }: { id: string }) {
   useEffect(() => {
     if (!book) return;
     try {
-      localStorage.setItem(`waha:reading:${id}`, JSON.stringify(position));
+      localStorage.setItem(
+        `waha:reading:${id}`,
+        JSON.stringify({ ...position, savedAt: new Date().toISOString() }),
+      );
     } catch {
       /* reader remains usable */
     }
@@ -135,8 +146,8 @@ export function PlatformReader({ id }: { id: string }) {
       ref={reader}
       dir="rtl"
       data-platform-reader={id}
-      data-reader-theme={position.night ? "night" : "paper"}
-      className={`reader-layout mx-auto min-w-0 max-w-2xl rounded-xl p-4 sm:p-6 [overflow-wrap:anywhere] ${position.night ? "bg-[#28231e] text-[#f5ead6]" : "bg-[#fbf6e9] text-[#243e32]"}`}
+      data-reader-theme={position.theme}
+      className={`reader-layout mx-auto min-w-0 max-w-2xl rounded-xl p-4 sm:p-6 [overflow-wrap:anywhere] ${position.theme === "night" ? "bg-[#28231e] text-[#f5ead6]" : position.theme === "warm" ? "bg-[#f7edda] text-[#30271f]" : "bg-[#fbf6e9] text-[#243e32]"}`}
     >
       <ReaderControls visible={controlsVisible} onToggle={toggleControls} />
       <Link to="/books" className="inline-flex min-h-11 items-center underline">
@@ -172,10 +183,27 @@ export function PlatformReader({ id }: { id: string }) {
         >
           أ+
         </button>
+        <label className="sr-only" htmlFor={`${id}-theme`}>
+          خلفية القراءة
+        </label>
+        <select
+          id={`${id}-theme`}
+          className={`${control} bg-transparent`}
+          value={position.theme}
+          onChange={(event) =>
+            setPosition((p) => ({ ...p, theme: event.target.value as ReadingTheme }))
+          }
+        >
+          <option value="paper">ورق</option>
+          <option value="warm">دافئ</option>
+          <option value="night">ليل</option>
+        </select>
         <button
           className={control}
-          aria-pressed={position.night}
-          onClick={() => setPosition((p) => ({ ...p, night: !p.night }))}
+          aria-pressed={position.theme === "night"}
+          onClick={() =>
+            setPosition((p) => ({ ...p, theme: p.theme === "night" ? "paper" : "night" }))
+          }
         >
           وضع ليلي
         </button>

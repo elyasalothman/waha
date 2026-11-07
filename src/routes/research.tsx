@@ -32,9 +32,15 @@ function ResearchPage() {
               {item.title}
             </ExternalLink>
             <p className="mt-2 text-sm leading-7 text-muted">{item.note}</p>
+            <p className="mt-1 text-sm text-muted">
+              {[item.status, item.updated, item.stated].filter(Boolean).join(" · ")}
+            </p>
           </li>
         ))}
       </ul>
+      <p className="mt-4 text-sm leading-7 text-muted">
+        الصفحات العامة لا تذكر مؤلفًا ولا DOI. واحة لا تخترع أيًا منهما، ولا تدّعي أن محسن قرأ متن الورقة.
+      </p>
     </div>
   );
 }

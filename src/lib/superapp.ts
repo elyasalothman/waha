@@ -58,6 +58,18 @@ const essentials: Service[] = [
     keywords: "كتاب الهجدة قراءة فصول",
   },
   {
+    id: "market-live",
+    href: "/live",
+    title: { ar: "البث المباشر", en: "Live broadcast" },
+    blurb: {
+      ar: "تلفزيون هدوء السوق، صامت حتى تطلب التشغيل",
+      en: "Hudoo market TV, silent until you start it",
+    },
+    icon: "Clapperboard",
+    pillar: "news",
+    keywords: "بث مباشر تلفزيون هدوء السوق",
+  },
+  {
     id: "news",
     href: "/news",
     title: { ar: "الأخبار والموجز", en: "News & briefing" },

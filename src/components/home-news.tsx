@@ -1,27 +1,10 @@
-import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useSettings } from "@/store/settings-store";
+import { useArabicNews } from "@/lib/use-arabic-news";
 import { Skeleton } from "./ui/page-state";
-import type { ArabicNews } from "@/lib/arabic-news";
 export function HomeNews({ compact = false, plain = false }: { compact?: boolean; plain?: boolean }) {
   const s = useSettings((x) => x.settings);
-  const [data, setData] = useState<ArabicNews | null>(null),
-    [failed, setFailed] = useState(false);
-  useEffect(() => {
-    const ac = new AbortController();
-    fetch("/api/news", { signal: ac.signal })
-      .then(async (r) => {
-        if (!r.ok) throw new Error();
-        const d = await r.json();
-        if (!Array.isArray(d.items)) throw new Error();
-        setData(d);
-        setFailed(d.status === "unavailable");
-      })
-      .catch(() => {
-        if (!ac.signal.aborted) setFailed(true);
-      });
-    return () => ac.abort();
-  }, []);
+  const { data, failed } = useArabicNews();
   const items = (data?.items || [])
     .filter(
       (i) =>
@@ -94,7 +77,23 @@ export function HomeNews({ compact = false, plain = false }: { compact?: boolean
               : "جارٍ تحميل العناوين…"}
         </p>
       )}
-      {data?.status === "cached" && <p className="text-xs text-muted">آخر عناوين محفوظة</p>}
+      {failed && items.length > 0 && (
+        <p className="text-xs text-muted">تعذّر التحديث. هذه آخر عناوين نجح جلبها.</p>
+      )}
+      {data?.fetchedAt && (
+        <p className="text-xs text-muted">
+          آخر جلب ناجح:{" "}
+          <time dateTime={data.fetchedAt}>
+            {new Intl.DateTimeFormat(s.language, {
+              calendar: s.calendar,
+              numberingSystem: s.digits,
+              hour: "2-digit",
+              minute: "2-digit",
+            }).format(new Date(data.fetchedAt))}
+          </time>
+          {data.status === "cached" ? " · من الذاكرة القصيرة" : ""}
+        </p>
+      )}
     </section>
   );
 }

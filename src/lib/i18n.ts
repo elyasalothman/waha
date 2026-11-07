@@ -126,8 +126,8 @@ const strings = {
     en: "Everyday calculators, a decision wheel, and tafqeet",
   },
   gamesBlurb: {
-    ar: "باب لُمعة، ثم كلمة وآبار ومجرى وكتل وذاكرة في الواحة",
-    en: "A door to Luma, then Kalima, wells, stream, blocks, and memory in Waha",
+    ar: "جيش الواحة، ثم الألعاب التي لُعبت هنا وثبت أنها تبدأ وتعاد",
+    en: "Oasis Army, then the games played here and confirmed to start and restart",
   },
   gamesYard: { ar: "باب لُمعة", en: "Door to Luma" },
   studioBlurb: {

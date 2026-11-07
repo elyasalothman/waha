@@ -293,7 +293,7 @@ export function SettingsPage() {
                 <>
                   <h2 className="pt-2 font-medium">ودجات العرض</h2>
                   <p className="text-sm leading-7 text-muted">
-                    أول زيارة تعرض الطقس والأخبار وقراءة ومركز الأبحاث. أضف أو أزل أو رتّب، واختر الحجم.
+                    أول زيارة تعرض القراءة ومركز الأبحاث ثم الأخبار والطقس. اختيارك المحفوظ، حتى لو كان فارغًا، يبقى كما هو.
                   </p>
                   {s.homeWidgets.length === 0 ? (
                     <p className="text-sm text-muted">العرض فارغ، ويبقى فارغًا حتى تضيف ودجت.</p>
