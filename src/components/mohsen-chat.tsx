@@ -14,9 +14,22 @@ import {
 } from "@/lib/mohsen-v4";
 import { ExternalLink } from "./external-link";
 import { featureButton as btn } from "@/lib/share-card";
-import { MOHSEN_STARTERS, mohsenHistory } from "@/lib/mohsen-request";
+import { mohsenHistory } from "@/lib/mohsen-request";
 import { LOCAL_KEYS } from "@/lib/agent/local";
+import { guideSite, planGuideTurn } from "@/lib/site-guide";
+import { hideMoney } from "@/lib/child-mode";
+import { useAppStore } from "@/store/app-store";
+import { Link } from "@tanstack/react-router";
 type Mode = "chat" | "image" | "clip" | "cv" | "interview" | "plan";
+const HINTS = ["وين المكتبة ومركز الأبحاث؟", "فسّر لي فكرة باختصار", "ساعدني أرتب خطوة واحدة"];
+const MODES: { id: Mode; label: string }[] = [
+  { id: "chat", label: "محادثة" },
+  { id: "image", label: "صورة" },
+  { id: "clip", label: "مقطع" },
+  { id: "cv", label: "سيرة" },
+  { id: "interview", label: "مقابلة" },
+  { id: "plan", label: "خطة" },
+];
 /** «تذكّر» memories saved by وكيل محسن on this device only; sent with the question, not stored by Mohsen. */
 function deviceMemories(): string[] {
   try {
@@ -38,6 +51,7 @@ export function MohsenChat({
   attach?: boolean;
 }) {
   const navigate = useNavigate();
+  const segment = useAppStore((s) => s.segment);
   const [threads, setThreads] = useState<ChatThread[]>([]),
     [active, setActive] = useState(""),
     [ready, setReady] = useState(false),
@@ -52,12 +66,15 @@ export function MohsenChat({
       analyses?: { remaining: number };
     } | null>(null),
     [job, setJob] = useState(""),
-    [answer, setAnswer] = useState("");
+    [answer, setAnswer] = useState(""),
+    [drawer, setDrawer] = useState(false),
+    [toolsOpen, setToolsOpen] = useState(false),
+    [viewport, setViewport] = useState({ height: 0, offsetTop: 0 });
   const ctl = useRef<AbortController | null>(null),
     upload = useRef<HTMLInputElement>(null),
     sent = useRef(""),
     urls = useRef<string[]>([]),
-    end = useRef<HTMLDivElement>(null);
+    logRef = useRef<HTMLDivElement>(null);
   const current = threads.find((t) => t.id === active),
     messages = current?.messages || [];
   function newThread() {
@@ -121,8 +138,35 @@ export function MohsenChat({
     if (ready && attach) upload.current?.click();
   }, [ready, attach]);
   useEffect(() => {
-    end.current?.scrollIntoView({ block: "nearest" });
-  }, [busy, messages.length]);
+    const read = () => {
+      const view = window.visualViewport;
+      setViewport({
+        height: view?.height || window.innerHeight,
+        offsetTop: view?.offsetTop || 0,
+      });
+    };
+    read();
+    window.visualViewport?.addEventListener("resize", read);
+    window.visualViewport?.addEventListener("scroll", read);
+    window.addEventListener("resize", read);
+    return () => {
+      window.visualViewport?.removeEventListener("resize", read);
+      window.visualViewport?.removeEventListener("scroll", read);
+      window.removeEventListener("resize", read);
+    };
+  }, []);
+  useEffect(() => {
+    if (!drawer) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setDrawer(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [drawer]);
+  useEffect(() => {
+    const node = logRef.current;
+    if (node) node.scrollTop = node.scrollHeight;
+  }, [busy, messages.length, viewport.height]);
   function append(message: ChatMessage) {
     setThreads((ts) =>
       ts.map((t) =>
@@ -225,25 +269,53 @@ export function MohsenChat({
           label: "حقّق · لا يُخزّن النص لدى العامل",
         };
       } else {
-        const r = await fetch("/api/mohsen", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            message: text,
-            messages: mohsenHistory(messages).slice(-2),
-            memory: deviceMemories(),
-          }),
-          signal: controller.signal,
-        });
-        if (!r.ok) throw new Error(serviceError(r.status));
-        const data = await r.json();
-        result = {
-          role: "assistant",
-          content: data.reply,
-          citations: data.citations?.filter((c: { url: string }) => safeSource(c.url)),
-          verified: data.verified === true,
-          label: data.evidence,
-        };
+        const plan = planGuideTurn(text, { hideMoney: hideMoney(segment) });
+        if (plan.action === "local") {
+          result = {
+            role: "assistant",
+            content: plan.text,
+            label: "دليل الصفحات في واحة",
+          };
+        } else {
+          const message = plan.action === "mixed" ? plan.remoteMessage : text;
+          try {
+            const r = await fetch("/api/mohsen", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                message,
+                messages: plan.action === "mixed" ? [] : mohsenHistory(messages).slice(-2),
+                memory: deviceMemories(),
+              }),
+              signal: controller.signal,
+            });
+            if (!r.ok) throw new Error(serviceError(r.status));
+            const data = await r.json();
+            result = {
+              role: "assistant",
+              content: data.reply,
+              citations: data.citations?.filter((c: { url: string }) => safeSource(c.url)),
+              verified: data.verified === true,
+              label: data.evidence,
+            };
+            if (plan.action === "mixed") {
+              result = {
+                ...result,
+                content: `${plan.localText}\n\n${result.content}`,
+                verified: false,
+                label: "السؤال العام أجابته خدمة محسن كما هي.",
+              };
+            }
+          } catch (err) {
+            if (plan.action !== "mixed") throw err;
+            result = {
+              role: "assistant",
+              content: plan.localText,
+              label: "دليل الصفحات في واحة",
+            };
+            setError("تعذّر جواب السؤال العام. الوجهة أعلاه تبقى في واحة.");
+          }
+        }
       }
       if (typeof result.content !== "string" || !result.content.trim())
         throw new Error("لم يصل جواب؛ أعد المحاولة.");
@@ -281,266 +353,306 @@ export function MohsenChat({
   }, [ready, q, initial, navigate]);
 
   return (
-    <div className="mx-auto max-w-3xl space-y-4" dir="rtl">
-      <header>
-        <p className="text-sm text-primary">واحة 2.0 · مساعدك من البيت</p>
-        <h1 className="font-display text-3xl">اسأل محسن</h1>
-        <p className="mt-2 text-sm leading-7 text-muted">
-          السجل على جهازك فقط. نرسل السؤال وآخر رسالتين عند المتابعة؛ الملف يُعالج في الذاكرة. قد
-          يخطئ محسن، راجع المصادر.
-        </p>
+    <div
+      className="fixed inset-0 z-30 flex flex-col bg-bg text-fg"
+      style={
+        viewport.height
+          ? { top: viewport.offsetTop, height: viewport.height, bottom: "auto" }
+          : undefined
+      }
+      dir="rtl"
+      data-mohsen-layout="chat"
+    >
+      <header className="flex shrink-0 items-center gap-2 border-b border-border px-3 pt-[env(safe-area-inset-top,0px)]">
+        <button
+          type="button"
+          className="grid size-11 place-items-center rounded-full text-lg"
+          aria-expanded={drawer}
+          aria-controls="mohsen-drawer"
+          onClick={() => setDrawer(true)}
+        >
+          <span className="sr-only">قائمة محسن</span>
+          <span aria-hidden="true">☰</span>
+        </button>
+        <h1 className="font-display text-xl">محسن</h1>
       </header>
-      <details className="rounded-xl border border-border p-3">
-        <summary className="min-h-11 cursor-pointer content-center">
-          محادثاتي ({threads.length})
-        </summary>
-        <div className="flex flex-wrap gap-2">
-          <button className={btn} disabled={busy} onClick={newThread}>
-            محادثة جديدة
-          </button>
-          <button
-            className={btn}
-            disabled={busy}
-            onClick={() => {
-              if (confirm("مسح كل محادثات محسن من هذا الجهاز؟")) {
-                setThreads([]);
-                newThread();
-              }
-            }}
-          >
-            مسح السجل
-          </button>
-        </div>
-        {threads.map((t) => (
-          <div key={t.id} className="flex gap-2">
-            <button
-              disabled={busy}
-              className="min-h-11 min-w-0 flex-1 truncate text-start"
-              aria-pressed={active === t.id}
-              onClick={() => {
-                setActive(t.id);
-                setError("");
-              }}
-            >
-              {t.title}
-            </button>
-            <button
-              disabled={busy}
-              className="min-h-11 min-w-11"
-              aria-label={`حذف ${t.title}`}
-              onClick={() => {
-                if (confirm("حذف هذه المحادثة من الجهاز؟")) {
-                  setThreads((ts) => ts.filter((x) => x.id !== t.id));
-                  if (active === t.id) newThread();
-                }
-              }}
-            >
-              ×
-            </button>
-          </div>
-        ))}
-      </details>
-      <div role="log" aria-label="المحادثة" aria-live="polite" className="space-y-4">
+      <div ref={logRef} role="log" aria-label="المحادثة" aria-live="polite" className="min-h-0 flex-1 overflow-y-auto px-4 py-4">
         {!messages.length && (
-          <div className="rounded-2xl bg-primary/10 p-5 leading-8">
-            أهلًا بك. فكرة، ملف، صورة أو خطوة لمستقبلك… من أين نبدأ؟
-            <div className="mt-3 flex flex-wrap gap-2" aria-label="جرّب">
-              {MOHSEN_STARTERS.map((s) => (
+          <div className="flex h-full flex-col items-center justify-center gap-4 text-center">
+            <p className="font-display text-3xl">محسن</p>
+            <p className="max-w-sm text-sm leading-7 text-muted">اسأل بحرية، أو اطلب صفحة موجودة في واحة.</p>
+            <div className="flex max-w-sm flex-wrap justify-center gap-2">
+              {HINTS.map((hint) => (
                 <button
-                  key={s.label}
+                  key={hint}
                   type="button"
-                  className={btn}
-                  disabled={busy}
-                  onClick={() => void sendRef.current(s.q)}
+                  className="min-h-11 rounded-full px-3 text-sm text-muted underline-offset-4 hover:underline disabled:opacity-50"
+                  disabled={busy || !ready}
+                  onClick={() => void sendRef.current(hint)}
                 >
-                  {s.label}
+                  {hint}
                 </button>
               ))}
             </div>
           </div>
         )}
-        {messages.map((m, i) => (
-          <article
-            key={i}
-            data-role={m.role}
-            className={`min-w-0 rounded-2xl border border-border p-4 ${m.role === "user" ? "ms-6 bg-primary/10" : "me-3 bg-surface"}`}
-          >
-            <p className="mb-2 text-sm font-bold">
-              {m.role === "user" ? "أنت" : "محسن"}
-              {m.verified && !!m.citations?.length ? " · موثّق ✓" : ""}
-            </p>
-            {m.label && <p className="text-xs leading-6 text-muted">{m.label}</p>}
-            <p className="whitespace-pre-wrap break-words leading-8">{m.content}</p>
-            {m.image && (
-              <>
-                <img className="my-3 w-full rounded-xl" src={m.image} alt="صورة مولّدة من وصفك" />
-                <a download="mohsen.png" href={m.image} className={btn}>
-                  تنزيل الصورة
+        {messages.map((m, i) => {
+          const prior = messages[i - 1];
+          const asked =
+            prior?.role === "user" ? guideSite(prior.content, { hideMoney: hideMoney(segment) }) : null;
+          const guide = m.role === "assistant" ? asked : null;
+          const verified =
+            Boolean(m.verified && m.citations?.length) && (!asked || asked.mode === "general");
+          return (
+            <article
+              key={i}
+              data-role={m.role}
+              className={
+                m.role === "user"
+                  ? "mb-5 me-auto max-w-[85%] rounded-[1.25rem] bg-primary px-4 py-2.5 text-primary-fg"
+                  : "mb-8 max-w-2xl"
+              }
+            >
+              <p className={`mb-1 text-xs ${m.role === "user" ? "text-primary-fg/80" : "text-muted"}`}>
+                {m.role === "user" ? "أنت" : "محسن"}
+                {verified ? " · موثّق ✓" : ""}
+              </p>
+              {m.label && !m.label.includes("دليل الصفحات") ? (
+                <p className="text-xs leading-6 text-muted">{m.label}</p>
+              ) : null}
+              <p className="whitespace-pre-wrap break-words leading-8">{m.content}</p>
+              {m.image && (
+                <>
+                  <img className="my-3 w-full rounded-xl" src={m.image} alt="صورة مولّدة من وصفك" />
+                  <a download="mohsen.png" href={m.image} className={btn}>
+                    تنزيل الصورة
+                  </a>
+                </>
+              )}
+              {m.video ? <video controls src={m.video} className="w-full" /> : m.slides && <SlideShow slides={m.slides} />}
+              {m.video && (
+                <a download="mohsen.webm" href={m.video} className={btn}>
+                  تنزيل المقطع
                 </a>
-              </>
-            )}
-            {m.video ? (
-              <video controls src={m.video} className="w-full" />
-            ) : (
-              m.slides && <SlideShow slides={m.slides} />
-            )}{" "}
-            {m.video && (
-              <a download="mohsen.webm" href={m.video} className={btn}>
-                تنزيل المقطع
-              </a>
-            )}
-            {m.citations?.map((c) => (
-              <ExternalLink
-                direct
-                key={c.url}
-                href={c.url}
-                className="my-2 block min-h-11 content-center break-words text-primary underline"
-              >
-                {c.title || new URL(c.url).hostname} ↗
-              </ExternalLink>
-            ))}
-            {m.role === "assistant" && (
-              <div className="mt-3 flex gap-2">
-                <button
-                  className={btn}
-                  onClick={() => {
-                    void navigator.clipboard.writeText(m.content).then(
-                      () => setNotice("نُسخ الجواب"),
-                      () => setNotice("تعذّر النسخ؛ حدّد النص وانسخه."),
-                    );
-                  }}
+              )}
+              {m.citations?.map((c) => (
+                <ExternalLink
+                  direct
+                  key={c.url}
+                  href={c.url}
+                  className="my-2 block min-h-11 content-center break-words text-primary underline"
                 >
-                  نسخ
-                </button>
-                {["👍", "👎"].map((v) => (
+                  {c.title || new URL(c.url).hostname} ↗
+                </ExternalLink>
+              ))}
+              {guide?.mode === "navigate" && (
+                <div className="mt-3 grid gap-2" data-site-guide="navigate">
+                  {guide.matches.map((match) => {
+                    const emoji = match.href.includes("research")
+                      ? "🔬"
+                      : match.href.startsWith("/books")
+                        ? "📚"
+                        : "🌿";
+                    const body = (
+                      <>
+                        <span className="block font-medium">
+                          {emoji} {match.title}
+                        </span>
+                        {match.detail ? (
+                          <span className="mt-1 block text-sm leading-6 text-muted">{match.detail}</span>
+                        ) : null}
+                      </>
+                    );
+                    const card =
+                      "block min-h-11 rounded-2xl border border-border bg-surface px-3 py-2.5 text-start focus-visible:outline-2 focus-visible:outline-offset-2";
+                    return match.href.startsWith("/") ? (
+                      <button
+                        key={match.href}
+                        type="button"
+                        className={card}
+                        onClick={() => void navigate({ href: match.href })}
+                      >
+                        {body}
+                      </button>
+                    ) : (
+                      <ExternalLink key={match.href} direct href={match.href} className={card}>
+                        {body}
+                      </ExternalLink>
+                    );
+                  })}
+                </div>
+              )}
+              {m.role === "assistant" && (
+                <div className="mt-2 flex gap-1">
                   <button
-                    key={v}
-                    className={btn}
-                    aria-label={v === "👍" ? "جواب مفيد" : "جواب غير مفيد"}
-                    aria-pressed={m.vote === v}
-                    onClick={() =>
-                      setThreads((ts) =>
-                        ts.map((t) =>
-                          t.id === active
-                            ? {
-                                ...t,
-                                messages: t.messages.map((x, j) =>
-                                  j === i ? { ...x, vote: v } : x,
-                                ),
-                              }
-                            : t,
-                        ),
-                      )
-                    }
+                    type="button"
+                    className="grid size-11 place-items-center rounded-full text-sm text-muted focus-visible:outline-2"
+                    onClick={() => {
+                      void navigator.clipboard.writeText(m.content).then(
+                        () => setNotice("نُسخ الجواب"),
+                        () => setNotice("تعذّر النسخ؛ حدّد النص وانسخه."),
+                      );
+                    }}
                   >
-                    {v}
+                    نسخ
                   </button>
-                ))}
-              </div>
-            )}
-          </article>
-        ))}
+                  {["👍", "👎"].map((v) => (
+                    <button
+                      key={v}
+                      type="button"
+                      className="grid size-11 place-items-center rounded-full text-muted focus-visible:outline-2"
+                      aria-label={v === "👍" ? "جواب مفيد" : "جواب غير مفيد"}
+                      aria-pressed={m.vote === v}
+                      onClick={() =>
+                        setThreads((ts) =>
+                          ts.map((t) =>
+                            t.id === active
+                              ? {
+                                  ...t,
+                                  messages: t.messages.map((x, j) => (j === i ? { ...x, vote: v } : x)),
+                                }
+                              : t,
+                          ),
+                        )
+                      }
+                    >
+                      {v}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </article>
+          );
+        })}
         {busy && (
           <p role="status" className="rounded-xl bg-surface p-4">
             محسن يرتّب لك الجواب…
           </p>
         )}
-        <div ref={end} />
       </div>
       {error && (
-        <div role="alert" className="rounded-xl border border-border p-4 leading-7">
+        <div role="alert" className="shrink-0 border-t border-border px-4 py-2 text-sm leading-7">
           {error}
-          <div className="mt-2 flex flex-wrap gap-2">
-            <button className={btn} onClick={() => void send()}>
-              إعادة المحاولة
-            </button>
-            <ExternalLink direct href="https://si.alhajda.com" className={btn}>
-              فتح محسن
-            </ExternalLink>
-          </div>
+          <button type="button" className={`${btn} ms-2`} onClick={() => void send()}>
+            إعادة المحاولة
+          </button>
         </div>
       )}
-      <p role="status" className="text-sm">
-        {notice}
-      </p>
+      {notice ? (
+        <p role="status" className="shrink-0 px-4 text-sm">
+          {notice}
+        </p>
+      ) : null}
       <form
         onSubmit={(e) => {
           e.preventDefault();
+          setToolsOpen(false);
           void send();
         }}
-        className="rounded-2xl border border-primary/30 bg-surface p-4"
+        className="relative shrink-0 border-t border-border bg-bg px-3 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom,0px))]"
       >
-        <div className="mb-3 flex flex-wrap gap-2">
-          {(
-            [
-              ["chat", "محادثة"],
-              ["image", "صورة"],
-              ["clip", "مقطع قصير"],
-              ["cv", "سيرتي"],
-              ["interview", "المقابلة"],
-              ["plan", "خطتي"],
-            ] as const
-          ).map(([value, label]) => (
-            <button
-              type="button"
-              className={btn}
-              disabled={busy}
-              aria-pressed={mode === value}
-              key={value}
-              onClick={() => {
-                setMode(value);
-                setFile(null);
-              }}
-            >
-              {label}
+        {mode !== "chat" && (
+          <p className="mb-2 flex items-center gap-2 text-sm">
+            <span>{MODES.find((item) => item.id === mode)?.label}</span>
+            <button type="button" className="text-muted" onClick={() => setMode("chat")}>
+              إلغاء
             </button>
-          ))}
-        </div>
-        {mode === "clip" && (
-          <p className="mb-3 text-sm">
-            المقطع يستهلك 3 صور من الحصة ويُركّب على جهازك، أو يُعرض كشرائح.
           </p>
         )}
         {["cv", "interview", "plan"].includes(mode) && (
-          <label className="mb-3 block text-sm">
-            {mode === "plan" ? "العقبة المتوقعة (اختياري)" : "الوظيفة أو إعلانها (اختياري)"}
-            <textarea
+          <label className="mb-2 block text-xs text-muted">
+            {mode === "plan" ? "العقبة المتوقعة، إن وجدت" : "الوظيفة، إن وجدت"}
+            <input
               value={job}
               onChange={(e) => setJob(e.target.value)}
               maxLength={3000}
-              className="mt-2 min-h-11 w-full rounded-xl border border-border bg-bg p-3"
+              className="mt-1 min-h-11 w-full rounded-xl border border-border bg-surface px-3"
             />
           </label>
         )}
         {mode === "interview" && (
-          <label className="block text-sm">
-            جوابك للتقييم عن «حدثنا عن خبرتك» (اختياري)
-            <textarea
+          <label className="mb-2 block text-xs text-muted">
+            جوابك عن خبرتك، إن أردت تقييمه
+            <input
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
               maxLength={2000}
-              className="min-h-11 w-full rounded-xl border border-border bg-bg p-3"
+              className="mt-1 min-h-11 w-full rounded-xl border border-border bg-surface px-3"
             />
           </label>
         )}
-        <label htmlFor="mohsen-message" className="mb-2 block text-sm">
-          {mode === "cv"
-            ? "خبرتك أو سيرتك (30 حرفًا على الأقل)"
-            : mode === "plan"
-              ? "هدفك"
-              : mode === "interview"
-                ? "خلفيتك أو وصف الوظيفة"
-                : "سؤالك لمحسن"}
-        </label>
-        <textarea
-          id="mohsen-message"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          maxLength={mode === "chat" ? 8000 : 2000}
-          rows={3}
-          className="w-full rounded-xl border border-border bg-bg p-3"
-          placeholder="اسأل محسن…"
-        />
+        {file && (
+          <p className="mb-2 flex items-center gap-2 break-all text-sm">
+            {file.name}
+            <button type="button" className="text-muted" onClick={() => setFile(null)}>
+              إزالة
+            </button>
+          </p>
+        )}
+        <div className="flex items-end gap-2">
+          <button
+            type="button"
+            className="grid size-11 shrink-0 place-items-center rounded-full border border-border text-xl"
+            aria-expanded={toolsOpen}
+            aria-label="أدوات الرسالة"
+            onClick={() => setToolsOpen((open) => !open)}
+          >
+            +
+          </button>
+          <label htmlFor="mohsen-message" className="sr-only">
+            رسالتك
+          </label>
+          <textarea
+            id="mohsen-message"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onFocus={() => setToolsOpen(false)}
+            maxLength={mode === "chat" ? 8000 : 2000}
+            rows={1}
+            className="max-h-32 min-h-11 flex-1 resize-none rounded-2xl border border-border bg-surface px-3 py-2.5 leading-7"
+            placeholder="اكتب لمحسن"
+          />
+          <MohsenVoice onText={setInput} />
+          {busy ? (
+            <button type="button" className={btn} onClick={() => ctl.current?.abort()}>
+              إيقاف
+            </button>
+          ) : (
+            <button type="submit" className={btn} disabled={!ready || !input.trim()}>
+              إرسال
+            </button>
+          )}
+        </div>
+        {toolsOpen && (
+          <div className="absolute inset-x-3 bottom-full mb-2 rounded-2xl border border-border bg-surface p-2 shadow-lg">
+            <div className="flex flex-wrap gap-1">
+              {MODES.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  className={btn}
+                  aria-pressed={mode === item.id}
+                  onClick={() => {
+                    setMode(item.id);
+                    if (item.id !== "chat") setFile(null);
+                    setToolsOpen(false);
+                  }}
+                >
+                  {item.label}
+                </button>
+              ))}
+              <button type="button" className={btn} onClick={() => upload.current?.click()}>
+                إرفاق
+              </button>
+            </div>
+            <p className="px-2 pt-2 text-xs leading-6 text-muted">
+              {quota
+                ? `المتبقي اليوم: ${quota.images?.remaining ?? "—"} صور · ${quota.analyses?.remaining ?? "—"} تحليلات.`
+                : "الحصة تظهر عند الاتصال."}{" "}
+              المرفقات لا تُحفظ في السجل.
+            </p>
+          </div>
+        )}
         <input
           ref={upload}
           type="file"
@@ -557,52 +669,108 @@ export function MohsenChat({
                 setFile(f);
                 setMode("chat");
                 setError("");
+                setToolsOpen(false);
                 if (!input) setInput("لخّص هذا الملف في نقاط");
               } catch (err) {
                 setError((err as Error).message);
               }
           }}
         />
-        {file && (
-          <p className="flex items-center gap-2 break-all text-sm">
-            {file.name}
-            <button type="button" className={btn} onClick={() => setFile(null)}>
-              إزالة المرفق
-            </button>
-          </p>
-        )}
-        <div className="mt-3 flex flex-wrap gap-2">
-          <button type="submit" className={btn} disabled={busy || !ready || !input.trim()}>
-            إرسال
-          </button>
-          <button
-            type="button"
-            className={btn}
-            disabled={busy}
-            onClick={() => upload.current?.click()}
-          >
-            إرفاق
-          </button>
-          <MohsenVoice onText={setInput} />
-          {busy && (
-            <button type="button" className={btn} onClick={() => ctl.current?.abort()}>
-              إيقاف
-            </button>
-          )}
-          <ExternalLink direct href="https://si.alhajda.com/haqqiq" className={btn}>
-            فرص ودعم ↗
-          </ExternalLink>
-        </div>
-        <p className="mt-3 text-xs leading-6 text-muted">
-          {quota
-            ? `المتبقي اليوم: ${quota.images?.remaining ?? "—"} صور · ${quota.analyses?.remaining ?? "—"} تحليلات`
-            : "الحصة تظهر عند توفر اتصال بمحسن."}{" "}
-          · المرفقات والصور لا تُحفظ في سجل واحة؛ نزّل ما تريد الاحتفاظ به.
-        </p>
+        <p className="mt-1 text-center text-[11px] leading-5 text-muted">قد يخطئ محسن. السجل على جهازك.</p>
       </form>
+      {drawer && (
+        <div className="fixed inset-0 z-50">
+          <button type="button" className="absolute inset-0 bg-black/40" aria-label="إغلاق القائمة" onClick={() => setDrawer(false)} />
+          <aside
+            id="mohsen-drawer"
+            role="dialog"
+            aria-label="قائمة محسن"
+            className="absolute inset-y-0 start-0 flex w-[min(100%,20rem)] flex-col gap-3 overflow-y-auto bg-bg p-4 pt-[max(1rem,env(safe-area-inset-top))] shadow-xl"
+          >
+            <div className="flex items-center justify-between">
+              <p className="font-display text-2xl">محسن</p>
+              <button type="button" className="size-11" aria-label="إغلاق" onClick={() => setDrawer(false)}>
+                ×
+              </button>
+            </div>
+            <button type="button" className={btn} disabled={busy} onClick={() => { newThread(); setDrawer(false); }}>
+              محادثة جديدة
+            </button>
+            <nav className="grid gap-1 text-sm" aria-label="العودة إلى واحة">
+              <Link to="/" className="min-h-11 content-center" onClick={() => setDrawer(false)}>
+                واحة
+              </Link>
+              <Link to="/books" className="min-h-11 content-center" onClick={() => setDrawer(false)}>
+                المكتبة
+              </Link>
+              <Link to="/research" className="min-h-11 content-center" onClick={() => setDrawer(false)}>
+                الأبحاث
+              </Link>
+              <Link to="/settings" className="min-h-11 content-center" onClick={() => setDrawer(false)}>
+                الإعدادات
+              </Link>
+              <Link to="/me" className="min-h-11 content-center" onClick={() => setDrawer(false)}>
+                الحساب
+              </Link>
+              <Link to="/privacy" className="min-h-11 content-center" onClick={() => setDrawer(false)}>
+                الخصوصية
+              </Link>
+            </nav>
+            <p className="text-xs leading-6 text-muted">
+              جواب المحادثة يأتي من خدمة محسن كما هي. وجهات الصفحات من واحة، وتُفتح عندما تضغطها.
+            </p>
+            <h2 className="text-sm font-medium">المحادثات</h2>
+            {threads.map((t) => (
+              <div key={t.id} className="flex gap-2">
+                <button
+                  type="button"
+                  disabled={busy}
+                  className="min-h-11 min-w-0 flex-1 truncate text-start"
+                  aria-pressed={active === t.id}
+                  onClick={() => {
+                    setActive(t.id);
+                    setError("");
+                    setDrawer(false);
+                  }}
+                >
+                  {t.title}
+                </button>
+                <button
+                  type="button"
+                  disabled={busy}
+                  className="min-h-11 min-w-11"
+                  aria-label={`حذف ${t.title}`}
+                  onClick={() => {
+                    if (confirm("حذف هذه المحادثة من الجهاز؟")) {
+                      setThreads((ts) => ts.filter((x) => x.id !== t.id));
+                      if (active === t.id) newThread();
+                    }
+                  }}
+                >
+                  ×
+                </button>
+              </div>
+            ))}
+            <button
+              type="button"
+              className={btn}
+              disabled={busy}
+              onClick={() => {
+                if (confirm("مسح كل محادثات محسن من هذا الجهاز؟")) {
+                  setThreads([]);
+                  newThread();
+                }
+              }}
+            >
+              مسح السجل
+            </button>
+          </aside>
+        </div>
+      )}
     </div>
   );
 }
+
 function SlideShow({ slides }: { slides: string[] }) {
   const [i, setI] = useState(0);
   useEffect(() => {

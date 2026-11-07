@@ -4,6 +4,7 @@ import { SquarePage } from "@/components/square/square-page";
 import { moreOverflowNav } from "@/lib/nav";
 import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
+import { LangToggle } from "@/components/city-select";
 
 export const Route = createFileRoute("/more")({
   head: () => ({
@@ -55,6 +56,15 @@ function MorePage() {
             ? "ابحث عن خدمة أو اختر أحد الأقسام."
             : "Find a service or browse a section."}
         </p>
+        <nav className="mt-4 flex flex-wrap items-center gap-4" aria-label={lang === "ar" ? "الحساب والإعدادات" : "Account and settings"}>
+          <Link to="/me" className="inline-flex min-h-11 items-center text-primary">
+            👤 {t(lang, "me")}
+          </Link>
+          <Link to="/settings" className="inline-flex min-h-11 items-center text-primary">
+            ⚙️ {lang === "ar" ? "الإعدادات" : "Settings"}
+          </Link>
+          <LangToggle lang={lang} />
+        </nav>
       </header>
       <ServiceGrid />
       <details className="mt-8 rounded-2xl border border-border p-5">

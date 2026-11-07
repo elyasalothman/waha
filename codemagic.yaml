@@ -92,7 +92,14 @@ workflows:
               ;;
           esac
 
+          # Owner-confirmed uploaded floor is build 10 of 1.2.1 (7 Nov 2026).
+          # This repo has no App Store Connect token, so a failed lookup must
+          # not fall back to 4 or 5. A successful lookup still uses latest+1.
           NEXT_BUILD_NUMBER="$CHECKED_IN_BUILD_NUMBER"
+          KNOWN_UPLOADED_FLOOR=10
+          if [ "$NEXT_BUILD_NUMBER" -le "$KNOWN_UPLOADED_FLOOR" ]; then
+            NEXT_BUILD_NUMBER=$((KNOWN_UPLOADED_FLOOR + 1))
+          fi
           case "${PROJECT_BUILD_NUMBER:-}" in
             ''|*[!0-9]*) ;;
             *)

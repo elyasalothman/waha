@@ -14,7 +14,9 @@ const strings = {
   askTab: { ar: "اسأل", en: "Ask" },
   me: { ar: "حسابي", en: "Me" },
   home: { ar: "الرئيسية", en: "Home" },
-  more: { ar: "استكشف", en: "Explore" },
+  more: { ar: "المزيد", en: "More" },
+  library: { ar: "المكتبة", en: "Library" },
+  research: { ar: "الأبحاث", en: "Research" },
   createAccount: { ar: "إنشاء حساب", en: "Create account" },
   wahaForYou: { ar: "واحة من أجلك", en: "Waha for you" },
   wahaForYouBlurb: {
@@ -124,8 +126,8 @@ const strings = {
     en: "Everyday calculators, a decision wheel, and tafqeet",
   },
   gamesBlurb: {
-    ar: "باب لُمعة، ثم كلمة وآبار ومجرى وكتل وذاكرة في الواحة",
-    en: "A door to Luma, then Kalima, wells, stream, blocks, and memory in Waha",
+    ar: "جيش الواحة يحتاج رسومًا ثلاثية الأبعاد. تحته ألعاب لُعبت هنا وثبت أنها تبدأ وتعاد",
+    en: "Oasis Army needs 3D. Under it are games played here that start and restart",
   },
   gamesYard: { ar: "باب لُمعة", en: "Door to Luma" },
   studioBlurb: {
@@ -249,8 +251,8 @@ const strings = {
   books: { ar: "الكتب", en: "Books" },
   booksTitle: { ar: "رف الكتب", en: "Book shelf" },
   booksBlurb: {
-    ar: "اثنا عشر كتاباً معلَّم المصدر — أخلاق وشرعي ومداد. بلا شراء ورقي ولا قرصنة. ليست خط الميدان.",
-    en: "Twelve source-stamped books — akhlaq, sharia, and Midad. No paper shop, no piracy. Not the Square feed.",
+    ar: "الرف المعلَّم المصدر: 12 كتابًا. داخل واحة أيضًا: كتاب الهجدة، و12 نصًا من مداد، و2 من قصص الغموض، ودليل التداول. بلا شراء ورقي ولا قرصنة.",
+    en: "The source-stamped shelf is 12 books. Also in Waha: the Alhajda book, 12 original Midad texts, 2 mystery entries, and the trading guide. No paper shop and no piracy.",
   },
   booksOpen: { ar: "افتح المصدر", en: "Open source" },
   kutubi: { ar: "كتبي", en: "My books" },

@@ -220,11 +220,17 @@ describe("books stay off the Maydan line", () => {
     assert.match(catalog, /door\.id === "midad"/);
     assert.match(catalog, /portal: true/);
     assert.doesNotMatch(catalog, /id: "books"/);
-    assert.match(nav, /to: "\/services"/);
-    assert.match(
-      readFileSync(new URL("../../components/leap-home.tsx", import.meta.url), "utf8"),
-      /to="\/books"/,
+    assert.match(nav, /to: "\/books"/);
+    assert.match(nav, /key: "library"/);
+    const leapHome = readFileSync(
+      new URL("../../components/leap-home.tsx", import.meta.url),
+      "utf8",
     );
+    assert.match(leapHome, /data-home-display="only"/);
+    assert.match(leapHome, /to="\/settings"/);
+    assert.match(leapHome, /تخصيص/);
+    assert.equal(leapHome.match(/<Link\b/g)?.length, 1);
+    assert.doesNotMatch(leapHome, /<button\b|onClick|<a\b/);
     assert.match(card, /to="\/books"/);
     assert.match(home, /HomePage/);
     assert.doesNotMatch(home, /BooksPage|lib\/books|waha:kutubi|كتبي|WebView/);

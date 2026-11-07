@@ -1,9 +1,23 @@
 import { Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { useAppStore } from "@/store/app-store";
+
+function browserWebGL(): boolean {
+  try {
+    const canvas = document.createElement("canvas");
+    return Boolean(canvas.getContext("webgl2") || canvas.getContext("webgl"));
+  } catch {
+    return false;
+  }
+}
 
 /** Featured card for «جيش الواحة» on /games — cover art is a real in-game render. */
 export function ArmyCard() {
   const lang = useAppStore((s) => s.lang);
+  const [gl, setGl] = useState<"unknown" | "ok" | "no">("unknown");
+  useEffect(() => {
+    setGl(browserWebGL() ? "ok" : "no");
+  }, []);
   return (
     <Link
       to="/app/$id"
@@ -24,7 +38,13 @@ export function ArmyCard() {
       <span className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4">
         <span className="min-w-0">
           <span className="mb-1 inline-block rounded-full bg-amber-400 px-2 py-0.5 text-xs font-bold text-amber-950">
-            {lang === "ar" ? "جديد · ثلاثية الأبعاد" : "New · 3D"}
+            {gl === "no"
+              ? lang === "ar"
+                ? "ثلاثي الأبعاد غير متاح في هذا المتصفح"
+                : "3D is unavailable in this browser"
+              : lang === "ar"
+                ? "اللعبة الأبرز · تحتاج رسومًا ثلاثية الأبعاد"
+                : "Flagship · needs 3D graphics"}
           </span>
           <span className="block font-display text-3xl font-black text-white drop-shadow">
             {lang === "ar" ? "جيش الواحة" : "Oasis Army"}
@@ -36,7 +56,7 @@ export function ArmyCard() {
           </span>
         </span>
         <span className="grid min-h-12 shrink-0 place-items-center rounded-xl bg-white px-4 font-bold text-teal-800 shadow">
-          {lang === "ar" ? "العب" : "Play"}
+          {gl === "no" ? (lang === "ar" ? "غير متاح هنا" : "Unavailable") : lang === "ar" ? "العب" : "Play"}
         </span>
       </span>
     </Link>

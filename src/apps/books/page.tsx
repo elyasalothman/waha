@@ -5,10 +5,12 @@ import { BooksMark } from "@/components/brand";
 import { ExternalLink } from "@/components/external-link";
 import { useCurrentUserState } from "@/lib/auth/use-current-user";
 import { useBooks, useKutubi, type BookCard, type BookUiSection } from "@/lib/books";
+import { booksBlurb } from "@/lib/books/reading-counts";
 import { t } from "@/lib/i18n";
 import { useAppStore } from "@/store/app-store";
 import { PrivateShelf } from "./private-shelf";
 import { Link } from "@tanstack/react-router";
+import { ContinueReading } from "@/components/continue-reading";
 
 const SECTION_EN: Record<BookUiSection, string> = {
   أخلاق: "Akhlaq",
@@ -32,9 +34,11 @@ export function BooksPage() {
           <BooksMark className="size-5" />
           {t(lang, "books")}
         </p>
-        <h1 className="mt-2 font-display text-4xl tracking-tight">{t(lang, "booksTitle")}</h1>
-        <p className="mt-2 max-w-xl text-muted">{t(lang, "booksBlurb")}</p>
+        <h1 className="mt-2 font-display text-4xl tracking-tight">📚 {t(lang, "booksTitle")}</h1>
+        <p className="mt-2 max-w-xl text-muted">{booksBlurb(lang)}</p>
       </header>
+
+      <ContinueReading />
 
       <StoriesCard />
 

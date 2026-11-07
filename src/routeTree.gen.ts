@@ -20,6 +20,7 @@ import { Route as DeleteAccountRouteImport } from './routes/delete-account'
 import { Route as ForumRouteImport } from './routes/forum'
 import { Route as GamesRouteImport } from './routes/games'
 import { Route as LifeRouteImport } from './routes/life'
+import { Route as LiveRouteImport } from './routes/live'
 import { Route as MadarRouteImport } from './routes/madar'
 import { Route as MeRouteImport } from './routes/me'
 import { Route as MohsenRouteImport } from './routes/mohsen'
@@ -30,6 +31,7 @@ import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as QuranRouteImport } from './routes/quran'
 import { Route as RegisterRouteImport } from './routes/register'
+import { Route as ResearchRouteImport } from './routes/research'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as StoreRouteImport } from './routes/store'
@@ -119,6 +121,11 @@ const LifeRoute = LifeRouteImport.update({
   path: '/life',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LiveRoute = LiveRouteImport.update({
+  id: '/live',
+  path: '/live',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MadarRoute = MadarRouteImport.update({
   id: '/madar',
   path: '/madar',
@@ -167,6 +174,11 @@ const QuranRoute = QuranRouteImport.update({
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
   path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchRoute = ResearchRouteImport.update({
+  id: '/research',
+  path: '/research',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -347,6 +359,7 @@ export interface FileRoutesByFullPath {
   '/forum': typeof ForumRouteWithChildren
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
+  '/live': typeof LiveRoute
   '/madar': typeof MadarRoute
   '/me': typeof MeRoute
   '/mohsen': typeof MohsenRoute
@@ -357,6 +370,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/quran': typeof QuranRoute
   '/register': typeof RegisterRoute
+  '/research': typeof ResearchRoute
   '/services': typeof ServicesRoute
   '/settings': typeof SettingsRoute
   '/store': typeof StoreRoute
@@ -402,6 +416,7 @@ export interface FileRoutesByTo {
   '/delete-account': typeof DeleteAccountRoute
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
+  '/live': typeof LiveRoute
   '/madar': typeof MadarRoute
   '/me': typeof MeRoute
   '/mohsen': typeof MohsenRoute
@@ -412,6 +427,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/quran': typeof QuranRoute
   '/register': typeof RegisterRoute
+  '/research': typeof ResearchRoute
   '/services': typeof ServicesRoute
   '/settings': typeof SettingsRoute
   '/store': typeof StoreRoute
@@ -458,6 +474,7 @@ export interface FileRoutesById {
   '/forum': typeof ForumRouteWithChildren
   '/games': typeof GamesRoute
   '/life': typeof LifeRoute
+  '/live': typeof LiveRoute
   '/madar': typeof MadarRoute
   '/me': typeof MeRoute
   '/mohsen': typeof MohsenRoute
@@ -468,6 +485,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/quran': typeof QuranRoute
   '/register': typeof RegisterRoute
+  '/research': typeof ResearchRoute
   '/services': typeof ServicesRoute
   '/settings': typeof SettingsRoute
   '/store': typeof StoreRoute
@@ -516,6 +534,7 @@ export interface FileRouteTypes {
     | '/forum'
     | '/games'
     | '/life'
+    | '/live'
     | '/madar'
     | '/me'
     | '/mohsen'
@@ -526,6 +545,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/quran'
     | '/register'
+    | '/research'
     | '/services'
     | '/settings'
     | '/store'
@@ -571,6 +591,7 @@ export interface FileRouteTypes {
     | '/delete-account'
     | '/games'
     | '/life'
+    | '/live'
     | '/madar'
     | '/me'
     | '/mohsen'
@@ -581,6 +602,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/quran'
     | '/register'
+    | '/research'
     | '/services'
     | '/settings'
     | '/store'
@@ -626,6 +648,7 @@ export interface FileRouteTypes {
     | '/forum'
     | '/games'
     | '/life'
+    | '/live'
     | '/madar'
     | '/me'
     | '/mohsen'
@@ -636,6 +659,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/quran'
     | '/register'
+    | '/research'
     | '/services'
     | '/settings'
     | '/store'
@@ -683,6 +707,7 @@ export interface RootRouteChildren {
   ForumRoute: typeof ForumRouteWithChildren
   GamesRoute: typeof GamesRoute
   LifeRoute: typeof LifeRoute
+  LiveRoute: typeof LiveRoute
   MadarRoute: typeof MadarRoute
   MeRoute: typeof MeRoute
   MohsenRoute: typeof MohsenRoute
@@ -693,6 +718,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   QuranRoute: typeof QuranRoute
   RegisterRoute: typeof RegisterRoute
+  ResearchRoute: typeof ResearchRoute
   ServicesRoute: typeof ServicesRoute
   SettingsRoute: typeof SettingsRoute
   StoreRoute: typeof StoreRoute
@@ -803,6 +829,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LifeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/live': {
+      id: '/live'
+      path: '/live'
+      fullPath: '/live'
+      preLoaderRoute: typeof LiveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/madar': {
       id: '/madar'
       path: '/madar'
@@ -871,6 +904,13 @@ declare module '@tanstack/react-router' {
       path: '/register'
       fullPath: '/register'
       preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research': {
+      id: '/research'
+      path: '/research'
+      fullPath: '/research'
+      preLoaderRoute: typeof ResearchRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -1145,6 +1185,7 @@ const rootRouteChildren: RootRouteChildren = {
   ForumRoute: ForumRouteWithChildren,
   GamesRoute: GamesRoute,
   LifeRoute: LifeRoute,
+  LiveRoute: LiveRoute,
   MadarRoute: MadarRoute,
   MeRoute: MeRoute,
   MohsenRoute: MohsenRoute,
@@ -1155,6 +1196,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   QuranRoute: QuranRoute,
   RegisterRoute: RegisterRoute,
+  ResearchRoute: ResearchRoute,
   ServicesRoute: ServicesRoute,
   SettingsRoute: SettingsRoute,
   StoreRoute: StoreRoute,

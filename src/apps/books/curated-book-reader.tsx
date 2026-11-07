@@ -70,7 +70,7 @@ export default function CuratedBookReader({
     if (!ready) return;
     const timer = setTimeout(() => {
       try {
-        localStorage.setItem(storageKey, JSON.stringify(state));
+        localStorage.setItem(storageKey, JSON.stringify({ ...state, savedAt: new Date().toISOString() }));
         setWarning("");
       } catch {
         setWarning(
@@ -85,7 +85,10 @@ export default function CuratedBookReader({
     if (!ready) return;
     const save = () => {
       try {
-        localStorage.setItem(storageKey, JSON.stringify(latest.current));
+        localStorage.setItem(
+          storageKey,
+          JSON.stringify({ ...latest.current, savedAt: new Date().toISOString() }),
+        );
       } catch {
         /* visible save effect reports failures */
       }

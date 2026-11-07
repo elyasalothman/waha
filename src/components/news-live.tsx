@@ -2,37 +2,15 @@ import { useSettings } from "@/store/settings-store";
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ExternalLink } from "@/components/external-link";
-import { NEWS_TOPICS, type ArabicNews } from "@/lib/arabic-news";
+import { NEWS_TOPICS } from "@/lib/arabic-news";
+import { useArabicNews } from "@/lib/use-arabic-news";
 import { featureButton, shareCard } from "@/lib/share-card";
 export function NewsLive({ compact = false }: { compact?: boolean }) {
   const settings = useSettings((s) => s.settings);
-  const [data, setData] = useState<ArabicNews | null>(null);
-  const [failed, setFailed] = useState(false);
-  const [attempt, setAttempt] = useState(0);
+  const { data, failed, retry } = useArabicNews();
   const [topic, setTopic] = useState("الكل");
   const [speaking, setSpeaking] = useState(false);
   const [notice, setNotice] = useState("");
-  useEffect(() => {
-    const controller = new AbortController();
-    const load = () =>
-      fetch("/api/news", { signal: controller.signal })
-        .then(async (r) => {
-          if (!r.ok) throw new Error();
-          const next = await r.json();
-          if (!Array.isArray(next.items)) throw new Error();
-          setData(next);
-          setFailed(next.status === "unavailable");
-        })
-        .catch(() => {
-          if (!controller.signal.aborted) setFailed(true);
-        });
-    void load();
-    const timer = setInterval(() => void load(), 600000);
-    return () => {
-      controller.abort();
-      clearInterval(timer);
-    };
-  }, [attempt]);
   useEffect(
     () => () => {
       window.speechSynthesis?.cancel();
@@ -98,8 +76,11 @@ export function NewsLive({ compact = false }: { compact?: boolean }) {
         </span>
       </div>
       <p className="mt-2 text-sm leading-7 text-muted">
-        ملخص آلي، راجع المصدر · موجز استخراجي من العناوين، دون نموذج ذكاء اصطناعي. يتجدد كل ساعة عند
-        زيارة الصفحة؛ ليس قناة فيديو أو بثًا لحظيًا.
+        ملخص آلي، راجع المصدر · موجز استخراجي من العناوين، دون نموذج ذكاء اصطناعي. تتجدد العناوين كل
+        دقيقتين تقريبًا ما دامت الصفحة ظاهرة ومتصلة، وتتوقف وهي مخفية أو بلا اتصال. ليست قناة فيديو.{" "}
+        <Link to="/live" className="text-primary">
+          البث المرئي لتلفزيون هدوء السوق
+        </Link>
       </p>
       {data?.bulletin && (
         <>
@@ -160,16 +141,28 @@ export function NewsLive({ compact = false }: { compact?: boolean }) {
           جارٍ جلب العناوين من مصادرها…
         </p>
       )}
+      {data?.fetchedAt && (
+        <p className="mt-2 text-xs text-muted">
+          آخر جلب ناجح للعناوين:{" "}
+          <time dateTime={data.fetchedAt}>
+            {new Date(data.fetchedAt).toLocaleString("ar-SA", {
+              timeZone: "Asia/Riyadh",
+              calendar: "gregory",
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </time>
+          {failed ? " · تعذّر أحدث محاولة، والعناوين أدناه من آخر نجاح" : ""}
+        </p>
+      )}
       {failed && (
         <div className="py-4" role="status">
-          <p>تعذّر تحديث الأخبار. لا توجد عناوين جديدة مؤكدة الآن.</p>
-          <button
-            className={featureButton}
-            onClick={() => {
-              setFailed(false);
-              setAttempt((a) => a + 1);
-            }}
-          >
+          <p>
+            {data?.items.length
+              ? "تعذّر تحديث الأخبار. تبقى آخر عناوين نجح جلبها."
+              : "تعذّر تحديث الأخبار. لا توجد عناوين جديدة مؤكدة الآن."}
+          </p>
+          <button className={featureButton} onClick={retry}>
             إعادة المحاولة
           </button>
         </div>

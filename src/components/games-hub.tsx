@@ -1,10 +1,8 @@
-import { ExternalLink as ExternalLinkIcon } from "lucide-react";
-import { HayatCard } from "@/components/hayat-card";
 import { ArmyCard } from "@/components/army-card";
 import { AppCard } from "@/components/app-card";
-import { ExternalLink } from "@/components/external-link";
 import { SfxToggle } from "@/components/game-hud";
-import { CLASSIC_IDS, GAME_DOORS, SIGNATURE_IDS } from "@/lib/games/doors";
+import { CLASSIC_IDS, SIGNATURE_IDS } from "@/lib/games/doors";
+import { isPublicGame } from "@/lib/games/public-catalog";
 import { getApp } from "@/lib/catalog";
 import { appIcon } from "@/lib/icons";
 import { t } from "@/lib/i18n";
@@ -46,8 +44,12 @@ function useScores() {
 
 export function GamesHub() {
   const lang = useAppStore((s) => s.lang);
-  const signature = SIGNATURE_IDS.map(getApp).filter((x): x is NonNullable<typeof x> => !!x);
-  const classics = CLASSIC_IDS.map(getApp).filter((x): x is NonNullable<typeof x> => !!x);
+  const signature = SIGNATURE_IDS.map(getApp).filter(
+    (x): x is NonNullable<typeof x> => !!x && isPublicGame(x.id),
+  );
+  const classics = CLASSIC_IDS.map(getApp).filter(
+    (x): x is NonNullable<typeof x> => !!x && isPublicGame(x.id),
+  );
   const scores = useScores();
 
   return (
@@ -64,49 +66,13 @@ export function GamesHub() {
         <ArmyCard />
       </div>
 
-      <div className="mb-5 flex flex-wrap gap-3">
-        <ExternalLink
-          href="https://games.alhajda.com/mamalik"
-          className="min-h-12 rounded-xl border border-border p-4"
-        >
-          ممالك · لعبة الاستراتيجية ←
-        </ExternalLink>
-        <ExternalLink
-          href="https://hayat.alhajda.com"
-          className="min-h-12 rounded-xl border border-border p-4"
-        >
-          حياة · العالم المفتوح ←
-        </ExternalLink>
-      </div>
-      <div className="mb-6">
-        <HayatCard />
-      </div>
+      <p className="mb-8 max-w-xl text-sm leading-7 text-muted">
+        {lang === "ar"
+          ? "جيش الواحة هو اللعبة الأبرز ويحتاج WebGL؛ إن تعذّر الرسم هنا تُذكر الحالة ولا تُحسب جولة. القائمة تحتها لُعبت في واحة. الألعاب غير المجرّبة تبقى خارج الفهرس."
+          : "Oasis Army is the flagship and needs WebGL; if graphics are unavailable here, that is labeled and not counted as a played round. The list below was played in Waha. Untried games stay off the catalog."}
+      </p>
 
-      <section className="mb-10">
-        <h2 className="mb-3 text-sm font-medium text-muted">
-          {lang === "ar" ? "ألعاب داخل واحة" : "Play in Waha"}
-        </h2>
-        <div className="grid gap-3 md:grid-cols-2">
-          {GAME_DOORS.map((door) => (
-            <ExternalLink
-              key={door.id}
-              href={door.href}
-              data-door={door.id}
-              className="group flex flex-col rounded-xl border border-border bg-surface p-5 transition-colors hover:bg-surface-2"
-            >
-              <span className="flex items-center justify-between gap-2">
-                <span className="font-display text-2xl">{door.title[lang]}</span>
-                <ExternalLinkIcon className="size-4 text-subtle transition-colors group-hover:text-fg" />
-              </span>
-              <span className="mt-2 text-sm leading-relaxed text-muted">{door.blurb[lang]}</span>
-              <span className="mt-3 font-mono text-xs text-subtle" dir="ltr">
-                {door.href.replace("https://", "")}
-              </span>
-            </ExternalLink>
-          ))}
-        </div>
-      </section>
-
+      {signature.length > 0 && (
       <section className="mb-10">
         <h2 className="mb-3 text-sm font-medium text-muted">
           {lang === "ar" ? "توقيع واحة" : "Waha’s own"}
@@ -139,7 +105,9 @@ export function GamesHub() {
           })}
         </div>
       </section>
+      )}
 
+      {classics.length > 0 && (
       <section>
         <h2 className="mb-3 text-sm font-medium text-muted">
           {lang === "ar" ? "استراحة" : "A short rest"}
@@ -150,6 +118,7 @@ export function GamesHub() {
           ))}
         </div>
       </section>
+      )}
     </div>
   );
 }

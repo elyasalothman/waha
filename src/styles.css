@@ -161,8 +161,27 @@
 
 /* Daylight: a clear reading canvas, emerald anchors, small botanical accents. */
 .waha-shell {
-  background-image: radial-gradient(ellipse at 20% 0%, #e4ece2 0, transparent 48%);
+  background-image: radial-gradient(ellipse at 80% -10%, #e5f4ec 0, transparent 46%);
 }
+.waha-card {
+  border-radius: 20px;
+  border: 1px solid var(--card-line, #d7e0d9);
+  background: var(--card-fill, #fff);
+  padding: 1.15rem 1.2rem;
+}
+[data-home-size="compact"] .waha-card {
+  padding: 0.8rem 0.95rem;
+}
+.tint-oasis { --card-fill: #e7f6ef; --card-line: #b7dfd0; }
+.tint-sky { --card-fill: #e8f1ff; --card-line: #c5d7f4; }
+.tint-sand { --card-fill: #fff4e0; --card-line: #ead4a8; }
+.tint-rose { --card-fill: #fdecee; --card-line: #f0cfd4; }
+.tint-violet { --card-fill: #f4efff; --card-line: #ddd0f3; }
+.kicker-oasis { color: #0f5c4c; }
+.kicker-sky { color: #1d4f91; }
+.kicker-sand { color: #7a4e0d; }
+.kicker-rose { color: #8d3040; }
+.kicker-violet { color: #5b2d91; }
 .waha-prayer-card {
   border: 1px solid #ccdbcf;
   border-radius: 24px;
@@ -1006,6 +1025,9 @@ html.native-ios .native-safe-top {
 html.native-ios #main-content {
   padding-bottom: calc(6rem + env(safe-area-inset-bottom, 0px));
 }
+html.native-ios #main-content.mohsen-main {
+  padding: 0;
+}
 html.native-ios .native-safe-bottom {
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
@@ -1043,6 +1065,16 @@ html.waha-dark {
 html.waha-dark .waha-shell {
   background-image: none;
 }
+html.waha-dark .tint-oasis { --card-fill: #17352c; --card-line: #3d6b5c; }
+html.waha-dark .tint-sky { --card-fill: #1a2c44; --card-line: #3d5878; }
+html.waha-dark .tint-sand { --card-fill: #3a301c; --card-line: #6d5a32; }
+html.waha-dark .tint-rose { --card-fill: #3a2428; --card-line: #6d4450; }
+html.waha-dark .tint-violet { --card-fill: #2c2440; --card-line: #564878; }
+html.waha-dark .kicker-oasis { color: #9ee0c8; }
+html.waha-dark .kicker-sky { color: #b7d4ff; }
+html.waha-dark .kicker-sand { color: #f0d7a4; }
+html.waha-dark .kicker-rose { color: #ffc4cc; }
+html.waha-dark .kicker-violet { color: #e0d0ff; }
 html.waha-dark body {
   color-scheme: dark;
 }

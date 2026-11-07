@@ -228,7 +228,7 @@ export function ArmyApp() {
       {toast && <div className="army-toast">{toast}</div>}
 
       {/* menu */}
-      {(screen === "menu" || screen === "levels" || screen === "upgrades") && (
+      {!glFailed && (screen === "menu" || screen === "levels" || screen === "upgrades") && (
         <div className="army-screen">
           <div className="army-top">
             <Link to="/games" className="army-icon-btn" aria-label="رجوع إلى الألعاب">

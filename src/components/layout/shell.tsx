@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Link, Outlet, useRouterState } from "@tanstack/react-router";
 import {
   GalleryVertical,
@@ -6,8 +6,8 @@ import {
   Gamepad2,
   ArrowRight,
   ShoppingBag,
-  Search,
   LayoutGrid,
+  Library,
   MessageCircle,
   UserRound,
   Home,
@@ -24,8 +24,8 @@ import { SettingsEffects } from "@/components/settings-effects";
 import { LangToggle } from "@/components/city-select";
 import { NativeReminders } from "@/components/native-reminders";
 import { OfflineBanner } from "@/components/offline-banner";
-import { DoorsStrip } from "@/components/doors-strip";
 import { t } from "@/lib/i18n";
+import { nextHeaderHidden } from "@/lib/header-scroll";
 import { chromeNav, mobileChromeNav } from "@/lib/nav";
 import { cn } from "@/lib/cn";
 import { useAppStore } from "@/store/app-store";
@@ -40,9 +40,18 @@ const NAV_ICON = {
   "/ask": MessageCircle,
   "/mohsen": MessageCircle,
   "/services": LayoutGrid,
+  "/research": Library,
   "/me": UserRound,
   "/more": LayoutGrid,
 } as const;
+
+const NAV_MOOD: Record<string, string> = {
+  "/": "🌿",
+  "/mohsen": "💬",
+  "/books": "📚",
+  "/research": "🔬",
+  "/more": "🎨",
+};
 
 export function Shell() {
   const lang = useAppStore((s) => s.lang);
@@ -131,6 +140,29 @@ export function Shell() {
   }, [pathname]);
   const nav = chromeNav(audience, segment);
   const mobileNav = mobileChromeNav(audience, segment);
+  const [headerHidden, setHeaderHidden] = useState(false);
+  const headerHiddenRef = useRef(false);
+  const scrollAcc = useRef(0);
+  useEffect(() => {
+    headerHiddenRef.current = false;
+    scrollAcc.current = 0;
+    setHeaderHidden(false);
+  }, [pathname]);
+  useEffect(() => {
+    let last = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      const next = nextHeaderHidden(headerHiddenRef.current, y, y - last, scrollAcc.current);
+      last = y;
+      scrollAcc.current = next.acc;
+      if (next.hidden !== headerHiddenRef.current) {
+        headerHiddenRef.current = next.hidden;
+        setHeaderHidden(next.hidden);
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     hydrate();
@@ -142,6 +174,28 @@ export function Shell() {
         <SettingsEffects />
         <Outlet />
       </>
+    );
+  }
+
+  if (pathname === "/mohsen") {
+    return (
+      <div className="waha-shell h-dvh overflow-hidden bg-bg text-fg">
+        <SettingsEffects />
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-3 focus:text-primary-fg"
+        >
+          {lang === "ar" ? "تجاوز إلى المحتوى" : "Skip to content"}
+        </a>
+        <main id="main-content" tabIndex={-1} className="mohsen-main h-dvh overflow-hidden p-0">
+          <Outlet />
+        </main>
+        <Toaster
+          theme={dark ? "dark" : "light"}
+          position={lang === "ar" ? "bottom-left" : "bottom-right"}
+          toastOptions={{ className: "!bg-surface !text-fg !border-border" }}
+        />
+      </div>
     );
   }
 
@@ -162,11 +216,6 @@ export function Shell() {
           <p className="mt-3 text-xs leading-relaxed text-muted">
             {t(lang, audience === "personal" ? "tagline" : "workTagline")}
           </p>
-          {audience === "personal" ? (
-            <div className="mt-4">
-              <DoorsStrip lang={lang} compact />
-            </div>
-          ) : null}
         </div>
         <nav className="flex flex-1 flex-col gap-0.5 px-3">
           {nav.map((item) => {
@@ -187,65 +236,57 @@ export function Shell() {
                     : "text-muted hover:bg-surface hover:text-fg",
                 )}
               >
-                {item.to === "/madar" ? (
-                  <MadarMark className="size-4" />
-                ) : item.to === "/clips" ? (
-                  <ClipsMark className="size-4" />
-                ) : (
-                  <Icon className="size-4" strokeWidth={1.75} />
-                )}
-                {t(lang, item.key)}
+                {NAV_MOOD[item.to] ? (
+                <span aria-hidden="true">{NAV_MOOD[item.to]}</span>
+              ) : item.to === "/madar" ? (
+                <MadarMark className="size-4" />
+              ) : item.to === "/clips" ? (
+                <ClipsMark className="size-4" />
+              ) : (
+                <Icon className="size-4" strokeWidth={1.75} />
+              )}
+              {t(lang, item.key)}
               </Link>
             );
           })}
         </nav>
-        <div className="flex items-center justify-between px-4 py-4">
+        <div className="flex flex-wrap items-center gap-2 px-4 py-4">
           <Link to="/me" className="inline-flex min-h-11 items-center gap-2 text-sm">
             <UserRound className="size-4" />
             {t(lang, "me")}
           </Link>
-          <LangToggle lang={lang} />
-        </div>
-      </aside>
-
-      <div className="lg:ps-60">
-        <header className="native-safe-top sticky top-0 z-20 flex min-h-14 flex-wrap items-center py-1 gap-3 border-b border-border bg-bg/90 px-4 pt-[env(safe-area-inset-top,0px)] backdrop-blur-sm lg:pt-0">
-          <Link to="/" className="inline-flex min-h-11 shrink-0 items-center lg:hidden">
-            <WahaWordmark lang={lang} />
-          </Link>
-          <Link
-            to="/settings"
-            aria-label="الإعدادات"
-            className="grid size-11 shrink-0 place-items-center rounded-xl border border-border"
-          >
-            <Settings className="size-5" />
+          <Link to="/settings" className="inline-flex min-h-11 items-center gap-2 text-sm">
+            <Settings className="size-4" />
+            {lang === "ar" ? "الإعدادات" : "Settings"}
           </Link>
           <button
             type="button"
             onClick={toggleTheme}
             aria-label={lang === "ar" ? "تبديل الوضع الداكن" : "Toggle dark mode"}
             aria-pressed={dark}
-            className="ms-auto grid size-11 shrink-0 place-items-center rounded-xl border border-border text-primary"
+            className="grid size-11 place-items-center rounded-xl border border-border text-primary"
           >
             {dark ? <Sun className="size-5" /> : <Moon className="size-5" />}
           </button>
-          {pathname !== "/" && settings.agentEnabled && (
-            <button
-              type="button"
-              onClick={() => setCmd(true)}
-              aria-label="اسأل محسن أو اطلب منه"
-              className="flex h-11 min-w-0 flex-1 items-center gap-2 rounded-md border border-border bg-surface px-3 text-start text-sm text-muted lg:max-w-md"
-            >
-              <Search className="size-4 shrink-0" />
-              <span className="truncate">✦ اسأل محسن أو اطلب منه</span>
-              <kbd className="ms-auto hidden rounded border border-border px-1.5 font-mono text-[10px] text-subtle sm:inline">
-                ⌘K
-              </kbd>
-            </button>
+          <LangToggle lang={lang} />
+        </div>
+      </aside>
+
+      <div className="lg:ps-60">
+        <header
+          data-app-header="name"
+          data-hidden={headerHidden ? "true" : "false"}
+          className={cn(
+            "native-safe-top sticky top-0 z-20 flex min-h-14 items-center justify-center border-b border-border bg-bg/95 px-4 pt-[env(safe-area-inset-top,0px)] backdrop-blur-sm transition-transform duration-200 motion-reduce:transition-none lg:pt-0",
+            headerHidden && "pointer-events-none -translate-y-full",
           )}
-          <div className="lg:hidden">
-            <LangToggle lang={lang} />
-          </div>
+        >
+          <Link
+            to="/"
+            className="font-display text-2xl tracking-tight text-primary focus-visible:outline-2 focus-visible:outline-offset-4"
+          >
+            {lang === "ar" ? "واحة" : "Waha"}
+          </Link>
         </header>
 
         <main
@@ -273,14 +314,6 @@ export function Shell() {
           )}
           {pathname === "/today" ? <NativeReminders /> : null}
           <Outlet />
-          <footer className="mt-8 flex flex-wrap gap-4 border-t border-border py-4 text-xs text-muted">
-            <Link to="/privacy" className="min-h-11 content-center">
-              الخصوصية
-            </Link>
-            <Link to="/delete-account" className="min-h-11 content-center">
-              حذف الحساب والبيانات
-            </Link>
-          </footer>
         </main>
       </div>
 
@@ -312,7 +345,11 @@ export function Shell() {
                 active ? "text-fg" : "text-muted",
               )}
             >
-              {item.to === "/madar" ? (
+              {NAV_MOOD[item.to] ? (
+                <span aria-hidden="true" className="text-lg leading-none">
+                  {NAV_MOOD[item.to]}
+                </span>
+              ) : item.to === "/madar" ? (
                 <MadarMark className="size-5" />
               ) : item.to === "/clips" ? (
                 <ClipsMark className="size-5" />
@@ -325,7 +362,10 @@ export function Shell() {
         })}
       </nav>
 
-      {settings.agentEnabled && pathname !== "/onboarding" && pathname !== "/mohsen" && (
+      {settings.agentEnabled &&
+        pathname !== "/" &&
+        pathname !== "/onboarding" &&
+        pathname !== "/mohsen" && (
         <button
           aria-label="فتح محسن"
           onClick={() => setCmd(true)}

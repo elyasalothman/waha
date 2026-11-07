@@ -115,7 +115,10 @@ export default function AlhajdaReader() {
     if (!ready) return;
     const timer = setTimeout(() => {
       try {
-        localStorage.setItem(ALHAJDA_READING_KEY, JSON.stringify(state));
+        localStorage.setItem(
+          ALHAJDA_READING_KEY,
+          JSON.stringify({ ...state, savedAt: new Date().toISOString() }),
+        );
         setWarning("");
       } catch {
         setWarning(
@@ -130,7 +133,10 @@ export default function AlhajdaReader() {
     if (!ready) return;
     const save = () => {
       try {
-        localStorage.setItem(ALHAJDA_READING_KEY, JSON.stringify(latest.current));
+        localStorage.setItem(
+          ALHAJDA_READING_KEY,
+          JSON.stringify({ ...latest.current, savedAt: new Date().toISOString() }),
+        );
       } catch {
         /* visible save effect reports failures */
       }

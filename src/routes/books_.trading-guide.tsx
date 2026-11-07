@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { lazy, Suspense } from "react";
+import { ReadingStatus } from "@/components/reading-status";
 const TradingGuideReader = lazy(() => import("@/apps/books/trading-guide-reader"));
 export const Route = createFileRoute("/books_/trading-guide")({
   component: BookRoute,
@@ -16,7 +17,7 @@ export const Route = createFileRoute("/books_/trading-guide")({
 });
 function BookRoute() {
   return (
-    <Suspense fallback={<p role="status">تحميل دليل التداول…</p>}>
+    <Suspense fallback={<ReadingStatus title="دليل التداول" state="loading" />}>
       <TradingGuideReader />
     </Suspense>
   );

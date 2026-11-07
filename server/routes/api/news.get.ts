@@ -4,7 +4,7 @@ import {
   makeBulletin,
   type ArabicNews,
 } from "../../../src/lib/arabic-news.ts";
-const TTL = 600_000;
+const TTL = 90_000;
 let cache: { at: number; data: ArabicNews } | null = null;
 let inFlight: Promise<ArabicNews> | null = null;
 let bulletin: ArabicNews["bulletin"] = null;
@@ -86,7 +86,7 @@ export default async function newsFeed() {
   return Response.json(data, {
     headers: {
       "Cache-Control":
-        data.status === "unavailable" ? "no-store" : "public, max-age=60, s-maxage=600",
+        data.status === "unavailable" ? "no-store" : "public, max-age=30, s-maxage=60",
       "X-Content-Type-Options": "nosniff",
     },
   });
