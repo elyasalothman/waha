@@ -18,6 +18,13 @@ test("a fresh visitor gets weather and headlines, not the whole catalog", () => 
   assert.equal(defaultSettings.location, "manual");
 });
 
+test("settings saved before widgets existed still open on the basic pair", () => {
+  const legacy = { ...defaultSettings } as Partial<typeof defaultSettings>;
+  delete legacy.homeWidgets;
+  assert.deepEqual(parseSettings(legacy).homeWidgets, ["weather", "headlines"]);
+  assert.deepEqual(parseSettings({ ...legacy, theme: "dark" }).theme, "dark");
+});
+
 test("an explicit empty selection survives reload and later edits", () => {
   assert.deepEqual(parseSettings({ homeWidgets: [] }).homeWidgets, []);
   const values = new Map<string, string>();

@@ -16,7 +16,7 @@ import { ExternalLink } from "./external-link";
 import { featureButton as btn } from "@/lib/share-card";
 import { mohsenHistory } from "@/lib/mohsen-request";
 import { LOCAL_KEYS } from "@/lib/agent/local";
-import { guideSite } from "@/lib/site-guide";
+import { guideSite, planGuideTurn } from "@/lib/site-guide";
 import { hideMoney } from "@/lib/child-mode";
 import { useAppStore } from "@/store/app-store";
 import { Link } from "@tanstack/react-router";
@@ -269,25 +269,53 @@ export function MohsenChat({
           label: "حقّق · لا يُخزّن النص لدى العامل",
         };
       } else {
-        const r = await fetch("/api/mohsen", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            message: text,
-            messages: mohsenHistory(messages).slice(-2),
-            memory: deviceMemories(),
-          }),
-          signal: controller.signal,
-        });
-        if (!r.ok) throw new Error(serviceError(r.status));
-        const data = await r.json();
-        result = {
-          role: "assistant",
-          content: data.reply,
-          citations: data.citations?.filter((c: { url: string }) => safeSource(c.url)),
-          verified: data.verified === true,
-          label: data.evidence,
-        };
+        const plan = planGuideTurn(text, { hideMoney: hideMoney(segment) });
+        if (plan.action === "local") {
+          result = {
+            role: "assistant",
+            content: plan.text,
+            label: "دليل الصفحات في واحة",
+          };
+        } else {
+          const message = plan.action === "mixed" ? plan.remoteMessage : text;
+          try {
+            const r = await fetch("/api/mohsen", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                message,
+                messages: plan.action === "mixed" ? [] : mohsenHistory(messages).slice(-2),
+                memory: deviceMemories(),
+              }),
+              signal: controller.signal,
+            });
+            if (!r.ok) throw new Error(serviceError(r.status));
+            const data = await r.json();
+            result = {
+              role: "assistant",
+              content: data.reply,
+              citations: data.citations?.filter((c: { url: string }) => safeSource(c.url)),
+              verified: data.verified === true,
+              label: data.evidence,
+            };
+            if (plan.action === "mixed") {
+              result = {
+                ...result,
+                content: `${plan.localText}\n\n${result.content}`,
+                verified: false,
+                label: "الوجهة من دليل واحة. ما بعدها سؤال عام إلى خدمة محسن.",
+              };
+            }
+          } catch (err) {
+            if (plan.action !== "mixed") throw err;
+            result = {
+              role: "assistant",
+              content: plan.localText,
+              label: "دليل الصفحات في واحة",
+            };
+            setError("تعذّر جواب السؤال العام. الوجهة أعلاه من دليل واحة.");
+          }
+        }
       }
       if (typeof result.content !== "string" || !result.content.trim())
         throw new Error("لم يصل جواب؛ أعد المحاولة.");

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { guideSite, isAllowlistedHref, SITE_GUIDE_NONE } from "./site-guide.ts";
+import { guideSite, isAllowlistedHref, planGuideTurn, SITE_GUIDE_NONE } from "./site-guide.ts";
 
 const hrefs = (query: string, hideMoney = false) => {
   const guide = guideSite(query, { hideMoney });
@@ -54,6 +54,52 @@ test("malicious urls are never destinations", () => {
   assert.equal(isAllowlistedHref("//lab.alhajda.com/research/"), false);
   assert.equal(isAllowlistedHref("https://lab.alhajda.com/research/"), true);
   assert.equal(isAllowlistedHref("/books"), true);
+});
+
+test("explicit place questions stay on the local registry", () => {
+  const library = planGuideTurn("وين المكتبة ومركز الأبحاث؟");
+  assert.equal(library.action, "local");
+  if (library.action !== "local") return;
+  assert.match(library.text, /المكتبة/);
+  assert.match(library.text, /الأبحاث/);
+  assert.equal(library.text.includes("بوسطن"), false);
+  assert.equal(/https?:|javascript:/i.test(library.text), false);
+  assert.ok(library.guide.mode === "navigate" && library.guide.matches.some((item) => item.href === "/books"));
+  assert.ok(
+    library.guide.mode === "navigate" &&
+      library.guide.matches.some((item) => item.href === "https://lab.alhajda.com/research/"),
+  );
+
+  const book = planGuideTurn("وين مفتاح المصعد؟");
+  assert.equal(book.action, "local");
+  if (book.action === "local" && book.guide.mode === "navigate") {
+    assert.deepEqual(
+      book.guide.matches.map((item) => item.href),
+      ["/books/library/midad-elevator-key"],
+    );
+  }
+
+  const missing = planGuideTurn("وين صاروخ المريخ في الواحة؟");
+  assert.equal(missing.action, "local");
+  if (missing.action === "local") assert.equal(missing.text, SITE_GUIDE_NONE);
+
+  assert.equal(planGuideTurn("ما تفسير آية الكرسي؟").action, "remote");
+
+  const hostile = planGuideTurn("وين المكتبة javascript:alert(1)");
+  assert.equal(hostile.action, "local");
+  if (hostile.action === "local") {
+    assert.equal(/javascript:|alert/i.test(hostile.text), false);
+    assert.ok(hostile.guide.mode !== "navigate" || hostile.guide.matches.every((item) => item.href === "/books"));
+  }
+});
+
+test("a place plus a real question keeps only the question for the remote assistant", () => {
+  const mixed = planGuideTurn("وين المكتبة؟ وفسّر لي آية الكرسي");
+  assert.equal(mixed.action, "mixed");
+  if (mixed.action !== "mixed") return;
+  assert.match(mixed.localText, /المكتبة/);
+  assert.match(mixed.remoteMessage, /كرسي/);
+  assert.equal(mixed.remoteMessage.includes("المكتبه"), false);
 });
 
 test("child mode does not offer money pages", () => {

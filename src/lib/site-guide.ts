@@ -167,6 +167,62 @@ function score(query: string, item: Entry): number {
   return best;
 }
 
+const CONTENT =
+  /فسر|اشرح|شرح|معنى|كيف|ليش|لماذا|كم|ما هو|ما هي|ماهي|وش |لخص|ترجم|قارن|احسب|تفسير/;
+
+/** Words left after a place name is removed. A real question here is mixed intent. */
+export function generalRemainder(query: string, matches: readonly SiteMatch[]): string {
+  let text = foldArabic(query);
+  const aliases = matches
+    .flatMap((match) => SITE_REGISTRY.find((item) => item.id === match.id)?.aliases ?? [])
+    .sort((a, b) => b.length - a.length);
+  for (const alias of aliases) text = text.split(alias).join(" ");
+  text = text
+    .replace(/javascript\S*|https?\S*|data:\S*/g, " ")
+    .replace(
+      /وين|فين|ودني|وديني|وديي|ودي|ابي|ابغى|ابغا|خذني|افتح|ورني|دلني|في الواحه|بالواحه/g,
+      " ",
+    )
+    .replace(/[^\p{L}\p{N}\s]/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  const words = text
+    .split(" ")
+    .filter((word) => word.length > 1 && !/^(في|من|الى|علي|عن|و|او|هذا|هذه|لي|لك|حق|بعد|ثم|لو|سمحت)$/.test(word));
+  const joined = words.join(" ");
+  if (!joined) return "";
+  if (CONTENT.test(joined) || words.length >= 3) return joined;
+  return "";
+}
+
+export function localNavigationText(matches: readonly SiteMatch[]): string {
+  const names = matches.map((match) => match.title).filter(Boolean);
+  const list = names.join("، ");
+  return names.length === 1
+    ? `${list} في واحة. اضغط للانتقال. الوجهة من دليل الصفحات في التطبيق.`
+    : `${list} في واحة. اضغط للانتقال. الوجهات من دليل الصفحات في التطبيق.`;
+}
+
+export type GuideTurn =
+  | { action: "remote" }
+  | { action: "local"; text: string; guide: SiteGuide }
+  | { action: "mixed"; localText: string; remoteMessage: string; guide: SiteGuide };
+
+/**
+ * Place questions are answered from the registry. The remote assistant is only
+ * for a general question, or for the leftover question in a mixed request.
+ * This does not change the remote service.
+ */
+export function planGuideTurn(query: string, options?: { hideMoney?: boolean }): GuideTurn {
+  const guide = guideSite(query, options);
+  if (guide.mode === "general") return { action: "remote" };
+  if (guide.mode === "none") return { action: "local", text: guide.note, guide };
+  const rest = generalRemainder(query, guide.matches);
+  const localText = localNavigationText(guide.matches);
+  if (rest) return { action: "mixed", localText, remoteMessage: rest, guide };
+  return { action: "local", text: localText, guide };
+}
+
 export function guideSite(query: string, options?: { hideMoney?: boolean }): SiteGuide {
   const folded = foldArabic(query).slice(0, 500);
   if (!folded) return { mode: "general" };
