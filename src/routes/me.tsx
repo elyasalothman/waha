@@ -2,10 +2,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { PasskeyCard } from "@/components/passkey-card";
 import { signOut } from "@/lib/auth/client";
+import { accountProviderView } from "@/lib/auth/account-provider";
 import { signInSocial, type SocialProvider } from "@/lib/auth/social";
 import { useCurrentUserState } from "@/lib/auth/use-current-user";
 
 type Caps = { email: boolean; google: boolean; apple: boolean };
+type CapsPhase = "checking" | "unknown" | "ready";
 
 export const Route = createFileRoute("/me")({
   head: () => ({
@@ -21,25 +23,37 @@ export const Route = createFileRoute("/me")({
 function AccountPage() {
   const { user, isPending } = useCurrentUserState();
   const [caps, setCaps] = useState<Caps | null>(null);
+  const [capsPhase, setCapsPhase] = useState<CapsPhase>("checking");
+  const [capsTry, setCapsTry] = useState(0);
   const [busy, setBusy] = useState<SocialProvider | null>(null);
   const [notice, setNotice] = useState("");
   const [signingOut, setSigningOut] = useState(false);
   const signedIn = Boolean(user && !user.isDevFallback);
   useEffect(() => {
     const controller = new AbortController();
+    setCapsPhase("checking");
     fetch("/api/auth-status", { signal: controller.signal })
       .then((response) => (response.ok ? response.json() : null))
       .then((body) => {
-        if (!body) return;
+        if (!body || typeof body !== "object") {
+          setCaps(null);
+          setCapsPhase("unknown");
+          return;
+        }
         setCaps({
           email: Boolean(body.email),
           google: Boolean(body.google),
           apple: Boolean(body.apple),
         });
+        setCapsPhase("ready");
       })
-      .catch(() => setCaps(null));
+      .catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        setCaps(null);
+        setCapsPhase("unknown");
+      });
     return () => controller.abort();
-  }, []);
+  }, [capsTry]);
   async function social(provider: SocialProvider) {
     setNotice("");
     setBusy(provider);
@@ -93,9 +107,13 @@ function AccountPage() {
         ) : (
           <>
             <p>أنت ضيف. لم تُفتح جلسة.</p>
-            {caps?.google || caps?.apple ? (
+            {accountProviderView({
+              phase: capsPhase,
+              google: caps?.google,
+              apple: caps?.apple,
+            }) === "on" ? (
               <div className="mt-4 flex flex-col gap-2">
-                {caps.apple ? (
+                {caps?.apple ? (
                   <button
                     type="button"
                     className="min-h-12 rounded-full bg-black px-4 text-white disabled:opacity-60"
@@ -105,7 +123,7 @@ function AccountPage() {
                     {busy === "apple" ? "جارٍ فتح Apple…" : "المتابعة باستخدام Apple"}
                   </button>
                 ) : null}
-                {caps.google ? (
+                {caps?.google ? (
                   <button
                     type="button"
                     className="min-h-12 rounded-full border border-border bg-white px-4 text-neutral-900 disabled:opacity-60"
@@ -115,6 +133,23 @@ function AccountPage() {
                     {busy === "google" ? "جارٍ فتح Google…" : "المتابعة باستخدام Google"}
                   </button>
                 ) : null}
+              </div>
+            ) : accountProviderView({ phase: capsPhase }) === "checking" ? (
+              <p className="mt-3 text-sm leading-7 text-muted" role="status">
+                جارٍ التحقق من تسجيل Google وApple…
+              </p>
+            ) : accountProviderView({ phase: capsPhase }) === "unknown" ? (
+              <div className="mt-3" role="status">
+                <p className="text-sm leading-7 text-muted">
+                  تعذّر التحقق من تهيئة الدخول. هذا ليس تأكيدًا أن الخادم غير مهيأ.
+                </p>
+                <button
+                  type="button"
+                  className="mt-2 min-h-11 text-primary underline"
+                  onClick={() => setCapsTry((value) => value + 1)}
+                >
+                  إعادة التحقق
+                </button>
               </div>
             ) : (
               <p className="mt-3 text-sm leading-7 text-muted" role="status">

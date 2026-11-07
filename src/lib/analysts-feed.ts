@@ -96,11 +96,12 @@ export function parseAnalystFeed(payload: unknown): AnalystOpinion[] {
 export function readAnalystPayload(payload: unknown): AnalystOpinion[] {
   const items =
     payload && typeof payload === "object" && Array.isArray((payload as { items?: unknown }).items)
-      ? (payload as { items: Record<string, unknown>[] }).items
+      ? (payload as { items: unknown[] }).items
       : [];
-  if (items.some((item) => item && typeof item.postedAt === "string")) {
+  const rows = items.filter((item): item is Record<string, unknown> => Boolean(item) && typeof item === "object");
+  if (rows.some((item) => typeof item.postedAt === "string")) {
     return parseAnalystFeed({
-      items: items.map((item) => ({
+      items: rows.map((item) => ({
         id: item.id,
         url: item.url,
         posted_at: item.postedAt,

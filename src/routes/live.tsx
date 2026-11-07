@@ -7,6 +7,7 @@ import {
   browserCanPlayHls,
   MARKET_LIVE_PAGE,
   MARKET_LIVE_PLAYLIST,
+  pictureFollow,
   pictureHeld,
   playbackPlan,
 } from "@/lib/market-live";
@@ -53,21 +54,44 @@ function LivePage() {
     node.removeAttribute("src");
     node.load();
   }
+  function giveUp(node: HTMLVideoElement, id: number) {
+    if (attempt.current !== id) return;
+    attempt.current = id + 1;
+    stop(node);
+    setState("failed");
+  }
   async function hold(node: HTMLVideoElement, id: number) {
     const started = performance.now();
     let marked: number | null = null;
+    let confirmed = false;
+    let lastMove = { time: 0, at: started };
     while (attempt.current === id) {
-      const elapsed = performance.now() - started;
-      if (node.videoWidth > 0 && node.currentTime > 0 && marked == null) marked = node.currentTime;
-      const verdict = pictureHeld(marked, { time: node.currentTime, width: node.videoWidth }, elapsed);
-      if (verdict === "playing") {
-        setState("playing");
-        return;
-      }
-      if (verdict === "failed" || node.error) {
-        stop(node);
-        setState("failed");
-        return;
+      const at = performance.now();
+      const sample = {
+        time: node.currentTime,
+        width: node.videoWidth,
+        error: Boolean(node.error),
+        ended: node.ended,
+      };
+      if (!confirmed) {
+        if (sample.width > 0 && sample.time > 0 && marked == null) marked = sample.time;
+        const verdict = pictureHeld(marked, sample, at - started);
+        if (verdict === "playing") {
+          confirmed = true;
+          lastMove = { time: sample.time, at };
+          if (attempt.current !== id) return;
+          setState("playing");
+        } else if (verdict === "failed" || sample.error || sample.ended) {
+          giveUp(node, id);
+          return;
+        }
+      } else {
+        const follow = pictureFollow(lastMove, sample, at);
+        if (follow === "playing" && sample.time > lastMove.time + 0.2) lastMove = { time: sample.time, at };
+        if (follow === "stalled" || follow === "ended") {
+          giveUp(node, id);
+          return;
+        }
       }
       await new Promise((resolve) => window.setTimeout(resolve, 400));
     }
@@ -85,57 +109,64 @@ function LivePage() {
     setState("starting");
     stop(node);
     node.muted = true;
-    let readable = false;
     try {
-      const response = await fetch(MARKET_LIVE_PLAYLIST, { mode: "cors", cache: "no-store" });
-      readable = response.ok;
-    } catch {
-      readable = false;
-    }
-    if (attempt.current !== id) return;
-    const mse =
-      typeof MediaSource !== "undefined" &&
-      MediaSource.isTypeSupported(AVC_AAC_MIME);
-    const plan = playbackPlan({
-      playlistReadable: readable,
-      mse,
-      nativeHls: browserCanPlayHls(node),
-    });
-    if (plan === "unavailable") {
-      setState("failed");
-      return;
-    }
-    if (plan === "mse") {
-      const { default: Hls } = await import("hls.js");
+      let readable = false;
+      try {
+        const response = await fetch(MARKET_LIVE_PLAYLIST, {
+          mode: "cors",
+          cache: "no-store",
+          signal: AbortSignal.timeout(8000),
+        });
+        readable = response.ok;
+      } catch {
+        readable = false;
+      }
       if (attempt.current !== id) return;
-      const hls = new Hls({
-        liveSyncDurationCount: 3,
-        liveMaxLatencyDurationCount: 6,
-        maxBufferLength: 12,
-        backBufferLength: 10,
+      const mse =
+        typeof MediaSource !== "undefined" &&
+        MediaSource.isTypeSupported(AVC_AAC_MIME);
+      const plan = playbackPlan({
+        playlistReadable: readable,
+        mse,
+        nativeHls: browserCanPlayHls(node),
       });
-      hlsRef.current = hls;
-      let recovered = false;
-      hls.on(Hls.Events.ERROR, (_event, data) => {
-        if (!data.fatal || attempt.current !== id) return;
-        if (!recovered && data.type === Hls.ErrorTypes.MEDIA_ERROR) {
-          recovered = true;
-          hls.recoverMediaError();
-          return;
-        }
-        stop(node);
+      if (plan === "unavailable") {
         setState("failed");
-      });
-      hls.loadSource(MARKET_LIVE_PLAYLIST);
-      hls.attachMedia(node);
-      hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        if (attempt.current === id) void node.play().catch(() => undefined);
-      });
-    } else {
-      node.src = MARKET_LIVE_PLAYLIST;
-      void node.play().catch(() => undefined);
+        return;
+      }
+      if (plan === "mse") {
+        const { default: Hls } = await import("hls.js");
+        if (attempt.current !== id) return;
+        const hls = new Hls({
+          liveSyncDurationCount: 3,
+          liveMaxLatencyDurationCount: 6,
+          maxBufferLength: 12,
+          backBufferLength: 10,
+        });
+        hlsRef.current = hls;
+        let recovered = false;
+        hls.on(Hls.Events.ERROR, (_event, data) => {
+          if (!data.fatal || attempt.current !== id) return;
+          if (!recovered && data.type === Hls.ErrorTypes.MEDIA_ERROR) {
+            recovered = true;
+            hls.recoverMediaError();
+            return;
+          }
+          giveUp(node, id);
+        });
+        hls.loadSource(MARKET_LIVE_PLAYLIST);
+        hls.attachMedia(node);
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          if (attempt.current === id) void node.play().catch(() => undefined);
+        });
+      } else {
+        node.src = MARKET_LIVE_PLAYLIST;
+        void node.play().catch(() => undefined);
+      }
+      await hold(node, id);
+    } catch {
+      giveUp(node, id);
     }
-    await hold(node, id);
   }
   function sound() {
     const node = video.current;
@@ -204,7 +235,7 @@ function LivePage() {
             ? "جارٍ طلب الصورة. لا يُحسب النجاح قبل أن تستمر."
             : state === "playing"
               ? soundOn
-                ? "الصورة مستمرة. طُلب الصوت؛ إن بقي صامتًا فالمقطع عند المصدر بلا مستوى مسموع."
+                ? "الصورة مستمرة وطلب الصوت أُرسل. هذه الصفحة لا تقيس مستوى صوت المصدر."
                 : "الصورة مستمرة والصوت مغلق حتى تضغط تشغيل الصوت."
               : state === "failed"
                 ? "لم تستمر صورة من هذا العنوان. فتح الصفحة أو وصول قائمة التشغيل لا يكفي."

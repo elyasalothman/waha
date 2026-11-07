@@ -41,3 +41,18 @@ export function pictureHeld(
   if (now.time - marked >= 2) return "playing";
   return elapsedMs >= 12000 ? "failed" : "wait";
 }
+
+/** How long a confirmed picture may sit still before the status stops saying it is moving. */
+export const PICTURE_STALL_MS = 8000;
+
+/** After the first two seconds, a later error, end, or freeze is not still "playing". */
+export function pictureFollow(
+  last: { time: number; at: number },
+  now: { time: number; width: number; error: boolean; ended: boolean },
+  at: number,
+): "playing" | "stalled" | "ended" {
+  if (now.error || now.ended) return "ended";
+  if (now.width > 0 && now.time > last.time + 0.2) return "playing";
+  if (at - last.at >= PICTURE_STALL_MS) return "stalled";
+  return "playing";
+}

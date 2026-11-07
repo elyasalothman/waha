@@ -63,6 +63,17 @@ test("the Waha response shape still exposes the source post time", () => {
   assert.equal(again[0]?.title, bilello.title);
 });
 
+test("a camelCase list with a null row keeps the valid opinion", () => {
+  const [good] = readAnalystPayload({ items: parseAnalystFeed({ items: [bilello] }) });
+  assert.ok(good);
+  const mixed = readAnalystPayload({
+    items: [good, null, { postedAt: "2026-11-07T00:00:00.000Z" }],
+  });
+  assert.equal(mixed.length, 1);
+  assert.equal(mixed[0]?.id, 6);
+  assert.equal(mixed[0]?.postedAt, bilello.posted_at);
+});
+
 test("rows without a real https source are dropped", () => {
   const items = parseAnalystFeed({
     items: [

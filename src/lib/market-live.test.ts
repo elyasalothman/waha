@@ -5,6 +5,7 @@ import {
   MARKET_LIVE_PAGE,
   MARKET_LIVE_PLAYLIST,
   browserCanPlayHls,
+  pictureFollow,
   pictureHeld,
   playbackPlan,
 } from "./market-live.ts";
@@ -32,4 +33,24 @@ test("Waha does not iframe the market page", () => {
   assert.equal(pictureHeld(null, { time: 0, width: 0 }, 1000), "wait");
   assert.equal(pictureHeld(10, { time: 12.1, width: 1280 }, 4000), "playing");
   assert.equal(pictureHeld(null, { time: 0, width: 0 }, 12000), "failed");
+  assert.equal(
+    pictureFollow({ time: 12, at: 0 }, { time: 14, width: 1280, error: false, ended: false }, 2000),
+    "playing",
+  );
+  assert.equal(
+    pictureFollow({ time: 14, at: 0 }, { time: 14, width: 1280, error: false, ended: false }, 1000),
+    "playing",
+  );
+  assert.equal(
+    pictureFollow({ time: 14, at: 0 }, { time: 14, width: 0, error: false, ended: false }, 8000),
+    "stalled",
+  );
+  assert.equal(
+    pictureFollow({ time: 14, at: 0 }, { time: 14, width: 1280, error: true, ended: false }, 100),
+    "ended",
+  );
+  assert.match(page, /pictureFollow/);
+  assert.match(page, /AbortSignal\.timeout|abort\(/);
+  assert.match(page, /import\("hls\.js"\)/);
+  assert.doesNotMatch(page, /بلا مستوى مسموع|المقطع عند المصدر بلا/);
 });
