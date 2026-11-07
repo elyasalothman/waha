@@ -252,6 +252,47 @@ export function generalRemainder(query: string, matches: readonly SiteMatch[]): 
 }
 
 const PLACE_PRONOUN = /فكرت[هة]|معناه|(^| )عنه( |$)|(^| )عنها( |$)|(^| )هذا( |$)|(^| )هذه( |$)/;
+const EXPLAIN = /اشرح|فسر|لخص|معناه|فكرت|الفكره/;
+
+function queryClauses(query: string): string[] {
+  const clauses = query
+    .split(/\s*[?؟]+\s*|\s+و\s+/)
+    .map((part) => part.trim().replace(/^و(?=\p{L})/u, ""))
+    .filter(Boolean);
+  return clauses.length ? clauses : [query];
+}
+
+function heldTexts(matches: readonly SiteMatch[]): SiteMatch[] {
+  return matches.filter(
+    (match) => match.href.startsWith("/books/") || match.href.includes("/research"),
+  );
+}
+
+/** Explain/summarize aimed at a book or paper whose body is not in the question. */
+export function explainsHeldText(query: string, matches: readonly SiteMatch[]): boolean {
+  const works = heldTexts(matches);
+  if (!works.length) return false;
+  const aliases = works.flatMap(
+    (match) => SITE_REGISTRY.find((item) => item.id === match.id)?.aliases ?? [],
+  );
+  return queryClauses(query).some((clause) => {
+    const folded = foldArabic(clause);
+    if (!EXPLAIN.test(folded)) return false;
+    if (PLACE_PRONOUN.test(folded)) return true;
+    return aliases.some((alias) => folded.includes(alias));
+  });
+}
+
+/** Explain/summarize of a book or paper title that is not in the page list. */
+export function explainsUnknownText(query: string, matches: readonly SiteMatch[]): boolean {
+  if (heldTexts(matches).length) return false;
+  const folded = foldArabic(query);
+  return EXPLAIN.test(folded) && /كتاب|ورقه|بحث|روايه|قصه/.test(folded);
+}
+
+export const NO_TEXT_SUMMARY =
+  "ما أقدر ألخص هذا من العنوان. نصّه مو مرفق مع السؤال، فما أختلق فكرته. تقدر تقرأه من الصفحة.";
+export const UNKNOWN_TEXT_SUMMARY = "ما لقيت هذا النص في واحة، فما أقدر ألخصه من عنوانه.";
 
 /** The remote service gets the leftover question, plus the place title only when a pronoun needs it. */
 export function remoteQuestion(query: string, matches: readonly SiteMatch[]): string {
@@ -287,8 +328,19 @@ export type GuideTurn =
  */
 export function planGuideTurn(query: string, options?: { hideMoney?: boolean }): GuideTurn {
   const guide = guideSite(query, options);
+  const matches = guide.mode === "navigate" ? guide.matches : [];
+  if (explainsUnknownText(query, matches)) {
+    return { action: "local", text: UNKNOWN_TEXT_SUMMARY, guide: { mode: "none", note: UNKNOWN_TEXT_SUMMARY } };
+  }
   if (guide.mode === "general") return { action: "remote" };
   if (guide.mode === "none") return { action: "local", text: guide.note, guide };
+  if (explainsHeldText(query, guide.matches)) {
+    return {
+      action: "local",
+      text: `${localNavigationText(guide.matches)}\n\n${NO_TEXT_SUMMARY}`,
+      guide,
+    };
+  }
   const rest = remoteQuestion(query, guide.matches);
   const localText = localNavigationText(guide.matches);
   if (rest) return { action: "mixed", localText, remoteMessage: rest, guide };
