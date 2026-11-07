@@ -16,9 +16,9 @@ export type ChromeNavItem = { to: string; key: I18nKey };
 export const PERSONAL_NAV: readonly ChromeNavItem[] = [
   { to: "/", key: "home" },
   { to: "/mohsen", key: "mohsen" },
-  { to: "/services", key: "services" },
-  { to: "/games", key: "games" },
-  { to: "/me", key: "me" },
+  { to: "/books", key: "library" },
+  { to: "/research", key: "research" },
+  { to: "/more", key: "more" },
 ];
 
 export const WORK_NAV = PERSONAL_NAV;

@@ -1006,6 +1006,9 @@ html.native-ios .native-safe-top {
 html.native-ios #main-content {
   padding-bottom: calc(6rem + env(safe-area-inset-bottom, 0px));
 }
+html.native-ios #main-content.mohsen-main {
+  padding: 0;
+}
 html.native-ios .native-safe-bottom {
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);

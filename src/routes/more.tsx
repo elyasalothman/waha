@@ -55,6 +55,9 @@ function MorePage() {
             ? "ابحث عن خدمة أو اختر أحد الأقسام."
             : "Find a service or browse a section."}
         </p>
+        <Link to="/me" className="mt-4 inline-flex min-h-11 items-center text-primary">
+          {t(lang, "me")}
+        </Link>
       </header>
       <ServiceGrid />
       <details className="mt-8 rounded-2xl border border-border p-5">

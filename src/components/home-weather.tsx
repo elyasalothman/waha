@@ -3,7 +3,7 @@ import { weatherLabel, type WeatherPayload } from "@/lib/weather";
 import { useEffect, useState } from "react";
 import { readWeatherCache, writeWeatherCache } from "@/lib/weather";
 import { useAppStore } from "@/store/app-store";
-export function HomeWeather() {
+export function HomeWeather({ plain = false }: { plain?: boolean }) {
   const { temperature: unit, digits, language } = useSettings((s) => s.settings);
   const [payload, setPayload] = useState<WeatherPayload | null>(null);
   const city = useAppStore((s) => s.city);
@@ -46,11 +46,11 @@ export function HomeWeather() {
   }, [city.lat, city.lon]);
   const format = (v: number) =>
     `${new Intl.NumberFormat(language, { numberingSystem: digits, maximumFractionDigits: 0 }).format(unit === "F" ? (v * 9) / 5 + 32 : v)}°${unit}`;
-  return (
+  const body = (
     <>
       <span className="block">الطقس · {city.ar}</span>
       <span className="mt-2 block text-xl">
-        {temperature === null ? "عرض التوقعات ←" : format(temperature)}
+        {temperature === null ? (plain ? "…" : "عرض التوقعات ←") : format(temperature)}
       </span>
       {payload && (
         <span className="block text-sm">
@@ -62,12 +62,24 @@ export function HomeWeather() {
       <span className="text-xs text-muted">
         {temperature === null
           ? failed
-            ? "تعذّر تحديث الطقس؛ افتح التوقعات لإعادة المحاولة"
+            ? plain
+              ? "تعذّر تحديث الطقس"
+              : "تعذّر تحديث الطقس؛ افتح التوقعات لإعادة المحاولة"
             : "يحتاج اتصالًا أول مرة"
           : cached
             ? "آخر قراءة محفوظة"
             : "Open-Meteo · محدث"}
       </span>
     </>
+  );
+  if (!plain) return body;
+  return (
+    <section
+      aria-label="الطقس"
+      data-home-widget="weather"
+      className="rounded-2xl border border-border bg-surface p-4"
+    >
+      {body}
+    </section>
   );
 }

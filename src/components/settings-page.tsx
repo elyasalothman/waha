@@ -8,6 +8,13 @@ import { defaultSettings, parseSettings, type Settings } from "@/lib/settings";
 import { SERVICES } from "@/lib/superapp";
 import { CITIES } from "@/lib/cities";
 import { NEWS_SOURCES, NEWS_TOPICS } from "@/lib/arabic-news";
+import {
+  HOME_WIDGET_CATALOG,
+  addHomeWidget,
+  moveHomeWidget,
+  removeHomeWidget,
+  type HomeWidgetId,
+} from "@/lib/home-widgets";
 type Field = {
   key: keyof Settings;
   label: string;
@@ -71,9 +78,9 @@ const groups: { title: string; fields: Field[] }[] = [
   {
     title: "تخصيص الرئيسية",
     fields: [
-      { key: "weatherWidget", label: "إظهار الطقس" },
-      { key: "newsWidget", label: "إظهار آخر الأخبار" },
-      { key: "liveWidget", label: "إظهار البث" },
+      { key: "weatherWidget", label: "يومك · الطقس" },
+      { key: "newsWidget", label: "يومك · الأخبار" },
+      { key: "liveWidget", label: "يومك · البث" },
     ],
   },
   {
@@ -228,7 +235,7 @@ export function SettingsPage() {
             (
               (
                 {
-                  "تخصيص الرئيسية": "اختصارات ترتيب تبويبات الشريط",
+                  "تخصيص الرئيسية": "اختصارات ترتيب تبويبات الشريط ودجات العرض",
                   "الطقس والأخبار": "الأقسام المصادر المفضلة",
                   "الخصوصية والبيانات": "تصدير استيراد مسح JSON",
                   متقدم: "الإصدار البناء المصنع الأوفلاين",
@@ -277,6 +284,67 @@ export function SettingsPage() {
                 ))}
               {g.title === "تخصيص الرئيسية" && (
                 <>
+                  <h2 className="pt-2 font-medium">ودجات العرض</h2>
+                  <p className="text-sm leading-7 text-muted">
+                    أول زيارة تعرض الطقس وأهم الأخبار. أضف أو أزل أو رتّب. الصفحة نفسها للعرض فقط.
+                  </p>
+                  {s.homeWidgets.length === 0 ? (
+                    <p className="text-sm text-muted">العرض فارغ، ويبقى فارغًا حتى تضيف ودجت.</p>
+                  ) : null}
+                  {s.homeWidgets.map((id, i) => {
+                    const label = HOME_WIDGET_CATALOG.find((item) => item.id === id)?.ar || id;
+                    return (
+                      <div key={id} className="flex items-center gap-2">
+                        <span className="flex-1">{label}</span>
+                        <button
+                          type="button"
+                          aria-label={`رفع ${label}`}
+                          disabled={i === 0}
+                          className="min-h-11 min-w-11 border border-border disabled:opacity-40"
+                          onClick={() => patch({ homeWidgets: moveHomeWidget(s.homeWidgets, i, -1) })}
+                        >
+                          ↑
+                        </button>
+                        <button
+                          type="button"
+                          aria-label={`خفض ${label}`}
+                          disabled={i === s.homeWidgets.length - 1}
+                          className="min-h-11 min-w-11 border border-border disabled:opacity-40"
+                          onClick={() => patch({ homeWidgets: moveHomeWidget(s.homeWidgets, i, 1) })}
+                        >
+                          ↓
+                        </button>
+                        <button
+                          type="button"
+                          aria-label={`إزالة ${label}`}
+                          className="min-h-11 min-w-11"
+                          onClick={() => patch({ homeWidgets: removeHomeWidget(s.homeWidgets, id) })}
+                        >
+                          ×
+                        </button>
+                      </div>
+                    );
+                  })}
+                  <select
+                    aria-label="إضافة ودجت للعرض"
+                    value=""
+                    disabled={s.homeWidgets.length >= HOME_WIDGET_CATALOG.length}
+                    onChange={(e) => {
+                      const id = e.target.value as HomeWidgetId;
+                      if (HOME_WIDGET_CATALOG.some((item) => item.id === id))
+                        patch({ homeWidgets: addHomeWidget(s.homeWidgets, id) });
+                    }}
+                    className="min-h-11 w-full border border-border bg-bg"
+                  >
+                    <option value="">إضافة ودجت…</option>
+                    {HOME_WIDGET_CATALOG.filter((item) => !s.homeWidgets.includes(item.id)).map(
+                      (item) => (
+                        <option key={item.id} value={item.id}>
+                          {item.ar}
+                        </option>
+                      ),
+                    )}
+                  </select>
                   <h2 className="pt-2 font-medium">الاختصارات (حتى ٨) وترتيبها</h2>
                   {s.shortcuts.map((id, i) => (
                     <div key={id} className="flex items-center gap-2">
@@ -333,7 +401,7 @@ export function SettingsPage() {
                   </select>
                   <h2>تبويبات واحة 2.0</h2>
                   <p className="text-sm leading-7 text-muted">
-                    الرئيسية، محسن، الخدمات، الألعاب، حسابي. الكتب وجميع أدواتك متاحة من الخدمات.
+                    الرئيسية، محسن، المكتبة، الأبحاث، المزيد. الحساب من رأس الجوال أو أسفل القائمة على الشاشة الواسعة. بقية الخدمات من المزيد.
                   </p>
                 </>
               )}

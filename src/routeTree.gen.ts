@@ -30,6 +30,7 @@ import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as QuranRouteImport } from './routes/quran'
 import { Route as RegisterRouteImport } from './routes/register'
+import { Route as ResearchRouteImport } from './routes/research'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as StoreRouteImport } from './routes/store'
@@ -167,6 +168,11 @@ const QuranRoute = QuranRouteImport.update({
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
   path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchRoute = ResearchRouteImport.update({
+  id: '/research',
+  path: '/research',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -357,6 +363,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/quran': typeof QuranRoute
   '/register': typeof RegisterRoute
+  '/research': typeof ResearchRoute
   '/services': typeof ServicesRoute
   '/settings': typeof SettingsRoute
   '/store': typeof StoreRoute
@@ -412,6 +419,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/quran': typeof QuranRoute
   '/register': typeof RegisterRoute
+  '/research': typeof ResearchRoute
   '/services': typeof ServicesRoute
   '/settings': typeof SettingsRoute
   '/store': typeof StoreRoute
@@ -468,6 +476,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/quran': typeof QuranRoute
   '/register': typeof RegisterRoute
+  '/research': typeof ResearchRoute
   '/services': typeof ServicesRoute
   '/settings': typeof SettingsRoute
   '/store': typeof StoreRoute
@@ -526,6 +535,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/quran'
     | '/register'
+    | '/research'
     | '/services'
     | '/settings'
     | '/store'
@@ -581,6 +591,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/quran'
     | '/register'
+    | '/research'
     | '/services'
     | '/settings'
     | '/store'
@@ -636,6 +647,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/quran'
     | '/register'
+    | '/research'
     | '/services'
     | '/settings'
     | '/store'
@@ -693,6 +705,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   QuranRoute: typeof QuranRoute
   RegisterRoute: typeof RegisterRoute
+  ResearchRoute: typeof ResearchRoute
   ServicesRoute: typeof ServicesRoute
   SettingsRoute: typeof SettingsRoute
   StoreRoute: typeof StoreRoute
@@ -871,6 +884,13 @@ declare module '@tanstack/react-router' {
       path: '/register'
       fullPath: '/register'
       preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research': {
+      id: '/research'
+      path: '/research'
+      fullPath: '/research'
+      preLoaderRoute: typeof ResearchRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -1155,6 +1175,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   QuranRoute: QuranRoute,
   RegisterRoute: RegisterRoute,
+  ResearchRoute: ResearchRoute,
   ServicesRoute: ServicesRoute,
   SettingsRoute: SettingsRoute,
   StoreRoute: StoreRoute,

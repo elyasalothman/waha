@@ -6,8 +6,8 @@ import {
   Gamepad2,
   ArrowRight,
   ShoppingBag,
-  Search,
   LayoutGrid,
+  Library,
   MessageCircle,
   UserRound,
   Home,
@@ -24,7 +24,6 @@ import { SettingsEffects } from "@/components/settings-effects";
 import { LangToggle } from "@/components/city-select";
 import { NativeReminders } from "@/components/native-reminders";
 import { OfflineBanner } from "@/components/offline-banner";
-import { DoorsStrip } from "@/components/doors-strip";
 import { t } from "@/lib/i18n";
 import { chromeNav, mobileChromeNav } from "@/lib/nav";
 import { cn } from "@/lib/cn";
@@ -40,6 +39,7 @@ const NAV_ICON = {
   "/ask": MessageCircle,
   "/mohsen": MessageCircle,
   "/services": LayoutGrid,
+  "/research": Library,
   "/me": UserRound,
   "/more": LayoutGrid,
 } as const;
@@ -145,6 +145,28 @@ export function Shell() {
     );
   }
 
+  if (pathname === "/mohsen") {
+    return (
+      <div className="waha-shell h-dvh overflow-hidden bg-bg text-fg">
+        <SettingsEffects />
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-3 focus:text-primary-fg"
+        >
+          {lang === "ar" ? "تجاوز إلى المحتوى" : "Skip to content"}
+        </a>
+        <main id="main-content" tabIndex={-1} className="mohsen-main h-dvh overflow-hidden p-0">
+          <Outlet />
+        </main>
+        <Toaster
+          theme={dark ? "dark" : "light"}
+          position={lang === "ar" ? "bottom-left" : "bottom-right"}
+          toastOptions={{ className: "!bg-surface !text-fg !border-border" }}
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="waha-shell min-h-dvh bg-bg text-fg">
       <SettingsEffects />
@@ -162,11 +184,6 @@ export function Shell() {
           <p className="mt-3 text-xs leading-relaxed text-muted">
             {t(lang, audience === "personal" ? "tagline" : "workTagline")}
           </p>
-          {audience === "personal" ? (
-            <div className="mt-4">
-              <DoorsStrip lang={lang} compact />
-            </div>
-          ) : null}
         </div>
         <nav className="flex flex-1 flex-col gap-0.5 px-3">
           {nav.map((item) => {
@@ -220,29 +237,22 @@ export function Shell() {
           >
             <Settings className="size-5" />
           </Link>
+          <Link
+            to="/me"
+            aria-label={t(lang, "me")}
+            className="ms-auto grid size-11 shrink-0 place-items-center rounded-xl border border-border lg:hidden"
+          >
+            <UserRound className="size-5" />
+          </Link>
           <button
             type="button"
             onClick={toggleTheme}
             aria-label={lang === "ar" ? "تبديل الوضع الداكن" : "Toggle dark mode"}
             aria-pressed={dark}
-            className="ms-auto grid size-11 shrink-0 place-items-center rounded-xl border border-border text-primary"
+            className="grid size-11 shrink-0 place-items-center rounded-xl border border-border text-primary lg:ms-auto"
           >
             {dark ? <Sun className="size-5" /> : <Moon className="size-5" />}
           </button>
-          {pathname !== "/" && settings.agentEnabled && (
-            <button
-              type="button"
-              onClick={() => setCmd(true)}
-              aria-label="اسأل محسن أو اطلب منه"
-              className="flex h-11 min-w-0 flex-1 items-center gap-2 rounded-md border border-border bg-surface px-3 text-start text-sm text-muted lg:max-w-md"
-            >
-              <Search className="size-4 shrink-0" />
-              <span className="truncate">✦ اسأل محسن أو اطلب منه</span>
-              <kbd className="ms-auto hidden rounded border border-border px-1.5 font-mono text-[10px] text-subtle sm:inline">
-                ⌘K
-              </kbd>
-            </button>
-          )}
           <div className="lg:hidden">
             <LangToggle lang={lang} />
           </div>
@@ -325,7 +335,10 @@ export function Shell() {
         })}
       </nav>
 
-      {settings.agentEnabled && pathname !== "/onboarding" && pathname !== "/mohsen" && (
+      {settings.agentEnabled &&
+        pathname !== "/" &&
+        pathname !== "/onboarding" &&
+        pathname !== "/mohsen" && (
         <button
           aria-label="فتح محسن"
           onClick={() => setCmd(true)}

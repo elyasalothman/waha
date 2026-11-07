@@ -12,7 +12,7 @@ import {
 
 describe("simple Waha navigation", () => {
   it("keeps the same five core destinations on mobile and desktop for both audiences", () => {
-    const expected = ["/", "/mohsen", "/services", "/games", "/me"];
+    const expected = ["/", "/mohsen", "/books", "/research", "/more"];
     for (const audience of ["personal", "work"] as const) {
       assert.deepEqual(
         chromeNav(audience).map((item) => item.to),
