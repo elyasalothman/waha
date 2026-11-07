@@ -126,8 +126,8 @@ const strings = {
     en: "Everyday calculators, a decision wheel, and tafqeet",
   },
   gamesBlurb: {
-    ar: "جيش الواحة، ثم الألعاب التي لُعبت هنا وثبت أنها تبدأ وتعاد",
-    en: "Oasis Army, then the games played here and confirmed to start and restart",
+    ar: "جيش الواحة يحتاج رسومًا ثلاثية الأبعاد. تحته ألعاب لُعبت هنا وثبت أنها تبدأ وتعاد",
+    en: "Oasis Army needs 3D. Under it are games played here that start and restart",
   },
   gamesYard: { ar: "باب لُمعة", en: "Door to Luma" },
   studioBlurb: {

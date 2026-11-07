@@ -68,8 +68,8 @@ export function GamesHub() {
 
       <p className="mb-8 max-w-xl text-sm leading-7 text-muted">
         {lang === "ar"
-          ? "المعروض هنا لُعب داخل واحة: يبدأ، ويتقدم، ويعاد. الألعاب الخارجية وغير المجرّبة تبقى في مساراتها دون أن تُعرض كجاهزة."
-          : "Shown here are games played inside Waha: they start, progress, and restart. External and untried games stay on their routes and are not listed as ready."}
+          ? "جيش الواحة هو اللعبة الأبرز ويحتاج WebGL؛ إن تعذّر الرسم هنا تُذكر الحالة ولا تُحسب جولة. القائمة تحتها لُعبت في واحة. الألعاب غير المجرّبة تبقى خارج الفهرس."
+          : "Oasis Army is the flagship and needs WebGL; if graphics are unavailable here, that is labeled and not counted as a played round. The list below was played in Waha. Untried games stay off the catalog."}
       </p>
 
       {signature.length > 0 && (

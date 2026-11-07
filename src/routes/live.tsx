@@ -21,6 +21,7 @@ type PlayState = "idle" | "starting" | "playing" | "unsupported" | "error" | "of
 
 function LivePage() {
   const video = useRef<HTMLVideoElement>(null);
+  const tried = useRef(false);
   const [online, setOnline] = useState(true);
   const [checked, setChecked] = useState(false);
   const [canPlay, setCanPlay] = useState(false);
@@ -41,35 +42,42 @@ function LivePage() {
     setCanPlay(browserCanPlayHls(node));
     setChecked(true);
   }, []);
+  function stop(node: HTMLVideoElement) {
+    node.pause();
+    node.removeAttribute("src");
+    node.load();
+  }
   function start() {
     const node = video.current;
-    if (!node) return;
+    if (!node || tried.current) return;
     if (!navigator.onLine) {
       setState("offline");
       return;
     }
     if (!browserCanPlayHls(node)) {
+      tried.current = true;
       setState("unsupported");
       return;
     }
+    tried.current = true;
     node.muted = true;
     node.src = MARKET_LIVE_PLAYLIST;
     setState("starting");
-    const timer = window.setTimeout(() => {
-      if (node.paused || node.readyState < 2) setState("error");
-    }, 12000);
-    void node.play().catch(() => {
+    let failed = false;
+    let timer = 0;
+    const fail = () => {
+      if (failed) return;
+      failed = true;
       window.clearTimeout(timer);
-      setState("error");
-    });
-    node.onplaying = () => {
-      window.clearTimeout(timer);
-      setState("playing");
-    };
-    node.onerror = () => {
-      window.clearTimeout(timer);
+      stop(node);
       setState("error");
     };
+    timer = window.setTimeout(() => {
+      if (node.error || node.readyState < 2 || node.videoWidth === 0 || node.currentTime <= 0) fail();
+      else setState("playing");
+    }, 2500);
+    node.onerror = fail;
+    void node.play().catch(fail);
   }
   async function fullscreen() {
     const node = video.current as (HTMLVideoElement & { webkitEnterFullscreen?: () => void }) | null;
@@ -77,12 +85,6 @@ function LivePage() {
     if (node.requestFullscreen) await node.requestFullscreen().catch(() => undefined);
     else node.webkitEnterFullscreen?.();
   }
-  const blocked =
-    !online ||
-    state === "unsupported" ||
-    state === "error" ||
-    state === "offline" ||
-    (checked && !canPlay);
   return (
     <div className="mx-auto max-w-3xl" dir="rtl">
       <header className="mb-6">
@@ -106,11 +108,11 @@ function LivePage() {
       <div className="mt-4 flex flex-wrap gap-2">
         <button
           type="button"
-          className="min-h-11 rounded-full bg-primary px-4 text-primary-fg focus-visible:outline-2"
+          className="min-h-11 rounded-full bg-primary px-4 text-primary-fg focus-visible:outline-2 disabled:opacity-40"
           onClick={start}
-          disabled={!online || state === "starting"}
+          disabled={!online || !canPlay || tried.current || state === "starting" || state === "playing"}
         >
-          {state === "playing" ? "إعادة الاتصال" : "تشغيل البث صامتًا"}
+          تجربة واحدة صامتة
         </button>
         <button
           type="button"
@@ -123,24 +125,22 @@ function LivePage() {
       </div>
       <p role="status" className="mt-4 text-sm leading-7 text-muted">
         {!online || state === "offline"
-          ? "لا يوجد اتصال. البث يحتاج الإنترنت، ولن يُعرض شيء محفوظ بدلًا منه."
+          ? "لا يوجد اتصال. لا يُعرض بث محفوظ بدل الصورة."
           : !checked
             ? "جارٍ فحص دعم البث في هذا المتصفح…"
             : !canPlay || state === "unsupported"
-              ? "هذا المتصفح لا يشغّل بث HLS مباشرة. صفحة السوق نفسها تمنع التضمين، وخادم البث لا يأذن بجلب القائمة من نطاق آخر."
+              ? "هذا المتصفح لا يشغّل بث HLS داخل واحة. الزر التالي يفتح صفحة منضدة السوق، وليس مشغّلًا هنا."
               : state === "error"
-                ? "تعذّر عرض الصورة داخل واحة. يمكنك فتح صفحة البث على منضدة السوق."
+                ? "المحاولة الواحدة لم تُبقِ صورة. البث لا يعمل داخل واحة على هذا المتصفح. الصفحة التالية هي صفحة السوق."
                 : state === "playing"
-                  ? "الصورة تعمل والصوت مغلق. فعّله من أزرار المشغّل إن رغبت."
+                  ? "الصورة مستمرة في هذه المحاولة والصوت مغلق. إن توقفت، افتح صفحة السوق."
                   : state === "starting"
-                    ? "جارٍ الاتصال بالبث…"
-                    : "جاهز. التشغيل يبدأ عندما تضغط، ويبقى صامتًا."}
+                    ? "تجربة واحدة صامتة. لن تُعاد تلقائيًا."
+                    : "يمكن تجربة التشغيل الصامت مرة واحدة. إن لم تستمر الصورة، افتح صفحة منضدة السوق."}
       </p>
-      {blocked ? (
-        <ExternalLink direct href={MARKET_LIVE_PAGE} className="mt-3 inline-flex min-h-11 items-center text-primary">
-          فتح البث على منضدة السوق
-        </ExternalLink>
-      ) : null}
+      <ExternalLink direct href={MARKET_LIVE_PAGE} className="mt-3 inline-flex min-h-11 items-center text-primary">
+        فتح البث على منضدة السوق
+      </ExternalLink>
     </div>
   );
 }

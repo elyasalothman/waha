@@ -15,5 +15,7 @@ test("Waha does not iframe the market page", () => {
   assert.match(page, /MARKET_LIVE_PLAYLIST/);
   assert.doesNotMatch(page, /<iframe/);
   assert.match(page, /muted/);
-  assert.doesNotMatch(page, /autoPlay|autoplay/);
+  assert.match(page, /تجربة واحدة صامتة/);
+  assert.match(page, /فتح البث على منضدة السوق/);
+  assert.doesNotMatch(page, /autoPlay|autoplay|إعادة الاتصال|الصورة تعمل/);
 });

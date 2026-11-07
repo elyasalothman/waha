@@ -197,29 +197,69 @@ function score(query: string, item: Entry): number {
 const CONTENT =
   /فسر|اشرح|شرح|معنى|كيف|ليش|لماذا|كم|ما هو|ما هي|ماهي|وش |لخص|ترجم|قارن|احسب|تفسير/;
 
-/** Words left after a place name is removed. A real question here is mixed intent. */
-export function generalRemainder(query: string, matches: readonly SiteMatch[]): string {
-  let text = foldArabic(query);
+function aliasPattern(foldedAlias: string): RegExp {
+  const body = [...foldedAlias]
+    .map((ch) => {
+      if (ch === "ا") return "[اأإآٱ]";
+      if (ch === "ه") return "[هة]";
+      if (ch === "ي") return "[يىئ]";
+      if (ch === "و") return "[وؤ]";
+      if (ch === " ") return "\\s+";
+      return ch.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    })
+    .join("");
+  return new RegExp(body, "gi");
+}
+
+/** Keep the visitor's leftover words, including × and digits. Place names are removed. */
+function stripPlaceClause(clause: string, matches: readonly SiteMatch[]): string {
+  let text = ` ${clause.trim().replace(/^و(?=\p{L})/u, "")} `;
   const aliases = matches
     .flatMap((match) => SITE_REGISTRY.find((item) => item.id === match.id)?.aliases ?? [])
     .sort((a, b) => b.length - a.length);
-  for (const alias of aliases) text = text.split(alias).join(" ");
+  for (const alias of aliases) text = text.replace(aliasPattern(alias), " ");
   text = text
-    .replace(/javascript\S*|https?\S*|data:\S*/g, " ")
+    .replace(/javascript:\S*|https?:\/\/\S*|data:\S*/gi, " ")
     .replace(
-      /وين|فين|ودني|وديني|وديي|ودي|ابي|ابغى|ابغا|خذني|افتح|ورني|دلني|في الواحه|بالواحه/g,
+      /(^|\s)(وين|فين|وديني|ودني|وديي|ودي|ابي|ابغى|ابغا|خذني|افتح|ورني|دلني|بالواحة|في الواحة)(?=\s|$)/g,
       " ",
     )
-    .replace(/[^\p{L}\p{N}\s]/gu, " ")
+    .replace(/[?؟]+/g, " ")
     .replace(/\s+/g, " ")
     .trim();
-  const words = text
+  return text;
+}
+
+function clauseIsQuestion(text: string): boolean {
+  const words = foldArabic(text)
     .split(" ")
-    .filter((word) => word.length > 1 && !/^(في|من|الى|علي|عن|و|او|هذا|هذه|لي|لك|حق|بعد|ثم|لو|سمحت)$/.test(word));
+    .filter((word) => word.length > 1 && !/^(في|من|الى|علي|عن|و|او|لي|لك|حق|بعد|ثم|لو|سمحت)$/.test(word));
   const joined = words.join(" ");
-  if (!joined) return "";
-  if (CONTENT.test(joined) || words.length >= 3) return joined;
-  return "";
+  if (!joined) return false;
+  return CONTENT.test(joined) || words.length >= 3;
+}
+
+/** Words left after a place name is removed. A real question here is mixed intent. */
+export function generalRemainder(query: string, matches: readonly SiteMatch[]): string {
+  const clauses = query
+    .split(/\s*[?؟]+\s*|\s+و\s+/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+  const kept = (clauses.length ? clauses : [query])
+    .map((clause) => stripPlaceClause(clause, matches))
+    .filter(clauseIsQuestion);
+  return kept.join(" ").replace(/\s+/g, " ").trim();
+}
+
+const PLACE_PRONOUN = /فكرت[هة]|معناه|(^| )عنه( |$)|(^| )عنها( |$)|(^| )هذا( |$)|(^| )هذه( |$)/;
+
+/** The remote service gets the leftover question, plus the place title only when a pronoun needs it. */
+export function remoteQuestion(query: string, matches: readonly SiteMatch[]): string {
+  const question = generalRemainder(query, matches);
+  if (!question) return "";
+  if (!PLACE_PRONOUN.test(foldArabic(question))) return question;
+  const titles = [...new Set(matches.map((match) => match.title))].join("، ");
+  return titles ? `${question}\nالسياق: ${titles}` : question;
 }
 
 export function localNavigationText(matches: readonly SiteMatch[]): string {
@@ -249,7 +289,7 @@ export function planGuideTurn(query: string, options?: { hideMoney?: boolean }):
   const guide = guideSite(query, options);
   if (guide.mode === "general") return { action: "remote" };
   if (guide.mode === "none") return { action: "local", text: guide.note, guide };
-  const rest = generalRemainder(query, guide.matches);
+  const rest = remoteQuestion(query, guide.matches);
   const localText = localNavigationText(guide.matches);
   if (rest) return { action: "mixed", localText, remoteMessage: rest, guide };
   return { action: "local", text: localText, guide };

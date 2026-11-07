@@ -95,13 +95,29 @@ test("explicit place questions stay on the local registry", () => {
   }
 });
 
-test("a place plus a real question keeps only the question for the remote assistant", () => {
+test("a place plus a real question keeps the visitor's question for the remote assistant", () => {
   const mixed = planGuideTurn("وين المكتبة؟ وفسّر لي آية الكرسي");
   assert.equal(mixed.action, "mixed");
   if (mixed.action !== "mixed") return;
   assert.match(mixed.localText, /المكتبة/);
-  assert.match(mixed.remoteMessage, /كرسي/);
+  assert.match(mixed.remoteMessage, /فسّر لي آية الكرسي/);
   assert.equal(mixed.remoteMessage.includes("المكتبه"), false);
+  assert.equal(mixed.remoteMessage.includes("المكتبة"), false);
+
+  const math = planGuideTurn("وين البث المباشر؟ وكم 7 × 8");
+  assert.equal(math.action, "mixed");
+  if (math.action === "mixed") assert.equal(math.remoteMessage, "كم 7 × 8");
+
+  const reading = planGuideTurn("وين كتاب الهجدة؟ واشرح لي فكرته");
+  assert.equal(reading.action, "mixed");
+  if (reading.action === "mixed") {
+    assert.match(reading.remoteMessage, /اشرح لي فكرته/);
+    assert.match(reading.remoteMessage, /السياق: كتاب الهجدة/);
+  }
+
+  assert.equal(planGuideTurn("كم 7 × 8").action, "remote");
+  assert.equal(planGuideTurn("وين المكتبة ومركز الأبحاث؟").action, "local");
+  assert.equal(planGuideTurn("وين صاروخ المريخ في الواحة؟").action, "local");
 });
 
 test("child mode does not offer money pages", () => {
