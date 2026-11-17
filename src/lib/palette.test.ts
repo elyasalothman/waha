@@ -60,8 +60,9 @@ describe("waha well-night palette", () => {
     assert.match(root, new RegExp(`theme-color", content: "${PALETTE.bg}"`));
     assert.match(manifest, new RegExp(`"theme_color": "${PALETTE.bg}"`));
     assert.match(manifest, new RegExp(`"background_color": "${PALETTE.bg}"`));
-    assert.match(favicon, new RegExp(`fill="${PALETTE.bg}"`));
-    assert.match(favicon, new RegExp(`stroke="${PALETTE.primary}"`));
+    assert.match(favicon, /<rect[^>]+fill="#0b0c0b"/);
+    assert.match(favicon, /<circle[^>]+stroke="#cad6cb"/);
+    assert.match(favicon, /fill="#cad6cb"/);
     assert.match(pwa, new RegExp(`theme_color: "${PALETTE.bg}"`));
     assert.match(pwa, new RegExp(`background_color: "${PALETTE.bg}"`));
     assert.match(install, new RegExp(`theme-color" content="${PALETTE.bg}"`));

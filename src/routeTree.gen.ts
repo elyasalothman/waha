@@ -19,6 +19,7 @@ import { Route as CompareRouteImport } from './routes/compare'
 import { Route as DeleteAccountRouteImport } from './routes/delete-account'
 import { Route as ForumRouteImport } from './routes/forum'
 import { Route as GamesRouteImport } from './routes/games'
+import { Route as HealthRouteImport } from './routes/health'
 import { Route as LifeRouteImport } from './routes/life'
 import { Route as LiveRouteImport } from './routes/live'
 import { Route as MadarRouteImport } from './routes/madar'
@@ -114,6 +115,11 @@ const ForumRoute = ForumRouteImport.update({
 const GamesRoute = GamesRouteImport.update({
   id: '/games',
   path: '/games',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HealthRoute = HealthRouteImport.update({
+  id: '/health',
+  path: '/health',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LifeRoute = LifeRouteImport.update({
@@ -358,6 +364,7 @@ export interface FileRoutesByFullPath {
   '/delete-account': typeof DeleteAccountRoute
   '/forum': typeof ForumRouteWithChildren
   '/games': typeof GamesRoute
+  '/health': typeof HealthRoute
   '/life': typeof LifeRoute
   '/live': typeof LiveRoute
   '/madar': typeof MadarRoute
@@ -415,6 +422,7 @@ export interface FileRoutesByTo {
   '/compare': typeof CompareRoute
   '/delete-account': typeof DeleteAccountRoute
   '/games': typeof GamesRoute
+  '/health': typeof HealthRoute
   '/life': typeof LifeRoute
   '/live': typeof LiveRoute
   '/madar': typeof MadarRoute
@@ -473,6 +481,7 @@ export interface FileRoutesById {
   '/delete-account': typeof DeleteAccountRoute
   '/forum': typeof ForumRouteWithChildren
   '/games': typeof GamesRoute
+  '/health': typeof HealthRoute
   '/life': typeof LifeRoute
   '/live': typeof LiveRoute
   '/madar': typeof MadarRoute
@@ -533,6 +542,7 @@ export interface FileRouteTypes {
     | '/delete-account'
     | '/forum'
     | '/games'
+    | '/health'
     | '/life'
     | '/live'
     | '/madar'
@@ -590,6 +600,7 @@ export interface FileRouteTypes {
     | '/compare'
     | '/delete-account'
     | '/games'
+    | '/health'
     | '/life'
     | '/live'
     | '/madar'
@@ -647,6 +658,7 @@ export interface FileRouteTypes {
     | '/delete-account'
     | '/forum'
     | '/games'
+    | '/health'
     | '/life'
     | '/live'
     | '/madar'
@@ -706,6 +718,7 @@ export interface RootRouteChildren {
   DeleteAccountRoute: typeof DeleteAccountRoute
   ForumRoute: typeof ForumRouteWithChildren
   GamesRoute: typeof GamesRoute
+  HealthRoute: typeof HealthRoute
   LifeRoute: typeof LifeRoute
   LiveRoute: typeof LiveRoute
   MadarRoute: typeof MadarRoute
@@ -820,6 +833,13 @@ declare module '@tanstack/react-router' {
       path: '/games'
       fullPath: '/games'
       preLoaderRoute: typeof GamesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/health': {
+      id: '/health'
+      path: '/health'
+      fullPath: '/health'
+      preLoaderRoute: typeof HealthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/life': {
@@ -1184,6 +1204,7 @@ const rootRouteChildren: RootRouteChildren = {
   DeleteAccountRoute: DeleteAccountRoute,
   ForumRoute: ForumRouteWithChildren,
   GamesRoute: GamesRoute,
+  HealthRoute: HealthRoute,
   LifeRoute: LifeRoute,
   LiveRoute: LiveRoute,
   MadarRoute: MadarRoute,

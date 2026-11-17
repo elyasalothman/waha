@@ -6,7 +6,7 @@ import { z } from "zod";
 export const SETTINGS_KEY = "waha:settings:v1";
 export const settingsSchema = z
   .object({
-    theme: z.enum(["auto", "dark", "light"]).default("auto"),
+    theme: z.enum(["auto", "dark", "light"]).default("light"),
     accent: z.enum(["green", "blue", "purple", "red", "brown", "teal"]).default("green"),
     fontSize: z.enum(["small", "normal", "large", "largest"]).default("normal"),
     density: z.enum(["comfortable", "compact"]).default("comfortable"),

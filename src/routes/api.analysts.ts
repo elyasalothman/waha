@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { parseAnalystFeed } from "@/lib/analysts-feed";
+import { parseAnalystFeed, recentAnalystOpinions } from "@/lib/analysts-feed";
 
 const FEED = "https://news.alhajda.com/api/analysts";
 const ROSTER = "https://news.alhajda.com/api/analysts/roster";
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/api/analysts")({
           );
           return Response.json(
             {
-              items: parseAnalystFeed(feed),
+              items: recentAnalystOpinions(parseAnalystFeed(feed)),
               roster: Array.isArray(roster?.roster) ? roster.roster : [],
               fetchedAt: new Date().toISOString(),
               source: FEED,

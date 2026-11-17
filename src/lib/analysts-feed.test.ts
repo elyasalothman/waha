@@ -1,6 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { nextAnalystList, parseAnalystFeed, readAnalystPayload } from "./analysts-feed.ts";
+import {
+  ANALYST_RECENCY_MS,
+  nextAnalystList,
+  parseAnalystFeed,
+  readAnalystPayload,
+  recentAnalystOpinions,
+} from "./analysts-feed.ts";
 
 const bilello = {
   id: 6,
@@ -83,4 +89,18 @@ test("rows without a real https source are dropped", () => {
     ],
   });
   assert.deepEqual(items, []);
+});
+
+test("only source-published opinions from the last 12 hours are kept", () => {
+  const now = Date.parse("2026-11-17T12:00:00.000Z");
+  const opinions = parseAnalystFeed({
+    items: [
+      { ...bilello, id: 10, published_at: new Date(now - 2 * 60 * 60 * 1000).toISOString() },
+      { ...bilello, id: 11, published_at: new Date(now - ANALYST_RECENCY_MS).toISOString() },
+      { ...bilello, id: 12, published_at: new Date(now - ANALYST_RECENCY_MS - 1).toISOString() },
+      { ...bilello, id: 13, published_at: null },
+      { ...bilello, id: 14, published_at: new Date(now + 1000).toISOString() },
+    ],
+  });
+  assert.deepEqual(recentAnalystOpinions(opinions, now).map((item) => item.id), [10, 11]);
 });

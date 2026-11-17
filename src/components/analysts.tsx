@@ -1,5 +1,6 @@
 import { ExternalLink } from "./external-link";
 import { useAnalysts } from "@/lib/use-analysts";
+import { recentAnalystOpinions } from "@/lib/analysts-feed";
 
 function when(value: string) {
   const time = Date.parse(value);
@@ -13,12 +14,12 @@ function when(value: string) {
 
 export function Analysts({ compact = false }: { compact?: boolean }) {
   const { data, failed, retry } = useAnalysts();
-  const items = data?.items.slice(0, compact ? 1 : 12) ?? [];
+  const items = data ? recentAnalystOpinions(data.items).slice(0, compact ? 1 : 12) : [];
   return (
     <section className="space-y-3" aria-label="من آراء المحللين">
       <h2 className="font-display text-xl">من آراء المحللين</h2>
       <p className="text-xs leading-6 text-muted">
-        من هدوء السوق · آراء أصحابها بتاريخ النشر، لا توصيات استثمارية.
+        من هدوء السوق · يعرض ما نُشر خلال آخر 12 ساعة بحسب وقت النشر في المصدر. الآراء لأصحابها وليست توصيات.
       </p>
       {!data && !failed ? <p role="status">جارٍ تحميل المحللين…</p> : null}
       {failed ? (
@@ -44,9 +45,10 @@ export function Analysts({ compact = false }: { compact?: boolean }) {
             </span>
             <strong>{item.analyst.name}</strong>
           </div>
-          <p className="mt-3 text-sm leading-7">{compact ? item.title : item.summary || item.title}</p>
+          <h3 className="mt-3 font-medium leading-7">{item.title}</h3>
+          {!compact && item.summary ? <p className="mt-2 text-sm leading-7 text-muted">{item.summary}</p> : null}
           <p className="text-xs text-muted">
-            نُشر في المصدر: <time dateTime={item.postedAt}>{when(item.postedAt)}</time>
+            وقت النشر في المصدر الأصلي: <time dateTime={item.publishedAt!}>{when(item.publishedAt!)}</time>
           </p>
           <ExternalLink
             direct
@@ -57,6 +59,11 @@ export function Analysts({ compact = false }: { compact?: boolean }) {
           </ExternalLink>
         </article>
       ))}
+      {data && items.length === 0 && !failed ? (
+        <p className="rounded-2xl border border-border bg-surface p-4 text-sm leading-7 text-muted">
+          لا توجد آراء بوقت نشر موثّق خلال آخر 12 ساعة.
+        </p>
+      ) : null}
       {data?.fetchedAt ? (
         <p className="text-xs text-muted">
           آخر جلب من هدوء السوق: <time dateTime={data.fetchedAt}>{when(data.fetchedAt)}</time>

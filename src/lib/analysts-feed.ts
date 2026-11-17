@@ -18,6 +18,23 @@ export type AnalystOpinion = {
   analyst: AnalystCard;
 };
 
+export const ANALYST_RECENCY_MS = 12 * 60 * 60 * 1000;
+
+/** Keep only source-published opinions from the last 12 hours. Unknown and future dates are excluded. */
+export function recentAnalystOpinions(
+  items: readonly AnalystOpinion[],
+  now = Date.now(),
+): AnalystOpinion[] {
+  const cutoff = now - ANALYST_RECENCY_MS;
+  return items
+    .filter((item) => {
+      if (!item.publishedAt) return false;
+      const published = Date.parse(item.publishedAt);
+      return Number.isFinite(published) && published >= cutoff && published <= now;
+    })
+    .sort((a, b) => Date.parse(b.publishedAt!) - Date.parse(a.publishedAt!));
+}
+
 const HTTPS = /^https:\/\/[^\s]+$/;
 
 function text(value: unknown, max: number): string {

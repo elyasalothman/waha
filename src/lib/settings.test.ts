@@ -8,8 +8,10 @@ import {
   saveSettings,
   SETTINGS_KEY,
 } from "./settings.ts";
-test("إعدادات افتراضية قابلة للاستعادة من JSON", () =>
-  assert.deepEqual(parseSettings(JSON.parse(JSON.stringify(defaultSettings))), defaultSettings));
+test("الإعداد الافتراضي فاتح وقابل للاستعادة من JSON", () => {
+  assert.equal(defaultSettings.theme, "light");
+  assert.deepEqual(parseSettings(JSON.parse(JSON.stringify(defaultSettings))), defaultSettings);
+});
 test("استيراد جزئي يملأ الافتراضيات", () => {
   const s = parseSettings({ theme: "dark", newsWidget: false });
   assert.equal(s.theme, "dark");
@@ -60,6 +62,6 @@ test("فشل التخزين أو الاستيراد لا يغيّر الحالة
     },
   };
   assert.throws(() => saveSettings(storage, current, { theme: "dark" }));
-  assert.equal(current.theme, "auto");
+  assert.equal(current.theme, "light");
   assert.throws(() => saveSettings(storage, current, { theme: "invalid" as "dark" }));
 });
