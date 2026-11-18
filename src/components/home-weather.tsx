@@ -2,7 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { useSettings } from "@/store/settings-store";
 import { weatherLabel, type WeatherPayload } from "@/lib/weather";
 import { useEffect, useState } from "react";
-import { readWeatherCache, writeWeatherCache } from "@/lib/weather";
+import { readWeatherCache, readWeatherCacheStamp, writeWeatherCache } from "@/lib/weather";
+import { subscribeHomeRefresh } from "@/lib/home-refresh";
 import { useAppStore } from "@/store/app-store";
 export function HomeWeather({ plain = false }: { plain?: boolean }) {
   const { temperature: unit, digits, language } = useSettings((s) => s.settings);
@@ -11,38 +12,51 @@ export function HomeWeather({ plain = false }: { plain?: boolean }) {
   const [temperature, setTemperature] = useState<number | null>(null);
   const [cached, setCached] = useState(true);
   const [failed, setFailed] = useState(false);
+  const [seenAt, setSeenAt] = useState<number | null>(null);
   useEffect(() => {
+    let stopped = false;
+    let controller: AbortController | null = null;
     const previous = readWeatherCache(city.lat, city.lon);
     setPayload(previous);
     setTemperature(previous?.current.temperature ?? null);
     setCached(true);
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 8000);
-    setFailed(false);
-    void fetch(`/api/home-weather?lat=${city.lat.toFixed(2)}&lon=${city.lon.toFixed(2)}`, {
-      signal: controller.signal,
-    })
-      .then(async (r) => {
-        if (!r.ok) throw new Error();
-        const data = await r.json();
-        if (data.status !== "live" || !data.payload) throw new Error();
-        return data.payload as WeatherPayload;
+    setSeenAt(previous ? readWeatherCacheStamp(city.lat, city.lon) : null);
+    const load = () => {
+      if (stopped || !navigator.onLine) return;
+      controller?.abort();
+      controller = new AbortController();
+      const timer = window.setTimeout(() => controller?.abort(), 8000);
+      setFailed(false);
+      void fetch(`/api/home-weather?lat=${city.lat.toFixed(2)}&lon=${city.lon.toFixed(2)}`, {
+        signal: controller.signal,
+        cache: "no-store",
       })
-      .then((data) => {
-        if (!controller.signal.aborted) {
+        .then(async (r) => {
+          if (!r.ok) throw new Error();
+          const data = await r.json();
+          if (data.status !== "live" || !data.payload) throw new Error();
+          return data.payload as WeatherPayload;
+        })
+        .then((data) => {
+          if (stopped || controller?.signal.aborted) return;
+          const at = Date.now();
           writeWeatherCache(city.lat, city.lon, data);
           setTemperature(data.current.temperature);
           setPayload(data);
           setCached(false);
-        }
-      })
-      .catch(() => {
-        if (!controller.signal.aborted) setFailed(true);
-      })
-      .finally(() => clearTimeout(timer));
+          setSeenAt(at);
+        })
+        .catch(() => {
+          if (!stopped && !controller?.signal.aborted) setFailed(true);
+        })
+        .finally(() => window.clearTimeout(timer));
+    };
+    load();
+    const stop = subscribeHomeRefresh(load, true);
     return () => {
-      controller.abort();
-      clearTimeout(timer);
+      stopped = true;
+      controller?.abort();
+      stop();
     };
   }, [city.lat, city.lon]);
   const format = (v: number) =>
@@ -67,9 +81,15 @@ export function HomeWeather({ plain = false }: { plain?: boolean }) {
               ? "تعذّر تحديث الطقس"
               : "تعذّر تحديث الطقس؛ افتح التوقعات لإعادة المحاولة"
             : "يحتاج اتصالًا أول مرة"
-          : cached
-            ? "آخر قراءة محفوظة"
-            : "Open-Meteo · محدث"}
+          : `${
+              cached
+                ? seenAt
+                  ? `آخر قراءة محفوظة على هذا الجهاز · ${new Intl.DateTimeFormat("ar-SA", { hour: "2-digit", minute: "2-digit" }).format(seenAt)}`
+                  : "آخر قراءة محفوظة على هذا الجهاز"
+                : seenAt
+                  ? `جُلب من Open-Meteo · ${new Intl.DateTimeFormat("ar-SA", { hour: "2-digit", minute: "2-digit" }).format(seenAt)}`
+                  : "جُلب من Open-Meteo"
+            }${failed ? " · تعذّر أحدث محاولة" : ""}`}
       </span>
     </>
   );

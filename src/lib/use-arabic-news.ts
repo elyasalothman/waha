@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { ArabicNews } from "./arabic-news.ts";
-import { newsIsStale, newsPollDelay } from "./news-poll.ts";
+import { newsPollDelay } from "./news-poll.ts";
 
 export function useArabicNews() {
   const [data, setData] = useState<ArabicNews | null>(null);
@@ -8,7 +8,6 @@ export function useArabicNews() {
   const [attempt, setAttempt] = useState(0);
   const dataRef = useRef<ArabicNews | null>(null);
   const failures = useRef(0);
-  const lastOk = useRef<number | null>(null);
 
   useEffect(() => {
     let timer = 0;
@@ -46,10 +45,7 @@ export function useArabicNews() {
           setData(next);
           setFailed(next.status === "unavailable");
           if (next.status === "unavailable") failures.current += 1;
-          else {
-            failures.current = 0;
-            lastOk.current = Date.now();
-          }
+          else failures.current = 0;
         }
       } catch {
         if (stopped || ac.signal.aborted) return;
@@ -61,8 +57,7 @@ export function useArabicNews() {
 
     const onResume = () => {
       if (document.hidden || !navigator.onLine) return;
-      if (newsIsStale(lastOk.current, Date.now())) void run();
-      else schedule();
+      void run();
     };
 
     document.addEventListener("visibilitychange", onResume);
