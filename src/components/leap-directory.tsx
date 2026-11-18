@@ -136,7 +136,7 @@ export function LeapDirectory({ home = false }: { home?: boolean }) {
         </Link>
         <Link
           to="/mohsen"
-          search={{ q: "", mode: "chat", attach: false }}
+          search={{ q: "", mode: "chat", attach: false, mark: "" }}
           className="min-h-11 content-center text-primary"
         >
           اسأل محسن

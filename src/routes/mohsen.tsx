@@ -7,6 +7,9 @@ export const Route = createFileRoute("/mohsen")({
       ? s.mode
       : "chat") as "chat" | "image" | "clip" | "cv" | "interview" | "plan",
     attach: s.attach === true || s.attach === "true",
+    mark: ["idle", "listening", "thinking", "responding", "happy", "confused", "gallery"].includes(String(s.mark))
+      ? String(s.mark)
+      : "",
   }),
   head: () => ({
     meta: [
@@ -20,6 +23,6 @@ export const Route = createFileRoute("/mohsen")({
   }),
   component: function MohsenPage() {
     const search = Route.useSearch();
-    return <MohsenChat key={`${search.mode}-${search.attach}`} {...search} />;
+    return <MohsenChat key={`${search.mode}-${search.attach}-${search.mark}`} {...search} />;
   },
 });

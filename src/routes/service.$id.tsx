@@ -57,6 +57,7 @@ function Page() {
                 q: "ابحث في موسوعة الهجدة عن تاريخ المملكة العربية السعودية",
                 mode: "chat",
                 attach: false,
+                mark: "",
               }}
               className="flex min-h-11 items-center text-primary"
             >

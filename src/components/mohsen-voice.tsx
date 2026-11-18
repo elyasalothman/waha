@@ -31,7 +31,7 @@ function MicGlyph() {
 }
 
 /** Starts only after a click. Unsupported browsers keep a disabled icon. */
-export function MohsenVoice({ onText }: { onText: (text: string) => void }) {
+export function MohsenVoice({ onText, onListening }: { onText: (text: string) => void; onListening?: (value: boolean) => void }) {
   const [available, setAvailable] = useState(false);
   const [listening, setListening] = useState(false);
   const [error, setError] = useState("");
@@ -70,21 +70,28 @@ export function MohsenVoice({ onText }: { onText: (text: string) => void }) {
           if (listening) {
             rec.current.stop();
             setListening(false);
+            onListening?.(false);
             return;
           }
           rec.current.onresult = (e) => onText(e.results[0][0].transcript);
           rec.current.onerror = () => {
             setError("تعذّر الإملاء. تقدر تكتب بدل ذلك.");
             setListening(false);
+            onListening?.(false);
           };
-          rec.current.onend = () => setListening(false);
+          rec.current.onend = () => {
+            setListening(false);
+            onListening?.(false);
+          };
           try {
             rec.current.start();
             setListening(true);
+            onListening?.(true);
             setError("");
           } catch {
             setError("تعذّر الإملاء. تقدر تكتب بدل ذلك.");
             setListening(false);
+            onListening?.(false);
           }
         }}
       >
