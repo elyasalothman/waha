@@ -1,17 +1,17 @@
-/** Waha daylight — warm paper, ink, and a clay accent. Original, in the spirit of a quiet editorial app. */
+/** Near-white daylight. Clay stays the accent; the canvas itself is neutral. */
 
 export const PALETTE_ID = "waha-daylight" as const;
 
 export const PALETTE = {
-  bg: "#faf9f5",
+  bg: "#fafafa",
   surface: "#ffffff",
-  "surface-2": "#f3f0e8",
-  fg: "#2c241c",
-  muted: "#5c5348",
-  subtle: "#5a5146",
+  "surface-2": "#f3f3f3",
+  fg: "#1a1a1a",
+  muted: "#595959",
+  subtle: "#5e5e5e",
   primary: "#b55238",
   "primary-fg": "#ffffff",
-  border: "#e6e0d4",
+  border: "#e4e4e4",
   danger: "#9c341f",
   success: "#3d6b45",
   warn: "#8a5a12",

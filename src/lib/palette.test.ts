@@ -42,7 +42,7 @@ const OLD_NIGHT = ["#0c0d0c", "#eceee9", "#c5d0c4", "#6a7069"];
 describe("waha warm paper palette", () => {
   it("keeps a warm paper canvas and a clay accent", () => {
     assert.equal(PALETTE_ID, "waha-daylight");
-    assert.equal(PALETTE.bg, "#faf9f5");
+    assert.equal(PALETTE.bg, "#fafafa");
     assert.ok(relativeLuminance(PALETTE.bg) > 0.8, "paper background");
     assert.ok(relativeLuminance(PALETTE.fg) < 0.04, "ink stays deep");
     const primary = PALETTE.primary;

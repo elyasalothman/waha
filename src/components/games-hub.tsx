@@ -1,7 +1,7 @@
 import { ArmyCard } from "@/components/army-card";
-import { AppCard } from "@/components/app-card";
 import { SfxToggle } from "@/components/game-hud";
-import { CLASSIC_IDS, SIGNATURE_IDS } from "@/lib/games/doors";
+import { CLASSIC_IDS, GAME_COVERS, SIGNATURE_IDS, YARD_GAMES } from "@/lib/games/doors";
+import { ExternalLink } from "@/components/external-link";
 import { isPublicGame } from "@/lib/games/public-catalog";
 import { getApp } from "@/lib/catalog";
 import { appIcon } from "@/lib/icons";
@@ -66,6 +66,26 @@ export function GamesHub() {
         <ArmyCard />
       </div>
 
+      <section className="mb-10" aria-label={lang === "ar" ? "ألعاب باحة الهجدة" : "Alhajda games yard"}>
+        <h2 className="mb-3 text-sm font-medium text-muted">{lang === "ar" ? "باحة الألعاب" : "Games yard"}</h2>
+        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          {YARD_GAMES.map((game) => (
+            <ExternalLink
+              key={game.id}
+              direct
+              href={game.href}
+              className="overflow-hidden rounded-xl border border-border bg-surface"
+            >
+              <img src={game.cover} alt="" className="h-40 w-full object-cover" />
+              <span className="block p-4">
+                <span className="block font-display text-2xl">{game.title[lang]}</span>
+                <span className="mt-1 block text-sm leading-relaxed text-muted">{game.blurb[lang]}</span>
+              </span>
+            </ExternalLink>
+          ))}
+        </div>
+      </section>
+
       <p className="mb-8 max-w-xl text-sm leading-7 text-muted">
         {lang === "ar"
           ? "جيش الواحة هو اللعبة الأبرز ويحتاج WebGL؛ إن تعذّر الرسم هنا تُذكر الحالة ولا تُحسب جولة. القائمة تحتها لُعبت في واحة. الألعاب غير المجرّبة تبقى خارج الفهرس."
@@ -86,8 +106,10 @@ export function GamesHub() {
                 key={item.id}
                 to="/app/$id"
                 params={{ id: item.id }}
-                className="flex flex-col rounded-xl border border-border bg-surface p-5 transition-colors hover:bg-surface-2"
+                className="flex flex-col overflow-hidden rounded-xl border border-border bg-surface transition-colors hover:bg-surface-2"
               >
+                <img src={GAME_COVERS[item.id]} alt="" className="h-36 w-full object-cover" />
+                <span className="flex flex-col p-5">
                 <span className="flex items-center justify-between gap-2">
                   <span className="flex size-11 items-center justify-center rounded-md bg-surface-2 text-primary">
                     <Icon className="size-5" strokeWidth={1.75} />
@@ -100,6 +122,7 @@ export function GamesHub() {
                 </span>
                 <span className="mt-4 font-display text-2xl">{item.title[lang]}</span>
                 <span className="mt-1 text-sm leading-relaxed text-muted">{item.blurb[lang]}</span>
+                </span>
               </Link>
             );
           })}
@@ -114,7 +137,18 @@ export function GamesHub() {
         </h2>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
           {classics.map((item) => (
-            <AppCard key={item.id} item={item} lang={lang} />
+            <Link
+              key={item.id}
+              to="/app/$id"
+              params={{ id: item.id }}
+              className="overflow-hidden rounded-xl border border-border bg-surface"
+            >
+              <img src={GAME_COVERS[item.id]} alt="" className="h-36 w-full object-cover" />
+              <span className="block p-4">
+                <span className="block font-display text-2xl">{item.title[lang]}</span>
+                <span className="mt-1 block text-sm leading-relaxed text-muted">{item.blurb[lang]}</span>
+              </span>
+            </Link>
           ))}
         </div>
       </section>
