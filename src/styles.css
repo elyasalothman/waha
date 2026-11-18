@@ -1197,3 +1197,40 @@ html.waha-dark :is(.bg-white, .bg-white\/95) { background-color: var(--color-sur
 .waha-shell label:has(input[type="radio"]) { min-height: 44px; }
 
 .waha-shell > aside a { min-height: 44px; }
+
+/* Najdi door mark for Muhsin. Architecture and pattern, not a face. */
+.mohsen-mark {
+  display: inline-grid;
+  width: 4.5rem;
+  height: 5.5rem;
+  place-items: center;
+}
+.mohsen-mark.mark-sm { width: 2.75rem; height: 3.4rem; }
+.mohsen-mark.mark-lg { width: 7rem; height: 8.6rem; }
+.mohsen-mark svg { width: 100%; height: 100%; overflow: visible; }
+.mohsen-mark .mud { fill: #b08968; }
+.mohsen-mark .cream { fill: #faf3e6; }
+.mohsen-mark .door-teal { fill: #1f6f78; }
+.mohsen-mark .door-gold { fill: #e6b325; }
+.mohsen-mark .door-clay { fill: #b55238; }
+.mohsen-mark .door-green { fill: #1f6b4a; }
+.mohsen-mark .door-ink { fill: #3a2a22; }
+html.waha-dark .mohsen-mark .mud,
+html.native-ios.native-dark .mohsen-mark .mud { fill: #8c6244; }
+html.waha-dark .mohsen-mark .cream,
+html.native-ios.native-dark .mohsen-mark .cream { fill: #f3efe6; }
+.mohsen-mark.is-idle .drift { animation: mohsen-drift 7s ease-in-out infinite; }
+.mohsen-mark.is-listening .frame { animation: mohsen-listen 1.8s ease-in-out infinite; }
+.mohsen-mark.is-thinking .sadu { animation: mohsen-step 1.1s steps(4, end) infinite; }
+.mohsen-mark.is-responding .wash { animation: mohsen-wash 1.5s ease-in-out infinite; }
+.mohsen-mark.is-happy .accent { transform-origin: center; animation: mohsen-lift 1.6s ease-in-out infinite; }
+.mohsen-mark.is-confused .pattern { animation: mohsen-shift 2.4s ease-in-out infinite; opacity: 0.72; }
+@keyframes mohsen-drift { 50% { transform: translateY(1.5px); } }
+@keyframes mohsen-listen { 50% { transform: scaleX(1.04); } }
+@keyframes mohsen-step { to { transform: translateX(6px); } }
+@keyframes mohsen-wash { 50% { opacity: 0.45; } }
+@keyframes mohsen-lift { 50% { transform: translateY(-2px); } }
+@keyframes mohsen-shift { 50% { transform: translateX(-3px); } }
+@media (prefers-reduced-motion: reduce) {
+  .mohsen-mark * { animation: none !important; }
+}

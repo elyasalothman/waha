@@ -6,7 +6,7 @@ export const Route = createFileRoute("/ask")({
   beforeLoad: ({ search }) => {
     throw redirect({
       to: "/mohsen",
-      search: { q: search.q, mode: "chat", attach: false },
+      search: { q: search.q, mode: "chat", attach: false, mark: "" },
       replace: true,
     });
   },

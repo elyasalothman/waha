@@ -1,5 +1,8 @@
 import { MohsenVoice } from "./mohsen-voice";
 import { MohsenDesk } from "./mohsen-desk";
+import { MohsenMark, MOHSEN_MOODS, type MohsenMood } from "./mohsen-mark";
+import { muhsinDeviceNotes } from "@/lib/mohsen-place";
+import { richBlocks } from "@/lib/mohsen-rich";
 import { useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -46,10 +49,12 @@ export function MohsenChat({
   q = "",
   mode: initial = "chat",
   attach = false,
+  mark = "",
 }: {
   q?: string;
   mode?: Mode;
   attach?: boolean;
+  mark?: string;
 }) {
   const navigate = useNavigate();
   const segment = useAppStore((s) => s.segment);
@@ -71,7 +76,10 @@ export function MohsenChat({
     [drawer, setDrawer] = useState(false),
     [toolsOpen, setToolsOpen] = useState(false),
     [deskOpen, setDeskOpen] = useState(false),
-    [viewport, setViewport] = useState({ height: 0, offsetTop: 0 });
+    [viewport, setViewport] = useState({ height: 0, offsetTop: 0 }),
+    [listening, setListening] = useState(false),
+    [answered, setAnswered] = useState(false),
+    [deviceNotes, setDeviceNotes] = useState<string[]>([]);
   const ctl = useRef<AbortController | null>(null),
     upload = useRef<HTMLInputElement>(null),
     sent = useRef(""),
@@ -79,6 +87,21 @@ export function MohsenChat({
     logRef = useRef<HTMLDivElement>(null);
   const current = threads.find((t) => t.id === active),
     messages = current?.messages || [];
+  const preview = MOHSEN_MOODS.find((item) => item === mark);
+  const helpful = messages.some((item) => item.vote === "👍");
+  const mood: MohsenMood = preview
+    ? preview
+    : error
+      ? "confused"
+      : listening
+        ? "listening"
+        : busy
+          ? "thinking"
+          : answered
+            ? "responding"
+            : helpful
+              ? "happy"
+              : "idle";
   function newThread() {
     const id = crypto.randomUUID();
     setThreads((ts) => [{ id, title: "محادثة جديدة", messages: [] }, ...ts].slice(0, 20));
@@ -102,6 +125,7 @@ export function MohsenChat({
       setActive(id);
     }
     setReady(true);
+    setDeviceNotes(muhsinDeviceNotes(localStorage));
     const resourceUrls = urls.current;
     return () => {
       ctl.current?.abort();
@@ -321,7 +345,11 @@ export function MohsenChat({
       }
       if (typeof result.content !== "string" || !result.content.trim())
         throw new Error("لم يصل جواب؛ أعد المحاولة.");
-      if (!controller.signal.aborted) append(result);
+      if (!controller.signal.aborted) {
+        append(result);
+        setAnswered(true);
+        window.setTimeout(() => setAnswered(false), 1600);
+      }
     } catch (e) {
       setError(
         controller.signal.aborted
@@ -347,7 +375,7 @@ export function MohsenChat({
       sent.current = q;
       void navigate({
         to: "/mohsen",
-        search: { q: "", mode: initial, attach: false },
+        search: { q: "", mode: initial, attach: false, mark: "" },
         replace: true,
       });
       void sendRef.current(q);
@@ -376,14 +404,51 @@ export function MohsenChat({
           <span className="sr-only">قائمة محسن</span>
           <span aria-hidden="true">☰</span>
         </button>
+        <MohsenMark mood={mood} className="mark-sm" />
         <h1 className="font-display text-xl">محسن</h1>
       </header>
       <div ref={logRef} role="log" aria-label="المحادثة" aria-live="polite" className="min-h-0 flex-1 overflow-y-auto px-4 py-4">
         {!messages.length && (
           <div className="flex h-full flex-col items-center justify-center gap-4 text-center">
+            {mark === "gallery" ? (
+              <div className="grid grid-cols-3 gap-3" data-mohsen-gallery="states">
+                {MOHSEN_MOODS.map((item) => (
+                  <div key={item} className="flex flex-col items-center gap-1">
+                    <MohsenMark mood={item} />
+                    <span className="text-xs text-muted">{item}</span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <MohsenMark mood={mood} className="mark-lg" />
+            )}
             <p className="font-display text-3xl">محسن</p>
-            <p className="max-w-sm text-sm leading-7 text-muted">اسأل بحرية، أو اطلب صفحة موجودة في واحة.</p>
+            <p className="max-w-sm text-sm leading-7 text-muted">
+              أفتح لك صفحات الهجدة وواحة، وأستخدم اللي محفوظ على جهازك. ما أخترع خبر، وما أقول لك اشترِ أو بِع. الشكل باب نجدي، مو وجه.
+            </p>
+            {deviceNotes.length ? (
+              <ul className="max-w-sm space-y-2 text-start text-sm leading-7">
+                {deviceNotes.map((note) => (
+                  <li key={note}>
+                    <button
+                      type="button"
+                      className="min-h-11 rounded-2xl border border-border bg-surface px-3 py-2 text-start"
+                      onClick={() =>
+                        void sendRef.current(`${note}\nاستخدم هذا النص كما هو. لا تضف أرقامًا غيره، ولا توصِ بشراء أو بيع.`)
+                      }
+                    >
+                      {note}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
             <div className="flex max-w-sm flex-wrap justify-center gap-2">
+              <Link to="/books" className="inline-flex min-h-11 items-center rounded-full border border-border px-3 text-sm">المكتبة</Link>
+              <Link to="/news" className="inline-flex min-h-11 items-center rounded-full border border-border px-3 text-sm">الأخبار</Link>
+              <Link to="/app/$id" params={{ id: "budget" }} className="inline-flex min-h-11 items-center rounded-full border border-border px-3 text-sm">ميزانيتي</Link>
+              <Link to="/games" className="inline-flex min-h-11 items-center rounded-full border border-border px-3 text-sm">الألعاب</Link>
+              <ExternalLink direct href="https://alhajda.com/research/" className="inline-flex min-h-11 items-center rounded-full border border-border px-3 text-sm">الأبحاث</ExternalLink>
               {HINTS.map((hint) => (
                 <button
                   key={hint}
@@ -422,7 +487,7 @@ export function MohsenChat({
               {m.label && !m.label.includes("دليل الصفحات") ? (
                 <p className="text-xs leading-6 text-muted">{m.label}</p>
               ) : null}
-              <p className="whitespace-pre-wrap break-words leading-8">{m.content}</p>
+              {m.role === "assistant" ? <RichAnswer text={m.content} /> : <p className="whitespace-pre-wrap break-words leading-8">{m.content}</p>}
               {m.image && (
                 <>
                   <img className="my-3 w-full rounded-xl" src={m.image} alt="صورة مولّدة من وصفك" />
@@ -615,7 +680,7 @@ export function MohsenChat({
             className="max-h-32 min-h-11 flex-1 resize-none rounded-2xl border border-border bg-surface px-3 py-2.5 leading-7"
             placeholder="اكتب لمحسن"
           />
-          <MohsenVoice onText={setInput} />
+          <MohsenVoice onText={setInput} onListening={setListening} />
           {busy ? (
             <button type="button" className={btn} onClick={() => ctl.current?.abort()}>
               إيقاف
@@ -682,7 +747,7 @@ export function MohsenChat({
               }
           }}
         />
-        <p className="mt-1 text-center text-[11px] leading-5 text-muted">قد يخطئ محسن. السجل على جهازك.</p>
+        <p className="mt-1 text-center text-[11px] leading-5 text-muted">قد يخطئ محسن. المحادثة والذاكرة على هذا الجهاز، وما تنرسل أرشيفًا لمحسن.</p>
       </form>
       {drawer && (
         <div className="fixed inset-0 z-50">
@@ -790,6 +855,58 @@ function SlideShow({ slides }: { slides: string[] }) {
           </a>
         ))}
       </div>
+    </div>
+  );
+}
+
+function RichAnswer({ text }: { text: string }) {
+  const blocks = richBlocks(text);
+  return (
+    <div className="space-y-3 break-words leading-8">
+      {blocks.map((block, index) => {
+        if (block.type === "list") {
+          return (
+            <ul key={index} className="list-disc ps-5">
+              {block.items.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          );
+        }
+        if (block.type === "table") {
+          return (
+            <div key={index} className="overflow-x-auto">
+              <table className="w-full border-collapse text-sm">
+                <thead>
+                  <tr>
+                    {block.headers.map((header) => (
+                      <th key={header} className="border border-border px-2 py-1 text-start">
+                        {header}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {block.rows.map((row, rowIndex) => (
+                    <tr key={rowIndex}>
+                      {row.map((cell, cellIndex) => (
+                        <td key={cellIndex} className="border border-border px-2 py-1">
+                          {cell}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+        }
+        return (
+          <p key={index} className="whitespace-pre-wrap">
+            {block.text}
+          </p>
+        );
+      })}
     </div>
   );
 }
