@@ -49,3 +49,15 @@ test("monthly spend uses the local calendar month and does not carry expenses ac
   );
   assert.equal(monthSpent(JSON.stringify({ month: "2025-10", items: [{ amount: 40 }] }), now), 0);
 });
+
+test("the new ledger counts this month's expenses and skips income", () => {
+  const raw = JSON.stringify({
+    version: 1,
+    entries: [
+      { kind: "expense", amount: 15, on: "2026-10-02" },
+      { kind: "income", amount: 100, on: "2026-10-02" },
+      { kind: "expense", amount: 9, on: "2026-09-02" },
+    ],
+  });
+  assert.equal(monthSpent(raw, now), 15);
+});

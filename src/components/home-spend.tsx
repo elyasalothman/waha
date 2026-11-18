@@ -12,7 +12,7 @@ export function HomeSpend({ lang, segment }: { lang: Lang; segment: unknown }) {
   useEffect(() => {
     const refresh = () => {
       try {
-        setSpent(monthSpent(localStorage.getItem("waha:budget")));
+        setSpent(monthSpent(localStorage.getItem("waha:mizaniya:v1") ?? localStorage.getItem("waha:budget")));
       } catch {
         setSpent(0);
       }
