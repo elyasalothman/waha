@@ -275,9 +275,10 @@ export function Shell() {
         >
           <Link
             to="/"
-            className="waha-wordmark text-primary focus-visible:outline-2 focus-visible:outline-offset-4"
+            className="inline-flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-offset-4"
           >
-            واحة
+            <img src="/waha-icon-180.png" alt="" width={40} height={40} className="size-10 rounded-xl" />
+            <span className="waha-wordmark text-primary">واحة</span>
           </Link>
         </header>
 

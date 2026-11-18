@@ -15,6 +15,12 @@ export const NEWS_SOURCES = [
     url: "https://asharq.com/rss.xml",
     hosts: ["asharq.com", "www.asharq.com", "asharqbusiness.com", "www.asharqbusiness.com"],
   },
+  {
+    name: "هدوء السوق",
+    url: "https://news.alhajda.com/rss.xml",
+    hosts: ["news.alhajda.com"],
+    maxAgeMs: 21 * 24 * 3600000,
+  },
 ] as const;
 export const NEWS_TOPICS = ["الكل", "السعودية", "العالم", "اقتصاد", "تقنية", "رياضة"] as const;
 export type ArabicNews = {
@@ -64,7 +70,7 @@ export function parseArabicFeed(
       !title ||
       title.length > 300 ||
       !Number.isFinite(date) ||
-      now - date > 72 * 3600000 ||
+      now - date > ("maxAgeMs" in source ? source.maxAgeMs : 72 * 3600000) ||
       date - now > 300000
     )
       continue;

@@ -5,6 +5,7 @@ import {
   nextAnalystList,
   parseAnalystFeed,
   readAnalystPayload,
+  isEconomicOpinion,
   recentAnalystOpinions,
 } from "./analysts-feed.ts";
 
@@ -15,6 +16,8 @@ const bilello = {
   published_at: "2026-10-27T08:24:21.908Z",
   title: "بيليلو يقرأ نشرة اكتتاب Anthropic: إيرادات 16.3 مليار دولار في نصف عام",
   summary: "يلخص بيليلو أرقام نشرة الاكتتاب.",
+  meaning: "طرح مرتقب قد ينعكس على تقييمات التقنية.",
+  topic: "tech",
   analyst: {
     handle: "charliebilello",
     name: "تشارلي بيليلو",
@@ -89,6 +92,19 @@ test("rows without a real https source are dropped", () => {
     ],
   });
   assert.deepEqual(items, []);
+});
+
+test("old, undated, and non-economic rows are not recent", () => {
+  const now = Date.parse("2026-11-17T12:00:00.000Z");
+  const fresh = parseAnalystFeed({
+    items: [
+      { ...bilello, id: 20, topic: "sports", published_at: new Date(now - 60_000).toISOString() },
+      { ...bilello, id: 21, topic: "", published_at: new Date(now - 60_000).toISOString() },
+      { ...bilello, id: 22, published_at: new Date(now - 60_000).toISOString() },
+    ],
+  });
+  assert.equal(isEconomicOpinion(fresh.find((item) => item.id === 22)!), true);
+  assert.deepEqual(recentAnalystOpinions(fresh, now).map((item) => item.id), [22]);
 });
 
 test("only source-published opinions from the last 12 hours are kept", () => {

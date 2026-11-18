@@ -50,7 +50,7 @@ export const settingsSchema = z
     temperature: z.enum(["C", "F"]).default("C"),
     newsTopics: z.array(z.enum(NEWS_TOPICS)).max(6).default([]),
     newsSources: z
-      .array(z.enum(["BBC عربي", "الجزيرة", "الشرق"]))
+      .array(z.enum(["BBC عربي", "الجزيرة", "الشرق", "هدوء السوق"]))
       .max(3)
       .default([]),
     readingNight: z.boolean().default(false),

@@ -1,20 +1,20 @@
-/** Waha daylight — pearl canvas, deep ink, and botanical emerald. */
+/** Waha daylight — warm paper, ink, and a clay accent. Original, in the spirit of a quiet editorial app. */
 
 export const PALETTE_ID = "waha-daylight" as const;
 
 export const PALETTE = {
-  bg: "#f6f5f0",
+  bg: "#faf9f5",
   surface: "#ffffff",
-  "surface-2": "#e9eee8",
-  fg: "#192c2a",
-  muted: "#4d625f",
-  subtle: "#526761",
-  primary: "#146455",
+  "surface-2": "#f3f0e8",
+  fg: "#2c241c",
+  muted: "#5c5348",
+  subtle: "#5a5146",
+  primary: "#b55238",
   "primary-fg": "#ffffff",
-  border: "#d7e0d9",
-  danger: "#ac4035",
-  success: "#27724e",
-  warn: "#896319",
+  border: "#e6e0d4",
+  danger: "#9c341f",
+  success: "#3d6b45",
+  warn: "#8a5a12",
 } as const;
 
 export type PaletteToken = keyof typeof PALETTE;

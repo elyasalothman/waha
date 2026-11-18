@@ -4,18 +4,18 @@
 @import "./apps/books/reader-layout.css";
 
 @theme {
-  --color-bg: #f6f5f0;
+  --color-bg: #faf9f5;
   --color-surface: #ffffff;
-  --color-surface-2: #e9eee8;
-  --color-fg: #192c2a;
-  --color-muted: #4d625f;
-  --color-subtle: #526761;
-  --color-primary: #146455;
+  --color-surface-2: #f3f0e8;
+  --color-fg: #2c241c;
+  --color-muted: #5c5348;
+  --color-subtle: #5a5146;
+  --color-primary: #b55238;
   --color-primary-fg: #ffffff;
-  --color-border: #d7e0d9;
-  --color-danger: #ac4035;
-  --color-success: #27724e;
-  --color-warn: #896319;
+  --color-border: #e6e0d4;
+  --color-danger: #9c341f;
+  --color-success: #3d6b45;
+  --color-warn: #8a5a12;
   --radius-xs: 4px;
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -25,9 +25,7 @@
   --font-sans: "IBM Plex Sans Arabic", "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Amiri", "IBM Plex Sans Arabic", serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  --shadow-soft:
-    0 1px 0 color-mix(in oklab, var(--color-fg) 6%, transparent),
-    0 18px 40px -24px rgb(0 0 0 / 0.55);
+  --shadow-soft: 0 1px 2px rgb(44 36 28 / 0.06);
 }
 
 @layer base {
@@ -159,9 +157,9 @@
   }
 }
 
-/* Daylight: a clear reading canvas, emerald anchors, small botanical accents. */
+/* Daylight: warm paper, a faint clay wash, no gloomy green glow. */
 .waha-shell {
-  background-image: radial-gradient(ellipse at 80% -10%, #e5f4ec 0, transparent 46%);
+  background-image: radial-gradient(ellipse at 80% -10%, #f6e7da 0, transparent 42%);
 }
 /* Translucent chrome for the name bar and the mobile tab bar.
    This is CSS backdrop-filter, not Apple's Liquid Glass material. */
@@ -197,13 +195,15 @@
   }
 }
 .waha-card {
-  --card-fg: #192c2a;
-  --card-muted: #3e534e;
+  --card-fg: #2c241c;
+  --card-muted: #5c5348;
   border-radius: 20px;
-  border: 1px solid var(--card-line, #d7e0d9);
+  border: 1px solid var(--card-line, #e6e0d4);
   background: var(--card-fill, #fff);
+  box-shadow: none;
   color: var(--card-fg);
-  padding: 1.15rem 1.2rem;
+  padding: 1.25rem 1.3rem;
+  transition: background-color 180ms ease, border-color 180ms ease;
 }
 .waha-card :is(.text-muted, .text-subtle) {
   color: var(--card-muted);
@@ -211,12 +211,12 @@
 [data-home-size="compact"] .waha-card {
   padding: 0.8rem 0.95rem;
 }
-.tint-oasis { --card-fill: #e7f6ef; --card-line: #b7dfd0; }
-.tint-sky { --card-fill: #e8f1ff; --card-line: #c5d7f4; }
-.tint-sand { --card-fill: #fff4e0; --card-line: #ead4a8; }
-.tint-rose { --card-fill: #fdecee; --card-line: #f0cfd4; }
-.tint-violet { --card-fill: #f4efff; --card-line: #ddd0f3; }
-.kicker-oasis { color: #0f5c4c; }
+.tint-oasis { --card-fill: #f8ede4; --card-line: #ead4c4; }
+.tint-sky { --card-fill: #e7eef6; --card-line: #c9d5e6; }
+.tint-sand { --card-fill: #fbf6ea; --card-line: #ead9b8; }
+.tint-rose { --card-fill: #fbecea; --card-line: #f0cfd4; }
+.tint-violet { --card-fill: #f4eef8; --card-line: #ddd0f3; }
+.kicker-oasis { color: #9a4632; }
 .kicker-sky { color: #1d4f91; }
 .kicker-sand { color: #7a4e0d; }
 .kicker-rose { color: #8d3040; }
@@ -1048,15 +1048,15 @@
 /* Native appearance follows iOS; browser themes keep their existing behavior. */
 html.native-ios.native-dark {
   color-scheme: dark;
-  --color-bg: #101b19;
-  --color-surface: #172724;
-  --color-surface-2: #213731;
-  --color-fg: #edf4ed;
-  --color-muted: #b0c7bd;
-  --color-subtle: #a6bfb5;
-  --color-primary: #85d7b9;
-  --color-primary-fg: #10251e;
-  --color-border: #355249;
+  --color-bg: #2a2724;
+  --color-surface: #35312c;
+  --color-surface-2: #403b36;
+  --color-fg: #faf6f0;
+  --color-muted: #d9d0c4;
+  --color-subtle: #cfc6ba;
+  --color-primary: #e7a08a;
+  --color-primary-fg: #2c1812;
+  --color-border: #5a534c;
 }
 html.native-ios .native-safe-top {
   height: calc(3.5rem + env(safe-area-inset-top, 0px));
@@ -1088,18 +1088,18 @@ html.native-ios.native-dark .waha-shell {
 /* Shared web and native appearance. */
 html.waha-dark {
   color-scheme: dark;
-  --color-bg: #171b19;
-  --color-surface: #202822;
-  --color-surface-2: #2c362f;
-  --color-fg: #f0f2eb;
-  --color-muted: #bdc9bf;
-  --color-subtle: #b0bdb3;
-  --color-primary: #8cd7bc;
-  --color-primary-fg: #10271e;
-  --color-border: #435047;
-  --color-danger: #ffa297;
-  --color-success: #93d5a8;
-  --color-warn: #e9c77c;
+  --color-bg: #2a2724;
+  --color-surface: #35312c;
+  --color-surface-2: #403b36;
+  --color-fg: #faf6f0;
+  --color-muted: #d9d0c4;
+  --color-subtle: #cfc6ba;
+  --color-primary: #e7a08a;
+  --color-primary-fg: #2c1812;
+  --color-border: #5a534c;
+  --color-danger: #f0b0a4;
+  --color-success: #b7d7b4;
+  --color-warn: #e6c48a;
 }
 html.waha-dark .waha-shell {
   background-image: none;
@@ -1107,23 +1107,23 @@ html.waha-dark .waha-shell {
 /* iOS can set native-dark (light text) without waha-dark. Cards must darken with that text. */
 html.waha-dark .waha-card,
 html.native-ios.native-dark .waha-card {
-  --card-fill: #24302b;
-  --card-line: #4d645b;
-  --card-fg: #f4f7f2;
-  --card-muted: #d5e2da;
+  --card-fill: #3a342e;
+  --card-line: #5c534a;
+  --card-fg: #faf6f0;
+  --card-muted: #e6dccf;
 }
 html.waha-dark .tint-oasis,
-html.native-ios.native-dark .tint-oasis { --card-fill: #17352c; --card-line: #3d6b5c; --card-fg: #f3faf6; --card-muted: #d3ebdf; }
+html.native-ios.native-dark .tint-oasis { --card-fill: #4a382e; --card-line: #6d5748; --card-fg: #fbf4ee; --card-muted: #ead9c8; }
 html.waha-dark .tint-sky,
-html.native-ios.native-dark .tint-sky { --card-fill: #1a2c44; --card-line: #3d5878; --card-fg: #f3f7ff; --card-muted: #d4e2f8; }
+html.native-ios.native-dark .tint-sky { --card-fill: #2e3a48; --card-line: #4d6278; --card-fg: #f3f7ff; --card-muted: #d4e2f8; }
 html.waha-dark .tint-sand,
-html.native-ios.native-dark .tint-sand { --card-fill: #3a301c; --card-line: #6d5a32; --card-fg: #fbf6ec; --card-muted: #ead9b8; }
+html.native-ios.native-dark .tint-sand { --card-fill: #4a3c2c; --card-line: #6d5a32; --card-fg: #fbf6ec; --card-muted: #ead9b8; }
 html.waha-dark .tint-rose,
-html.native-ios.native-dark .tint-rose { --card-fill: #3a2428; --card-line: #6d4450; --card-fg: #fff5f6; --card-muted: #f0d0d6; }
+html.native-ios.native-dark .tint-rose { --card-fill: #4a3330; --card-line: #6d4450; --card-fg: #fff5f6; --card-muted: #f0d0d6; }
 html.waha-dark .tint-violet,
-html.native-ios.native-dark .tint-violet { --card-fill: #2c2440; --card-line: #564878; --card-fg: #f7f4ff; --card-muted: #ddd4f3; }
+html.native-ios.native-dark .tint-violet { --card-fill: #3c3348; --card-line: #564878; --card-fg: #f7f4ff; --card-muted: #ddd4f3; }
 html.waha-dark .kicker-oasis,
-html.native-ios.native-dark .kicker-oasis { color: #9ee0c8; }
+html.native-ios.native-dark .kicker-oasis { color: #f0b09a; }
 html.waha-dark .kicker-sky,
 html.native-ios.native-dark .kicker-sky { color: #b7d4ff; }
 html.waha-dark .kicker-sand,

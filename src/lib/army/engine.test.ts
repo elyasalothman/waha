@@ -24,10 +24,15 @@ describe("جيش الواحة — gates", () => {
 });
 
 describe("جيش الواحة — levels", () => {
-  it("has ten handcrafted levels with rising boss health", () => {
-    assert.equal(LEVELS.length, 10);
-    for (let i = 1; i < LEVELS.length; i++) assert.ok(LEVELS[i].boss.hp > LEVELS[i - 1].boss.hp);
-    for (const L of LEVELS) for (const e of L.entities) assert.ok(e.at > 20 && e.at < L.length, `${L.id}`);
+  it("has thirty levels, longer later tracks, and a boss on each", () => {
+    assert.equal(LEVELS.length, 30);
+    assert.ok(LEVELS[29].length > LEVELS[0].length);
+    for (let i = 1; i < 10; i++) assert.ok(LEVELS[i].boss.hp > LEVELS[i - 1].boss.hp);
+    for (const L of LEVELS) {
+      assert.ok(L.boss.hp > 0 && (L.boss.kind === "chief" || L.boss.kind === "fort"));
+      for (const e of L.entities) assert.ok(e.at > 20 && e.at < L.length, `${L.id}`);
+    }
+    assert.ok(LEVELS.slice(15).some((level) => level.entities.some((e) => e.type === "blade" || e.type === "wall" || e.type === "pit")));
   });
   it("every level is winnable with no upgrades by good play", () => {
     for (const L of LEVELS) {
@@ -37,7 +42,13 @@ describe("جيش الواحة — levels", () => {
     }
   });
   it("choices matter: always picking the worse gate loses from level 2 on", () => {
-    for (const L of LEVELS.slice(1)) assert.equal(simulate(L, BASE, 0).phase, "lost", `level ${L.id}`);
+    for (const L of LEVELS.slice(1, 10)) assert.equal(simulate(L, BASE, 0).phase, "lost", `level ${L.id}`);
+  });
+  it("later levels are winnable with care and lost by a greedy multiply", () => {
+    for (const L of LEVELS.filter((level) => level.id >= 20)) {
+      assert.equal(simulate(L, BASE, 1).phase, "won", `careful ${L.id}`);
+      assert.equal(simulate(L, BASE, 0.5).phase, "lost", `greedy ${L.id}`);
+    }
   });
   it("endless stages are deterministic and get harder", () => {
     assert.deepEqual(endlessStage(3, 100), endlessStage(3, 100));
@@ -78,7 +89,7 @@ describe("جيش الواحة — save", () => {
     assert.deepEqual(parseSave("{bad"), emptySave());
     const s = parseSave(JSON.stringify({ coins: -5, unlocked: 99, upgrades: { start: 999 } }));
     assert.equal(s.coins, 0);
-    assert.equal(s.unlocked, 11);
+    assert.equal(s.unlocked, 31);
     assert.equal(s.upgrades.start, 20);
   });
   it("buys upgrades only when affordable", () => {

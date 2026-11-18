@@ -220,6 +220,7 @@ export class ArmyRenderer {
   private gates: GateVis[] = [];
   private bows: BowVis[] = [];
   private fires: FireVis[] = [];
+  private hazardSpins: THREE.Object3D[] = [];
   private boss: { group: THREE.Group; body: THREE.Object3D; blade: THREE.Object3D | null; door: THREE.Object3D | null; anim: number; hit: number; dead: number; kind: "chief" | "fort" } | null = null;
   private ring!: THREE.Mesh;
   private ringT = 0;
@@ -465,6 +466,7 @@ export class ArmyRenderer {
     this.gates = [];
     this.bows = [];
     this.fires = [];
+    this.hazardSpins = [];
     this.boss = null;
     this.enemyPrev.clear();
     this.dust.clear();
@@ -597,6 +599,29 @@ export class ArmyRenderer {
       g.userData = { lo: lo + 0.2, hi: hi - 0.2, len: f.len };
       this.level.add(g);
       this.fires.push({ id: f.id, group: g, flames });
+    }
+    for (const h of s.hazards) {
+      const g = new THREE.Group();
+      const [lo, hi] = fireBand(h.side);
+      const w = Math.max(1.2, hi - lo);
+      g.position.set((lo + hi) / 2, 0, -h.at);
+      if (h.kind === "pit") {
+        const hole = new THREE.Mesh(new THREE.BoxGeometry(w, 0.25, 6), new THREE.MeshLambertMaterial({ color: 0x1a120c }));
+        hole.position.y = -0.08;
+        g.add(hole);
+      } else if (h.kind === "wall") {
+        const wall = new THREE.Mesh(new THREE.BoxGeometry(w * 0.9, 2.4, 0.7), new THREE.MeshLambertMaterial({ color: 0x8d7a62 }));
+        wall.position.y = 1.2;
+        g.add(wall);
+      } else {
+        const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 2.6, 6), new THREE.MeshLambertMaterial({ color: 0x6b6258 }));
+        pole.position.y = 1.3;
+        const blade = new THREE.Mesh(new THREE.BoxGeometry(w * 0.95, 0.12, 0.28), new THREE.MeshLambertMaterial({ color: 0xd9dde2 }));
+        blade.position.y = 1.6;
+        g.add(pole, blade);
+        this.hazardSpins.push(blade);
+      }
+      this.level.add(g);
     }
     // boss
     const bz = -(level.length + BOSS_GAP);
@@ -1185,6 +1210,7 @@ export class ArmyRenderer {
         if (b.taken > 0.6) b.group.visible = false;
       }
     }
+    for (const blade of this.hazardSpins) blade.rotation.y = t * 8;
     // fires
     for (const f of this.fires) {
       const near = Math.abs(f.group.position.z - this.camera.position.z) < 110;

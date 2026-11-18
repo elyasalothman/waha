@@ -7,7 +7,6 @@ import {
   TEXT_ON_GROUNDS,
   contrastRatio,
   hslSaturation,
-  isSage,
   parseThemeFromCss,
   relativeLuminance,
   themeColor,
@@ -40,14 +39,15 @@ const install = readFileSync(new URL("../../scripts/install-page.html", import.m
 
 const OLD_NIGHT = ["#0c0d0c", "#eceee9", "#c5d0c4", "#6a7069"];
 
-describe("waha well-night palette", () => {
-  it("keeps a calm sage well — distinctive, not a carnival", () => {
+describe("waha warm paper palette", () => {
+  it("keeps a warm paper canvas and a clay accent", () => {
     assert.equal(PALETTE_ID, "waha-daylight");
-    assert.equal(isSage(PALETTE.primary), true);
-    assert.ok(relativeLuminance(PALETTE.bg) > 0.8, "daylight background");
+    assert.equal(PALETTE.bg, "#faf9f5");
+    assert.ok(relativeLuminance(PALETTE.bg) > 0.8, "paper background");
     assert.ok(relativeLuminance(PALETTE.fg) < 0.04, "ink stays deep");
-    assert.ok(hslSaturation(PALETTE.primary) < 0.7, "primary stays dusty");
-    assert.ok(hslSaturation(PALETTE.danger) < 0.55, "status colors stay clay, not neon");
+    const primary = PALETTE.primary;
+    assert.ok(parseInt(primary.slice(1, 3), 16) > parseInt(primary.slice(3, 5), 16), "clay is warmer than green");
+    assert.ok(hslSaturation(PALETTE.danger) < 0.75, "status colors stay earthy");
   });
 
   it("keeps CSS tokens, chrome, and the mark on the same well", () => {
@@ -58,6 +58,7 @@ describe("waha well-night palette", () => {
     assert.match(css, /color-scheme:\s*light/);
     assert.match(root, new RegExp(`data-palette="${PALETTE_ID}"`));
     assert.match(root, new RegExp(`theme-color", content: "${PALETTE.bg}"`));
+    assert.match(root, /href: "\/waha-icon-180\.png"/);
     assert.match(manifest, new RegExp(`"theme_color": "${PALETTE.bg}"`));
     assert.match(manifest, new RegExp(`"background_color": "${PALETTE.bg}"`));
     assert.match(favicon, /<rect[^>]+fill="#0b0c0b"/);

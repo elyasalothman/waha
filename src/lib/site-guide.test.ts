@@ -17,10 +17,10 @@ const hrefs = (query: string, hideMoney = false) => {
 test("library and research questions resolve to real pages", () => {
   const both = hrefs("وديي أقرأ كتاب في واحة، وين المكتبة ومركز الأبحاث؟");
   assert.ok(both.includes("/books"));
-  assert.ok(both.includes("https://lab.alhajda.com/research/"));
+  assert.ok(both.includes("https://alhajda.com/research/"));
   assert.deepEqual(hrefs("وين المكتبه"), ["/books"]);
   assert.deepEqual(hrefs("وين البث المباشر"), ["/live"]);
-  assert.deepEqual(hrefs("مركز الابحاث"), ["https://lab.alhajda.com/research/"]);
+  assert.deepEqual(hrefs("مركز الابحاث"), ["https://alhajda.com/research/"]);
   assert.deepEqual(hrefs("وين مفتاح المصعد؟"), ["/books/library/midad-elevator-key"]);
   assert.deepEqual(hrefs("ابي قصة الدلّة الغائبة"), ["/books/stories/al-dalla"]);
   assert.ok(hrefs("ورقة روبوت الهجدة").includes("https://lab.alhajda.com/research/humanoid/"));
@@ -60,7 +60,9 @@ test("malicious urls are never destinations", () => {
   assert.equal(isAllowlistedHref("javascript:alert(1)"), false);
   assert.equal(isAllowlistedHref("https://evil.example"), false);
   assert.equal(isAllowlistedHref("//lab.alhajda.com/research/"), false);
-  assert.equal(isAllowlistedHref("https://lab.alhajda.com/research/"), true);
+  assert.equal(isAllowlistedHref("https://alhajda.com/research/"), true);
+  assert.equal(isAllowlistedHref("https://alhajda.com/research/bitcoin/"), true);
+  assert.equal(isAllowlistedHref("https://lab.alhajda.com/research/humanoid/"), true);
   assert.equal(isAllowlistedHref("/books"), true);
 });
 
@@ -76,7 +78,7 @@ test("explicit place questions stay on the local registry", () => {
   assert.ok(library.guide.mode === "navigate" && library.guide.matches.some((item) => item.href === "/books"));
   assert.ok(
     library.guide.mode === "navigate" &&
-      library.guide.matches.some((item) => item.href === "https://lab.alhajda.com/research/"),
+      library.guide.matches.some((item) => item.href === "https://alhajda.com/research/"),
   );
 
   const book = planGuideTurn("وين مفتاح المصعد؟");

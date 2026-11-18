@@ -21,7 +21,7 @@ export const LEAP_SERVICES = [
     title: "مركز الأبحاث",
     group: "تعلّم",
     icon: "BookOpen",
-    href: "https://lab.alhajda.com/research/",
+    href: "https://alhajda.com/research/",
     words: "ابحاث أبحاث دراسات",
   },
   {

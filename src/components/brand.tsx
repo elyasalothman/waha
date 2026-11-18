@@ -1,7 +1,7 @@
 import { cn } from "@/lib/cn";
 
 export function WahaMark({ className }: { className?: string }) {
-  return <img src="/icon-192.png" className={cn("size-8 rounded-md", className)} alt="" aria-hidden="true" />;
+  return <img src="/waha-icon-180.png" className={cn("size-8 rounded-xl", className)} alt="" aria-hidden="true" />;
 }
 
 export function WahaWordmark({ lang }: { lang: "ar" | "en" }) {

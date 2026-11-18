@@ -5,7 +5,7 @@ export const SAVE_KEY = "waha:army:v1";
 
 export type ArmySave = {
   coins: number;
-  unlocked: number; // highest playable level (1..11, 11 = endless open)
+  unlocked: number; // highest playable level (1..31, 31 = endless open)
   upgrades: Upgrades;
   endlessBest: number;
   bestArmy: number;
@@ -35,7 +35,7 @@ export function parseSave(raw: string | null): ArmySave {
     const j = JSON.parse(raw) as Partial<ArmySave> & { upgrades?: Partial<Upgrades> };
     return {
       coins: int(j.coins, 0, 1e9, 0),
-      unlocked: int(j.unlocked, 1, 11, 1),
+      unlocked: int(j.unlocked, 1, 31, 1),
       upgrades: {
         start: int(j.upgrades?.start, 0, UPGRADE_MAX.start, 0),
         rate: int(j.upgrades?.rate, 0, UPGRADE_MAX.rate, 0),

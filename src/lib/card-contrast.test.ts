@@ -16,19 +16,21 @@ function contrast(foreground: string, background: string) {
 
 test("home card text meets AA on light fills and on both dark appearances", () => {
   const pairs: [string, string][] = [
-    ["#192c2a", "#ffffff"],
-    ["#3e534e", "#ffffff"],
-    ["#192c2a", "#fff4e0"],
-    ["#7a4e0d", "#fff4e0"],
-    ["#f4f7f2", "#24302b"],
-    ["#d5e2da", "#24302b"],
-    ["#fbf6ec", "#3a301c"],
-    ["#ead9b8", "#3a301c"],
-    ["#f0d7a4", "#3a301c"],
-    ["#f3faf6", "#17352c"],
-    ["#f3f7ff", "#1a2c44"],
-    ["#fff5f6", "#3a2428"],
-    ["#f7f4ff", "#2c2440"],
+    ["#2c241c", "#faf9f5"],
+    ["#5c5348", "#faf9f5"],
+    ["#b55238", "#faf9f5"],
+    ["#ffffff", "#b55238"],
+    ["#2c241c", "#fbf6ea"],
+    ["#7a4e0d", "#fbf6ea"],
+    ["#faf6f0", "#3a342e"],
+    ["#e6dccf", "#3a342e"],
+    ["#fbf6ec", "#4a3c2c"],
+    ["#ead9b8", "#4a3c2c"],
+    ["#f0d7a4", "#4a3c2c"],
+    ["#fbf4ee", "#4a382e"],
+    ["#f3f7ff", "#2e3a48"],
+    ["#fff5f6", "#4a3330"],
+    ["#f7f4ff", "#3c3348"],
   ];
   for (const [foreground, background] of pairs) {
     assert.ok(
