@@ -121,4 +121,4 @@ section { width: 100%; max-width: 26rem; text-align: start; }
 label { display: block; padding: 12px 0; }
 button, .retry { display: inline-block; min-height: 44px; padding: 12px 16px; margin: 6px; border: 1px solid var(--muted); border-radius: 12px; color: var(--fg); background: var(--bg); font: inherit; }
 textarea { box-sizing: border-box; width: 100%; padding: 12px; border-radius: 12px; font: inherit; background: var(--bg); color: var(--fg); }
-@media (prefers-color-scheme: light) { :root { color-scheme: light; --bg: #faf9f5; --fg: #2c241c; --muted: #5c5348; --primary: #b55238; } }
+@media (prefers-color-scheme: light) { :root { color-scheme: light; --bg: #fafafa; --fg: #1a1a1a; --muted: #595959; --primary: #b55238; } }

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <rect width="640" height="360" fill="#fafafa"/>
+  <rect x="70" y="90" width="150" height="180" rx="16" fill="#1a1a1a"/>
+  <rect x="245" y="90" width="150" height="180" rx="16" fill="#b55238"/>
+  <rect x="420" y="90" width="150" height="180" rx="16" fill="#1a1a1a"/>
+  <text x="145" y="195" text-anchor="middle" font-size="72" fill="#fafafa" font-family="sans-serif">ك</text>
+  <text x="320" y="195" text-anchor="middle" font-size="72" fill="#ffffff" font-family="sans-serif">ل</text>
+  <text x="495" y="195" text-anchor="middle" font-size="72" fill="#fafafa" font-family="sans-serif">م</text>
+</svg>

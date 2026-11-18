@@ -41,7 +41,7 @@ export const Route = createRootRoute({
       { name: "description", content: "واحتك الرقمية — صلاة، أسماء، ضريبة، بلوت، وأدوات يومك" },
       { name: "application-name", content: PWA_NAME },
       { name: "apple-mobile-web-app-title", content: PWA_NAME },
-      { name: "theme-color", content: "#faf9f5" },
+      { name: "theme-color", content: "#fafafa" },
       { property: "og:image", content: "https://waha.hajdah.com/waha-icon-180.png" },
       { property: "og:image:alt", content: "أيقونة واحة" },
       { name: "apple-mobile-web-app-capable", content: "yes" },

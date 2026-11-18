@@ -16,6 +16,40 @@ export const CLASSIC_IDS = [
   "reaction",
 ] as const;
 
+/** Official games on games.alhajda.com. Covers are screenshots of those pages. */
+export const YARD_GAMES = [
+  {
+    id: "matam-alwaha",
+    href: "https://games.alhajda.com/matam-alwaha/",
+    cover: "/games/matam-alwaha.png",
+    title: { ar: "مطعم الواحة", en: "Oasis restaurant" },
+    blurb: { ar: "كشك الواحة على باحة الألعاب.", en: "The oasis kiosk on the games yard." },
+  },
+  {
+    id: "mazraat-alwaha",
+    href: "https://games.alhajda.com/mazraat-alwaha/",
+    cover: "/games/mazraat-alwaha.png",
+    title: { ar: "مزرعة الواحة", en: "Oasis farm" },
+    blurb: { ar: "ازرع البذور على باحة الألعاب.", en: "Plant the seeds on the games yard." },
+  },
+  {
+    id: "ghazw-alabraj",
+    href: "https://games.alhajda.com/ghazw-alabraj/",
+    cover: "/games/ghazw-alabraj.png",
+    title: { ar: "غزو الأبراج", en: "Tower raid" },
+    blurb: { ar: "حملة الأبراج على باحة الألعاب.", en: "The tower campaign on the games yard." },
+  },
+] as const;
+
+export const GAME_COVERS: Record<string, string> = {
+  kalima: "/games/covers/kalima.svg",
+  memory: "/games/covers/memory.svg",
+  snake: "/games/covers/snake.svg",
+  xo: "/games/covers/xo.svg",
+  merge2048: "/games/covers/merge2048.svg",
+  reaction: "/games/covers/reaction.svg",
+};
+
 export const GAME_DOORS = [
   {
     id: "luma",

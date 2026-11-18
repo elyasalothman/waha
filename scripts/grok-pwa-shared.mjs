@@ -186,8 +186,8 @@ export function renderWebManifest(_hostHeader) {
       start_url: "/",
       scope: "/",
       display: "standalone",
-      background_color: "#faf9f5",
-      theme_color: "#faf9f5",
+      background_color: "#fafafa",
+      theme_color: "#fafafa",
       icons: PWA_ICON_HREFS,
       description: "مساحة عربية للقراءة والأدوات والألعاب ومحسن في يومك",
       categories: ["productivity", "education", "utilities"],
@@ -217,7 +217,7 @@ export function grokPwaHeadTags(appName = DEFAULT_APP_NAME) {
       "apple-mobile-web-app-status-bar-style",
       '<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">',
     ],
-    ["theme-color", '<meta name="theme-color" content="#faf9f5">'],
+    ["theme-color", '<meta name="theme-color" content="#fafafa">'],
   ];
 }
 
