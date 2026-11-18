@@ -1,4 +1,5 @@
 import { MohsenVoice } from "./mohsen-voice";
+import { MohsenDesk } from "./mohsen-desk";
 import { useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -69,6 +70,7 @@ export function MohsenChat({
     [answer, setAnswer] = useState(""),
     [drawer, setDrawer] = useState(false),
     [toolsOpen, setToolsOpen] = useState(false),
+    [deskOpen, setDeskOpen] = useState(false),
     [viewport, setViewport] = useState({ height: 0, offsetTop: 0 });
   const ctl = useRef<AbortController | null>(null),
     upload = useRef<HTMLInputElement>(null),
@@ -551,6 +553,7 @@ export function MohsenChat({
         }}
         className="relative shrink-0 border-t border-border bg-bg px-3 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom,0px))]"
       >
+        {deskOpen ? <MohsenDesk /> : null}
         {mode !== "chat" && (
           <p className="mb-2 flex items-center gap-2 text-sm">
             <span>{MODES.find((item) => item.id === mode)?.label}</span>
@@ -643,6 +646,9 @@ export function MohsenChat({
               ))}
               <button type="button" className={btn} onClick={() => upload.current?.click()}>
                 إرفاق
+              </button>
+              <button type="button" className={btn} aria-pressed={deskOpen} onClick={() => setDeskOpen((open) => !open)}>
+                صفحة عامة
               </button>
             </div>
             <p className="px-2 pt-2 text-xs leading-6 text-muted">

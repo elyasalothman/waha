@@ -50,6 +50,7 @@ import { Route as ApiBooksRouteImport } from './routes/api.books'
 import { Route as ApiHomeWeatherRouteImport } from './routes/api.home-weather'
 import { Route as ApiMarketRouteImport } from './routes/api.market'
 import { Route as ApiMohsenRouteImport } from './routes/api.mohsen'
+import { Route as ApiMohsenDeskRouteImport } from './routes/api.mohsen-desk'
 import { Route as ApiServiceDataRouteImport } from './routes/api.service-data'
 import { Route as AppIdRouteImport } from './routes/app.$id'
 import { Route as BooksAlhajdaRouteImport } from './routes/books_.alhajda'
@@ -272,6 +273,11 @@ const ApiMohsenRoute = ApiMohsenRouteImport.update({
   path: '/api/mohsen',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiMohsenDeskRoute = ApiMohsenDeskRouteImport.update({
+  id: '/api/mohsen-desk',
+  path: '/api/mohsen-desk',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiServiceDataRoute = ApiServiceDataRouteImport.update({
   id: '/api/service-data',
   path: '/api/service-data',
@@ -395,6 +401,7 @@ export interface FileRoutesByFullPath {
   '/api/home-weather': typeof ApiHomeWeatherRoute
   '/api/market': typeof ApiMarketRoute
   '/api/mohsen': typeof ApiMohsenRoute
+  '/api/mohsen-desk': typeof ApiMohsenDeskRoute
   '/api/service-data': typeof ApiServiceDataRoute
   '/app/$id': typeof AppIdRoute
   '/books/alhajda': typeof BooksAlhajdaRoute
@@ -453,6 +460,7 @@ export interface FileRoutesByTo {
   '/api/home-weather': typeof ApiHomeWeatherRoute
   '/api/market': typeof ApiMarketRoute
   '/api/mohsen': typeof ApiMohsenRoute
+  '/api/mohsen-desk': typeof ApiMohsenDeskRoute
   '/api/service-data': typeof ApiServiceDataRoute
   '/app/$id': typeof AppIdRoute
   '/books/alhajda': typeof BooksAlhajdaRoute
@@ -512,6 +520,7 @@ export interface FileRoutesById {
   '/api/home-weather': typeof ApiHomeWeatherRoute
   '/api/market': typeof ApiMarketRoute
   '/api/mohsen': typeof ApiMohsenRoute
+  '/api/mohsen-desk': typeof ApiMohsenDeskRoute
   '/api/service-data': typeof ApiServiceDataRoute
   '/app/$id': typeof AppIdRoute
   '/books_/alhajda': typeof BooksAlhajdaRoute
@@ -573,6 +582,7 @@ export interface FileRouteTypes {
     | '/api/home-weather'
     | '/api/market'
     | '/api/mohsen'
+    | '/api/mohsen-desk'
     | '/api/service-data'
     | '/app/$id'
     | '/books/alhajda'
@@ -631,6 +641,7 @@ export interface FileRouteTypes {
     | '/api/home-weather'
     | '/api/market'
     | '/api/mohsen'
+    | '/api/mohsen-desk'
     | '/api/service-data'
     | '/app/$id'
     | '/books/alhajda'
@@ -689,6 +700,7 @@ export interface FileRouteTypes {
     | '/api/home-weather'
     | '/api/market'
     | '/api/mohsen'
+    | '/api/mohsen-desk'
     | '/api/service-data'
     | '/app/$id'
     | '/books_/alhajda'
@@ -749,6 +761,7 @@ export interface RootRouteChildren {
   ApiHomeWeatherRoute: typeof ApiHomeWeatherRoute
   ApiMarketRoute: typeof ApiMarketRoute
   ApiMohsenRoute: typeof ApiMohsenRoute
+  ApiMohsenDeskRoute: typeof ApiMohsenDeskRoute
   ApiServiceDataRoute: typeof ApiServiceDataRoute
   AppIdRoute: typeof AppIdRoute
   BooksAlhajdaRoute: typeof BooksAlhajdaRoute
@@ -1052,6 +1065,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiMohsenRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/mohsen-desk': {
+      id: '/api/mohsen-desk'
+      path: '/api/mohsen-desk'
+      fullPath: '/api/mohsen-desk'
+      preLoaderRoute: typeof ApiMohsenDeskRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/service-data': {
       id: '/api/service-data'
       path: '/api/service-data'
@@ -1235,6 +1255,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiHomeWeatherRoute: ApiHomeWeatherRoute,
   ApiMarketRoute: ApiMarketRoute,
   ApiMohsenRoute: ApiMohsenRoute,
+  ApiMohsenDeskRoute: ApiMohsenDeskRoute,
   ApiServiceDataRoute: ApiServiceDataRoute,
   AppIdRoute: AppIdRoute,
   BooksAlhajdaRoute: BooksAlhajdaRoute,
