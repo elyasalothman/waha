@@ -1,16 +1,21 @@
 import { useSettings } from "@/store/settings-store";
 import { ReaderControls } from "./reader-controls";
 import { Link } from "@tanstack/react-router";
-import { useEffect, useMemo, useRef, useState, type MouseEvent } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent } from "react";
 import { BookmarkPlus, Minus, Plus, List } from "lucide-react";
 import {
   ALHAJDA_READING_KEY,
+  LINE_HEIGHT,
   chapterForAnchor,
   curatedReading,
   searchCuratedBook,
   type CuratedBook,
+  type CuratedFlow,
+  type CuratedLineHeight,
   type CuratedPosition,
 } from "@/lib/books/curated";
+import edition from "@/lib/books/alhajda/edition.json";
+import { pageForAnchor, readingMinutes, sectionIds } from "@/lib/books/alhajda/reading";
 import { useAppStore } from "@/store/app-store";
 import bookSource from "@/lib/books/alhajda/manifest.json";
 import { firstVisibleReadingAnchor, useReaderLayout } from "./reader-layout";
@@ -19,6 +24,28 @@ import "./reader-layout.css";
 
 // This is the reviewed, build-time book asset, never HTML extracted from user PDFs.
 const book = bookSource as CuratedBook;
+
+function withPreview(saved: ReturnType<typeof curatedReading>) {
+  const params = new URLSearchParams(window.location.search);
+  const theme = params.get("theme");
+  const flow = params.get("flow");
+  const leading = params.get("leading");
+  const chapter = Number(params.get("chapter"));
+  return curatedReading(
+    {
+      ...saved,
+      ...(theme === "paper" || theme === "warm" || theme === "night" ? { theme } : {}),
+      ...(flow === "scroll" || flow === "page" ? { flow } : {}),
+      ...(leading === "compact" || leading === "comfortable" || leading === "relaxed"
+        ? { lineHeight: leading }
+        : {}),
+      ...(params.get("focus") === "1" ? { focus: true } : {}),
+      ...(Number.isInteger(chapter) && chapter >= 0 ? { chapter, anchor: null } : {}),
+    },
+    book,
+  );
+}
+
 const control =
   "inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-lg border border-current/25 px-3 py-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-40";
 
@@ -103,8 +130,9 @@ export default function AlhajdaReader() {
             },
         book,
       );
-      setState(restored);
-      pending.current = restored;
+      const preview = withPreview(restored);
+      setState(preview);
+      pending.current = preview;
     } catch {
       setWarning("تعذّر استعادة موضع القراءة. يمكنك متابعة القراءة من البداية.");
     }
@@ -157,7 +185,7 @@ export default function AlhajdaReader() {
       if (pending.current === position) pending.current = null;
     });
     return () => cancelAnimationFrame(frame);
-  }, [ready, state.chapter, state.fontSize, scrollTo, html]);
+  }, [ready, state.chapter, state.fontSize, state.lineHeight, state.flow, scrollTo, html]);
 
   useEffect(() => {
     if (!ready || !article.current) return;
@@ -169,6 +197,7 @@ export default function AlhajdaReader() {
         if (pending.current) return;
         const nodes = root.querySelectorAll<HTMLElement>("[data-reader-anchor], p[id], h2[id]");
         const { top, bottom } = getViewport();
+        if (latest.current.flow === "page") return;
         const visible = firstVisibleReadingAnchor(nodes, top, bottom);
         if (visible)
           setState((current) =>
@@ -218,20 +247,53 @@ export default function AlhajdaReader() {
       fontSize: Math.min(40, Math.max(18, current.fontSize + delta)),
     }));
   }
+  function chooseFlow(flow: CuratedFlow) {
+    const anchor = flow === "page" && html ? pageForAnchor(html, state.anchor) : state.anchor;
+    pending.current = { ...state, anchor };
+    setState((current) => ({ ...current, flow, anchor }));
+  }
   const hits = useMemo(() => searchCuratedBook(searchBook || book, query), [query, searchBook]);
+  const pages = useMemo(() => (html ? sectionIds(html) : []), [html]);
+  const activePage = html && state.flow === "page" ? pageForAnchor(html, state.anchor) : null;
+  const pageIndex = activePage ? Math.max(0, pages.indexOf(activePage)) : 0;
+  const chapterMinutes = readingMinutes(chapter.words);
+  const proseIds = new Set(["front", ...edition.chapters.map((row) => row.id)]);
+  const bookMinutes = readingMinutes(
+    book.chapters.reduce((sum, item) => sum + (proseIds.has(item.id) ? (item.words ?? 0) : 0), 0),
+  );
+  useLayoutEffect(() => {
+    const root = article.current;
+    if (!root) return;
+    const sections = [...root.querySelectorAll<HTMLElement>("section.page")];
+    for (const section of sections) {
+      section.classList.toggle(
+        "is-reading-page",
+        state.flow === "page" && section.id === activePage,
+      );
+    }
+  }, [state.flow, activePage, html, state.chapter]);
   const colors =
     state.theme === "night"
       ? { backgroundColor: "#28231e", color: "#f5ead6" }
       : state.theme === "warm"
-        ? { backgroundColor: "#f7edda", color: "#30271f" }
+        ? { backgroundColor: "#f4e4c4", color: "#3b2f1e" }
         : { backgroundColor: "#fffef9", color: "#242b28" };
+  const themeStyle = {
+    ...colors,
+    "--alhajda-leading": String(LINE_HEIGHT[state.lineHeight]),
+    "--alhajda-ink": colors.color,
+    "--alhajda-paper": colors.backgroundColor,
+  } as CSSProperties;
   return (
     <section
       ref={reader}
       className="curated-reader reader-layout mx-auto max-w-4xl rounded-2xl border border-current/10 p-4 sm:p-7"
-      style={colors}
+      style={themeStyle}
       data-curated-book="alhajda"
       data-reader-theme={state.theme}
+      data-flow={state.flow}
+      data-focus={state.focus ? "on" : "off"}
+      data-line-height={state.lineHeight}
     >
       <ReaderControls visible={controlsVisible} onToggle={toggleControls} />
       <Link to="/books" className="inline-flex min-h-11 items-center text-sm underline">
@@ -246,12 +308,26 @@ export default function AlhajdaReader() {
       <p className="mt-3 text-lg" dir="rtl">
         {book.subtitle}
       </p>
-      <p className="mt-3 text-xs leading-relaxed opacity-70">
+      <p className="reader-secondary mt-3 text-xs leading-relaxed opacity-70">
         {L(
-          "قراءة عربية متصلة مع الصور والمراجع وحقوقها. حجم الخط وموضع القراءة محفوظان على هذا المتصفح فقط.",
-          "Read the Arabic text with its illustrations, references and credits. Text size and reading position are saved only in this browser.",
+          "قراءة عربية مع الصور والمراجع. حجم الخط والمسافة والخلفية وطريقة العرض وموضع القراءة تُحفظ على هذا المتصفح فقط.",
+          "Arabic text with its illustrations and references. Type size, spacing, theme, reading flow and position stay on this browser only.",
         )}
       </p>
+      {bookMinutes !== null && (
+        <p className="mt-2 text-sm" data-reading-time="book">
+          {L(
+            `نحو ${bookMinutes} دقيقة للكتاب كله${chapterMinutes !== null ? ` · ${chapterMinutes} لهذا القسم` : ""}`,
+            `About ${bookMinutes} min for the book${chapterMinutes !== null ? ` · ${chapterMinutes} for this section` : ""}`,
+          )}
+          <span className="mt-1 block text-xs opacity-70">
+            {L(
+              "تقدير قراءة هادئة بنحو 180 كلمة في الدقيقة، لا قياسًا مضبوطًا.",
+              "A calm-reading estimate of about 180 words a minute, not a measured rate.",
+            )}
+          </span>
+        </p>
+      )}
       <button
         type="button"
         className={`${control} mt-5`}
@@ -287,6 +363,25 @@ export default function AlhajdaReader() {
         >
           <Plus className="size-4" />
         </button>
+        <label className="sr-only" htmlFor="alhajda-leading">
+          {L("مسافة الأسطر", "Line spacing")}
+        </label>
+        <select
+          id="alhajda-leading"
+          className={`${control} bg-transparent`}
+          value={state.lineHeight}
+          onChange={(event) => {
+            pending.current = state;
+            setState({
+              ...state,
+              lineHeight: event.target.value as CuratedLineHeight,
+            });
+          }}
+        >
+          <option value="compact">{L("أسطر قريبة", "Compact")}</option>
+          <option value="comfortable">{L("أسطر مريحة", "Comfortable")}</option>
+          <option value="relaxed">{L("أسطر واسعة", "Relaxed")}</option>
+        </select>
         <label className="sr-only" htmlFor="alhajda-theme">
           {L("خلفية القراءة", "Reading theme")}
         </label>
@@ -298,10 +393,41 @@ export default function AlhajdaReader() {
             setState({ ...state, theme: event.target.value as typeof state.theme })
           }
         >
-          <option value="paper">{L("ورق", "Paper")}</option>
-          <option value="warm">{L("دافئ", "Warm")}</option>
-          <option value="night">{L("ليل", "Night")}</option>
+          <option value="paper">{L("فاتح", "Light")}</option>
+          <option value="warm">{L("سيبيا", "Sepia")}</option>
+          <option value="night">{L("داكن", "Dark")}</option>
         </select>
+        <label className="sr-only" htmlFor="alhajda-chapter">
+          {L("الانتقال إلى فصل", "Jump to a chapter")}
+        </label>
+        <select
+          id="alhajda-chapter"
+          className={`${control} max-w-full bg-transparent`}
+          value={state.chapter}
+          onChange={(event) => go({ chapter: Number(event.target.value), anchor: null })}
+        >
+          {book.chapters.map((item, index) => (
+            <option key={item.id} value={index}>
+              {item.title}
+            </option>
+          ))}
+        </select>
+        <button
+          type="button"
+          className={control}
+          aria-pressed={state.flow === "page"}
+          onClick={() => chooseFlow(state.flow === "page" ? "scroll" : "page")}
+        >
+          {state.flow === "page" ? L("صفحات", "Pages") : L("تمرير", "Scroll")}
+        </button>
+        <button
+          type="button"
+          className={control}
+          aria-pressed={state.focus}
+          onClick={() => setState((current) => ({ ...current, focus: !current.focus }))}
+        >
+          {L("تركيز", "Focus")}
+        </button>
         <button
           type="button"
           className={control}
@@ -338,8 +464,8 @@ export default function AlhajdaReader() {
           {L("حفظ موضع", "Bookmark")}
         </button>
         {book.pdfUrl && (
-          <a href={book.pdfUrl} className={control} download>
-            {L("تنزيل PDF", "Download PDF")}
+          <a href={book.pdfUrl} className={`${control} alhajda-pdf`} download="الهجدة.pdf">
+            {L("تحميل PDF", "Download PDF")}
           </a>
         )}
       </div>
@@ -353,19 +479,34 @@ export default function AlhajdaReader() {
           aria-label={L("فهرس الكتاب", "Book contents")}
           className="mt-4 grid gap-2 rounded-xl border border-current/20 p-3"
         >
-          {book.chapters.map((item, index) => (
-            <button
-              key={item.id}
-              type="button"
-              className="min-h-11 rounded-lg px-3 py-2 text-start hover:bg-current/5"
-              aria-current={index === state.chapter ? "page" : undefined}
-              onClick={() => go({ chapter: index, anchor: null })}
-            >
-              {item.title}
-            </button>
-          ))}
+          {book.chapters.map((item, index) => {
+            const guide = edition.chapters.find((row) => row.id === item.id);
+            const minutes = readingMinutes(item.words);
+            return (
+              <button
+                key={item.id}
+                type="button"
+                className="min-h-11 rounded-lg px-3 py-2 text-start hover:bg-current/5"
+                aria-current={index === state.chapter ? "page" : undefined}
+                onClick={() => go({ chapter: index, anchor: guide ? `alhajda-${item.id}-guide` : null })}
+              >
+                <span className="block">{item.title}</span>
+                {guide && (
+                  <span className="mt-1 block text-xs opacity-70" dir="rtl">
+                    {guide.question}
+                  </span>
+                )}
+                {minutes !== null && (
+                  <span className="mt-1 block text-xs opacity-70">
+                    {L(`نحو ${minutes} دقيقة`, `About ${minutes} min`)}
+                  </span>
+                )}
+              </button>
+            );
+          })}
         </nav>
       )}
+      <div className="reader-secondary">
       <label htmlFor="alhajda-search" className="mt-5 block text-sm">
         {L("بحث في الكتاب", "Search the book")}
       </label>
@@ -428,6 +569,7 @@ export default function AlhajdaReader() {
           ))}
         </ul>
       )}
+      </div>
       <nav
         className="my-6 flex flex-wrap items-center justify-between gap-3"
         aria-label={L("أقسام الكتاب", "Book sections")}
@@ -450,6 +592,32 @@ export default function AlhajdaReader() {
           {L("القسم التالي", "Next section")}
         </button>
       </nav>
+      {state.flow === "page" && pages.length > 0 && (
+        <nav
+          className="mb-4 flex flex-wrap items-center justify-between gap-3"
+          aria-label={L("صفحات هذا القسم", "Pages in this section")}
+        >
+          <button
+            type="button"
+            className={control}
+            disabled={pageIndex <= 0}
+            onClick={() => go({ chapter: state.chapter, anchor: pages[pageIndex - 1] ?? null })}
+          >
+            {L("الصفحة السابقة", "Previous page")}
+          </button>
+          <span className="text-sm tabular-nums">
+            {pageIndex + 1} / {pages.length}
+          </span>
+          <button
+            type="button"
+            className={control}
+            disabled={pageIndex >= pages.length - 1}
+            onClick={() => go({ chapter: state.chapter, anchor: pages[pageIndex + 1] ?? null })}
+          >
+            {L("الصفحة التالية", "Next page")}
+          </button>
+        </nav>
+      )}
       {loadError && (
         <p role="alert">
           تعذّر تحميل الفصل.{" "}
@@ -480,7 +648,7 @@ export default function AlhajdaReader() {
           lang="ar"
           dir="rtl"
           className="alhajda-content reader-content"
-          style={{ fontSize: `${state.fontSize}px` }}
+          style={{ fontSize: `${state.fontSize}px`, lineHeight: LINE_HEIGHT[state.lineHeight] }}
           onClick={internalLink}
           dangerouslySetInnerHTML={{ __html: html }}
         />

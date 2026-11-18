@@ -3,7 +3,7 @@
 @font-face{font-family:AlhajdaNaskh;src:url('/books/alhajda/assets/fonts/NotoNaskhArabic-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
 @font-face{font-family:AlhajdaKufi;src:url('/books/alhajda/assets/fonts/NotoKufiArabic-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
 @font-face{font-family:AlhajdaKufi;src:url('/books/alhajda/assets/fonts/NotoKufiArabic-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
-.alhajda-book{--accent:#194bbc;--tint:#dce7f1;--ink:var(--alhajda-ink,#172528);--paper:var(--alhajda-paper,#fffaf1);direction:rtl;text-align:right;color:var(--ink);font-family:AlhajdaNaskh,serif;font-size:var(--alhajda-font-size,inherit);line-height:1.95;overflow-wrap:anywhere;width:100%;max-width:100%;min-width:0}
+.alhajda-book{--accent:#194bbc;--tint:#dce7f1;--ink:var(--alhajda-ink,#172528);--paper:var(--alhajda-paper,#fffaf1);direction:rtl;text-align:right;color:var(--ink);font-family:AlhajdaNaskh,serif;font-size:var(--alhajda-font-size,inherit);line-height:var(--alhajda-leading,1.95);overflow-wrap:anywhere;width:100%;max-width:100%;min-width:0}
 .alhajda-book *{box-sizing:border-box}.alhajda-book [id]{scroll-margin-top:6rem}.alhajda-book .page{width:auto;height:auto;min-height:0;max-width:100%;margin:0;padding:0;position:static;overflow:visible;break-inside:auto;page-break-after:auto}.alhajda-book .page+.page{margin-block-start:2em}.alhajda-book .page.continued{margin-block-start:0}.alhajda-book .page-content,.alhajda-book .prose{max-width:100%;min-width:0}
 .alhajda-book .C1{--accent:#194bbc;--tint:#dce7f1}.alhajda-book .C2{--accent:#6a3c82;--tint:#e8dfea}.alhajda-book .C3{--accent:#087481;--tint:#d5e9e9}.alhajda-book .C4{--accent:#356348;--tint:#dde6d5}.alhajda-book .C5{--accent:#9b4a25;--tint:#f0ddc5}.alhajda-book .C6{--accent:#993f48;--tint:#eddbda}
 .alhajda-book p{font:inherit;margin:0 0 1.1em}.alhajda-book h1,.alhajda-book h2,.alhajda-book h3,.alhajda-book h4{font-family:AlhajdaKufi,sans-serif;font-weight:700;line-height:1.75;margin:1em 0 .8em;overflow-wrap:anywhere}.alhajda-book h1{font-size:2.5em}.alhajda-book h2{font-size:1.45em}.alhajda-book h3{font-size:1.05em}.alhajda-book h4{font-size:1em}
@@ -117,3 +117,18 @@
 .alhajda-book .evidence-graphic{width:175mm;min-width:175mm;max-width:none;margin:0;--ink:#172e32;--paper:#f4efe5;overflow:visible}
 .alhajda-book .evidence-graphic .eg-caption{max-width:100%;font-size:11pt}
 .alhajda-book .ozone-legend{height:auto;width:min(100%,429px);object-fit:contain;margin:1rem auto}
+.alhajda-book .edition-ornament{width:min(100%,280px);height:auto;display:block;margin:.3em auto .8em}
+.alhajda-book.edition-past{--accent:#9c3b2e}
+.alhajda-book.edition-present{--accent:#1f4f8a}
+.alhajda-book .benefit-line,.alhajda-book .exercise-box,.alhajda-book .today-box,.alhajda-book .key-idea,.alhajda-book .before-after{border:1px solid color-mix(in srgb,currentColor 22%,transparent);border-inline-start:4px solid var(--accent,#9c3b2e);padding:.9em 1em;margin:1em 0 1.2em;border-radius:.75rem}
+.alhajda-book .before-after .label,.alhajda-book .benefit-line strong{font-family:AlhajdaKufi,sans-serif}
+.alhajda-book .pull-quote{margin:1.2em 0;padding-inline-start:.8em;border-inline-start:3px solid #a68445;font-size:1.15em}
+.alhajda-book .source-note,.alhajda-book .needs-source{font-size:.86em;line-height:1.8}
+.alhajda-book .checklist{padding-inline-start:1.2em}
+.alhajda-book .checklist li{margin:.35em 0}
+.alhajda-book .chapter-guide{border:1px solid color-mix(in srgb,currentColor 22%,transparent);border-inline-start:4px solid var(--accent);padding:1em 1.1em;margin:1.1em 0 1.6em;background:color-mix(in srgb,var(--accent) 8%,transparent);border-radius:.75rem}
+.alhajda-book .chapter-guide .guide-kicker,.alhajda-book .guide-note{font-family:AlhajdaKufi,sans-serif;font-size:.82em;line-height:1.8}
+.alhajda-book .chapter-guide h3{margin:.7em 0 .35em}
+.alhajda-book .chapter-guide ul{margin:.2em 0 .8em;padding-inline-start:1.2em}
+.alhajda-book .chapter-guide li{margin:.35em 0}
+.alhajda-book .guide-note{opacity:.82}

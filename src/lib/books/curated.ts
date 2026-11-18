@@ -7,6 +7,8 @@ export type CuratedChapter = {
   plainText: string;
   anchorIds: string[];
   searchBlocks?: { id: string; text: string }[];
+  /** Arabic and numeric words in the chapter, used only for a reading-time estimate. */
+  words?: number;
 };
 export type CuratedBook = {
   title: string;
@@ -18,13 +20,29 @@ export type CuratedBook = {
   anchorToChapter: Record<string, number>;
 };
 export type CuratedPosition = { chapter: number; anchor: string | null };
+export type CuratedLineHeight = "compact" | "comfortable" | "relaxed";
+export type CuratedFlow = "scroll" | "page";
 export type CuratedReading = CuratedPosition & {
   version: 1;
   fontSize: number;
   theme: "paper" | "warm" | "night";
+  lineHeight: CuratedLineHeight;
+  flow: CuratedFlow;
+  focus: boolean;
   bookmarks: CuratedPosition[];
 };
 export const ALHAJDA_READING_KEY = "waha:curated:alhajda:edition1";
+/** Comfortable Arabic prose, an estimate rather than a measured rate. */
+export const ARABIC_READING_WORDS_PER_MINUTE = 180;
+export const LINE_HEIGHT: Record<CuratedLineHeight, number> = {
+  compact: 1.7,
+  comfortable: 1.95,
+  relaxed: 2.4,
+};
+
+function lineHeightOf(raw: unknown): CuratedLineHeight {
+  return raw === "compact" || raw === "relaxed" ? raw : "comfortable";
+}
 
 export function curatedPosition(raw: unknown, book: CuratedBook): CuratedPosition {
   const row = raw && typeof raw === "object" ? (raw as Record<string, unknown>) : {};
@@ -56,7 +74,16 @@ export function curatedReading(raw: unknown, book: CuratedBook): CuratedReading 
         bookmarks.push(position);
       }
     }
-  return { version: 1, ...curatedPosition(row, book), fontSize, theme, bookmarks };
+  return {
+    version: 1,
+    ...curatedPosition(row, book),
+    fontSize,
+    theme,
+    lineHeight: lineHeightOf(row.lineHeight),
+    flow: row.flow === "page" ? "page" : "scroll",
+    focus: row.focus === true,
+    bookmarks,
+  };
 }
 
 export function searchCuratedBook(book: CuratedBook, query: string) {
