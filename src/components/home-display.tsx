@@ -5,6 +5,7 @@ import { useSettings } from "@/store/settings-store";
 import { useAppStore } from "@/store/app-store";
 import { getTimesInZone, PRAYER_KEYS, PRAYER_LABELS } from "@/lib/prayer";
 import { readingExcerpt } from "@/lib/books/reading-excerpt";
+import { subscribeHomeRefresh } from "@/lib/home-refresh";
 import type { MidadCard } from "@/lib/home-steady";
 import { RESEARCH_LINKS } from "@/lib/research-catalog";
 
@@ -20,7 +21,11 @@ export function DisplayPrayer() {
     const tick = () => setNow(new Date());
     tick();
     const timer = setInterval(tick, 60000);
-    return () => clearInterval(timer);
+    const stop = subscribeHomeRefresh(tick);
+    return () => {
+      clearInterval(timer);
+      stop();
+    };
   }, []);
   let line = "تُحسب المواقيت من المدينة المحفوظة.";
   if (now) {
@@ -62,7 +67,9 @@ export function DisplayDate() {
   const city = useAppStore((s) => s.city);
   const [now, setNow] = useState<Date | null>(null);
   useEffect(() => {
-    setNow(new Date());
+    const tick = () => setNow(new Date());
+    tick();
+    return subscribeHomeRefresh(tick);
   }, []);
   const locale = settings.language === "ar" ? "ar-SA" : "en-GB";
   const format = (calendar: "islamic-umalqura" | "gregory") =>
@@ -92,11 +99,16 @@ export function DisplayDate() {
 /** Opens the same Midad book the excerpt came from. The card quotes only an unmarked paragraph. */
 export function DisplayReading({ book }: { book: MidadCard | null | undefined }) {
   const [text, setText] = useState<string | null | undefined>();
+  const [readAt, setReadAt] = useState<string | null>(null);
+  const [readFailed, setReadFailed] = useState(false);
+  const [tick, setTick] = useState(0);
+  useEffect(() => subscribeHomeRefresh(() => setTick((value) => value + 1), true), []);
   useEffect(() => {
     if (!book) return;
     let live = true;
-    setText(undefined);
-    fetch(`/books/midad/${book.id}.json`)
+    const controller = new AbortController();
+    const timer = window.setTimeout(() => controller.abort(), 8000);
+    fetch(`/books/midad/${book.id}.json`, { signal: controller.signal, cache: "no-store" })
       .then(async (response) => {
         if (!response.ok) throw new Error("missing");
         return response.json();
@@ -107,14 +119,21 @@ export function DisplayReading({ book }: { book: MidadCard | null | undefined })
         if (!Array.isArray(paragraphs)) throw new Error("empty");
         const excerpt = readingExcerpt(paragraphs.filter((item): item is string => typeof item === "string"));
         setText(excerpt?.text ?? null);
+        setReadAt(new Date().toISOString());
+        setReadFailed(false);
       })
       .catch(() => {
-        if (live) setText(null);
-      });
+        if (!live) return;
+        setReadFailed(true);
+        setText((current) => (current === undefined ? null : current));
+      })
+      .finally(() => window.clearTimeout(timer));
     return () => {
       live = false;
+      controller.abort();
+      window.clearTimeout(timer);
     };
-  }, [book]);
+  }, [book, tick]);
   if (book === undefined) {
     return (
       <section aria-label="قراءة اليوم" data-home-widget="reading" className="waha-card tint-sand">
@@ -138,6 +157,22 @@ export function DisplayReading({ book }: { book: MidadCard | null | undefined })
       <p className="mt-2 font-display text-2xl">{book.title}</p>
       <p className="text-sm text-muted">{book.author}</p>
       <p className="text-sm text-muted">فقرة من نص المؤلف في هذا الكتاب، بلا إعادة صياغة.</p>
+      <p className="text-xs text-muted">
+        {readAt ? (
+          <>
+            قُرئ ملف الكتاب على هذا الجهاز{" "}
+            <time dateTime={readAt}>
+              {new Intl.DateTimeFormat("ar-SA", { hour: "2-digit", minute: "2-digit" }).format(new Date(readAt))}
+            </time>
+            . الاختيار ثابت ليوم التقويم، وليس خبراً.
+            {readFailed ? " تعذّر أحدث قراءة، والفقرة من آخر ملف نجح فتحه." : ""}
+          </>
+        ) : readFailed ? (
+          "تعذّر فتح ملف الكتاب. لا تُعرض فقرة بدل النص."
+        ) : (
+          "الاختيار من فهرس مداد لهذا اليوم. لم يُؤكَّد فتح الملف بعد."
+        )}
+      </p>
       {text === undefined ? (
         <p role="status" className="mt-3 text-sm text-muted">
           جارٍ فتح النص…
@@ -176,6 +211,9 @@ export function DisplayResearch() {
   return (
     <section aria-label="مركز الأبحاث" data-home-widget="research" className="waha-card tint-sky">
       <h2 className="kicker-sky text-lg">🔬 مركز الأبحاث</h2>
+      <p className="mt-2 text-sm text-muted">
+        العناوين والتواريخ كما ظهرت على صفحات المركز، وليست تحديثاً مباشراً من المصدر.
+      </p>
       <ul className="mt-3 space-y-3">
         {RESEARCH_LINKS.map((item) => (
           <li key={item.id}>

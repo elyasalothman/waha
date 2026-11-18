@@ -76,6 +76,22 @@ function canUseStorage() {
   return typeof localStorage !== "undefined";
 }
 
+export function readWeatherCacheStamp(lat: number, lon: number): number | null {
+  const key = weatherCacheKey(lat, lon);
+  const mem = memory.get(key);
+  if (mem && Number.isFinite(mem.at)) return mem.at;
+  if (!canUseStorage()) return null;
+  try {
+    const raw = localStorage.getItem(CACHE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as Record<string, { at?: number }>;
+    const at = parsed[key]?.at;
+    return typeof at === "number" && Number.isFinite(at) ? at : null;
+  } catch {
+    return null;
+  }
+}
+
 export function readWeatherCache(lat: number, lon: number): WeatherPayload | null {
   const key = weatherCacheKey(lat, lon);
   const mem = memory.get(key);

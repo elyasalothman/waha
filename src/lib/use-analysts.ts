@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { nextAnalystList, readAnalystPayload, type AnalystCard, type AnalystOpinion } from "./analysts-feed.ts";
-import { newsIsStale, newsPollDelay } from "./news-poll.ts";
+import { newsPollDelay } from "./news-poll.ts";
 
 export type AnalystPayload = {
   items: AnalystOpinion[];
@@ -36,7 +36,6 @@ export function useAnalysts() {
   const [attempt, setAttempt] = useState(0);
   const dataRef = useRef<AnalystPayload | null>(null);
   const failures = useRef(0);
-  const lastOk = useRef<number | null>(null);
 
   useEffect(() => {
     let timer = 0;
@@ -73,7 +72,6 @@ export function useAnalysts() {
         setData(next);
         setFailed(false);
         failures.current = 0;
-        lastOk.current = Date.now();
       } catch {
         if (stopped || ac.signal.aborted) return;
         failures.current += 1;
@@ -83,8 +81,7 @@ export function useAnalysts() {
     };
     const onResume = () => {
       if (document.hidden || !navigator.onLine) return;
-      if (newsIsStale(lastOk.current, Date.now())) void run();
-      else schedule();
+      void run();
     };
     document.addEventListener("visibilitychange", onResume);
     window.addEventListener("online", onResume);

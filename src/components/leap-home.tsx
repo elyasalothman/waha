@@ -9,6 +9,7 @@ import type { HomeWidgetId } from "@/lib/home-widgets";
 import { homeShelfPlan, type MidadCard } from "@/lib/home-steady";
 import type { ContinueHit } from "@/lib/books/continue-reading";
 import { HomeContinue, HomePicks, HomeSaved } from "./home-steady";
+import { subscribeHomeRefresh } from "@/lib/home-refresh";
 
 type Plan = {
   resume: ContinueHit[];
@@ -48,7 +49,9 @@ export function LeapHome() {
   const ready = useSettings((s) => s.ready);
   const [plan, setPlan] = useState<Plan | null>(null);
   useEffect(() => {
-    setPlan(readPlan(widgets));
+    const read = () => setPlan(readPlan(widgets));
+    read();
+    return subscribeHomeRefresh(read);
   }, [widgets]);
   return (
     <div

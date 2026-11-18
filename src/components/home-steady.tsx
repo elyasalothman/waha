@@ -10,6 +10,21 @@ function Open({ item }: { item: ContinueHit }) {
     <>
       <span className="block font-medium">{item.title}</span>
       <span className="block text-sm text-muted">{item.detail}</span>
+      <span className="block text-xs text-muted">
+        {item.savedAt > 0 ? (
+          <>
+            آخر حفظ على هذا الجهاز{" "}
+            <time dateTime={new Date(item.savedAt).toISOString()}>
+              {new Intl.DateTimeFormat("ar-SA", {
+                dateStyle: "medium",
+                timeStyle: "short",
+              }).format(item.savedAt)}
+            </time>
+          </>
+        ) : (
+          "موضع على هذا الجهاز، بلا وقت حفظ."
+        )}
+      </span>
     </>
   );
   if (item.href.startsWith("/books/stories/"))

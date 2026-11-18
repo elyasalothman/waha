@@ -197,10 +197,16 @@
   }
 }
 .waha-card {
+  --card-fg: #192c2a;
+  --card-muted: #3e534e;
   border-radius: 20px;
   border: 1px solid var(--card-line, #d7e0d9);
   background: var(--card-fill, #fff);
+  color: var(--card-fg);
   padding: 1.15rem 1.2rem;
+}
+.waha-card :is(.text-muted, .text-subtle) {
+  color: var(--card-muted);
 }
 [data-home-size="compact"] .waha-card {
   padding: 0.8rem 0.95rem;
@@ -1098,16 +1104,34 @@ html.waha-dark {
 html.waha-dark .waha-shell {
   background-image: none;
 }
-html.waha-dark .tint-oasis { --card-fill: #17352c; --card-line: #3d6b5c; }
-html.waha-dark .tint-sky { --card-fill: #1a2c44; --card-line: #3d5878; }
-html.waha-dark .tint-sand { --card-fill: #3a301c; --card-line: #6d5a32; }
-html.waha-dark .tint-rose { --card-fill: #3a2428; --card-line: #6d4450; }
-html.waha-dark .tint-violet { --card-fill: #2c2440; --card-line: #564878; }
-html.waha-dark .kicker-oasis { color: #9ee0c8; }
-html.waha-dark .kicker-sky { color: #b7d4ff; }
-html.waha-dark .kicker-sand { color: #f0d7a4; }
-html.waha-dark .kicker-rose { color: #ffc4cc; }
-html.waha-dark .kicker-violet { color: #e0d0ff; }
+/* iOS can set native-dark (light text) without waha-dark. Cards must darken with that text. */
+html.waha-dark .waha-card,
+html.native-ios.native-dark .waha-card {
+  --card-fill: #24302b;
+  --card-line: #4d645b;
+  --card-fg: #f4f7f2;
+  --card-muted: #d5e2da;
+}
+html.waha-dark .tint-oasis,
+html.native-ios.native-dark .tint-oasis { --card-fill: #17352c; --card-line: #3d6b5c; --card-fg: #f3faf6; --card-muted: #d3ebdf; }
+html.waha-dark .tint-sky,
+html.native-ios.native-dark .tint-sky { --card-fill: #1a2c44; --card-line: #3d5878; --card-fg: #f3f7ff; --card-muted: #d4e2f8; }
+html.waha-dark .tint-sand,
+html.native-ios.native-dark .tint-sand { --card-fill: #3a301c; --card-line: #6d5a32; --card-fg: #fbf6ec; --card-muted: #ead9b8; }
+html.waha-dark .tint-rose,
+html.native-ios.native-dark .tint-rose { --card-fill: #3a2428; --card-line: #6d4450; --card-fg: #fff5f6; --card-muted: #f0d0d6; }
+html.waha-dark .tint-violet,
+html.native-ios.native-dark .tint-violet { --card-fill: #2c2440; --card-line: #564878; --card-fg: #f7f4ff; --card-muted: #ddd4f3; }
+html.waha-dark .kicker-oasis,
+html.native-ios.native-dark .kicker-oasis { color: #9ee0c8; }
+html.waha-dark .kicker-sky,
+html.native-ios.native-dark .kicker-sky { color: #b7d4ff; }
+html.waha-dark .kicker-sand,
+html.native-ios.native-dark .kicker-sand { color: #f0d7a4; }
+html.waha-dark .kicker-rose,
+html.native-ios.native-dark .kicker-rose { color: #ffc4cc; }
+html.waha-dark .kicker-violet,
+html.native-ios.native-dark .kicker-violet { color: #e0d0ff; }
 html.waha-dark body {
   color-scheme: dark;
 }
