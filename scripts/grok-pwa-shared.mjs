@@ -12,10 +12,9 @@ export const OG_SITE_REL_PATH = "src/lib/og/site.json";
 
 /** Public PWA paths — never `/__grok/`, which is gitignored and 404s on deploy. */
 export const PWA_MANIFEST_HREF = "/manifest.webmanifest";
-export const PWA_APPLE_TOUCH_ICON = "/icons/icon-180.png";
+export const PWA_APPLE_TOUCH_ICON = "/waha-icon-180.png";
 export const PWA_ICON_HREFS = [
-  { src: "/favicon.svg", sizes: "any", type: "image/svg+xml", purpose: "any" },
-  { src: "/icons/icon-180.png", sizes: "180x180", type: "image/png" },
+  { src: "/waha-icon-180.png", sizes: "180x180", type: "image/png", purpose: "any" },
   { src: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
   { src: "/icons/icon-512.png", sizes: "512x512", type: "image/png", purpose: "any maskable" },
 ];
@@ -187,8 +186,8 @@ export function renderWebManifest(_hostHeader) {
       start_url: "/",
       scope: "/",
       display: "standalone",
-      background_color: "#f6f5f0",
-      theme_color: "#f6f5f0",
+      background_color: "#faf9f5",
+      theme_color: "#faf9f5",
       icons: PWA_ICON_HREFS,
       description: "مساحة عربية للقراءة والأدوات والألعاب ومحسن في يومك",
       categories: ["productivity", "education", "utilities"],
@@ -218,7 +217,7 @@ export function grokPwaHeadTags(appName = DEFAULT_APP_NAME) {
       "apple-mobile-web-app-status-bar-style",
       '<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">',
     ],
-    ["theme-color", '<meta name="theme-color" content="#f6f5f0">'],
+    ["theme-color", '<meta name="theme-color" content="#faf9f5">'],
   ];
 }
 

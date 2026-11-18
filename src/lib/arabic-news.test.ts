@@ -36,6 +36,28 @@ test("bulletin attributes each headline and removes duplicate titles", () => {
   assert.ok(bulletin.text.includes("من BBC عربي:"));
   assert.equal(bulletin.updatedAt, new Date(now).toISOString());
 });
+test("Hudoo bulletins keep the official link and publish time past the wire window", () => {
+  const hudoo = NEWS_SOURCES.find((source) => source.name === "هدوء السوق");
+  assert.ok(hudoo);
+  assert.equal(hudoo.url, "https://news.alhajda.com/rss.xml");
+  const out = parseArabicFeed(
+    `<rss>${item("https://news.alhajda.com/n/71", "الذهب يهبط", "Thu, 01 Oct 2026 11:00:00 GMT")}</rss>`,
+    hudoo,
+    now,
+  );
+  assert.equal(out.length, 1);
+  assert.equal(out[0]?.href, "https://news.alhajda.com/n/71");
+  assert.equal(out[0]?.source, "هدوء السوق");
+  assert.equal(out[0]?.publishedAt, "2026-10-01T11:00:00.000Z");
+  assert.equal(
+    parseArabicFeed(
+      `<rss>${item("https://news.alhajda.com/n/1", "قديم جداً", "Thu, 01 Sep 2026 11:00:00 GMT")}</rss>`,
+      hudoo,
+      now,
+    ).length,
+    0,
+  );
+});
 test("topic filters use clear keyword classes", () => {
   assert.equal(newsTopic("المنتخب يفوز في مباراة"), "رياضة");
   assert.equal(newsTopic("الذكاء اصطناعي وتقنية"), "تقنية");

@@ -5,6 +5,7 @@ export type AnalystCard = {
   ini: string;
   color: string;
   role?: string;
+  focus?: string;
   url?: string;
 };
 
@@ -12,15 +13,24 @@ export type AnalystOpinion = {
   id: number;
   title: string;
   summary: string;
+  meaning: string;
+  topic: string;
   url: string;
   postedAt: string;
   publishedAt: string | null;
   analyst: AnalystCard;
 };
 
+/** Topics the Hudoo roster uses for market and economic commentary. */
+export const ECONOMIC_TOPICS = ["fed", "stocks", "macro", "inflation", "oil", "gold", "fx", "tech", "flows"] as const;
+
 export const ANALYST_RECENCY_MS = 12 * 60 * 60 * 1000;
 
-/** Keep only source-published opinions from the last 12 hours. Unknown and future dates are excluded. */
+export function isEconomicOpinion(item: AnalystOpinion): boolean {
+  return (ECONOMIC_TOPICS as readonly string[]).includes(item.topic);
+}
+
+/** Economic opinions whose source publish time is inside the last 12 hours. Fetch time is ignored. */
 export function recentAnalystOpinions(
   items: readonly AnalystOpinion[],
   now = Date.now(),
@@ -28,7 +38,7 @@ export function recentAnalystOpinions(
   const cutoff = now - ANALYST_RECENCY_MS;
   return items
     .filter((item) => {
-      if (!item.publishedAt) return false;
+      if (!isEconomicOpinion(item) || !item.publishedAt) return false;
       const published = Date.parse(item.publishedAt);
       return Number.isFinite(published) && published >= cutoff && published <= now;
     })
@@ -73,6 +83,7 @@ function analyst(value: unknown): AnalystCard | null {
     ini: text(row.ini, 4) || name.slice(0, 2),
     color: /^#[0-9a-f]{6}$/i.test(color) ? color : "#0f766e",
     role: text(row.role, 120) || undefined,
+    focus: text(row.focus, 120) || undefined,
     url: https(row.url) || undefined,
   };
 }
@@ -100,6 +111,8 @@ export function parseAnalystFeed(payload: unknown): AnalystOpinion[] {
       id,
       title,
       summary: text(row.summary, 800),
+      meaning: text(row.meaning, 500),
+      topic: text(row.topic, 40),
       url,
       postedAt,
       publishedAt: stamp(row.published_at),
@@ -125,6 +138,8 @@ export function readAnalystPayload(payload: unknown): AnalystOpinion[] {
         published_at: item.publishedAt,
         title: item.title,
         summary: item.summary,
+        meaning: item.meaning,
+        topic: item.topic,
         analyst: item.analyst,
       })),
     });

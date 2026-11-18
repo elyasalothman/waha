@@ -38,7 +38,7 @@ const groups: { title: string; fields: Field[] }[] = [
         key: "accent",
         label: "اللون المميز",
         options: [
-          ["green", "أخضر"],
+          ["green", "طين"],
           ["blue", "أزرق"],
           ["purple", "بنفسجي"],
           ["red", "أحمر"],

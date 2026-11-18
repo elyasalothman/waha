@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { subscribeHomeRefresh } from "@/lib/home-refresh";
 import { PageState, Skeleton } from "./ui/page-state";
 type Quote = {
   symbol: string;
@@ -11,21 +12,40 @@ type Quote = {
 };
 export function MarketBrief() {
   const [quotes, setQuotes] = useState<Quote[]>([]);
+  const [generatedAt, setGeneratedAt] = useState<string | null>(null);
+  const [fetchedAt, setFetchedAt] = useState<string | null>(null);
   const [error, setError] = useState(false);
   const [revision, setRevision] = useState(0);
   useEffect(() => {
-    const controller = new AbortController();
-    setError(false);
-    fetch("/api/market", { signal: controller.signal })
-      .then(async (r) => {
-        if (!r.ok) throw new Error();
-        const data = await r.json();
-        setQuotes(data.quotes);
-      })
-      .catch(() => {
-        if (!controller.signal.aborted) setError(true);
-      });
-    return () => controller.abort();
+    let stopped = false;
+    let controller: AbortController | null = null;
+    const load = () => {
+      if (stopped || !navigator.onLine) return;
+      controller?.abort();
+      controller = new AbortController();
+      setError(false);
+      void fetch("/api/market", { signal: controller.signal, cache: "no-store" })
+        .then(async (r) => {
+          if (!r.ok) throw new Error();
+          return r.json();
+        })
+        .then((data) => {
+          if (stopped || !Array.isArray(data.quotes)) return;
+          setQuotes(data.quotes);
+          setGeneratedAt(typeof data.generatedAt === "string" ? data.generatedAt : null);
+          setFetchedAt(typeof data.fetchedAt === "string" ? data.fetchedAt : null);
+        })
+        .catch(() => {
+          if (!stopped && !controller?.signal.aborted) setError(true);
+        });
+    };
+    load();
+    const stop = subscribeHomeRefresh(load, true);
+    return () => {
+      stopped = true;
+      controller?.abort();
+      stop();
+    };
   }, [revision]);
   return (
     <section
@@ -35,6 +55,27 @@ export function MarketBrief() {
       <h2 className="font-display text-2xl">موجز السوق</h2>
       <p className="text-sm text-muted">
         أسعار مرجعية من منضدة السوق، قد تكون متأخرة. وقت كل سعر ظاهر؛ معلومات بلا توصيات.
+        {fetchedAt ? (
+          <>
+            {" "}
+            آخر جلب{" "}
+            <time dateTime={fetchedAt}>
+              {new Intl.DateTimeFormat("ar-SA", { hour: "2-digit", minute: "2-digit" }).format(new Date(fetchedAt))}
+            </time>
+            {generatedAt ? (
+              <>
+                {" "}
+                · وقت الموجز عند المصدر{" "}
+                <time dateTime={generatedAt}>
+                  {new Intl.DateTimeFormat("ar-SA", { dateStyle: "medium", timeStyle: "short" }).format(
+                    new Date(generatedAt),
+                  )}
+                </time>
+              </>
+            ) : null}
+            .
+          </>
+        ) : null}
       </p>
       <div
         className="market-brief-content"

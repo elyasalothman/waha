@@ -156,7 +156,7 @@ test("PWA add-to-home-screen is واحة with a real manifest, not __grok", () =
   const manifest = JSON.parse(read("public/manifest.webmanifest"));
 
   assert.match(rootHead, /rel:\s*"manifest",\s*href:\s*"\/manifest\.webmanifest"/);
-  assert.match(rootHead, /apple-touch-icon[\s\S]*\/icon-180\.png/);
+  assert.match(rootHead, /apple-touch-icon[\s\S]*\/waha-icon-180\.png/);
   assert.match(rootHead, /const PWA_NAME = "واحة"/);
   assert.match(rootHead, /apple-mobile-web-app-title[\s\S]*PWA_NAME/);
   assert.match(rootHead, /apple-mobile-web-app-capable[\s\S]*yes/);
@@ -171,7 +171,7 @@ test("PWA add-to-home-screen is واحة with a real manifest, not __grok", () =
   assert.equal(manifest.dir, "rtl");
   assert.equal(manifest.display, "standalone");
   assert.equal(manifest.start_url, "/");
-  assert.equal(manifest.theme_color, "#f6f5f0");
+  assert.equal(manifest.theme_color, "#faf9f5");
   assert.ok(exists("public/icons/icon-180.png"));
   assert.ok(exists("public/icons/icon-192.png"));
   assert.ok(exists("public/icons/icon-512.png"));
@@ -198,7 +198,7 @@ test("PWA add-to-home-screen is واحة with a real manifest, not __grok", () =
   assert.match(read("scripts/grok-pwa-plugin.mjs"), /isWebManifestPath/);
   const served = JSON.parse(renderWebManifest("waha.hajdah.com"));
   assert.equal(served.name, "واحة");
-  assert.ok(served.icons.some((icon) => icon.src === "/icons/icon-180.png"));
+  assert.ok(served.icons.some((icon) => icon.src === "/waha-icon-180.png"));
   assert.doesNotMatch(JSON.stringify(served), /__grok/);
 });
 

@@ -503,8 +503,7 @@ test("renders the manifest with the app name واحة", () => {
     for (const icon of manifest.icons) {
       assert.equal(icon.src.startsWith("/__grok/"), false, icon.src);
     }
-    assert.ok(manifest.icons.some((icon) => icon.src === "/icons/icon-180.png"));
-    assert.ok(manifest.icons.some((icon) => icon.src === "/favicon.svg"));
+    assert.ok(manifest.icons.some((icon) => icon.src === "/waha-icon-180.png"));
     assert.doesNotMatch(JSON.stringify(manifest), /__grok/);
   }
 });
@@ -533,7 +532,7 @@ test("root document keeps PWA titles as واحة", () => {
   assert.match(root, /name:\s*"apple-mobile-web-app-title",\s*content:\s*PWA_NAME/);
   assert.match(root, /const PWA_NAME = "واحة"/);
   assert.match(root, /rel:\s*"manifest",\s*href:\s*"\/manifest\.webmanifest"/);
-  assert.match(root, /rel:\s*"apple-touch-icon",\s*href:\s*"\/icons\/icon-180\.png"/);
+  assert.match(root, /rel:\s*"apple-touch-icon",\s*href:\s*"\/waha-icon-180\.png"/);
 });
 
 // Tripwires: the deployed-app path only works if Nitro scans server/ — an
@@ -554,7 +553,8 @@ test("nitro middleware and its bundled assets exist", () => {
   assert.match(plugin, /isWebManifestPath/);
   const installPage = readFileSync(join(TEMPLATE_ROOT, "scripts/install-page.html"), "utf8");
   assert.match(installPage, /href="\/manifest\.webmanifest"/);
-  assert.match(installPage, /href="\/icons\/icon-180\.png"/);
+  assert.match(installPage, /href="\/waha-icon-180\.png"/);
+  readFileSync(join(TEMPLATE_ROOT, "public/waha-icon-180.png"));
   readFileSync(join(TEMPLATE_ROOT, "public/icons/icon-180.png"));
   readFileSync(join(TEMPLATE_ROOT, "public/icons/icon-192.png"));
   readFileSync(join(TEMPLATE_ROOT, "public/icons/icon-512.png"));

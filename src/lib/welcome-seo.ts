@@ -13,8 +13,8 @@ export const welcomeHead = () => ({
     },
     { property: "og:type", content: "website" },
     { property: "og:locale", content: "ar_SA" },
-    { property: "og:image", content: "https://waha.hajdah.com/og.jpg" },
-    { property: "og:image:alt", content: "واحة — واحتك الرقمية من بيت الهجدة" },
+    { property: "og:image", content: "https://waha.hajdah.com/waha-icon-180.png" },
+    { property: "og:image:alt", content: "أيقونة واحة" },
     { name: "twitter:card", content: "summary_large_image" },
   ],
   scripts: [

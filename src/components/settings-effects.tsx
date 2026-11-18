@@ -9,7 +9,7 @@ export function SettingsEffects() {
     const root = document.documentElement,
       scheme = matchMedia("(prefers-color-scheme: dark)");
     const colors = {
-      green: ["#146455", "#8cd7bc"],
+      green: ["#b55238", "#e7a08a"],
       blue: ["#245da8", "#a3c9ff"],
       purple: ["#7442a1", "#d6b3fa"],
       red: ["#a4343e", "#ffb5ba"],
