@@ -47,13 +47,16 @@ export type RtGrow = { id: number; at: number; side: -1 | 1; value: number; hp: 
 export type RtEnemy = { id: number; at: number; count: number; start: number; x: number; awake: boolean; dead: boolean };
 export type RtBow = { id: number; at: number; side: Side; taken: boolean };
 export type RtFire = { id: number; at: number; side: Side; len: number; done: boolean };
+export type HazardKind = "blade" | "wall" | "pit";
+export type RtHazard = { id: number; at: number; side: Side; kind: HazardKind; done: boolean };
 
 export type GameEvent =
   | { t: "gate"; id: number; side: -1 | 1; good: boolean; before: number; after: number }
   | { t: "grow"; id: number; value: number }
   | { t: "growHit"; id: number; value: number }
   | { t: "enemyKilled"; id: number; n: number }
-  | { t: "armyKilled"; n: number; reason: "clash" | "fire" | "slam" }
+  | { t: "armyKilled"; n: number; reason: "clash" | "fire" | "slam" | HazardKind }
+  | { t: "hazard"; id: number; kind: HazardKind; killed: number }
   | { t: "clashStart"; id: number }
   | { t: "clashEnd"; id: number; won: boolean }
   | { t: "bow"; id: number; stacks: number }
@@ -77,6 +80,7 @@ export type GameState = {
   enemies: RtEnemy[];
   bows: RtBow[];
   fires: RtFire[];
+  hazards: RtHazard[];
   boss: { spec: BossSpec; hp: number; max: number; timer: number; arrived: boolean; at: number };
   clashWith: number | null;
   shotAcc: number;
@@ -102,6 +106,7 @@ export function createGame(level: LevelSpec, u: Upgrades, carry?: { n: number; s
   const enemies: RtEnemy[] = [];
   const bows: RtBow[] = [];
   const fires: RtFire[] = [];
+  const hazards: RtHazard[] = [];
   for (const e of level.entities as EntitySpec[]) {
     id++;
     if (e.type === "gates") gates.push({ id, at: e.at, left: e.left, right: e.right, used: false });
@@ -112,7 +117,9 @@ export function createGame(level: LevelSpec, u: Upgrades, carry?: { n: number; s
     else if (e.type === "enemy")
       enemies.push({ id, at: e.at, count: e.count, start: e.count, x: e.x, awake: false, dead: false });
     else if (e.type === "bow") bows.push({ id, at: e.at, side: e.side, taken: false });
-    else fires.push({ id, at: e.at, side: e.side, len: e.len, done: false });
+    else if (e.type === "fire") fires.push({ id, at: e.at, side: e.side, len: e.len, done: false });
+    else if (e.type === "blade" || e.type === "wall" || e.type === "pit")
+      hazards.push({ id, at: e.at, side: e.side, kind: e.type, done: false });
   }
   const n = carry?.n ?? startArmy(u);
   return {
@@ -125,6 +132,7 @@ export function createGame(level: LevelSpec, u: Upgrades, carry?: { n: number; s
     enemies,
     bows,
     fires,
+    hazards,
     boss: { spec: level.boss, hp: level.boss.hp, max: level.boss.hp, timer: 1.4, arrived: false, at: level.length + BOSS_GAP },
     clashWith: null,
     shotAcc: 0,
@@ -152,7 +160,7 @@ export function steer(s: GameState, x: number) {
   s.army.targetX = Math.max(-m, Math.min(m, x));
 }
 
-function kill(s: GameState, n: number, reason: "clash" | "fire" | "slam") {
+function kill(s: GameState, n: number, reason: "clash" | "fire" | "slam" | HazardKind) {
   if (!Number.isFinite(n)) return;
   const k = Math.min(s.army.n, Math.max(0, Math.round(n)));
   if (k <= 0) return;
@@ -301,6 +309,13 @@ function crossings(s: GameState, prev: number, now: number) {
     kill(s, killed, "fire");
     s.events.push({ t: "fire", id: f.id, killed });
   }
+  for (const h of s.hazards) {
+    if (h.done || h.at > now || h.at < prev) continue;
+    h.done = true;
+    const killed = hazardLosses(a.n, a.x, h.side);
+    kill(s, killed, h.kind);
+    s.events.push({ t: "hazard", id: h.id, kind: h.kind, killed });
+  }
 }
 
 /** How many soldiers of an army of n centred at x stand inside a fire band. */
@@ -315,6 +330,23 @@ export function fireLosses(n: number, x: number, side: Side): number {
     if (px >= lo && px <= hi) inside++;
   }
   return Math.round((inside / shown) * n);
+}
+
+/** Soldiers cut by a blade, wall, or pit when the army stands at x. */
+export function hazardLosses(n: number, x: number, side: Side): number {
+  return fireLosses(n, x, side);
+}
+
+function sideSurvival(s: GameState, side: -1 | 1, from: number, until: number): number {
+  let keep = 1;
+  for (const h of s.hazards) {
+    if (h.done || h.at < from || h.at > until) continue;
+    if (h.side !== 0 && h.side !== side) continue;
+    const stand = h.side === 0 ? 0 : side * 3;
+    const loss = hazardLosses(100, stand, h.side);
+    keep *= 1 - loss / 100;
+  }
+  return keep;
 }
 
 function shoot(s: GameState, dt: number) {
@@ -415,9 +447,15 @@ export function autopilot(s: GameState, skill = 1): number {
   const wants: Want[] = [];
   for (const g of s.gates) {
     if (g.used || ahead(g.at) < 0 || ahead(g.at) > 40) continue;
-    const l = g.left ? applyOp(a.n, g.left) : a.n;
-    const r = g.right ? applyOp(a.n, g.right) : a.n;
-    const pickLeft = skill >= 1 ? l >= r : skill <= 0 ? l < r : (g.id % 2 === 0) === l >= r;
+    const score = (op: GateOp | undefined, side: -1 | 1) => {
+      if (!op) return -1;
+      const after = applyOp(a.n, op);
+      if (skill >= 1) return after * sideSurvival(s, side, g.at, g.at + 30);
+      return after;
+    };
+    const l = score(g.left, -1);
+    const r = score(g.right, 1);
+    const pickLeft = skill <= 0 ? l < r && l >= 0 : l >= r;
     wants.push({ d: ahead(g.at), x: pickLeft ? -3 : 3 });
   }
   for (const w of s.grows) {
@@ -438,6 +476,19 @@ export function autopilot(s: GameState, skill = 1): number {
       }
       wants.push({ d: ahead(f.at), x: bestX });
     }
+  }
+  for (const h of s.hazards) {
+    if (h.done || ahead(h.at) < 0 || ahead(h.at) > 30 || skill < 1) continue;
+    let bestX = 0;
+    let bestK = Infinity;
+    for (const x of [-4, -2, 0, 2, 4]) {
+      const k = hazardLosses(a.n, x, h.side);
+      if (k < bestK) {
+        bestK = k;
+        bestX = x;
+      }
+    }
+    wants.push({ d: ahead(h.at), x: bestX });
   }
   for (const b of s.bows) {
     if (b.taken || ahead(b.at) < 0 || ahead(b.at) > 30) continue;

@@ -40,11 +40,11 @@ export function ArmyCard() {
           <span className="mb-1 inline-block rounded-full bg-amber-400 px-2 py-0.5 text-xs font-bold text-amber-950">
             {gl === "no"
               ? lang === "ar"
-                ? "ثلاثي الأبعاد غير متاح في هذا المتصفح"
-                : "3D is unavailable in this browser"
+                ? "رسم مسطح في هذا المتصفح"
+                : "Flat graphics in this browser"
               : lang === "ar"
-                ? "اللعبة الأبرز · تحتاج رسومًا ثلاثية الأبعاد"
-                : "Flagship · needs 3D graphics"}
+                ? "اللعبة الأبرز"
+                : "Flagship"}
           </span>
           <span className="block font-display text-3xl font-black text-white drop-shadow">
             {lang === "ar" ? "جيش الواحة" : "Oasis Army"}
@@ -56,7 +56,7 @@ export function ArmyCard() {
           </span>
         </span>
         <span className="grid min-h-12 shrink-0 place-items-center rounded-xl bg-white px-4 font-bold text-teal-800 shadow">
-          {gl === "no" ? (lang === "ar" ? "غير متاح هنا" : "Unavailable") : lang === "ar" ? "العب" : "Play"}
+          {lang === "ar" ? "العب" : "Play"}
         </span>
       </span>
     </Link>

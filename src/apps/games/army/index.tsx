@@ -6,6 +6,7 @@ import { coinsFor, startArmy, type GameState, type Upgrades } from "@/lib/army/e
 import { UPGRADE_MAX, buyUpgrade, loadSave, upgradeCost, writeSave, type ArmySave } from "@/lib/army/save";
 import { ArmyAudio } from "./audio";
 import { ArmyRenderer } from "./renderer";
+import { FlatArmy } from "./flat";
 import "./army.css";
 
 type Screen = "menu" | "levels" | "upgrades" | "play" | "pause" | "result";
@@ -21,7 +22,7 @@ export function ArmyApp() {
   const hostRef = useRef<HTMLDivElement>(null);
   const labelsRef = useRef<HTMLDivElement>(null);
   const progRef = useRef<HTMLDivElement>(null);
-  const rendererRef = useRef<ArmyRenderer | null>(null);
+  const rendererRef = useRef<ArmyRenderer | FlatArmy | null>(null);
   const audioRef = useRef<ArmyAudio | null>(null);
   const saveRef = useRef<ArmySave>(loadSave());
   const playRef = useRef<{ levelId: number; endless: boolean; stage: number }>({ levelId: 1, endless: false, stage: 1 });
@@ -65,7 +66,7 @@ export function ArmyApp() {
         }
         next = { ...next, endlessBest: Math.max(next.endlessBest, p.stage - 1) };
       } else if (won) {
-        next = { ...next, unlocked: Math.max(next.unlocked, Math.min(11, p.levelId + 1)) };
+        next = { ...next, unlocked: Math.max(next.unlocked, Math.min(LEVELS.length + 1, p.levelId + 1)) };
       }
       commit(next);
       audioRef.current?.setMusicLevel(0.35);
@@ -92,15 +93,24 @@ export function ArmyApp() {
     const audio = new ArmyAudio();
     audioRef.current = audio;
     setMuted(audio.muted);
-    let r: ArmyRenderer;
+    let r: ArmyRenderer | FlatArmy;
     try {
-      r = new ArmyRenderer(host, labels, audio, {
+      try {
+        r = new ArmyRenderer(host, labels, audio, {
         onEnd: (i) => onEndRef.current(i),
         onContextLost: () => setScreen((cur) => (cur === "play" ? "pause" : cur)),
         onProgress: (p) => {
           if (progRef.current) progRef.current.style.width = `${Math.round(p * 100)}%`;
         },
       });
+      } catch {
+        r = new FlatArmy(host, labels, audio, {
+          onEnd: (i) => onEndRef.current(i),
+          onProgress: (p) => {
+            if (progRef.current) progRef.current.style.width = `${Math.round(p * 100)}%`;
+          },
+        });
+      }
     } catch {
       audio.dispose();
       setGlFailed(true);
@@ -109,7 +119,7 @@ export function ArmyApp() {
     rendererRef.current = r;
     r.load(LEVELS[0], { start: 4, rate: 4, income: 0 }, { demo: true });
     // QA hook for screenshot tests; cleared on unmount.
-    const w = window as unknown as { __army?: ArmyRenderer };
+    const w = window as unknown as { __army?: ArmyRenderer | FlatArmy };
     w.__army = r;
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -140,7 +150,7 @@ export function ArmyApp() {
       audioRef.current?.unlock();
       audioRef.current?.startMusic();
       audioRef.current?.setMusicLevel(0.55);
-      const endless = levelId > 10;
+      const endless = levelId > LEVELS.length;
       playRef.current = { levelId, endless, stage: 1 };
       const u: Upgrades = saveRef.current.upgrades;
       const lvl = endless ? endlessStage(1, startArmy(u) * 3) : LEVELS[levelId - 1];
@@ -185,7 +195,7 @@ export function ArmyApp() {
     commit(next);
   };
 
-  const nextLevel = Math.min(save.unlocked, 10);
+  const nextLevel = Math.min(save.unlocked, LEVELS.length);
 
   return (
     <div className="army-root" dir="rtl" lang="ar">
@@ -253,7 +263,7 @@ export function ArmyApp() {
               <div className="army-sheet">
                 <button type="button" className="army-btn" onClick={() => start(nextLevel)}>
                   <Play className="size-5" />
-                  {save.unlocked > 10 ? "العب المرحلة 10" : `ابدأ المرحلة ${nextLevel}`}
+                  {save.unlocked > LEVELS.length ? `العب المرحلة ${LEVELS.length}` : `ابدأ المرحلة ${nextLevel}`}
                 </button>
                 <div className="army-row">
                   <button type="button" className="army-btn army-btn--ghost" onClick={() => setScreen("levels")}>
@@ -269,11 +279,11 @@ export function ArmyApp() {
                   type="button"
                   className="army-btn army-btn--gold"
                   style={{ marginTop: "0.7rem" }}
-                  disabled={save.unlocked <= 10}
-                  onClick={() => start(11)}
+                  disabled={save.unlocked <= LEVELS.length}
+                  onClick={() => start(LEVELS.length + 1)}
                 >
-                  {save.unlocked > 10 ? <InfinityIcon className="size-5" /> : <Lock className="size-4" />}
-                  {save.unlocked > 10 ? `الوضع اللانهائي${save.endlessBest ? ` · أفضل ${n(save.endlessBest)}` : ""}` : "اللانهائي يُفتح بعد المرحلة 10"}
+                  {save.unlocked > LEVELS.length ? <InfinityIcon className="size-5" /> : <Lock className="size-4" />}
+                  {save.unlocked > LEVELS.length ? `الوضع اللانهائي${save.endlessBest ? ` · أفضل ${n(save.endlessBest)}` : ""}` : `اللانهائي يُفتح بعد المرحلة ${LEVELS.length}`}
                 </button>
               </div>
             </>
@@ -395,13 +405,13 @@ export function ArmyApp() {
                 <span>{result.won ? "رماة نجوا" : "من الطريق"}</span>
               </div>
             </div>
-            {result.won && !result.endless && result.levelId < 10 ? (
+            {result.won && !result.endless && result.levelId < LEVELS.length ? (
               <button type="button" className="army-btn" onClick={() => start(result.levelId + 1)}>
                 <Play className="size-5" />
                 المرحلة التالية
               </button>
-            ) : result.won && result.levelId === 10 ? (
-              <button type="button" className="army-btn army-btn--gold" onClick={() => start(11)}>
+            ) : result.won && result.levelId === LEVELS.length ? (
+              <button type="button" className="army-btn army-btn--gold" onClick={() => start(LEVELS.length + 1)}>
                 <InfinityIcon className="size-5" />
                 افتح الوضع اللانهائي
               </button>

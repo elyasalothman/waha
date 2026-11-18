@@ -16,7 +16,10 @@ export type EntitySpec =
   | { type: "grow"; at: number; side: -1 | 1; start: number; hp: number; max: number }
   | { type: "enemy"; at: number; count: number; x: number }
   | { type: "bow"; at: number; side: Side }
-  | { type: "fire"; at: number; side: Side; len: number };
+  | { type: "fire"; at: number; side: Side; len: number }
+  | { type: "blade"; at: number; side: Side }
+  | { type: "wall"; at: number; side: -1 | 1 }
+  | { type: "pit"; at: number; side: -1 | 1 };
 
 export type BossSpec = { hp: number; slam: number; every: number; kind: "chief" | "fort" };
 
@@ -292,7 +295,88 @@ const RAW_LEVELS: LevelSpec[] = [
 
 /** Boss health is tuned so the final fight lasts a few tense seconds (Codex review, Oct 30 2026). */
 const BOSS_HP_SCALE = 4;
-export const LEVELS: LevelSpec[] = RAW_LEVELS.map((L) => ({ ...L, boss: { ...L.boss, hp: Math.round(L.boss.hp * BOSS_HP_SCALE) } }));
+
+const LATER_NAMES = [
+  "مضيق الرمال",
+  "سوق القوافل",
+  "بئر الظل",
+  "جسر الحراسة",
+  "واحة الشوك",
+  "باب القلعة",
+  "ميدان الخيالة",
+  "سور النخيل",
+  "عقبة الريح",
+  "خندق الذهب",
+  "برج المراقبة",
+  "ساحة البيعة",
+  "نفق القوافل",
+  "حصن الطرف",
+  "وادي الشفرات",
+  "باب السلطان",
+  "قلعة الواحة",
+  "عرش الرمال",
+  "الحصن الأخير",
+  "قلعة الثلاثين",
+];
+
+/** Levels 11–30. A tempting multiply sits on a blade, wall, or pit; the modest gate is clear. */
+function laterLevel(id: number): LevelSpec {
+  const r = rng(12000 + id * 131);
+  const length = 760 + (id - 10) * 32;
+  const entities: EntitySpec[] = [];
+  let at = 56;
+  let est = 4;
+  let traps = 0;
+  const trapGoal = id >= 16 ? 2 + Math.floor((id - 16) / 4) : 0;
+  while (at < length - 100) {
+    const trap = traps < trapGoal && r() < 0.7;
+    if (trap) {
+      traps++;
+      const add = 8 + Math.round(id * 0.6);
+      const mul = id >= 24 ? 4 : 3;
+      const kind = traps % 3;
+      const side: -1 | 1 = 1;
+      if (kind === 0) entities.push({ type: "blade", at, side });
+      else if (kind === 1) entities.push({ type: "wall", at, side });
+      else entities.push({ type: "pit", at, side });
+      entities.push(G(at + 18, `+${add}`, `×${mul}`));
+      est += add;
+      const foes = Math.max(4, Math.round(est * 0.42));
+      entities.push(E(at + 64, foes));
+      est = Math.max(4, est - foes);
+      at += 118;
+    } else {
+      const good = 4 + Math.round(id * 0.35);
+      entities.push(G(at, `+${good}`, id >= 20 && r() < 0.4 ? "÷2" : `+${Math.max(1, good - 4)}`));
+      est += good;
+      if (r() < 0.65) {
+        const foes = Math.max(3, Math.round(est * 0.32));
+        entities.push(E(at + 46, foes, r() < 0.5 ? -1.2 : 1.2));
+        est = Math.max(4, est - foes);
+      }
+      at += 96;
+    }
+  }
+  entities.push(G(length - 72, "+10", "−8"));
+  est += 10;
+  return {
+    id,
+    name: LATER_NAMES[id - 11] ?? `المرحلة ${id}`,
+    length,
+    boss: {
+      hp: Math.round(Math.max(90, est * (7 + id * 0.12))),
+      slam: Math.max(2, Math.round(est * 0.05)),
+      every: Math.max(2.05, 3.05 - id * 0.025),
+      kind: id % 2 ? "fort" : "chief",
+    },
+    entities,
+  };
+}
+
+export const LEVELS: LevelSpec[] = [
+  ...RAW_LEVELS.map((L) => ({ ...L, boss: { ...L.boss, hp: Math.round(L.boss.hp * BOSS_HP_SCALE) } })),
+  ...Array.from({ length: 20 }, (_, i) => laterLevel(i + 11)),
+];
 
 /** Mulberry32 — tiny seeded RNG so an endless stage is the same every time. */
 export function rng(seed: number) {
