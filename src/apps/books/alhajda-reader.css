@@ -2,6 +2,14 @@
 .curated-reader {
   min-width: 0;
 }
+.curated-reader[data-reader-theme="paper"] {
+  --alhajda-ink: #242b28;
+  --alhajda-paper: #fffef9;
+}
+.curated-reader[data-reader-theme="warm"] {
+  --alhajda-ink: #3b2f1e;
+  --alhajda-paper: #f4e4c4;
+}
 .curated-reader[data-reader-theme="night"] {
   --alhajda-ink: #f5ead6;
   --alhajda-paper: #28231e;
@@ -68,4 +76,25 @@
 .curated-reader .alhajda-content td {
   border: 1px solid currentColor;
   padding: 0.5em;
+}
+.curated-reader[data-flow="page"] .alhajda-content section.page {
+  display: none;
+}
+.curated-reader[data-flow="page"] .alhajda-content section.page.is-reading-page {
+  display: block;
+}
+.curated-reader[data-focus="on"] .reader-secondary {
+  display: none;
+}
+.curated-reader .alhajda-pdf {
+  font-weight: 700;
+  background: color-mix(in srgb, currentColor 10%, transparent);
+}
+@media (max-width: 420px) {
+  .curated-reader.reader-layout {
+    padding-inline: 0.75rem;
+  }
+  .curated-reader .alhajda-pdf {
+    flex: 1 1 100%;
+  }
 }

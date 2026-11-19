@@ -81,9 +81,9 @@ export function continueReading(storage: Store): ContinueHit[] {
     if (!hits.some((item) => item.href === href)) hits.push({ href, title, detail, savedAt: at });
   };
   const alhajda = record(storage.getItem("waha:curated:alhajda:edition1"));
-  const alhajdaChapter = alhajda ? whole(alhajda.chapter, 5) : null;
+  const alhajdaChapter = alhajda ? whole(alhajda.chapter, 40) : null;
   if (alhajda && alhajdaChapter !== null && progressed(alhajda, alhajdaChapter))
-    push("/books/alhajda", "الهجدة", `الفصل ${alhajdaChapter + 1} من 6`, savedAt(alhajda));
+    push("/books/alhajda", "الهجدة", `القسم ${alhajdaChapter + 1}`, savedAt(alhajda));
   const guide = record(storage.getItem("waha:curated:trading-guide:20261007"));
   const guideChapter = guide ? whole(guide.chapter, 22) : null;
   if (guide && guideChapter !== null && progressed(guide, guideChapter))
