@@ -18,7 +18,7 @@ function fileUrl(path) {
   return `file://${path}`;
 }
 
-const previewIds = ["front", "past", "present"];
+const previewIds = ["front", "past", "present", "future"];
 const body = book.chapters
   .filter((chapter) => previewIds.includes(chapter.id))
   .map((chapter) => chapter.html)

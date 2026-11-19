@@ -1,6 +1,6 @@
 /** Insert the history/present preview without deleting the existing book. */
 import { readFile, writeFile } from "node:fs/promises";
-import { directionHtml, pastHtml, presentHtml } from "./alhajda-preview-content.mjs";
+import { directionHtml, futureHtml, pastHtml, presentHtml } from "./alhajda-preview-content.mjs";
 
 const bookPath = new URL("../src/lib/books/alhajda/book.json", import.meta.url);
 const book = JSON.parse(await readFile(bookPath, "utf8"));
@@ -67,11 +67,35 @@ book.chapters[book.chapters.findIndex((chapter) => chapter.id === "present")] = 
   "الحاضر · مع الأهل ومع المال",
   presentHtml,
 );
+if (!book.chapters.some((chapter) => chapter.id === "future")) {
+  const at = book.chapters.findIndex((chapter) => chapter.id === "present") + 1;
+  for (const key of Object.keys(book.anchorToChapter)) {
+    if (book.anchorToChapter[key] >= at) book.anchorToChapter[key] += 1;
+  }
+  book.chapters.splice(at, 0, pack("future", "", ""));
+}
+book.chapters[book.chapters.findIndex((chapter) => chapter.id === "future")] = pack(
+  "future",
+  "المستقبل · مسارات الإصلاح",
+  futureHtml,
+);
+rebind(book.chapters.find((chapter) => chapter.id === "future"));
 rebind(book.chapters.find((chapter) => chapter.id === "past"));
 rebind(book.chapters.find((chapter) => chapter.id === "present"));
 
 const front = book.chapters[0];
-if (!front.html.includes('id="preview-direction"')) {
+if (front.html.includes('id="preview-direction"')) {
+  const oldDirection = front.html.match(/<section id="preview-direction"[\s\S]*?<\/section>/)[0];
+  front.plainText = front.plainText.replace(textOf(oldDirection), textOf(directionHtml));
+  front.html = front.html.replace(oldDirection, directionHtml);
+  const directionIds = new Set([...directionHtml.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]));
+  front.searchBlocks = front.searchBlocks.filter((block) => !block.id.startsWith("preview-"));
+  front.searchBlocks.push(...blocks(directionHtml));
+  for (const id of directionIds) {
+    if (!front.anchorIds.includes(id)) front.anchorIds.push(id);
+    book.anchorToChapter[id] = 0;
+  }
+} else {
   front.html = front.html.replace(
     '<div class="alhajda-book" lang="ar" dir="rtl">',
     `<div class="alhajda-book" lang="ar" dir="rtl">${directionHtml}`,

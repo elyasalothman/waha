@@ -36,6 +36,21 @@ test("the preview develops the existing chapters and keeps their text", () => {
   assert.equal(readingMinutes(0), null);
 });
 
+test("the future part gathers the six chapters without inventing numbers", () => {
+  const ids = book.chapters.map((item) => item.id);
+  assert.deepEqual(ids.slice(1, 4), ["past", "present", "future"]);
+  const future = book.chapters.find((item) => item.id === "future");
+  assert.ok(future);
+  assert.equal(future.html.includes(edition.chapters[2].summary), true);
+  assert.equal(future.html.includes("يحتاج مصدر"), true);
+  for (const n of [1, 2, 3, 4, 5, 6]) assert.equal(future.html.includes(`id="future-h-${n}"`), true);
+  assert.equal(/[0-9٠-٩]+\s*[٪%]/.test(future.plainText ?? ""), false);
+  assert.equal(book.chapters[0].html.includes("بانتظار الاعتماد"), false);
+  for (const [anchor, index] of Object.entries(book.anchorToChapter)) {
+    assert.equal(book.chapters[index].anchorIds.includes(anchor), true, anchor);
+  }
+});
+
 test("reading preferences survive a reload and stay inside bounds", () => {
   const saved = curatedReading(
     {
