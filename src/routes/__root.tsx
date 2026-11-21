@@ -2,6 +2,7 @@ import { createRootRoute, HeadContent, Scripts, useRouterState } from "@tanstack
 import { AuthProvider } from "@/lib/auth/provider";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
 import { NativeIosChrome } from "@/components/native-ios-chrome";
+import { NativeDeepLink } from "@/components/native-deep-link";
 import { Shell } from "@/components/layout/shell";
 import { useAppStore } from "@/store/app-store";
 import { PwaRegistration } from "@/components/pwa-registration";
@@ -92,6 +93,7 @@ function RootDocument() {
       <body className="bg-bg text-fg">
         <PwaRegistration />
         <NativeIosChrome />
+        <NativeDeepLink />
         <PreviewHostBridge />
         <AuthProvider>
           <Shell />

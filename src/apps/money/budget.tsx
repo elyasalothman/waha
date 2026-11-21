@@ -27,6 +27,7 @@ import {
 import { usePersistent } from "@/lib/storage";
 import { useAppStore } from "@/store/app-store";
 import { cn } from "@/lib/cn";
+import { BudgetAuto } from "./budget-auto";
 
 function todayStamp(date = new Date()) {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
@@ -39,7 +40,7 @@ function money(value: number, lang: "ar" | "en") {
 export function BudgetApp() {
   const lang = useAppStore((s) => s.lang);
   const { user } = useCurrentUserState();
-  const [ledger, setLedger] = usePersistent<Ledger>(MIZANIYA_KEY, emptyLedger());
+  const [ledger, setLedger, ready] = usePersistent<Ledger>(MIZANIYA_KEY, emptyLedger());
   const [account, setAccount] = useState<AccountId>("personal");
   const [kind, setKind] = useState<"expense" | "income">("expense");
   const [amount, setAmount] = useState("");
@@ -125,12 +126,12 @@ export function BudgetApp() {
         <p className="mt-1 text-sm leading-7 text-muted">
           {signedIn
             ? L(
-                "أنت داخل الحساب، ودفتر الميزانية لا يُرفع إلى الخادم. يبقى على هذا الجهاز. لا قراءة للبنك ولا للرسائل.",
-                "You are signed in, and this ledger is not uploaded. It stays on this device. No bank login and no SMS reading.",
+                "أنت داخل الحساب، ودفتر الميزانية لا يُرفع إلى الخادم. يبقى على هذا الجهاز. لا ربط بنكي، والرسائل التي ترسلها أنت تُقرأ على الجهاز فقط.",
+                "You are signed in, and this ledger is not uploaded. It stays on this device. No bank login; messages you send in are read on this device only.",
               )
             : L(
-                "البيانات على هذا الجهاز فقط، لأن الحساب غير متصل بدفتر سحابي. لا قراءة للبنك ولا للرسائل.",
-                "The data stays on this device. There is no cloud ledger for the account. No bank login and no SMS reading.",
+                "البيانات على هذا الجهاز فقط، لأن الحساب غير متصل بدفتر سحابي. لا ربط بنكي، والرسائل التي ترسلها أنت تُقرأ على الجهاز فقط.",
+                "The data stays on this device. There is no cloud ledger for the account. No bank login; messages you send in are read on this device only.",
               )}
         </p>
       </header>
@@ -181,6 +182,8 @@ export function BudgetApp() {
         <Input value={note} onChange={(event) => setNote(event.target.value)} placeholder={L("ملاحظة اختيارية", "Optional note")} aria-label={L("ملاحظة", "Note")} />
         <Button type="submit" className="min-h-11 w-full">{L("تسجيل", "Save")}</Button>
       </form>
+
+      <BudgetAuto ledger={posted} onLedger={save} account={account} ready={ready} lang={lang} />
 
       <section className="waha-card tint-sand" aria-label={L("رصيد الشهر", "Month balance")}>
         <p className="text-sm text-muted">{L("رصيد هذا الشهر", "This month's balance")}</p>

@@ -33,6 +33,13 @@ export type Entry = {
   note: string;
   on: string;
   recurringId?: string;
+  /** Set on entries recorded from a bank SMS, Wallet or a statement. */
+  source?: "sms" | "wallet" | "statement";
+  /** Dedup hash of the bank transaction. Never the message text. */
+  ref?: string;
+  merchant?: string;
+  /** Last 4 digits only. */
+  last4?: string;
 };
 
 export type Bill = {
@@ -115,6 +122,10 @@ export function parseLedger(raw: string | null): Ledger {
             on,
           };
           if (typeof item.recurringId === "string") entry.recurringId = item.recurringId.slice(0, 80);
+          if (item.source === "sms" || item.source === "wallet" || item.source === "statement") entry.source = item.source;
+          if (typeof item.ref === "string") entry.ref = item.ref.slice(0, 40);
+          if (typeof item.merchant === "string") entry.merchant = item.merchant.slice(0, 60);
+          if (typeof item.last4 === "string" && /^[\d*]{4}$/.test(item.last4)) entry.last4 = item.last4;
           return [entry];
         })
       : [];
